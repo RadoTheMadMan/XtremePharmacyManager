@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
+using System.Data.Entity;
 using System.Data.Entity.Core.EntityClient;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -34,17 +35,18 @@ namespace XtremePharmacyManager
             List<User> users;
             frmSearchUsers usersform;
             string connstring = "";
-            SqlConnectionStringBuilder sb = new SqlConnectionStringBuilder();
-            sb.ConnectTimeout = 1000;
-            sb.DataSource = ".";
-            sb.InitialCatalog = "XTremePharmacyDB";
-            sb.UserID = "default";
-            sb.Password = "123456";
-            connstring = sb.ToString();
+            EntityConnectionStringBuilder esb = new EntityConnectionStringBuilder();
+            esb.Provider = "System.Data.SqlClient";
+            esb.Metadata = @"DataEntities/XTremePharmacyModel.csdl|
+                            DataEntities/XTremePharmacyModel.ssdl|
+                            DataEntities/XTremePharmacyModel.msl";
+            esb.ProviderConnectionString = "Server=DESKTOP-7UMS16L;Initial Catalog=XTremePharmacyDB;Persist Security Info=True;User ID=default;Password=123456";
             try
             {
-                using (Entities entities = new Entities())
+                using (Entities entities = new Entities(esb))
                 {
+                    entities.Database.Connection.Open();
+                    decimal balance = 0;
                     users = entities.GetUser(-1, "", "", "", new DateTime(), new DateTime(), "", "", "", balance, "", new DateTime(), new DateTime(), 0).ToList();
                     usersform = new frmSearchUsers(users);
                     usersform.MdiParent = this;
