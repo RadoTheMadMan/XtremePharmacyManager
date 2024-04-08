@@ -14,14 +14,18 @@ namespace XtremePharmacyManager.DataEntities
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    
+    using System.Data.Entity.Core.EntityClient;
+
     public partial class Entities : DbContext
     {
         public Entities()
             : base("name=Entities")
         {
         }
-    
+        public Entities(EntityConnectionStringBuilder builder) :base(builder.ConnectionString)
+        {
+
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -881,7 +885,7 @@ namespace XtremePharmacyManager.DataEntities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProductOrder_Result>("GetProductOrder", idParameter, productidParameter, quantityParameter, priceParameter, clientidParameter, employeeidParameter, dateaddedfromParameter, dateaddedtoParameter, datemodifiedfromParameter, datemodifiedtoParameter, statusParameter, reasonParameter);
         }
     
-        public virtual ObjectResult<GetUser_Result> GetUser(Nullable<int> id, string username, string password, string displayname, Nullable<System.DateTime> birthdatefrom, Nullable<System.DateTime> birthdateto, string phone, string email, string address, Nullable<decimal> balance, string diagnose, Nullable<System.DateTime> registerdatefrom, Nullable<System.DateTime> registerdateto, Nullable<int> role)
+        public virtual ObjectResult<User> GetUser(Nullable<int> id, string username, string password, string displayname, Nullable<System.DateTime> birthdatefrom, Nullable<System.DateTime> birthdateto, string phone, string email, string address, Nullable<decimal> balance, string diagnose, Nullable<System.DateTime> registerdatefrom, Nullable<System.DateTime> registerdateto, Nullable<int> role)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -939,7 +943,68 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("role", role) :
                 new ObjectParameter("role", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetUser_Result>("GetUser", idParameter, usernameParameter, passwordParameter, displaynameParameter, birthdatefromParameter, birthdatetoParameter, phoneParameter, emailParameter, addressParameter, balanceParameter, diagnoseParameter, registerdatefromParameter, registerdatetoParameter, roleParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<User>("GetUser", idParameter, usernameParameter, passwordParameter, displaynameParameter, birthdatefromParameter, birthdatetoParameter, phoneParameter, emailParameter, addressParameter, balanceParameter, diagnoseParameter, registerdatefromParameter, registerdatetoParameter, roleParameter);
+        }
+    
+        public virtual ObjectResult<User> GetUser(Nullable<int> id, string username, string password, string displayname, Nullable<System.DateTime> birthdatefrom, Nullable<System.DateTime> birthdateto, string phone, string email, string address, Nullable<decimal> balance, string diagnose, Nullable<System.DateTime> registerdatefrom, Nullable<System.DateTime> registerdateto, Nullable<int> role, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("username", username) :
+                new ObjectParameter("username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("password", password) :
+                new ObjectParameter("password", typeof(string));
+    
+            var displaynameParameter = displayname != null ?
+                new ObjectParameter("displayname", displayname) :
+                new ObjectParameter("displayname", typeof(string));
+    
+            var birthdatefromParameter = birthdatefrom.HasValue ?
+                new ObjectParameter("birthdatefrom", birthdatefrom) :
+                new ObjectParameter("birthdatefrom", typeof(System.DateTime));
+    
+            var birthdatetoParameter = birthdateto.HasValue ?
+                new ObjectParameter("birthdateto", birthdateto) :
+                new ObjectParameter("birthdateto", typeof(System.DateTime));
+    
+            var phoneParameter = phone != null ?
+                new ObjectParameter("phone", phone) :
+                new ObjectParameter("phone", typeof(string));
+    
+            var emailParameter = email != null ?
+                new ObjectParameter("email", email) :
+                new ObjectParameter("email", typeof(string));
+    
+            var addressParameter = address != null ?
+                new ObjectParameter("address", address) :
+                new ObjectParameter("address", typeof(string));
+    
+            var balanceParameter = balance.HasValue ?
+                new ObjectParameter("balance", balance) :
+                new ObjectParameter("balance", typeof(decimal));
+    
+            var diagnoseParameter = diagnose != null ?
+                new ObjectParameter("diagnose", diagnose) :
+                new ObjectParameter("diagnose", typeof(string));
+    
+            var registerdatefromParameter = registerdatefrom.HasValue ?
+                new ObjectParameter("registerdatefrom", registerdatefrom) :
+                new ObjectParameter("registerdatefrom", typeof(System.DateTime));
+    
+            var registerdatetoParameter = registerdateto.HasValue ?
+                new ObjectParameter("registerdateto", registerdateto) :
+                new ObjectParameter("registerdateto", typeof(System.DateTime));
+    
+            var roleParameter = role.HasValue ?
+                new ObjectParameter("role", role) :
+                new ObjectParameter("role", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<User>("GetUser", mergeOption, idParameter, usernameParameter, passwordParameter, displaynameParameter, birthdatefromParameter, birthdatetoParameter, phoneParameter, emailParameter, addressParameter, balanceParameter, diagnoseParameter, registerdatefromParameter, registerdatetoParameter, roleParameter);
         }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

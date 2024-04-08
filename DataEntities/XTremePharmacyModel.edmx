@@ -1603,7 +1603,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="status" Mode="In" Type="Int32" />
             <Parameter Name="reason" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetUser" ReturnType="Collection(XTremePharmacyModel.GetUser_Result)">
+          <FunctionImport Name="GetUser" EntitySet="Users" ReturnType="Collection(XTremePharmacyModel.User)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="username" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
@@ -2184,23 +2184,6 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetUser" FunctionName="XTremePharmacyModel.Store.GetUser">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetUser_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
-                <ScalarProperty Name="UserDisplayName" ColumnName="UserDisplayName" />
-                <ScalarProperty Name="UserBirthDate" ColumnName="UserBirthDate" />
-                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
-                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
-                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
-                <ScalarProperty Name="UserProfilePic" ColumnName="UserProfilePic" />
-                <ScalarProperty Name="UserBalance" ColumnName="UserBalance" />
-                <ScalarProperty Name="UserDiagnose" ColumnName="UserDiagnose" />
-                <ScalarProperty Name="UserDateOfRegister" ColumnName="UserDateOfRegister" />
-                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="XTremePharmacyModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="XTremePharmacyModel.Store.sp_creatediagram" />
