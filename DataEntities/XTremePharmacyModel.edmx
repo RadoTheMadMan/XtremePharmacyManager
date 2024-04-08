@@ -1,0 +1,2261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="XTremePharmacyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DeliveryServices">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ServiceName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ServicePrice" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Logs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LogDate" Type="date" Nullable="false" />
+          <Property Name="LogTitle" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LogMessage" Type="varchar(max)" Nullable="false" />
+          <Property Name="AdditionalLogInformation" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDeliveries">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="DeliveryServiceID" Type="int" />
+          <Property Name="PaymentMethodID" Type="int" />
+          <Property Name="TotalPrice" Type="money" Nullable="false" />
+          <Property Name="DateAdded" Type="date" Nullable="false" />
+          <Property Name="DateModified" Type="date" Nullable="false" />
+          <Property Name="DeliveryStatus" Type="int" Nullable="false" />
+          <Property Name="DeliveryReason" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentMethods">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MethodName" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductBrands">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrandName" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductImages">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="ImageName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ImageData" Type="varbinary(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductOrders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="DesiredQuantity" Type="int" Nullable="false" />
+          <Property Name="OrderPrice" Type="money" Nullable="false" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="EmployeeID" Type="int" />
+          <Property Name="DateAdded" Type="date" Nullable="false" />
+          <Property Name="DateModified" Type="date" Nullable="false" />
+          <Property Name="OrderStatus" Type="int" Nullable="false" />
+          <Property Name="OrderReason" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BrandID" Type="int" />
+          <Property Name="ProductDescription" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ProductQuantity" Type="int" Nullable="false" />
+          <Property Name="ProductPrice" Type="money" Nullable="false" />
+          <Property Name="ProductExpiryDate" Type="date" Nullable="false" />
+          <Property Name="ProductRegNum" Type="varchar(max)" Nullable="false" />
+          <Property Name="ProductPartNum" Type="varchar(max)" Nullable="false" />
+          <Property Name="ProductStorageLocation" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserDisplayName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserBirthDate" Type="date" Nullable="false" />
+          <Property Name="UserPhone" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserAddress" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="UserProfilePic" Type="varbinary(max)" Nullable="false" />
+          <Property Name="UserBalance" Type="money" Nullable="false" />
+          <Property Name="UserDiagnose" Type="varchar(max)" Nullable="false" />
+          <Property Name="UserDateOfRegister" Type="date" Nullable="false" />
+          <Property Name="UserRole" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'XTremePharmacyDB.dbo.ClientView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ClientView">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="UserPassword" />
+            <PropertyRef Name="UserDisplayName" />
+            <PropertyRef Name="UserBirthDate" />
+            <PropertyRef Name="UserPhone" />
+            <PropertyRef Name="UserEmail" />
+            <PropertyRef Name="UserAddress" />
+            <PropertyRef Name="UserProfilePic" />
+            <PropertyRef Name="UserBalance" />
+            <PropertyRef Name="UserDiagnose" />
+            <PropertyRef Name="UserDateOfRegister" />
+            <PropertyRef Name="UserRole" />
+          </Key>
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserDisplayName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserBirthDate" Type="date" Nullable="false" />
+          <Property Name="UserPhone" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserAddress" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="UserProfilePic" Type="varbinary(max)" Nullable="false" />
+          <Property Name="UserBalance" Type="money" Nullable="false" />
+          <Property Name="UserDiagnose" Type="varchar(max)" Nullable="false" />
+          <Property Name="UserDateOfRegister" Type="date" Nullable="false" />
+          <Property Name="UserRole" Type="int" Nullable="false" />
+          <Property Name="AverageClientSpending" Type="money" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'XTremePharmacyDB.dbo.EmployeeView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="EmployeeView">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="UserPassword" />
+            <PropertyRef Name="UserDisplayName" />
+            <PropertyRef Name="UserBirthDate" />
+            <PropertyRef Name="UserPhone" />
+            <PropertyRef Name="UserEmail" />
+            <PropertyRef Name="UserAddress" />
+            <PropertyRef Name="UserProfilePic" />
+            <PropertyRef Name="UserBalance" />
+            <PropertyRef Name="UserDiagnose" />
+            <PropertyRef Name="UserDateOfRegister" />
+            <PropertyRef Name="UserRole" />
+          </Key>
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserDisplayName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserBirthDate" Type="date" Nullable="false" />
+          <Property Name="UserPhone" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserEmail" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="UserAddress" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="UserProfilePic" Type="varbinary(max)" Nullable="false" />
+          <Property Name="UserBalance" Type="money" Nullable="false" />
+          <Property Name="UserDiagnose" Type="varchar(max)" Nullable="false" />
+          <Property Name="UserDateOfRegister" Type="date" Nullable="false" />
+          <Property Name="UserRole" Type="int" Nullable="false" />
+          <Property Name="AverageEmployeeIncome" Type="money" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedBrandsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ExtendedBrandsView">
+          <Key>
+            <PropertyRef Name="BrandName" />
+          </Key>
+          <Property Name="BrandName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="CountProductsFromBrand" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedDeliveryServicesView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ExtendedDeliveryServicesView">
+          <Key>
+            <PropertyRef Name="ServiceName" />
+            <PropertyRef Name="ServicePrice" />
+          </Key>
+          <Property Name="ServiceName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ServicePrice" Type="money" Nullable="false" />
+          <Property Name="TimesThisServiceWasUsed" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedOrderDeliveriesView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ExtendedOrderDeliveriesView">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ProductName" />
+            <PropertyRef Name="BrandName" />
+            <PropertyRef Name="ProductDescription" />
+            <PropertyRef Name="ProductExpiryDate" />
+            <PropertyRef Name="DesiredQuantity" />
+            <PropertyRef Name="OrderPrice" />
+            <PropertyRef Name="ServiceName" />
+            <PropertyRef Name="DeliveryPrice" />
+            <PropertyRef Name="MethodName" />
+            <PropertyRef Name="TotalPrice" />
+            <PropertyRef Name="DateAdded" />
+            <PropertyRef Name="DateModified" />
+            <PropertyRef Name="DeliveryStatus" />
+            <PropertyRef Name="DeliveryReason" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BrandName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ProductDescription" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ProductExpiryDate" Type="date" Nullable="false" />
+          <Property Name="DesiredQuantity" Type="int" Nullable="false" />
+          <Property Name="OrderPrice" Type="money" Nullable="false" />
+          <Property Name="ClientName" Type="varchar" MaxLength="100" />
+          <Property Name="ClientPhone" Type="varchar" MaxLength="100" />
+          <Property Name="ClientEmail" Type="varchar" MaxLength="100" />
+          <Property Name="ClientAddress" Type="varchar" MaxLength="250" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="100" />
+          <Property Name="ServiceName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="DeliveryPrice" Type="money" Nullable="false" />
+          <Property Name="MethodName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="TotalPrice" Type="money" Nullable="false" />
+          <Property Name="DateAdded" Type="date" Nullable="false" />
+          <Property Name="DateModified" Type="date" Nullable="false" />
+          <Property Name="DeliveryStatus" Type="int" Nullable="false" />
+          <Property Name="DeliveryReason" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedPaymentMethodsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ExtendedPaymentMethodsView">
+          <Key>
+            <PropertyRef Name="MethodName" />
+          </Key>
+          <Property Name="MethodName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="TimesThisMethodWasUsed" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductOrdersView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ExtendedProductOrdersView">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ProductName" />
+            <PropertyRef Name="BrandName" />
+            <PropertyRef Name="ProductDescription" />
+            <PropertyRef Name="ProductExpiryDate" />
+            <PropertyRef Name="DesiredQuantity" />
+            <PropertyRef Name="OrderPrice" />
+            <PropertyRef Name="DateAdded" />
+            <PropertyRef Name="DateModified" />
+            <PropertyRef Name="OrderStatus" />
+            <PropertyRef Name="OrderReason" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BrandName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ProductDescription" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ProductExpiryDate" Type="date" Nullable="false" />
+          <Property Name="DesiredQuantity" Type="int" Nullable="false" />
+          <Property Name="OrderPrice" Type="money" Nullable="false" />
+          <Property Name="ClientName" Type="varchar" MaxLength="100" />
+          <Property Name="ClientPhone" Type="varchar" MaxLength="100" />
+          <Property Name="ClientEmail" Type="varchar" MaxLength="100" />
+          <Property Name="ClientAddress" Type="varchar" MaxLength="250" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="100" />
+          <Property Name="DateAdded" Type="date" Nullable="false" />
+          <Property Name="DateModified" Type="date" Nullable="false" />
+          <Property Name="OrderStatus" Type="int" Nullable="false" />
+          <Property Name="OrderReason" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ExtendedProductView">
+          <Key>
+            <PropertyRef Name="ProductName" />
+            <PropertyRef Name="BrandName" />
+            <PropertyRef Name="ProductDescription" />
+            <PropertyRef Name="ProductQuantity" />
+            <PropertyRef Name="ProductPrice" />
+            <PropertyRef Name="ProductExpiryDate" />
+            <PropertyRef Name="ProductRegNum" />
+            <PropertyRef Name="ProductPartNum" />
+            <PropertyRef Name="ProductStorageLocation" />
+          </Key>
+          <Property Name="ProductName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="BrandName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ProductDescription" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="ProductQuantity" Type="int" Nullable="false" />
+          <Property Name="ProductPrice" Type="money" Nullable="false" />
+          <Property Name="ProductExpiryDate" Type="date" Nullable="false" />
+          <Property Name="ProductRegNum" Type="varchar(max)" Nullable="false" />
+          <Property Name="ProductPartNum" Type="varchar(max)" Nullable="false" />
+          <Property Name="ProductStorageLocation" Type="varchar(max)" Nullable="false" />
+          <Property Name="AverageProductSale" Type="money" />
+          <Property Name="ProductImageCount" Type="int" />
+        </EntityType>
+        <Association Name="FK__OrderDeli__Deliv__0D0FEE32">
+          <End Role="DeliveryServices" Type="Self.DeliveryServices" Multiplicity="0..1" />
+          <End Role="OrderDeliveries" Type="Self.OrderDeliveries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryServices">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDeliveries">
+              <PropertyRef Name="DeliveryServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeli__Order__0B27A5C0">
+          <End Role="ProductOrders" Type="Self.ProductOrders" Multiplicity="0..1" />
+          <End Role="OrderDeliveries" Type="Self.OrderDeliveries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductOrders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDeliveries">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeli__Payme__0EF836A4">
+          <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="0..1" />
+          <End Role="OrderDeliveries" Type="Self.OrderDeliveries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethods">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDeliveries">
+              <PropertyRef Name="PaymentMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductIm__Produ__7814D14C">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="ProductImages" Type="Self.ProductImages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductImages">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductOr__Clien__019E3B86">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="ProductOrders" Type="Self.ProductOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductOrders">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductOr__Emplo__038683F8">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="ProductOrders" Type="Self.ProductOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductOrders">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductOr__Produ__7DCDAAA2">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="ProductOrders" Type="Self.ProductOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductOrders">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__BrandI__65F62111">
+          <End Role="ProductBrands" Type="Self.ProductBrands" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductBrands">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddBrand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="brandname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AddDeliveryService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="servicename" Type="varchar" Mode="In" />
+          <Parameter Name="price" Type="money" Mode="In" />
+        </Function>
+        <Function Name="AddLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="logdate" Type="date" Mode="In" />
+          <Parameter Name="logtitle" Type="varchar" Mode="In" />
+          <Parameter Name="logmessage" Type="varchar(max)" Mode="In" />
+          <Parameter Name="additionalinformation" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="AddOrderDelivery" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="orderid" Type="int" Mode="In" />
+          <Parameter Name="serviceid" Type="int" Mode="In" />
+          <Parameter Name="methodid" Type="int" Mode="In" />
+          <Parameter Name="deliveryreason" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="AddPaymentMethod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="methodname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="AddProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productname" Type="varchar" Mode="In" />
+          <Parameter Name="brandid" Type="int" Mode="In" />
+          <Parameter Name="description" Type="varchar" Mode="In" />
+          <Parameter Name="quantity" Type="int" Mode="In" />
+          <Parameter Name="price" Type="money" Mode="In" />
+          <Parameter Name="expirydate" Type="date" Mode="In" />
+          <Parameter Name="regnum" Type="varchar(max)" Mode="In" />
+          <Parameter Name="partnum" Type="varchar(max)" Mode="In" />
+          <Parameter Name="storagelocation" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="AddProductImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productid" Type="int" Mode="In" />
+          <Parameter Name="imagename" Type="varchar" Mode="In" />
+          <Parameter Name="imagedata" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="AddProductOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="productid" Type="int" Mode="In" />
+          <Parameter Name="desiredquantity" Type="int" Mode="In" />
+          <Parameter Name="priceoverride" Type="money" Mode="In" />
+          <Parameter Name="clientid" Type="int" Mode="In" />
+          <Parameter Name="employeeid" Type="int" Mode="In" />
+          <Parameter Name="orderreason" Type="varchar(max)" Mode="In" />
+          <Parameter Name="overridepriceastotal" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="AddUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="displayname" Type="varchar" Mode="In" />
+          <Parameter Name="birthdate" Type="date" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+          <Parameter Name="profilepic" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="balance" Type="money" Mode="In" />
+          <Parameter Name="diagnose" Type="varchar(max)" Mode="In" />
+          <Parameter Name="role" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteBrand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="brandname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteBrandByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteDeliveryService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="servicename" Type="varchar" Mode="In" />
+          <Parameter Name="serviceprice" Type="money" Mode="In" />
+        </Function>
+        <Function Name="DeleteDeliveryServiceByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="logdatefrom" Type="date" Mode="In" />
+          <Parameter Name="logdateto" Type="date" Mode="In" />
+          <Parameter Name="logtitle" Type="varchar" Mode="In" />
+          <Parameter Name="logmessage" Type="varchar(max)" Mode="In" />
+          <Parameter Name="additionalinformation" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="DeleteLogByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteOrderDelivery" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="orderid" Type="int" Mode="In" />
+          <Parameter Name="serviceid" Type="int" Mode="In" />
+          <Parameter Name="methodid" Type="int" Mode="In" />
+          <Parameter Name="price" Type="money" Mode="In" />
+          <Parameter Name="dateaddedfrom" Type="date" Mode="In" />
+          <Parameter Name="dateaddedto" Type="date" Mode="In" />
+          <Parameter Name="datemodifiedfrom" Type="date" Mode="In" />
+          <Parameter Name="datemodifiedto" Type="date" Mode="In" />
+          <Parameter Name="status" Type="int" Mode="In" />
+          <Parameter Name="reason" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="DeleteOrderDeliveryByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeletePaymentMethod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="methodname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="DeletePaymentMethodByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="productname" Type="varchar" Mode="In" />
+          <Parameter Name="brandid" Type="int" Mode="In" />
+          <Parameter Name="description" Type="varchar" Mode="In" />
+          <Parameter Name="quantity" Type="int" Mode="In" />
+          <Parameter Name="price" Type="money" Mode="In" />
+          <Parameter Name="expirydatefrom" Type="date" Mode="In" />
+          <Parameter Name="expirydateto" Type="date" Mode="In" />
+          <Parameter Name="regnum" Type="varchar(max)" Mode="In" />
+          <Parameter Name="partnum" Type="varchar(max)" Mode="In" />
+          <Parameter Name="storagelocation" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="DeleteProductByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteProductImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="productid" Type="int" Mode="In" />
+          <Parameter Name="imagename" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="DeleteProductImageByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteProductOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="productid" Type="int" Mode="In" />
+          <Parameter Name="quantity" Type="int" Mode="In" />
+          <Parameter Name="price" Type="money" Mode="In" />
+          <Parameter Name="clientid" Type="int" Mode="In" />
+          <Parameter Name="employeeid" Type="int" Mode="In" />
+          <Parameter Name="dateaddedfrom" Type="date" Mode="In" />
+          <Parameter Name="dateaddedto" Type="date" Mode="In" />
+          <Parameter Name="datemodifiedfrom" Type="date" Mode="In" />
+          <Parameter Name="datemodifiedto" Type="date" Mode="In" />
+          <Parameter Name="status" Type="int" Mode="In" />
+          <Parameter Name="reason" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="DeleteProductOrderByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="displayname" Type="varchar" Mode="In" />
+          <Parameter Name="birthdatefrom" Type="date" Mode="In" />
+          <Parameter Name="birthdateto" Type="date" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+          <Parameter Name="balance" Type="money" Mode="In" />
+          <Parameter Name="diagnose" Type="varchar(max)" Mode="In" />
+          <Parameter Name="registerdatefrom" Type="date" Mode="In" />
+          <Parameter Name="registerdateto" Type="date" Mode="In" />
+          <Parameter Name="role" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DeleteUserByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="GetBrand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="brandname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetDeliveryService" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="servicename" Type="varchar" Mode="In" />
+          <Parameter Name="serviceprice" Type="money" Mode="In" />
+        </Function>
+        <Function Name="GetLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="logdatefrom" Type="date" Mode="In" />
+          <Parameter Name="logdateto" Type="date" Mode="In" />
+          <Parameter Name="logtitle" Type="varchar" Mode="In" />
+          <Parameter Name="logmessage" Type="varchar(max)" Mode="In" />
+          <Parameter Name="additionalinformation" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="GetOrderDelivery" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="orderid" Type="int" Mode="In" />
+          <Parameter Name="serviceid" Type="int" Mode="In" />
+          <Parameter Name="methodid" Type="int" Mode="In" />
+          <Parameter Name="price" Type="money" Mode="In" />
+          <Parameter Name="dateaddedfrom" Type="date" Mode="In" />
+          <Parameter Name="dateaddedto" Type="date" Mode="In" />
+          <Parameter Name="datemodifiedfrom" Type="date" Mode="In" />
+          <Parameter Name="datemodifiedto" Type="date" Mode="In" />
+          <Parameter Name="status" Type="int" Mode="In" />
+          <Parameter Name="reason" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="GetPaymentMethod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="methodname" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="productname" Type="varchar" Mode="In" />
+          <Parameter Name="brandid" Type="int" Mode="In" />
+          <Parameter Name="description" Type="varchar" Mode="In" />
+          <Parameter Name="quantity" Type="int" Mode="In" />
+          <Parameter Name="price" Type="money" Mode="In" />
+          <Parameter Name="expirydatefrom" Type="date" Mode="In" />
+          <Parameter Name="expirydateto" Type="date" Mode="In" />
+          <Parameter Name="regnum" Type="varchar(max)" Mode="In" />
+          <Parameter Name="partnum" Type="varchar(max)" Mode="In" />
+          <Parameter Name="storagelocation" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="GetProductImage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="productid" Type="int" Mode="In" />
+          <Parameter Name="imagename" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GetProductOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="productid" Type="int" Mode="In" />
+          <Parameter Name="quantity" Type="int" Mode="In" />
+          <Parameter Name="price" Type="money" Mode="In" />
+          <Parameter Name="clientid" Type="int" Mode="In" />
+          <Parameter Name="employeeid" Type="int" Mode="In" />
+          <Parameter Name="dateaddedfrom" Type="date" Mode="In" />
+          <Parameter Name="dateaddedto" Type="date" Mode="In" />
+          <Parameter Name="datemodifiedfrom" Type="date" Mode="In" />
+          <Parameter Name="datemodifiedto" Type="date" Mode="In" />
+          <Parameter Name="status" Type="int" Mode="In" />
+          <Parameter Name="reason" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="GetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="username" Type="varchar" Mode="In" />
+          <Parameter Name="password" Type="varchar" Mode="In" />
+          <Parameter Name="displayname" Type="varchar" Mode="In" />
+          <Parameter Name="birthdatefrom" Type="date" Mode="In" />
+          <Parameter Name="birthdateto" Type="date" Mode="In" />
+          <Parameter Name="phone" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="address" Type="varchar" Mode="In" />
+          <Parameter Name="balance" Type="money" Mode="In" />
+          <Parameter Name="diagnose" Type="varchar(max)" Mode="In" />
+          <Parameter Name="registerdatefrom" Type="date" Mode="In" />
+          <Parameter Name="registerdateto" Type="date" Mode="In" />
+          <Parameter Name="role" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UpdateBrandByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="new_brand_name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateDeliveryServiceByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="new_service_name" Type="varchar" Mode="In" />
+          <Parameter Name="new_service_price" Type="money" Mode="In" />
+        </Function>
+        <Function Name="UpdateLogByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="new_log_title" Type="varchar" Mode="In" />
+          <Parameter Name="new_log_message" Type="varchar(max)" Mode="In" />
+          <Parameter Name="new_add_info" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="UpdateOrderDeliveryByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="new_order_id" Type="int" Mode="In" />
+          <Parameter Name="new_service_id" Type="int" Mode="In" />
+          <Parameter Name="new_method_id" Type="int" Mode="In" />
+          <Parameter Name="new_status" Type="int" Mode="In" />
+          <Parameter Name="new_reason" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="UpdatePaymentMethodByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="new_method_name" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="UpdateProductByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="new_product_name" Type="varchar" Mode="In" />
+          <Parameter Name="new_brand_id" Type="int" Mode="In" />
+          <Parameter Name="new_description" Type="varchar" Mode="In" />
+          <Parameter Name="new_quantity" Type="int" Mode="In" />
+          <Parameter Name="new_price" Type="money" Mode="In" />
+          <Parameter Name="new_expiry_date" Type="date" Mode="In" />
+          <Parameter Name="new_reg_num" Type="varchar(max)" Mode="In" />
+          <Parameter Name="new_part_num" Type="varchar(max)" Mode="In" />
+          <Parameter Name="new_storage_location" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="UpdateProductImageByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="new_product_id" Type="int" Mode="In" />
+          <Parameter Name="new_image_name" Type="varchar" Mode="In" />
+          <Parameter Name="new_image_data" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="UpdateProductOrderByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="new_product_id" Type="int" Mode="In" />
+          <Parameter Name="new_desired_quantity" Type="int" Mode="In" />
+          <Parameter Name="new_price_override" Type="money" Mode="In" />
+          <Parameter Name="new_client_id" Type="int" Mode="In" />
+          <Parameter Name="new_employee_id" Type="int" Mode="In" />
+          <Parameter Name="new_status" Type="int" Mode="In" />
+          <Parameter Name="new_reason" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="UpdateUserByID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="new_user_name" Type="varchar" Mode="In" />
+          <Parameter Name="new_password" Type="varchar" Mode="In" />
+          <Parameter Name="new_display_name" Type="varchar" Mode="In" />
+          <Parameter Name="new_birth_date" Type="date" Mode="In" />
+          <Parameter Name="new_phone" Type="varchar" Mode="In" />
+          <Parameter Name="new_email" Type="varchar" Mode="In" />
+          <Parameter Name="new_address" Type="varchar" Mode="In" />
+          <Parameter Name="new_profile_pic" Type="varbinary(max)" Mode="In" />
+          <Parameter Name="new_balance" Type="money" Mode="In" />
+          <Parameter Name="new_diagnose" Type="varchar(max)" Mode="In" />
+          <Parameter Name="new_role" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="XTremePharmacyModelStoreContainer">
+          <EntitySet Name="DeliveryServices" EntityType="Self.DeliveryServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logs" EntityType="Self.Logs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDeliveries" EntityType="Self.OrderDeliveries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductBrands" EntityType="Self.ProductBrands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductImages" EntityType="Self.ProductImages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductOrders" EntityType="Self.ProductOrders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClientView" EntityType="Self.ClientView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ClientView].[UserName] AS [UserName], 
+    [ClientView].[UserPassword] AS [UserPassword], 
+    [ClientView].[UserDisplayName] AS [UserDisplayName], 
+    [ClientView].[UserBirthDate] AS [UserBirthDate], 
+    [ClientView].[UserPhone] AS [UserPhone], 
+    [ClientView].[UserEmail] AS [UserEmail], 
+    [ClientView].[UserAddress] AS [UserAddress], 
+    [ClientView].[UserProfilePic] AS [UserProfilePic], 
+    [ClientView].[UserBalance] AS [UserBalance], 
+    [ClientView].[UserDiagnose] AS [UserDiagnose], 
+    [ClientView].[UserDateOfRegister] AS [UserDateOfRegister], 
+    [ClientView].[UserRole] AS [UserRole], 
+    [ClientView].[AverageClientSpending] AS [AverageClientSpending]
+    FROM [dbo].[ClientView] AS [ClientView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="EmployeeView" EntityType="Self.EmployeeView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [EmployeeView].[UserName] AS [UserName], 
+    [EmployeeView].[UserPassword] AS [UserPassword], 
+    [EmployeeView].[UserDisplayName] AS [UserDisplayName], 
+    [EmployeeView].[UserBirthDate] AS [UserBirthDate], 
+    [EmployeeView].[UserPhone] AS [UserPhone], 
+    [EmployeeView].[UserEmail] AS [UserEmail], 
+    [EmployeeView].[UserAddress] AS [UserAddress], 
+    [EmployeeView].[UserProfilePic] AS [UserProfilePic], 
+    [EmployeeView].[UserBalance] AS [UserBalance], 
+    [EmployeeView].[UserDiagnose] AS [UserDiagnose], 
+    [EmployeeView].[UserDateOfRegister] AS [UserDateOfRegister], 
+    [EmployeeView].[UserRole] AS [UserRole], 
+    [EmployeeView].[AverageEmployeeIncome] AS [AverageEmployeeIncome]
+    FROM [dbo].[EmployeeView] AS [EmployeeView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ExtendedBrandsView" EntityType="Self.ExtendedBrandsView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ExtendedBrandsView].[BrandName] AS [BrandName], 
+    [ExtendedBrandsView].[CountProductsFromBrand] AS [CountProductsFromBrand]
+    FROM [dbo].[ExtendedBrandsView] AS [ExtendedBrandsView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ExtendedDeliveryServicesView" EntityType="Self.ExtendedDeliveryServicesView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ExtendedDeliveryServicesView].[ServiceName] AS [ServiceName], 
+    [ExtendedDeliveryServicesView].[ServicePrice] AS [ServicePrice], 
+    [ExtendedDeliveryServicesView].[TimesThisServiceWasUsed] AS [TimesThisServiceWasUsed]
+    FROM [dbo].[ExtendedDeliveryServicesView] AS [ExtendedDeliveryServicesView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ExtendedOrderDeliveriesView" EntityType="Self.ExtendedOrderDeliveriesView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ExtendedOrderDeliveriesView].[ID] AS [ID], 
+    [ExtendedOrderDeliveriesView].[ProductName] AS [ProductName], 
+    [ExtendedOrderDeliveriesView].[BrandName] AS [BrandName], 
+    [ExtendedOrderDeliveriesView].[ProductDescription] AS [ProductDescription], 
+    [ExtendedOrderDeliveriesView].[ProductExpiryDate] AS [ProductExpiryDate], 
+    [ExtendedOrderDeliveriesView].[DesiredQuantity] AS [DesiredQuantity], 
+    [ExtendedOrderDeliveriesView].[OrderPrice] AS [OrderPrice], 
+    [ExtendedOrderDeliveriesView].[ClientName] AS [ClientName], 
+    [ExtendedOrderDeliveriesView].[ClientPhone] AS [ClientPhone], 
+    [ExtendedOrderDeliveriesView].[ClientEmail] AS [ClientEmail], 
+    [ExtendedOrderDeliveriesView].[ClientAddress] AS [ClientAddress], 
+    [ExtendedOrderDeliveriesView].[EmployeeName] AS [EmployeeName], 
+    [ExtendedOrderDeliveriesView].[ServiceName] AS [ServiceName], 
+    [ExtendedOrderDeliveriesView].[DeliveryPrice] AS [DeliveryPrice], 
+    [ExtendedOrderDeliveriesView].[MethodName] AS [MethodName], 
+    [ExtendedOrderDeliveriesView].[TotalPrice] AS [TotalPrice], 
+    [ExtendedOrderDeliveriesView].[DateAdded] AS [DateAdded], 
+    [ExtendedOrderDeliveriesView].[DateModified] AS [DateModified], 
+    [ExtendedOrderDeliveriesView].[DeliveryStatus] AS [DeliveryStatus], 
+    [ExtendedOrderDeliveriesView].[DeliveryReason] AS [DeliveryReason]
+    FROM [dbo].[ExtendedOrderDeliveriesView] AS [ExtendedOrderDeliveriesView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ExtendedPaymentMethodsView" EntityType="Self.ExtendedPaymentMethodsView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ExtendedPaymentMethodsView].[MethodName] AS [MethodName], 
+    [ExtendedPaymentMethodsView].[TimesThisMethodWasUsed] AS [TimesThisMethodWasUsed]
+    FROM [dbo].[ExtendedPaymentMethodsView] AS [ExtendedPaymentMethodsView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ExtendedProductOrdersView" EntityType="Self.ExtendedProductOrdersView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ExtendedProductOrdersView].[ID] AS [ID], 
+    [ExtendedProductOrdersView].[ProductName] AS [ProductName], 
+    [ExtendedProductOrdersView].[BrandName] AS [BrandName], 
+    [ExtendedProductOrdersView].[ProductDescription] AS [ProductDescription], 
+    [ExtendedProductOrdersView].[ProductExpiryDate] AS [ProductExpiryDate], 
+    [ExtendedProductOrdersView].[DesiredQuantity] AS [DesiredQuantity], 
+    [ExtendedProductOrdersView].[OrderPrice] AS [OrderPrice], 
+    [ExtendedProductOrdersView].[ClientName] AS [ClientName], 
+    [ExtendedProductOrdersView].[ClientPhone] AS [ClientPhone], 
+    [ExtendedProductOrdersView].[ClientEmail] AS [ClientEmail], 
+    [ExtendedProductOrdersView].[ClientAddress] AS [ClientAddress], 
+    [ExtendedProductOrdersView].[EmployeeName] AS [EmployeeName], 
+    [ExtendedProductOrdersView].[DateAdded] AS [DateAdded], 
+    [ExtendedProductOrdersView].[DateModified] AS [DateModified], 
+    [ExtendedProductOrdersView].[OrderStatus] AS [OrderStatus], 
+    [ExtendedProductOrdersView].[OrderReason] AS [OrderReason]
+    FROM [dbo].[ExtendedProductOrdersView] AS [ExtendedProductOrdersView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ExtendedProductView" EntityType="Self.ExtendedProductView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ExtendedProductView].[ProductName] AS [ProductName], 
+    [ExtendedProductView].[BrandName] AS [BrandName], 
+    [ExtendedProductView].[ProductDescription] AS [ProductDescription], 
+    [ExtendedProductView].[ProductQuantity] AS [ProductQuantity], 
+    [ExtendedProductView].[ProductPrice] AS [ProductPrice], 
+    [ExtendedProductView].[ProductExpiryDate] AS [ProductExpiryDate], 
+    [ExtendedProductView].[ProductRegNum] AS [ProductRegNum], 
+    [ExtendedProductView].[ProductPartNum] AS [ProductPartNum], 
+    [ExtendedProductView].[ProductStorageLocation] AS [ProductStorageLocation], 
+    [ExtendedProductView].[AverageProductSale] AS [AverageProductSale], 
+    [ExtendedProductView].[ProductImageCount] AS [ProductImageCount]
+    FROM [dbo].[ExtendedProductView] AS [ExtendedProductView]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__OrderDeli__Deliv__0D0FEE32" Association="Self.FK__OrderDeli__Deliv__0D0FEE32">
+            <End Role="DeliveryServices" EntitySet="DeliveryServices" />
+            <End Role="OrderDeliveries" EntitySet="OrderDeliveries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeli__Order__0B27A5C0" Association="Self.FK__OrderDeli__Order__0B27A5C0">
+            <End Role="ProductOrders" EntitySet="ProductOrders" />
+            <End Role="OrderDeliveries" EntitySet="OrderDeliveries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeli__Payme__0EF836A4" Association="Self.FK__OrderDeli__Payme__0EF836A4">
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+            <End Role="OrderDeliveries" EntitySet="OrderDeliveries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductIm__Produ__7814D14C" Association="Self.FK__ProductIm__Produ__7814D14C">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductImages" EntitySet="ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductOr__Clien__019E3B86" Association="Self.FK__ProductOr__Clien__019E3B86">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ProductOrders" EntitySet="ProductOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductOr__Emplo__038683F8" Association="Self.FK__ProductOr__Emplo__038683F8">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ProductOrders" EntitySet="ProductOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductOr__Produ__7DCDAAA2" Association="Self.FK__ProductOr__Produ__7DCDAAA2">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductOrders" EntitySet="ProductOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__BrandI__65F62111" Association="Self.FK__Products__BrandI__65F62111">
+            <End Role="ProductBrands" EntitySet="ProductBrands" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="XTremePharmacyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DeliveryService">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ServiceName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ServicePrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="OrderDeliveries" Relationship="Self.FK__OrderDeli__Deliv__0D0FEE32" FromRole="DeliveryServices" ToRole="OrderDeliveries" />
+        </EntityType>
+        <EntityType Name="Log">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LogDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LogTitle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LogMessage" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AdditionalLogInformation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDelivery">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="DeliveryServiceID" Type="Int32" />
+          <Property Name="PaymentMethodID" Type="Int32" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DeliveryStatus" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DeliveryService" Relationship="Self.FK__OrderDeli__Deliv__0D0FEE32" FromRole="OrderDeliveries" ToRole="DeliveryServices" />
+          <NavigationProperty Name="ProductOrder" Relationship="Self.FK__OrderDeli__Order__0B27A5C0" FromRole="OrderDeliveries" ToRole="ProductOrders" />
+          <NavigationProperty Name="PaymentMethod" Relationship="Self.FK__OrderDeli__Payme__0EF836A4" FromRole="OrderDeliveries" ToRole="PaymentMethods" />
+        </EntityType>
+        <EntityType Name="PaymentMethod">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MethodName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="OrderDeliveries" Relationship="Self.FK__OrderDeli__Payme__0EF836A4" FromRole="PaymentMethods" ToRole="OrderDeliveries" />
+        </EntityType>
+        <EntityType Name="ProductBrand">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrandName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="Self.FK__Products__BrandI__65F62111" FromRole="ProductBrands" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="ProductImage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="ImageName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ImageData" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ProductIm__Produ__7814D14C" FromRole="ProductImages" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="ProductOrder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="DesiredQuantity" Type="Int32" Nullable="false" />
+          <Property Name="OrderPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="EmployeeID" Type="Int32" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OrderStatus" Type="Int32" Nullable="false" />
+          <Property Name="OrderReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="OrderDeliveries" Relationship="Self.FK__OrderDeli__Order__0B27A5C0" FromRole="ProductOrders" ToRole="OrderDeliveries" />
+          <NavigationProperty Name="User" Relationship="Self.FK__ProductOr__Clien__019E3B86" FromRole="ProductOrders" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK__ProductOr__Emplo__038683F8" FromRole="ProductOrders" ToRole="Users" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ProductOr__Produ__7DCDAAA2" FromRole="ProductOrders" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BrandID" Type="Int32" />
+          <Property Name="ProductDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductQuantity" Type="Int32" Nullable="false" />
+          <Property Name="ProductPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ProductExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ProductRegNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductPartNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductStorageLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ProductBrand" Relationship="Self.FK__Products__BrandI__65F62111" FromRole="Products" ToRole="ProductBrands" />
+          <NavigationProperty Name="ProductImages" Relationship="Self.FK__ProductIm__Produ__7814D14C" FromRole="Products" ToRole="ProductImages" />
+          <NavigationProperty Name="ProductOrders" Relationship="Self.FK__ProductOr__Produ__7DCDAAA2" FromRole="Products" ToRole="ProductOrders" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserDisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserBirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UserPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserProfilePic" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="UserBalance" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="UserDiagnose" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserDateOfRegister" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UserRole" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ProductOrders" Relationship="Self.FK__ProductOr__Clien__019E3B86" FromRole="Users" ToRole="ProductOrders" />
+          <NavigationProperty Name="ProductOrders1" Relationship="Self.FK__ProductOr__Emplo__038683F8" FromRole="Users" ToRole="ProductOrders" />
+        </EntityType>
+        <EntityType Name="ClientView">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="UserPassword" />
+            <PropertyRef Name="UserDisplayName" />
+            <PropertyRef Name="UserBirthDate" />
+            <PropertyRef Name="UserPhone" />
+            <PropertyRef Name="UserEmail" />
+            <PropertyRef Name="UserAddress" />
+            <PropertyRef Name="UserProfilePic" />
+            <PropertyRef Name="UserBalance" />
+            <PropertyRef Name="UserDiagnose" />
+            <PropertyRef Name="UserDateOfRegister" />
+            <PropertyRef Name="UserRole" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserDisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserBirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UserPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserProfilePic" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="UserBalance" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="UserDiagnose" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserDateOfRegister" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UserRole" Type="Int32" Nullable="false" />
+          <Property Name="AverageClientSpending" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="EmployeeView">
+          <Key>
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="UserPassword" />
+            <PropertyRef Name="UserDisplayName" />
+            <PropertyRef Name="UserBirthDate" />
+            <PropertyRef Name="UserPhone" />
+            <PropertyRef Name="UserEmail" />
+            <PropertyRef Name="UserAddress" />
+            <PropertyRef Name="UserProfilePic" />
+            <PropertyRef Name="UserBalance" />
+            <PropertyRef Name="UserDiagnose" />
+            <PropertyRef Name="UserDateOfRegister" />
+            <PropertyRef Name="UserRole" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserDisplayName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserBirthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UserPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserProfilePic" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <Property Name="UserBalance" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="UserDiagnose" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserDateOfRegister" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UserRole" Type="Int32" Nullable="false" />
+          <Property Name="AverageEmployeeIncome" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <EntityType Name="ExtendedBrandsView">
+          <Key>
+            <PropertyRef Name="BrandName" />
+          </Key>
+          <Property Name="BrandName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CountProductsFromBrand" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ExtendedDeliveryServicesView">
+          <Key>
+            <PropertyRef Name="ServiceName" />
+            <PropertyRef Name="ServicePrice" />
+          </Key>
+          <Property Name="ServiceName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ServicePrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="TimesThisServiceWasUsed" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ExtendedOrderDeliveriesView">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ProductName" />
+            <PropertyRef Name="BrandName" />
+            <PropertyRef Name="ProductDescription" />
+            <PropertyRef Name="ProductExpiryDate" />
+            <PropertyRef Name="DesiredQuantity" />
+            <PropertyRef Name="OrderPrice" />
+            <PropertyRef Name="ServiceName" />
+            <PropertyRef Name="DeliveryPrice" />
+            <PropertyRef Name="MethodName" />
+            <PropertyRef Name="TotalPrice" />
+            <PropertyRef Name="DateAdded" />
+            <PropertyRef Name="DateModified" />
+            <PropertyRef Name="DeliveryStatus" />
+            <PropertyRef Name="DeliveryReason" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BrandName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DesiredQuantity" Type="Int32" Nullable="false" />
+          <Property Name="OrderPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ClientName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ClientPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ClientEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ClientAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ServiceName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DeliveryPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="MethodName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DeliveryStatus" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExtendedPaymentMethodsView">
+          <Key>
+            <PropertyRef Name="MethodName" />
+          </Key>
+          <Property Name="MethodName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TimesThisMethodWasUsed" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ExtendedProductOrdersView">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="ProductName" />
+            <PropertyRef Name="BrandName" />
+            <PropertyRef Name="ProductDescription" />
+            <PropertyRef Name="ProductExpiryDate" />
+            <PropertyRef Name="DesiredQuantity" />
+            <PropertyRef Name="OrderPrice" />
+            <PropertyRef Name="DateAdded" />
+            <PropertyRef Name="DateModified" />
+            <PropertyRef Name="OrderStatus" />
+            <PropertyRef Name="OrderReason" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BrandName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DesiredQuantity" Type="Int32" Nullable="false" />
+          <Property Name="OrderPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ClientName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ClientPhone" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ClientEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ClientAddress" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateAdded" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="OrderStatus" Type="Int32" Nullable="false" />
+          <Property Name="OrderReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExtendedProductView">
+          <Key>
+            <PropertyRef Name="ProductName" />
+            <PropertyRef Name="BrandName" />
+            <PropertyRef Name="ProductDescription" />
+            <PropertyRef Name="ProductQuantity" />
+            <PropertyRef Name="ProductPrice" />
+            <PropertyRef Name="ProductExpiryDate" />
+            <PropertyRef Name="ProductRegNum" />
+            <PropertyRef Name="ProductPartNum" />
+            <PropertyRef Name="ProductStorageLocation" />
+          </Key>
+          <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BrandName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductQuantity" Type="Int32" Nullable="false" />
+          <Property Name="ProductPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ProductExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ProductRegNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductPartNum" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductStorageLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AverageProductSale" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ProductImageCount" Type="Int32" />
+        </EntityType>
+        <Association Name="FK__OrderDeli__Deliv__0D0FEE32">
+          <End Role="DeliveryServices" Type="Self.DeliveryService" Multiplicity="0..1" />
+          <End Role="OrderDeliveries" Type="Self.OrderDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeliveryServices">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDeliveries">
+              <PropertyRef Name="DeliveryServiceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeli__Order__0B27A5C0">
+          <End Role="ProductOrders" Type="Self.ProductOrder" Multiplicity="0..1" />
+          <End Role="OrderDeliveries" Type="Self.OrderDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductOrders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDeliveries">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrderDeli__Payme__0EF836A4">
+          <End Role="PaymentMethods" Type="Self.PaymentMethod" Multiplicity="0..1" />
+          <End Role="OrderDeliveries" Type="Self.OrderDelivery" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentMethods">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OrderDeliveries">
+              <PropertyRef Name="PaymentMethodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Products__BrandI__65F62111">
+          <End Role="ProductBrands" Type="Self.ProductBrand" Multiplicity="0..1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductBrands">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Products">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductIm__Produ__7814D14C">
+          <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductImages" Type="Self.ProductImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductImages">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductOr__Clien__019E3B86">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="ProductOrders" Type="Self.ProductOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductOrders">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductOr__Emplo__038683F8">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="ProductOrders" Type="Self.ProductOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductOrders">
+              <PropertyRef Name="EmployeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductOr__Produ__7DCDAAA2">
+          <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductOrders" Type="Self.ProductOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProductOrders">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DeliveryServices" EntityType="Self.DeliveryService" />
+          <EntitySet Name="Logs" EntityType="Self.Log" />
+          <EntitySet Name="OrderDeliveries" EntityType="Self.OrderDelivery" />
+          <EntitySet Name="PaymentMethods" EntityType="Self.PaymentMethod" />
+          <EntitySet Name="ProductBrands" EntityType="Self.ProductBrand" />
+          <EntitySet Name="ProductImages" EntityType="Self.ProductImage" />
+          <EntitySet Name="ProductOrders" EntityType="Self.ProductOrder" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="ClientViews" EntityType="Self.ClientView" />
+          <EntitySet Name="EmployeeViews" EntityType="Self.EmployeeView" />
+          <EntitySet Name="ExtendedBrandsViews" EntityType="Self.ExtendedBrandsView" />
+          <EntitySet Name="ExtendedDeliveryServicesViews" EntityType="Self.ExtendedDeliveryServicesView" />
+          <EntitySet Name="ExtendedOrderDeliveriesViews" EntityType="Self.ExtendedOrderDeliveriesView" />
+          <EntitySet Name="ExtendedPaymentMethodsViews" EntityType="Self.ExtendedPaymentMethodsView" />
+          <EntitySet Name="ExtendedProductOrdersViews" EntityType="Self.ExtendedProductOrdersView" />
+          <EntitySet Name="ExtendedProductViews" EntityType="Self.ExtendedProductView" />
+          <AssociationSet Name="FK__OrderDeli__Deliv__0D0FEE32" Association="Self.FK__OrderDeli__Deliv__0D0FEE32">
+            <End Role="DeliveryServices" EntitySet="DeliveryServices" />
+            <End Role="OrderDeliveries" EntitySet="OrderDeliveries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeli__Order__0B27A5C0" Association="Self.FK__OrderDeli__Order__0B27A5C0">
+            <End Role="ProductOrders" EntitySet="ProductOrders" />
+            <End Role="OrderDeliveries" EntitySet="OrderDeliveries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrderDeli__Payme__0EF836A4" Association="Self.FK__OrderDeli__Payme__0EF836A4">
+            <End Role="PaymentMethods" EntitySet="PaymentMethods" />
+            <End Role="OrderDeliveries" EntitySet="OrderDeliveries" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Products__BrandI__65F62111" Association="Self.FK__Products__BrandI__65F62111">
+            <End Role="ProductBrands" EntitySet="ProductBrands" />
+            <End Role="Products" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductIm__Produ__7814D14C" Association="Self.FK__ProductIm__Produ__7814D14C">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductImages" EntitySet="ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductOr__Clien__019E3B86" Association="Self.FK__ProductOr__Clien__019E3B86">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ProductOrders" EntitySet="ProductOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductOr__Emplo__038683F8" Association="Self.FK__ProductOr__Emplo__038683F8">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="ProductOrders" EntitySet="ProductOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductOr__Produ__7DCDAAA2" Association="Self.FK__ProductOr__Produ__7DCDAAA2">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="ProductOrders" EntitySet="ProductOrders" />
+          </AssociationSet>
+          <FunctionImport Name="AddBrand">
+            <Parameter Name="brandname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddDeliveryService">
+            <Parameter Name="servicename" Mode="In" Type="String" />
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="AddLog">
+            <Parameter Name="logdate" Mode="In" Type="DateTime" />
+            <Parameter Name="logtitle" Mode="In" Type="String" />
+            <Parameter Name="logmessage" Mode="In" Type="String" />
+            <Parameter Name="additionalinformation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddOrderDelivery">
+            <Parameter Name="orderid" Mode="In" Type="Int32" />
+            <Parameter Name="serviceid" Mode="In" Type="Int32" />
+            <Parameter Name="methodid" Mode="In" Type="Int32" />
+            <Parameter Name="deliveryreason" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddPaymentMethod">
+            <Parameter Name="methodname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddProduct">
+            <Parameter Name="productname" Mode="In" Type="String" />
+            <Parameter Name="brandid" Mode="In" Type="Int32" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="quantity" Mode="In" Type="Int32" />
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+            <Parameter Name="expirydate" Mode="In" Type="DateTime" />
+            <Parameter Name="regnum" Mode="In" Type="String" />
+            <Parameter Name="partnum" Mode="In" Type="String" />
+            <Parameter Name="storagelocation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddProductImage">
+            <Parameter Name="productid" Mode="In" Type="Int32" />
+            <Parameter Name="imagename" Mode="In" Type="String" />
+            <Parameter Name="imagedata" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="AddProductOrder">
+            <Parameter Name="productid" Mode="In" Type="Int32" />
+            <Parameter Name="desiredquantity" Mode="In" Type="Int32" />
+            <Parameter Name="priceoverride" Mode="In" Type="Decimal" />
+            <Parameter Name="clientid" Mode="In" Type="Int32" />
+            <Parameter Name="employeeid" Mode="In" Type="Int32" />
+            <Parameter Name="orderreason" Mode="In" Type="String" />
+            <Parameter Name="overridepriceastotal" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="AddUser" ReturnType="Collection(String)">
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="displayname" Mode="In" Type="String" />
+            <Parameter Name="birthdate" Mode="In" Type="DateTime" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="profilepic" Mode="In" Type="Binary" />
+            <Parameter Name="balance" Mode="In" Type="Decimal" />
+            <Parameter Name="diagnose" Mode="In" Type="String" />
+            <Parameter Name="role" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteBrand">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="brandname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteBrandByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteDeliveryService">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="servicename" Mode="In" Type="String" />
+            <Parameter Name="serviceprice" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteDeliveryServiceByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteLog">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="logdatefrom" Mode="In" Type="DateTime" />
+            <Parameter Name="logdateto" Mode="In" Type="DateTime" />
+            <Parameter Name="logtitle" Mode="In" Type="String" />
+            <Parameter Name="logmessage" Mode="In" Type="String" />
+            <Parameter Name="additionalinformation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteLogByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteOrderDelivery">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="orderid" Mode="In" Type="Int32" />
+            <Parameter Name="serviceid" Mode="In" Type="Int32" />
+            <Parameter Name="methodid" Mode="In" Type="Int32" />
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+            <Parameter Name="dateaddedfrom" Mode="In" Type="DateTime" />
+            <Parameter Name="dateaddedto" Mode="In" Type="DateTime" />
+            <Parameter Name="datemodifiedfrom" Mode="In" Type="DateTime" />
+            <Parameter Name="datemodifiedto" Mode="In" Type="DateTime" />
+            <Parameter Name="status" Mode="In" Type="Int32" />
+            <Parameter Name="reason" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteOrderDeliveryByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeletePaymentMethod">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="methodname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeletePaymentMethodByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteProduct">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="productname" Mode="In" Type="String" />
+            <Parameter Name="brandid" Mode="In" Type="Int32" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="quantity" Mode="In" Type="Int32" />
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+            <Parameter Name="expirydatefrom" Mode="In" Type="DateTime" />
+            <Parameter Name="expirydateto" Mode="In" Type="DateTime" />
+            <Parameter Name="regnum" Mode="In" Type="String" />
+            <Parameter Name="partnum" Mode="In" Type="String" />
+            <Parameter Name="storagelocation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteProductByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteProductImage">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="productid" Mode="In" Type="Int32" />
+            <Parameter Name="imagename" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteProductImageByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteProductOrder">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="productid" Mode="In" Type="Int32" />
+            <Parameter Name="quantity" Mode="In" Type="Int32" />
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+            <Parameter Name="clientid" Mode="In" Type="Int32" />
+            <Parameter Name="employeeid" Mode="In" Type="Int32" />
+            <Parameter Name="dateaddedfrom" Mode="In" Type="DateTime" />
+            <Parameter Name="dateaddedto" Mode="In" Type="DateTime" />
+            <Parameter Name="datemodifiedfrom" Mode="In" Type="DateTime" />
+            <Parameter Name="datemodifiedto" Mode="In" Type="DateTime" />
+            <Parameter Name="status" Mode="In" Type="Int32" />
+            <Parameter Name="reason" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteProductOrderByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteUser">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="displayname" Mode="In" Type="String" />
+            <Parameter Name="birthdatefrom" Mode="In" Type="DateTime" />
+            <Parameter Name="birthdateto" Mode="In" Type="DateTime" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="balance" Mode="In" Type="Decimal" />
+            <Parameter Name="diagnose" Mode="In" Type="String" />
+            <Parameter Name="registerdatefrom" Mode="In" Type="DateTime" />
+            <Parameter Name="registerdateto" Mode="In" Type="DateTime" />
+            <Parameter Name="role" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DeleteUserByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetBrand" ReturnType="Collection(XTremePharmacyModel.GetBrand_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="brandname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetDeliveryService" ReturnType="Collection(XTremePharmacyModel.GetDeliveryService_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="servicename" Mode="In" Type="String" />
+            <Parameter Name="serviceprice" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GetLog" ReturnType="Collection(XTremePharmacyModel.GetLog_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="logdatefrom" Mode="In" Type="DateTime" />
+            <Parameter Name="logdateto" Mode="In" Type="DateTime" />
+            <Parameter Name="logtitle" Mode="In" Type="String" />
+            <Parameter Name="logmessage" Mode="In" Type="String" />
+            <Parameter Name="additionalinformation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetOrderDelivery" ReturnType="Collection(XTremePharmacyModel.GetOrderDelivery_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="orderid" Mode="In" Type="Int32" />
+            <Parameter Name="serviceid" Mode="In" Type="Int32" />
+            <Parameter Name="methodid" Mode="In" Type="Int32" />
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+            <Parameter Name="dateaddedfrom" Mode="In" Type="DateTime" />
+            <Parameter Name="dateaddedto" Mode="In" Type="DateTime" />
+            <Parameter Name="datemodifiedfrom" Mode="In" Type="DateTime" />
+            <Parameter Name="datemodifiedto" Mode="In" Type="DateTime" />
+            <Parameter Name="status" Mode="In" Type="Int32" />
+            <Parameter Name="reason" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetPaymentMethod" ReturnType="Collection(XTremePharmacyModel.GetPaymentMethod_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="methodname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetProduct" ReturnType="Collection(XTremePharmacyModel.GetProduct_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="productname" Mode="In" Type="String" />
+            <Parameter Name="brandid" Mode="In" Type="Int32" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="quantity" Mode="In" Type="Int32" />
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+            <Parameter Name="expirydatefrom" Mode="In" Type="DateTime" />
+            <Parameter Name="expirydateto" Mode="In" Type="DateTime" />
+            <Parameter Name="regnum" Mode="In" Type="String" />
+            <Parameter Name="partnum" Mode="In" Type="String" />
+            <Parameter Name="storagelocation" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetProductImage" ReturnType="Collection(XTremePharmacyModel.GetProductImage_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="productid" Mode="In" Type="Int32" />
+            <Parameter Name="imagename" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetProductOrder" ReturnType="Collection(XTremePharmacyModel.GetProductOrder_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="productid" Mode="In" Type="Int32" />
+            <Parameter Name="quantity" Mode="In" Type="Int32" />
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+            <Parameter Name="clientid" Mode="In" Type="Int32" />
+            <Parameter Name="employeeid" Mode="In" Type="Int32" />
+            <Parameter Name="dateaddedfrom" Mode="In" Type="DateTime" />
+            <Parameter Name="dateaddedto" Mode="In" Type="DateTime" />
+            <Parameter Name="datemodifiedfrom" Mode="In" Type="DateTime" />
+            <Parameter Name="datemodifiedto" Mode="In" Type="DateTime" />
+            <Parameter Name="status" Mode="In" Type="Int32" />
+            <Parameter Name="reason" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GetUser" ReturnType="Collection(XTremePharmacyModel.GetUser_Result)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="username" Mode="In" Type="String" />
+            <Parameter Name="password" Mode="In" Type="String" />
+            <Parameter Name="displayname" Mode="In" Type="String" />
+            <Parameter Name="birthdatefrom" Mode="In" Type="DateTime" />
+            <Parameter Name="birthdateto" Mode="In" Type="DateTime" />
+            <Parameter Name="phone" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="address" Mode="In" Type="String" />
+            <Parameter Name="balance" Mode="In" Type="Decimal" />
+            <Parameter Name="diagnose" Mode="In" Type="String" />
+            <Parameter Name="registerdatefrom" Mode="In" Type="DateTime" />
+            <Parameter Name="registerdateto" Mode="In" Type="DateTime" />
+            <Parameter Name="role" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(XTremePharmacyModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(XTremePharmacyModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="UpdateBrandByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="new_brand_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateDeliveryServiceByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="new_service_name" Mode="In" Type="String" />
+            <Parameter Name="new_service_price" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateLogByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="new_log_title" Mode="In" Type="String" />
+            <Parameter Name="new_log_message" Mode="In" Type="String" />
+            <Parameter Name="new_add_info" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateOrderDeliveryByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="new_order_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_service_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_method_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_status" Mode="In" Type="Int32" />
+            <Parameter Name="new_reason" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdatePaymentMethodByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="new_method_name" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateProductByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="new_product_name" Mode="In" Type="String" />
+            <Parameter Name="new_brand_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_description" Mode="In" Type="String" />
+            <Parameter Name="new_quantity" Mode="In" Type="Int32" />
+            <Parameter Name="new_price" Mode="In" Type="Decimal" />
+            <Parameter Name="new_expiry_date" Mode="In" Type="DateTime" />
+            <Parameter Name="new_reg_num" Mode="In" Type="String" />
+            <Parameter Name="new_part_num" Mode="In" Type="String" />
+            <Parameter Name="new_storage_location" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateProductImageByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="new_product_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_image_name" Mode="In" Type="String" />
+            <Parameter Name="new_image_data" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateProductOrderByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="new_product_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_desired_quantity" Mode="In" Type="Int32" />
+            <Parameter Name="new_price_override" Mode="In" Type="Decimal" />
+            <Parameter Name="new_client_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_employee_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_status" Mode="In" Type="Int32" />
+            <Parameter Name="new_reason" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateUserByID" ReturnType="Collection(String)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="new_user_name" Mode="In" Type="String" />
+            <Parameter Name="new_password" Mode="In" Type="String" />
+            <Parameter Name="new_display_name" Mode="In" Type="String" />
+            <Parameter Name="new_birth_date" Mode="In" Type="DateTime" />
+            <Parameter Name="new_phone" Mode="In" Type="String" />
+            <Parameter Name="new_email" Mode="In" Type="String" />
+            <Parameter Name="new_address" Mode="In" Type="String" />
+            <Parameter Name="new_profile_pic" Mode="In" Type="Binary" />
+            <Parameter Name="new_balance" Mode="In" Type="Decimal" />
+            <Parameter Name="new_diagnose" Mode="In" Type="String" />
+            <Parameter Name="new_role" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetBrand_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="BrandName" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="GetDeliveryService_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="ServiceName" Nullable="false" MaxLength="200" />
+          <Property Type="Decimal" Name="ServicePrice" Nullable="false" Precision="19" />
+        </ComplexType>
+        <ComplexType Name="GetLog_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="DateTime" Name="LogDate" Nullable="false" />
+          <Property Type="String" Name="LogTitle" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="LogMessage" Nullable="false" />
+          <Property Type="String" Name="AdditionalLogInformation" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetOrderDelivery_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="OrderID" Nullable="true" />
+          <Property Type="Int32" Name="DeliveryServiceID" Nullable="true" />
+          <Property Type="Int32" Name="PaymentMethodID" Nullable="true" />
+          <Property Type="Decimal" Name="TotalPrice" Nullable="false" Precision="19" />
+          <Property Type="DateTime" Name="DateAdded" Nullable="false" />
+          <Property Type="DateTime" Name="DateModified" Nullable="false" />
+          <Property Type="Int32" Name="DeliveryStatus" Nullable="false" />
+          <Property Type="String" Name="DeliveryReason" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetPaymentMethod_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="MethodName" Nullable="false" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="GetProduct_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="ProductName" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="BrandID" Nullable="true" />
+          <Property Type="String" Name="ProductDescription" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="ProductQuantity" Nullable="false" />
+          <Property Type="Decimal" Name="ProductPrice" Nullable="false" Precision="19" />
+          <Property Type="DateTime" Name="ProductExpiryDate" Nullable="false" />
+          <Property Type="String" Name="ProductRegNum" Nullable="false" />
+          <Property Type="String" Name="ProductPartNum" Nullable="false" />
+          <Property Type="String" Name="ProductStorageLocation" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetProductImage_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="ProductID" Nullable="true" />
+          <Property Type="String" Name="ImageName" Nullable="false" MaxLength="100" />
+          <Property Type="Binary" Name="ImageData" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetProductOrder_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="Int32" Name="ProductID" Nullable="true" />
+          <Property Type="Int32" Name="DesiredQuantity" Nullable="false" />
+          <Property Type="Decimal" Name="OrderPrice" Nullable="false" Precision="19" />
+          <Property Type="Int32" Name="ClientID" Nullable="true" />
+          <Property Type="Int32" Name="EmployeeID" Nullable="true" />
+          <Property Type="DateTime" Name="DateAdded" Nullable="false" />
+          <Property Type="DateTime" Name="DateModified" Nullable="false" />
+          <Property Type="Int32" Name="OrderStatus" Nullable="false" />
+          <Property Type="String" Name="OrderReason" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GetUser_Result">
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="UserPassword" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="UserDisplayName" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="UserBirthDate" Nullable="false" />
+          <Property Type="String" Name="UserPhone" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="UserEmail" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="UserAddress" Nullable="false" MaxLength="250" />
+          <Property Type="Binary" Name="UserProfilePic" Nullable="false" />
+          <Property Type="Decimal" Name="UserBalance" Nullable="false" Precision="19" />
+          <Property Type="String" Name="UserDiagnose" Nullable="false" />
+          <Property Type="DateTime" Name="UserDateOfRegister" Nullable="false" />
+          <Property Type="Int32" Name="UserRole" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="XTremePharmacyModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="DeliveryServices">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.DeliveryService">
+              <MappingFragment StoreEntitySet="DeliveryServices">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="ServicePrice" ColumnName="ServicePrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.Log">
+              <MappingFragment StoreEntitySet="Logs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+                <ScalarProperty Name="LogTitle" ColumnName="LogTitle" />
+                <ScalarProperty Name="LogMessage" ColumnName="LogMessage" />
+                <ScalarProperty Name="AdditionalLogInformation" ColumnName="AdditionalLogInformation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDeliveries">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.OrderDelivery">
+              <MappingFragment StoreEntitySet="OrderDeliveries">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="DeliveryServiceID" ColumnName="DeliveryServiceID" />
+                <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="DeliveryReason" ColumnName="DeliveryReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaymentMethods">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.PaymentMethod">
+              <MappingFragment StoreEntitySet="PaymentMethods">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductBrands">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.ProductBrand">
+              <MappingFragment StoreEntitySet="ProductBrands">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductImages">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.ProductImage">
+              <MappingFragment StoreEntitySet="ProductImages">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="ImageData" ColumnName="ImageData" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductOrders">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.ProductOrder">
+              <MappingFragment StoreEntitySet="ProductOrders">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="DesiredQuantity" ColumnName="DesiredQuantity" />
+                <ScalarProperty Name="OrderPrice" ColumnName="OrderPrice" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="OrderReason" ColumnName="OrderReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="ProductExpiryDate" ColumnName="ProductExpiryDate" />
+                <ScalarProperty Name="ProductRegNum" ColumnName="ProductRegNum" />
+                <ScalarProperty Name="ProductPartNum" ColumnName="ProductPartNum" />
+                <ScalarProperty Name="ProductStorageLocation" ColumnName="ProductStorageLocation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserDisplayName" ColumnName="UserDisplayName" />
+                <ScalarProperty Name="UserBirthDate" ColumnName="UserBirthDate" />
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+                <ScalarProperty Name="UserProfilePic" ColumnName="UserProfilePic" />
+                <ScalarProperty Name="UserBalance" ColumnName="UserBalance" />
+                <ScalarProperty Name="UserDiagnose" ColumnName="UserDiagnose" />
+                <ScalarProperty Name="UserDateOfRegister" ColumnName="UserDateOfRegister" />
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientViews">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.ClientView">
+              <MappingFragment StoreEntitySet="ClientView">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserDisplayName" ColumnName="UserDisplayName" />
+                <ScalarProperty Name="UserBirthDate" ColumnName="UserBirthDate" />
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+                <ScalarProperty Name="UserProfilePic" ColumnName="UserProfilePic" />
+                <ScalarProperty Name="UserBalance" ColumnName="UserBalance" />
+                <ScalarProperty Name="UserDiagnose" ColumnName="UserDiagnose" />
+                <ScalarProperty Name="UserDateOfRegister" ColumnName="UserDateOfRegister" />
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+                <ScalarProperty Name="AverageClientSpending" ColumnName="AverageClientSpending" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeViews">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.EmployeeView">
+              <MappingFragment StoreEntitySet="EmployeeView">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserDisplayName" ColumnName="UserDisplayName" />
+                <ScalarProperty Name="UserBirthDate" ColumnName="UserBirthDate" />
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+                <ScalarProperty Name="UserProfilePic" ColumnName="UserProfilePic" />
+                <ScalarProperty Name="UserBalance" ColumnName="UserBalance" />
+                <ScalarProperty Name="UserDiagnose" ColumnName="UserDiagnose" />
+                <ScalarProperty Name="UserDateOfRegister" ColumnName="UserDateOfRegister" />
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+                <ScalarProperty Name="AverageEmployeeIncome" ColumnName="AverageEmployeeIncome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExtendedBrandsViews">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.ExtendedBrandsView">
+              <MappingFragment StoreEntitySet="ExtendedBrandsView">
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="CountProductsFromBrand" ColumnName="CountProductsFromBrand" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExtendedDeliveryServicesViews">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.ExtendedDeliveryServicesView">
+              <MappingFragment StoreEntitySet="ExtendedDeliveryServicesView">
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="ServicePrice" ColumnName="ServicePrice" />
+                <ScalarProperty Name="TimesThisServiceWasUsed" ColumnName="TimesThisServiceWasUsed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExtendedOrderDeliveriesViews">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.ExtendedOrderDeliveriesView">
+              <MappingFragment StoreEntitySet="ExtendedOrderDeliveriesView">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductExpiryDate" ColumnName="ProductExpiryDate" />
+                <ScalarProperty Name="DesiredQuantity" ColumnName="DesiredQuantity" />
+                <ScalarProperty Name="OrderPrice" ColumnName="OrderPrice" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+                <ScalarProperty Name="ClientEmail" ColumnName="ClientEmail" />
+                <ScalarProperty Name="ClientAddress" ColumnName="ClientAddress" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="DeliveryPrice" ColumnName="DeliveryPrice" />
+                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="DeliveryReason" ColumnName="DeliveryReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExtendedPaymentMethodsViews">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.ExtendedPaymentMethodsView">
+              <MappingFragment StoreEntitySet="ExtendedPaymentMethodsView">
+                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+                <ScalarProperty Name="TimesThisMethodWasUsed" ColumnName="TimesThisMethodWasUsed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExtendedProductOrdersViews">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.ExtendedProductOrdersView">
+              <MappingFragment StoreEntitySet="ExtendedProductOrdersView">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductExpiryDate" ColumnName="ProductExpiryDate" />
+                <ScalarProperty Name="DesiredQuantity" ColumnName="DesiredQuantity" />
+                <ScalarProperty Name="OrderPrice" ColumnName="OrderPrice" />
+                <ScalarProperty Name="ClientName" ColumnName="ClientName" />
+                <ScalarProperty Name="ClientPhone" ColumnName="ClientPhone" />
+                <ScalarProperty Name="ClientEmail" ColumnName="ClientEmail" />
+                <ScalarProperty Name="ClientAddress" ColumnName="ClientAddress" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="OrderReason" ColumnName="OrderReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExtendedProductViews">
+            <EntityTypeMapping TypeName="XTremePharmacyModel.ExtendedProductView">
+              <MappingFragment StoreEntitySet="ExtendedProductView">
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="ProductExpiryDate" ColumnName="ProductExpiryDate" />
+                <ScalarProperty Name="ProductRegNum" ColumnName="ProductRegNum" />
+                <ScalarProperty Name="ProductPartNum" ColumnName="ProductPartNum" />
+                <ScalarProperty Name="ProductStorageLocation" ColumnName="ProductStorageLocation" />
+                <ScalarProperty Name="AverageProductSale" ColumnName="AverageProductSale" />
+                <ScalarProperty Name="ProductImageCount" ColumnName="ProductImageCount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddBrand" FunctionName="XTremePharmacyModel.Store.AddBrand" />
+          <FunctionImportMapping FunctionImportName="AddDeliveryService" FunctionName="XTremePharmacyModel.Store.AddDeliveryService" />
+          <FunctionImportMapping FunctionImportName="AddLog" FunctionName="XTremePharmacyModel.Store.AddLog" />
+          <FunctionImportMapping FunctionImportName="AddOrderDelivery" FunctionName="XTremePharmacyModel.Store.AddOrderDelivery" />
+          <FunctionImportMapping FunctionImportName="AddPaymentMethod" FunctionName="XTremePharmacyModel.Store.AddPaymentMethod" />
+          <FunctionImportMapping FunctionImportName="AddProduct" FunctionName="XTremePharmacyModel.Store.AddProduct" />
+          <FunctionImportMapping FunctionImportName="AddProductImage" FunctionName="XTremePharmacyModel.Store.AddProductImage" />
+          <FunctionImportMapping FunctionImportName="AddProductOrder" FunctionName="XTremePharmacyModel.Store.AddProductOrder" />
+          <FunctionImportMapping FunctionImportName="AddUser" FunctionName="XTremePharmacyModel.Store.AddUser" />
+          <FunctionImportMapping FunctionImportName="DeleteBrand" FunctionName="XTremePharmacyModel.Store.DeleteBrand" />
+          <FunctionImportMapping FunctionImportName="DeleteBrandByID" FunctionName="XTremePharmacyModel.Store.DeleteBrandByID" />
+          <FunctionImportMapping FunctionImportName="DeleteDeliveryService" FunctionName="XTremePharmacyModel.Store.DeleteDeliveryService" />
+          <FunctionImportMapping FunctionImportName="DeleteDeliveryServiceByID" FunctionName="XTremePharmacyModel.Store.DeleteDeliveryServiceByID" />
+          <FunctionImportMapping FunctionImportName="DeleteLog" FunctionName="XTremePharmacyModel.Store.DeleteLog" />
+          <FunctionImportMapping FunctionImportName="DeleteLogByID" FunctionName="XTremePharmacyModel.Store.DeleteLogByID" />
+          <FunctionImportMapping FunctionImportName="DeleteOrderDelivery" FunctionName="XTremePharmacyModel.Store.DeleteOrderDelivery" />
+          <FunctionImportMapping FunctionImportName="DeleteOrderDeliveryByID" FunctionName="XTremePharmacyModel.Store.DeleteOrderDeliveryByID" />
+          <FunctionImportMapping FunctionImportName="DeletePaymentMethod" FunctionName="XTremePharmacyModel.Store.DeletePaymentMethod" />
+          <FunctionImportMapping FunctionImportName="DeletePaymentMethodByID" FunctionName="XTremePharmacyModel.Store.DeletePaymentMethodByID" />
+          <FunctionImportMapping FunctionImportName="DeleteProduct" FunctionName="XTremePharmacyModel.Store.DeleteProduct" />
+          <FunctionImportMapping FunctionImportName="DeleteProductByID" FunctionName="XTremePharmacyModel.Store.DeleteProductByID" />
+          <FunctionImportMapping FunctionImportName="DeleteProductImage" FunctionName="XTremePharmacyModel.Store.DeleteProductImage" />
+          <FunctionImportMapping FunctionImportName="DeleteProductImageByID" FunctionName="XTremePharmacyModel.Store.DeleteProductImageByID" />
+          <FunctionImportMapping FunctionImportName="DeleteProductOrder" FunctionName="XTremePharmacyModel.Store.DeleteProductOrder" />
+          <FunctionImportMapping FunctionImportName="DeleteProductOrderByID" FunctionName="XTremePharmacyModel.Store.DeleteProductOrderByID" />
+          <FunctionImportMapping FunctionImportName="DeleteUser" FunctionName="XTremePharmacyModel.Store.DeleteUser" />
+          <FunctionImportMapping FunctionImportName="DeleteUserByID" FunctionName="XTremePharmacyModel.Store.DeleteUserByID" />
+          <FunctionImportMapping FunctionImportName="GetBrand" FunctionName="XTremePharmacyModel.Store.GetBrand">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetBrand_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetDeliveryService" FunctionName="XTremePharmacyModel.Store.GetDeliveryService">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetDeliveryService_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+                <ScalarProperty Name="ServicePrice" ColumnName="ServicePrice" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetLog" FunctionName="XTremePharmacyModel.Store.GetLog">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetLog_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LogDate" ColumnName="LogDate" />
+                <ScalarProperty Name="LogTitle" ColumnName="LogTitle" />
+                <ScalarProperty Name="LogMessage" ColumnName="LogMessage" />
+                <ScalarProperty Name="AdditionalLogInformation" ColumnName="AdditionalLogInformation" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetOrderDelivery" FunctionName="XTremePharmacyModel.Store.GetOrderDelivery">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetOrderDelivery_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="DeliveryServiceID" ColumnName="DeliveryServiceID" />
+                <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+                <ScalarProperty Name="DeliveryReason" ColumnName="DeliveryReason" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetPaymentMethod" FunctionName="XTremePharmacyModel.Store.GetPaymentMethod">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetPaymentMethod_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetProduct" FunctionName="XTremePharmacyModel.Store.GetProduct">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetProduct_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="ProductExpiryDate" ColumnName="ProductExpiryDate" />
+                <ScalarProperty Name="ProductRegNum" ColumnName="ProductRegNum" />
+                <ScalarProperty Name="ProductPartNum" ColumnName="ProductPartNum" />
+                <ScalarProperty Name="ProductStorageLocation" ColumnName="ProductStorageLocation" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetProductImage" FunctionName="XTremePharmacyModel.Store.GetProductImage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetProductImage_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+                <ScalarProperty Name="ImageData" ColumnName="ImageData" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetProductOrder" FunctionName="XTremePharmacyModel.Store.GetProductOrder">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetProductOrder_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="DesiredQuantity" ColumnName="DesiredQuantity" />
+                <ScalarProperty Name="OrderPrice" ColumnName="OrderPrice" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="OrderReason" ColumnName="OrderReason" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetUser" FunctionName="XTremePharmacyModel.Store.GetUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetUser_Result">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserDisplayName" ColumnName="UserDisplayName" />
+                <ScalarProperty Name="UserBirthDate" ColumnName="UserBirthDate" />
+                <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
+                <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
+                <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
+                <ScalarProperty Name="UserProfilePic" ColumnName="UserProfilePic" />
+                <ScalarProperty Name="UserBalance" ColumnName="UserBalance" />
+                <ScalarProperty Name="UserDiagnose" ColumnName="UserDiagnose" />
+                <ScalarProperty Name="UserDateOfRegister" ColumnName="UserDateOfRegister" />
+                <ScalarProperty Name="UserRole" ColumnName="UserRole" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="XTremePharmacyModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="XTremePharmacyModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="XTremePharmacyModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="XTremePharmacyModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="XTremePharmacyModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="XTremePharmacyModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="XTremePharmacyModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="XTremePharmacyModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="XTremePharmacyModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="UpdateBrandByID" FunctionName="XTremePharmacyModel.Store.UpdateBrandByID" />
+          <FunctionImportMapping FunctionImportName="UpdateDeliveryServiceByID" FunctionName="XTremePharmacyModel.Store.UpdateDeliveryServiceByID" />
+          <FunctionImportMapping FunctionImportName="UpdateLogByID" FunctionName="XTremePharmacyModel.Store.UpdateLogByID" />
+          <FunctionImportMapping FunctionImportName="UpdateOrderDeliveryByID" FunctionName="XTremePharmacyModel.Store.UpdateOrderDeliveryByID" />
+          <FunctionImportMapping FunctionImportName="UpdatePaymentMethodByID" FunctionName="XTremePharmacyModel.Store.UpdatePaymentMethodByID" />
+          <FunctionImportMapping FunctionImportName="UpdateProductByID" FunctionName="XTremePharmacyModel.Store.UpdateProductByID" />
+          <FunctionImportMapping FunctionImportName="UpdateProductImageByID" FunctionName="XTremePharmacyModel.Store.UpdateProductImageByID" />
+          <FunctionImportMapping FunctionImportName="UpdateProductOrderByID" FunctionName="XTremePharmacyModel.Store.UpdateProductOrderByID" />
+          <FunctionImportMapping FunctionImportName="UpdateUserByID" FunctionName="XTremePharmacyModel.Store.UpdateUserByID" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

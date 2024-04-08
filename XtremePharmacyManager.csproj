@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -12,6 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -33,8 +36,35 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1620.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +76,108 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataEntities\ClientView.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\DeliveryService.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\EmployeeView.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\ExtendedBrandsView.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\ExtendedDeliveryServicesView.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\ExtendedOrderDeliveriesView.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\ExtendedPaymentMethodsView.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\ExtendedProductOrdersView.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\ExtendedProductView.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\GetBrand_Result.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\GetDeliveryService_Result.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\GetLog_Result.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\GetOrderDelivery_Result.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\GetPaymentMethod_Result.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\GetProductImage_Result.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\GetProductOrder_Result.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\GetProduct_Result.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\GetUser_Result.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\Log.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\OrderDelivery.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\PaymentMethod.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\Product.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\ProductBrand.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\ProductImage.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\ProductOrder.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\sp_helpdiagrams_Result.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\sysdiagram.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\User.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\XTremePharmacyModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>XTremePharmacyModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\XTremePharmacyModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\XTremePharmacyModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +186,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -66,6 +199,14 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EntityDeploy Include="DataEntities\XTremePharmacyModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>XTremePharmacyModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataEntities\XTremePharmacyModel.edmx.diagram">
+      <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -81,7 +222,33 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="DataEntities\XTremePharmacyModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
+      <LastGenOutput>XTremePharmacyModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataEntities\XTremePharmacyModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
+      <LastGenOutput>XTremePharmacyModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Queries\XTremePharmacyDB.sql" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll" />
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll" />
+    <Content Include="SqlServerTypes\x86\msvcr120.dll" />
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
 </Project>
