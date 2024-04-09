@@ -84,15 +84,21 @@ namespace XtremePharmacyManager
 
         private void tsmenuUsers_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(entities.Database.Connection.Database);
             if (entities.Database.Connection.State == ConnectionState.Open)
             {
                 try
                 {
-                    List<User> users = entities.GetUser(-1, "", "", "", new DateTime(), new DateTime(), "", "", "", new decimal(), "", new DateTime(), new DateTime(), 0).ToList();
-                    usersearchform = new frmSearchUsers(users);
-                    usersearchform.MdiParent = this;
-                    usersearchform.Show();
+                    if (usersearchform == null)
+                    {
+                        usersearchform = new frmSearchUsers(entities);
+                        usersearchform.MdiParent = this;
+                        usersearchform.Show();
+                    }
+                    else
+                    {
+                        usersearchform.WindowState = FormWindowState.Normal;
+                        usersearchform.Show();
+                    }
                 }
                 catch(Exception ex)
                 {

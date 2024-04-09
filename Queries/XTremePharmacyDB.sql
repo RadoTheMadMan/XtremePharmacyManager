@@ -2174,6 +2174,7 @@ declare @new_role as int;
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
 DECLARE @sql NVARCHAR(MAX);
+declare @currentdate as date;
 select @new_id = ID from inserted;
 select @new_user_name = UserName from inserted;
 select @new_user_password = UserPassword from inserted;
@@ -2187,6 +2188,7 @@ select @new_user_balance = UserBalance from inserted;
 select @new_diagnose = UserDiagnose from inserted;
 select @new_register_date = UserDateOfRegister from inserted;
 select @new_role = UserRole from inserted;
+set @currentdate = getdate();
 set @log_message = 'An user was added to the list with the id: ' + try_cast(@new_id as varchar);
 /* first check the role and create a login and add it to role */
 /* I used the chatgpt for making the login creation and altering */
@@ -2219,7 +2221,7 @@ set @additional_information = 'User ID: ' + try_cast(@new_id as varchar) + '\n' 
 'User Address: ' + try_cast(@new_address as varchar) + '\n' + 'Profile Picture data dump: ' + try_cast(@new_profile_pic as varchar) + '\n' +
 'User Balance: ' + try_cast(@new_user_balance as varchar) + '\n' + 'User Diagnose: ' + try_cast(@new_diagnose as varchar) + '\n'+
 'Register Date: ' + try_cast(@new_register_date as varchar) + '\n' + 'Role ID: ' + try_cast(@new_role as varchar) + '\n';
-exec AddLog @logdate = getdate, 
+exec AddLog @logdate = @currentdate, 
 @logtitle='[XTremePharmacyDB] User Added', 
 @logmessage = @log_message,
 @additionalloginformation = @additional_information;
@@ -2259,6 +2261,7 @@ declare @old_role as int;
 declare @new_role as int;
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @currentdate as date;
 declare @sql as nvarchar(max);
 select @old_id = ID from deleted;
 select @new_id = ID from inserted;
@@ -2394,6 +2397,7 @@ set @affected_orders_count = @affected_orders_count + 1;
 end
 end
 end
+set @currentdate = getdate();
 set @log_message = 'An user was updated with the id: ' + try_cast(@old_id as varchar) + 
 '.\n If its role is the same the ID will be updated on the orders,\notherwise it will beed to be manually reselected in the orders.\n';
 set @additional_information = 'Old User ID: ' + try_cast(@old_id as varchar) + '\n' +
@@ -2410,7 +2414,7 @@ set @additional_information = 'Old User ID: ' + try_cast(@old_id as varchar) + '
 'New User Address: ' + try_cast(@new_address as varchar) + '\n' + 'New Profile Picture data dump: ' + try_cast(@new_profile_pic as varchar) + '\n' +
 'New User Balance: ' + try_cast(@new_user_balance as varchar) + '\n' + 'New User Diagnose: ' + try_cast(@new_diagnose as varchar) + '\n'+
 'New Register Date: ' + try_cast(@new_register_date as varchar) + '\n' + 'New Role ID: ' + try_cast(@new_role as varchar) + '\n' ;
-exec AddLog @logdate = getdate, 
+exec AddLog @logdate = @currentdate, 
 @logtitle='[XTremePharmacyDB] User Updated', 
 @logmessage = @log_message,
 @additionalloginformation = @additional_information;
@@ -2437,6 +2441,7 @@ declare @old_register_date as date;
 declare @old_role as int;
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @currentdate as date;
 declare @sql as nvarchar(max);
 select @old_id = ID from deleted;
 select @old_user_name = UserName from deleted;
@@ -2507,6 +2512,7 @@ update ProductOrders set ClientID = -1 where ID = @current_affected_order_id;
 set @affected_orders_count = @affected_orders_count + 1;
 end
 end
+set @currentdate = getdate();
 set @log_message = 'An user was removed list with the id: ' + try_cast(@old_id as varchar);
 set @additional_information =  'Old User ID: ' + try_cast(@old_id as varchar) + '\n' +
 'Old User Name: ' + try_cast(@old_user_name as varchar) + '\n' + 'Old User Password: ' + try_cast(@old_user_password as varchar) + '\n' +
@@ -2515,7 +2521,7 @@ set @additional_information =  'Old User ID: ' + try_cast(@old_id as varchar) + 
 'Old User Address: ' + try_cast(@old_address as varchar) + '\n' + 'Old Profile Picture data dump: ' + try_cast(@old_profile_pic as varchar) + '\n' +
 'Old User Balance: ' + try_cast(@old_user_balance as varchar) + '\n' + 'Old User Diagnose: ' + try_cast(@old_diagnose as varchar) + '\n'+
 'Old Register Date: ' + try_cast(@old_register_date as varchar) + '\n' + 'New Role ID: ' + try_cast(@old_role as varchar) + '\n';
-exec AddLog @logdate = getdate, 
+exec AddLog @logdate = @currentdate, 
 @logtitle='[XTremePharmacyDB] User Removed', 
 @logmessage = @log_message,
 @additionalloginformation = @additional_information;

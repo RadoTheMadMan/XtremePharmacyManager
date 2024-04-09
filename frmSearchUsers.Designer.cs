@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.cbSearchMode = new System.Windows.Forms.ComboBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.cbRole = new System.Windows.Forms.ComboBox();
             this.lblRole = new System.Windows.Forms.Label();
             this.dtRegisterDateTo = new System.Windows.Forms.DateTimePicker();
@@ -74,7 +76,6 @@
             this.DiagnoseColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RegisterDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RoleColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userPasswordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -90,6 +91,23 @@
             this.userRoleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productOrdersDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productOrders1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblSearchMode = new System.Windows.Forms.Label();
+            this.iDDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userPasswordDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userDisplayNameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userBirthDateDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userPhoneDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userEmailDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userAddressDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userProfilePicDataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.userBalanceDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userDiagnoseDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userDateOfRegisterDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userRoleDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productOrdersDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productOrders1DataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
@@ -99,6 +117,9 @@
             // pnlData
             // 
             this.pnlData.AutoSize = true;
+            this.pnlData.Controls.Add(this.lblSearchMode);
+            this.pnlData.Controls.Add(this.cbSearchMode);
+            this.pnlData.Controls.Add(this.btnSearch);
             this.pnlData.Controls.Add(this.cbRole);
             this.pnlData.Controls.Add(this.lblRole);
             this.pnlData.Controls.Add(this.dtRegisterDateTo);
@@ -134,6 +155,34 @@
             this.pnlData.Size = new System.Drawing.Size(800, 290);
             this.pnlData.TabIndex = 0;
             // 
+            // cbSearchMode
+            // 
+            this.cbSearchMode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSearchMode.FormattingEnabled = true;
+            this.cbSearchMode.Items.AddRange(new object[] {
+            "None",
+            "Single Criteria",
+            "Multiple Criterias",
+            "All Criterias"});
+            this.cbSearchMode.Location = new System.Drawing.Point(559, 196);
+            this.cbSearchMode.Name = "cbSearchMode";
+            this.cbSearchMode.Size = new System.Drawing.Size(229, 24);
+            this.cbSearchMode.TabIndex = 31;
+            this.cbSearchMode.Text = "Multiple Criterias";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearch.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearch.Location = new System.Drawing.Point(462, 230);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(90, 47);
+            this.btnSearch.TabIndex = 30;
+            this.btnSearch.Text = "SEARCH";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
             // cbRole
             // 
             this.cbRole.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -147,6 +196,7 @@
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(229, 24);
             this.cbRole.TabIndex = 29;
+            this.cbRole.Text = "Employee";
             // 
             // lblRole
             // 
@@ -229,9 +279,11 @@
             this.trbBalance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.trbBalance.Location = new System.Drawing.Point(475, 18);
+            this.trbBalance.Maximum = 10000000;
             this.trbBalance.Name = "trbBalance";
             this.trbBalance.Size = new System.Drawing.Size(259, 56);
             this.trbBalance.TabIndex = 21;
+            this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
             // 
             // lblShowBalance
             // 
@@ -482,7 +534,22 @@
             this.userDateOfRegisterDataGridViewTextBoxColumn,
             this.userRoleDataGridViewTextBoxColumn,
             this.productOrdersDataGridViewTextBoxColumn,
-            this.productOrders1DataGridViewTextBoxColumn});
+            this.productOrders1DataGridViewTextBoxColumn,
+            this.iDDataGridViewTextBoxColumn1,
+            this.userNameDataGridViewTextBoxColumn1,
+            this.userPasswordDataGridViewTextBoxColumn1,
+            this.userDisplayNameDataGridViewTextBoxColumn1,
+            this.userBirthDateDataGridViewTextBoxColumn1,
+            this.userPhoneDataGridViewTextBoxColumn1,
+            this.userEmailDataGridViewTextBoxColumn1,
+            this.userAddressDataGridViewTextBoxColumn1,
+            this.userProfilePicDataGridViewImageColumn1,
+            this.userBalanceDataGridViewTextBoxColumn1,
+            this.userDiagnoseDataGridViewTextBoxColumn1,
+            this.userDateOfRegisterDataGridViewTextBoxColumn1,
+            this.userRoleDataGridViewTextBoxColumn1,
+            this.productOrdersDataGridViewTextBoxColumn1,
+            this.productOrders1DataGridViewTextBoxColumn1});
             this.dgvUsers.DataSource = this.userBindingSource;
             this.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvUsers.Location = new System.Drawing.Point(0, 290);
@@ -619,6 +686,7 @@
             // 
             // RoleColumn
             // 
+            this.RoleColumn.DataPropertyName = "UserRole";
             this.RoleColumn.HeaderText = "Role";
             this.RoleColumn.Items.AddRange(new object[] {
             "Admin",
@@ -626,9 +694,260 @@
             "Client"});
             this.RoleColumn.MinimumWidth = 6;
             this.RoleColumn.Name = "RoleColumn";
-            this.RoleColumn.DataPropertyName = "UserRole";
             this.RoleColumn.ReadOnly = true;
             this.RoleColumn.Width = 125;
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // userNameDataGridViewTextBoxColumn
+            // 
+            this.userNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userNameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // userPasswordDataGridViewTextBoxColumn
+            // 
+            this.userPasswordDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userPasswordDataGridViewTextBoxColumn.Name = "userPasswordDataGridViewTextBoxColumn";
+            this.userPasswordDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userPasswordDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // userDisplayNameDataGridViewTextBoxColumn
+            // 
+            this.userDisplayNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userDisplayNameDataGridViewTextBoxColumn.Name = "userDisplayNameDataGridViewTextBoxColumn";
+            this.userDisplayNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userDisplayNameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // userBirthDateDataGridViewTextBoxColumn
+            // 
+            this.userBirthDateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userBirthDateDataGridViewTextBoxColumn.Name = "userBirthDateDataGridViewTextBoxColumn";
+            this.userBirthDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userBirthDateDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // userPhoneDataGridViewTextBoxColumn
+            // 
+            this.userPhoneDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userPhoneDataGridViewTextBoxColumn.Name = "userPhoneDataGridViewTextBoxColumn";
+            this.userPhoneDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userPhoneDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // userEmailDataGridViewTextBoxColumn
+            // 
+            this.userEmailDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userEmailDataGridViewTextBoxColumn.Name = "userEmailDataGridViewTextBoxColumn";
+            this.userEmailDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userEmailDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // userAddressDataGridViewTextBoxColumn
+            // 
+            this.userAddressDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userAddressDataGridViewTextBoxColumn.Name = "userAddressDataGridViewTextBoxColumn";
+            this.userAddressDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userAddressDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // userProfilePicDataGridViewImageColumn
+            // 
+            this.userProfilePicDataGridViewImageColumn.MinimumWidth = 6;
+            this.userProfilePicDataGridViewImageColumn.Name = "userProfilePicDataGridViewImageColumn";
+            this.userProfilePicDataGridViewImageColumn.ReadOnly = true;
+            this.userProfilePicDataGridViewImageColumn.Width = 125;
+            // 
+            // userBalanceDataGridViewTextBoxColumn
+            // 
+            this.userBalanceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userBalanceDataGridViewTextBoxColumn.Name = "userBalanceDataGridViewTextBoxColumn";
+            this.userBalanceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userBalanceDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // userDiagnoseDataGridViewTextBoxColumn
+            // 
+            this.userDiagnoseDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userDiagnoseDataGridViewTextBoxColumn.Name = "userDiagnoseDataGridViewTextBoxColumn";
+            this.userDiagnoseDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userDiagnoseDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // userDateOfRegisterDataGridViewTextBoxColumn
+            // 
+            this.userDateOfRegisterDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userDateOfRegisterDataGridViewTextBoxColumn.Name = "userDateOfRegisterDataGridViewTextBoxColumn";
+            this.userDateOfRegisterDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userDateOfRegisterDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // userRoleDataGridViewTextBoxColumn
+            // 
+            this.userRoleDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userRoleDataGridViewTextBoxColumn.Name = "userRoleDataGridViewTextBoxColumn";
+            this.userRoleDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userRoleDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // productOrdersDataGridViewTextBoxColumn
+            // 
+            this.productOrdersDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.productOrdersDataGridViewTextBoxColumn.Name = "productOrdersDataGridViewTextBoxColumn";
+            this.productOrdersDataGridViewTextBoxColumn.ReadOnly = true;
+            this.productOrdersDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // productOrders1DataGridViewTextBoxColumn
+            // 
+            this.productOrders1DataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.productOrders1DataGridViewTextBoxColumn.Name = "productOrders1DataGridViewTextBoxColumn";
+            this.productOrders1DataGridViewTextBoxColumn.ReadOnly = true;
+            this.productOrders1DataGridViewTextBoxColumn.Width = 125;
+            // 
+            // lblSearchMode
+            // 
+            this.lblSearchMode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblSearchMode.AutoSize = true;
+            this.lblSearchMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSearchMode.Location = new System.Drawing.Point(403, 199);
+            this.lblSearchMode.Name = "lblSearchMode";
+            this.lblSearchMode.Size = new System.Drawing.Size(103, 16);
+            this.lblSearchMode.TabIndex = 32;
+            this.lblSearchMode.Text = "Search Mode:";
+            // 
+            // iDDataGridViewTextBoxColumn1
+            // 
+            this.iDDataGridViewTextBoxColumn1.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.iDDataGridViewTextBoxColumn1.Name = "iDDataGridViewTextBoxColumn1";
+            this.iDDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // userNameDataGridViewTextBoxColumn1
+            // 
+            this.userNameDataGridViewTextBoxColumn1.DataPropertyName = "UserName";
+            this.userNameDataGridViewTextBoxColumn1.HeaderText = "UserName";
+            this.userNameDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.userNameDataGridViewTextBoxColumn1.Name = "userNameDataGridViewTextBoxColumn1";
+            this.userNameDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.userNameDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // userPasswordDataGridViewTextBoxColumn1
+            // 
+            this.userPasswordDataGridViewTextBoxColumn1.DataPropertyName = "UserPassword";
+            this.userPasswordDataGridViewTextBoxColumn1.HeaderText = "UserPassword";
+            this.userPasswordDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.userPasswordDataGridViewTextBoxColumn1.Name = "userPasswordDataGridViewTextBoxColumn1";
+            this.userPasswordDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.userPasswordDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // userDisplayNameDataGridViewTextBoxColumn1
+            // 
+            this.userDisplayNameDataGridViewTextBoxColumn1.DataPropertyName = "UserDisplayName";
+            this.userDisplayNameDataGridViewTextBoxColumn1.HeaderText = "UserDisplayName";
+            this.userDisplayNameDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.userDisplayNameDataGridViewTextBoxColumn1.Name = "userDisplayNameDataGridViewTextBoxColumn1";
+            this.userDisplayNameDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.userDisplayNameDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // userBirthDateDataGridViewTextBoxColumn1
+            // 
+            this.userBirthDateDataGridViewTextBoxColumn1.DataPropertyName = "UserBirthDate";
+            this.userBirthDateDataGridViewTextBoxColumn1.HeaderText = "UserBirthDate";
+            this.userBirthDateDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.userBirthDateDataGridViewTextBoxColumn1.Name = "userBirthDateDataGridViewTextBoxColumn1";
+            this.userBirthDateDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.userBirthDateDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // userPhoneDataGridViewTextBoxColumn1
+            // 
+            this.userPhoneDataGridViewTextBoxColumn1.DataPropertyName = "UserPhone";
+            this.userPhoneDataGridViewTextBoxColumn1.HeaderText = "UserPhone";
+            this.userPhoneDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.userPhoneDataGridViewTextBoxColumn1.Name = "userPhoneDataGridViewTextBoxColumn1";
+            this.userPhoneDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.userPhoneDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // userEmailDataGridViewTextBoxColumn1
+            // 
+            this.userEmailDataGridViewTextBoxColumn1.DataPropertyName = "UserEmail";
+            this.userEmailDataGridViewTextBoxColumn1.HeaderText = "UserEmail";
+            this.userEmailDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.userEmailDataGridViewTextBoxColumn1.Name = "userEmailDataGridViewTextBoxColumn1";
+            this.userEmailDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.userEmailDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // userAddressDataGridViewTextBoxColumn1
+            // 
+            this.userAddressDataGridViewTextBoxColumn1.DataPropertyName = "UserAddress";
+            this.userAddressDataGridViewTextBoxColumn1.HeaderText = "UserAddress";
+            this.userAddressDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.userAddressDataGridViewTextBoxColumn1.Name = "userAddressDataGridViewTextBoxColumn1";
+            this.userAddressDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.userAddressDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // userProfilePicDataGridViewImageColumn1
+            // 
+            this.userProfilePicDataGridViewImageColumn1.DataPropertyName = "UserProfilePic";
+            this.userProfilePicDataGridViewImageColumn1.HeaderText = "UserProfilePic";
+            this.userProfilePicDataGridViewImageColumn1.MinimumWidth = 6;
+            this.userProfilePicDataGridViewImageColumn1.Name = "userProfilePicDataGridViewImageColumn1";
+            this.userProfilePicDataGridViewImageColumn1.ReadOnly = true;
+            this.userProfilePicDataGridViewImageColumn1.Width = 125;
+            // 
+            // userBalanceDataGridViewTextBoxColumn1
+            // 
+            this.userBalanceDataGridViewTextBoxColumn1.DataPropertyName = "UserBalance";
+            this.userBalanceDataGridViewTextBoxColumn1.HeaderText = "UserBalance";
+            this.userBalanceDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.userBalanceDataGridViewTextBoxColumn1.Name = "userBalanceDataGridViewTextBoxColumn1";
+            this.userBalanceDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.userBalanceDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // userDiagnoseDataGridViewTextBoxColumn1
+            // 
+            this.userDiagnoseDataGridViewTextBoxColumn1.DataPropertyName = "UserDiagnose";
+            this.userDiagnoseDataGridViewTextBoxColumn1.HeaderText = "UserDiagnose";
+            this.userDiagnoseDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.userDiagnoseDataGridViewTextBoxColumn1.Name = "userDiagnoseDataGridViewTextBoxColumn1";
+            this.userDiagnoseDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.userDiagnoseDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // userDateOfRegisterDataGridViewTextBoxColumn1
+            // 
+            this.userDateOfRegisterDataGridViewTextBoxColumn1.DataPropertyName = "UserDateOfRegister";
+            this.userDateOfRegisterDataGridViewTextBoxColumn1.HeaderText = "UserDateOfRegister";
+            this.userDateOfRegisterDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.userDateOfRegisterDataGridViewTextBoxColumn1.Name = "userDateOfRegisterDataGridViewTextBoxColumn1";
+            this.userDateOfRegisterDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.userDateOfRegisterDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // userRoleDataGridViewTextBoxColumn1
+            // 
+            this.userRoleDataGridViewTextBoxColumn1.DataPropertyName = "UserRole";
+            this.userRoleDataGridViewTextBoxColumn1.HeaderText = "UserRole";
+            this.userRoleDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.userRoleDataGridViewTextBoxColumn1.Name = "userRoleDataGridViewTextBoxColumn1";
+            this.userRoleDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.userRoleDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // productOrdersDataGridViewTextBoxColumn1
+            // 
+            this.productOrdersDataGridViewTextBoxColumn1.DataPropertyName = "ProductOrders";
+            this.productOrdersDataGridViewTextBoxColumn1.HeaderText = "ProductOrders";
+            this.productOrdersDataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.productOrdersDataGridViewTextBoxColumn1.Name = "productOrdersDataGridViewTextBoxColumn1";
+            this.productOrdersDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.productOrdersDataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // productOrders1DataGridViewTextBoxColumn1
+            // 
+            this.productOrders1DataGridViewTextBoxColumn1.DataPropertyName = "ProductOrders1";
+            this.productOrders1DataGridViewTextBoxColumn1.HeaderText = "ProductOrders1";
+            this.productOrders1DataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.productOrders1DataGridViewTextBoxColumn1.Name = "productOrders1DataGridViewTextBoxColumn1";
+            this.productOrders1DataGridViewTextBoxColumn1.ReadOnly = true;
+            this.productOrders1DataGridViewTextBoxColumn1.Width = 125;
             // 
             // userBindingSource
             // 
@@ -716,5 +1035,23 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn userRoleDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productOrdersDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn productOrders1DataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userPasswordDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userDisplayNameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userBirthDateDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userPhoneDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userEmailDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userAddressDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewImageColumn userProfilePicDataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userBalanceDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userDiagnoseDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userDateOfRegisterDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn userRoleDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productOrdersDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn productOrders1DataGridViewTextBoxColumn1;
+        private System.Windows.Forms.ComboBox cbSearchMode;
+        private System.Windows.Forms.Label lblSearchMode;
     }
 }
