@@ -87,9 +87,10 @@ namespace XtremePharmacyManager
                     usersearchform = new frmSearchUsers(users);
                     usersearchform.MdiParent = this;
                     usersearchform.Show();
-                }catch(Exception ex)
+                }
+                catch(Exception ex)
                 {
-
+                    MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
