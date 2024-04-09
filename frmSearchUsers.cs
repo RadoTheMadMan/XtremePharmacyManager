@@ -21,5 +21,22 @@ namespace XtremePharmacyManager
             InitializeComponent();
             dgvUsers.DataSource = users;
         }
+
+        private void dgvUsers_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            DataGridView target_view = (DataGridView)sender;
+            DataGridViewRow row = target_view.Rows[e.RowIndex];
+            int UserID = -1;
+            User target_user;
+            if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
+            {
+                Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
+                if (UserID >= 0)
+                {
+                    target_user = users[UserID];
+                    row.Cells["RoleColumn"].Value = RoleColumn.Items[target_user.UserRole];
+                }
+            }
+        }
     }
 }
