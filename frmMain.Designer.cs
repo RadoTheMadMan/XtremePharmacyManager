@@ -31,11 +31,11 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tsmenuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuAccountSettings = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmenuWindow = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmenuUsers = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuDebugTools = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuTestConnection = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuBitmapToBinary = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmenuWindow = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmenuUsers = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,6 +65,21 @@
             this.tsmenuAccountSettings.Size = new System.Drawing.Size(134, 24);
             this.tsmenuAccountSettings.Text = "&Account Settings";
             // 
+            // tsmenuWindow
+            // 
+            this.tsmenuWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmenuUsers});
+            this.tsmenuWindow.Name = "tsmenuWindow";
+            this.tsmenuWindow.Size = new System.Drawing.Size(78, 24);
+            this.tsmenuWindow.Text = "Window";
+            // 
+            // tsmenuUsers
+            // 
+            this.tsmenuUsers.Name = "tsmenuUsers";
+            this.tsmenuUsers.Size = new System.Drawing.Size(127, 26);
+            this.tsmenuUsers.Text = "Users";
+            this.tsmenuUsers.Click += new System.EventHandler(this.tsmenuUsers_Click);
+            // 
             // tsmenuDebugTools
             // 
             this.tsmenuDebugTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -77,29 +92,15 @@
             // tsmenuTestConnection
             // 
             this.tsmenuTestConnection.Name = "tsmenuTestConnection";
-            this.tsmenuTestConnection.Size = new System.Drawing.Size(205, 26);
+            this.tsmenuTestConnection.Size = new System.Drawing.Size(224, 26);
             this.tsmenuTestConnection.Text = "&Test Connection";
+            this.tsmenuTestConnection.Click += new System.EventHandler(this.tsmenuTestConnection_Click);
             // 
             // tsmenuBitmapToBinary
             // 
             this.tsmenuBitmapToBinary.Name = "tsmenuBitmapToBinary";
-            this.tsmenuBitmapToBinary.Size = new System.Drawing.Size(205, 26);
+            this.tsmenuBitmapToBinary.Size = new System.Drawing.Size(224, 26);
             this.tsmenuBitmapToBinary.Text = "&Bitmap To Binary";
-            // 
-            // tsmenuWindow
-            // 
-            this.tsmenuWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmenuUsers});
-            this.tsmenuWindow.Name = "tsmenuWindow";
-            this.tsmenuWindow.Size = new System.Drawing.Size(78, 24);
-            this.tsmenuWindow.Text = "Window";
-            // 
-            // tsmenuUsers
-            // 
-            this.tsmenuUsers.Name = "tsmenuUsers";
-            this.tsmenuUsers.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuUsers.Text = "Users";
-            this.tsmenuUsers.Click += new System.EventHandler(this.tsmenuUsers_Click);
             // 
             // frmMain
             // 
