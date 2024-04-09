@@ -96,8 +96,17 @@ namespace XtremePharmacyManager
                     }
                     else
                     {
-                        usersearchform.WindowState = FormWindowState.Normal;
-                        usersearchform.Show();
+                        if (usersearchform.MdiParent == this)
+                        {
+                            usersearchform.WindowState = FormWindowState.Normal;
+                            usersearchform.Show();
+                        }
+                        else
+                        {
+                            usersearchform = new frmSearchUsers(entities);
+                            usersearchform.MdiParent = this;
+                            usersearchform.Show();
+                        }
                     }
                 }
                 catch(Exception ex)

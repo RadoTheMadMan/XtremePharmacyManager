@@ -2224,7 +2224,7 @@ set @additional_information = 'User ID: ' + try_cast(@new_id as varchar) + '\n' 
 exec AddLog @logdate = @currentdate, 
 @logtitle='[XTremePharmacyDB] User Added', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 
@@ -2417,7 +2417,7 @@ set @additional_information = 'Old User ID: ' + try_cast(@old_id as varchar) + '
 exec AddLog @logdate = @currentdate, 
 @logtitle='[XTremePharmacyDB] User Updated', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 
@@ -2567,7 +2567,7 @@ set @additional_information = 'Order ID: ' + try_cast(@new_id as varchar) + '\n'
 exec AddLog @logdate = getdate, 
 @logtitle='[XTremePharmacyDB] Product Order Added', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 

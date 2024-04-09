@@ -181,17 +181,27 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmEditUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditUser.Designer.cs">
+      <DependentUpon>frmEditUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSearchUsers.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSearchUsers.Designer.cs">
       <DependentUpon>frmSearchUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageBinConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditUser.resx">
+      <DependentUpon>frmEditUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSearchUsers.resx">
       <DependentUpon>frmSearchUsers.cs</DependentUpon>

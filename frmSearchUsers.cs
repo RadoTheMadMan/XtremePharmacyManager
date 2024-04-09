@@ -44,15 +44,20 @@ namespace XtremePharmacyManager
         {
             DataGridView target_view = (DataGridView)sender;
             DataGridViewRow row = target_view.Rows[e.RowIndex];
+            DataGridViewComboBoxCell currentrolecell;
             int UserID = -1;
             User target_user;
             if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
             {
                 Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
-                if (UserID >= 0)
+                if (UserID >= 0 && users!=null)
                 {
-                    target_user = users[UserID];
-                    row.Cells["RoleColumn"].Value = RoleColumn.Items[target_user.UserRole];
+                    target_user = users.Where(x=>x.ID == UserID).FirstOrDefault();
+                    if (target_user != null)
+                    {
+                        currentrolecell = (DataGridViewComboBoxCell)row.Cells["RoleColumn"];
+                        currentrolecell.Value = target_user.UserRole;
+                    }
                 }
             }
         }
@@ -109,6 +114,123 @@ namespace XtremePharmacyManager
         private void trbBalance_Scroll(object sender, EventArgs e)
         {
             lblShowBalance.Text = trbBalance.Value.ToString();
+        }
+
+        private void btnAddOrEdit_Click(object sender, EventArgs e)
+        {
+            //The Datagrid is with multiselect as false so one thing is selected at a time
+            DataGridViewRow row;
+            int UserID = -1;
+            User selectedUser;
+            if (dgvUsers.SelectedRows.Count > 0)
+            {
+                row = dgvUsers.SelectedRows[0];
+                if (row != null && users != null)
+                {
+                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
+                    if (UserID > 0)
+                    {
+                        selectedUser = users.Where(x => x.ID == UserID).FirstOrDefault();
+                        if (selectedUser != null)
+                        {
+                            //Show the editor window to edit the selected user
+                            //on dialog result yes update it
+                            DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
+                            if (res == DialogResult.OK)
+                            {
+                                if (ent.Database.Connection.State == ConnectionState.Open)
+                                {
+                                    ent.UpdateUserByID(selectedUser.ID, selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName,
+                                        selectedUser.UserBirthDate, selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic,
+                                        selectedUser.UserBalance, selectedUser.UserDiagnose, selectedUser.UserRole);
+                                    RefreshUsers();
+                                }
+                            }
+                        }
+                        else
+                        {
+                            //Create a new user
+                            selectedUser = new User();
+                            DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
+                            if (res == DialogResult.OK)
+                            {
+                                if (ent.Database.Connection.State == ConnectionState.Open)
+                                {
+                                    ent.AddUser(selectedUser.UserName,selectedUser.UserPassword,selectedUser.UserDisplayName, selectedUser.UserBirthDate,
+                                        selectedUser.UserPhone, selectedUser.UserEmail,selectedUser.UserAddress, selectedUser.UserProfilePic,selectedUser.UserBalance,
+                                        selectedUser.UserDiagnose,selectedUser.UserRole);
+                                    RefreshUsers();
+                                }
+                            }
+                            //show the editor and after the editor confirms add it
+                        }
+                    }
+                    else
+                    {
+                        selectedUser = new User();
+                        DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
+                        if (res == DialogResult.OK)
+                        {
+                            if (ent.Database.Connection.State == ConnectionState.Open)
+                            {
+                                ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
+                                    selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
+                                    selectedUser.UserDiagnose, selectedUser.UserRole);
+                                RefreshUsers();
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                selectedUser = new User();
+                DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
+                if (res == DialogResult.OK)
+                {
+                    if (ent.Database.Connection.State == ConnectionState.Open)
+                    {
+                        ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
+                            selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
+                            selectedUser.UserDiagnose, selectedUser.UserRole);
+                        RefreshUsers();
+                    }
+                }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            //The Datagrid is with multiselect as false so one thing is selected at a time
+            DataGridViewRow row;
+            int UserID = -1;
+            User selectedUser;
+            if (dgvUsers.SelectedRows.Count > 0)
+            {
+                row = dgvUsers.SelectedRows[0];
+                if (row != null && users != null)
+                {
+                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
+                    if (UserID > 0)
+                    {
+                        selectedUser = users.Where(x => x.ID == UserID).FirstOrDefault();
+                        if (selectedUser != null)
+                        {
+                            //Show the editor window to edit the selected user
+                            //on dialog result yes update it
+                            DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
+                            if (res == DialogResult.OK)
+                            {
+                                if (ent.Database.Connection.State == ConnectionState.Open)
+                                {
+                                    ent.DeleteUserByID(selectedUser.ID);
+                                    RefreshUsers();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
