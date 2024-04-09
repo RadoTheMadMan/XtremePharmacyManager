@@ -22,10 +22,11 @@ namespace XtremePharmacyManager.DataEntities
             : base("name=Entities")
         {
         }
-        public Entities(EntityConnectionStringBuilder builder) :base(builder.ConnectionString)
+        public Entities(EntityConnectionStringBuilder builder) : base(builder.ConnectionString)
         {
 
         }
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();

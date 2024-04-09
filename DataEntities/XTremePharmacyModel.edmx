@@ -1919,6 +1919,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="XTremePharmacyModel.User">
               <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserProfilePic" ColumnName="UserProfilePic" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
@@ -1927,7 +1928,6 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
                 <ScalarProperty Name="UserPhone" ColumnName="UserPhone" />
                 <ScalarProperty Name="UserEmail" ColumnName="UserEmail" />
                 <ScalarProperty Name="UserAddress" ColumnName="UserAddress" />
-                <ScalarProperty Name="UserProfilePic" ColumnName="UserProfilePic" />
                 <ScalarProperty Name="UserBalance" ColumnName="UserBalance" />
                 <ScalarProperty Name="UserDiagnose" ColumnName="UserDiagnose" />
                 <ScalarProperty Name="UserDateOfRegister" ColumnName="UserDateOfRegister" />
