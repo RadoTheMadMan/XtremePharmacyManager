@@ -36,7 +36,10 @@ namespace XtremePharmacyManager
             {
                 if (entities != null)
                 {
-                    entities.Database.Connection.Open();
+                    if (entities.Database.Connection.State != ConnectionState.Open)
+                    {
+                        entities.Database.Connection.Open();
+                    }
                     if (entities.Database.Connection.State == ConnectionState.Open)
                     {
                         MessageBox.Show("Connection successfuly open.", "Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -61,7 +64,9 @@ namespace XtremePharmacyManager
                 scsb.Password = ConfigurationSettings.AppSettings["dbpassword"];
                 scsb.IntegratedSecurity = true;
                 connString = scsb.ConnectionString;
-                esb.Metadata = @"/DataEntities/XTremePharmacyModel.csdl;|/DataEntities/XTremePharmacyModel.ssdl;|/DataEntities/XTremePharmacyModel.msl;";
+                esb.Metadata = @"~/DataEntities/XTremePharmacyModel.csdl|
+                                 ~/DataEntities/XTremePharmacyModel.ssdl|
+                                 ~/DataEntities/XTremePharmacyModel.msl";
                 esb.Provider = "System.Data.SqlClient";
                 esb.ProviderConnectionString = connString;
             }
