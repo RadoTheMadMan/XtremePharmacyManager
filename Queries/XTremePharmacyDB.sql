@@ -1932,6 +1932,7 @@ declare @new_product_part_num as varchar(max);
 declare @new_product_location as varchar(max);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @new_id = ID from inserted;
 select @new_product_name = ProductName from inserted;
 select @new_brand_id = BrandID from inserted;
@@ -1948,10 +1949,11 @@ set @additional_information = 'Product ID: ' + try_cast(@new_id as varchar) + '\
 'Product Quantity: ' + try_cast(@new_product_quantity as varchar) + '\n' + 'Product Price: ' + try_cast(@new_product_price as varchar) + '\n' + 
 'Product Expiry Date: ' + try_cast(@new_product_expiry_date as varchar) + '\n' + 'Product Reg. Number: ' + try_cast(@new_product_reg_num as varchar) + '\n' + 
 'Product Part. Number: ' + try_cast(@new_product_part_num as varchar) + '\n' + 'Product Storage Location: ' + try_cast(@new_product_location as varchar) + '\n';
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Added', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 
@@ -1982,6 +1984,7 @@ declare @old_product_location as varchar(max);
 declare @new_product_location as varchar(max);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @old_id = ID from deleted;
 select @new_id = ID from inserted;
 select @old_product_name = ProductName from deleted;
@@ -2039,10 +2042,11 @@ set @additional_information =   'Old Product ID: ' + try_cast(@old_id as varchar
 'New Product Quantity: ' + try_cast(@new_product_quantity as varchar) + '\n' + 'New Product Price: ' + try_cast(@new_product_price as varchar) + '\n' + 
 'New Product Expiry Date: ' + try_cast(@new_product_expiry_date as varchar) + '\n' + 'New Product Reg. Number: ' + try_cast(@new_product_reg_num as varchar) + '\n' + 
 'New Product Part. Number: ' + try_cast(@new_product_part_num as varchar) + '\n' + 'New Product Storage Location: ' + try_cast(@new_product_location as varchar) + '\n' ;
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Updated', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 
@@ -2063,6 +2067,7 @@ declare @old_product_part_num as varchar(max);
 declare @old_product_location as varchar(max);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @old_id = ID from deleted;
 select @old_product_name = ProductName from deleted;
 select @old_brand_id = BrandID from deleted;
@@ -2079,7 +2084,8 @@ set @additional_information =  'Product ID: ' + try_cast(@old_id as varchar) + '
 'Product Quantity: ' + try_cast(@old_product_quantity as varchar) + '\n' + 'Product Price: ' + try_cast(@old_product_price as varchar) + '\n' + 
 'Product Expiry Date: ' + try_cast(@old_product_expiry_date as varchar) + '\n' + 'Product Reg. Number: ' + try_cast(@old_product_reg_num as varchar) + '\n' + 
 'Product Part. Number: ' + try_cast(@old_product_part_num as varchar) + '\n' + 'Product Storage Location: ' + try_cast(@old_product_location as varchar) + '\n';
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Removed', 
 @logmessage = @log_message,
 @additionalloginformation = @additional_information;
@@ -2097,6 +2103,7 @@ declare @new_image_name as varchar(100);
 declare @new_image_data as varbinary(max);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @new_id = ID from inserted;
 select @new_product_id = ProductID from inserted;
 select @new_image_name = ImageName from inserted;
@@ -2104,7 +2111,8 @@ select @new_image_data = ImageData from inserted;
 set @log_message = 'A product image was added to the list with the id: ' + try_cast(@new_id as varchar);
 set @additional_information = 'Image ID: ' + try_cast(@new_id as varchar) + '\n' + 'Product ID: ' + try_cast(@new_product_id as varchar) + '\n' +
 'Image Name: ' + try_cast(@new_image_name as varchar) + '\n' + 'Image Data Dump: ' + try_cast(@new_image_data as varchar(max)) + '\n';
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Image Added', 
 @logmessage = @log_message,
 @additionalloginformation = @additional_information;
@@ -2126,6 +2134,7 @@ declare @old_image_data as varbinary(max);
 declare @new_image_data as varbinary(max);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @old_id = ID from deleted;
 select @new_id = ID from inserted;
 select @old_product_id = ProductID from deleted;
@@ -2139,7 +2148,8 @@ set @additional_information = 'Old Image ID: ' + try_cast(@old_id as varchar) + 
 'Old Image Name: ' + try_cast(@old_image_name as varchar) + '\n' + 'Old Image Data Dump: ' + try_cast(@old_image_data as varchar(max)) + '\n' +
 'New Image ID: ' + try_cast(@new_id as varchar) + '\n' + 'New Product ID: ' + try_cast(@new_product_id as varchar) + '\n' +
 'New Image Name: ' + try_cast(@new_image_name as varchar) + '\n' + 'New Image Data Dump: ' + try_cast(@new_image_data as varchar(max)) + '\n';
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Image Updated', 
 @logmessage = @log_message,
 @additionalloginformation = @additional_information;
@@ -2157,6 +2167,7 @@ declare @old_image_name as varchar(100);
 declare @old_image_data as varbinary(max);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @old_id = ID from deleted;
 select @old_product_id = ProductID from deleted;
 select @old_image_name = ImageName from deleted;
@@ -2164,7 +2175,8 @@ select @old_image_data = ImageData from deleted;
 set @log_message = 'A product image was removed list with the id: ' + try_cast(@old_id as varchar);
 set @additional_information = 'Image ID: ' + try_cast(@old_id as varchar) + '\n' + 'Product ID: ' + try_cast(@old_product_id as varchar) + '\n' +
 'Image Name: ' + try_cast(@old_image_name as varchar) + '\n' + 'Image Data Dump: ' + try_cast(@old_image_data as varchar(max)) + '\n';
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Image Removed', 
 @logmessage = @log_message,
 @additionalloginformation = @additional_information;
