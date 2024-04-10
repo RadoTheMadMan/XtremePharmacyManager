@@ -178,6 +178,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="frmEditPaymentMethod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditPaymentMethod.Designer.cs">
+      <DependentUpon>frmEditPaymentMethod.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEditDeliveryService.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -196,6 +202,12 @@
     <Compile Include="frmEditUser.Designer.cs">
       <DependentUpon>frmEditUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSearchPaymentMethods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSearchPaymentMethods.Designer.cs">
+      <DependentUpon>frmSearchPaymentMethods.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSearchDeliveryServices.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +224,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="frmEditPaymentMethod.resx">
+      <DependentUpon>frmEditPaymentMethod.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmEditDeliveryService.resx">
       <DependentUpon>frmEditDeliveryService.cs</DependentUpon>
     </EmbeddedResource>
@@ -220,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEditUser.resx">
       <DependentUpon>frmEditUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSearchPaymentMethods.resx">
+      <DependentUpon>frmSearchPaymentMethods.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSearchDeliveryServices.resx">
       <DependentUpon>frmSearchDeliveryServices.cs</DependentUpon>
@@ -244,13 +262,16 @@
       <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\frmEditDeliveryService.datasource" />
     <None Include="Properties\DataSources\frmEditUser.datasource" />
     <None Include="Properties\DataSources\frmMain.datasource" />
+    <None Include="Properties\DataSources\frmSearchDeliveryServices.datasource" />
     <None Include="Properties\DataSources\frmSearchUsers.datasource" />
     <None Include="Properties\DataSources\ImageBinConverter.datasource" />
     <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\DataSources\SqlServerTypes.Utilities.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.DeliveryService.datasource" />
+    <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.PaymentMethod.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.User.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.Properties.Settings.datasource" />

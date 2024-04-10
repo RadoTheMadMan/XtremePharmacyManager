@@ -1,6 +1,6 @@
 ﻿namespace XtremePharmacyManager
 {
-    partial class frmSearchDeliveryServices
+    partial class frmSearchPaymentMethods
     {
         /// <summary>
         /// Required designer variable.
@@ -29,31 +29,31 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlData = new System.Windows.Forms.Panel();
             this.lblSearchMode = new System.Windows.Forms.Label();
             this.cbSearchMode = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAddOrEdit = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.trbPrice = new System.Windows.Forms.TrackBar();
-            this.lblShowPrice = new System.Windows.Forms.Label();
-            this.lblPrice = new System.Windows.Forms.Label();
             this.txtServiceName = new System.Windows.Forms.TextBox();
             this.lblServiceName = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
-            this.dgvDeliveryServices = new System.Windows.Forms.DataGridView();
-            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ServiceNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ServicePriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvPaymentMethods = new System.Windows.Forms.DataGridView();
             this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MethodNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.methodNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDeliveryServices)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPaymentMethods)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
@@ -64,9 +64,6 @@
             this.pnlData.Controls.Add(this.btnDelete);
             this.pnlData.Controls.Add(this.btnAddOrEdit);
             this.pnlData.Controls.Add(this.btnSearch);
-            this.pnlData.Controls.Add(this.trbPrice);
-            this.pnlData.Controls.Add(this.lblShowPrice);
-            this.pnlData.Controls.Add(this.lblPrice);
             this.pnlData.Controls.Add(this.txtServiceName);
             this.pnlData.Controls.Add(this.lblServiceName);
             this.pnlData.Controls.Add(this.txtID);
@@ -83,7 +80,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lblSearchMode.AutoSize = true;
             this.lblSearchMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchMode.Location = new System.Drawing.Point(8, 138);
+            this.lblSearchMode.Location = new System.Drawing.Point(12, 78);
             this.lblSearchMode.Name = "lblSearchMode";
             this.lblSearchMode.Size = new System.Drawing.Size(103, 16);
             this.lblSearchMode.TabIndex = 36;
@@ -99,7 +96,7 @@
             "Single Criteria",
             "Multiple Criterias",
             "All Criterias"});
-            this.cbSearchMode.Location = new System.Drawing.Point(127, 135);
+            this.cbSearchMode.Location = new System.Drawing.Point(131, 75);
             this.cbSearchMode.Name = "cbSearchMode";
             this.cbSearchMode.Size = new System.Drawing.Size(229, 24);
             this.cbSearchMode.TabIndex = 35;
@@ -141,49 +138,13 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // trbPrice
-            // 
-            this.trbPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.trbPrice.Location = new System.Drawing.Point(139, 73);
-            this.trbPrice.Maximum = 5000;
-            this.trbPrice.Name = "trbPrice";
-            this.trbPrice.Size = new System.Drawing.Size(217, 56);
-            this.trbPrice.TabIndex = 21;
-            this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
-            // 
-            // lblShowPrice
-            // 
-            this.lblShowPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblShowPrice.AutoSize = true;
-            this.lblShowPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowPrice.Location = new System.Drawing.Point(371, 76);
-            this.lblShowPrice.Name = "lblShowPrice";
-            this.lblShowPrice.Size = new System.Drawing.Size(35, 16);
-            this.lblShowPrice.TabIndex = 20;
-            this.lblShowPrice.Text = "0.00";
-            // 
-            // lblPrice
-            // 
-            this.lblPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblPrice.AutoSize = true;
-            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(20, 72);
-            this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(47, 16);
-            this.lblPrice.TabIndex = 19;
-            this.lblPrice.Text = "Price:";
-            // 
             // txtServiceName
             // 
             this.txtServiceName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtServiceName.Location = new System.Drawing.Point(139, 42);
+            this.txtServiceName.Location = new System.Drawing.Point(112, 42);
             this.txtServiceName.Name = "txtServiceName";
-            this.txtServiceName.Size = new System.Drawing.Size(217, 22);
+            this.txtServiceName.Size = new System.Drawing.Size(244, 22);
             this.txtServiceName.TabIndex = 4;
             // 
             // lblServiceName
@@ -194,17 +155,17 @@
             this.lblServiceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblServiceName.Location = new System.Drawing.Point(19, 45);
             this.lblServiceName.Name = "lblServiceName";
-            this.lblServiceName.Size = new System.Drawing.Size(109, 16);
+            this.lblServiceName.Size = new System.Drawing.Size(82, 16);
             this.lblServiceName.TabIndex = 3;
-            this.lblServiceName.Text = "Service Name:";
+            this.lblServiceName.Text = "Username:";
             // 
             // txtID
             // 
             this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtID.Location = new System.Drawing.Point(139, 14);
+            this.txtID.Location = new System.Drawing.Point(112, 14);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(217, 22);
+            this.txtID.Size = new System.Drawing.Size(244, 22);
             this.txtID.TabIndex = 2;
             // 
             // lblID
@@ -219,37 +180,39 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
-            // dgvDeliveryServices
+            // dgvPaymentMethods
             // 
-            this.dgvDeliveryServices.AllowUserToAddRows = false;
-            this.dgvDeliveryServices.AllowUserToDeleteRows = false;
-            this.dgvDeliveryServices.AutoGenerateColumns = false;
-            this.dgvDeliveryServices.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvDeliveryServices.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvDeliveryServices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDeliveryServices.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvPaymentMethods.AllowUserToAddRows = false;
+            this.dgvPaymentMethods.AllowUserToDeleteRows = false;
+            this.dgvPaymentMethods.AutoGenerateColumns = false;
+            this.dgvPaymentMethods.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPaymentMethods.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvPaymentMethods.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPaymentMethods.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDColumn,
-            this.ServiceNameColumn,
-            this.ServicePriceColumn});
-            this.dgvDeliveryServices.DataSource = this.deliveryServiceBindingSource;
-            this.dgvDeliveryServices.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvDeliveryServices.Location = new System.Drawing.Point(0, 290);
-            this.dgvDeliveryServices.MultiSelect = false;
-            this.dgvDeliveryServices.Name = "dgvDeliveryServices";
-            this.dgvDeliveryServices.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDeliveryServices.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvDeliveryServices.RowHeadersWidth = 51;
-            this.dgvDeliveryServices.RowTemplate.Height = 24;
-            this.dgvDeliveryServices.Size = new System.Drawing.Size(415, 160);
-            this.dgvDeliveryServices.TabIndex = 1;
-            this.dgvDeliveryServices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDeliveryServices_CellClick);
+            this.MethodNameColumn,
+            this.dataGridViewTextBoxColumn1,
+            this.methodNameDataGridViewTextBoxColumn,
+            this.dataGridViewTextBoxColumn2});
+            this.dgvPaymentMethods.DataSource = this.paymentMethodBindingSource;
+            this.dgvPaymentMethods.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvPaymentMethods.Location = new System.Drawing.Point(0, 290);
+            this.dgvPaymentMethods.MultiSelect = false;
+            this.dgvPaymentMethods.Name = "dgvPaymentMethods";
+            this.dgvPaymentMethods.ReadOnly = true;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPaymentMethods.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvPaymentMethods.RowHeadersWidth = 51;
+            this.dgvPaymentMethods.RowTemplate.Height = 24;
+            this.dgvPaymentMethods.Size = new System.Drawing.Size(415, 147);
+            this.dgvPaymentMethods.TabIndex = 1;
+            this.dgvPaymentMethods.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDeliveryServices_CellClick);
             // 
             // IDColumn
             // 
@@ -260,39 +223,58 @@
             this.IDColumn.Name = "IDColumn";
             this.IDColumn.ReadOnly = true;
             // 
-            // ServiceNameColumn
+            // MethodNameColumn
             // 
-            this.ServiceNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ServiceNameColumn.DataPropertyName = "ServiceName";
-            this.ServiceNameColumn.HeaderText = "Service Name";
-            this.ServiceNameColumn.MinimumWidth = 6;
-            this.ServiceNameColumn.Name = "ServiceNameColumn";
-            this.ServiceNameColumn.ReadOnly = true;
+            this.MethodNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.MethodNameColumn.DataPropertyName = "MethodName";
+            this.MethodNameColumn.HeaderText = "Method Name";
+            this.MethodNameColumn.MinimumWidth = 6;
+            this.MethodNameColumn.Name = "MethodNameColumn";
+            this.MethodNameColumn.ReadOnly = true;
             // 
-            // ServicePriceColumn
+            // paymentMethodBindingSource
             // 
-            this.ServicePriceColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ServicePriceColumn.DataPropertyName = "ServicePrice";
-            this.ServicePriceColumn.HeaderText = "Service Price";
-            this.ServicePriceColumn.MinimumWidth = 6;
-            this.ServicePriceColumn.Name = "ServicePriceColumn";
-            this.ServicePriceColumn.ReadOnly = true;
+            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
             // 
-            // frmSearchDeliveryServices
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // methodNameDataGridViewTextBoxColumn
+            // 
+            this.methodNameDataGridViewTextBoxColumn.DataPropertyName = "MethodName";
+            this.methodNameDataGridViewTextBoxColumn.HeaderText = "MethodName";
+            this.methodNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.methodNameDataGridViewTextBoxColumn.Name = "methodNameDataGridViewTextBoxColumn";
+            this.methodNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "OrderDeliveries";
+            this.dataGridViewTextBoxColumn2.HeaderText = "OrderDeliveries";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // frmSearchPaymentMethods
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(415, 450);
-            this.Controls.Add(this.dgvDeliveryServices);
+            this.ClientSize = new System.Drawing.Size(415, 437);
+            this.Controls.Add(this.dgvPaymentMethods);
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
-            this.Name = "frmSearchDeliveryServices";
+            this.Name = "frmSearchPaymentMethods";
             this.Text = "Delivery Services";
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDeliveryServices)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPaymentMethods)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,10 +287,7 @@
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtServiceName;
         private System.Windows.Forms.Label lblServiceName;
-        private System.Windows.Forms.Label lblPrice;
-        private System.Windows.Forms.Label lblShowPrice;
-        private System.Windows.Forms.TrackBar trbPrice;
-        private System.Windows.Forms.DataGridView dgvDeliveryServices;
+        private System.Windows.Forms.DataGridView dgvPaymentMethods;
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnAddOrEdit;
@@ -321,7 +300,10 @@
         private System.Windows.Forms.Label lblSearchMode;
         private System.Windows.Forms.ComboBox cbSearchMode;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ServiceNameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ServicePriceColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MethodNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn methodNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.BindingSource paymentMethodBindingSource;
     }
 }
