@@ -92,15 +92,13 @@ namespace XtremePharmacyManager
                     {
                         usersearchform = new frmSearchUsers(entities);
                         usersearchform.MdiParent = this;
+                        usersearchform.FormClosed += Usersearchform_FormClosed;
                         usersearchform.Show();
                     }
                     else
                     {
-                        if (usersearchform.MdiParent == this)
-                        {
-                            usersearchform.Activate();
-                            usersearchform.FormClosed += Usersearchform_FormClosed;
-                        }
+                        usersearchform.WindowState = FormWindowState.Normal;
+                        usersearchform.Activate();
                     }
                 }
                 catch(Exception ex)

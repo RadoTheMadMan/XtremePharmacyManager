@@ -189,10 +189,11 @@
             this.trbBalance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.trbBalance.Location = new System.Drawing.Point(475, 18);
-            this.trbBalance.Maximum = 10000000;
+            this.trbBalance.Maximum = 5000;
             this.trbBalance.Name = "trbBalance";
             this.trbBalance.Size = new System.Drawing.Size(259, 56);
             this.trbBalance.TabIndex = 21;
+            this.trbBalance.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
             // 
             // lblShowBalance
@@ -403,8 +404,9 @@
             // 
             // frmEditUser
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AcceptButton = this.btnOK;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(800, 302);
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;

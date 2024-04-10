@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.msMain = new System.Windows.Forms.MenuStrip();
             this.tsmenuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuAccountSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuWindow = new System.Windows.Forms.ToolStripMenuItem();
@@ -36,33 +36,33 @@
             this.tsmenuDebugTools = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuTestConnection = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuBitmapToBinary = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // msMain
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.msMain.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.msMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmenuFile,
             this.tsmenuAccountSettings,
             this.tsmenuWindow,
             this.tsmenuDebugTools});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1006, 28);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
+            this.msMain.Location = new System.Drawing.Point(0, 0);
+            this.msMain.Name = "msMain";
+            this.msMain.Size = new System.Drawing.Size(1006, 30);
+            this.msMain.TabIndex = 1;
+            this.msMain.Text = "menuStrip1";
             // 
             // tsmenuFile
             // 
             this.tsmenuFile.Name = "tsmenuFile";
-            this.tsmenuFile.Size = new System.Drawing.Size(46, 24);
+            this.tsmenuFile.Size = new System.Drawing.Size(46, 26);
             this.tsmenuFile.Text = "&FIle";
             // 
             // tsmenuAccountSettings
             // 
             this.tsmenuAccountSettings.Name = "tsmenuAccountSettings";
-            this.tsmenuAccountSettings.Size = new System.Drawing.Size(134, 24);
+            this.tsmenuAccountSettings.Size = new System.Drawing.Size(134, 26);
             this.tsmenuAccountSettings.Text = "&Account Settings";
             // 
             // tsmenuWindow
@@ -70,7 +70,7 @@
             this.tsmenuWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmenuUsers});
             this.tsmenuWindow.Name = "tsmenuWindow";
-            this.tsmenuWindow.Size = new System.Drawing.Size(78, 24);
+            this.tsmenuWindow.Size = new System.Drawing.Size(78, 26);
             this.tsmenuWindow.Text = "Window";
             // 
             // tsmenuUsers
@@ -86,36 +86,35 @@
             this.tsmenuTestConnection,
             this.tsmenuBitmapToBinary});
             this.tsmenuDebugTools.Name = "tsmenuDebugTools";
-            this.tsmenuDebugTools.Size = new System.Drawing.Size(107, 24);
+            this.tsmenuDebugTools.Size = new System.Drawing.Size(107, 26);
             this.tsmenuDebugTools.Text = "&Debug Tools";
             // 
             // tsmenuTestConnection
             // 
             this.tsmenuTestConnection.Name = "tsmenuTestConnection";
-            this.tsmenuTestConnection.Size = new System.Drawing.Size(224, 26);
+            this.tsmenuTestConnection.Size = new System.Drawing.Size(205, 26);
             this.tsmenuTestConnection.Text = "&Test Connection";
             this.tsmenuTestConnection.Click += new System.EventHandler(this.tsmenuTestConnection_Click);
             // 
             // tsmenuBitmapToBinary
             // 
             this.tsmenuBitmapToBinary.Name = "tsmenuBitmapToBinary";
-            this.tsmenuBitmapToBinary.Size = new System.Drawing.Size(224, 26);
+            this.tsmenuBitmapToBinary.Size = new System.Drawing.Size(205, 26);
             this.tsmenuBitmapToBinary.Text = "&Bitmap To Binary";
             // 
             // frmMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1006, 721);
-            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.msMain);
             this.IsMdiContainer = true;
-            this.MainMenuStrip = this.menuStrip1;
+            this.MainMenuStrip = this.msMain;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "XTremePharmacyManager";
             this.Load += new System.EventHandler(this.frmMain_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.msMain.ResumeLayout(false);
+            this.msMain.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,7 +122,7 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip msMain;
         private System.Windows.Forms.ToolStripMenuItem tsmenuFile;
         private System.Windows.Forms.ToolStripMenuItem tsmenuAccountSettings;
         private System.Windows.Forms.ToolStripMenuItem tsmenuDebugTools;

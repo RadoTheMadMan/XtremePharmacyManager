@@ -47,18 +47,25 @@ namespace XtremePharmacyManager
             DataGridViewComboBoxCell currentrolecell;
             int UserID = -1;
             User target_user;
-            if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
+            try
             {
-                Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
-                if (UserID >= 0 && users!=null)
+                if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
                 {
-                    target_user = users.Where(x=>x.ID == UserID).FirstOrDefault();
-                    if (target_user != null)
+                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
+                    if (UserID >= 0 && users != null)
                     {
-                        currentrolecell = (DataGridViewComboBoxCell)row.Cells["RoleColumn"];
-                        currentrolecell.Value = target_user.UserRole;
+                        target_user = users.Where(x => x.ID == UserID).FirstOrDefault();
+                        if (target_user != null)
+                        {
+                            currentrolecell = (DataGridViewComboBoxCell)row.Cells["RoleColumn"];
+                            currentrolecell.Value = target_user.UserRole;
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -238,6 +245,44 @@ namespace XtremePharmacyManager
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dgvUsers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView target_view = (DataGridView)sender;
+            DataGridViewRow row = target_view.Rows[e.RowIndex];
+            int UserID = -1;
+            User target_user;
+            try
+            {
+                if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
+                {
+                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
+                    if (UserID >= 0 && users != null)
+                    {
+                        target_user = users.Where(x => x.ID == UserID).FirstOrDefault();
+                        if(target_user != null)
+                        {
+                            txtID.Text = target_user.ID.ToString();
+                            txtUsername.Text = target_user.UserName.ToString();
+                            txtPassword.Text = target_user.UserPassword.ToString();
+                            txtDisplayName.Text = target_user.UserDisplayName.ToString();
+                            dtBirthDateFrom.Value = target_user.UserBirthDate;
+                            txtPhone.Text = target_user.UserPhone.ToString();
+                            txtEmail.Text = target_user.UserEmail.ToString();
+                            txtAddress.Text = target_user.UserAddress.ToString();
+                            trbBalance.Value = Convert.ToInt32(target_user.UserBalance);
+                            txtDiagnose.Text = target_user.UserDiagnose.ToString();
+                            dtRegisterDateFrom.Value = target_user.UserDateOfRegister;
+                            cbRole.SelectedIndex = target_user.UserRole;
                         }
                     }
                 }
