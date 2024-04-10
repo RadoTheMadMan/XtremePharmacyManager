@@ -1697,14 +1697,16 @@ declare @new_id as int;
 declare @new_brand_name as varchar(200);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @new_id = ID from inserted;
 select @new_brand_name = BrandName from inserted;
 set @log_message = 'A new brand was added to the list with the id: ' + try_cast(@new_id as varchar);
 set @additional_information = 'Brand ID: ' + try_cast(@new_id as varchar) + '\n' + 'Brand Name: ' + try_cast(@new_brand_name as varchar) + '\n';
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Brand Added', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 
@@ -1719,6 +1721,7 @@ declare @old_brand_name as varchar(200);
 declare @new_brand_name as varchar(200);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @old_id = ID from deleted;
 select @new_id = ID from inserted;
 select @old_brand_name = BrandName from deleted;
@@ -1726,10 +1729,11 @@ select @new_brand_name = BrandName from inserted;
 set @log_message = 'A product brand was updated with the id: ' + try_cast(@old_id as varchar);
 set @additional_information = 'Old Brand ID: ' + try_cast(@old_id as varchar) + '\n' + ' Old Brand Name: ' + try_cast(@old_brand_name as varchar) + '\n'
 + 'New Brand ID: ' + try_cast(@new_id as varchar) + '\n' + 'New Brand Name: ' + try_cast(@new_brand_name as varchar) + '\n' ;
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Brand Updated', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 
@@ -1742,14 +1746,16 @@ declare @old_id as int;
 declare @old_brand_name as varchar(200);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @old_id = ID from deleted;
 select @old_brand_name = BrandName from deleted;
 set @log_message = 'A product brand was removed list with the id: ' + try_cast(@old_id as varchar);
 set @additional_information = 'Old Brand ID: ' + try_cast(@old_id as varchar) + '\n' + ' Old Brand Name: ' + try_cast(@old_brand_name as varchar) + '\n';
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Brand Removed', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 /* next is the payment methods, standart triggers that add logs to the logs list */
@@ -1762,14 +1768,16 @@ declare @new_id as int;
 declare @new_method_name as varchar(200);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @new_id = ID from inserted;
 select @new_method_name = MethodName from inserted;
 set @log_message = 'A payment method was added to the list with the id: ' + try_cast(@new_id as varchar);
 set @additional_information = 'Method ID: ' + try_cast(@new_id as varchar) + '\n' + 'Method Name: ' + try_cast(@new_method_name as varchar) + '\n';
-exec AddLog @logdate = getdate, 
+set @current_date = getdate()
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Payment Method Added', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 
@@ -1784,6 +1792,7 @@ declare @old_method_name as varchar(200);
 declare @new_method_name as varchar(200);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @old_id = ID from deleted;
 select @new_id = ID from inserted;
 select @old_method_name = MethodName from deleted;
@@ -1791,10 +1800,11 @@ select @new_method_name = MethodName from inserted;
 set @log_message = 'A payment method was updated with the id: ' + try_cast(@old_id as varchar);
 set @additional_information = 'Old Method ID: ' + try_cast(@old_id as varchar) + '\n' + ' Old Method Name: ' + try_cast(@old_method_name as varchar) + '\n'
 + 'New Method ID: ' + try_cast(@new_id as varchar) + '\n' + 'New Method Name: ' + try_cast(@new_method_name as varchar) + '\n' ;
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Payment Method Updated', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 
@@ -1807,14 +1817,16 @@ declare @old_id as int;
 declare @old_method_name as varchar(200);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @old_id = ID from deleted;
 select @old_method_name = MethodName from deleted;
 set @log_message = 'A payment method was removed list with the id: ' + try_cast(@old_id as varchar);
 set @additional_information = 'Old Method ID: ' + try_cast(@old_id as varchar) + '\n' + ' Old Method Name: ' + try_cast(@old_method_name as varchar) + '\n';
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Payment Method Removed', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 /* onward to the delivery services, same as the product brands and the payment methods but with additional field */

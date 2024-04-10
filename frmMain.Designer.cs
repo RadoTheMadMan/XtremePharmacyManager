@@ -33,10 +33,11 @@
             this.tsmenuAccountSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuUsers = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmenuDeliveryServices = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmenuPaymentMethods = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuDebugTools = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuTestConnection = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuBitmapToBinary = new System.Windows.Forms.ToolStripMenuItem();
-            this.tsmenuDeliveryServices = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +71,8 @@
             // 
             this.tsmenuWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmenuUsers,
-            this.tsmenuDeliveryServices});
+            this.tsmenuDeliveryServices,
+            this.tsmenuPaymentMethods});
             this.tsmenuWindow.Name = "tsmenuWindow";
             this.tsmenuWindow.Size = new System.Drawing.Size(78, 24);
             this.tsmenuWindow.Text = "Window";
@@ -81,6 +83,20 @@
             this.tsmenuUsers.Size = new System.Drawing.Size(224, 26);
             this.tsmenuUsers.Text = "Users";
             this.tsmenuUsers.Click += new System.EventHandler(this.tsmenuUsers_Click);
+            // 
+            // tsmenuDeliveryServices
+            // 
+            this.tsmenuDeliveryServices.Name = "tsmenuDeliveryServices";
+            this.tsmenuDeliveryServices.Size = new System.Drawing.Size(224, 26);
+            this.tsmenuDeliveryServices.Text = "Delivery Services";
+            this.tsmenuDeliveryServices.Click += new System.EventHandler(this.tsmenuDeliveryServices_Click);
+            // 
+            // tsmenuPaymentMethods
+            // 
+            this.tsmenuPaymentMethods.Name = "tsmenuPaymentMethods";
+            this.tsmenuPaymentMethods.Size = new System.Drawing.Size(224, 26);
+            this.tsmenuPaymentMethods.Text = "Payment Methods";
+            this.tsmenuPaymentMethods.Click += new System.EventHandler(this.tsmenuPaymentMethods_Click);
             // 
             // tsmenuDebugTools
             // 
@@ -103,13 +119,6 @@
             this.tsmenuBitmapToBinary.Name = "tsmenuBitmapToBinary";
             this.tsmenuBitmapToBinary.Size = new System.Drawing.Size(205, 26);
             this.tsmenuBitmapToBinary.Text = "&Bitmap To Binary";
-            // 
-            // tsmenuDeliveryServices
-            // 
-            this.tsmenuDeliveryServices.Name = "tsmenuDeliveryServices";
-            this.tsmenuDeliveryServices.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuDeliveryServices.Text = "Delivery Services";
-            this.tsmenuDeliveryServices.Click += new System.EventHandler(this.tsmenuDeliveryServices_Click);
             // 
             // frmMain
             // 
@@ -140,6 +149,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmenuWindow;
         private System.Windows.Forms.ToolStripMenuItem tsmenuUsers;
         private System.Windows.Forms.ToolStripMenuItem tsmenuDeliveryServices;
+        private System.Windows.Forms.ToolStripMenuItem tsmenuPaymentMethods;
     }
 }
 

@@ -12,31 +12,21 @@ using XtremePharmacyManager.DataEntities;
 using static XtremePharmacyManager.ImageBinConverter;
 namespace XtremePharmacyManager
 {
-    public partial class frmEditDeliveryService : Form
+    public partial class frmEditPaymentMethod : Form
     {
-        DeliveryService target;
-        public frmEditDeliveryService(ref DeliveryService target)
+        PaymentMethod target;
+        public frmEditPaymentMethod(ref PaymentMethod target)
         {
             InitializeComponent();
             this.target = target;
             this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
-            this.txtServiceName.Text = (!String.IsNullOrEmpty(target.ServiceName)) ? target.ServiceName.ToString() : string.Empty;
-            trbPrice.Value = (target.ServicePrice >= 0) ? Convert.ToInt32(target.ServicePrice) : 0;
-            lblShowPrice.Text = (target.ServicePrice >= 0) ? target.ServicePrice.ToString() : string.Empty;
+            this.txtMethodName.Text = (!String.IsNullOrEmpty(target.MethodName)) ? target.MethodName.ToString() : string.Empty;
         }
 
         
         
        
 
-        private void trbPrice_Scroll(object sender, EventArgs e)
-        {
-            lblShowPrice.Text = trbPrice.Value.ToString();
-            if (target != null)
-            {
-                target.ServicePrice = trbPrice.Value;
-            }
-        }
 
         private void txtID_TextChanged(object sender, EventArgs e)
         {
@@ -50,7 +40,7 @@ namespace XtremePharmacyManager
         {
             if(target!=null)
             {
-                target.ServiceName = txtServiceName.Text;
+                target.MethodName = txtMethodName.Text;
             }
         }
     }

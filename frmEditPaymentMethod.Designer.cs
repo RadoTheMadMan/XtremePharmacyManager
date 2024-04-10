@@ -1,6 +1,6 @@
 ﻿namespace XtremePharmacyManager
 {
-    partial class frmEditDeliveryService
+    partial class frmEditPaymentMethod
     {
         /// <summary>
         /// Required designer variable.
@@ -32,35 +32,28 @@
             this.pnlData = new System.Windows.Forms.Panel();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.trbPrice = new System.Windows.Forms.TrackBar();
-            this.lblShowPrice = new System.Windows.Forms.Label();
-            this.lblPrice = new System.Windows.Forms.Label();
-            this.txtServiceName = new System.Windows.Forms.TextBox();
-            this.lblUsername = new System.Windows.Forms.Label();
+            this.txtMethodName = new System.Windows.Forms.TextBox();
+            this.lblMethodName = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
             // 
-            this.pnlData.AutoSize = true;
+            this.pnlData.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlData.Controls.Add(this.btnOK);
             this.pnlData.Controls.Add(this.btnCancel);
-            this.pnlData.Controls.Add(this.trbPrice);
-            this.pnlData.Controls.Add(this.lblShowPrice);
-            this.pnlData.Controls.Add(this.lblPrice);
-            this.pnlData.Controls.Add(this.txtServiceName);
-            this.pnlData.Controls.Add(this.lblUsername);
+            this.pnlData.Controls.Add(this.txtMethodName);
+            this.pnlData.Controls.Add(this.lblMethodName);
             this.pnlData.Controls.Add(this.txtID);
             this.pnlData.Controls.Add(this.lblID);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlData.Location = new System.Drawing.Point(0, 0);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(551, 290);
+            this.pnlData.Size = new System.Drawing.Size(548, 150);
             this.pnlData.TabIndex = 0;
             // 
             // btnOK
@@ -68,7 +61,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOK.Location = new System.Drawing.Point(190, 183);
+            this.btnOK.Location = new System.Drawing.Point(185, 91);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
@@ -80,70 +73,34 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(301, 183);
+            this.btnCancel.Location = new System.Drawing.Point(296, 91);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // trbPrice
+            // txtMethodName
             // 
-            this.trbPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtMethodName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.trbPrice.Location = new System.Drawing.Point(136, 73);
-            this.trbPrice.Maximum = 5000;
-            this.trbPrice.Name = "trbPrice";
-            this.trbPrice.Size = new System.Drawing.Size(205, 56);
-            this.trbPrice.TabIndex = 21;
-            this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
+            this.txtMethodName.Location = new System.Drawing.Point(136, 42);
+            this.txtMethodName.Name = "txtMethodName";
+            this.txtMethodName.Size = new System.Drawing.Size(205, 22);
+            this.txtMethodName.TabIndex = 4;
+            this.txtMethodName.TextChanged += new System.EventHandler(this.txtServiceName_TextChanged);
             // 
-            // lblShowPrice
+            // lblMethodName
             // 
-            this.lblShowPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblMethodName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblShowPrice.AutoSize = true;
-            this.lblShowPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowPrice.Location = new System.Drawing.Point(356, 76);
-            this.lblShowPrice.Name = "lblShowPrice";
-            this.lblShowPrice.Size = new System.Drawing.Size(35, 16);
-            this.lblShowPrice.TabIndex = 20;
-            this.lblShowPrice.Text = "0.00";
-            // 
-            // lblPrice
-            // 
-            this.lblPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblPrice.AutoSize = true;
-            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(20, 76);
-            this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(47, 16);
-            this.lblPrice.TabIndex = 19;
-            this.lblPrice.Text = "Price:";
-            // 
-            // txtServiceName
-            // 
-            this.txtServiceName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtServiceName.Location = new System.Drawing.Point(136, 42);
-            this.txtServiceName.Name = "txtServiceName";
-            this.txtServiceName.Size = new System.Drawing.Size(205, 22);
-            this.txtServiceName.TabIndex = 4;
-            this.txtServiceName.TextChanged += new System.EventHandler(this.txtServiceName_TextChanged);
-            // 
-            // lblUsername
-            // 
-            this.lblUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblUsername.AutoSize = true;
-            this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(19, 45);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(109, 16);
-            this.lblUsername.TabIndex = 3;
-            this.lblUsername.Text = "Service Name:";
+            this.lblMethodName.AutoSize = true;
+            this.lblMethodName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMethodName.Location = new System.Drawing.Point(19, 45);
+            this.lblMethodName.Name = "lblMethodName";
+            this.lblMethodName.Size = new System.Drawing.Size(107, 16);
+            this.lblMethodName.TabIndex = 3;
+            this.lblMethodName.Text = "Method Name:";
             // 
             // txtID
             // 
@@ -168,22 +125,20 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
-            // frmEditDeliveryService
+            // frmEditPaymentMethod
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(551, 291);
+            this.ClientSize = new System.Drawing.Size(548, 150);
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
-            this.Name = "frmEditDeliveryService";
-            this.Text = "Delivery Service Editor. Add or Update Delivery Service";
+            this.Name = "frmEditPaymentMethod";
+            this.Text = "Delivery Service Editor. Add or Update Payment Method";
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -192,11 +147,8 @@
         private System.Windows.Forms.Panel pnlData;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.TextBox txtID;
-        private System.Windows.Forms.TextBox txtServiceName;
-        private System.Windows.Forms.Label lblUsername;
-        private System.Windows.Forms.Label lblPrice;
-        private System.Windows.Forms.Label lblShowPrice;
-        private System.Windows.Forms.TrackBar trbPrice;
+        private System.Windows.Forms.TextBox txtMethodName;
+        private System.Windows.Forms.Label lblMethodName;
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;

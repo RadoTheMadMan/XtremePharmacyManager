@@ -24,6 +24,7 @@ namespace XtremePharmacyManager
         static string connString = "";
         static frmSearchUsers usersearchform;
         static frmSearchDeliveryServices deliveryservicesearchform;
+        static frmSearchPaymentMethods paymentmethodssearchform;
         public frmMain()
         {
             InitializeComponent();
@@ -148,6 +149,37 @@ namespace XtremePharmacyManager
         private void Deliveryservicessearchform_FormClosed(object sender, FormClosedEventArgs e)
         {
             deliveryservicesearchform = null;
+        }
+
+        private void tsmenuPaymentMethods_Click(object sender, EventArgs e)
+        {
+            if (entities.Database.Connection.State == ConnectionState.Open)
+            {
+                try
+                {
+                    if (paymentmethodssearchform == null)
+                    {   
+                        paymentmethodssearchform = new frmSearchPaymentMethods(entities);
+                        paymentmethodssearchform.MdiParent = this;
+                        paymentmethodssearchform.FormClosed += Paymentmethodssearchform_FormClosed;
+                        paymentmethodssearchform.Show();
+                    }   
+                    else
+                    {  
+                        paymentmethodssearchform.WindowState = FormWindowState.Normal;
+                        paymentmethodssearchform.Activate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void Paymentmethodssearchform_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            paymentmethodssearchform = null;
         }
     }
 }
