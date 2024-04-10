@@ -38,6 +38,7 @@
             this.tsmenuDebugTools = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuTestConnection = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuBitmapToBinary = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmenuProductBrands = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,8 +72,9 @@
             // 
             this.tsmenuWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmenuUsers,
-            this.tsmenuDeliveryServices,
-            this.tsmenuPaymentMethods});
+            this.tsmenuProductBrands,
+            this.tsmenuPaymentMethods,
+            this.tsmenuDeliveryServices});
             this.tsmenuWindow.Name = "tsmenuWindow";
             this.tsmenuWindow.Size = new System.Drawing.Size(78, 24);
             this.tsmenuWindow.Text = "Window";
@@ -120,6 +122,13 @@
             this.tsmenuBitmapToBinary.Size = new System.Drawing.Size(205, 26);
             this.tsmenuBitmapToBinary.Text = "&Bitmap To Binary";
             // 
+            // tsmenuProductBrands
+            // 
+            this.tsmenuProductBrands.Name = "tsmenuProductBrands";
+            this.tsmenuProductBrands.Size = new System.Drawing.Size(224, 26);
+            this.tsmenuProductBrands.Text = "Product Brands";
+            this.tsmenuProductBrands.Click += new System.EventHandler(this.tsmenuProductBrands_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -150,6 +159,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmenuUsers;
         private System.Windows.Forms.ToolStripMenuItem tsmenuDeliveryServices;
         private System.Windows.Forms.ToolStripMenuItem tsmenuPaymentMethods;
+        private System.Windows.Forms.ToolStripMenuItem tsmenuProductBrands;
     }
 }
 
