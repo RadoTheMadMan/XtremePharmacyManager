@@ -196,6 +196,12 @@
     <Compile Include="frmEditDeliveryService.Designer.cs">
       <DependentUpon>frmEditDeliveryService.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmEditProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditProduct.Designer.cs">
+      <DependentUpon>frmEditProduct.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,6 +232,12 @@
     <Compile Include="frmSearchDeliveryServices.Designer.cs">
       <DependentUpon>frmSearchDeliveryServices.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSearchProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSearchProducts.Designer.cs">
+      <DependentUpon>frmSearchProducts.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSearchUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -245,6 +257,9 @@
     <EmbeddedResource Include="frmEditDeliveryService.resx">
       <DependentUpon>frmEditDeliveryService.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmEditProduct.resx">
+      <DependentUpon>frmEditProduct.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -259,6 +274,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSearchDeliveryServices.resx">
       <DependentUpon>frmSearchDeliveryServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSearchProducts.resx">
+      <DependentUpon>frmSearchProducts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSearchUsers.resx">
       <DependentUpon>frmSearchUsers.cs</DependentUpon>
@@ -290,7 +308,9 @@
     <None Include="Properties\DataSources\SqlServerTypes.Utilities.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.DeliveryService.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.PaymentMethod.datasource" />
+    <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.Product.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ProductBrand.datasource" />
+    <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ProductImage.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.User.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.Properties.Settings.datasource" />
