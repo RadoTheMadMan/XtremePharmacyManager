@@ -1828,16 +1828,18 @@ declare @new_service_name as varchar(200);
 declare @new_service_price as money;
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @new_id = ID from inserted;
 select @new_service_name = ServiceName from inserted;
 select @new_service_price = ServicePrice from inserted;
 set @log_message = 'A delivery service was added to the list with the id: ' + try_cast(@new_id as varchar);
 set @additional_information = 'Service ID: ' + try_cast(@new_id as varchar) + '\n' + 'Service Name: ' + try_cast(@new_service_name as varchar) + '\n'
 + 'Service Price: ' + try_cast(@new_service_price as varchar) + '\n';
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Delivery Service Added', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 
@@ -1854,6 +1856,7 @@ declare @old_service_price as money;
 declare @new_service_price as money;
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @old_id = ID from deleted;
 select @new_id = ID from inserted;
 select @old_service_name = ServiceName from deleted;
@@ -1862,13 +1865,14 @@ select @old_service_price = ServicePrice from deleted;
 select @new_service_price = ServicePrice from inserted;
 set @log_message = 'A delivery service was updated with the id: ' + try_cast(@old_id as varchar);
 set @additional_information = 'Old Service ID: ' + try_cast(@old_id as varchar) + '\n' + ' Old Service Name: ' + try_cast(@old_service_name as varchar) + '\n'
-+ 'Old Service Price: ' + @old_service_price + '\n'+
++ 'Old Service Price: ' + try_cast(@old_service_price as varchar) + '\n'+
 + 'New Method ID: ' + try_cast(@new_id as varchar) + '\n' + 'New Method Name: ' + try_cast(@new_service_name as varchar) + '\n' +
-'New Service Price: ' + @new_service_price;
-exec AddLog @logdate = getdate, 
+'New Service Price: ' + try_cast(@new_service_price as varchar);
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Delivery Service Updated', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 
@@ -1882,16 +1886,18 @@ declare @old_service_name as varchar(200);
 declare @old_service_price as money;
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @old_id = ID from deleted;
 select @old_service_name = ServiceName from deleted;
 select @old_service_price = ServicePrice from deleted;
 set @log_message = 'A delivery service was removed list with the id: ' + try_cast(@old_id as varchar);
 set @additional_information = 'Old Service ID: ' + try_cast(@old_id as varchar) + '\n' + ' Old Service Name: ' + try_cast(@old_service_name as varchar) + '\n'
-+ 'Old Service Price: ' + @old_service_price + '\n';
-exec AddLog @logdate = getdate, 
++ 'Old Service Price: ' + try_cast(@old_service_price as varchar) + '\n';
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Delivery Service Removed', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 /* now the hulks are on. These triggers will take thousands lines of code to make. */

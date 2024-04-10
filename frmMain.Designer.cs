@@ -36,6 +36,7 @@
             this.tsmenuDebugTools = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuTestConnection = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuBitmapToBinary = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmenuDeliveryServices = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,34 +50,35 @@
             this.tsmenuDebugTools});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
-            this.msMain.Size = new System.Drawing.Size(1006, 30);
+            this.msMain.Size = new System.Drawing.Size(1006, 28);
             this.msMain.TabIndex = 1;
             this.msMain.Text = "menuStrip1";
             // 
             // tsmenuFile
             // 
             this.tsmenuFile.Name = "tsmenuFile";
-            this.tsmenuFile.Size = new System.Drawing.Size(46, 26);
+            this.tsmenuFile.Size = new System.Drawing.Size(46, 24);
             this.tsmenuFile.Text = "&FIle";
             // 
             // tsmenuAccountSettings
             // 
             this.tsmenuAccountSettings.Name = "tsmenuAccountSettings";
-            this.tsmenuAccountSettings.Size = new System.Drawing.Size(134, 26);
+            this.tsmenuAccountSettings.Size = new System.Drawing.Size(134, 24);
             this.tsmenuAccountSettings.Text = "&Account Settings";
             // 
             // tsmenuWindow
             // 
             this.tsmenuWindow.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsmenuUsers});
+            this.tsmenuUsers,
+            this.tsmenuDeliveryServices});
             this.tsmenuWindow.Name = "tsmenuWindow";
-            this.tsmenuWindow.Size = new System.Drawing.Size(78, 26);
+            this.tsmenuWindow.Size = new System.Drawing.Size(78, 24);
             this.tsmenuWindow.Text = "Window";
             // 
             // tsmenuUsers
             // 
             this.tsmenuUsers.Name = "tsmenuUsers";
-            this.tsmenuUsers.Size = new System.Drawing.Size(127, 26);
+            this.tsmenuUsers.Size = new System.Drawing.Size(224, 26);
             this.tsmenuUsers.Text = "Users";
             this.tsmenuUsers.Click += new System.EventHandler(this.tsmenuUsers_Click);
             // 
@@ -86,7 +88,7 @@
             this.tsmenuTestConnection,
             this.tsmenuBitmapToBinary});
             this.tsmenuDebugTools.Name = "tsmenuDebugTools";
-            this.tsmenuDebugTools.Size = new System.Drawing.Size(107, 26);
+            this.tsmenuDebugTools.Size = new System.Drawing.Size(107, 24);
             this.tsmenuDebugTools.Text = "&Debug Tools";
             // 
             // tsmenuTestConnection
@@ -101,6 +103,13 @@
             this.tsmenuBitmapToBinary.Name = "tsmenuBitmapToBinary";
             this.tsmenuBitmapToBinary.Size = new System.Drawing.Size(205, 26);
             this.tsmenuBitmapToBinary.Text = "&Bitmap To Binary";
+            // 
+            // tsmenuDeliveryServices
+            // 
+            this.tsmenuDeliveryServices.Name = "tsmenuDeliveryServices";
+            this.tsmenuDeliveryServices.Size = new System.Drawing.Size(224, 26);
+            this.tsmenuDeliveryServices.Text = "Delivery Services";
+            this.tsmenuDeliveryServices.Click += new System.EventHandler(this.tsmenuDeliveryServices_Click);
             // 
             // frmMain
             // 
@@ -130,6 +139,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmenuBitmapToBinary;
         private System.Windows.Forms.ToolStripMenuItem tsmenuWindow;
         private System.Windows.Forms.ToolStripMenuItem tsmenuUsers;
+        private System.Windows.Forms.ToolStripMenuItem tsmenuDeliveryServices;
     }
 }
 
