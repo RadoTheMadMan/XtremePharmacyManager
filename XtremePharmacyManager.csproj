@@ -190,6 +190,12 @@
     <Compile Include="frmEditUser.Designer.cs">
       <DependentUpon>frmEditUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSearchDeliveryServices.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSearchDeliveryServices.Designer.cs">
+      <DependentUpon>frmSearchDeliveryServices.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSearchUsers.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEditUser.resx">
       <DependentUpon>frmEditUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSearchDeliveryServices.resx">
+      <DependentUpon>frmSearchDeliveryServices.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSearchUsers.resx">
       <DependentUpon>frmSearchUsers.cs</DependentUpon>
@@ -226,7 +235,16 @@
       <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\frmEditUser.datasource" />
+    <None Include="Properties\DataSources\frmMain.datasource" />
+    <None Include="Properties\DataSources\frmSearchUsers.datasource" />
+    <None Include="Properties\DataSources\ImageBinConverter.datasource" />
+    <None Include="Properties\DataSources\Program.datasource" />
+    <None Include="Properties\DataSources\SqlServerTypes.Utilities.datasource" />
+    <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.DeliveryService.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.User.datasource" />
+    <None Include="Properties\DataSources\XtremePharmacyManager.Properties.Resources.datasource" />
+    <None Include="Properties\DataSources\XtremePharmacyManager.Properties.Settings.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

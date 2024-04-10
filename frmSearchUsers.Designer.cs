@@ -1,4 +1,7 @@
-﻿namespace XtremePharmacyManager
+﻿using System;
+using System.Windows.Forms;
+
+namespace XtremePharmacyManager
 {
     partial class frmSearchUsers
     {
@@ -866,6 +869,8 @@
             this.PerformLayout();
 
         }
+
+        
 
         #endregion
 

@@ -30,7 +30,7 @@ namespace XtremePharmacyManager
                 //Never try to execute any function if it is not online
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
-                    users = ent.GetUser(-1, "", "", "", new DateTime(), new DateTime(), "", "", "", new decimal(), "", new DateTime(), new DateTime(), 0).ToList();
+                    users = ent.GetUser(-1,"","","",new DateTime(),new DateTime(),"","","",0,"",new DateTime(),new DateTime(), 0).ToList();
                     dgvUsers.DataSource = users;
                 }
             }
@@ -40,34 +40,7 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void dgvUsers_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            DataGridView target_view = (DataGridView)sender;
-            DataGridViewRow row = target_view.Rows[e.RowIndex];
-            DataGridViewComboBoxCell currentrolecell;
-            int UserID = -1;
-            User target_user;
-            try
-            {
-                if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
-                {
-                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
-                    if (UserID >= 0 && users != null)
-                    {
-                        target_user = users.Where(x => x.ID == UserID).FirstOrDefault();
-                        if (target_user != null)
-                        {
-                            currentrolecell = (DataGridViewComboBoxCell)row.Cells["RoleColumn"];
-                            currentrolecell.Value = target_user.UserRole;
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+       
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -292,5 +265,34 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    }
+
+        private void dgvUsers_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            DataGridView target_view = (DataGridView)sender;
+            DataGridViewRow row = target_view.Rows[e.RowIndex];
+            DataGridViewComboBoxCell rolecell = (DataGridViewComboBoxCell)row.Cells["RoleColumn"];
+            int UserID = -1;
+            User target_user;
+            try
+            {
+                if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
+                {
+                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
+                    if (UserID >= 0 && users != null)
+                    {
+                        target_user = users.Where(x => x.ID == UserID).FirstOrDefault();
+                        if (target_user != null)
+                        {
+                            rolecell.Value = target_user.UserRole;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        }
 }
