@@ -2294,11 +2294,9 @@ if @new_user_name != @old_user_name or @new_user_password != @old_user_password 
 begin
 set @sql = 'alter login ' + QUOTENAME(@old_user_name) + ' with name = ' + QUOTENAME(@new_user_name) + ';';
 exec sp_executesql @sql;
-set @sql = 'alter login ' + QUOTENAME(@new_user_name) + ' with password = ''' + @new_user_password +  ''';';
+set @sql = 'alter login ' + QUOTENAME(@new_user_name) + ' with password = ''' + @new_user_password + ''';';
 exec sp_executesql @sql;
 set @sql = 'alter user ' + QUOTENAME(@old_user_name) + ' with name = ' + QUOTENAME(@new_user_name) + ';';
-exec sp_executesql @sql;
-set @sql = 'alter user ' + QUOTENAME(@new_user_name) + ' with name = ''' + @new_user_password + ''';';
 exec sp_executesql @sql;
 set @sql = 'alter user ' + QUOTENAME(@new_user_name) + ' with login = ' + QUOTENAME(@new_user_name) + ';';
 exec sp_executesql @sql;
@@ -2308,17 +2306,17 @@ if @old_role is not null and @old_role != @new_role
 begin
 if @old_role = 0
 begin
-set @sql = 'alter role XPAdmin remove member ' + QUOTENAME(@new_user_name) + ';';
+set @sql = 'alter role XPAdmin drop member ' + QUOTENAME(@new_user_name) + ';';
 exec sp_executesql @sql;
 end
 else if @old_role = 1
 begin
-set @sql = 'alter role XPEmployee remove member ' + QUOTENAME(@new_user_name) + ';';
+set @sql = 'alter role XPEmployee drop member ' + QUOTENAME(@new_user_name) + ';';
 exec sp_executesql @sql;
 end
 else if @old_role = 2
 begin
-set @sql = 'alter role XPClient remove member ' + QUOTENAME(@new_user_name) + ';';
+set @sql = 'alter role XPClient drop member ' + QUOTENAME(@new_user_name) + ';';
 exec sp_executesql @sql;
 end
 end
@@ -2461,17 +2459,17 @@ if @old_role is not null
 begin
 if @old_role = 0
 begin
-set @sql = 'alter role XPAdmin remove member ' + QUOTENAME(@old_user_name) + ';';
+set @sql = 'alter role XPAdmin drop member ' + QUOTENAME(@old_user_name) + ';';
 exec sp_executesql @sql;
 end
 else if @old_role = 1
 begin
-set @sql = 'alter role XPEmployee remove member ' + QUOTENAME(@old_user_name) + ';';
+set @sql = 'alter role XPEmployee drop member ' + QUOTENAME(@old_user_name) + ';';
 exec sp_executesql @sql;
 end
 else if @old_role = 2
 begin
-set @sql = 'alter role XPClient remove member ' + QUOTENAME(@old_user_name) + ';';
+set @sql = 'alter role XPClient drop member ' + QUOTENAME(@old_user_name) + ';';
 exec sp_executesql @sql;
 end
 end
@@ -2524,7 +2522,7 @@ set @additional_information =  'Old User ID: ' + try_cast(@old_id as varchar) + 
 exec AddLog @logdate = @currentdate, 
 @logtitle='[XTremePharmacyDB] User Removed', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 

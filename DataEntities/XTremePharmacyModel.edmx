@@ -1415,7 +1415,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="orderreason" Mode="In" Type="String" />
             <Parameter Name="overridepriceastotal" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="AddUser" ReturnType="Collection(String)">
+          <FunctionImport Name="AddUser">
             <Parameter Name="username" Mode="In" Type="String" />
             <Parameter Name="password" Mode="In" Type="String" />
             <Parameter Name="displayname" Mode="In" Type="String" />
@@ -1432,7 +1432,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="brandname" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="DeleteBrandByID" ReturnType="Collection(String)">
+          <FunctionImport Name="DeleteBrandByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteDeliveryService">
@@ -1440,7 +1440,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="servicename" Mode="In" Type="String" />
             <Parameter Name="serviceprice" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="DeleteDeliveryServiceByID" ReturnType="Collection(String)">
+          <FunctionImport Name="DeleteDeliveryServiceByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteLog">
@@ -1451,7 +1451,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="logmessage" Mode="In" Type="String" />
             <Parameter Name="additionalinformation" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="DeleteLogByID" ReturnType="Collection(String)">
+          <FunctionImport Name="DeleteLogByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteOrderDelivery">
@@ -1467,14 +1467,14 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="status" Mode="In" Type="Int32" />
             <Parameter Name="reason" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="DeleteOrderDeliveryByID" ReturnType="Collection(String)">
+          <FunctionImport Name="DeleteOrderDeliveryByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeletePaymentMethod">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="methodname" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="DeletePaymentMethodByID" ReturnType="Collection(String)">
+          <FunctionImport Name="DeletePaymentMethodByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteProduct">
@@ -1490,7 +1490,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="partnum" Mode="In" Type="String" />
             <Parameter Name="storagelocation" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="DeleteProductByID" ReturnType="Collection(String)">
+          <FunctionImport Name="DeleteProductByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteProductImage">
@@ -1498,7 +1498,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="productid" Mode="In" Type="Int32" />
             <Parameter Name="imagename" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="DeleteProductImageByID" ReturnType="Collection(String)">
+          <FunctionImport Name="DeleteProductImageByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteProductOrder">
@@ -1515,7 +1515,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="status" Mode="In" Type="Int32" />
             <Parameter Name="reason" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="DeleteProductOrderByID" ReturnType="Collection(String)">
+          <FunctionImport Name="DeleteProductOrderByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteUser">
@@ -1534,19 +1534,19 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="registerdateto" Mode="In" Type="DateTime" />
             <Parameter Name="role" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="DeleteUserByID" ReturnType="Collection(String)">
+          <FunctionImport Name="DeleteUserByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetBrand" ReturnType="Collection(XTremePharmacyModel.GetBrand_Result)">
+          <FunctionImport Name="GetBrand" EntitySet="ProductBrands" ReturnType="Collection(XTremePharmacyModel.ProductBrand)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="brandname" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetDeliveryService" ReturnType="Collection(XTremePharmacyModel.GetDeliveryService_Result)">
+          <FunctionImport Name="GetDeliveryService" EntitySet="DeliveryServices" ReturnType="Collection(XTremePharmacyModel.DeliveryService)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="servicename" Mode="In" Type="String" />
             <Parameter Name="serviceprice" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="GetLog" ReturnType="Collection(XTremePharmacyModel.GetLog_Result)">
+          <FunctionImport Name="GetLog" EntitySet="Logs" ReturnType="Collection(XTremePharmacyModel.Log)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="logdatefrom" Mode="In" Type="DateTime" />
             <Parameter Name="logdateto" Mode="In" Type="DateTime" />
@@ -1554,7 +1554,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="logmessage" Mode="In" Type="String" />
             <Parameter Name="additionalinformation" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetOrderDelivery" ReturnType="Collection(XTremePharmacyModel.GetOrderDelivery_Result)">
+          <FunctionImport Name="GetOrderDelivery" EntitySet="OrderDeliveries" ReturnType="Collection(XTremePharmacyModel.OrderDelivery)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="orderid" Mode="In" Type="Int32" />
             <Parameter Name="serviceid" Mode="In" Type="Int32" />
@@ -1567,11 +1567,11 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="status" Mode="In" Type="Int32" />
             <Parameter Name="reason" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetPaymentMethod" ReturnType="Collection(XTremePharmacyModel.GetPaymentMethod_Result)">
+          <FunctionImport Name="GetPaymentMethod" EntitySet="PaymentMethods" ReturnType="Collection(XTremePharmacyModel.PaymentMethod)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="methodname" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetProduct" ReturnType="Collection(XTremePharmacyModel.GetProduct_Result)">
+          <FunctionImport Name="GetProduct" EntitySet="Products" ReturnType="Collection(XTremePharmacyModel.Product)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="productname" Mode="In" Type="String" />
             <Parameter Name="brandid" Mode="In" Type="Int32" />
@@ -1584,12 +1584,12 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="partnum" Mode="In" Type="String" />
             <Parameter Name="storagelocation" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetProductImage" ReturnType="Collection(XTremePharmacyModel.GetProductImage_Result)">
+          <FunctionImport Name="GetProductImage" EntitySet="ProductImages" ReturnType="Collection(XTremePharmacyModel.ProductImage)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="productid" Mode="In" Type="Int32" />
             <Parameter Name="imagename" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="GetProductOrder" ReturnType="Collection(XTremePharmacyModel.GetProductOrder_Result)">
+          <FunctionImport Name="GetProductOrder" EntitySet="ProductOrders" ReturnType="Collection(XTremePharmacyModel.ProductOrder)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="productid" Mode="In" Type="Int32" />
             <Parameter Name="quantity" Mode="In" Type="Int32" />
@@ -1649,22 +1649,22 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <FunctionImport Name="UpdateBrandByID" ReturnType="Collection(String)">
+          <FunctionImport Name="UpdateBrandByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="new_brand_name" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UpdateDeliveryServiceByID" ReturnType="Collection(String)">
+          <FunctionImport Name="UpdateDeliveryServiceByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="new_service_name" Mode="In" Type="String" />
             <Parameter Name="new_service_price" Mode="In" Type="Decimal" />
           </FunctionImport>
-          <FunctionImport Name="UpdateLogByID" ReturnType="Collection(String)">
+          <FunctionImport Name="UpdateLogByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="new_log_title" Mode="In" Type="String" />
             <Parameter Name="new_log_message" Mode="In" Type="String" />
             <Parameter Name="new_add_info" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UpdateOrderDeliveryByID" ReturnType="Collection(String)">
+          <FunctionImport Name="UpdateOrderDeliveryByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="new_order_id" Mode="In" Type="Int32" />
             <Parameter Name="new_service_id" Mode="In" Type="Int32" />
@@ -1672,11 +1672,11 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="new_status" Mode="In" Type="Int32" />
             <Parameter Name="new_reason" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UpdatePaymentMethodByID" ReturnType="Collection(String)">
+          <FunctionImport Name="UpdatePaymentMethodByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="new_method_name" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UpdateProductByID" ReturnType="Collection(String)">
+          <FunctionImport Name="UpdateProductByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="new_product_name" Mode="In" Type="String" />
             <Parameter Name="new_brand_id" Mode="In" Type="Int32" />
@@ -1688,13 +1688,13 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="new_part_num" Mode="In" Type="String" />
             <Parameter Name="new_storage_location" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UpdateProductImageByID" ReturnType="Collection(String)">
+          <FunctionImport Name="UpdateProductImageByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="new_product_id" Mode="In" Type="Int32" />
             <Parameter Name="new_image_name" Mode="In" Type="String" />
             <Parameter Name="new_image_data" Mode="In" Type="Binary" />
           </FunctionImport>
-          <FunctionImport Name="UpdateProductOrderByID" ReturnType="Collection(String)">
+          <FunctionImport Name="UpdateProductOrderByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="new_product_id" Mode="In" Type="Int32" />
             <Parameter Name="new_desired_quantity" Mode="In" Type="Int32" />
@@ -1704,7 +1704,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="new_status" Mode="In" Type="Int32" />
             <Parameter Name="new_reason" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UpdateUserByID" ReturnType="Collection(String)">
+          <FunctionImport Name="UpdateUserByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="new_user_name" Mode="In" Type="String" />
             <Parameter Name="new_password" Mode="In" Type="String" />
@@ -2091,97 +2091,20 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <FunctionImportMapping FunctionImportName="DeleteUser" FunctionName="XTremePharmacyModel.Store.DeleteUser" />
           <FunctionImportMapping FunctionImportName="DeleteUserByID" FunctionName="XTremePharmacyModel.Store.DeleteUserByID" />
           <FunctionImportMapping FunctionImportName="GetBrand" FunctionName="XTremePharmacyModel.Store.GetBrand">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetBrand_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="BrandName" ColumnName="BrandName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetDeliveryService" FunctionName="XTremePharmacyModel.Store.GetDeliveryService">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetDeliveryService_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
-                <ScalarProperty Name="ServicePrice" ColumnName="ServicePrice" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetLog" FunctionName="XTremePharmacyModel.Store.GetLog">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetLog_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="LogDate" ColumnName="LogDate" />
-                <ScalarProperty Name="LogTitle" ColumnName="LogTitle" />
-                <ScalarProperty Name="LogMessage" ColumnName="LogMessage" />
-                <ScalarProperty Name="AdditionalLogInformation" ColumnName="AdditionalLogInformation" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetOrderDelivery" FunctionName="XTremePharmacyModel.Store.GetOrderDelivery">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetOrderDelivery_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
-                <ScalarProperty Name="DeliveryServiceID" ColumnName="DeliveryServiceID" />
-                <ScalarProperty Name="PaymentMethodID" ColumnName="PaymentMethodID" />
-                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
-                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
-                <ScalarProperty Name="DeliveryReason" ColumnName="DeliveryReason" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetPaymentMethod" FunctionName="XTremePharmacyModel.Store.GetPaymentMethod">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetPaymentMethod_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetProduct" FunctionName="XTremePharmacyModel.Store.GetProduct">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetProduct_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
-                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
-                <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />
-                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
-                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
-                <ScalarProperty Name="ProductExpiryDate" ColumnName="ProductExpiryDate" />
-                <ScalarProperty Name="ProductRegNum" ColumnName="ProductRegNum" />
-                <ScalarProperty Name="ProductPartNum" ColumnName="ProductPartNum" />
-                <ScalarProperty Name="ProductStorageLocation" ColumnName="ProductStorageLocation" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetProductImage" FunctionName="XTremePharmacyModel.Store.GetProductImage">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetProductImage_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
-                <ScalarProperty Name="ImageData" ColumnName="ImageData" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetProductOrder" FunctionName="XTremePharmacyModel.Store.GetProductOrder">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetProductOrder_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
-                <ScalarProperty Name="DesiredQuantity" ColumnName="DesiredQuantity" />
-                <ScalarProperty Name="OrderPrice" ColumnName="OrderPrice" />
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
-                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
-                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
-                <ScalarProperty Name="OrderReason" ColumnName="OrderReason" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="GetUser" FunctionName="XTremePharmacyModel.Store.GetUser">
           </FunctionImportMapping>

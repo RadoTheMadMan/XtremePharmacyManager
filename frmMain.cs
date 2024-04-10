@@ -20,9 +20,9 @@ namespace XtremePharmacyManager
 {
     public partial class frmMain : Form
     {
-        Entities entities;
-        string connString;
-        frmSearchUsers usersearchform;
+        static Entities entities;
+        static string connString = "";
+        static frmSearchUsers usersearchform;
         public frmMain()
         {
             InitializeComponent();
@@ -98,14 +98,8 @@ namespace XtremePharmacyManager
                     {
                         if (usersearchform.MdiParent == this)
                         {
-                            usersearchform.WindowState = FormWindowState.Normal;
-                            usersearchform.Show();
-                        }
-                        else
-                        {
-                            usersearchform = new frmSearchUsers(entities);
-                            usersearchform.MdiParent = this;
-                            usersearchform.Show();
+                            usersearchform.Activate();
+                            usersearchform.FormClosed += Usersearchform_FormClosed;
                         }
                     }
                 }
@@ -114,6 +108,11 @@ namespace XtremePharmacyManager
                     MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void Usersearchform_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            usersearchform = null;
         }
 
         private void tsmenuTestConnection_Click(object sender, EventArgs e)

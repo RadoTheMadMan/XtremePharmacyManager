@@ -127,6 +127,9 @@
     <Compile Include="DataEntities\GetProduct_Result.cs">
       <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataEntities\GetUser_Result.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataEntities\Log.cs">
       <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
     </Compile>
@@ -249,7 +252,9 @@
       <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
       <LastGenOutput>XTremePharmacyModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Queries\XTremePharmacyDB.sql" />
+    <Content Include="Queries\XTremePharmacyDB.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll" />
     <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll" />

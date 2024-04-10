@@ -14,11 +14,11 @@ namespace XtremePharmacyManager
 {
     public partial class frmSearchUsers : Form
     {
-        Entities ent;
-        List<User> users;
-        public frmSearchUsers(Entities ent)
+        static Entities ent;
+        static List<User> users;
+        public frmSearchUsers(Entities entity)
         {
-            this.ent = ent;
+            ent = entity;
             InitializeComponent();
             RefreshUsers();
         }
@@ -30,7 +30,7 @@ namespace XtremePharmacyManager
                 //Never try to execute any function if it is not online
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
-                    List<User> users = ent.GetUser(-1, "", "", "", new DateTime(), new DateTime(), "", "", "", new decimal(), "", new DateTime(), new DateTime(), 0).ToList();
+                    users = ent.GetUser(-1, "", "", "", new DateTime(), new DateTime(), "", "", "", new decimal(), "", new DateTime(), new DateTime(), 0).ToList();
                     dgvUsers.DataSource = users;
                 }
             }
@@ -122,80 +122,87 @@ namespace XtremePharmacyManager
             DataGridViewRow row;
             int UserID = -1;
             User selectedUser;
-            if (dgvUsers.SelectedRows.Count > 0)
+            try
             {
-                row = dgvUsers.SelectedRows[0];
-                if (row != null && users != null)
+                if (dgvUsers.SelectedRows.Count > 0)
                 {
-                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
-                    if (UserID > 0)
+                    row = dgvUsers.SelectedRows[0];
+                    if (row != null && users != null)
                     {
-                        selectedUser = users.Where(x => x.ID == UserID).FirstOrDefault();
-                        if (selectedUser != null)
+                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
+                        if (UserID > 0)
                         {
-                            //Show the editor window to edit the selected user
-                            //on dialog result yes update it
-                            DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
-                            if (res == DialogResult.OK)
+                            selectedUser = users.Where(x => x.ID == UserID).FirstOrDefault();
+                            if (selectedUser != null)
                             {
-                                if (ent.Database.Connection.State == ConnectionState.Open)
+                                //Show the editor window to edit the selected user
+                                //on dialog result yes update it
+                                DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
+                                if (res == DialogResult.OK)
                                 {
-                                    ent.UpdateUserByID(selectedUser.ID, selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName,
-                                        selectedUser.UserBirthDate, selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic,
-                                        selectedUser.UserBalance, selectedUser.UserDiagnose, selectedUser.UserRole);
-                                    RefreshUsers();
+                                    if (ent.Database.Connection.State == ConnectionState.Open)
+                                    {
+                                        ent.UpdateUserByID(selectedUser.ID, selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName,
+                                            selectedUser.UserBirthDate, selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic,
+                                            selectedUser.UserBalance, selectedUser.UserDiagnose, selectedUser.UserRole);
+                                        RefreshUsers();
+                                    }
                                 }
+                            }
+                            else
+                            {
+                                //Create a new user
+                                selectedUser = new User();
+                                DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
+                                if (res == DialogResult.OK)
+                                {
+                                    if (ent.Database.Connection.State == ConnectionState.Open)
+                                    {
+                                        ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
+                                            selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
+                                            selectedUser.UserDiagnose, selectedUser.UserRole);
+                                        RefreshUsers();
+                                    }
+                                }
+                                //show the editor and after the editor confirms add it
                             }
                         }
                         else
                         {
-                            //Create a new user
                             selectedUser = new User();
                             DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
                             if (res == DialogResult.OK)
                             {
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
-                                    ent.AddUser(selectedUser.UserName,selectedUser.UserPassword,selectedUser.UserDisplayName, selectedUser.UserBirthDate,
-                                        selectedUser.UserPhone, selectedUser.UserEmail,selectedUser.UserAddress, selectedUser.UserProfilePic,selectedUser.UserBalance,
-                                        selectedUser.UserDiagnose,selectedUser.UserRole);
+                                    ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
+                                        selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
+                                        selectedUser.UserDiagnose, selectedUser.UserRole);
                                     RefreshUsers();
                                 }
                             }
-                            //show the editor and after the editor confirms add it
                         }
                     }
-                    else
+                }
+                else
+                {
+                    selectedUser = new User();
+                    DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
+                    if (res == DialogResult.OK)
                     {
-                        selectedUser = new User();
-                        DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
-                        if (res == DialogResult.OK)
+                        if (ent.Database.Connection.State == ConnectionState.Open)
                         {
-                            if (ent.Database.Connection.State == ConnectionState.Open)
-                            {
-                                ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
-                                    selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
-                                    selectedUser.UserDiagnose, selectedUser.UserRole);
-                                RefreshUsers();
-                            }
+                            ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
+                                selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
+                                selectedUser.UserDiagnose, selectedUser.UserRole);
+                            RefreshUsers();
                         }
                     }
                 }
             }
-            else
+            catch(Exception ex)
             {
-                selectedUser = new User();
-                DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
-                if (res == DialogResult.OK)
-                {
-                    if (ent.Database.Connection.State == ConnectionState.Open)
-                    {
-                        ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
-                            selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
-                            selectedUser.UserDiagnose, selectedUser.UserRole);
-                        RefreshUsers();
-                    }
-                }
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -205,31 +212,39 @@ namespace XtremePharmacyManager
             DataGridViewRow row;
             int UserID = -1;
             User selectedUser;
-            if (dgvUsers.SelectedRows.Count > 0)
+            try
             {
-                row = dgvUsers.SelectedRows[0];
-                if (row != null && users != null)
+                if (dgvUsers.SelectedRows.Count > 0)
                 {
-                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
-                    if (UserID > 0)
+                    row = dgvUsers.SelectedRows[0];
+                    if (row != null && users != null)
                     {
-                        selectedUser = users.Where(x => x.ID == UserID).FirstOrDefault();
-                        if (selectedUser != null)
+                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
+                        if (UserID > 0)
                         {
-                            //Show the editor window to edit the selected user
-                            //on dialog result yes update it
-                            DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
-                            if (res == DialogResult.OK)
+                            selectedUser = users.Where(x => x.ID == UserID).FirstOrDefault();
+                            if (selectedUser != null)
                             {
-                                if (ent.Database.Connection.State == ConnectionState.Open)
+                                //Show the editor window to edit the selected user
+                                //on dialog result yes update it
+                                DialogResult res = MessageBox.Show("Are you sure you want to delete this record?\nThis operation is irreversible and can cause " +
+                                "troubles in the database relations.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                                if (res == DialogResult.Yes)
                                 {
-                                    ent.DeleteUserByID(selectedUser.ID);
-                                    RefreshUsers();
+                                    if (ent.Database.Connection.State == ConnectionState.Open)
+                                    {
+                                        ent.DeleteUserByID(selectedUser.ID);
+                                        RefreshUsers();
+                                    }
                                 }
                             }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

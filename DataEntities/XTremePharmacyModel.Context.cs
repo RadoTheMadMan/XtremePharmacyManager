@@ -22,11 +22,10 @@ namespace XtremePharmacyManager.DataEntities
             : base("name=Entities")
         {
         }
-        public Entities(EntityConnectionStringBuilder builder) : base(builder.ConnectionString)
+        public Entities(EntityConnectionStringBuilder ecsb) : base(ecsb.ConnectionString)
         {
 
         }
-    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -215,7 +214,7 @@ namespace XtremePharmacyManager.DataEntities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddProductOrder", productidParameter, desiredquantityParameter, priceoverrideParameter, clientidParameter, employeeidParameter, orderreasonParameter, overridepriceastotalParameter);
         }
     
-        public virtual ObjectResult<string> AddUser(string username, string password, string displayname, Nullable<System.DateTime> birthdate, string phone, string email, string address, byte[] profilepic, Nullable<decimal> balance, string diagnose, Nullable<int> role)
+        public virtual int AddUser(string username, string password, string displayname, Nullable<System.DateTime> birthdate, string phone, string email, string address, byte[] profilepic, Nullable<decimal> balance, string diagnose, Nullable<int> role)
         {
             var usernameParameter = username != null ?
                 new ObjectParameter("username", username) :
@@ -261,7 +260,7 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("role", role) :
                 new ObjectParameter("role", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("AddUser", usernameParameter, passwordParameter, displaynameParameter, birthdateParameter, phoneParameter, emailParameter, addressParameter, profilepicParameter, balanceParameter, diagnoseParameter, roleParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddUser", usernameParameter, passwordParameter, displaynameParameter, birthdateParameter, phoneParameter, emailParameter, addressParameter, profilepicParameter, balanceParameter, diagnoseParameter, roleParameter);
         }
     
         public virtual int DeleteBrand(Nullable<int> id, string brandname)
@@ -277,13 +276,13 @@ namespace XtremePharmacyManager.DataEntities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteBrand", idParameter, brandnameParameter);
         }
     
-        public virtual ObjectResult<string> DeleteBrandByID(Nullable<int> id)
+        public virtual int DeleteBrandByID(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("DeleteBrandByID", idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteBrandByID", idParameter);
         }
     
         public virtual int DeleteDeliveryService(Nullable<int> id, string servicename, Nullable<decimal> serviceprice)
@@ -303,13 +302,13 @@ namespace XtremePharmacyManager.DataEntities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteDeliveryService", idParameter, servicenameParameter, servicepriceParameter);
         }
     
-        public virtual ObjectResult<string> DeleteDeliveryServiceByID(Nullable<int> id)
+        public virtual int DeleteDeliveryServiceByID(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("DeleteDeliveryServiceByID", idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteDeliveryServiceByID", idParameter);
         }
     
         public virtual int DeleteLog(Nullable<int> id, Nullable<System.DateTime> logdatefrom, Nullable<System.DateTime> logdateto, string logtitle, string logmessage, string additionalinformation)
@@ -341,13 +340,13 @@ namespace XtremePharmacyManager.DataEntities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteLog", idParameter, logdatefromParameter, logdatetoParameter, logtitleParameter, logmessageParameter, additionalinformationParameter);
         }
     
-        public virtual ObjectResult<string> DeleteLogByID(Nullable<int> id)
+        public virtual int DeleteLogByID(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("DeleteLogByID", idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteLogByID", idParameter);
         }
     
         public virtual int DeleteOrderDelivery(Nullable<int> id, Nullable<int> orderid, Nullable<int> serviceid, Nullable<int> methodid, Nullable<decimal> price, Nullable<System.DateTime> dateaddedfrom, Nullable<System.DateTime> dateaddedto, Nullable<System.DateTime> datemodifiedfrom, Nullable<System.DateTime> datemodifiedto, Nullable<int> status, string reason)
@@ -399,13 +398,13 @@ namespace XtremePharmacyManager.DataEntities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteOrderDelivery", idParameter, orderidParameter, serviceidParameter, methodidParameter, priceParameter, dateaddedfromParameter, dateaddedtoParameter, datemodifiedfromParameter, datemodifiedtoParameter, statusParameter, reasonParameter);
         }
     
-        public virtual ObjectResult<string> DeleteOrderDeliveryByID(Nullable<int> id)
+        public virtual int DeleteOrderDeliveryByID(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("DeleteOrderDeliveryByID", idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteOrderDeliveryByID", idParameter);
         }
     
         public virtual int DeletePaymentMethod(Nullable<int> id, string methodname)
@@ -421,13 +420,13 @@ namespace XtremePharmacyManager.DataEntities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeletePaymentMethod", idParameter, methodnameParameter);
         }
     
-        public virtual ObjectResult<string> DeletePaymentMethodByID(Nullable<int> id)
+        public virtual int DeletePaymentMethodByID(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("DeletePaymentMethodByID", idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeletePaymentMethodByID", idParameter);
         }
     
         public virtual int DeleteProduct(Nullable<int> id, string productname, Nullable<int> brandid, string description, Nullable<int> quantity, Nullable<decimal> price, Nullable<System.DateTime> expirydatefrom, Nullable<System.DateTime> expirydateto, string regnum, string partnum, string storagelocation)
@@ -479,13 +478,13 @@ namespace XtremePharmacyManager.DataEntities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteProduct", idParameter, productnameParameter, brandidParameter, descriptionParameter, quantityParameter, priceParameter, expirydatefromParameter, expirydatetoParameter, regnumParameter, partnumParameter, storagelocationParameter);
         }
     
-        public virtual ObjectResult<string> DeleteProductByID(Nullable<int> id)
+        public virtual int DeleteProductByID(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("DeleteProductByID", idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteProductByID", idParameter);
         }
     
         public virtual int DeleteProductImage(Nullable<int> id, Nullable<int> productid, string imagename)
@@ -505,13 +504,13 @@ namespace XtremePharmacyManager.DataEntities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteProductImage", idParameter, productidParameter, imagenameParameter);
         }
     
-        public virtual ObjectResult<string> DeleteProductImageByID(Nullable<int> id)
+        public virtual int DeleteProductImageByID(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("DeleteProductImageByID", idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteProductImageByID", idParameter);
         }
     
         public virtual int DeleteProductOrder(Nullable<int> id, Nullable<int> productid, Nullable<int> quantity, Nullable<decimal> price, Nullable<int> clientid, Nullable<int> employeeid, Nullable<System.DateTime> dateaddedfrom, Nullable<System.DateTime> dateaddedto, Nullable<System.DateTime> datemodifiedfrom, Nullable<System.DateTime> datemodifiedto, Nullable<int> status, string reason)
@@ -567,13 +566,13 @@ namespace XtremePharmacyManager.DataEntities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteProductOrder", idParameter, productidParameter, quantityParameter, priceParameter, clientidParameter, employeeidParameter, dateaddedfromParameter, dateaddedtoParameter, datemodifiedfromParameter, datemodifiedtoParameter, statusParameter, reasonParameter);
         }
     
-        public virtual ObjectResult<string> DeleteProductOrderByID(Nullable<int> id)
+        public virtual int DeleteProductOrderByID(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("DeleteProductOrderByID", idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteProductOrderByID", idParameter);
         }
     
         public virtual int DeleteUser(Nullable<int> id, string username, string password, string displayname, Nullable<System.DateTime> birthdatefrom, Nullable<System.DateTime> birthdateto, string phone, string email, string address, Nullable<decimal> balance, string diagnose, Nullable<System.DateTime> registerdatefrom, Nullable<System.DateTime> registerdateto, Nullable<int> role)
@@ -637,16 +636,16 @@ namespace XtremePharmacyManager.DataEntities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteUser", idParameter, usernameParameter, passwordParameter, displaynameParameter, birthdatefromParameter, birthdatetoParameter, phoneParameter, emailParameter, addressParameter, balanceParameter, diagnoseParameter, registerdatefromParameter, registerdatetoParameter, roleParameter);
         }
     
-        public virtual ObjectResult<string> DeleteUserByID(Nullable<int> id)
+        public virtual int DeleteUserByID(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("DeleteUserByID", idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteUserByID", idParameter);
         }
     
-        public virtual ObjectResult<GetBrand_Result> GetBrand(Nullable<int> id, string brandname)
+        public virtual ObjectResult<ProductBrand> GetBrand(Nullable<int> id, string brandname)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -656,10 +655,23 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("brandname", brandname) :
                 new ObjectParameter("brandname", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetBrand_Result>("GetBrand", idParameter, brandnameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductBrand>("GetBrand", idParameter, brandnameParameter);
         }
     
-        public virtual ObjectResult<GetDeliveryService_Result> GetDeliveryService(Nullable<int> id, string servicename, Nullable<decimal> serviceprice)
+        public virtual ObjectResult<ProductBrand> GetBrand(Nullable<int> id, string brandname, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var brandnameParameter = brandname != null ?
+                new ObjectParameter("brandname", brandname) :
+                new ObjectParameter("brandname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductBrand>("GetBrand", mergeOption, idParameter, brandnameParameter);
+        }
+    
+        public virtual ObjectResult<DeliveryService> GetDeliveryService(Nullable<int> id, string servicename, Nullable<decimal> serviceprice)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -673,10 +685,27 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("serviceprice", serviceprice) :
                 new ObjectParameter("serviceprice", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDeliveryService_Result>("GetDeliveryService", idParameter, servicenameParameter, servicepriceParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DeliveryService>("GetDeliveryService", idParameter, servicenameParameter, servicepriceParameter);
         }
     
-        public virtual ObjectResult<GetLog_Result> GetLog(Nullable<int> id, Nullable<System.DateTime> logdatefrom, Nullable<System.DateTime> logdateto, string logtitle, string logmessage, string additionalinformation)
+        public virtual ObjectResult<DeliveryService> GetDeliveryService(Nullable<int> id, string servicename, Nullable<decimal> serviceprice, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var servicenameParameter = servicename != null ?
+                new ObjectParameter("servicename", servicename) :
+                new ObjectParameter("servicename", typeof(string));
+    
+            var servicepriceParameter = serviceprice.HasValue ?
+                new ObjectParameter("serviceprice", serviceprice) :
+                new ObjectParameter("serviceprice", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<DeliveryService>("GetDeliveryService", mergeOption, idParameter, servicenameParameter, servicepriceParameter);
+        }
+    
+        public virtual ObjectResult<Log> GetLog(Nullable<int> id, Nullable<System.DateTime> logdatefrom, Nullable<System.DateTime> logdateto, string logtitle, string logmessage, string additionalinformation)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -702,10 +731,39 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("additionalinformation", additionalinformation) :
                 new ObjectParameter("additionalinformation", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetLog_Result>("GetLog", idParameter, logdatefromParameter, logdatetoParameter, logtitleParameter, logmessageParameter, additionalinformationParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Log>("GetLog", idParameter, logdatefromParameter, logdatetoParameter, logtitleParameter, logmessageParameter, additionalinformationParameter);
         }
     
-        public virtual ObjectResult<GetOrderDelivery_Result> GetOrderDelivery(Nullable<int> id, Nullable<int> orderid, Nullable<int> serviceid, Nullable<int> methodid, Nullable<decimal> price, Nullable<System.DateTime> dateaddedfrom, Nullable<System.DateTime> dateaddedto, Nullable<System.DateTime> datemodifiedfrom, Nullable<System.DateTime> datemodifiedto, Nullable<int> status, string reason)
+        public virtual ObjectResult<Log> GetLog(Nullable<int> id, Nullable<System.DateTime> logdatefrom, Nullable<System.DateTime> logdateto, string logtitle, string logmessage, string additionalinformation, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var logdatefromParameter = logdatefrom.HasValue ?
+                new ObjectParameter("logdatefrom", logdatefrom) :
+                new ObjectParameter("logdatefrom", typeof(System.DateTime));
+    
+            var logdatetoParameter = logdateto.HasValue ?
+                new ObjectParameter("logdateto", logdateto) :
+                new ObjectParameter("logdateto", typeof(System.DateTime));
+    
+            var logtitleParameter = logtitle != null ?
+                new ObjectParameter("logtitle", logtitle) :
+                new ObjectParameter("logtitle", typeof(string));
+    
+            var logmessageParameter = logmessage != null ?
+                new ObjectParameter("logmessage", logmessage) :
+                new ObjectParameter("logmessage", typeof(string));
+    
+            var additionalinformationParameter = additionalinformation != null ?
+                new ObjectParameter("additionalinformation", additionalinformation) :
+                new ObjectParameter("additionalinformation", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Log>("GetLog", mergeOption, idParameter, logdatefromParameter, logdatetoParameter, logtitleParameter, logmessageParameter, additionalinformationParameter);
+        }
+    
+        public virtual ObjectResult<OrderDelivery> GetOrderDelivery(Nullable<int> id, Nullable<int> orderid, Nullable<int> serviceid, Nullable<int> methodid, Nullable<decimal> price, Nullable<System.DateTime> dateaddedfrom, Nullable<System.DateTime> dateaddedto, Nullable<System.DateTime> datemodifiedfrom, Nullable<System.DateTime> datemodifiedto, Nullable<int> status, string reason)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -751,10 +809,59 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("reason", reason) :
                 new ObjectParameter("reason", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetOrderDelivery_Result>("GetOrderDelivery", idParameter, orderidParameter, serviceidParameter, methodidParameter, priceParameter, dateaddedfromParameter, dateaddedtoParameter, datemodifiedfromParameter, datemodifiedtoParameter, statusParameter, reasonParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrderDelivery>("GetOrderDelivery", idParameter, orderidParameter, serviceidParameter, methodidParameter, priceParameter, dateaddedfromParameter, dateaddedtoParameter, datemodifiedfromParameter, datemodifiedtoParameter, statusParameter, reasonParameter);
         }
     
-        public virtual ObjectResult<GetPaymentMethod_Result> GetPaymentMethod(Nullable<int> id, string methodname)
+        public virtual ObjectResult<OrderDelivery> GetOrderDelivery(Nullable<int> id, Nullable<int> orderid, Nullable<int> serviceid, Nullable<int> methodid, Nullable<decimal> price, Nullable<System.DateTime> dateaddedfrom, Nullable<System.DateTime> dateaddedto, Nullable<System.DateTime> datemodifiedfrom, Nullable<System.DateTime> datemodifiedto, Nullable<int> status, string reason, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var orderidParameter = orderid.HasValue ?
+                new ObjectParameter("orderid", orderid) :
+                new ObjectParameter("orderid", typeof(int));
+    
+            var serviceidParameter = serviceid.HasValue ?
+                new ObjectParameter("serviceid", serviceid) :
+                new ObjectParameter("serviceid", typeof(int));
+    
+            var methodidParameter = methodid.HasValue ?
+                new ObjectParameter("methodid", methodid) :
+                new ObjectParameter("methodid", typeof(int));
+    
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("price", price) :
+                new ObjectParameter("price", typeof(decimal));
+    
+            var dateaddedfromParameter = dateaddedfrom.HasValue ?
+                new ObjectParameter("dateaddedfrom", dateaddedfrom) :
+                new ObjectParameter("dateaddedfrom", typeof(System.DateTime));
+    
+            var dateaddedtoParameter = dateaddedto.HasValue ?
+                new ObjectParameter("dateaddedto", dateaddedto) :
+                new ObjectParameter("dateaddedto", typeof(System.DateTime));
+    
+            var datemodifiedfromParameter = datemodifiedfrom.HasValue ?
+                new ObjectParameter("datemodifiedfrom", datemodifiedfrom) :
+                new ObjectParameter("datemodifiedfrom", typeof(System.DateTime));
+    
+            var datemodifiedtoParameter = datemodifiedto.HasValue ?
+                new ObjectParameter("datemodifiedto", datemodifiedto) :
+                new ObjectParameter("datemodifiedto", typeof(System.DateTime));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(int));
+    
+            var reasonParameter = reason != null ?
+                new ObjectParameter("reason", reason) :
+                new ObjectParameter("reason", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<OrderDelivery>("GetOrderDelivery", mergeOption, idParameter, orderidParameter, serviceidParameter, methodidParameter, priceParameter, dateaddedfromParameter, dateaddedtoParameter, datemodifiedfromParameter, datemodifiedtoParameter, statusParameter, reasonParameter);
+        }
+    
+        public virtual ObjectResult<PaymentMethod> GetPaymentMethod(Nullable<int> id, string methodname)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -764,10 +871,23 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("methodname", methodname) :
                 new ObjectParameter("methodname", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetPaymentMethod_Result>("GetPaymentMethod", idParameter, methodnameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PaymentMethod>("GetPaymentMethod", idParameter, methodnameParameter);
         }
     
-        public virtual ObjectResult<GetProduct_Result> GetProduct(Nullable<int> id, string productname, Nullable<int> brandid, string description, Nullable<int> quantity, Nullable<decimal> price, Nullable<System.DateTime> expirydatefrom, Nullable<System.DateTime> expirydateto, string regnum, string partnum, string storagelocation)
+        public virtual ObjectResult<PaymentMethod> GetPaymentMethod(Nullable<int> id, string methodname, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var methodnameParameter = methodname != null ?
+                new ObjectParameter("methodname", methodname) :
+                new ObjectParameter("methodname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<PaymentMethod>("GetPaymentMethod", mergeOption, idParameter, methodnameParameter);
+        }
+    
+        public virtual ObjectResult<Product> GetProduct(Nullable<int> id, string productname, Nullable<int> brandid, string description, Nullable<int> quantity, Nullable<decimal> price, Nullable<System.DateTime> expirydatefrom, Nullable<System.DateTime> expirydateto, string regnum, string partnum, string storagelocation)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -813,10 +933,59 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("storagelocation", storagelocation) :
                 new ObjectParameter("storagelocation", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProduct_Result>("GetProduct", idParameter, productnameParameter, brandidParameter, descriptionParameter, quantityParameter, priceParameter, expirydatefromParameter, expirydatetoParameter, regnumParameter, partnumParameter, storagelocationParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Product>("GetProduct", idParameter, productnameParameter, brandidParameter, descriptionParameter, quantityParameter, priceParameter, expirydatefromParameter, expirydatetoParameter, regnumParameter, partnumParameter, storagelocationParameter);
         }
     
-        public virtual ObjectResult<GetProductImage_Result> GetProductImage(Nullable<int> id, Nullable<int> productid, string imagename)
+        public virtual ObjectResult<Product> GetProduct(Nullable<int> id, string productname, Nullable<int> brandid, string description, Nullable<int> quantity, Nullable<decimal> price, Nullable<System.DateTime> expirydatefrom, Nullable<System.DateTime> expirydateto, string regnum, string partnum, string storagelocation, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var productnameParameter = productname != null ?
+                new ObjectParameter("productname", productname) :
+                new ObjectParameter("productname", typeof(string));
+    
+            var brandidParameter = brandid.HasValue ?
+                new ObjectParameter("brandid", brandid) :
+                new ObjectParameter("brandid", typeof(int));
+    
+            var descriptionParameter = description != null ?
+                new ObjectParameter("description", description) :
+                new ObjectParameter("description", typeof(string));
+    
+            var quantityParameter = quantity.HasValue ?
+                new ObjectParameter("quantity", quantity) :
+                new ObjectParameter("quantity", typeof(int));
+    
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("price", price) :
+                new ObjectParameter("price", typeof(decimal));
+    
+            var expirydatefromParameter = expirydatefrom.HasValue ?
+                new ObjectParameter("expirydatefrom", expirydatefrom) :
+                new ObjectParameter("expirydatefrom", typeof(System.DateTime));
+    
+            var expirydatetoParameter = expirydateto.HasValue ?
+                new ObjectParameter("expirydateto", expirydateto) :
+                new ObjectParameter("expirydateto", typeof(System.DateTime));
+    
+            var regnumParameter = regnum != null ?
+                new ObjectParameter("regnum", regnum) :
+                new ObjectParameter("regnum", typeof(string));
+    
+            var partnumParameter = partnum != null ?
+                new ObjectParameter("partnum", partnum) :
+                new ObjectParameter("partnum", typeof(string));
+    
+            var storagelocationParameter = storagelocation != null ?
+                new ObjectParameter("storagelocation", storagelocation) :
+                new ObjectParameter("storagelocation", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Product>("GetProduct", mergeOption, idParameter, productnameParameter, brandidParameter, descriptionParameter, quantityParameter, priceParameter, expirydatefromParameter, expirydatetoParameter, regnumParameter, partnumParameter, storagelocationParameter);
+        }
+    
+        public virtual ObjectResult<ProductImage> GetProductImage(Nullable<int> id, Nullable<int> productid, string imagename)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -830,10 +999,27 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("imagename", imagename) :
                 new ObjectParameter("imagename", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProductImage_Result>("GetProductImage", idParameter, productidParameter, imagenameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductImage>("GetProductImage", idParameter, productidParameter, imagenameParameter);
         }
     
-        public virtual ObjectResult<GetProductOrder_Result> GetProductOrder(Nullable<int> id, Nullable<int> productid, Nullable<int> quantity, Nullable<decimal> price, Nullable<int> clientid, Nullable<int> employeeid, Nullable<System.DateTime> dateaddedfrom, Nullable<System.DateTime> dateaddedto, Nullable<System.DateTime> datemodifiedfrom, Nullable<System.DateTime> datemodifiedto, Nullable<int> status, string reason)
+        public virtual ObjectResult<ProductImage> GetProductImage(Nullable<int> id, Nullable<int> productid, string imagename, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var productidParameter = productid.HasValue ?
+                new ObjectParameter("productid", productid) :
+                new ObjectParameter("productid", typeof(int));
+    
+            var imagenameParameter = imagename != null ?
+                new ObjectParameter("imagename", imagename) :
+                new ObjectParameter("imagename", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductImage>("GetProductImage", mergeOption, idParameter, productidParameter, imagenameParameter);
+        }
+    
+        public virtual ObjectResult<ProductOrder> GetProductOrder(Nullable<int> id, Nullable<int> productid, Nullable<int> quantity, Nullable<decimal> price, Nullable<int> clientid, Nullable<int> employeeid, Nullable<System.DateTime> dateaddedfrom, Nullable<System.DateTime> dateaddedto, Nullable<System.DateTime> datemodifiedfrom, Nullable<System.DateTime> datemodifiedto, Nullable<int> status, string reason)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -883,7 +1069,60 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("reason", reason) :
                 new ObjectParameter("reason", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetProductOrder_Result>("GetProductOrder", idParameter, productidParameter, quantityParameter, priceParameter, clientidParameter, employeeidParameter, dateaddedfromParameter, dateaddedtoParameter, datemodifiedfromParameter, datemodifiedtoParameter, statusParameter, reasonParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductOrder>("GetProductOrder", idParameter, productidParameter, quantityParameter, priceParameter, clientidParameter, employeeidParameter, dateaddedfromParameter, dateaddedtoParameter, datemodifiedfromParameter, datemodifiedtoParameter, statusParameter, reasonParameter);
+        }
+    
+        public virtual ObjectResult<ProductOrder> GetProductOrder(Nullable<int> id, Nullable<int> productid, Nullable<int> quantity, Nullable<decimal> price, Nullable<int> clientid, Nullable<int> employeeid, Nullable<System.DateTime> dateaddedfrom, Nullable<System.DateTime> dateaddedto, Nullable<System.DateTime> datemodifiedfrom, Nullable<System.DateTime> datemodifiedto, Nullable<int> status, string reason, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var productidParameter = productid.HasValue ?
+                new ObjectParameter("productid", productid) :
+                new ObjectParameter("productid", typeof(int));
+    
+            var quantityParameter = quantity.HasValue ?
+                new ObjectParameter("quantity", quantity) :
+                new ObjectParameter("quantity", typeof(int));
+    
+            var priceParameter = price.HasValue ?
+                new ObjectParameter("price", price) :
+                new ObjectParameter("price", typeof(decimal));
+    
+            var clientidParameter = clientid.HasValue ?
+                new ObjectParameter("clientid", clientid) :
+                new ObjectParameter("clientid", typeof(int));
+    
+            var employeeidParameter = employeeid.HasValue ?
+                new ObjectParameter("employeeid", employeeid) :
+                new ObjectParameter("employeeid", typeof(int));
+    
+            var dateaddedfromParameter = dateaddedfrom.HasValue ?
+                new ObjectParameter("dateaddedfrom", dateaddedfrom) :
+                new ObjectParameter("dateaddedfrom", typeof(System.DateTime));
+    
+            var dateaddedtoParameter = dateaddedto.HasValue ?
+                new ObjectParameter("dateaddedto", dateaddedto) :
+                new ObjectParameter("dateaddedto", typeof(System.DateTime));
+    
+            var datemodifiedfromParameter = datemodifiedfrom.HasValue ?
+                new ObjectParameter("datemodifiedfrom", datemodifiedfrom) :
+                new ObjectParameter("datemodifiedfrom", typeof(System.DateTime));
+    
+            var datemodifiedtoParameter = datemodifiedto.HasValue ?
+                new ObjectParameter("datemodifiedto", datemodifiedto) :
+                new ObjectParameter("datemodifiedto", typeof(System.DateTime));
+    
+            var statusParameter = status.HasValue ?
+                new ObjectParameter("status", status) :
+                new ObjectParameter("status", typeof(int));
+    
+            var reasonParameter = reason != null ?
+                new ObjectParameter("reason", reason) :
+                new ObjectParameter("reason", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductOrder>("GetProductOrder", mergeOption, idParameter, productidParameter, quantityParameter, priceParameter, clientidParameter, employeeidParameter, dateaddedfromParameter, dateaddedtoParameter, datemodifiedfromParameter, datemodifiedtoParameter, statusParameter, reasonParameter);
         }
     
         public virtual ObjectResult<User> GetUser(Nullable<int> id, string username, string password, string displayname, Nullable<System.DateTime> birthdatefrom, Nullable<System.DateTime> birthdateto, string phone, string email, string address, Nullable<decimal> balance, string diagnose, Nullable<System.DateTime> registerdatefrom, Nullable<System.DateTime> registerdateto, Nullable<int> role)
@@ -1111,7 +1350,7 @@ namespace XtremePharmacyManager.DataEntities
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
-        public virtual ObjectResult<string> UpdateBrandByID(Nullable<int> id, string new_brand_name)
+        public virtual int UpdateBrandByID(Nullable<int> id, string new_brand_name)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -1121,10 +1360,10 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("new_brand_name", new_brand_name) :
                 new ObjectParameter("new_brand_name", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UpdateBrandByID", idParameter, new_brand_nameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateBrandByID", idParameter, new_brand_nameParameter);
         }
     
-        public virtual ObjectResult<string> UpdateDeliveryServiceByID(Nullable<int> id, string new_service_name, Nullable<decimal> new_service_price)
+        public virtual int UpdateDeliveryServiceByID(Nullable<int> id, string new_service_name, Nullable<decimal> new_service_price)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -1138,10 +1377,10 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("new_service_price", new_service_price) :
                 new ObjectParameter("new_service_price", typeof(decimal));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UpdateDeliveryServiceByID", idParameter, new_service_nameParameter, new_service_priceParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateDeliveryServiceByID", idParameter, new_service_nameParameter, new_service_priceParameter);
         }
     
-        public virtual ObjectResult<string> UpdateLogByID(Nullable<int> id, string new_log_title, string new_log_message, string new_add_info)
+        public virtual int UpdateLogByID(Nullable<int> id, string new_log_title, string new_log_message, string new_add_info)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -1159,10 +1398,10 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("new_add_info", new_add_info) :
                 new ObjectParameter("new_add_info", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UpdateLogByID", idParameter, new_log_titleParameter, new_log_messageParameter, new_add_infoParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateLogByID", idParameter, new_log_titleParameter, new_log_messageParameter, new_add_infoParameter);
         }
     
-        public virtual ObjectResult<string> UpdateOrderDeliveryByID(Nullable<int> id, Nullable<int> new_order_id, Nullable<int> new_service_id, Nullable<int> new_method_id, Nullable<int> new_status, string new_reason)
+        public virtual int UpdateOrderDeliveryByID(Nullable<int> id, Nullable<int> new_order_id, Nullable<int> new_service_id, Nullable<int> new_method_id, Nullable<int> new_status, string new_reason)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -1188,10 +1427,10 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("new_reason", new_reason) :
                 new ObjectParameter("new_reason", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UpdateOrderDeliveryByID", idParameter, new_order_idParameter, new_service_idParameter, new_method_idParameter, new_statusParameter, new_reasonParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateOrderDeliveryByID", idParameter, new_order_idParameter, new_service_idParameter, new_method_idParameter, new_statusParameter, new_reasonParameter);
         }
     
-        public virtual ObjectResult<string> UpdatePaymentMethodByID(Nullable<int> id, string new_method_name)
+        public virtual int UpdatePaymentMethodByID(Nullable<int> id, string new_method_name)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -1201,10 +1440,10 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("new_method_name", new_method_name) :
                 new ObjectParameter("new_method_name", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UpdatePaymentMethodByID", idParameter, new_method_nameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdatePaymentMethodByID", idParameter, new_method_nameParameter);
         }
     
-        public virtual ObjectResult<string> UpdateProductByID(Nullable<int> id, string new_product_name, Nullable<int> new_brand_id, string new_description, Nullable<int> new_quantity, Nullable<decimal> new_price, Nullable<System.DateTime> new_expiry_date, string new_reg_num, string new_part_num, string new_storage_location)
+        public virtual int UpdateProductByID(Nullable<int> id, string new_product_name, Nullable<int> new_brand_id, string new_description, Nullable<int> new_quantity, Nullable<decimal> new_price, Nullable<System.DateTime> new_expiry_date, string new_reg_num, string new_part_num, string new_storage_location)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -1246,10 +1485,10 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("new_storage_location", new_storage_location) :
                 new ObjectParameter("new_storage_location", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UpdateProductByID", idParameter, new_product_nameParameter, new_brand_idParameter, new_descriptionParameter, new_quantityParameter, new_priceParameter, new_expiry_dateParameter, new_reg_numParameter, new_part_numParameter, new_storage_locationParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateProductByID", idParameter, new_product_nameParameter, new_brand_idParameter, new_descriptionParameter, new_quantityParameter, new_priceParameter, new_expiry_dateParameter, new_reg_numParameter, new_part_numParameter, new_storage_locationParameter);
         }
     
-        public virtual ObjectResult<string> UpdateProductImageByID(Nullable<int> id, Nullable<int> new_product_id, string new_image_name, byte[] new_image_data)
+        public virtual int UpdateProductImageByID(Nullable<int> id, Nullable<int> new_product_id, string new_image_name, byte[] new_image_data)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -1267,10 +1506,10 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("new_image_data", new_image_data) :
                 new ObjectParameter("new_image_data", typeof(byte[]));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UpdateProductImageByID", idParameter, new_product_idParameter, new_image_nameParameter, new_image_dataParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateProductImageByID", idParameter, new_product_idParameter, new_image_nameParameter, new_image_dataParameter);
         }
     
-        public virtual ObjectResult<string> UpdateProductOrderByID(Nullable<int> id, Nullable<int> new_product_id, Nullable<int> new_desired_quantity, Nullable<decimal> new_price_override, Nullable<int> new_client_id, Nullable<int> new_employee_id, Nullable<int> new_status, string new_reason)
+        public virtual int UpdateProductOrderByID(Nullable<int> id, Nullable<int> new_product_id, Nullable<int> new_desired_quantity, Nullable<decimal> new_price_override, Nullable<int> new_client_id, Nullable<int> new_employee_id, Nullable<int> new_status, string new_reason)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -1304,10 +1543,10 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("new_reason", new_reason) :
                 new ObjectParameter("new_reason", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UpdateProductOrderByID", idParameter, new_product_idParameter, new_desired_quantityParameter, new_price_overrideParameter, new_client_idParameter, new_employee_idParameter, new_statusParameter, new_reasonParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateProductOrderByID", idParameter, new_product_idParameter, new_desired_quantityParameter, new_price_overrideParameter, new_client_idParameter, new_employee_idParameter, new_statusParameter, new_reasonParameter);
         }
     
-        public virtual ObjectResult<string> UpdateUserByID(Nullable<int> id, string new_user_name, string new_password, string new_display_name, Nullable<System.DateTime> new_birth_date, string new_phone, string new_email, string new_address, byte[] new_profile_pic, Nullable<decimal> new_balance, string new_diagnose, Nullable<int> new_role)
+        public virtual int UpdateUserByID(Nullable<int> id, string new_user_name, string new_password, string new_display_name, Nullable<System.DateTime> new_birth_date, string new_phone, string new_email, string new_address, byte[] new_profile_pic, Nullable<decimal> new_balance, string new_diagnose, Nullable<int> new_role)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
@@ -1357,7 +1596,7 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("new_role", new_role) :
                 new ObjectParameter("new_role", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("UpdateUserByID", idParameter, new_user_nameParameter, new_passwordParameter, new_display_nameParameter, new_birth_dateParameter, new_phoneParameter, new_emailParameter, new_addressParameter, new_profile_picParameter, new_balanceParameter, new_diagnoseParameter, new_roleParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateUserByID", idParameter, new_user_nameParameter, new_passwordParameter, new_display_nameParameter, new_birth_dateParameter, new_phoneParameter, new_emailParameter, new_addressParameter, new_profile_picParameter, new_balanceParameter, new_diagnoseParameter, new_roleParameter);
         }
     }
 }
