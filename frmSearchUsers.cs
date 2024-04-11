@@ -269,22 +269,25 @@ namespace XtremePharmacyManager
 
         private void dgvUsers_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            DataGridView target_view = (DataGridView)sender;
-            DataGridViewRow row = target_view.Rows[e.RowIndex];
-            DataGridViewComboBoxCell rolecell = (DataGridViewComboBoxCell)row.Cells["RoleColumn"];
+            DataGridView current = (DataGridView)sender;
+            DataGridViewRow lastrow;
             int UserID = -1;
-            User target_user;
+            User currentUser;
             try
             {
-                if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
+                lastrow = current.Rows[current.Rows.Count - 1];
+                if(lastrow != null && users != null)
                 {
-                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
-                    if (UserID >= 0 && users != null)
+                    Int32.TryParse(lastrow.Cells["IDColumn"].Value.ToString(), out UserID);
+                    if (users != null)
                     {
-                        target_user = users.Where(x => x.ID == UserID).FirstOrDefault();
-                        if (target_user != null)
+                        currentUser = users.Where(x=>x.ID == UserID).FirstOrDefault();
+                        if(currentUser != null)
                         {
-                            rolecell.Value = target_user.UserRole;
+                            DataGridViewComboBoxColumn rolecolumn = (DataGridViewComboBoxColumn)current.Columns["RoleColumn"];
+                            rolecolumn.ValueType = typeof(Int32?);
+                            rolecolumn.ValueMember = "UserRole";
+                            lastrow.Cells["RoleColumn"].Value = currentUser.UserRole;
                         }
                     }
                 }
@@ -294,6 +297,5 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        }
+    }
 }
