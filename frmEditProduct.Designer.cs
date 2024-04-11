@@ -30,66 +30,66 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
-            this.pbUserProfilePic = new System.Windows.Forms.PictureBox();
+            this.trbQuantity = new System.Windows.Forms.TrackBar();
+            this.lblShowQuantity = new System.Windows.Forms.Label();
+            this.lblQuantity = new System.Windows.Forms.Label();
+            this.lblProductNotice = new System.Windows.Forms.Label();
+            this.cbSelectBrand = new System.Windows.Forms.ComboBox();
+            this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.cbRole = new System.Windows.Forms.ComboBox();
-            this.lblRole = new System.Windows.Forms.Label();
-            this.txtDiagnose = new System.Windows.Forms.TextBox();
-            this.lblDiagnose = new System.Windows.Forms.Label();
-            this.trbBalance = new System.Windows.Forms.TrackBar();
-            this.lblShowBalance = new System.Windows.Forms.Label();
-            this.lblBalance = new System.Windows.Forms.Label();
-            this.txtAddress = new System.Windows.Forms.TextBox();
-            this.lblAddress = new System.Windows.Forms.Label();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.lblEmail = new System.Windows.Forms.Label();
-            this.txtPhone = new System.Windows.Forms.TextBox();
-            this.lblPhone = new System.Windows.Forms.Label();
-            this.dtBirthDate = new System.Windows.Forms.DateTimePicker();
-            this.lblBirthDateFrom = new System.Windows.Forms.Label();
-            this.txtDisplayName = new System.Windows.Forms.TextBox();
-            this.lblDisplayName = new System.Windows.Forms.Label();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.lblPassword = new System.Windows.Forms.Label();
-            this.txtUsername = new System.Windows.Forms.TextBox();
-            this.lblUsername = new System.Windows.Forms.Label();
+            this.trbPrice = new System.Windows.Forms.TrackBar();
+            this.lblShowPrice = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
+            this.txtStorageLocation = new System.Windows.Forms.TextBox();
+            this.lblStorageLocation = new System.Windows.Forms.Label();
+            this.txtPartitudeNumber = new System.Windows.Forms.TextBox();
+            this.lblPartitudeNumber = new System.Windows.Forms.Label();
+            this.txtRegistrationNumber = new System.Windows.Forms.TextBox();
+            this.lblRegistrationNumber = new System.Windows.Forms.Label();
+            this.dtExpiryDate = new System.Windows.Forms.DateTimePicker();
+            this.lblExpiryDate = new System.Windows.Forms.Label();
+            this.txtProductDescription = new System.Windows.Forms.TextBox();
+            this.lblProductDescription = new System.Windows.Forms.Label();
+            this.lblProductBrand = new System.Windows.Forms.Label();
+            this.txtProductName = new System.Windows.Forms.TextBox();
+            this.lblProductName = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
             // 
             this.pnlData.AutoSize = true;
-            this.pnlData.Controls.Add(this.pbUserProfilePic);
+            this.pnlData.Controls.Add(this.trbQuantity);
+            this.pnlData.Controls.Add(this.lblShowQuantity);
+            this.pnlData.Controls.Add(this.lblQuantity);
+            this.pnlData.Controls.Add(this.lblProductNotice);
+            this.pnlData.Controls.Add(this.cbSelectBrand);
             this.pnlData.Controls.Add(this.btnOK);
             this.pnlData.Controls.Add(this.btnCancel);
-            this.pnlData.Controls.Add(this.cbRole);
-            this.pnlData.Controls.Add(this.lblRole);
-            this.pnlData.Controls.Add(this.txtDiagnose);
-            this.pnlData.Controls.Add(this.lblDiagnose);
-            this.pnlData.Controls.Add(this.trbBalance);
-            this.pnlData.Controls.Add(this.lblShowBalance);
-            this.pnlData.Controls.Add(this.lblBalance);
-            this.pnlData.Controls.Add(this.txtAddress);
-            this.pnlData.Controls.Add(this.lblAddress);
-            this.pnlData.Controls.Add(this.txtEmail);
-            this.pnlData.Controls.Add(this.lblEmail);
-            this.pnlData.Controls.Add(this.txtPhone);
-            this.pnlData.Controls.Add(this.lblPhone);
-            this.pnlData.Controls.Add(this.dtBirthDate);
-            this.pnlData.Controls.Add(this.lblBirthDateFrom);
-            this.pnlData.Controls.Add(this.txtDisplayName);
-            this.pnlData.Controls.Add(this.lblDisplayName);
-            this.pnlData.Controls.Add(this.txtPassword);
-            this.pnlData.Controls.Add(this.lblPassword);
-            this.pnlData.Controls.Add(this.txtUsername);
-            this.pnlData.Controls.Add(this.lblUsername);
+            this.pnlData.Controls.Add(this.trbPrice);
+            this.pnlData.Controls.Add(this.lblShowPrice);
+            this.pnlData.Controls.Add(this.lblPrice);
+            this.pnlData.Controls.Add(this.txtStorageLocation);
+            this.pnlData.Controls.Add(this.lblStorageLocation);
+            this.pnlData.Controls.Add(this.txtPartitudeNumber);
+            this.pnlData.Controls.Add(this.lblPartitudeNumber);
+            this.pnlData.Controls.Add(this.txtRegistrationNumber);
+            this.pnlData.Controls.Add(this.lblRegistrationNumber);
+            this.pnlData.Controls.Add(this.dtExpiryDate);
+            this.pnlData.Controls.Add(this.lblExpiryDate);
+            this.pnlData.Controls.Add(this.txtProductDescription);
+            this.pnlData.Controls.Add(this.lblProductDescription);
+            this.pnlData.Controls.Add(this.lblProductBrand);
+            this.pnlData.Controls.Add(this.txtProductName);
+            this.pnlData.Controls.Add(this.lblProductName);
             this.pnlData.Controls.Add(this.txtID);
             this.pnlData.Controls.Add(this.lblID);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
@@ -98,16 +98,71 @@
             this.pnlData.Size = new System.Drawing.Size(800, 301);
             this.pnlData.TabIndex = 0;
             // 
-            // pbUserProfilePic
+            // trbQuantity
             // 
-            this.pbUserProfilePic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbUserProfilePic.Location = new System.Drawing.Point(642, 149);
-            this.pbUserProfilePic.Name = "pbUserProfilePic";
-            this.pbUserProfilePic.Size = new System.Drawing.Size(142, 138);
-            this.pbUserProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbUserProfilePic.TabIndex = 34;
-            this.pbUserProfilePic.TabStop = false;
-            this.pbUserProfilePic.Click += new System.EventHandler(this.pbUserProfilePic_Click);
+            this.trbQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trbQuantity.Location = new System.Drawing.Point(473, 27);
+            this.trbQuantity.Maximum = 5000;
+            this.trbQuantity.Name = "trbQuantity";
+            this.trbQuantity.Size = new System.Drawing.Size(259, 56);
+            this.trbQuantity.TabIndex = 44;
+            this.trbQuantity.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trbQuantity.Scroll += new System.EventHandler(this.trbQuantity_Scroll);
+            // 
+            // lblShowQuantity
+            // 
+            this.lblShowQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblShowQuantity.AutoSize = true;
+            this.lblShowQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowQuantity.Location = new System.Drawing.Point(747, 30);
+            this.lblShowQuantity.Name = "lblShowQuantity";
+            this.lblShowQuantity.Size = new System.Drawing.Size(35, 16);
+            this.lblShowQuantity.TabIndex = 43;
+            this.lblShowQuantity.Text = "0.00";
+            // 
+            // lblQuantity
+            // 
+            this.lblQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblQuantity.AutoSize = true;
+            this.lblQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuantity.Location = new System.Drawing.Point(396, 26);
+            this.lblQuantity.Name = "lblQuantity";
+            this.lblQuantity.Size = new System.Drawing.Size(67, 16);
+            this.lblQuantity.TabIndex = 42;
+            this.lblQuantity.Text = "Quantity:";
+            // 
+            // lblProductNotice
+            // 
+            this.lblProductNotice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblProductNotice.AutoSize = true;
+            this.lblProductNotice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductNotice.ForeColor = System.Drawing.Color.Firebrick;
+            this.lblProductNotice.Location = new System.Drawing.Point(413, 161);
+            this.lblProductNotice.Name = "lblProductNotice";
+            this.lblProductNotice.Size = new System.Drawing.Size(319, 48);
+            this.lblProductNotice.TabIndex = 41;
+            this.lblProductNotice.Text = "IMPORTANT NOTICE: To see the expiry date\r\ncheck the side of the product package\r\n" +
+    "where the partitude number is\r\n";
+            // 
+            // cbSelectBrand
+            // 
+            this.cbSelectBrand.DataSource = this.productBrandBindingSource;
+            this.cbSelectBrand.DisplayMember = "BrandName";
+            this.cbSelectBrand.FormattingEnabled = true;
+            this.cbSelectBrand.Location = new System.Drawing.Point(175, 70);
+            this.cbSelectBrand.Name = "cbSelectBrand";
+            this.cbSelectBrand.Size = new System.Drawing.Size(219, 24);
+            this.cbSelectBrand.TabIndex = 36;
+            this.cbSelectBrand.ValueMember = "ID";
+            this.cbSelectBrand.SelectedIndexChanged += new System.EventHandler(this.cbSelectBrand_SelectedIndexChanged);
+            // 
+            // productBrandBindingSource
+            // 
+            this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
             // 
             // btnOK
             // 
@@ -133,256 +188,195 @@
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // cbRole
+            // trbPrice
             // 
-            this.cbRole.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.trbPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbRole.FormattingEnabled = true;
-            this.cbRole.Items.AddRange(new object[] {
-            "Admin",
-            "Employee",
-            "Client"});
-            this.cbRole.Location = new System.Drawing.Point(559, 119);
-            this.cbRole.Name = "cbRole";
-            this.cbRole.Size = new System.Drawing.Size(229, 24);
-            this.cbRole.TabIndex = 29;
-            this.cbRole.Text = "Employee";
-            this.cbRole.SelectedIndexChanged += new System.EventHandler(this.cbRole_SelectedIndexChanged);
+            this.trbPrice.Location = new System.Drawing.Point(473, 89);
+            this.trbPrice.Maximum = 5000;
+            this.trbPrice.Name = "trbPrice";
+            this.trbPrice.Size = new System.Drawing.Size(259, 56);
+            this.trbPrice.TabIndex = 21;
+            this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
             // 
-            // lblRole
+            // lblShowPrice
             // 
-            this.lblRole.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblShowPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblRole.AutoSize = true;
-            this.lblRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRole.Location = new System.Drawing.Point(400, 114);
-            this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(44, 16);
-            this.lblRole.TabIndex = 28;
-            this.lblRole.Text = "Role:";
+            this.lblShowPrice.AutoSize = true;
+            this.lblShowPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowPrice.Location = new System.Drawing.Point(747, 92);
+            this.lblShowPrice.Name = "lblShowPrice";
+            this.lblShowPrice.Size = new System.Drawing.Size(35, 16);
+            this.lblShowPrice.TabIndex = 20;
+            this.lblShowPrice.Text = "0.00";
             // 
-            // txtDiagnose
+            // lblPrice
             // 
-            this.txtDiagnose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDiagnose.Location = new System.Drawing.Point(475, 57);
-            this.txtDiagnose.Multiline = true;
-            this.txtDiagnose.Name = "txtDiagnose";
-            this.txtDiagnose.Size = new System.Drawing.Size(313, 56);
-            this.txtDiagnose.TabIndex = 23;
-            this.txtDiagnose.TextChanged += new System.EventHandler(this.txtDiagnose_TextChanged);
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice.Location = new System.Drawing.Point(396, 88);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(47, 16);
+            this.lblPrice.TabIndex = 19;
+            this.lblPrice.Text = "Price:";
             // 
-            // lblDiagnose
+            // txtStorageLocation
             // 
-            this.lblDiagnose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDiagnose.AutoSize = true;
-            this.lblDiagnose.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDiagnose.Location = new System.Drawing.Point(397, 60);
-            this.lblDiagnose.Name = "lblDiagnose";
-            this.lblDiagnose.Size = new System.Drawing.Size(78, 16);
-            this.lblDiagnose.TabIndex = 22;
-            this.lblDiagnose.Text = "Diagnose:";
-            // 
-            // trbBalance
-            // 
-            this.trbBalance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.trbBalance.Location = new System.Drawing.Point(475, 18);
-            this.trbBalance.Maximum = 5000;
-            this.trbBalance.Name = "trbBalance";
-            this.trbBalance.Size = new System.Drawing.Size(259, 56);
-            this.trbBalance.TabIndex = 21;
-            this.trbBalance.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trbBalance.Scroll += new System.EventHandler(this.trbPrice_Scroll);
-            // 
-            // lblShowBalance
-            // 
-            this.lblShowBalance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblShowBalance.AutoSize = true;
-            this.lblShowBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowBalance.Location = new System.Drawing.Point(749, 21);
-            this.lblShowBalance.Name = "lblShowBalance";
-            this.lblShowBalance.Size = new System.Drawing.Size(35, 16);
-            this.lblShowBalance.TabIndex = 20;
-            this.lblShowBalance.Text = "0.00";
-            // 
-            // lblBalance
-            // 
-            this.lblBalance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblBalance.AutoSize = true;
-            this.lblBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBalance.Location = new System.Drawing.Point(398, 17);
-            this.lblBalance.Name = "lblBalance";
-            this.lblBalance.Size = new System.Drawing.Size(68, 16);
-            this.lblBalance.TabIndex = 19;
-            this.lblBalance.Text = "Balance:";
-            // 
-            // txtAddress
-            // 
-            this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtStorageLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtAddress.Location = new System.Drawing.Point(137, 214);
-            this.txtAddress.Multiline = true;
-            this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(258, 56);
-            this.txtAddress.TabIndex = 18;
-            this.txtAddress.TextChanged += new System.EventHandler(this.txtAddress_TextChanged);
+            this.txtStorageLocation.Location = new System.Drawing.Point(175, 214);
+            this.txtStorageLocation.Multiline = true;
+            this.txtStorageLocation.Name = "txtStorageLocation";
+            this.txtStorageLocation.Size = new System.Drawing.Size(220, 56);
+            this.txtStorageLocation.TabIndex = 18;
+            this.txtStorageLocation.TextChanged += new System.EventHandler(this.txtStorageLocation_TextChanged);
             // 
-            // lblAddress
+            // lblStorageLocation
             // 
-            this.lblAddress.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblStorageLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblAddress.AutoSize = true;
-            this.lblAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddress.Location = new System.Drawing.Point(20, 217);
-            this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(69, 16);
-            this.lblAddress.TabIndex = 17;
-            this.lblAddress.Text = "Address:";
+            this.lblStorageLocation.AutoSize = true;
+            this.lblStorageLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStorageLocation.Location = new System.Drawing.Point(20, 217);
+            this.lblStorageLocation.Name = "lblStorageLocation";
+            this.lblStorageLocation.Size = new System.Drawing.Size(69, 16);
+            this.lblStorageLocation.TabIndex = 17;
+            this.lblStorageLocation.Text = "Address:";
             // 
-            // txtEmail
+            // txtPartitudeNumber
             // 
-            this.txtEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtPartitudeNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtEmail.Location = new System.Drawing.Point(137, 186);
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(258, 22);
-            this.txtEmail.TabIndex = 16;
-            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
+            this.txtPartitudeNumber.Location = new System.Drawing.Point(175, 186);
+            this.txtPartitudeNumber.Name = "txtPartitudeNumber";
+            this.txtPartitudeNumber.Size = new System.Drawing.Size(220, 22);
+            this.txtPartitudeNumber.TabIndex = 16;
+            this.txtPartitudeNumber.TextChanged += new System.EventHandler(this.txtPartitudeNumber_TextChanged);
             // 
-            // lblEmail
+            // lblPartitudeNumber
             // 
-            this.lblEmail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblPartitudeNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(20, 189);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(50, 16);
-            this.lblEmail.TabIndex = 15;
-            this.lblEmail.Text = "Email:";
+            this.lblPartitudeNumber.AutoSize = true;
+            this.lblPartitudeNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPartitudeNumber.Location = new System.Drawing.Point(20, 189);
+            this.lblPartitudeNumber.Name = "lblPartitudeNumber";
+            this.lblPartitudeNumber.Size = new System.Drawing.Size(131, 16);
+            this.lblPartitudeNumber.TabIndex = 15;
+            this.lblPartitudeNumber.Text = "Partitude Number:";
             // 
-            // txtPhone
+            // txtRegistrationNumber
             // 
-            this.txtPhone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtRegistrationNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtPhone.Location = new System.Drawing.Point(137, 158);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(258, 22);
-            this.txtPhone.TabIndex = 14;
-            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
+            this.txtRegistrationNumber.Location = new System.Drawing.Point(175, 158);
+            this.txtRegistrationNumber.Name = "txtRegistrationNumber";
+            this.txtRegistrationNumber.Size = new System.Drawing.Size(220, 22);
+            this.txtRegistrationNumber.TabIndex = 14;
+            this.txtRegistrationNumber.TextChanged += new System.EventHandler(this.txtRegistrationNumber_TextChanged);
             // 
-            // lblPhone
+            // lblRegistrationNumber
             // 
-            this.lblPhone.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblRegistrationNumber.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblPhone.AutoSize = true;
-            this.lblPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPhone.Location = new System.Drawing.Point(20, 161);
-            this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(55, 16);
-            this.lblPhone.TabIndex = 13;
-            this.lblPhone.Text = "Phone:";
+            this.lblRegistrationNumber.AutoSize = true;
+            this.lblRegistrationNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegistrationNumber.Location = new System.Drawing.Point(20, 161);
+            this.lblRegistrationNumber.Name = "lblRegistrationNumber";
+            this.lblRegistrationNumber.Size = new System.Drawing.Size(153, 16);
+            this.lblRegistrationNumber.TabIndex = 13;
+            this.lblRegistrationNumber.Text = "Registration Number:";
             // 
-            // dtBirthDate
+            // dtExpiryDate
             // 
-            this.dtBirthDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dtExpiryDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.dtBirthDate.Location = new System.Drawing.Point(137, 129);
-            this.dtBirthDate.Name = "dtBirthDate";
-            this.dtBirthDate.Size = new System.Drawing.Size(257, 22);
-            this.dtBirthDate.TabIndex = 10;
-            this.dtBirthDate.ValueChanged += new System.EventHandler(this.dtBirthDate_ValueChanged);
+            this.dtExpiryDate.Location = new System.Drawing.Point(175, 129);
+            this.dtExpiryDate.Name = "dtExpiryDate";
+            this.dtExpiryDate.Size = new System.Drawing.Size(219, 22);
+            this.dtExpiryDate.TabIndex = 10;
+            this.dtExpiryDate.ValueChanged += new System.EventHandler(this.dtExpiryDate_ValueChanged);
             // 
-            // lblBirthDateFrom
+            // lblExpiryDate
             // 
-            this.lblBirthDateFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblExpiryDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblBirthDateFrom.AutoSize = true;
-            this.lblBirthDateFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBirthDateFrom.Location = new System.Drawing.Point(19, 129);
-            this.lblBirthDateFrom.Name = "lblBirthDateFrom";
-            this.lblBirthDateFrom.Size = new System.Drawing.Size(79, 16);
-            this.lblBirthDateFrom.TabIndex = 9;
-            this.lblBirthDateFrom.Text = "Birth Date:";
+            this.lblExpiryDate.AutoSize = true;
+            this.lblExpiryDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExpiryDate.Location = new System.Drawing.Point(19, 129);
+            this.lblExpiryDate.Name = "lblExpiryDate";
+            this.lblExpiryDate.Size = new System.Drawing.Size(91, 16);
+            this.lblExpiryDate.TabIndex = 9;
+            this.lblExpiryDate.Text = "Expiry Date:";
             // 
-            // txtDisplayName
+            // txtProductDescription
             // 
-            this.txtDisplayName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtProductDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtDisplayName.Location = new System.Drawing.Point(136, 98);
-            this.txtDisplayName.Name = "txtDisplayName";
-            this.txtDisplayName.Size = new System.Drawing.Size(258, 22);
-            this.txtDisplayName.TabIndex = 8;
-            this.txtDisplayName.TextChanged += new System.EventHandler(this.txtDisplayName_TextChanged);
+            this.txtProductDescription.Location = new System.Drawing.Point(174, 98);
+            this.txtProductDescription.Name = "txtProductDescription";
+            this.txtProductDescription.Size = new System.Drawing.Size(220, 22);
+            this.txtProductDescription.TabIndex = 8;
+            this.txtProductDescription.TextChanged += new System.EventHandler(this.txtProductDescription_TextChanged);
             // 
-            // lblDisplayName
+            // lblProductDescription
             // 
-            this.lblDisplayName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblProductDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblDisplayName.AutoSize = true;
-            this.lblDisplayName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDisplayName.Location = new System.Drawing.Point(19, 101);
-            this.lblDisplayName.Name = "lblDisplayName";
-            this.lblDisplayName.Size = new System.Drawing.Size(109, 16);
-            this.lblDisplayName.TabIndex = 7;
-            this.lblDisplayName.Text = "Display Name:";
+            this.lblProductDescription.AutoSize = true;
+            this.lblProductDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductDescription.Location = new System.Drawing.Point(19, 101);
+            this.lblProductDescription.Name = "lblProductDescription";
+            this.lblProductDescription.Size = new System.Drawing.Size(147, 16);
+            this.lblProductDescription.TabIndex = 7;
+            this.lblProductDescription.Text = "Product Description:";
             // 
-            // txtPassword
+            // lblProductBrand
             // 
-            this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblProductBrand.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtPassword.Location = new System.Drawing.Point(136, 70);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(258, 22);
-            this.txtPassword.TabIndex = 6;
-            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            this.lblProductBrand.AutoSize = true;
+            this.lblProductBrand.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductBrand.Location = new System.Drawing.Point(19, 73);
+            this.lblProductBrand.Name = "lblProductBrand";
+            this.lblProductBrand.Size = new System.Drawing.Size(109, 16);
+            this.lblProductBrand.TabIndex = 5;
+            this.lblProductBrand.Text = "Product Brand:";
             // 
-            // lblPassword
+            // txtProductName
             // 
-            this.lblPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtProductName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblPassword.AutoSize = true;
-            this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(19, 73);
-            this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(79, 16);
-            this.lblPassword.TabIndex = 5;
-            this.lblPassword.Text = "Password:";
+            this.txtProductName.Location = new System.Drawing.Point(174, 42);
+            this.txtProductName.Name = "txtProductName";
+            this.txtProductName.Size = new System.Drawing.Size(220, 22);
+            this.txtProductName.TabIndex = 4;
+            this.txtProductName.TextChanged += new System.EventHandler(this.txtProductName_TextChanged);
             // 
-            // txtUsername
+            // lblProductName
             // 
-            this.txtUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblProductName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtUsername.Location = new System.Drawing.Point(136, 42);
-            this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(258, 22);
-            this.txtUsername.TabIndex = 4;
-            this.txtUsername.TextChanged += new System.EventHandler(this.txtUsername_TextChanged);
-            // 
-            // lblUsername
-            // 
-            this.lblUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblUsername.AutoSize = true;
-            this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(19, 45);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(82, 16);
-            this.lblUsername.TabIndex = 3;
-            this.lblUsername.Text = "Username:";
+            this.lblProductName.AutoSize = true;
+            this.lblProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductName.Location = new System.Drawing.Point(19, 45);
+            this.lblProductName.Name = "lblProductName";
+            this.lblProductName.Size = new System.Drawing.Size(109, 16);
+            this.lblProductName.TabIndex = 3;
+            this.lblProductName.Text = "Product Name:";
             // 
             // txtID
             // 
             this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtID.Enabled = false;
-            this.txtID.Location = new System.Drawing.Point(136, 14);
+            this.txtID.Location = new System.Drawing.Point(174, 14);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(258, 22);
+            this.txtID.Size = new System.Drawing.Size(220, 22);
             this.txtID.TabIndex = 2;
             this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
@@ -402,7 +396,7 @@
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
             // 
-            // frmEditUser
+            // frmEditProduct
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -410,12 +404,13 @@
             this.ClientSize = new System.Drawing.Size(800, 302);
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
-            this.Name = "frmEditUser";
+            this.Name = "frmEditProduct";
             this.Text = "User Editor. Add or Edit User";
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -427,30 +422,30 @@
         private System.Windows.Forms.Panel pnlData;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.TextBox txtID;
-        private System.Windows.Forms.TextBox txtUsername;
-        private System.Windows.Forms.Label lblUsername;
-        private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.Label lblBirthDateFrom;
-        private System.Windows.Forms.TextBox txtDisplayName;
-        private System.Windows.Forms.Label lblDisplayName;
-        private System.Windows.Forms.DateTimePicker dtBirthDate;
-        private System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.Label lblAddress;
-        private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.TextBox txtPhone;
-        private System.Windows.Forms.Label lblPhone;
-        private System.Windows.Forms.Label lblBalance;
-        private System.Windows.Forms.Label lblShowBalance;
-        private System.Windows.Forms.TrackBar trbBalance;
-        private System.Windows.Forms.TextBox txtDiagnose;
-        private System.Windows.Forms.Label lblDiagnose;
-        private System.Windows.Forms.ComboBox cbRole;
-        private System.Windows.Forms.Label lblRole;
+        private System.Windows.Forms.TextBox txtProductName;
+        private System.Windows.Forms.Label lblProductName;
+        private System.Windows.Forms.Label lblProductBrand;
+        private System.Windows.Forms.Label lblExpiryDate;
+        private System.Windows.Forms.TextBox txtProductDescription;
+        private System.Windows.Forms.Label lblProductDescription;
+        private System.Windows.Forms.DateTimePicker dtExpiryDate;
+        private System.Windows.Forms.TextBox txtStorageLocation;
+        private System.Windows.Forms.Label lblStorageLocation;
+        private System.Windows.Forms.TextBox txtPartitudeNumber;
+        private System.Windows.Forms.Label lblPartitudeNumber;
+        private System.Windows.Forms.TextBox txtRegistrationNumber;
+        private System.Windows.Forms.Label lblRegistrationNumber;
+        private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.Label lblShowPrice;
+        private System.Windows.Forms.TrackBar trbPrice;
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.PictureBox pbUserProfilePic;
+        private System.Windows.Forms.ComboBox cbSelectBrand;
+        private System.Windows.Forms.BindingSource productBrandBindingSource;
+        private System.Windows.Forms.Label lblProductNotice;
+        private System.Windows.Forms.TrackBar trbQuantity;
+        private System.Windows.Forms.Label lblShowQuantity;
+        private System.Windows.Forms.Label lblQuantity;
     }
 }

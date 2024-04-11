@@ -271,7 +271,7 @@ namespace XtremePharmacyManager
                             {
                                 //Show the editor window to edit the selected user
                                 //on dialog result yes update it
-                                DialogResult res = new frmEditProduct(ref selectedProduct).ShowDialog();
+                                DialogResult res = new frmEditProduct(ref selectedProduct, ref product_brands).ShowDialog();
                                 if (res == DialogResult.OK)
                                 {
                                     if (ent.Database.Connection.State == ConnectionState.Open)
@@ -290,7 +290,7 @@ namespace XtremePharmacyManager
                             {
                                 //Create a new one
                                 selectedProduct = new Product();
-                                DialogResult res = new frmEditProduct(ref selectedProduct).ShowDialog();
+                                DialogResult res = new frmEditProduct(ref selectedProduct, ref product_brands).ShowDialog();
                                 if (res == DialogResult.OK)
                                 {
                                     if (ent.Database.Connection.State == ConnectionState.Open)
@@ -309,7 +309,7 @@ namespace XtremePharmacyManager
                         else
                         {
                             selectedProduct = new Product();
-                            DialogResult res = new frmEditProduct(ref selectedProduct).ShowDialog();
+                            DialogResult res = new frmEditProduct(ref selectedProduct, ref product_brands).ShowDialog();
                             if (res == DialogResult.OK)
                             {
                                 if (ent.Database.Connection.State == ConnectionState.Open)
@@ -328,7 +328,7 @@ namespace XtremePharmacyManager
                 else
                 {
                     selectedProduct = new Product();
-                    DialogResult res = new frmEditProduct(ref selectedProduct).ShowDialog();
+                    DialogResult res = new frmEditProduct(ref selectedProduct,ref product_brands).ShowDialog();
                     if (res == DialogResult.OK)
                     {
                         if (ent.Database.Connection.State == ConnectionState.Open)

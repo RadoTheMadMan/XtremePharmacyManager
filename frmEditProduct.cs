@@ -15,25 +15,25 @@ namespace XtremePharmacyManager
     public partial class frmEditProduct : Form
     {
         Product target;
-        public frmEditProduct(ref User target)
+        static List<ProductBrand> brands;
+        public frmEditProduct(ref Product target, ref List<ProductBrand> brands)
         {
             InitializeComponent();
             this.target = target;
-            Bitmap currentpfp = new Bitmap(64, 64);
-            if (target.UserProfilePic != null) { ConvertBinaryToImage(target.UserProfilePic, out currentpfp); }
+            brands = brands;
             this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
-            this.txtUsername.Text = (!String.IsNullOrEmpty(target.UserName)) ? target.UserName.ToString() : string.Empty;
-            this.txtPassword.Text = (!String.IsNullOrEmpty(target.UserPassword)) ? target.UserPassword.ToString() : string.Empty;
-            this.txtDisplayName.Text = (!String.IsNullOrEmpty(target.UserDisplayName)) ? target.UserDisplayName.ToString() : string.Empty;
-            this.dtBirthDate.Value = (target.UserBirthDate != null && target.UserBirthDate > DateTime.MinValue && target.UserBirthDate < DateTime.MaxValue) ? target.UserBirthDate : DateTime.Now;
-            this.txtPhone.Text = (!String.IsNullOrEmpty(target.UserPhone)) ? target.UserPhone.ToString() : string.Empty;
-            this.txtEmail.Text = (!String.IsNullOrEmpty(target.UserEmail)) ? target.UserEmail.ToString() : string.Empty;
-            this.txtAddress.Text = (!String.IsNullOrEmpty(target.UserAddress)) ? target.UserAddress.ToString() : string.Empty;
-            trbBalance.Value = (target.UserBalance >= 0) ? Convert.ToInt32(target.UserBalance) : 0;
-            lblShowBalance.Text = (target.UserBalance >= 0) ? target.UserBalance.ToString() : string.Empty;
-            txtDiagnose.Text = (!String.IsNullOrEmpty(target.UserDiagnose)) ? target.UserDiagnose : string.Empty;
-            cbRole.SelectedIndex = (target.UserRole >= 0 && target.UserRole <= 2) ? target.UserRole : 1;
-            pbUserProfilePic.Image = (target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
+            this.txtProductName.Text = (!String.IsNullOrEmpty(target.ProductName)) ? target.ProductName.ToString() : string.Empty;
+            this.cbSelectBrand.DataSource = brands;
+            this.cbSelectBrand.SelectedValue = target.BrandID;
+            this.txtProductDescription.Text = (!String.IsNullOrEmpty(target.ProductDescription)) ? target.ProductDescription.ToString() : string.Empty;
+            this.dtExpiryDate.Value = (target.ProductExpiryDate != null && target.ProductExpiryDate > DateTime.MinValue && target.ProductExpiryDate < DateTime.MaxValue) ? target.ProductExpiryDate : DateTime.Now;
+            this.txtRegistrationNumber.Text = (!String.IsNullOrEmpty(target.ProductRegNum)) ? target.ProductRegNum.ToString() : string.Empty;
+            this.txtPartitudeNumber.Text = (!String.IsNullOrEmpty(target.ProductPartNum)) ? target.ProductPartNum.ToString() : string.Empty;
+            this.txtStorageLocation.Text = (!String.IsNullOrEmpty(target.ProductStorageLocation)) ? target.ProductStorageLocation.ToString() : string.Empty;
+            trbQuantity.Value = (target.ProductQuantity >= 0) ? target.ProductQuantity : 0;
+            lblShowQuantity.Text = (target.ProductQuantity >= 0) ? target.ProductQuantity.ToString() : string.Empty;
+            trbPrice.Value = (target.ProductPrice >= 0) ? Convert.ToInt32(target.ProductPrice) : 0;
+            lblShowPrice.Text = (target.ProductPrice >= 0) ? target.ProductPrice.ToString() : string.Empty;
         }
 
         
@@ -42,48 +42,24 @@ namespace XtremePharmacyManager
 
         private void trbPrice_Scroll(object sender, EventArgs e)
         {
-            lblShowBalance.Text = trbBalance.Value.ToString();
+            lblShowPrice.Text = trbPrice.Value.ToString();
             if (target != null)
             {
-                target.UserBalance = trbBalance.Value;
+                target.ProductPrice = trbPrice.Value;
             }
         }
 
-        private void pbUserProfilePic_Click(object sender, EventArgs e)
+        private void trbQuantity_Scroll(object sender, EventArgs e)
         {
-            PictureBox current = (PictureBox)sender;
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Images|*.png*;*.bmp*;*.jpg*;*.jpeg*;*.jfif*";
-            ofd.Multiselect = false;
-            ofd.Title = "Select an image to upload or for add/update operation";
-            if(target != null)
-            {
-                if(ofd.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(ofd.FileName))
-                {
-                    Bitmap selectedImage = new Bitmap(ofd.FileName);
-                    byte[] imageBytes;
-                    ConvertImageToBinary(selectedImage, out imageBytes);
-                    current.Image = new Bitmap(selectedImage);
-                    target.UserProfilePic = imageBytes;
-                }
-            }
-        }
-
-        private void cbRole_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(target != null)
-            {
-                target.UserRole = cbRole.SelectedIndex;
-            }
-        }
-
-        private void txtDiagnose_TextChanged(object sender, EventArgs e)
-        {
+            lblShowQuantity.Text = trbQuantity.Value.ToString();
             if (target != null)
             {
-                target.UserDiagnose = txtDiagnose.Text;
+                target.ProductQuantity = trbQuantity.Value;
             }
         }
+
+
+
 
         private void txtID_TextChanged(object sender, EventArgs e)
         {
@@ -93,59 +69,60 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void txtUsername_TextChanged(object sender, EventArgs e)
+        private void cbSelectBrand_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (target != null)
+            {
+                target.BrandID = cbSelectBrand.SelectedValue;
+            }
+        }
+
+        private void txtProductName_TextChanged(object sender, EventArgs e)
         {
             if(target!=null)
             {
-                target.UserName = txtUsername.Text;
+                target.ProductName = txtProductName.Text;
             }
         }
 
-        private void txtPassword_TextChanged(object sender, EventArgs e)
-        {
-            if(target!= null)
-            {
-                target.UserPassword = txtPassword.Text;
-            }
-        }
 
-        private void txtDisplayName_TextChanged(object sender, EventArgs e)
+        private void txtProductDescription_TextChanged(object sender, EventArgs e)
         {
             if(target != null)
             {
-                target.UserDisplayName = txtDisplayName.Text;
+                target.ProductDescription = txtProductDescription.Text;
             }
         }
 
-        private void dtBirthDate_ValueChanged(object sender, EventArgs e)
+        private void dtExpiryDate_ValueChanged(object sender, EventArgs e)
         {
             if(target != null)
             {
-                target.UserBirthDate = dtBirthDate.Value;
+                target.ProductExpiryDate = dtExpiryDate.Value;
             }
         }
 
-        private void txtPhone_TextChanged(object sender, EventArgs e)
+        private void txtRegistrationNumber_TextChanged(object sender, EventArgs e)
         {
             if(target != null)
             {
-                target.UserPhone = txtPhone.Text;
+                target.ProductRegNum = txtRegistrationNumber.Text;
             }
         }
 
-        private void txtEmail_TextChanged(object sender, EventArgs e)
+        private void txtPartitudeNumber_TextChanged(object sender, EventArgs e)
         {
             if(target != null)
             {
-                target.UserEmail = txtEmail.Text; 
+                target.ProductPartNum = txtPartitudeNumber.Text; 
             }    
         }
 
-        private void txtAddress_TextChanged(object sender, EventArgs e)
+        private void txtStorageLocation_TextChanged(object sender, EventArgs e)
         {
             if(target != null)
             {
-                target.UserAddress = txtAddress.Text;
+                target.ProductStorageLocation = txtStorageLocation.Text;
             }
         }
     }
