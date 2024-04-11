@@ -32,7 +32,7 @@ namespace XtremePharmacyManager
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lstProductImages = new System.Windows.Forms.ListView();
             this.ImageIDColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ProductIDColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -98,6 +98,10 @@ namespace XtremePharmacyManager
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblImages = new System.Windows.Forms.Label();
             this.pnlImageData = new System.Windows.Forms.Panel();
+            this.pbSelectedProductImage = new System.Windows.Forms.PictureBox();
+            this.lblProductImageNotice = new System.Windows.Forms.Label();
+            this.btnSearchProductImage = new System.Windows.Forms.Button();
+            this.btnDeleteProductImage = new System.Windows.Forms.Button();
             this.lblImageName = new System.Windows.Forms.Label();
             this.lblImageID = new System.Windows.Forms.Label();
             this.txtImageID = new System.Windows.Forms.TextBox();
@@ -106,10 +110,6 @@ namespace XtremePharmacyManager
             this.txtImageName = new System.Windows.Forms.TextBox();
             this.btnAddEditProductImage = new System.Windows.Forms.Button();
             this.productImageBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnDeleteProductImage = new System.Windows.Forms.Button();
-            this.btnSearchProductImage = new System.Windows.Forms.Button();
-            this.lblProductImageNotice = new System.Windows.Forms.Label();
-            this.pbSelectedProductImage = new System.Windows.Forms.PictureBox();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
@@ -118,8 +118,8 @@ namespace XtremePharmacyManager
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.pnlImageData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSelectedProductImage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lstProductImages
@@ -146,17 +146,14 @@ namespace XtremePharmacyManager
             // ImageIDColumn
             // 
             this.ImageIDColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.ID;
-            this.ImageIDColumn.Width = 100;
             // 
             // ProductIDColumn
             // 
-            this.ProductIDColumn.DisplayIndex = 2;
             this.ProductIDColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.ProductID;
             this.ProductIDColumn.Width = 100;
             // 
             // ImageNameColumn
             // 
-            this.ImageNameColumn.DisplayIndex = 1;
             this.ImageNameColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.ImageName;
             this.ImageNameColumn.Width = 100;
             // 
@@ -594,19 +591,20 @@ namespace XtremePharmacyManager
             this.dgvProducts.MultiSelect = false;
             this.dgvProducts.Name = "dgvProducts";
             this.dgvProducts.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProducts.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProducts.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvProducts.RowHeadersWidth = 51;
             this.dgvProducts.RowTemplate.Height = 24;
             this.dgvProducts.Size = new System.Drawing.Size(811, 279);
             this.dgvProducts.TabIndex = 1;
             this.dgvProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellClick);
+            this.dgvProducts.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvUsers_RowsAdded);
             // 
             // IDColumn
             // 
@@ -660,7 +658,7 @@ namespace XtremePharmacyManager
             // 
             // ProductPriceColumn
             // 
-            this.ProductPriceColumn.DataPropertyName = "ProductQuantity";
+            this.ProductPriceColumn.DataPropertyName = "ProductPrice";
             this.ProductPriceColumn.HeaderText = "Product Price";
             this.ProductPriceColumn.MinimumWidth = 6;
             this.ProductPriceColumn.Name = "ProductPriceColumn";
@@ -863,6 +861,53 @@ namespace XtremePharmacyManager
             this.pnlImageData.Size = new System.Drawing.Size(403, 655);
             this.pnlImageData.TabIndex = 41;
             // 
+            // pbSelectedProductImage
+            // 
+            this.pbSelectedProductImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbSelectedProductImage.Location = new System.Drawing.Point(14, 215);
+            this.pbSelectedProductImage.Name = "pbSelectedProductImage";
+            this.pbSelectedProductImage.Size = new System.Drawing.Size(178, 155);
+            this.pbSelectedProductImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbSelectedProductImage.TabIndex = 48;
+            this.pbSelectedProductImage.TabStop = false;
+            // 
+            // lblProductImageNotice
+            // 
+            this.lblProductImageNotice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblProductImageNotice.AutoSize = true;
+            this.lblProductImageNotice.BackColor = System.Drawing.Color.Transparent;
+            this.lblProductImageNotice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.15F, System.Drawing.FontStyle.Bold);
+            this.lblProductImageNotice.ForeColor = System.Drawing.Color.Firebrick;
+            this.lblProductImageNotice.Location = new System.Drawing.Point(22, 144);
+            this.lblProductImageNotice.Name = "lblProductImageNotice";
+            this.lblProductImageNotice.Size = new System.Drawing.Size(369, 30);
+            this.lblProductImageNotice.TabIndex = 47;
+            this.lblProductImageNotice.Text = "IMPORTANT NOTICE: Product Images are usually sought\r\nalong with products but you " +
+    "can search them separately\r\n";
+            // 
+            // btnSearchProductImage
+            // 
+            this.btnSearchProductImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearchProductImage.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSearchProductImage.Location = new System.Drawing.Point(198, 215);
+            this.btnSearchProductImage.Name = "btnSearchProductImage";
+            this.btnSearchProductImage.Size = new System.Drawing.Size(196, 47);
+            this.btnSearchProductImage.TabIndex = 46;
+            this.btnSearchProductImage.Text = "SEARCH A PRODUCT IMAGE";
+            this.btnSearchProductImage.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteProductImage
+            // 
+            this.btnDeleteProductImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteProductImage.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteProductImage.Location = new System.Drawing.Point(198, 323);
+            this.btnDeleteProductImage.Name = "btnDeleteProductImage";
+            this.btnDeleteProductImage.Size = new System.Drawing.Size(196, 47);
+            this.btnDeleteProductImage.TabIndex = 45;
+            this.btnDeleteProductImage.Text = "DELETE A PRODUCT IMAGE";
+            this.btnDeleteProductImage.UseVisualStyleBackColor = true;
+            // 
             // lblImageName
             // 
             this.lblImageName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -941,53 +986,6 @@ namespace XtremePharmacyManager
             // 
             this.productImageBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductImage);
             // 
-            // btnDeleteProductImage
-            // 
-            this.btnDeleteProductImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteProductImage.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteProductImage.Location = new System.Drawing.Point(198, 323);
-            this.btnDeleteProductImage.Name = "btnDeleteProductImage";
-            this.btnDeleteProductImage.Size = new System.Drawing.Size(196, 47);
-            this.btnDeleteProductImage.TabIndex = 45;
-            this.btnDeleteProductImage.Text = "DELETE A PRODUCT IMAGE";
-            this.btnDeleteProductImage.UseVisualStyleBackColor = true;
-            // 
-            // btnSearchProductImage
-            // 
-            this.btnSearchProductImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearchProductImage.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearchProductImage.Location = new System.Drawing.Point(198, 215);
-            this.btnSearchProductImage.Name = "btnSearchProductImage";
-            this.btnSearchProductImage.Size = new System.Drawing.Size(196, 47);
-            this.btnSearchProductImage.TabIndex = 46;
-            this.btnSearchProductImage.Text = "SEARCH A PRODUCT IMAGE";
-            this.btnSearchProductImage.UseVisualStyleBackColor = true;
-            // 
-            // lblProductImageNotice
-            // 
-            this.lblProductImageNotice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblProductImageNotice.AutoSize = true;
-            this.lblProductImageNotice.BackColor = System.Drawing.Color.Transparent;
-            this.lblProductImageNotice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.15F, System.Drawing.FontStyle.Bold);
-            this.lblProductImageNotice.ForeColor = System.Drawing.Color.Firebrick;
-            this.lblProductImageNotice.Location = new System.Drawing.Point(22, 144);
-            this.lblProductImageNotice.Name = "lblProductImageNotice";
-            this.lblProductImageNotice.Size = new System.Drawing.Size(369, 30);
-            this.lblProductImageNotice.TabIndex = 47;
-            this.lblProductImageNotice.Text = "IMPORTANT NOTICE: Product Images are usually sought\r\nalong with products but you " +
-    "can search them separately\r\n";
-            // 
-            // pbSelectedProductImage
-            // 
-            this.pbSelectedProductImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbSelectedProductImage.Location = new System.Drawing.Point(14, 215);
-            this.pbSelectedProductImage.Name = "pbSelectedProductImage";
-            this.pbSelectedProductImage.Size = new System.Drawing.Size(178, 155);
-            this.pbSelectedProductImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbSelectedProductImage.TabIndex = 48;
-            this.pbSelectedProductImage.TabStop = false;
-            // 
             // frmSearchProducts
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -997,7 +995,7 @@ namespace XtremePharmacyManager
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmSearchProducts";
-            this.Text = "Users";
+            this.Text = "Products";
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).EndInit();
@@ -1008,8 +1006,8 @@ namespace XtremePharmacyManager
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.pnlImageData.ResumeLayout(false);
             this.pnlImageData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbSelectedProductImage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1052,7 +1050,6 @@ namespace XtremePharmacyManager
         private TrackBar trbQuantity;
         private Label lblShowQuantity;
         private Label lblQuantity;
-        private ColumnHeader ImageIDColumn;
         private ColumnHeader ImageNameColumn;
         private Label lblImages;
         private Panel pnlImageData;
@@ -1063,6 +1060,15 @@ namespace XtremePharmacyManager
         private ColumnHeader ProductIDColumn;
         private ImageList imgListProductImages;
         private ListView lstProductImages;
+        private Label lblImageName;
+        private Label lblImageID;
+        private TextBox txtImageID;
+        private Label lblRefetrencedID;
+        private Label lblProductNotice;
+        private Button btnDeleteProductImage;
+        private Button btnSearchProductImage;
+        private Label lblProductImageNotice;
+        private PictureBox pbSelectedProductImage;
         private DataGridViewTextBoxColumn IDColumn;
         private DataGridViewComboBoxColumn BrandIDColumn;
         private DataGridViewTextBoxColumn ProductNameColumn;
@@ -1073,11 +1079,6 @@ namespace XtremePharmacyManager
         private DataGridViewTextBoxColumn ProductRegistrationNumColumn;
         private DataGridViewTextBoxColumn ProductPartitudeNumColumn;
         private DataGridViewTextBoxColumn ProductSLocationColumn;
-        private Label lblImageName;
-        private Label lblImageID;
-        private TextBox txtImageID;
-        private Label lblRefetrencedID;
-        private Label lblProductNotice;
         private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn brandIDDataGridViewTextBoxColumn;
@@ -1091,9 +1092,6 @@ namespace XtremePharmacyManager
         private DataGridViewTextBoxColumn productBrandDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn productImagesDataGridViewTextBoxColumn;
         private DataGridViewTextBoxColumn productOrdersDataGridViewTextBoxColumn;
-        private Button btnDeleteProductImage;
-        private Button btnSearchProductImage;
-        private Label lblProductImageNotice;
-        private PictureBox pbSelectedProductImage;
+        private ColumnHeader ImageIDColumn;
     }
 }

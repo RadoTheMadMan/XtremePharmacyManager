@@ -405,7 +405,7 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmEditProduct";
-            this.Text = "User Editor. Add or Edit User";
+            this.Text = "Product Editor. Add or Edit Product";
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).EndInit();

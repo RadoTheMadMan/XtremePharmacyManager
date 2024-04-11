@@ -2088,7 +2088,7 @@ set @current_date = getdate();
 exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Removed', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 /* product images triggers */
@@ -2115,7 +2115,7 @@ set @current_date = getdate();
 exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Image Added', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 
@@ -2152,7 +2152,7 @@ set @current_date = getdate();
 exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Image Updated', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 
@@ -2179,7 +2179,7 @@ set @current_date = getdate();
 exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Image Removed', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 /* users triggers, unique on their own, they will update the user references if the ID is updated, create logins and add them to roles */

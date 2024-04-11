@@ -25,7 +25,7 @@ namespace XtremePharmacyManager.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Image ID")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ID")]
         public string ID {
             get {
                 return ((string)(this["ID"]));

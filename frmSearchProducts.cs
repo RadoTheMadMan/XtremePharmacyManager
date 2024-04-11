@@ -80,10 +80,9 @@ namespace XtremePharmacyManager
                         Bitmap extracted_image;
                         ConvertBinaryToImage(product_images[i].ImageData, out extracted_image);
                         imgListProductImages.Images.Add(extracted_image);
-                        ListViewItem image_item = new ListViewItem();
+                        ListViewItem image_item = new ListViewItem(product_images[i].ID.ToString());
                         image_item.ImageIndex = i;
                         image_item.StateImageIndex = i;
-                        image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ID.ToString()));
                         image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ProductID.ToString()));
                         image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ImageName.ToString()));
                         lstProductImages.Items.Add(image_item);
@@ -111,10 +110,9 @@ namespace XtremePharmacyManager
                         Bitmap extracted_image;
                         ConvertBinaryToImage(product_images[i].ImageData, out extracted_image);
                         imgListProductImages.Images.Add(extracted_image);
-                        ListViewItem image_item = new ListViewItem();
+                        ListViewItem image_item = new ListViewItem(product_images[i].ID.ToString());
                         image_item.ImageIndex = i;
                         image_item.StateImageIndex = i;
-                        image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ID.ToString()));
                         image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ProductID.ToString()));
                         image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ImageName.ToString()));
                         lstProductImages.Items.Add(image_item);
@@ -153,10 +151,9 @@ namespace XtremePharmacyManager
                         Bitmap extracted_image;
                         ConvertBinaryToImage(product_images[i].ImageData, out extracted_image);
                         imgListProductImages.Images.Add(extracted_image);
-                        ListViewItem image_item = new ListViewItem();
+                        ListViewItem image_item = new ListViewItem(product_images[i].ID.ToString());
                         image_item.ImageIndex = i;
                         image_item.StateImageIndex = i;
-                        image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ID.ToString()));
                         image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ProductID.ToString()));
                         image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ImageName.ToString()));
                         lstProductImages.Items.Add(image_item);
@@ -416,7 +413,9 @@ namespace XtremePharmacyManager
                             txtProductPartNum.Text = target_product.ProductPartNum.ToString();
                             txtProductStorageLocation.Text = target_product.ProductStorageLocation.ToString();
                             trbQuantity.Value = target_product.ProductQuantity;
+                            lblShowQuantity.Text = target_product.ProductQuantity.ToString();
                             trbPrice.Value = Convert.ToInt32(target_product.ProductPrice);
+                            lblShowPrice.Text = target_product.ProductPrice.ToString();
                         }
                     }
                 }
@@ -427,25 +426,24 @@ namespace XtremePharmacyManager
             }
         }
 
-        /* this will be commented out but not deleted for now, if the datagridview works good without it it will be deleted
         private void dgvUsers_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             DataGridView target_view = (DataGridView)sender;
             DataGridViewRow row = target_view.Rows[e.RowIndex];
-            DataGridViewComboBoxCell rolecell = (DataGridViewComboBoxCell)row.Cells["RoleColumn"];
-            int UserID = -1;
-            User target_user;
+            DataGridViewComboBoxCell brandcell = (DataGridViewComboBoxCell)row.Cells["BrandIDColumn"];
+            int ProductID = -1;
+            Product target_product;
             try
             {
                 if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
                 {
-                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
-                    if (UserID >= 0 && users != null)
+                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ProductID);
+                    if (ProductID >= 0 && products != null)
                     {
-                        target_user = users.Where(x => x.ID == UserID).FirstOrDefault();
-                        if (target_user != null)
+                        target_product = products.Where(x => x.ID == ProductID).FirstOrDefault();
+                        if (target_product != null)
                         {
-                            rolecell.Value = target_user.UserRole;
+                            brandcell.Value = target_product.BrandID;
                         }
                     }
                 }
@@ -455,7 +453,6 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        */
 
     }
 }

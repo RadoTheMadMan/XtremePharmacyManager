@@ -220,6 +220,7 @@ namespace XtremePharmacyManager
                             txtID.Text = targetService.ID.ToString();
                             txtServiceName.Text = targetService.ServiceName.ToString();;
                             trbPrice.Value = Convert.ToInt32(targetService.ServicePrice);
+                            lblPrice.Text = targetService.ServicePrice.ToString();
                         }
                     }
                 }

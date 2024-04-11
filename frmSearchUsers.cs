@@ -253,6 +253,7 @@ namespace XtremePharmacyManager
                             txtEmail.Text = target_user.UserEmail.ToString();
                             txtAddress.Text = target_user.UserAddress.ToString();
                             trbBalance.Value = Convert.ToInt32(target_user.UserBalance);
+                            lblShowBalance.Text = target_user.UserBalance.ToString();
                             txtDiagnose.Text = target_user.UserDiagnose.ToString();
                             dtRegisterDateFrom.Value = target_user.UserDateOfRegister;
                             cbRole.SelectedIndex = target_user.UserRole;
