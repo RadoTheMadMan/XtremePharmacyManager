@@ -71,9 +71,20 @@ namespace XtremePharmacyManager
                 {
                     product_images = ent.GetProductImage(-1,-1,"").ToList();
                     lstProductImages.Items.Clear();
-                    foreach(ProductImage image in product_images)
+                    lstProductImages.Items.Clear();
+                    imgListProductImages.Images.Clear();
+                    for (int i = 0; i < product_images.Count; i++)
                     {
-
+                        Bitmap extracted_image;
+                        ConvertBinaryToImage(product_images[i].ImageData, out extracted_image);
+                        imgListProductImages.Images.Add(extracted_image);
+                        ListViewItem image_item = new ListViewItem();
+                        image_item.ImageIndex = i;
+                        image_item.StateImageIndex = i;
+                        image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ID.ToString()));
+                        image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ProductID.ToString()));
+                        image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ImageName.ToString()));
+                        lstProductImages.Items.Add(image_item);
                     }
                 }
             }
