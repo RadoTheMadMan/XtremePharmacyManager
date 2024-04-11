@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using XtremePharmacyManager.DataEntities;
+using static System.Net.Mime.MediaTypeNames;
 using static XtremePharmacyManager.ImageBinConverter;
 
 namespace XtremePharmacyManager
@@ -125,6 +126,76 @@ namespace XtremePharmacyManager
             }
         }
 
+        private void RefreshProductImages(int[] ProductIDs)
+        {
+            try
+            {
+                //Never try to execute any function if it is not online
+                if (ent.Database.Connection.State == ConnectionState.Open)
+                {
+                    product_images.Clear();
+                    foreach(int ID in ProductIDs)
+                    {
+                        product_images.AddRange(ent.ProductImages.Where(x=>x.ID == ID).ToList());
+                    }
+                    lstProductImages.Items.Clear();
+                    imgListProductImages.Images.Clear();
+                    for (int i = 0; i < product_images.Count; i++)
+                    {
+                        Bitmap extracted_image;
+                        ConvertBinaryToImage(product_images[i].ImageData, out extracted_image);
+                        imgListProductImages.Images.Add(extracted_image);
+                        ListViewItem image_item = new ListViewItem();
+                        image_item.ImageIndex = i;
+                        image_item.StateImageIndex = i;
+                        image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ID.ToString()));
+                        image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ProductID.ToString()));
+                        image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ImageName.ToString()));
+                        lstProductImages.Items.Add(image_item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void RefreshProductImages(int[] ProductIDs)
+        {
+            try
+            {
+                //Never try to execute any function if it is not online
+                if (ent.Database.Connection.State == ConnectionState.Open)
+                {
+                    product_images.Clear();
+                    foreach (int ID in ProductIDs)
+                    {
+                        product_images.AddRange(ent.ProductImages.Where(x => x.ProductID == ID).ToList());
+                    }
+                    lstProductImages.Items.Clear();
+                    imgListProductImages.Images.Clear();
+                    for (int i = 0; i < product_images.Count; i++)
+                    {
+                        Bitmap extracted_image;
+                        ConvertBinaryToImage(product_images[i].ImageData, out extracted_image);
+                        imgListProductImages.Images.Add(extracted_image);
+                        ListViewItem image_item = new ListViewItem();
+                        image_item.ImageIndex = i;
+                        image_item.StateImageIndex = i;
+                        image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ID.ToString()));
+                        image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ProductID.ToString()));
+                        image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ImageName.ToString()));
+                        lstProductImages.Items.Add(image_item);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             int ProductID = -1;
@@ -133,38 +204,39 @@ namespace XtremePharmacyManager
             Int32.TryParse(cbSelectBrand.SelectedValue.ToString(), out BrandID);
             string ProductName = txtProductName.Text;
             string ProductDescription = txtProductDescription.Text;
-            DateTime BirthDateFrom = dtExpiryDateFrom.Value;
-            DateTime BirthDateTo = dtExpiryDateTo.Value;
-            string Phone = txtProductRegNum.Text;
-            string Email = txtProductPartNum.Text;
-            string Address = txtProductStorageLocation.Text;
-            decimal Balance = trbPrice.Value;
+            DateTime ExpiryDateFrom = dtExpiryDateFrom.Value;
+            DateTime ExpiryDateTo = dtExpiryDateTo.Value;
+            string RegistrationNumber = txtProductRegNum.Text;
+            string PartitudeNumber = txtProductPartNum.Text;
+            string StorageLocation = txtProductStorageLocation.Text;
+            int Quantity = trbQuantity.Value;
+            decimal Price = trbPrice.Value;
             int SearchMode = cbSearchMode.SelectedIndex;
           if (SearchMode == 1)
             {
                 products = ent.Products.Where(
-                    x => x.ID == ProductID ^ x.UserName.Contains(ProductName) ^ x.UserPassword.Contains(ProductDescription) ^
-                        x.UserDisplayName.Contains(ProductDescription) ^ (x.UserBirthDate >= BirthDateFrom && x.UserBirthDate <= BirthDateTo) ^
-                        x.UserPhone.Contains(Phone) ^ x.UserEmail.Contains(Email) ^ x.UserAddress.Contains(Address) ^ (x.UserBalance <= Balance || x.UserBalance >= Balance) ^
-                        x.UserDiagnose.Contains(Diagnose) ^ (x.UserDateOfRegister >= RegisterDateFrom && x.UserDateOfRegister <= RegisterDateTo) ^ x.UserRole == Role
-                ).ToList(); 
-                dgvProducts.DataSource = users;
-
+                    x => x.ID == ProductID ^ x.BrandID == BrandID ^ x.ProductName.Contains(ProductName) ^ x.ProductDescription.Contains(ProductDescription) ^
+                        (x.ProductExpiryDate >= ExpiryDateFrom && x.ProductExpiryDate <= ExpiryDateTo) ^ x.ProductRegNum.Contains(RegistrationNumber) ^ 
+                        x.ProductPartNum.Contains(PartitudeNumber) ^ x.ProductStorageLocation.Contains(StorageLocation) ^ 
+                        (x.ProductQuantity <= Quantity || x.ProductQuantity >= Quantity) ^ (x.ProductPrice <= Price || x.ProductPrice >= Price)).ToList(); 
+                dgvProducts.DataSource = products;
+                RefreshProductBrands();
+                
             }
             else if (SearchMode == 2)
             {
                 products = ent.Products.Where(
-                    x => x.ID == ProductID || x.UserName.Contains(ProductName) || x.UserPassword.Contains(ProductDescription) ||
-                        x.UserDisplayName.Contains(ProductDescription) || (x.UserBirthDate >= BirthDateFrom && x.UserBirthDate <= BirthDateTo) ||
-                        x.UserPhone.Contains(Phone) || x.UserEmail.Contains(Email) || x.UserAddress.Contains(Address) || (x.UserBalance <= Balance || x.UserBalance >= Balance) ||
-                        x.UserDiagnose.Contains(Diagnose) || (x.UserDateOfRegister >= RegisterDateFrom && x.UserDateOfRegister <= RegisterDateTo) || x.UserRole == Role
-                ).ToList();
-                dgvProducts.DataSource = users;
+                    x => x.ID == ProductID || x.BrandID == BrandID || x.ProductName.Contains(ProductName) || x.ProductDescription.Contains(ProductDescription) ||
+                        (x.ProductExpiryDate >= ExpiryDateFrom && x.ProductExpiryDate <= ExpiryDateTo) || x.ProductRegNum.Contains(RegistrationNumber) ||
+                        x.ProductPartNum.Contains(PartitudeNumber) || x.ProductStorageLocation.Contains(StorageLocation) ||
+                        (x.ProductQuantity <= Quantity || x.ProductQuantity >= Quantity) || (x.ProductPrice <= Price || x.ProductPrice >= Price)).ToList();
+                dgvProducts.DataSource = products;
             }
             else if (SearchMode == 3)
             {
-                products = ent.GetUser(ProductID,ProductName,ProductDescription,ProductDescription,BirthDateFrom,BirthDateTo,Phone,Email,Address,Balance,Diagnose,RegisterDateFrom,RegisterDateTo,Role).ToList();
-                dgvProducts.DataSource = users;
+                products = ent.GetProduct(ProductID,ProductName,BrandID,ProductDescription,Quantity,Price,ExpiryDateFrom,ExpiryDateTo,RegistrationNumber,
+                    PartitudeNumber,StorageLocation).ToList();
+                dgvProducts.DataSource = products;
             }
             else
             {
@@ -174,9 +246,14 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void trbBalance_Scroll(object sender, EventArgs e)
+        private void trbPrice_Scroll(object sender, EventArgs e)
         {
             lblShowPrice.Text = trbPrice.Value.ToString();
+        }
+
+        private void trbQuantity_Scroll(object sender, EventArgs e)
+        {
+            lblShowQuantity.Text = trbQuantity.Value.ToString();
         }
 
         private void btnAddOrEdit_Click(object sender, EventArgs e)
