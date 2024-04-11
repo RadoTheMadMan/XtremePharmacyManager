@@ -12,10 +12,10 @@ using XtremePharmacyManager.DataEntities;
 using static XtremePharmacyManager.ImageBinConverter;
 namespace XtremePharmacyManager
 {
-    public partial class frmEditUser : Form
+    public partial class frmEditProduct : Form
     {
-        User target;
-        public frmEditUser(ref User target)
+        Product target;
+        public frmEditProduct(ref User target)
         {
             InitializeComponent();
             this.target = target;
@@ -40,7 +40,7 @@ namespace XtremePharmacyManager
         
        
 
-        private void trbBalance_Scroll(object sender, EventArgs e)
+        private void trbPrice_Scroll(object sender, EventArgs e)
         {
             lblShowBalance.Text = trbBalance.Value.ToString();
             if (target != null)

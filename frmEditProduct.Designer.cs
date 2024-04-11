@@ -1,6 +1,6 @@
 ﻿namespace XtremePharmacyManager
 {
-    partial class frmEditUser
+    partial class frmEditProduct
     {
         /// <summary>
         /// Required designer variable.
@@ -194,7 +194,7 @@
             this.trbBalance.Size = new System.Drawing.Size(259, 56);
             this.trbBalance.TabIndex = 21;
             this.trbBalance.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
+            this.trbBalance.Scroll += new System.EventHandler(this.trbPrice_Scroll);
             // 
             // lblShowBalance
             // 
