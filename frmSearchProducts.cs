@@ -578,5 +578,130 @@ namespace XtremePharmacyManager
                 RefreshProductImages();
             }
         }
+
+        private void btnDeleteProductImage_Click(object sender, EventArgs e)
+        {
+            //Multiselect is disabled on the images list as well.
+            //on image create, update and delete tho everything is refreshed
+            ListViewItem currentItem = lstProductImages.SelectedItems[0];
+            ProductImage selectedImage;
+            int ImageID = -1;
+            try
+            {
+                if (currentItem != null && product_images != null)
+                {
+                    Int32.TryParse(currentItem.Text, out ImageID);
+                    if (ImageID >= 0)
+                    {
+                        selectedImage = product_images.Where(x => x.ID == ImageID).FirstOrDefault();
+                        if (selectedImage != null)
+                        {
+                            DialogResult res = MessageBox.Show("Are you sure you want to delete this record?\nThis operation is irreversible and can cause " +
+                                  "troubles in the database relations.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            if (res == DialogResult.Yes)
+                            {
+                                if (ent.Database.Connection.State == ConnectionState.Open)
+                                {
+                                    ent.DeleteProductImageByID(selectedImage.ID);
+                                    RefreshProductBrands();
+                                    RefreshProducts();
+                                    RefreshProductImages();
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnAddEditProductImage_Click(object sender, EventArgs e)
+        {
+            ListViewItem currentItem; 
+            ProductImage selectedImage;
+            int ImageID = -1;
+            try
+            {
+                if(lstProductImages.SelectedItems.Count > 0)
+                { 
+                    currentItem = lstProductImages.SelectedItems[0];
+                    if (currentItem != null && product_images != null)
+                    {
+                        Int32.TryParse(currentItem.Text, out ImageID);
+                        if (ImageID >= 0)
+                        {
+                            selectedImage = product_images.Where(x => x.ID == ImageID).FirstOrDefault();
+                            if (selectedImage != null)
+                            {
+                                DialogResult res = new frmEditProductImage(ref selectedImage, ref products).ShowDialog();
+                                if (res == DialogResult.OK)
+                                {
+                                    if (ent.Database.Connection.State == ConnectionState.Open)
+                                    {
+                                        ent.UpdateProductImageByID(selectedImage.ID,selectedImage.ProductID,selectedImage.ImageName,selectedImage.ImageData);
+                                        RefreshProductBrands();
+                                        RefreshProducts();
+                                        RefreshProductImages();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                selectedImage = new ProductImage();
+                                DialogResult res = new frmEditProductImage(ref selectedImage, ref products).ShowDialog();
+                                if (res == DialogResult.OK)
+                                {
+                                    if (ent.Database.Connection.State == ConnectionState.Open)
+                                    {
+                                        ent.AddProductImage(selectedImage.ProductID, selectedImage.ImageName, selectedImage.ImageData);
+                                        RefreshProductBrands();
+                                        RefreshProducts();
+                                        RefreshProductImages();
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            selectedImage = new ProductImage();
+                            DialogResult res = new frmEditProductImage(ref selectedImage, ref products).ShowDialog();
+                            if (res == DialogResult.OK)
+                            {
+                                if (ent.Database.Connection.State == ConnectionState.Open)
+                                {
+                                    ent.AddProductImage(selectedImage.ProductID, selectedImage.ImageName, selectedImage.ImageData);
+                                    RefreshProductBrands();
+                                    RefreshProducts();
+                                    RefreshProductImages();
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    selectedImage = new ProductImage();
+                    DialogResult res = new frmEditProductImage(ref selectedImage, ref products).ShowDialog();
+                    if (res == DialogResult.OK)
+                    {
+                        if (ent.Database.Connection.State == ConnectionState.Open)
+                        {
+                            ent.AddProductImage(selectedImage.ProductID, selectedImage.ImageName, selectedImage.ImageData);
+                            RefreshProductBrands();
+                            RefreshProducts();
+                            RefreshProductImages();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
