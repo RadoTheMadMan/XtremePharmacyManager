@@ -615,8 +615,8 @@ namespace XtremePharmacyManager
             this.dgvProducts.RowTemplate.Height = 24;
             this.dgvProducts.Size = new System.Drawing.Size(811, 342);
             this.dgvProducts.TabIndex = 1;
-            this.dgvProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellClick);
-            this.dgvProducts.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvUsers_RowsAdded);
+            this.dgvProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellClick);
+            //this.dgvProducts.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvUsers_RowsAdded);
             // 
             // IDColumn
             // 

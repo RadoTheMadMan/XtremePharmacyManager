@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -126,7 +127,7 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void RefreshProductImages(int[] ProductIDs)
+        private void RefreshProductImages(int[] IDs,bool SearchByProductID)
         {
             try
             {
@@ -134,9 +135,16 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     product_images.Clear();
-                    foreach(int ID in ProductIDs)
+                    foreach(int ID in IDs)
                     {
-                        product_images.AddRange(ent.ProductImages.Where(x=>x.ID == ID).ToList());
+                        if (SearchByProductID)
+                        {
+                            product_images.AddRange(ent.ProductImages.Where(x => x.ProductID == ID).ToList());
+                        }
+                        else
+                        {
+                            product_images.AddRange(ent.ProductImages.Where(x => x.ID == ID).ToList());
+                        }
                     }
                     lstProductImages.Items.Clear();
                     imgListProductImages.Images.Clear();
@@ -161,40 +169,7 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void RefreshProductImages(int[] ProductIDs)
-        {
-            try
-            {
-                //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open)
-                {
-                    product_images.Clear();
-                    foreach (int ID in ProductIDs)
-                    {
-                        product_images.AddRange(ent.ProductImages.Where(x => x.ProductID == ID).ToList());
-                    }
-                    lstProductImages.Items.Clear();
-                    imgListProductImages.Images.Clear();
-                    for (int i = 0; i < product_images.Count; i++)
-                    {
-                        Bitmap extracted_image;
-                        ConvertBinaryToImage(product_images[i].ImageData, out extracted_image);
-                        imgListProductImages.Images.Add(extracted_image);
-                        ListViewItem image_item = new ListViewItem();
-                        image_item.ImageIndex = i;
-                        image_item.StateImageIndex = i;
-                        image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ID.ToString()));
-                        image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ProductID.ToString()));
-                        image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ImageName.ToString()));
-                        lstProductImages.Items.Add(image_item);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
@@ -214,34 +189,53 @@ namespace XtremePharmacyManager
             int SearchMode = cbSearchMode.SelectedIndex;
           if (SearchMode == 1)
             {
+                RefreshProductBrands();
                 products = ent.Products.Where(
                     x => x.ID == ProductID ^ x.BrandID == BrandID ^ x.ProductName.Contains(ProductName) ^ x.ProductDescription.Contains(ProductDescription) ^
                         (x.ProductExpiryDate >= ExpiryDateFrom && x.ProductExpiryDate <= ExpiryDateTo) ^ x.ProductRegNum.Contains(RegistrationNumber) ^ 
                         x.ProductPartNum.Contains(PartitudeNumber) ^ x.ProductStorageLocation.Contains(StorageLocation) ^ 
                         (x.ProductQuantity <= Quantity || x.ProductQuantity >= Quantity) ^ (x.ProductPrice <= Price || x.ProductPrice >= Price)).ToList(); 
                 dgvProducts.DataSource = products;
-                RefreshProductBrands();
-                
+                int[] extractedids = new int[products.Count];
+                for(int i = 0; i < extractedids.Count(); i++)
+                {
+                    extractedids[i] = products[i].ID;
+                }
+                RefreshProductImages(extractedids, true);
             }
             else if (SearchMode == 2)
             {
+                RefreshProductBrands();
                 products = ent.Products.Where(
                     x => x.ID == ProductID || x.BrandID == BrandID || x.ProductName.Contains(ProductName) || x.ProductDescription.Contains(ProductDescription) ||
                         (x.ProductExpiryDate >= ExpiryDateFrom && x.ProductExpiryDate <= ExpiryDateTo) || x.ProductRegNum.Contains(RegistrationNumber) ||
                         x.ProductPartNum.Contains(PartitudeNumber) || x.ProductStorageLocation.Contains(StorageLocation) ||
                         (x.ProductQuantity <= Quantity || x.ProductQuantity >= Quantity) || (x.ProductPrice <= Price || x.ProductPrice >= Price)).ToList();
                 dgvProducts.DataSource = products;
+                int[] extractedids = new int[products.Count];
+                for (int i = 0; i < extractedids.Count(); i++)
+                {
+                    extractedids[i] = products[i].ID;
+                }
+                RefreshProductImages(extractedids, true);
             }
             else if (SearchMode == 3)
             {
+                RefreshProductBrands();
                 products = ent.GetProduct(ProductID,ProductName,BrandID,ProductDescription,Quantity,Price,ExpiryDateFrom,ExpiryDateTo,RegistrationNumber,
                     PartitudeNumber,StorageLocation).ToList();
                 dgvProducts.DataSource = products;
+                int[] extractedids = new int[products.Count];
+                for (int i = 0; i < extractedids.Count(); i++)
+                {
+                    extractedids[i] = products[i].ID;
+                }
+                RefreshProductImages(extractedids, true);
             }
             else
             {
-                RefreshProducts();
                 RefreshProductBrands();
+                RefreshProducts();
                 RefreshProductImages();
             }
         }
@@ -260,48 +254,53 @@ namespace XtremePharmacyManager
         {
             //The Datagrid is with multiselect as false so one thing is selected at a time
             DataGridViewRow row;
-            int UserID = -1;
-            User selectedUser;
+            int ProductID = -1;
+            Product selectedProduct;
             try
             {
                 if (dgvProducts.SelectedRows.Count > 0)
                 {
                     row = dgvProducts.SelectedRows[0];
-                    if (row != null && users != null)
+                    if (row != null && products != null)
                     {
-                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
-                        if (UserID > 0)
+                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ProductID);
+                        if (ProductID > 0)
                         {
-                            selectedUser = users.Where(x => x.ID == UserID).FirstOrDefault();
-                            if (selectedUser != null)
+                            selectedProduct= products.Where(x => x.ID == ProductID).FirstOrDefault();
+                            if (selectedProduct != null)
                             {
                                 //Show the editor window to edit the selected user
                                 //on dialog result yes update it
-                                DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
+                                DialogResult res = new frmEditProduct(ref selectedProduct).ShowDialog();
                                 if (res == DialogResult.OK)
                                 {
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
-                                        ent.UpdateUserByID(selectedUser.ID, selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName,
-                                            selectedUser.UserBirthDate, selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic,
-                                            selectedUser.UserBalance, selectedUser.UserDiagnose, selectedUser.UserRole);
+                                        ent.UpdateProductByID(selectedProduct.ID,selectedProduct.ProductName,selectedProduct.BrandID,
+                                            selectedProduct.ProductDescription,selectedProduct.ProductQuantity,selectedProduct.ProductPrice,
+                                            selectedProduct.ProductExpiryDate,selectedProduct.ProductRegNum,selectedProduct.ProductPartNum,
+                                            selectedProduct.ProductStorageLocation);
+                                        RefreshProductBrands();
                                         RefreshProducts();
+                                        RefreshProductImages();
                                     }
                                 }
                             }
                             else
                             {
-                                //Create a new user
-                                selectedUser = new User();
-                                DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
+                                //Create a new one
+                                selectedProduct = new Product();
+                                DialogResult res = new frmEditProduct(ref selectedProduct).ShowDialog();
                                 if (res == DialogResult.OK)
                                 {
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
-                                        ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
-                                            selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
-                                            selectedUser.UserDiagnose, selectedUser.UserRole);
+                                        ent.AddProduct(selectedProduct.ProductName, selectedProduct.BrandID, selectedProduct.ProductDescription,
+                                            selectedProduct.ProductQuantity, selectedProduct.ProductPrice, selectedProduct.ProductExpiryDate,
+                                            selectedProduct.ProductRegNum, selectedProduct.ProductPartNum, selectedProduct.ProductStorageLocation);
+                                        RefreshProductBrands();
                                         RefreshProducts();
+                                        RefreshProductImages();
                                     }
                                 }
                                 //show the editor and after the editor confirms add it
@@ -309,16 +308,18 @@ namespace XtremePharmacyManager
                         }
                         else
                         {
-                            selectedUser = new User();
-                            DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
+                            selectedProduct = new Product();
+                            DialogResult res = new frmEditProduct(ref selectedProduct).ShowDialog();
                             if (res == DialogResult.OK)
                             {
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
-                                    ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
-                                        selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
-                                        selectedUser.UserDiagnose, selectedUser.UserRole);
+                                    ent.AddProduct(selectedProduct.ProductName, selectedProduct.BrandID, selectedProduct.ProductDescription,
+                                        selectedProduct.ProductQuantity, selectedProduct.ProductPrice, selectedProduct.ProductExpiryDate,
+                                        selectedProduct.ProductRegNum, selectedProduct.ProductPartNum, selectedProduct.ProductStorageLocation);
+                                    RefreshProductBrands();
                                     RefreshProducts();
+                                    RefreshProductImages();
                                 }
                             }
                         }
@@ -326,16 +327,18 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    selectedUser = new User();
-                    DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
+                    selectedProduct = new Product();
+                    DialogResult res = new frmEditProduct(ref selectedProduct).ShowDialog();
                     if (res == DialogResult.OK)
                     {
                         if (ent.Database.Connection.State == ConnectionState.Open)
                         {
-                            ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
-                                selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
-                                selectedUser.UserDiagnose, selectedUser.UserRole);
+                            ent.AddProduct(selectedProduct.ProductName, selectedProduct.BrandID, selectedProduct.ProductDescription,
+                                selectedProduct.ProductQuantity, selectedProduct.ProductPrice, selectedProduct.ProductExpiryDate,
+                                selectedProduct.ProductRegNum, selectedProduct.ProductPartNum, selectedProduct.ProductStorageLocation);
+                            RefreshProductBrands();
                             RefreshProducts();
+                            RefreshProductImages();
                         }
                     }
                 }
@@ -350,20 +353,20 @@ namespace XtremePharmacyManager
         {
             //The Datagrid is with multiselect as false so one thing is selected at a time
             DataGridViewRow row;
-            int UserID = -1;
-            User selectedUser;
+            int ProductID = -1;
+            Product selectedProduct;
             try
             {
                 if (dgvProducts.SelectedRows.Count > 0)
                 {
                     row = dgvProducts.SelectedRows[0];
-                    if (row != null && users != null)
+                    if (row != null && products != null)
                     {
-                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
-                        if (UserID > 0)
+                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ProductID);
+                        if (ProductID > 0)
                         {
-                            selectedUser = users.Where(x => x.ID == UserID).FirstOrDefault();
-                            if (selectedUser != null)
+                            selectedProduct = products.Where(x => x.ID == ProductID).FirstOrDefault();
+                            if (selectedProduct != null)
                             {
                                 //Show the editor window to edit the selected user
                                 //on dialog result yes update it
@@ -373,7 +376,7 @@ namespace XtremePharmacyManager
                                 {
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
-                                        ent.DeleteUserByID(selectedUser.ID);
+                                        ent.DeleteProductByID(selectedProduct.ID);
                                         RefreshProducts();
                                     }
                                 }
@@ -388,34 +391,32 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void dgvUsers_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView target_view = (DataGridView)sender;
             DataGridViewRow row = target_view.Rows[e.RowIndex];
-            int UserID = -1;
-            User target_user;
+            int ProductID = -1;
+            Product target_product;
             try
             {
                 if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
                 {
-                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
-                    if (UserID >= 0 && users != null)
+                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ProductID);
+                    if (ProductID >= 0 && products != null)
                     {
-                        target_user = users.Where(x => x.ID == UserID).FirstOrDefault();
-                        if(target_user != null)
+                        target_product = products.Where(x => x.ID == ProductID).FirstOrDefault();
+                        if(target_product != null)
                         {
-                            txtID.Text = target_user.ID.ToString();
-                            txtProductName.Text = target_user.UserName.ToString();
-                            txtPassword.Text = target_user.UserPassword.ToString();
-                            txtProductDescription.Text = target_user.UserDisplayName.ToString();
-                            dtExpiryDateFrom.Value = target_user.UserBirthDate;
-                            txtProductRegNum.Text = target_user.UserPhone.ToString();
-                            txtProductPartNum.Text = target_user.UserEmail.ToString();
-                            txtProductStorageLocation.Text = target_user.UserAddress.ToString();
-                            trbPrice.Value = Convert.ToInt32(target_user.UserBalance);
-                            txtDiagnose.Text = target_user.UserDiagnose.ToString();
-                            dtRegisterDateFrom.Value = target_user.UserDateOfRegister;
-                            cbRole.SelectedIndex = target_user.UserRole;
+                            txtID.Text = target_product.ID.ToString();
+                            cbSelectBrand.SelectedValue = target_product.BrandID;
+                            txtProductName.Text = target_product.ProductName.ToString();
+                            txtProductDescription.Text = target_product.ProductDescription.ToString();
+                            dtExpiryDateFrom.Value = target_product.ProductExpiryDate;
+                            txtProductRegNum.Text = target_product.ProductRegNum.ToString();
+                            txtProductPartNum.Text = target_product.ProductPartNum.ToString();
+                            txtProductStorageLocation.Text = target_product.ProductStorageLocation.ToString();
+                            trbQuantity.Value = target_product.ProductQuantity;
+                            trbPrice.Value = Convert.ToInt32(target_product.ProductPrice);
                         }
                     }
                 }
@@ -426,6 +427,7 @@ namespace XtremePharmacyManager
             }
         }
 
+        /* this will be commented out but not deleted for now, if the datagridview works good without it it will be deleted
         private void dgvUsers_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             DataGridView target_view = (DataGridView)sender;
@@ -453,7 +455,7 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        */
 
     }
 }
