@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -406,6 +408,7 @@ namespace XtremePharmacyManager
                         if(target_product != null)
                         {
                             txtID.Text = target_product.ID.ToString();
+                            txtReferencedID.Text = target_product.ID.ToString();
                             cbSelectBrand.SelectedValue = target_product.BrandID;
                             txtProductName.Text = target_product.ProductName.ToString();
                             txtProductDescription.Text = target_product.ProductDescription.ToString();
@@ -462,6 +465,118 @@ namespace XtremePharmacyManager
             }
         }
 
+        private void lstProductImages_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            ListView current = (ListView)sender;
+            ListViewItem currentItem = current.Items[e.ItemIndex];
+            ProductImage selectedImage;
+            int ImageID = -1;
+            try
+            {
+                if (current != null && currentItem != null && product_images != null)
+                {
+                    Int32.TryParse(currentItem.Text, out ImageID);
+                    if (ImageID >= 0)
+                    {
+                        selectedImage = product_images.Where(x => x.ID == ImageID).FirstOrDefault();
+                        if (selectedImage != null)
+                        {
+                            Bitmap bmp;
+                            ConvertBinaryToImage(selectedImage.ImageData, out bmp);
+                            txtImageID.Text = selectedImage.ID.ToString();
+                            txtReferencedID.Text = selectedImage.ProductID.ToString();
+                            txtImageName.Text = selectedImage.ImageName;
+                            if (bmp != null)
+                            {
+                                pbSelectedProductImage.Image = bmp;
+                            }
+                            else
+                            {
+                                bmp = new Bitmap(64, 64);
+                                pbSelectedProductImage.Image = bmp;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
+        private void btnSearchProductImage_Click(object sender, EventArgs e)
+        {
+            //This refreshes the product images only but not the products, search products with the none criteria
+            //to refresh all brands, products and images related to products
+            int ImageID = -1;
+            int ProductID = -1;
+            int SearchMode = cbSearchMode.SelectedIndex;
+            string ImageName = txtImageName.Text;
+            Int32.TryParse(txtImageID.Text, out ImageID);
+            Int32.TryParse(txtReferencedID.Text, out ProductID);
+            if (SearchMode == 1)
+            {
+                RefreshProductBrands();
+                product_images = ent.ProductImages.Where(x => x.ID == ImageID ^ x.ProductID == ProductID ^ x.ImageName.Contains(ImageName)).ToList();
+                lstProductImages.Items.Clear();
+                imgListProductImages.Images.Clear();
+                for (int i = 0; i < product_images.Count; i++)
+                {
+                    Bitmap extracted_image;
+                    ConvertBinaryToImage(product_images[i].ImageData, out extracted_image);
+                    imgListProductImages.Images.Add(extracted_image);
+                    ListViewItem image_item = new ListViewItem(product_images[i].ID.ToString());
+                    image_item.ImageIndex = i;
+                    image_item.StateImageIndex = i;
+                    image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ProductID.ToString()));
+                    image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ImageName.ToString()));
+                    lstProductImages.Items.Add(image_item);
+                }
+            }
+            else if (SearchMode == 2)
+            {
+                RefreshProductBrands();
+                product_images = ent.ProductImages.Where(x => x.ID == ImageID || x.ProductID == ProductID || x.ImageName.Contains(ImageName)).ToList();
+                lstProductImages.Items.Clear();
+                imgListProductImages.Images.Clear();
+                for (int i = 0; i < product_images.Count; i++)
+                {
+                    Bitmap extracted_image;
+                    ConvertBinaryToImage(product_images[i].ImageData, out extracted_image);
+                    imgListProductImages.Images.Add(extracted_image);
+                    ListViewItem image_item = new ListViewItem(product_images[i].ID.ToString());
+                    image_item.ImageIndex = i;
+                    image_item.StateImageIndex = i;
+                    image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ProductID.ToString()));
+                    image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ImageName.ToString()));
+                    lstProductImages.Items.Add(image_item);
+                }
+            }
+            else if (SearchMode == 3)
+            {
+                RefreshProductBrands();
+                product_images = ent.GetProductImage(ImageID,ProductID,ImageName).ToList();
+                lstProductImages.Items.Clear();
+                imgListProductImages.Images.Clear();
+                for (int i = 0; i < product_images.Count; i++)
+                {
+                    Bitmap extracted_image;
+                    ConvertBinaryToImage(product_images[i].ImageData, out extracted_image);
+                    imgListProductImages.Images.Add(extracted_image);
+                    ListViewItem image_item = new ListViewItem(product_images[i].ID.ToString());
+                    image_item.ImageIndex = i;
+                    image_item.StateImageIndex = i;
+                    image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ProductID.ToString()));
+                    image_item.SubItems.Add(new ListViewItem.ListViewSubItem(image_item, product_images[i].ImageName.ToString()));
+                    lstProductImages.Items.Add(image_item);
+                }
+            }
+            else
+            {
+                RefreshProductBrands();
+                RefreshProductImages();
+            }
+        }
     }
 }
