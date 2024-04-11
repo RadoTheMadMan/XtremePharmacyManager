@@ -56,6 +56,7 @@ namespace XtremePharmacyManager
                 {
                     product_brands = ent.GetBrand(-1, "").ToList();
                     cbSelectBrand.DataSource = product_brands;
+                    BrandIDColumn.DataSource = product_brands;
                 }
             }
             catch (Exception ex)
@@ -426,24 +427,31 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void dgvUsers_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private void dgvProducts_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             DataGridView target_view = (DataGridView)sender;
-            DataGridViewRow row = target_view.Rows[e.RowIndex];
-            DataGridViewComboBoxCell brandcell = (DataGridViewComboBoxCell)row.Cells["BrandIDColumn"];
+            DataGridViewComboBoxCell brandcell;
+            DataGridViewComboBoxColumn brandcolumn;
             int ProductID = -1;
             Product target_product;
+            ProductBrand target_brand;
             try
             {
-                if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
+                foreach (DataGridViewRow row in target_view.Rows)
                 {
-                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ProductID);
-                    if (ProductID >= 0 && products != null)
+                    if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
                     {
-                        target_product = products.Where(x => x.ID == ProductID).FirstOrDefault();
-                        if (target_product != null)
+                        brandcell = (DataGridViewComboBoxCell)row.Cells["BrandIDColumn"];
+                        brandcolumn = (DataGridViewComboBoxColumn)target_view.Columns["BrandIDColumn"];
+                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ProductID);
+                        if (product_brands != null && products != null)
                         {
-                            brandcell.Value = target_product.BrandID;
+                            target_product = products.Where(x => x.ID == ProductID).FirstOrDefault();
+                            if (target_product != null)
+                            {
+                                target_brand = ent.ProductBrands.Where(x => x.ID == target_product.BrandID).FirstOrDefault();
+                                brandcell.Value = target_brand.ID;
+                            }
                         }
                     }
                 }
@@ -453,6 +461,7 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
     }
 }

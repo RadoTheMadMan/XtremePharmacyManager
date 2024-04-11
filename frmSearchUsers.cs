@@ -270,24 +270,24 @@ namespace XtremePharmacyManager
         private void dgvUsers_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             DataGridView current = (DataGridView)sender;
-            DataGridViewRow lastrow;
             int UserID = -1;
             User currentUser;
             try
             {
-                lastrow = current.Rows[current.Rows.Count - 1];
-                if(lastrow != null && users != null)
+                foreach (DataGridViewRow row in current.Rows)
                 {
-                    Int32.TryParse(lastrow.Cells["IDColumn"].Value.ToString(), out UserID);
-                    if (users != null)
+                    if (row != null && users != null)
                     {
-                        currentUser = users.Where(x=>x.ID == UserID).FirstOrDefault();
-                        if(currentUser != null)
+                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out UserID);
+                        if (users != null)
                         {
-                            DataGridViewComboBoxColumn rolecolumn = (DataGridViewComboBoxColumn)current.Columns["RoleColumn"];
-                            rolecolumn.ValueType = typeof(Int32?);
-                            rolecolumn.ValueMember = "UserRole";
-                            lastrow.Cells["RoleColumn"].Value = currentUser.UserRole;
+                            currentUser = users.Where(x => x.ID == UserID).FirstOrDefault();
+                            if (currentUser != null)
+                            {
+                                DataGridViewComboBoxColumn rolecolumn = (DataGridViewComboBoxColumn)current.Columns["RoleColumn"];
+                                rolecolumn.ValueMember = "UserRole";
+                                row.Cells["RoleColumn"].Value = rolecolumn.Items[currentUser.UserRole];
+                            }
                         }
                     }
                 }

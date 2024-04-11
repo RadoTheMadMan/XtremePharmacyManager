@@ -229,9 +229,8 @@
             this.txtStorageLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtStorageLocation.Location = new System.Drawing.Point(175, 214);
-            this.txtStorageLocation.Multiline = true;
             this.txtStorageLocation.Name = "txtStorageLocation";
-            this.txtStorageLocation.Size = new System.Drawing.Size(220, 56);
+            this.txtStorageLocation.Size = new System.Drawing.Size(220, 22);
             this.txtStorageLocation.TabIndex = 18;
             this.txtStorageLocation.TextChanged += new System.EventHandler(this.txtStorageLocation_TextChanged);
             // 
@@ -243,9 +242,9 @@
             this.lblStorageLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStorageLocation.Location = new System.Drawing.Point(20, 217);
             this.lblStorageLocation.Name = "lblStorageLocation";
-            this.lblStorageLocation.Size = new System.Drawing.Size(69, 16);
+            this.lblStorageLocation.Size = new System.Drawing.Size(129, 16);
             this.lblStorageLocation.TabIndex = 17;
-            this.lblStorageLocation.Text = "Address:";
+            this.lblStorageLocation.Text = "Storage Location:";
             // 
             // txtPartitudeNumber
             // 

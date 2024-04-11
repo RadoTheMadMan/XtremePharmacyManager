@@ -683,7 +683,6 @@ namespace XtremePharmacyManager
             this.RoleColumn.MinimumWidth = 6;
             this.RoleColumn.Name = "RoleColumn";
             this.RoleColumn.ReadOnly = true;
-            this.RoleColumn.ValueMember = "UserRole";
             this.RoleColumn.Width = 125;
             // 
             // frmSearchUsers
