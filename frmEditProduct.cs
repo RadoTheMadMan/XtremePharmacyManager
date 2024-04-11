@@ -73,7 +73,7 @@ namespace XtremePharmacyManager
         {
             if (target != null)
             {
-                target.BrandID = cbSelectBrand.SelectedValue;
+                target.BrandID = Int32.Parse(cbSelectBrand.SelectedValue.ToString());
             }
         }
 
