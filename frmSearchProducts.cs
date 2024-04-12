@@ -452,7 +452,7 @@ namespace XtremePharmacyManager
                             target_product = products.Where(x => x.ID == ProductID).FirstOrDefault();
                             if (target_product != null)
                             {
-                                target_brand = ent.ProductBrands.Where(x => x.ID == target_product.BrandID).FirstOrDefault();
+                                target_brand = product_brands.Where(x => x.ID == target_product.BrandID).FirstOrDefault();
                                 brandcell.Value = target_brand.ID;
                             }
                         }

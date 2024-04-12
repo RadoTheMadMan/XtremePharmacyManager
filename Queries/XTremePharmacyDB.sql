@@ -2576,6 +2576,7 @@ declare @new_order_status as int;
 declare @new_order_reason as varchar(max);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @new_id = ID from inserted;
 select @new_product_id = ProductID from inserted;
 select @new_desired_quantity = DesiredQuantity from inserted;
@@ -2592,7 +2593,8 @@ set @additional_information = 'Order ID: ' + try_cast(@new_id as varchar) + '\n'
 'Client ID: ' + try_cast(@new_client_id as varchar) + '\n' + 'Employee ID: ' + try_cast(@new_employee_id as varchar) + '\n' + 
 'Date Added: ' + try_cast(@new_date_added as varchar) + '\n' + 'Date Modified: ' + try_cast(@new_date_modified as varchar) + '\n' +
 'Status ID: ' + try_cast(@new_order_status as varchar) + '\n' + 'Reason: ' + try_cast(@new_order_reason as varchar) + '\n';
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Order Added', 
 @logmessage = @log_message,
 @additionalinformation = @additional_information;
@@ -2626,6 +2628,7 @@ declare @old_order_reason as varchar(max);
 declare @new_order_reason as varchar(max);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @old_id = ID from deleted;
 select @new_id = ID from inserted;
 select @old_product_id = ProductID from deleted;
@@ -2740,10 +2743,11 @@ set @additional_information = 'Old Order ID: ' + try_cast(@old_id as varchar) + 
 'New Client ID: ' + try_cast(@new_client_id as varchar) + '\n' + 'New Employee ID: ' + try_cast(@new_employee_id as varchar) + '\n' + 
 'New Date Added: ' + try_cast(@new_date_added as varchar) + '\n' + 'New Date Modified: ' + try_cast(@new_date_modified as varchar) + '\n' +
 'New Status ID: ' + try_cast(@new_order_status as varchar) + '\n' + 'New Reason: ' + try_cast(@new_order_reason as varchar) + '\n';
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Order Updated', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 
@@ -2764,6 +2768,7 @@ declare @old_order_status as int;
 declare @old_order_reason as varchar(max);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @old_id = ID from deleted;
 select @old_product_id = ProductID from deleted;
 select @old_desired_quantity = DesiredQuantity from deleted;
@@ -2780,10 +2785,11 @@ set @additional_information = 'Old Order ID: ' + try_cast(@old_id as varchar) + 
 'Old Client ID: ' + try_cast(@old_client_id as varchar) + '\n' + 'Old Employee ID: ' + try_cast(@old_employee_id as varchar) + '\n' + 
 'Old Date Added: ' + try_cast(@old_date_added as varchar) + '\n' + 'Old Date Modified: ' + try_cast(@old_date_modified as varchar) + '\n' +
 'Old Status ID: ' + try_cast(@old_order_status as varchar) + '\n' + 'Old Reason: ' + try_cast(@old_order_reason as varchar) + '\n';
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date,
 @logtitle='[XTremePharmacyDB] Product Order Removed', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 /* the order deliveries triggers will be the same as the product orders and there will be a Hell to pay */
@@ -2803,6 +2809,7 @@ declare @new_delivery_status as int;
 declare @new_delivery_reason as varchar(max);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @new_id = ID from inserted;
 select @new_order_id = OrderID from inserted;
 select @new_service_id = DeliveryServiceID from inserted;
@@ -2818,10 +2825,11 @@ set @additional_information = 'Delivery ID: ' + try_cast(@new_id as varchar) + '
 'Total Price: ' + try_cast(@new_total_price as varchar) + '\n' + 'Date Added: ' + try_cast(@new_date_added as varchar) + '\n' +
 'Date Modified: ' + try_cast(@new_date_modified as varchar) + '\n' + 'Delivery Status ID: ' + try_cast(@new_delivery_status as varchar) + '\n' +
 'Delivery Reason: ' + try_cast(@new_delivery_reason as varchar) + '\n';
-exec AddLog @logdate = getdate, 
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Order Delivery Added', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 
