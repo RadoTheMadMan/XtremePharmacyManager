@@ -33,7 +33,8 @@ namespace XtremePharmacyManager
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSearchProductOrders));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridView dgvProductOrders;
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.imgListProductImages = new System.Windows.Forms.ImageList(this.components);
             this.pnlData = new System.Windows.Forms.Panel();
             this.lblOrderStatus = new System.Windows.Forms.Label();
@@ -71,7 +72,6 @@ namespace XtremePharmacyManager
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dgvProductOrders = new System.Windows.Forms.DataGridView();
             this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productImageBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,13 +84,14 @@ namespace XtremePharmacyManager
             this.OrderDateModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrderStatusColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.OrderReasonColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            dgvProductOrders = new System.Windows.Forms.DataGridView();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbDesiredQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbPriceOverride)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductOrders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(dgvProductOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -540,12 +541,12 @@ namespace XtremePharmacyManager
             // 
             // dgvProductOrders
             // 
-            this.dgvProductOrders.AllowUserToAddRows = false;
-            this.dgvProductOrders.AllowUserToDeleteRows = false;
-            this.dgvProductOrders.AutoGenerateColumns = false;
-            this.dgvProductOrders.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvProductOrders.ColumnHeadersHeight = 29;
-            this.dgvProductOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            dgvProductOrders.AllowUserToAddRows = false;
+            dgvProductOrders.AllowUserToDeleteRows = false;
+            dgvProductOrders.AutoGenerateColumns = false;
+            dgvProductOrders.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dgvProductOrders.ColumnHeadersHeight = 29;
+            dgvProductOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDColumn,
             this.ProductIDColumn,
             this.DesiredQuantityColumn,
@@ -556,26 +557,26 @@ namespace XtremePharmacyManager
             this.OrderDateModifiedColumn,
             this.OrderStatusColumn,
             this.OrderReasonColumn});
-            this.dgvProductOrders.DataSource = this.productOrderBindingSource;
-            this.dgvProductOrders.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProductOrders.Location = new System.Drawing.Point(0, 596);
-            this.dgvProductOrders.MultiSelect = false;
-            this.dgvProductOrders.Name = "dgvProductOrders";
-            this.dgvProductOrders.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductOrders.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvProductOrders.RowHeadersWidth = 51;
-            this.dgvProductOrders.RowTemplate.Height = 24;
-            this.dgvProductOrders.Size = new System.Drawing.Size(820, 317);
-            this.dgvProductOrders.TabIndex = 1;
-            this.dgvProductOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductOrders_CellClick);
-            this.dgvProductOrders.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvProductOrders_RowsAdded);
+            dgvProductOrders.DataSource = this.productOrderBindingSource;
+            dgvProductOrders.Dock = System.Windows.Forms.DockStyle.Fill;
+            dgvProductOrders.Location = new System.Drawing.Point(0, 596);
+            dgvProductOrders.MultiSelect = false;
+            dgvProductOrders.Name = "dgvProductOrders";
+            dgvProductOrders.ReadOnly = true;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            dgvProductOrders.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvProductOrders.RowHeadersWidth = 51;
+            dgvProductOrders.RowTemplate.Height = 24;
+            dgvProductOrders.Size = new System.Drawing.Size(820, 113);
+            dgvProductOrders.TabIndex = 1;
+            dgvProductOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductOrders_CellClick);
+            dgvProductOrders.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvProductOrders_RowsAdded);
             // 
             // productOrderBindingSource
             // 
@@ -708,12 +709,12 @@ namespace XtremePharmacyManager
             // frmSearchProductOrders
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(820, 913);
-            this.Controls.Add(this.dgvProductOrders);
+            this.ClientSize = new System.Drawing.Size(820, 709);
+            this.Controls.Add(dgvProductOrders);
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmSearchProductOrders";
-            this.Text = "Products";
+            this.Text = "Product Orders";
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
@@ -721,7 +722,7 @@ namespace XtremePharmacyManager
             ((System.ComponentModel.ISupportInitialize)(this.trbDesiredQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbPriceOverride)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProductOrders)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(dgvProductOrders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -744,7 +745,6 @@ namespace XtremePharmacyManager
         private System.Windows.Forms.Label lblPriceOverride;
         private System.Windows.Forms.Label lblShowPriceOverride;
         private System.Windows.Forms.TrackBar trbPriceOverride;
-        private System.Windows.Forms.DataGridView dgvProductOrders;
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cbSearchMode;

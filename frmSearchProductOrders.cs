@@ -122,7 +122,7 @@ namespace XtremePharmacyManager
             Int32.TryParse(cbSelectProduct.SelectedValue.ToString(), out ProductID);
             Int32.TryParse(cbSelectEmployee.SelectedValue.ToString(), out EmployeeID);
             Int32.TryParse(cbSelectClient.SelectedValue.ToString(), out ClientID);
-            Int32.TryParse(cbSelectOrderStatus.SelectedValue.ToString(), out OrderStatus);
+            OrderStatus = cbSelectOrderStatus.SelectedIndex;
             DateTime DateAddedFrom = dtDateAddedFrom.Value;
             DateTime DateAddedTo = dtDateAddedTo.Value;
             DateTime DateModifiedFrom = dtDateModifiedFrom.Value;
@@ -428,8 +428,8 @@ namespace XtremePharmacyManager
                         employeecolumn = (DataGridViewComboBoxColumn)target_view.Columns["EmployeeIDColumn"];
                         clientcell = (DataGridViewComboBoxCell)row.Cells["ClientIDColumn"];
                         clientcolumn = (DataGridViewComboBoxColumn)target_view.Columns["ClientIDColumn"];
-                        statuscell = (DataGridViewComboBoxCell)row.Cells["OrderStatusCell"];
-                        statuscolumn = (DataGridViewComboBoxColumn)target_view.Columns["OrderStatusCell"];
+                        statuscell = (DataGridViewComboBoxCell)row.Cells["OrderStatusColumn"];
+                        statuscolumn = (DataGridViewComboBoxColumn)target_view.Columns["OrderStatusColumn"];
                         Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out OrderD);
                         if (products != null && employees != null && clients != null && product_orders != null)
                         {
