@@ -7,6 +7,7 @@ using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -363,7 +364,7 @@ namespace XtremePharmacyManager
             DataGridView target_view = (DataGridView)sender;
             DataGridViewRow row = target_view.Rows[e.RowIndex];
             int ProductID = -1;
-            ProductOrder target_product;
+            ProductOrder target_order;
             try
             {
                 if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
@@ -371,21 +372,21 @@ namespace XtremePharmacyManager
                     Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ProductID);
                     if (ProductID >= 0 && products != null)
                     {
-                        target_product = products.Where(x => x.ID == ProductID).FirstOrDefault();
-                        if (target_product != null)
+                        target_order = product_orders.Where(x => x.ID == ProductID).FirstOrDefault();
+                        if (target_order != null)
                         {
-                            txtID.Text = target_product.ID.ToString();
-                            cbSelectEmployee.SelectedValue = target_product.BrandID;
-                            txtProductName.Text = target_product.ProductName.ToString();
-                            txtProductDescription.Text = target_product.ProductDescription.ToString();
-                            dtDateAddedFrom.Value = target_product.ProductExpiryDate;
-                            txtOrderReason.Text = target_product.ProductRegNum.ToString();
-                            txtProductPartNum.Text = target_product.ProductPartNum.ToString();
-                            txtProductStorageLocation.Text = target_product.ProductStorageLocation.ToString();
-                            trbDesiredQuantity.Value = target_product.ProductQuantity;
-                            lblShowDesiredQuantity.Text = target_product.ProductQuantity.ToString();
-                            trbPriceOverride.Value = Convert.ToInt32(target_product.ProductPrice);
-                            lblShowPriceOverride.Text = target_product.ProductPrice.ToString();
+                            txtID.Text = target_order.ID.ToString();
+                            cbSelectProduct.SelectedValue = target_order.ProductID;
+                            cbSelectEmployee.SelectedValue = target_order.EmployeeID;
+                            cbSelectClient.SelectedValue = target_order.ClientID;
+                            dtDateAddedFrom.Value = target_order.DateAdded;
+                            dtDateModifiedFrom.Value = target_order.DateModified;
+                            txtOrderReason.Text = target_order.OrderReason.ToString();
+                            trbDesiredQuantity.Value = target_order.DesiredQuantity;
+                            lblShowDesiredQuantity.Text = target_order.DesiredQuantity.ToString();
+                            trbPriceOverride.Value = Convert.ToInt32(target_order.OrderPrice);
+                            lblShowPriceOverride.Text = target_order.OrderPrice.ToString();
+                            cbSelectOrderStatus.SelectedValue = cbSelectOrderStatus.Items[target_order.OrderStatus];
                         }
                     }
                 }
@@ -396,7 +397,7 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void dgvProducts_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private void dgvProductOrders_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             DataGridView target_view = (DataGridView)sender;
             DataGridViewComboBoxCell productcell;
