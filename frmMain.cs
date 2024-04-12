@@ -22,11 +22,12 @@ namespace XtremePharmacyManager
     {
         static Entities entities;
         static string connString = "";
-        static frmSearchUsers usersearchform;
-        static frmSearchDeliveryServices deliveryservicesearchform;
+        static frmSearchUsers userssearchform;
+        static frmSearchDeliveryServices deliveryservicessearchform;
         static frmSearchPaymentMethods paymentmethodssearchform;
         static frmSearchProductBrands productbrandssearchform;
         static frmSearchProducts productssearchform;
+        static frmSearchProductOrders orderssearchform;
         public frmMain()
         {
             InitializeComponent();
@@ -92,17 +93,17 @@ namespace XtremePharmacyManager
             {
                 try
                 {
-                    if (usersearchform == null)
+                    if (userssearchform == null)
                     {
-                        usersearchform = new frmSearchUsers(entities);
-                        usersearchform.MdiParent = this;
-                        usersearchform.FormClosed += Usersearchform_FormClosed;
-                        usersearchform.Show();
+                        userssearchform = new frmSearchUsers(entities);
+                        userssearchform.MdiParent = this;
+                        userssearchform.FormClosed += Usersearchform_FormClosed;
+                        userssearchform.Show();
                     }
                     else
                     {
-                        usersearchform.WindowState = FormWindowState.Normal;
-                        usersearchform.Activate();
+                        userssearchform.WindowState = FormWindowState.Normal;
+                        userssearchform.Activate();
                     }
                 }
                 catch(Exception ex)
@@ -114,7 +115,7 @@ namespace XtremePharmacyManager
 
         private void Usersearchform_FormClosed(object sender, FormClosedEventArgs e)
         {
-            usersearchform = null;
+            userssearchform = null;
         }
 
         private void tsmenuTestConnection_Click(object sender, EventArgs e)
@@ -128,17 +129,17 @@ namespace XtremePharmacyManager
             {
                 try
                 {
-                    if (deliveryservicesearchform == null)
+                    if (deliveryservicessearchform == null)
                     {
-                        deliveryservicesearchform = new frmSearchDeliveryServices(entities);
-                        deliveryservicesearchform.MdiParent = this;
-                        deliveryservicesearchform.FormClosed += Deliveryservicessearchform_FormClosed;
-                        deliveryservicesearchform.Show();
+                        deliveryservicessearchform = new frmSearchDeliveryServices(entities);
+                        deliveryservicessearchform.MdiParent = this;
+                        deliveryservicessearchform.FormClosed += Deliveryservicessearchform_FormClosed;
+                        deliveryservicessearchform.Show();
                     }
                     else
                     {
-                        deliveryservicesearchform.WindowState = FormWindowState.Normal;
-                        deliveryservicesearchform.Activate();
+                        deliveryservicessearchform.WindowState = FormWindowState.Normal;
+                        deliveryservicessearchform.Activate();
                     }
                 }
                 catch (Exception ex)
@@ -150,7 +151,7 @@ namespace XtremePharmacyManager
 
         private void Deliveryservicessearchform_FormClosed(object sender, FormClosedEventArgs e)
         {
-            deliveryservicesearchform = null;
+            deliveryservicessearchform = null;
         }
 
         private void tsmenuPaymentMethods_Click(object sender, EventArgs e)
@@ -245,5 +246,36 @@ namespace XtremePharmacyManager
         {
             productssearchform = null;
         }
-}
+
+        private void tsmenuProductOrders_Click(object sender, EventArgs e)
+        {
+            if (entities.Database.Connection.State == ConnectionState.Open)
+            {
+                try
+                {
+                    if (orderssearchform == null)
+                    {
+                        orderssearchform = new frmSearchProductOrders(entities);
+                        orderssearchform.MdiParent = this;
+                        orderssearchform.FormClosed += Orderssearchform_FormClosed;
+                        orderssearchform.Show();
+                    }
+                    else
+                    {
+                        orderssearchform.WindowState = FormWindowState.Normal;
+                        orderssearchform.Activate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void Orderssearchform_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            orderssearchform = null;
+        }
+    }
 }

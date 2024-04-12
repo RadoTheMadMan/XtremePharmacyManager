@@ -201,7 +201,8 @@ namespace XtremePharmacyManager
                         Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out OrderID);
                         if (OrderID > 0)
                         {
-                            selectedOrder = product_orders.Where(x => x.ID == OrderID).FirstOrDefault();
+                            //For Orders we will not allow anyone to edit orders who were completed, returned or cancelled
+                            selectedOrder = product_orders.Where(x => x.ID == OrderID && (x.OrderStatus != 7 || x.OrderStatus!= 8 || x.OrderStatus != 9)).FirstOrDefault();
                             if (selectedOrder != null)
                             {
                                 //Show the editor window to edit the selected user
@@ -211,8 +212,8 @@ namespace XtremePharmacyManager
                                 {
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
-                                        ent.UpdateProductOrderByID(selectedOrder.ID,selectedOrder.ProductID,selectedOrder.DesiredQuantity,
-                                            selectedOrder.OrderPrice,selectedOrder.ClientID,selectedOrder.EmployeeID,selectedOrder.OrderStatus,
+                                        ent.UpdateProductOrderByID(selectedOrder.ID, selectedOrder.ProductID, selectedOrder.DesiredQuantity,
+                                            selectedOrder.OrderPrice, selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderStatus,
                                             selectedOrder.OrderReason);
                                         RefreshEmployees();
                                         RefreshClients();
@@ -231,8 +232,8 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         bool OverridePriceAsTotal = false;
-                                        DialogResult res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                        if(res == DialogResult.Yes)
+                                        res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                        if (res == DialogResult.Yes)
                                         {
                                             ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                             selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, true);
@@ -261,7 +262,7 @@ namespace XtremePharmacyManager
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
                                     bool OverridePriceAsTotal = false;
-                                    DialogResult res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                     if (res == DialogResult.Yes)
                                     {
                                         ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
@@ -279,7 +280,7 @@ namespace XtremePharmacyManager
                                 }
                             }
                         }
-                }
+                    }
                     else
                     {
                         //Create a new one
@@ -290,7 +291,7 @@ namespace XtremePharmacyManager
                             if (ent.Database.Connection.State == ConnectionState.Open)
                             {
                                 bool OverridePriceAsTotal = false;
-                                DialogResult res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                 if (res == DialogResult.Yes)
                                 {
                                     ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
@@ -308,6 +309,8 @@ namespace XtremePharmacyManager
                             }
                         }
                     }
+                }
+            }
             catch (Exception ex)
             {
                 MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -178,11 +178,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="frmEditProduct - Copy.cs">
+    <Compile Include="frmEditProductOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmEditProduct - Copy.Designer.cs">
-      <DependentUpon>frmEditProduct - Copy.cs</DependentUpon>
+    <Compile Include="frmEditProductOrder.Designer.cs">
+      <DependentUpon>frmEditProductOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="frmEditProductImage.cs">
       <SubType>Form</SubType>
@@ -266,8 +266,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <EmbeddedResource Include="frmEditProduct - Copy.resx">
-      <DependentUpon>frmEditProduct - Copy.cs</DependentUpon>
+    <EmbeddedResource Include="frmEditProductOrder.resx">
+      <DependentUpon>frmEditProductOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEditProductImage.resx">
       <DependentUpon>frmEditProductImage.cs</DependentUpon>
