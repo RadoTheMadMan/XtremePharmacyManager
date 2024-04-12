@@ -443,7 +443,7 @@ namespace XtremePharmacyManager
             this.dgvProductOrders.RowTemplate.Height = 24;
             this.dgvProductOrders.Size = new System.Drawing.Size(820, 279);
             this.dgvProductOrders.TabIndex = 1;
-            this.dgvProductOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellClick);
+            this.dgvProductOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductOrders_CellClick);
             this.dgvProductOrders.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvProducts_RowsAdded);
             // 
             // productBindingSource

@@ -33,8 +33,8 @@ namespace XtremePharmacyManager
             InitializeComponent();
             RefreshEmployees();
             RefreshClients();
-            RefreshProductOrders();
             RefreshProducts();
+            RefreshProductOrders();
         }
 
         private void RefreshProducts()
@@ -133,49 +133,37 @@ namespace XtremePharmacyManager
             if (SearchMode == 1)
             {
                 RefreshProducts();
-                RefreshClients();
                 RefreshEmployees();
+                RefreshClients();
                 product_orders = ent.ProductOrders.Where(
                     x => x.ID == OrderID ^ x.ProductID == ProductID ^ x.EmployeeID == EmployeeID ^ x.ClientID == ClientID ^
                         (x.DateAdded >= DateAddedFrom && x.DateAdded <= DateAddedTo) ^ x.OrderReason.Contains(OrderReason) ^
                         (x.DateModified >= DateModifiedFrom && x.DateModified <= DateModifiedTo) ^ x.OrderStatus == OrderStatus ^
                         (x.DesiredQuantity <= DesiredQuantity || x.DesiredQuantity >= DesiredQuantity) ^ 
                         (x.OrderPrice <= PriceOverride || x.OrderPrice >= PriceOverride)).ToList();
-                dgvProductOrders.DataSource = products;
-                int[] extractedids = new int[products.Count];
-                for (int i = 0; i < extractedids.Count(); i++)
-                {
-                    extractedids[i] = products[i].ID;
-                }
+                dgvProductOrders.DataSource = product_orders;
             }
             else if (SearchMode == 2)
             {
+                RefreshProducts();
                 RefreshEmployees();
-                products = ent.Products.Where(
-                    x => x.ID == OrderID || x.BrandID == EmployeeID || x.ProductName.Contains(ProductName) || x.ProductDescription.Contains(ProductDescription) ||
-                        (x.ProductExpiryDate >= DateAddedFrom && x.ProductExpiryDate <= DateAddedTo) || x.ProductRegNum.Contains(OrderReason) ||
-                        x.ProductPartNum.Contains(PartitudeNumber) || x.ProductStorageLocation.Contains(StorageLocation) ||
-                        (x.ProductQuantity <= DesiredQuantity || x.ProductQuantity >= DesiredQuantity) || (x.ProductPrice <= PriceOverride || x.ProductPrice >= PriceOverride)).ToList();
-                dgvProductOrders.DataSource = products;
-                int[] extractedids = new int[products.Count];
-                for (int i = 0; i < extractedids.Count(); i++)
-                {
-                    extractedids[i] = products[i].ID;
-                }
-                RefreshProductImages(extractedids, true);
+                RefreshClients();
+                product_orders = ent.ProductOrders.Where(
+                    x => x.ID == OrderID || x.ProductID == ProductID || x.EmployeeID == EmployeeID || x.ClientID == ClientID ||
+                        (x.DateAdded >= DateAddedFrom && x.DateAdded <= DateAddedTo) || x.OrderReason.Contains(OrderReason) ||
+                        (x.DateModified >= DateModifiedFrom && x.DateModified <= DateModifiedTo) || x.OrderStatus == OrderStatus ||
+                        (x.DesiredQuantity <= DesiredQuantity || x.DesiredQuantity >= DesiredQuantity) ||
+                        (x.OrderPrice <= PriceOverride || x.OrderPrice >= PriceOverride)).ToList();
+                dgvProductOrders.DataSource = product_orders;
             }
             else if (SearchMode == 3)
             {
+                RefreshProducts();
                 RefreshEmployees();
-                products = ent.GetProduct(OrderID, ProductName, EmployeeID, ProductDescription, DesiredQuantity, PriceOverride, DateAddedFrom, DateAddedTo, OrderReason,
-                    PartitudeNumber, StorageLocation).ToList();
-                dgvProductOrders.DataSource = products;
-                int[] extractedids = new int[products.Count];
-                for (int i = 0; i < extractedids.Count(); i++)
-                {
-                    extractedids[i] = products[i].ID;
-                }
-                RefreshProductImages(extractedids, true);
+                RefreshClients();
+                product_orders = ent.GetProductOrder(OrderID,ProductID,DesiredQuantity,PriceOverride,ClientID,EmployeeID,
+                    DateAddedFrom,DateAddedTo,DateModifiedFrom,DateModifiedTo,OrderStatus,OrderReason).ToList();
+                dgvProductOrders.DataSource = product_orders;
             }
             else
             {
@@ -200,8 +188,8 @@ namespace XtremePharmacyManager
         {
             //The Datagrid is with multiselect as false so one thing is selected at a time
             DataGridViewRow row;
-            int ProductID = -1;
-            Product selectedProduct;
+            int OrderID = -1;
+            ProductOrder selectedOrder;
             try
             {
                 if (dgvProductOrders.SelectedRows.Count > 0)
@@ -209,86 +197,116 @@ namespace XtremePharmacyManager
                     row = dgvProductOrders.SelectedRows[0];
                     if (row != null && products != null)
                     {
-                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ProductID);
-                        if (ProductID > 0)
+                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out OrderID);
+                        if (OrderID > 0)
                         {
-                            selectedProduct = products.Where(x => x.ID == ProductID).FirstOrDefault();
-                            if (selectedProduct != null)
+                            selectedOrder = product_orders.Where(x => x.ID == OrderID).FirstOrDefault();
+                            if (selectedOrder != null)
                             {
                                 //Show the editor window to edit the selected user
                                 //on dialog result yes update it
-                                DialogResult res = new frmEditProduct(ref selectedProduct, ref product_brands).ShowDialog();
+                                DialogResult res = new frmEditProductOrder(ref selectedOrder, ref products, ref clients, ref employees).ShowDialog();
                                 if (res == DialogResult.OK)
                                 {
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
-                                        ent.UpdateProductByID(selectedProduct.ID, selectedProduct.ProductName, selectedProduct.BrandID,
-                                            selectedProduct.ProductDescription, selectedProduct.ProductQuantity, selectedProduct.ProductPrice,
-                                            selectedProduct.ProductExpiryDate, selectedProduct.ProductRegNum, selectedProduct.ProductPartNum,
-                                            selectedProduct.ProductStorageLocation);
+                                        ent.UpdateProductOrderByID(selectedOrder.ID,selectedOrder.ProductID,selectedOrder.DesiredQuantity,
+                                            selectedOrder.OrderPrice,selectedOrder.ClientID,selectedOrder.EmployeeID,selectedOrder.OrderStatus,
+                                            selectedOrder.OrderReason);
                                         RefreshEmployees();
+                                        RefreshClients();
                                         RefreshProducts();
-                                        RefreshProductImages();
+                                        RefreshProductOrders();
                                     }
                                 }
                             }
                             else
                             {
                                 //Create a new one
-                                selectedProduct = new Product();
-                                DialogResult res = new frmEditProduct(ref selectedProduct, ref product_brands).ShowDialog();
+                                selectedOrder = new ProductOrder();
+                                DialogResult res = new frmEditProductOrder(ref selectedOrder, ref products, ref clients, ref employees).ShowDialog();
                                 if (res == DialogResult.OK)
                                 {
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
-                                        ent.AddProduct(selectedProduct.ProductName, selectedProduct.BrandID, selectedProduct.ProductDescription,
-                                            selectedProduct.ProductQuantity, selectedProduct.ProductPrice, selectedProduct.ProductExpiryDate,
-                                            selectedProduct.ProductRegNum, selectedProduct.ProductPartNum, selectedProduct.ProductStorageLocation);
+                                        bool OverridePriceAsTotal = false;
+                                        DialogResult res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                        if(res == DialogResult.Yes)
+                                        {
+                                            ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
+                                            selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, true);
+                                        }
+                                        else
+                                        {
+                                            ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
+                                            selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, false);
+                                        }
                                         RefreshEmployees();
+                                        RefreshClients();
                                         RefreshProducts();
-                                        RefreshProductImages();
+                                        RefreshProductOrders();
                                     }
                                 }
-                                //show the editor and after the editor confirms add it
+                                //show the editor and after the editor confirms add it and ask question if the price will be overriden as total
                             }
                         }
                         else
                         {
-                            selectedProduct = new Product();
-                            DialogResult res = new frmEditProduct(ref selectedProduct, ref product_brands).ShowDialog();
+                            //Create a new one
+                            selectedOrder = new ProductOrder();
+                            DialogResult res = new frmEditProductOrder(ref selectedOrder, ref products, ref clients, ref employees).ShowDialog();
                             if (res == DialogResult.OK)
                             {
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
-                                    ent.AddProduct(selectedProduct.ProductName, selectedProduct.BrandID, selectedProduct.ProductDescription,
-                                        selectedProduct.ProductQuantity, selectedProduct.ProductPrice, selectedProduct.ProductExpiryDate,
-                                        selectedProduct.ProductRegNum, selectedProduct.ProductPartNum, selectedProduct.ProductStorageLocation);
+                                    bool OverridePriceAsTotal = false;
+                                    DialogResult res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    if (res == DialogResult.Yes)
+                                    {
+                                        ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
+                                        selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, true);
+                                    }
+                                    else
+                                    {
+                                        ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
+                                        selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, false);
+                                    }
                                     RefreshEmployees();
+                                    RefreshClients();
                                     RefreshProducts();
-                                    RefreshProductImages();
+                                    RefreshProductOrders();
                                 }
                             }
                         }
-                    }
                 }
-                else
-                {
-                    selectedProduct = new Product();
-                    DialogResult res = new frmEditProduct(ref selectedProduct, ref product_brands).ShowDialog();
-                    if (res == DialogResult.OK)
+                    else
                     {
-                        if (ent.Database.Connection.State == ConnectionState.Open)
+                        //Create a new one
+                        selectedOrder = new ProductOrder();
+                        DialogResult res = new frmEditProductOrder(ref selectedOrder, ref products, ref clients, ref employees).ShowDialog();
+                        if (res == DialogResult.OK)
                         {
-                            ent.AddProduct(selectedProduct.ProductName, selectedProduct.BrandID, selectedProduct.ProductDescription,
-                                selectedProduct.ProductQuantity, selectedProduct.ProductPrice, selectedProduct.ProductExpiryDate,
-                                selectedProduct.ProductRegNum, selectedProduct.ProductPartNum, selectedProduct.ProductStorageLocation);
-                            RefreshEmployees();
-                            RefreshProducts();
-                            RefreshProductImages();
+                            if (ent.Database.Connection.State == ConnectionState.Open)
+                            {
+                                bool OverridePriceAsTotal = false;
+                                DialogResult res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (res == DialogResult.Yes)
+                                {
+                                    ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
+                                    selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, true);
+                                }
+                                else
+                                {
+                                    ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
+                                    selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, false);
+                                }
+                                RefreshEmployees();
+                                RefreshClients();
+                                RefreshProducts();
+                                RefreshProductOrders();
+                            }
                         }
                     }
-                }
-            }
             catch (Exception ex)
             {
                 MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -299,8 +317,8 @@ namespace XtremePharmacyManager
         {
             //The Datagrid is with multiselect as false so one thing is selected at a time
             DataGridViewRow row;
-            int ProductID = -1;
-            Product selectedProduct;
+            int OrderID = -1;
+            ProductOrder selectedOrder;
             try
             {
                 if (dgvProductOrders.SelectedRows.Count > 0)
@@ -308,11 +326,11 @@ namespace XtremePharmacyManager
                     row = dgvProductOrders.SelectedRows[0];
                     if (row != null && products != null)
                     {
-                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ProductID);
-                        if (ProductID > 0)
+                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out OrderID);
+                        if (OrderID > 0)
                         {
-                            selectedProduct = products.Where(x => x.ID == ProductID).FirstOrDefault();
-                            if (selectedProduct != null)
+                            selectedOrder = product_orders.Where(x => x.ID == OrderID).FirstOrDefault();
+                            if (selectedOrder != null)
                             {
                                 //Show the editor window to edit the selected user
                                 //on dialog result yes update it
@@ -322,8 +340,11 @@ namespace XtremePharmacyManager
                                 {
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
-                                        ent.DeleteProductByID(selectedProduct.ID);
+                                        ent.DeleteProductOrderByID(selectedOrder.ID);
+                                        RefreshEmployees();
+                                        RefreshClients();
                                         RefreshProducts();
+                                        RefreshProductOrders();
                                     }
                                 }
                             }
@@ -337,12 +358,12 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvProductOrders_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView target_view = (DataGridView)sender;
             DataGridViewRow row = target_view.Rows[e.RowIndex];
             int ProductID = -1;
-            Product target_product;
+            ProductOrder target_product;
             try
             {
                 if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)

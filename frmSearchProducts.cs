@@ -377,7 +377,9 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteProductByID(selectedProduct.ID);
+                                        RefreshProductBrands();
                                         RefreshProducts();
+                                        RefreshProductImages();
                                     }
                                 }
                             }
