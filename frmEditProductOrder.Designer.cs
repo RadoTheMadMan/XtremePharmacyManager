@@ -153,7 +153,7 @@
             // cbSelectEmployee
             // 
             this.cbSelectEmployee.DataSource = this.userBindingSource1;
-            this.cbSelectEmployee.DisplayMember = "ID";
+            this.cbSelectEmployee.DisplayMember = "UserDisplayName";
             this.cbSelectEmployee.FormattingEnabled = true;
             this.cbSelectEmployee.Location = new System.Drawing.Point(176, 110);
             this.cbSelectEmployee.Name = "cbSelectEmployee";
@@ -181,7 +181,7 @@
             // cbSelectClient
             // 
             this.cbSelectClient.DataSource = this.userBindingSource;
-            this.cbSelectClient.DisplayMember = "ID";
+            this.cbSelectClient.DisplayMember = "UserDisplayName";
             this.cbSelectClient.FormattingEnabled = true;
             this.cbSelectClient.Location = new System.Drawing.Point(176, 73);
             this.cbSelectClient.Name = "cbSelectClient";
@@ -245,7 +245,7 @@
             // cbSelectProduct
             // 
             this.cbSelectProduct.DataSource = this.productBindingSource;
-            this.cbSelectProduct.DisplayMember = "ID";
+            this.cbSelectProduct.DisplayMember = "ProductName";
             this.cbSelectProduct.FormattingEnabled = true;
             this.cbSelectProduct.Location = new System.Drawing.Point(176, 42);
             this.cbSelectProduct.Name = "cbSelectProduct";

@@ -411,7 +411,10 @@ namespace XtremePharmacyManager
                         {
                             txtID.Text = target_product.ID.ToString();
                             txtReferencedID.Text = target_product.ID.ToString();
-                            cbSelectBrand.SelectedValue = target_product.BrandID;
+                            if (cbSelectBrand.Items.Contains(target_product.BrandID))
+                            {
+                                cbSelectBrand.SelectedValue = target_product.BrandID;
+                            }
                             txtProductName.Text = target_product.ProductName.ToString();
                             txtProductDescription.Text = target_product.ProductDescription.ToString();
                             dtExpiryDateFrom.Value = target_product.ProductExpiryDate;
@@ -455,7 +458,10 @@ namespace XtremePharmacyManager
                             if (target_product != null)
                             {
                                 target_brand = product_brands.Where(x => x.ID == target_product.BrandID).FirstOrDefault();
-                                brandcell.Value = target_brand.ID;
+                                if (target_brand != null)
+                                {
+                                    brandcell.Value = target_brand.ID;
+                                }
                             }
                         }
                     }

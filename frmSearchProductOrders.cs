@@ -196,7 +196,7 @@ namespace XtremePharmacyManager
                 if (dgvProductOrders.SelectedRows.Count > 0)
                 {
                     row = dgvProductOrders.SelectedRows[0];
-                    if (row != null && products != null)
+                    if (row != null && product_orders != null && products != null && clients != null && employees != null)
                     {
                         Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out OrderID);
                         if (OrderID > 0)
@@ -281,32 +281,32 @@ namespace XtremePharmacyManager
                             }
                         }
                     }
-                    else
+                }
+                else
+                {
+                    //Create a new one
+                    selectedOrder = new ProductOrder();
+                    DialogResult res = new frmEditProductOrder(ref selectedOrder, ref products, ref clients, ref employees).ShowDialog();
+                    if (res == DialogResult.OK)
                     {
-                        //Create a new one
-                        selectedOrder = new ProductOrder();
-                        DialogResult res = new frmEditProductOrder(ref selectedOrder, ref products, ref clients, ref employees).ShowDialog();
-                        if (res == DialogResult.OK)
+                        if (ent.Database.Connection.State == ConnectionState.Open)
                         {
-                            if (ent.Database.Connection.State == ConnectionState.Open)
+                            bool OverridePriceAsTotal = false;
+                            res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            if (res == DialogResult.Yes)
                             {
-                                bool OverridePriceAsTotal = false;
-                                res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                if (res == DialogResult.Yes)
-                                {
-                                    ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
-                                    selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, true);
-                                }
-                                else
-                                {
-                                    ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
-                                    selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, false);
-                                }
-                                RefreshEmployees();
-                                RefreshClients();
-                                RefreshProducts();
-                                RefreshProductOrders();
+                                ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
+                                selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, true);
                             }
+                            else
+                            {
+                                ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
+                                selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, false);
+                            }
+                            RefreshEmployees();
+                            RefreshClients();
+                            RefreshProducts();
+                            RefreshProductOrders();
                         }
                     }
                 }
@@ -379,9 +379,18 @@ namespace XtremePharmacyManager
                         if (target_order != null)
                         {
                             txtID.Text = target_order.ID.ToString();
-                            cbSelectProduct.SelectedValue = target_order.ProductID;
-                            cbSelectEmployee.SelectedValue = target_order.EmployeeID;
-                            cbSelectClient.SelectedValue = target_order.ClientID;
+                            if (cbSelectProduct.Items.Contains(products.Where(x=>x.ID ==target_order.ProductID)))
+                            {
+                                cbSelectProduct.SelectedValue = target_order.ProductID;
+                            }
+                            if (cbSelectEmployee.Items.Contains(employees.Where(x=>x.ID == target_order.EmployeeID)))
+                            {
+                                cbSelectEmployee.SelectedValue = target_order.EmployeeID;
+                            }
+                            if (cbSelectClient.Items.Contains(clients.Where(x=>x.ID == target_order.ClientID)))
+                            {
+                                cbSelectClient.SelectedValue = target_order.ClientID;
+                            }
                             dtDateAddedFrom.Value = target_order.DateAdded;
                             dtDateModifiedFrom.Value = target_order.DateModified;
                             txtOrderReason.Text = target_order.OrderReason.ToString();
@@ -437,11 +446,20 @@ namespace XtremePharmacyManager
                             if (target_product_order != null)
                             {
                                 target_product = products.Where(x => x.ID == target_product_order.ProductID).FirstOrDefault();
-                                productcell.Value = target_product.ID;
+                                if (target_product != null)
+                                {
+                                    productcell.Value = target_product.ID;
+                                }
                                 target_employee = employees.Where(x => x.ID == target_product_order.EmployeeID).FirstOrDefault();
-                                employeecell.Value = target_employee.ID;
+                                if (target_employee != null)
+                                {
+                                    employeecell.Value = target_employee.ID;
+                                }
                                 target_client = clients.Where(x => x.ID == target_product_order.ClientID).FirstOrDefault();
-                                clientcell.Value = target_client.ID;
+                                if (target_client != null)
+                                {
+                                    clientcell.Value = target_client.ID;
+                                }
                                 statuscell.Value = statuscolumn.Items[target_product_order.OrderStatus];
                             }
                         }
