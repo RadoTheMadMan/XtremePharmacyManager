@@ -112,45 +112,51 @@ namespace XtremePharmacyManager
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
+            int OrderID = -1;
             int ProductID = -1;
-            int BrandID = -1;
-            Int32.TryParse(txtID.Text, out ProductID);
-            Int32.TryParse(cbSelectEmployee.SelectedValue.ToString(), out BrandID);
-            string ProductName = txtProductName.Text;
-            string ProductDescription = txtProductDescription.Text;
-            DateTime ExpiryDateFrom = dtDateAddedFrom.Value;
-            DateTime ExpiryDateTo = dtDateAddedTo.Value;
-            string RegistrationNumber = txtOrderReason.Text;
-            string PartitudeNumber = txtProductPartNum.Text;
-            string StorageLocation = txtProductStorageLocation.Text;
-            int Quantity = trbDesiredQuantity.Value;
-            decimal Price = trbPriceOverride.Value;
+            int EmployeeID = -1;
+            int ClientID = -1;
+            int OrderStatus = 0;
+            Int32.TryParse(txtID.Text, out OrderID);
+            Int32.TryParse(cbSelectProduct.SelectedValue.ToString(), out ProductID);
+            Int32.TryParse(cbSelectEmployee.SelectedValue.ToString(), out EmployeeID);
+            Int32.TryParse(cbSelectClient.SelectedValue.ToString(), out ClientID);
+            Int32.TryParse(cbSelectOrderStatus.SelectedValue.ToString(), out OrderStatus);
+            DateTime DateAddedFrom = dtDateAddedFrom.Value;
+            DateTime DateAddedTo = dtDateAddedTo.Value;
+            DateTime DateModifiedFrom = dtDateModifiedFrom.Value;
+            DateTime DateModifiedTo = dtDateModifiedTo.Value;
+            int DesiredQuantity = trbDesiredQuantity.Value;
+            decimal PriceOverride = trbPriceOverride.Value;
+            string OrderReason = txtOrderReason.Text;
             int SearchMode = cbSearchMode.SelectedIndex;
             if (SearchMode == 1)
             {
+                RefreshProducts();
+                RefreshClients();
                 RefreshEmployees();
-                products = ent.Products.Where(
-                    x => x.ID == ProductID ^ x.BrandID == BrandID ^ x.ProductName.Contains(ProductName) ^ x.ProductDescription.Contains(ProductDescription) ^
-                        (x.ProductExpiryDate >= ExpiryDateFrom && x.ProductExpiryDate <= ExpiryDateTo) ^ x.ProductRegNum.Contains(RegistrationNumber) ^
-                        x.ProductPartNum.Contains(PartitudeNumber) ^ x.ProductStorageLocation.Contains(StorageLocation) ^
-                        (x.ProductQuantity <= Quantity || x.ProductQuantity >= Quantity) ^ (x.ProductPrice <= Price || x.ProductPrice >= Price)).ToList();
-                dgvProducts.DataSource = products;
+                product_orders = ent.ProductOrders.Where(
+                    x => x.ID == OrderID ^ x.ProductID == ProductID ^ x.EmployeeID == EmployeeID ^ x.ClientID == ClientID ^
+                        (x.DateAdded >= DateAddedFrom && x.DateAdded <= DateAddedTo) ^ x.OrderReason.Contains(OrderReason) ^
+                        (x.DateModified >= DateModifiedFrom && x.DateModified <= DateModifiedTo) ^ x.OrderStatus == OrderStatus ^
+                        (x.DesiredQuantity <= DesiredQuantity || x.DesiredQuantity >= DesiredQuantity) ^ 
+                        (x.OrderPrice <= PriceOverride || x.OrderPrice >= PriceOverride)).ToList();
+                dgvProductOrders.DataSource = products;
                 int[] extractedids = new int[products.Count];
                 for (int i = 0; i < extractedids.Count(); i++)
                 {
                     extractedids[i] = products[i].ID;
                 }
-                RefreshProductImages(extractedids, true);
             }
             else if (SearchMode == 2)
             {
                 RefreshEmployees();
                 products = ent.Products.Where(
-                    x => x.ID == ProductID || x.BrandID == BrandID || x.ProductName.Contains(ProductName) || x.ProductDescription.Contains(ProductDescription) ||
-                        (x.ProductExpiryDate >= ExpiryDateFrom && x.ProductExpiryDate <= ExpiryDateTo) || x.ProductRegNum.Contains(RegistrationNumber) ||
+                    x => x.ID == OrderID || x.BrandID == EmployeeID || x.ProductName.Contains(ProductName) || x.ProductDescription.Contains(ProductDescription) ||
+                        (x.ProductExpiryDate >= DateAddedFrom && x.ProductExpiryDate <= DateAddedTo) || x.ProductRegNum.Contains(OrderReason) ||
                         x.ProductPartNum.Contains(PartitudeNumber) || x.ProductStorageLocation.Contains(StorageLocation) ||
-                        (x.ProductQuantity <= Quantity || x.ProductQuantity >= Quantity) || (x.ProductPrice <= Price || x.ProductPrice >= Price)).ToList();
-                dgvProducts.DataSource = products;
+                        (x.ProductQuantity <= DesiredQuantity || x.ProductQuantity >= DesiredQuantity) || (x.ProductPrice <= PriceOverride || x.ProductPrice >= PriceOverride)).ToList();
+                dgvProductOrders.DataSource = products;
                 int[] extractedids = new int[products.Count];
                 for (int i = 0; i < extractedids.Count(); i++)
                 {
@@ -161,9 +167,9 @@ namespace XtremePharmacyManager
             else if (SearchMode == 3)
             {
                 RefreshEmployees();
-                products = ent.GetProduct(ProductID, ProductName, BrandID, ProductDescription, Quantity, Price, ExpiryDateFrom, ExpiryDateTo, RegistrationNumber,
+                products = ent.GetProduct(OrderID, ProductName, EmployeeID, ProductDescription, DesiredQuantity, PriceOverride, DateAddedFrom, DateAddedTo, OrderReason,
                     PartitudeNumber, StorageLocation).ToList();
-                dgvProducts.DataSource = products;
+                dgvProductOrders.DataSource = products;
                 int[] extractedids = new int[products.Count];
                 for (int i = 0; i < extractedids.Count(); i++)
                 {
@@ -173,9 +179,10 @@ namespace XtremePharmacyManager
             }
             else
             {
-                RefreshEmployees();
                 RefreshProducts();
-                RefreshProductImages();
+                RefreshEmployees();
+                RefreshClients();
+                RefreshProductOrders();
             }
         }
 
@@ -197,9 +204,9 @@ namespace XtremePharmacyManager
             Product selectedProduct;
             try
             {
-                if (dgvProducts.SelectedRows.Count > 0)
+                if (dgvProductOrders.SelectedRows.Count > 0)
                 {
-                    row = dgvProducts.SelectedRows[0];
+                    row = dgvProductOrders.SelectedRows[0];
                     if (row != null && products != null)
                     {
                         Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ProductID);
@@ -296,9 +303,9 @@ namespace XtremePharmacyManager
             Product selectedProduct;
             try
             {
-                if (dgvProducts.SelectedRows.Count > 0)
+                if (dgvProductOrders.SelectedRows.Count > 0)
                 {
-                    row = dgvProducts.SelectedRows[0];
+                    row = dgvProductOrders.SelectedRows[0];
                     if (row != null && products != null)
                     {
                         Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ProductID);

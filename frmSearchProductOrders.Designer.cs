@@ -59,18 +59,7 @@ namespace XtremePharmacyManager
             this.lblSelectProduct = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
-            this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrandIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.ProductNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductDescriptionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductQuantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductExpiryDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductRegistrationNumColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductPartitudeNumColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductSLocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvProductOrders = new System.Windows.Forms.DataGridView();
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productImageBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -85,11 +74,21 @@ namespace XtremePharmacyManager
             this.lblOrderStatus = new System.Windows.Forms.Label();
             this.cbSelectOrderStatus = new System.Windows.Forms.ComboBox();
             this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.DesiredQuantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmployeeIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ClientIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.OrderDateAddedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderDateModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderStatusColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.OrderReasonColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbDesiredQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbPriceOverride)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).BeginInit();
@@ -150,7 +149,7 @@ namespace XtremePharmacyManager
             this.trbDesiredQuantity.Maximum = 5000;
             this.trbDesiredQuantity.MaximumSize = new System.Drawing.Size(5000, 50);
             this.trbDesiredQuantity.Name = "trbDesiredQuantity";
-            this.trbDesiredQuantity.Size = new System.Drawing.Size(219, 2);
+            this.trbDesiredQuantity.Size = new System.Drawing.Size(219, 50);
             this.trbDesiredQuantity.TabIndex = 38;
             this.trbDesiredQuantity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbDesiredQuantity.Scroll += new System.EventHandler(this.trbQuantity_Scroll);
@@ -268,7 +267,7 @@ namespace XtremePharmacyManager
             this.trbPriceOverride.Maximum = 5000;
             this.trbPriceOverride.MaximumSize = new System.Drawing.Size(5000, 50);
             this.trbPriceOverride.Name = "trbPriceOverride";
-            this.trbPriceOverride.Size = new System.Drawing.Size(219, 2);
+            this.trbPriceOverride.Size = new System.Drawing.Size(219, 50);
             this.trbPriceOverride.TabIndex = 21;
             this.trbPriceOverride.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbPriceOverride.Scroll += new System.EventHandler(this.trbPrice_Scroll);
@@ -408,31 +407,30 @@ namespace XtremePharmacyManager
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
-            // dgvProducts
+            // dgvProductOrders
             // 
-            this.dgvProducts.AllowUserToAddRows = false;
-            this.dgvProducts.AllowUserToDeleteRows = false;
-            this.dgvProducts.AutoGenerateColumns = false;
-            this.dgvProducts.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.dgvProducts.ColumnHeadersHeight = 29;
-            this.dgvProducts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvProductOrders.AllowUserToAddRows = false;
+            this.dgvProductOrders.AllowUserToDeleteRows = false;
+            this.dgvProductOrders.AutoGenerateColumns = false;
+            this.dgvProductOrders.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvProductOrders.ColumnHeadersHeight = 29;
+            this.dgvProductOrders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDColumn,
-            this.BrandIDColumn,
-            this.ProductNameColumn,
-            this.ProductDescriptionColumn,
-            this.ProductQuantityColumn,
-            this.ProductPriceColumn,
-            this.ProductExpiryDateColumn,
-            this.ProductRegistrationNumColumn,
-            this.ProductPartitudeNumColumn,
-            this.ProductSLocationColumn,
-            this.iDDataGridViewTextBoxColumn});
-            this.dgvProducts.DataSource = this.productOrderBindingSource;
-            this.dgvProducts.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProducts.Location = new System.Drawing.Point(0, 549);
-            this.dgvProducts.MultiSelect = false;
-            this.dgvProducts.Name = "dgvProducts";
-            this.dgvProducts.ReadOnly = true;
+            this.ProductIDColumn,
+            this.DesiredQuantityColumn,
+            this.OrderPriceColumn,
+            this.EmployeeIDColumn,
+            this.ClientIDColumn,
+            this.OrderDateAddedColumn,
+            this.OrderDateModifiedColumn,
+            this.OrderStatusColumn,
+            this.OrderReasonColumn});
+            this.dgvProductOrders.DataSource = this.productOrderBindingSource;
+            this.dgvProductOrders.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvProductOrders.Location = new System.Drawing.Point(0, 549);
+            this.dgvProductOrders.MultiSelect = false;
+            this.dgvProductOrders.Name = "dgvProductOrders";
+            this.dgvProductOrders.ReadOnly = true;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -440,119 +438,13 @@ namespace XtremePharmacyManager
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProducts.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvProducts.RowHeadersWidth = 51;
-            this.dgvProducts.RowTemplate.Height = 24;
-            this.dgvProducts.Size = new System.Drawing.Size(820, 106);
-            this.dgvProducts.TabIndex = 1;
-            this.dgvProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellClick);
-            this.dgvProducts.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvProducts_RowsAdded);
-            // 
-            // IDColumn
-            // 
-            this.IDColumn.DataPropertyName = "ID";
-            this.IDColumn.HeaderText = "ID";
-            this.IDColumn.MinimumWidth = 6;
-            this.IDColumn.Name = "IDColumn";
-            this.IDColumn.ReadOnly = true;
-            this.IDColumn.Width = 125;
-            // 
-            // BrandIDColumn
-            // 
-            this.BrandIDColumn.DataPropertyName = "BrandID";
-            this.BrandIDColumn.DataSource = this.productBrandBindingSource;
-            this.BrandIDColumn.DisplayMember = "BrandName";
-            this.BrandIDColumn.HeaderText = "Brand ID";
-            this.BrandIDColumn.MinimumWidth = 6;
-            this.BrandIDColumn.Name = "BrandIDColumn";
-            this.BrandIDColumn.ReadOnly = true;
-            this.BrandIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.BrandIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.BrandIDColumn.ValueMember = "ID";
-            this.BrandIDColumn.Width = 125;
-            // 
-            // ProductNameColumn
-            // 
-            this.ProductNameColumn.DataPropertyName = "ProductName";
-            this.ProductNameColumn.HeaderText = "Product Name";
-            this.ProductNameColumn.MinimumWidth = 6;
-            this.ProductNameColumn.Name = "ProductNameColumn";
-            this.ProductNameColumn.ReadOnly = true;
-            this.ProductNameColumn.Width = 125;
-            // 
-            // ProductDescriptionColumn
-            // 
-            this.ProductDescriptionColumn.DataPropertyName = "ProductDescription";
-            this.ProductDescriptionColumn.HeaderText = "Product Description";
-            this.ProductDescriptionColumn.MinimumWidth = 6;
-            this.ProductDescriptionColumn.Name = "ProductDescriptionColumn";
-            this.ProductDescriptionColumn.ReadOnly = true;
-            this.ProductDescriptionColumn.Width = 200;
-            // 
-            // ProductQuantityColumn
-            // 
-            this.ProductQuantityColumn.DataPropertyName = "ProductQuantity";
-            this.ProductQuantityColumn.HeaderText = "Product Quantity";
-            this.ProductQuantityColumn.MinimumWidth = 6;
-            this.ProductQuantityColumn.Name = "ProductQuantityColumn";
-            this.ProductQuantityColumn.ReadOnly = true;
-            this.ProductQuantityColumn.Width = 200;
-            // 
-            // ProductPriceColumn
-            // 
-            this.ProductPriceColumn.DataPropertyName = "ProductPrice";
-            this.ProductPriceColumn.HeaderText = "Product Price";
-            this.ProductPriceColumn.MinimumWidth = 6;
-            this.ProductPriceColumn.Name = "ProductPriceColumn";
-            this.ProductPriceColumn.ReadOnly = true;
-            this.ProductPriceColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProductPriceColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ProductPriceColumn.Width = 125;
-            // 
-            // ProductExpiryDateColumn
-            // 
-            this.ProductExpiryDateColumn.DataPropertyName = "ProductExpiryDate";
-            this.ProductExpiryDateColumn.HeaderText = "Expiry Date";
-            this.ProductExpiryDateColumn.MinimumWidth = 6;
-            this.ProductExpiryDateColumn.Name = "ProductExpiryDateColumn";
-            this.ProductExpiryDateColumn.ReadOnly = true;
-            this.ProductExpiryDateColumn.Width = 125;
-            // 
-            // ProductRegistrationNumColumn
-            // 
-            this.ProductRegistrationNumColumn.DataPropertyName = "ProductRegNum";
-            this.ProductRegistrationNumColumn.HeaderText = "Registration Number";
-            this.ProductRegistrationNumColumn.MinimumWidth = 6;
-            this.ProductRegistrationNumColumn.Name = "ProductRegistrationNumColumn";
-            this.ProductRegistrationNumColumn.ReadOnly = true;
-            this.ProductRegistrationNumColumn.Width = 200;
-            // 
-            // ProductPartitudeNumColumn
-            // 
-            this.ProductPartitudeNumColumn.DataPropertyName = "ProductPartNum";
-            this.ProductPartitudeNumColumn.HeaderText = "Partitude Number";
-            this.ProductPartitudeNumColumn.MinimumWidth = 6;
-            this.ProductPartitudeNumColumn.Name = "ProductPartitudeNumColumn";
-            this.ProductPartitudeNumColumn.ReadOnly = true;
-            this.ProductPartitudeNumColumn.Width = 200;
-            // 
-            // ProductSLocationColumn
-            // 
-            this.ProductSLocationColumn.DataPropertyName = "ProductStorageLocation";
-            this.ProductSLocationColumn.HeaderText = "Storage Location";
-            this.ProductSLocationColumn.MinimumWidth = 6;
-            this.ProductSLocationColumn.Name = "ProductSLocationColumn";
-            this.ProductSLocationColumn.ReadOnly = true;
-            this.ProductSLocationColumn.Width = 200;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Width = 125;
+            this.dgvProductOrders.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvProductOrders.RowHeadersWidth = 51;
+            this.dgvProductOrders.RowTemplate.Height = 24;
+            this.dgvProductOrders.Size = new System.Drawing.Size(820, 279);
+            this.dgvProductOrders.TabIndex = 1;
+            this.dgvProductOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellClick);
+            this.dgvProductOrders.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvProducts_RowsAdded);
             // 
             // productBindingSource
             // 
@@ -693,11 +585,131 @@ namespace XtremePharmacyManager
             // 
             this.productOrderBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductOrder);
             // 
+            // IDColumn
+            // 
+            this.IDColumn.DataPropertyName = "ID";
+            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.MinimumWidth = 6;
+            this.IDColumn.Name = "IDColumn";
+            this.IDColumn.ReadOnly = true;
+            this.IDColumn.Width = 125;
+            // 
+            // ProductIDColumn
+            // 
+            this.ProductIDColumn.DataPropertyName = "ProductID";
+            this.ProductIDColumn.DataSource = this.productBindingSource;
+            this.ProductIDColumn.DisplayMember = "ProductName";
+            this.ProductIDColumn.HeaderText = "Product";
+            this.ProductIDColumn.MinimumWidth = 6;
+            this.ProductIDColumn.Name = "ProductIDColumn";
+            this.ProductIDColumn.ReadOnly = true;
+            this.ProductIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ProductIDColumn.ValueMember = "ID";
+            this.ProductIDColumn.Width = 125;
+            // 
+            // DesiredQuantityColumn
+            // 
+            this.DesiredQuantityColumn.DataPropertyName = "DesiredQuantity";
+            this.DesiredQuantityColumn.HeaderText = "Desired Quantity";
+            this.DesiredQuantityColumn.MinimumWidth = 6;
+            this.DesiredQuantityColumn.Name = "DesiredQuantityColumn";
+            this.DesiredQuantityColumn.ReadOnly = true;
+            this.DesiredQuantityColumn.Width = 200;
+            // 
+            // OrderPriceColumn
+            // 
+            this.OrderPriceColumn.DataPropertyName = "OrderPrice";
+            this.OrderPriceColumn.HeaderText = "Order Price";
+            this.OrderPriceColumn.MinimumWidth = 6;
+            this.OrderPriceColumn.Name = "OrderPriceColumn";
+            this.OrderPriceColumn.ReadOnly = true;
+            this.OrderPriceColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.OrderPriceColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.OrderPriceColumn.Width = 125;
+            // 
+            // EmployeeIDColumn
+            // 
+            this.EmployeeIDColumn.DataPropertyName = "EmployeeID";
+            this.EmployeeIDColumn.DataSource = this.userBindingSource;
+            this.EmployeeIDColumn.DisplayMember = "UserDisplayName";
+            this.EmployeeIDColumn.HeaderText = "Employee";
+            this.EmployeeIDColumn.MinimumWidth = 6;
+            this.EmployeeIDColumn.Name = "EmployeeIDColumn";
+            this.EmployeeIDColumn.ReadOnly = true;
+            this.EmployeeIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.EmployeeIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.EmployeeIDColumn.ValueMember = "ID";
+            this.EmployeeIDColumn.Width = 125;
+            // 
+            // ClientIDColumn
+            // 
+            this.ClientIDColumn.DataPropertyName = "ClientID";
+            this.ClientIDColumn.DataSource = this.userBindingSource;
+            this.ClientIDColumn.DisplayMember = "UserDisplayName";
+            this.ClientIDColumn.HeaderText = "Client";
+            this.ClientIDColumn.MinimumWidth = 6;
+            this.ClientIDColumn.Name = "ClientIDColumn";
+            this.ClientIDColumn.ReadOnly = true;
+            this.ClientIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ClientIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ClientIDColumn.ValueMember = "ID";
+            this.ClientIDColumn.Width = 200;
+            // 
+            // OrderDateAddedColumn
+            // 
+            this.OrderDateAddedColumn.DataPropertyName = "DateAdded";
+            this.OrderDateAddedColumn.HeaderText = "Date Added";
+            this.OrderDateAddedColumn.MinimumWidth = 6;
+            this.OrderDateAddedColumn.Name = "OrderDateAddedColumn";
+            this.OrderDateAddedColumn.ReadOnly = true;
+            this.OrderDateAddedColumn.Width = 125;
+            // 
+            // OrderDateModifiedColumn
+            // 
+            this.OrderDateModifiedColumn.DataPropertyName = "DateModified";
+            this.OrderDateModifiedColumn.HeaderText = "Date Modified";
+            this.OrderDateModifiedColumn.MinimumWidth = 6;
+            this.OrderDateModifiedColumn.Name = "OrderDateModifiedColumn";
+            this.OrderDateModifiedColumn.ReadOnly = true;
+            this.OrderDateModifiedColumn.Width = 200;
+            // 
+            // OrderStatusColumn
+            // 
+            this.OrderStatusColumn.DataPropertyName = "OrderStatus";
+            this.OrderStatusColumn.HeaderText = "Order Status";
+            this.OrderStatusColumn.Items.AddRange(new object[] {
+            "Awaiting processing",
+            "Prepaid",
+            "Paid on delivery",
+            "Directly paid",
+            "Generating invoice",
+            "Generating report",
+            "Processing",
+            "Cancelled order",
+            "Returned order",
+            "Completed"});
+            this.OrderStatusColumn.MinimumWidth = 6;
+            this.OrderStatusColumn.Name = "OrderStatusColumn";
+            this.OrderStatusColumn.ReadOnly = true;
+            this.OrderStatusColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.OrderStatusColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.OrderStatusColumn.Width = 200;
+            // 
+            // OrderReasonColumn
+            // 
+            this.OrderReasonColumn.DataPropertyName = "OrderReason";
+            this.OrderReasonColumn.HeaderText = "Order Reason";
+            this.OrderReasonColumn.MinimumWidth = 6;
+            this.OrderReasonColumn.Name = "OrderReasonColumn";
+            this.OrderReasonColumn.ReadOnly = true;
+            this.OrderReasonColumn.Width = 200;
+            // 
             // frmSearchProductOrders
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(820, 655);
-            this.Controls.Add(this.dgvProducts);
+            this.ClientSize = new System.Drawing.Size(820, 828);
+            this.Controls.Add(this.dgvProductOrders);
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmSearchProductOrders";
@@ -707,7 +719,7 @@ namespace XtremePharmacyManager
             ((System.ComponentModel.ISupportInitialize)(this.trbDesiredQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbPriceOverride)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvProductOrders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).EndInit();
@@ -732,7 +744,7 @@ namespace XtremePharmacyManager
         private System.Windows.Forms.Label lblPriceOverride;
         private System.Windows.Forms.Label lblShowPriceOverride;
         private System.Windows.Forms.TrackBar trbPriceOverride;
-        private System.Windows.Forms.DataGridView dgvProducts;
+        private System.Windows.Forms.DataGridView dgvProductOrders;
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.ComboBox cbSearchMode;
@@ -749,17 +761,6 @@ namespace XtremePharmacyManager
         private Label lblDesiredQuantity;
         private BindingSource productImageBindingSource;
         private ImageList imgListProductImages;
-        private DataGridViewTextBoxColumn IDColumn;
-        private DataGridViewComboBoxColumn BrandIDColumn;
-        private DataGridViewTextBoxColumn ProductNameColumn;
-        private DataGridViewTextBoxColumn ProductDescriptionColumn;
-        private DataGridViewTextBoxColumn ProductQuantityColumn;
-        private DataGridViewTextBoxColumn ProductPriceColumn;
-        private DataGridViewTextBoxColumn ProductExpiryDateColumn;
-        private DataGridViewTextBoxColumn ProductRegistrationNumColumn;
-        private DataGridViewTextBoxColumn ProductPartitudeNumColumn;
-        private DataGridViewTextBoxColumn ProductSLocationColumn;
-        private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private ComboBox cbSelectProduct;
         private ComboBox cbSelectClient;
         private Label lblSelectClient;
@@ -771,5 +772,15 @@ namespace XtremePharmacyManager
         private Label lblOrderStatus;
         private ComboBox cbSelectOrderStatus;
         private BindingSource productOrderBindingSource;
+        private DataGridViewTextBoxColumn IDColumn;
+        private DataGridViewComboBoxColumn ProductIDColumn;
+        private DataGridViewTextBoxColumn DesiredQuantityColumn;
+        private DataGridViewTextBoxColumn OrderPriceColumn;
+        private DataGridViewComboBoxColumn EmployeeIDColumn;
+        private DataGridViewComboBoxColumn ClientIDColumn;
+        private DataGridViewTextBoxColumn OrderDateAddedColumn;
+        private DataGridViewTextBoxColumn OrderDateModifiedColumn;
+        private DataGridViewComboBoxColumn OrderStatusColumn;
+        private DataGridViewTextBoxColumn OrderReasonColumn;
     }
 }
