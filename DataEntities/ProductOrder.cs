@@ -33,8 +33,8 @@ namespace XtremePharmacyManager.DataEntities
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderDelivery> OrderDeliveries { get; set; }
-        public virtual DeliveryService User { get; set; }
-        public virtual DeliveryService User1 { get; set; }
+        public virtual User User { get; set; }
+        public virtual User User1 { get; set; }
         public virtual Product Product { get; set; }
     }
 }
