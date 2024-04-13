@@ -1413,6 +1413,7 @@ create or alter procedure AddLog(
 )
 as
 begin
+select @@NESTLEVEL;
 insert into Logs(LogDate, LogTitle, LogMessage,AdditionalLogInformation)
 values(@logdate,@logtitle,@logmessage,@additionalinformation);
 end
@@ -1962,6 +1963,7 @@ create or alter trigger Products_OnUpdate on Products for update
 as
 begin
 set nocount on;
+select @@NESTLEVEL;
 declare @old_id as int;
 declare @new_id as int;
 declare @old_product_name as varchar(100);
@@ -2263,6 +2265,7 @@ create or alter trigger Users_OnUpdate on Users for update
 as
 begin
 set nocount on;
+select @@NESTLEVEL;
 declare @old_id as int;
 declare @new_id as int;
 declare @old_user_name as varchar(50);
@@ -2294,7 +2297,9 @@ declare @additional_information as varchar(max);
 declare @currentdate as date;
 declare @sql as nvarchar(max);
 select @old_id = ID from deleted;
+select 'Initial Old ID: ' + try_cast(@old_id as varchar);
 select @new_id = ID from inserted;
+select 'Initial New ID: ' + try_cast(@new_id as varchar);
 select @old_user_name = UserName from deleted;
 select @new_user_name = UserName from inserted;
 select @old_user_password = UserPassword from deleted;
@@ -2322,6 +2327,8 @@ select @new_role = UserRole from inserted;
 /* and before that let's check if the username and/or password are changed and change the logins and users*/
 if @new_user_name != @old_user_name or @new_user_password != @old_user_password or (@old_user_name != @new_user_name and @old_user_password != @new_user_password)
 begin
+select 'Checking the login and adjusting the logins...';
+select @@NESTLEVEL;
 set @sql = 'alter login ' + QUOTENAME(@old_user_name) + ' with name = ' + QUOTENAME(@new_user_name) + ';';
 exec sp_executesql @sql;
 set @sql = 'alter login ' + QUOTENAME(@new_user_name) + ' with password = ''' + @new_user_password + ''';';
@@ -2334,18 +2341,23 @@ end
 /* wait a moment, we have to check the old role and remove the user from that role if it has a login */
 if @old_role is not null and @old_role != @new_role
 begin
+select @@NESTLEVEL;
 if @old_role = 0
 begin
+select 'Checking and reassigning the roles';
+select @@NESTLEVEL;
 set @sql = 'alter role XPAdmin drop member ' + QUOTENAME(@new_user_name) + ';';
 exec sp_executesql @sql;
 end
 else if @old_role = 1
 begin
+select @@NESTLEVEL;
 set @sql = 'alter role XPEmployee drop member ' + QUOTENAME(@new_user_name) + ';';
 exec sp_executesql @sql;
 end
 else if @old_role = 2
 begin
+select @@NESTLEVEL;
 set @sql = 'alter role XPClient drop member ' + QUOTENAME(@new_user_name) + ';';
 exec sp_executesql @sql;
 end
@@ -2353,36 +2365,47 @@ end
 /* now add the new role if the new role is not null and is different from old role */
 if @new_role is not null and @new_role != @old_role
 begin
+select @@NESTLEVEL;
+select 'Checking and reassigning the roles';
 if @new_role = 0
 begin
+select @@NESTLEVEL;
 set @sql = 'alter role XPAdmin add member ' + QUOTENAME(@new_user_name) + ';';
 exec sp_executesql @sql;
 end
 else if @new_role = 1
 begin
+select @@NESTLEVEL;
 set @sql = 'alter role XPEmployee add member ' + QUOTENAME(@new_user_name) + ';';
 exec sp_executesql @sql;
 end
 else if @new_role = 2
 begin
+select @@NESTLEVEL;
 set @sql = 'alter role XPClient add member ' + QUOTENAME(@new_user_name) + ';';
 exec sp_executesql @sql;
 end
 end
 /* now check if the ID is changed and the role is changed then updated the orders somehow */
-if @old_id != @new_id
+if @old_id is not null and @new_id is not null and @old_id != @new_id
+select @old_id as 'Old ID Right now';
+select @new_id as 'New ID Right now';
 declare @affected_orders as table(OrderCounter int identity primary key not null , OrderID int unique);
 declare @affected_orders_count as int;
 declare @affected_orders_last as int;
 declare @current_affected_order_id as int;
 begin
+select 'Updating the product orders if the ID is changed';
+select @@NESTLEVEL;
 if (@old_role = 0 or @old_role = 1) and (@new_role = 0 or @new_role = 1)
 begin
+select @@NESTLEVEL;
 insert into @affected_orders select ID from ProductOrders where EmployeeID = @old_id;
 select  top 1 @affected_orders_count = OrderCounter from @affected_orders order by OrderCounter asc;
 select  top 1 @affected_orders_last = OrderCounter from @affected_orders order by OrderCOunter desc;
 while @affected_orders_count <= @affected_orders_last
 begin
+select @@NESTLEVEL;
 select @current_affected_order_id = OrderID from @affected_orders where OrderCounter = @affected_orders_count;
 update ProductOrders set EmployeeID = @new_id where ID = @current_affected_order_id;
 set @affected_orders_count = @affected_orders_count + 1;
@@ -2390,11 +2413,13 @@ end
 end
 if @old_role = 2 and @new_role = 2
 begin
+select @@NESTLEVEL;
 insert into @affected_orders select ID from ProductOrders where ClientID = @old_id;
 select  top 1 @affected_orders_count = OrderCounter from @affected_orders order by OrderCounter asc;
 select  top 1 @affected_orders_last = OrderCounter from @affected_orders order by OrderCOunter desc;
 while @affected_orders_count <= @affected_orders_last
 begin
+select @@NESTLEVEL;
 select @current_affected_order_id = OrderID from @affected_orders where OrderCounter = @affected_orders_count;
 update ProductOrders set ClientID = @new_id where ID = @current_affected_order_id;
 set @affected_orders_count = @affected_orders_count + 1;
@@ -2402,6 +2427,7 @@ end
 end
 if (@old_role = 0 or @old_role = 1) and @new_role = 2
 begin
+select @@NESTLEVEL;
 insert into @affected_orders select ID from ProductOrders where EmployeeID = @old_id;
 select  top 1 @affected_orders_count = OrderCounter from @affected_orders order by OrderCounter asc;
 select  top 1 @affected_orders_last = OrderCounter from @affected_orders order by OrderCOunter desc;
@@ -2414,11 +2440,13 @@ end
 end
 if (@old_role = 2) and (@new_role =  0 or @new_role = 1)
 begin
+select @@NESTLEVEL;
 insert into @affected_orders select ID from ProductOrders where ClientID = @old_id;
 select  top 1 @affected_orders_count = OrderCounter from @affected_orders order by OrderCounter asc;
 select  top 1 @affected_orders_last = OrderCounter from @affected_orders order by OrderCOunter desc;
 while @affected_orders_count <= @affected_orders_last
 begin
+select @@NESTLEVEL;
 select @current_affected_order_id = OrderID from @affected_orders where OrderCounter = @affected_orders_count;
 update ProductOrders set ClientID = -1 where ID = @current_affected_order_id;
 set @affected_orders_count = @affected_orders_count + 1;
@@ -2606,6 +2634,7 @@ create or alter trigger ProductOrders_OnUpdate on ProductOrders for update
 as
 begin
 set nocount on;
+select @@NESTLEVEL;
 declare @old_id as int;
 declare @new_id as int;
 declare @old_product_id as int;
@@ -2669,65 +2698,52 @@ declare @current_employee_balance as money;
 declare @final_employee_balance as money;
 declare @current_product_quantity as int;
 declare @final_product_quantity as int;
+/* because otherwise the trigger fucking exceeds the nesting limit I will move the whole validation in the beginning
+fuck you if you make a mistake like mine and notlearn from it. I basically made some kind of monster here
+so the goal is to validate the product id, client id and employee id before checking the status and calculating everything*/
+if (@new_product_id >= 0 and @new_client_id >= 0 and @new_employee_id >= 0)
+begin
 if (@old_order_status = 0 or @old_order_status = 1 or @old_order_status = 3)
 and (@new_order_status != 2 or @new_order_status != 7 or @new_order_status != 8 or @new_order_status != 9)
 begin
-if @new_client_id >= 0
-begin
+select @@NESTLEVEL;
 select @current_client_balance = UserBalance from Users where ID = @new_client_id;
 set @final_client_balance = @current_client_balance - @new_order_price;
 update Users set UserBalance = @final_client_balance where ID = @new_client_id;
 end
-end
-if (@old_order_status != 0 and @old_order_status != 1 and @old_order_status = 2)
+else if (@old_order_status != 0 and @old_order_status != 1 and @old_order_status = 2)
 and (@new_order_status != 7 or @new_order_status != 8 or @new_order_status != 9)
 begin
-if @new_client_id >= 0
-begin
 select @current_client_balance = UserBalance from Users where ID = @new_client_id;
 set @final_client_balance = @current_client_balance - @new_order_price;
 update Users set UserBalance = @final_client_balance where ID = @new_client_id;
-end
-if @new_employee_id >= 0
-begin
 select @current_employee_balance = UserBalance from Users where ID = @new_employee_id;
 set @final_employee_balance = @current_employee_balance + @new_order_price;
 update Users set UserBalance = @final_employee_balance where ID = @new_employee_id;
 end
-end
-if (@old_order_status != 0 and @old_order_status != 1 and @old_order_status = 2 and @old_order_status != 9)
+else if (@old_order_status != 0 and @old_order_status != 1 and @old_order_status = 2 and @old_order_status != 9)
 and (@new_order_status = 7 or @new_order_status = 8 and @new_order_status != 9)
 begin
-if @new_client_id >= 0
+select @@NESTLEVEL;
 begin
+select 'This is executed';
 select @current_client_balance = UserBalance from Users where ID = @new_client_id;
 set @final_client_balance = @current_client_balance + @new_order_price;
 update Users set UserBalance = @final_client_balance where ID = @new_client_id;
 end
-if @new_employee_id >= 0
-begin
 select @current_employee_balance = UserBalance from Users where ID = @new_employee_id;
 set @final_employee_balance = @current_employee_balance - @new_order_price;
 update Users set UserBalance = @final_employee_balance where ID = @new_employee_id;
 end
-end
-if (@old_order_status != 9 or @old_order_status = 0 or @old_order_status = 1 or @old_order_status = 3 or @old_order_status = 2 or @old_order_status != 7 or @old_order_status != 8)
+else if (@old_order_status != 9 or @old_order_status = 0 or @old_order_status = 1 or @old_order_status = 3 or @old_order_status = 2 or @old_order_status != 7 or @old_order_status != 8)
 and (@new_order_status != 7 or @new_order_status != 8 or @new_order_status  = 9)
-begin
-if @new_client_id >= 0
 begin
 select @current_client_balance = UserBalance from Users where ID = @new_client_id;
 set @final_client_balance = @current_client_balance - @new_order_price;
 update Users set UserBalance = @final_client_balance where ID = @new_client_id;
-end
-if @new_employee_id >= 0
-begin
 select @current_employee_balance = UserBalance from Users where ID = @new_employee_id;
 set @final_employee_balance = @current_employee_balance + @new_order_price;
 update Users set UserBalance = @final_employee_balance where ID = @new_employee_id;
-end
-if @new_product_id >= 0
-begin
 select @current_product_quantity = ProductQuantity from Products where ID = @new_product_id;
 set @final_product_quantity = @current_product_quantity - @new_desired_quantity;
 update Products set ProductQuantity = @final_product_quantity where ID = @new_product_id;
