@@ -407,7 +407,7 @@ namespace XtremePharmacyManager
                             lblShowDesiredQuantity.Text = target_order.DesiredQuantity.ToString();
                             trbPriceOverride.Value = Convert.ToInt32(target_order.OrderPrice);
                             lblShowPriceOverride.Text = target_order.OrderPrice.ToString();
-                            cbSelectOrderStatus.SelectedValue = target_order.OrderStatus;
+                            cbSelectOrderStatus.SelectedIndex = target_order.OrderStatus;
                         }
                     }
                 }
