@@ -211,7 +211,7 @@
             this.trbDesiredQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.trbDesiredQuantity.Location = new System.Drawing.Point(527, 27);
-            this.trbDesiredQuantity.Maximum = 5000;
+            this.trbDesiredQuantity.Maximum = 10000;
             this.trbDesiredQuantity.Name = "trbDesiredQuantity";
             this.trbDesiredQuantity.Size = new System.Drawing.Size(205, 56);
             this.trbDesiredQuantity.TabIndex = 44;
@@ -287,7 +287,7 @@
             this.trbPriceOverride.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.trbPriceOverride.Location = new System.Drawing.Point(527, 89);
-            this.trbPriceOverride.Maximum = 5000;
+            this.trbPriceOverride.Maximum = 10000;
             this.trbPriceOverride.Name = "trbPriceOverride";
             this.trbPriceOverride.Size = new System.Drawing.Size(205, 56);
             this.trbPriceOverride.TabIndex = 21;

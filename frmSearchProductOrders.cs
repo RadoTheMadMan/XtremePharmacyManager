@@ -119,9 +119,18 @@ namespace XtremePharmacyManager
             int ClientID = -1;
             int OrderStatus = 0;
             Int32.TryParse(txtID.Text, out OrderID);
-            Int32.TryParse(cbSelectProduct.SelectedValue.ToString(), out ProductID);
-            Int32.TryParse(cbSelectEmployee.SelectedValue.ToString(), out EmployeeID);
-            Int32.TryParse(cbSelectClient.SelectedValue.ToString(), out ClientID);
+            if (cbSelectProduct.SelectedValue != null)
+            {
+                Int32.TryParse(cbSelectProduct.SelectedValue.ToString(), out ProductID);
+            }
+            if (cbSelectEmployee.SelectedValue != null)
+            {
+                Int32.TryParse(cbSelectEmployee.SelectedValue.ToString(), out EmployeeID);
+            }
+            if (cbSelectClient.SelectedValue != null)
+            {
+                Int32.TryParse(cbSelectClient.SelectedValue.ToString(), out ClientID);
+            }
             OrderStatus = cbSelectOrderStatus.SelectedIndex;
             DateTime DateAddedFrom = dtDateAddedFrom.Value;
             DateTime DateAddedTo = dtDateAddedTo.Value;
@@ -398,7 +407,7 @@ namespace XtremePharmacyManager
                             lblShowDesiredQuantity.Text = target_order.DesiredQuantity.ToString();
                             trbPriceOverride.Value = Convert.ToInt32(target_order.OrderPrice);
                             lblShowPriceOverride.Text = target_order.OrderPrice.ToString();
-                            cbSelectOrderStatus.SelectedValue = cbSelectOrderStatus.Items[target_order.OrderStatus];
+                            cbSelectOrderStatus.SelectedValue = target_order.OrderStatus;
                         }
                     }
                 }
@@ -460,7 +469,7 @@ namespace XtremePharmacyManager
                                 {
                                     clientcell.Value = target_client.ID;
                                 }
-                                statuscell.Value = statuscolumn.Items[target_product_order.OrderStatus];
+                                statuscell.Value = target_product_order.OrderStatus;
                             }
                         }
                     }
