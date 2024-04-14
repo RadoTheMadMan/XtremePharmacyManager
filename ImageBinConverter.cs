@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace XtremePharmacyManager
 {
-    public class ImageBinConverter
+    public static class ImageBinConverter
     {
         public static void ConvertImageToBinary(Bitmap Image, out byte[] target)
         {

@@ -178,6 +178,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="frmEditOrderDelivery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditOrderDelivery.Designer.cs">
+      <DependentUpon>frmEditOrderDelivery.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEditProductOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +250,12 @@
     <Compile Include="frmSearchDeliveryServices.Designer.cs">
       <DependentUpon>frmSearchDeliveryServices.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSearchOrderDeliveries.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSearchOrderDeliveries.Designer.cs">
+      <DependentUpon>frmSearchOrderDeliveries.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSearchProductOrders.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -266,6 +278,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="frmEditOrderDelivery.resx">
+      <DependentUpon>frmEditOrderDelivery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmEditProductOrder.resx">
       <DependentUpon>frmEditProductOrder.cs</DependentUpon>
     </EmbeddedResource>
@@ -298,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSearchDeliveryServices.resx">
       <DependentUpon>frmSearchDeliveryServices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSearchOrderDeliveries.resx">
+      <DependentUpon>frmSearchOrderDeliveries.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSearchProductOrders.resx">
       <DependentUpon>frmSearchProductOrders.cs</DependentUpon>
@@ -334,6 +352,7 @@
     <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\DataSources\SqlServerTypes.Utilities.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.DeliveryService.datasource" />
+    <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.OrderDelivery.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.PaymentMethod.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.Product.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ProductBrand.datasource" />

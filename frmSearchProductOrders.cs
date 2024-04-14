@@ -375,16 +375,16 @@ namespace XtremePharmacyManager
         {
             DataGridView target_view = (DataGridView)sender;
             DataGridViewRow row = target_view.Rows[e.RowIndex];
-            int ProductID = -1;
+            int OrderID = -1;
             ProductOrder target_order;
             try
             {
                 if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
                 {
-                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ProductID);
-                    if (ProductID >= 0 && products != null)
+                    Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out OrderID);
+                    if (OrderID >= 0 && products != null)
                     {
-                        target_order = product_orders.Where(x => x.ID == ProductID).FirstOrDefault();
+                        target_order = product_orders.Where(x => x.ID == OrderID).FirstOrDefault();
                         if (target_order != null)
                         {
                             txtID.Text = target_order.ID.ToString();
