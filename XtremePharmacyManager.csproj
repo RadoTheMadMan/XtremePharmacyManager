@@ -275,8 +275,15 @@
       <DependentUpon>frmSearchUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageBinConverter.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\DataSources\frmLogs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Properties\DataSources\frmLogs.Designer.cs">
+      <DependentUpon>frmLogs.cs</DependentUpon>
+    </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="frmEditOrderDelivery.resx">
       <DependentUpon>frmEditOrderDelivery.cs</DependentUpon>
@@ -325,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSearchUsers.resx">
       <DependentUpon>frmSearchUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\DataSources\frmLogs.resx">
+      <DependentUpon>frmLogs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

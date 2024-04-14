@@ -15,12 +15,14 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
 using XtremePharmacyManager.DataEntities;
+using XtremePharmacyManager.Properties.DataSources;
 
 namespace XtremePharmacyManager
 {
     public partial class frmMain : Form
     {
         static Entities entities;
+        static Logger logger;
         static string connString = "";
         static frmSearchUsers userssearchform;
         static frmSearchDeliveryServices deliveryservicessearchform;
@@ -29,10 +31,13 @@ namespace XtremePharmacyManager
         static frmSearchProducts productssearchform;
         static frmSearchProductOrders orderssearchform;
         static frmSearchOrderDeliveries orderdeliveriessearchform;
+        static frmLogs logsform;
+        static frmImageBinConverter imgbinform;
         public frmMain()
         {
             InitializeComponent();
             InitializeEntities(out entities);
+            InitializeLogger(ref entities,out logger);
             TestConnection();
         }
 
@@ -81,6 +86,11 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}","Critical Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
             target = new Entities(esb);
+        }
+
+        private void InitializeLogger(ref Entities ent, out Logger target)
+        {
+            target = new Logger(ref ent);
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -309,6 +319,68 @@ namespace XtremePharmacyManager
             orderdeliveriessearchform = null;
         }
 
+        private void tsmenuLogs_Click(object sender, EventArgs e)
+        {
+
+            if (entities.Database.Connection.State == ConnectionState.Open)
+            {
+                try
+                {
+                    if (logsform == null)
+                    {
+                        logsform = new frmLogs(ref logger);
+                        logsform.MdiParent = this;
+                        logsform.FormClosed += Logsform_FormClosed;
+                        logsform.Show();
+                    }
+                    else
+                    {
+                        logsform.WindowState = FormWindowState.Normal;
+                        logsform.Activate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void Logsform_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            logsform = null;
+        }
+
+        private void tsmenuBitmapToBinary_Click(object sender, EventArgs e)
+        {
+            if (entities.Database.Connection.State == ConnectionState.Open)
+            {
+                try
+                {
+                    if (logsform == null)
+                    {
+                        imgbinform = new frmSearchOrderDeliveries(entities);
+                        imgbinform.MdiParent = this;
+                        imgbinform.FormClosed += Imgbinform_FormClosed;
+                        imgbinform.Show();
+                    }
+                    else
+                    {
+                        imgbinform.WindowState = FormWindowState.Normal;
+                        imgbinform.Activate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void Imgbinform_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            imgbinform = null;
+        }
     }
 }
 

@@ -14,5 +14,20 @@
     <Setting Name="ImageData" Type="System.String" Scope="User">
       <Value Profile="(Default)">Image Data</Value>
     </Setting>
+    <Setting Name="LogID" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Log ID</Value>
+    </Setting>
+    <Setting Name="LogDate" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Date:</Value>
+    </Setting>
+    <Setting Name="LogTitle" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Title:</Value>
+    </Setting>
+    <Setting Name="LogMessage" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Message:</Value>
+    </Setting>
+    <Setting Name="AdditionalLogInformation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Additional Information:</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

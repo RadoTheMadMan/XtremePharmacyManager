@@ -64,5 +64,50 @@ namespace XtremePharmacyManager.Properties {
                 this["ImageData"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Log ID")]
+        public string LogID {
+            get {
+                return ((string)(this["LogID"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Date:")]
+        public string LogDate {
+            get {
+                return ((string)(this["LogDate"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Title:")]
+        public string LogTitle {
+            get {
+                return ((string)(this["LogTitle"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Message:")]
+        public string LogMessage {
+            get {
+                return ((string)(this["LogMessage"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Additional Information:")]
+        public string AdditionalLogInformation {
+            get {
+                return ((string)(this["AdditionalLogInformation"]));
+            }
+        }
     }
 }

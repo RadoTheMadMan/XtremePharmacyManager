@@ -42,6 +42,7 @@
             this.tsmenuDebugTools = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuTestConnection = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuBitmapToBinary = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmenuLogs = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,7 +81,8 @@
             this.tsmenuDeliveryServices,
             this.tsmenuProducts,
             this.tsmenuProductOrders,
-            this.tsmenuOrderDeliveries});
+            this.tsmenuOrderDeliveries,
+            this.tsmenuLogs});
             this.tsmenuWindow.Name = "tsmenuWindow";
             this.tsmenuWindow.Size = new System.Drawing.Size(78, 24);
             this.tsmenuWindow.Text = "Window";
@@ -153,8 +155,16 @@
             // tsmenuBitmapToBinary
             // 
             this.tsmenuBitmapToBinary.Name = "tsmenuBitmapToBinary";
-            this.tsmenuBitmapToBinary.Size = new System.Drawing.Size(205, 26);
+            this.tsmenuBitmapToBinary.Size = new System.Drawing.Size(224, 26);
             this.tsmenuBitmapToBinary.Text = "&Bitmap To Binary";
+            this.tsmenuBitmapToBinary.Click += new System.EventHandler(this.tsmenuBitmapToBinary_Click);
+            // 
+            // tsmenuLogs
+            // 
+            this.tsmenuLogs.Name = "tsmenuLogs";
+            this.tsmenuLogs.Size = new System.Drawing.Size(224, 26);
+            this.tsmenuLogs.Text = "Logs";
+            this.tsmenuLogs.Click += new System.EventHandler(this.tsmenuLogs_Click);
             // 
             // frmMain
             // 
@@ -190,6 +200,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmenuProducts;
         private System.Windows.Forms.ToolStripMenuItem tsmenuProductOrders;
         private System.Windows.Forms.ToolStripMenuItem tsmenuOrderDeliveries;
+        private System.Windows.Forms.ToolStripMenuItem tsmenuLogs;
     }
 }
 
