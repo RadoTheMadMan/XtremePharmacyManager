@@ -1869,6 +1869,12 @@ declare @old_service_price as money;
 declare @new_service_price as money;
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @affected_order_deliveries as table(DeliveryCount int identity primary key not null, DeliveryID int unique not null, OrderID int unique not null, OrderPrice money not null);
+declare @affected_delivery_count as int;
+declare @affected_delivery_last as int;
+declare @new_total_price as money;
+declare @current_order_price as money;
+declare @current_order_id as int;
 declare @current_date as date;
 select @old_id = ID from deleted;
 select @new_id = ID from inserted;
@@ -1876,7 +1882,30 @@ select @old_service_name = ServiceName from deleted;
 select @new_service_name = ServiceName from inserted;
 select @old_service_price = ServicePrice from deleted;
 select @new_service_price = ServicePrice from inserted;
-set @log_message = 'A delivery service was updated with the id: ' + try_cast(@old_id as varchar);
+select @old_service_price as 'Old Service Price';
+select @new_service_price as 'New Service Price';
+set @log_message = 'A delivery service was updated with the id: ' + try_cast(@old_id as varchar) + '.\nAll deliveries related to that service will be updated.\n';
+/* I forgot to update the deliveries total price on changing price of the service */
+if (@old_service_price is not null and @new_service_price is not null and @old_service_price!=@new_service_price)
+begin
+select 'Updating Delivery prices';
+select @old_service_price as 'Old Service Price';
+select @new_service_price as 'New Service Price';
+insert into @affected_order_deliveries select OrderDeliveries.ID,OrderDeliveries.OrderID,ProductOrders.OrderPrice from OrderDeliveries inner join ProductOrders on ProductOrders.ID = OrderDeliveries.OrderID where DeliveryServiceID = @old_id or DeliveryServiceID = @new_id;
+select top 1 @affected_delivery_count = DeliveryCount from @affected_order_deliveries order by DeliveryCount asc;
+select top 1 @affected_delivery_last = DeliveryCount from @affected_order_deliveries order by DeliveryCount desc;
+select * from @affected_order_deliveries;
+while @affected_delivery_count <= @affected_delivery_last
+begin
+select @current_order_id = OrderID from @affected_order_deliveries where DeliveryCount = @affected_delivery_count;
+select @current_order_price = OrderPrice from @affected_order_deliveries where OrderID = @current_order_id;
+select @current_order_id as 'Current Order ID';
+select @current_order_price as 'Current Order Price';
+set @new_total_price = @current_order_price + @new_service_price;
+update OrderDeliveries set TotalPrice = @new_total_price where OrderID = @current_order_id;
+set @affected_delivery_count = @affected_delivery_count + 1;
+end
+end
 set @additional_information = 'Old Service ID: ' + try_cast(@old_id as varchar) + '\n' + ' Old Service Name: ' + try_cast(@old_service_name as varchar) + '\n'
 + 'Old Service Price: ' + try_cast(@old_service_price as varchar) + '\n'+
 + 'New Method ID: ' + try_cast(@new_id as varchar) + '\n' + 'New Method Name: ' + try_cast(@new_service_name as varchar) + '\n' +
@@ -1903,7 +1932,28 @@ declare @current_date as date;
 select @old_id = ID from deleted;
 select @old_service_name = ServiceName from deleted;
 select @old_service_price = ServicePrice from deleted;
-set @log_message = 'A delivery service was removed list with the id: ' + try_cast(@old_id as varchar);
+set @log_message = 'A delivery service was removed list with the id: ' + try_cast(@old_id as varchar) + '.\nAll order deliveries that belonged to this service will be nullified.\n';
+/* I forgot to nullify the order delivery prices if the service is removed now let's do it */
+declare @affected_order_deliveries as table(DeliveryCount int identity primary key not null, DeliveryID int unique not null, OrderID int unique not null, OrderPrice money not null);
+declare @affected_delivery_count as int;
+declare @affected_delivery_last as int;
+declare @new_total_price as money;
+declare @current_order_price as money;
+declare @current_order_id as int;
+if @old_service_price is not null
+begin
+insert into @affected_order_deliveries select OrderDeliveries.ID,OrderDeliveries.OrderID,ProductOrders.OrderPrice from OrderDeliveries inner join ProductOrders on ProductOrders.ID = OrderDeliveries.OrderID where DeliveryServiceID = @old_id;
+select top 1 @affected_delivery_count = DeliveryCount from @affected_order_deliveries order by DeliveryCount asc;
+select top 1 @affected_delivery_last = DeliveryCount from @affected_order_deliveries order by DeliveryCount desc;
+while @affected_delivery_count <= @affected_delivery_last
+begin
+select @current_order_id = OrderID from @affected_order_deliveries where DeliveryCount = @affected_delivery_count;
+select @current_order_price = OrderPrice from @affected_order_deliveries where OrderID = @current_order_id;
+set @new_total_price = 0;
+update OrderDeliveries set TotalPrice = @new_total_price where OrderID = @current_order_id;
+set @affected_delivery_count = @affected_delivery_count + 1;
+end
+end
 set @additional_information = 'Old Service ID: ' + try_cast(@old_id as varchar) + '\n' + ' Old Service Name: ' + try_cast(@old_service_name as varchar) + '\n'
 + 'Old Service Price: ' + try_cast(@old_service_price as varchar) + '\n';
 set @current_date = getdate();
@@ -2747,7 +2797,9 @@ declare @final_product_quantity as int;
 /* because otherwise the trigger fucking exceeds the nesting limit I will move the whole validation in the beginning
 fuck you if you make a mistake like mine and notlearn from it. I basically made some kind of monster here
 so the goal is to validate the product id, client id and employee id before checking the status and calculating everything*/
-if (@new_product_id >= 0 and @new_client_id >= 0 and @new_employee_id >= 0)
+if (@new_product_id >= 0 and @new_client_id >= 0 and @new_employee_id >= 0 and @old_order_status != 0 and @new_order_status != 0
+and @new_order_status != 6 and @old_order_status != 6 and @old_order_status!= 4 and @new_order_status!= 4
+and @old_order_status != 5 and @new_order_status != 5)
 begin
 if (@old_order_status = 1 or @old_order_status = 3 and @old_order_status != 9)
 and (@new_order_status != 2 or @new_order_status != 7 or @new_order_status != 8 or @new_order_status != 9)
@@ -2766,7 +2818,7 @@ select @current_employee_balance = UserBalance from Users where ID = @new_employ
 set @final_employee_balance = @current_employee_balance + @new_order_price;
 update Users set UserBalance = @final_employee_balance where ID = @new_employee_id;
 end
-else if (@old_order_status != 0 and @old_order_status != 1 and @old_order_status = 2 and @old_order_status != 9)
+else if (@old_order_status = 1 or @old_order_status = 2 or @old_order_status = 3 and @old_order_status != 7 and @old_order_status!= 8 and @old_order_status != 9)
 and (@new_order_status = 7 or @new_order_status = 8 and @new_order_status != 9)
 begin
 select @current_client_balance = UserBalance from Users where ID = @new_client_id;
@@ -2776,7 +2828,7 @@ select @current_employee_balance = UserBalance from Users where ID = @new_employ
 set @final_employee_balance = @current_employee_balance - @new_order_price;
 update Users set UserBalance = @final_employee_balance where ID = @new_employee_id;
 end
-else if (@old_order_status = 9 or @old_order_status = 0 or @old_order_status = 1 or @old_order_status = 3 or @old_order_status = 2 or @old_order_status != 7 or @old_order_status != 8 or @old_order_status != 9)
+else if (@old_order_status = 0 or @old_order_status = 1 or @old_order_status = 3 or @old_order_status = 2 or @old_order_status != 7 or @old_order_status != 8 or @old_order_status != 9)
 and (@new_order_status != 7 or @new_order_status != 8 or @new_order_status  = 9)
 begin
 select @current_client_balance = UserBalance from Users where ID = @new_client_id;
@@ -2915,6 +2967,7 @@ declare @old_delivery_reason as varchar(max);
 declare @new_delivery_reason as varchar(max);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @old_id = ID from deleted;
 select @new_id = ID from inserted;
 select @old_order_id = OrderID from deleted;
@@ -2933,6 +2986,7 @@ select @old_delivery_status = DeliveryStatus from deleted;
 select @new_delivery_status = DeliveryStatus from inserted;
 select @old_delivery_reason = DeliveryReason from deleted;
 select @new_delivery_reason = DeliveryReason from inserted;
+set @current_date = getdate();
 set @log_message = 'An order delivery was updated with the id: ' + try_cast(@old_id as varchar);
 /* set the updated order deliveries and orders based on the delivery status */
 /* let's make a cheatsheet for statuses so it will be easier for us to tell the delivery what to do on each status */
@@ -2952,9 +3006,14 @@ declare @current_delivery_price as money; /* current delivery price from the del
 declare @current_client_id as int; /* current client assigned to the order that is assigned to that delivery */
 declare @current_client_balance as money /* current client balance from the order that the delivery is assigned to */
 declare @final_client_balance as money /* final client balance after the delivery price is paid */
-if (@old_delivery_status = 1 or @old_delivery_status = 2 and @old_delivery_status != 3 and
+/* forgot to say that it happens only if the order, delivery service and payment method are valid let's fix this */
+if(@new_order_id >= 0 and @new_service_id >= 0 and @new_method_id >= 0 and @new_delivery_status != 0 and @old_delivery_status != 0
+and @old_delivery_status != 4 and @new_delivery_status != 4 and @old_delivery_status!=5 and @new_delivery_status!=5 and 
+@old_delivery_status != 6 and @new_delivery_status != 6)
+begin
+if (@old_delivery_status = 1 or @old_delivery_status = 2) and (@old_delivery_status != 3 and
 @old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
-and ( @new_delivery_status = 1 or @new_delivery_status = 1 and @new_delivery_status != 3
+and ( @new_delivery_status = 1 or @new_delivery_status = 2 and @new_delivery_status != 3
 and @new_delivery_status != 7 and @new_delivery_status != 8 and @new_delivery_status != 9)
 begin
 select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
@@ -2962,11 +3021,11 @@ select @current_client_id = ClientID from ProductOrders where ID = @new_order_id
 select @current_client_balance = UserBalance from Users where ID = @current_client_id;
 set @final_client_balance = @current_client_balance - @current_delivery_price;
 update Users set UserBalance = @final_client_balance where ID = @current_client_id;
-update ProductOrders set OrderStatus = 6 where ID = @new_order_id;
+update ProductOrders set OrderStatus = 2 where ID = @new_order_id;
 end
 if (@old_delivery_status != 1 and @old_delivery_status != 2 and @old_delivery_status = 3 and
 @old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
-and ( @new_delivery_status != 1 and @new_delivery_status != 1 and @new_delivery_status = 3
+and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status = 3
 and @new_delivery_status != 7 and @new_delivery_status != 8 and @new_delivery_status != 9)
 begin
 select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
@@ -2974,11 +3033,11 @@ select @current_client_id = ClientID from ProductOrders where ID = @new_order_id
 select @current_client_balance = UserBalance from Users where ID = @current_client_id;
 set @final_client_balance = @current_client_balance - @current_delivery_price;
 update Users set UserBalance = @final_client_balance where ID = @current_client_id;
-update ProductOrders set OrderStatus = 6 where ID = @new_order_id;
+update ProductOrders set OrderStatus = 3 where ID = @new_order_id;
 end
-if (@old_delivery_status != 1 and @old_delivery_status != 2 and @old_delivery_status != 3 and
-@old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status = 9) 
-and ( @new_delivery_status != 1 or @new_delivery_status != 1 and @new_delivery_status != 3
+if (@old_delivery_status = 1 or @old_delivery_status = 2 or @old_delivery_status = 3) and
+(@old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
+and ( @new_delivery_status != 1 or @new_delivery_status != 2 and @new_delivery_status != 3
 and @new_delivery_status != 7 and @new_delivery_status != 8 and @new_delivery_status = 9)
 begin
 select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
@@ -2988,10 +3047,10 @@ set @final_client_balance = @current_client_balance - @current_delivery_price;
 update Users set UserBalance = @final_client_balance where ID = @current_client_id;
 update ProductOrders set OrderStatus = 9 where ID = @new_order_id;
 end
-if (@old_delivery_status != 1 and @old_delivery_status != 2 and @old_delivery_status != 3 and
-@old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status = 9) 
-and ( @new_delivery_status != 1 or @new_delivery_status != 1 and @new_delivery_status != 3
-and @new_delivery_status = 7 and @new_delivery_status != 8 and @new_delivery_status = 9)
+if (@old_delivery_status = 1 or @old_delivery_status = 2 or @old_delivery_status = 3) and
+(@old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
+and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status != 3
+and @new_delivery_status = 7 and @new_delivery_status != 8 and @new_delivery_status != 9)
 begin
 select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
 select @current_client_id = ClientID from ProductOrders where ID = @new_order_id;
@@ -3000,10 +3059,10 @@ set @final_client_balance = @current_client_balance + @current_delivery_price;
 update Users set UserBalance = @final_client_balance where ID = @current_client_id;
 update ProductOrders set OrderStatus = 7 where ID = @new_order_id;
 end
-if (@old_delivery_status != 1 and @old_delivery_status != 2 and @old_delivery_status != 3 and
-@old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status = 9) 
-and ( @new_delivery_status != 1 or @new_delivery_status != 1 and @new_delivery_status != 3
-and @new_delivery_status != 7 and @new_delivery_status = 8 and @new_delivery_status = 9)
+if (@old_delivery_status = 1 or @old_delivery_status = 2 or @old_delivery_status != 3) and
+(@old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
+and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status != 3
+and @new_delivery_status != 7 and @new_delivery_status = 8 and @new_delivery_status != 9)
 begin
 select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
 select @current_client_id = ClientID from ProductOrders where ID = @new_order_id;
@@ -3011,6 +3070,7 @@ select @current_client_balance = UserBalance from Users where ID = @current_clie
 set @final_client_balance = @current_client_balance + @current_delivery_price;
 update Users set UserBalance = @final_client_balance where ID = @current_client_id;
 update ProductOrders set OrderStatus = 8 where ID = @new_order_id;
+end
 end
 set @additional_information = 'Old Delivery ID: ' + try_cast(@old_id as varchar) + '\n' + 'Old Order ID: ' + try_cast(@old_order_id as varchar) + '\n' +
 'Old Delivery Service ID: ' + try_cast(@old_service_id as varchar) + '\n' + 'Old Payment Method ID: ' + try_cast(@old_method_id as varchar) + '\n' +
@@ -3022,10 +3082,10 @@ set @additional_information = 'Old Delivery ID: ' + try_cast(@old_id as varchar)
 'New Total Price: ' + try_cast(@new_total_price as varchar) + '\n' + 'New Date Added: ' + try_cast(@new_date_added as varchar) + '\n' +
 'New Date Modified: ' + try_cast(@new_date_modified as varchar) + '\n' + 'New Delivery Status ID: ' + try_cast(@new_delivery_status as varchar) + '\n' +
 'New Delivery Reason: ' + try_cast(@new_delivery_reason as varchar) + '\n';
-exec AddLog @logdate = getdate, 
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Order Delivery Updated', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
 
@@ -3054,6 +3114,7 @@ declare @old_delivery_reason as varchar(max);
 declare @new_delivery_reason as varchar(max);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
+declare @current_date as date;
 select @old_id = ID from deleted;
 select @old_order_id = OrderID from deleted;
 select @old_service_id = DeliveryServiceID from deleted;
@@ -3063,16 +3124,17 @@ select @old_date_added = DateAdded from deleted;
 select @old_date_modified = DateModified from deleted;
 select @old_delivery_status = DeliveryStatus from deleted;
 select @old_delivery_reason = DeliveryReason from deleted;
+set @current_date = getdate();
 set @log_message = 'An order delivery was removed list with the id: ' + try_cast(@old_id as varchar);
 set @additional_information = 'Old Delivery ID: ' + try_cast(@old_id as varchar) + '\n' + 'Old Order ID: ' + try_cast(@old_order_id as varchar) + '\n' +
 'Old Delivery Service ID: ' + try_cast(@old_service_id as varchar) + '\n' + 'Old Payment Method ID: ' + try_cast(@old_method_id as varchar) + '\n' +
 'Old Total Price: ' + try_cast(@old_total_price as varchar) + '\n' + 'Old Date Added: ' + try_cast(@old_date_added as varchar) + '\n' +
 'Old Date Modified: ' + try_cast(@old_date_modified as varchar) + '\n' + 'Old Delivery Status ID: ' + try_cast(@old_delivery_status as varchar) + '\n' +
 'Old Delivery Reason: ' + try_cast(@old_delivery_reason as varchar) + '\n';
-exec AddLog @logdate = getdate, 
+exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Order Delivery Removed', 
 @logmessage = @log_message,
-@additionalloginformation = @additional_information;
+@additionalinformation = @additional_information;
 end
 go
  /*  logon trigger so we can gatekeep the logins and prevent any logins from users that haven't been registered in the database */
@@ -3081,15 +3143,18 @@ go
  create or alter trigger XPDB_OnLogon on all server for logon
  as
  begin
+ set NOCOUNT on;
  if db_id('XTremePharmacyDB') is not null
  begin
  declare @success_message as varchar(max);
  declare @failed_message  as varchar(max);
  declare @found_user_id as int;
+ declare @logtitle as varchar(max);
  declare @logmessage as varchar(max);
  declare @additionalloginformation as varchar(max);
  declare @current_date as date;
  set @current_date = getdate();
+ set @logtitle = 'User ' + original_login() + 'has failed to login.';
  set @success_message ='Welcome, ' + original_login() + '.';
  set @failed_message = 'Sorry, ' + original_login() + ' you aren''t allowed to access the database.\nPossible unauthorised login so access denied.\n
  Please ask an existing user to register you.';
@@ -3102,20 +3167,14 @@ go
  print @success_message;
  set @logmessage = 'User ' + original_login() + 'has logged in successfully.';
  set @additionalloginformation = 'Host Name: ' + HOST_NAME() + '\n';
- exec XTremePharmacyDB.dbo.AddLog @logdate=getdate,
- @logtitle='[XTremePharmacyDB] User login',
- @logmessage = @logmessage,
- @additionalloginformation= @additionalloginformation;
+ insert into XTremePharmacyDB.dbo.Logs(LogDate,LogTitle,LogMessage,AdditionalLogInformation) values (@current_date, @logtitle,@logmessage,@additionalloginformation);
  end
  else /* on failure send the failure message and rollback the login, a.k.a. deny access */
  begin
  print @failed_message;
  set @logmessage = 'User ' + original_login() + 'has failed to login.';
  set @additionalloginformation = 'Host Name: ' + HOST_NAME() + '\n';
- exec XTremePharmacyDB.dbo.AddLog @logdate=@current_date,
- @logtitle='[XTremePharmacyDB] User login',
- @logmessage = @logmessage,
- @additionalinformation= @additionalloginformation;
+ insert into XTremePharmacyDB.dbo.Logs(LogDate,LogTitle,LogMessage,AdditionalLogInformation) values (@current_date, @logtitle,@logmessage,@additionalloginformation);
  rollback;
  end
  end
