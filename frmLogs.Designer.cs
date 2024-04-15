@@ -284,6 +284,7 @@
             this.MaximizeBox = false;
             this.Name = "frmLogs";
             this.Text = "Logs";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLogs_FormClosing);
             this.Load += new System.EventHandler(this.frmLogs_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

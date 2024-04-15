@@ -17,10 +17,10 @@ namespace XtremePharmacyManager
         static Entities ent;
         static Logger logger;
         static List<PaymentMethod> payment_methods;
-        public frmSearchPaymentMethods(ref Entities entity, ref Logger logger)
+        public frmSearchPaymentMethods(ref Entities entity, ref Logger extlogger)
         {
             ent = entity;
-            logger = logger;
+            logger = extlogger;
             InitializeComponent();
         }
 

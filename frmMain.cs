@@ -384,7 +384,7 @@ namespace XtremePharmacyManager
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult res = MessageBox.Show("Do you want to close? All unsaved changes incl. bulk operations will be lost", "Exit", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            DialogResult res = MessageBox.Show("Do you want to close? All unsaved changes incl. bulk operations will be lost", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (res == DialogResult.Yes)
             {
                 if (userssearchform != null)

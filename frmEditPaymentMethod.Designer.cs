@@ -134,7 +134,7 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmEditPaymentMethod";
-            this.Text = "Delivery Service Editor. Add or Update Payment Method";
+            this.Text = "Payment Method Editor. Add or Update Payment Method";
             this.Load += new System.EventHandler(this.frmEditPaymentMethod_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

@@ -109,5 +109,10 @@ namespace XtremePharmacyManager.Properties.DataSources
                 MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void frmLogs_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            logger.LogsRefreshed -= OnLogsRefreshed;
+        }
     }
 }

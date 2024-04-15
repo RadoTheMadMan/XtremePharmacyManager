@@ -29,10 +29,10 @@ namespace XtremePharmacyManager
         static List<ProductOrder> product_orders;
         static List<User> employees;
         static List<User> clients;
-        public frmSearchProductOrders(ref Entities entity, ref Logger logger)
+        public frmSearchProductOrders(ref Entities entity, ref Logger extlogger)
         {
             ent = entity;
-            logger = logger;
+            logger = extlogger;
             InitializeComponent();
         }
 

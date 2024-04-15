@@ -17,10 +17,10 @@ namespace XtremePharmacyManager
         static Entities ent;
         static List<User> users;
         static  Logger logger;
-        public frmSearchUsers(ref Entities entity, ref Logger logger)
+        public frmSearchUsers(ref Entities entity, ref Logger extlogger)
         {
             ent = entity;
-            logger = logger;
+            logger = extlogger;
             InitializeComponent();
         }
 

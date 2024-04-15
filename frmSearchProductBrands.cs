@@ -17,10 +17,10 @@ namespace XtremePharmacyManager
         static Entities ent;
         static Logger logger;
         static List<ProductBrand> product_brands;
-        public frmSearchProductBrands(ref Entities entity, ref Logger logger)
+        public frmSearchProductBrands(ref Entities entity, ref Logger extlogger)
         {
             ent = entity;
-            logger = logger;
+            logger = extlogger;
             InitializeComponent();
         }
 
