@@ -384,46 +384,53 @@ namespace XtremePharmacyManager
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult res = MessageBox.Show("Do you want to close? All unsaved changes incl. bulk operations will be lost", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (res == DialogResult.Yes)
+            if (e.CloseReason != CloseReason.ApplicationExitCall)
             {
-                if (userssearchform != null)
+                DialogResult res = MessageBox.Show("Do you want to close? All unsaved changes incl. bulk operations will be lost", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (res == DialogResult.Yes)
                 {
-                    userssearchform = null;
+                    if (userssearchform != null)
+                    {
+                        userssearchform = null;
+                    }
+                    if (deliveryservicessearchform != null)
+                    {
+                        deliveryservicessearchform.Close();
+                    }
+                    if (paymentmethodssearchform != null)
+                    {
+                        paymentmethodssearchform.Close();
+                    }
+                    if (productbrandssearchform != null)
+                    {
+                        productbrandssearchform.Close();
+                    }
+                    if (productssearchform != null)
+                    {
+                        productssearchform.Close();
+                    }
+                    if (orderssearchform != null)
+                    {
+                        orderssearchform.Close();
+                    }
+                    if (orderdeliveriessearchform != null)
+                    {
+                        orderdeliveriessearchform.Close();
+                    }
+                    if (logsform != null)
+                    {
+                        logsform.Close();
+                    }
+                    if (imgbinform != null)
+                    {
+                        imgbinform.Close();
+                    }
+                    Application.Exit();
                 }
-                if (deliveryservicessearchform != null)
+                else
                 {
-                    deliveryservicessearchform.Close();
+                    e.Cancel = true;
                 }
-                if (paymentmethodssearchform != null)
-                {
-                    paymentmethodssearchform.Close();
-                }
-                if (productbrandssearchform != null)
-                {
-                    productbrandssearchform.Close();
-                }
-                if (productssearchform != null)
-                {
-                    productssearchform.Close();
-                }
-                if (orderssearchform != null)
-                {
-                    orderssearchform.Close();
-                }
-                if (orderdeliveriessearchform != null)
-                {
-                    orderdeliveriessearchform.Close();
-                }
-                if (logsform != null)
-                {
-                    logsform.Close();
-                }
-                if (imgbinform != null)
-                {
-                    imgbinform.Close();
-                }
-                Application.Exit();
             }
         }
 
