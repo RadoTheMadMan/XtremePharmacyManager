@@ -38,7 +38,6 @@ namespace XtremePharmacyManager
             entities = ent;
             logs = new List<Log>();
             lastUpdate = DateTime.Now;
-            this.LogsRefreshed = OnLogsRefreshed;
             if (instance == null)
             {
                 instance = this;
@@ -96,15 +95,17 @@ namespace XtremePharmacyManager
 
         private void InvokeRefreshEvent()
         {
-            LoggerEventArgs currentArgs = new LoggerEventArgs(logs, lastUpdate);
-            this.LogsRefreshed((object)this, currentArgs);
-        }
-
-        protected virtual void OnLogsRefreshed(object sender, LoggerEventArgs e)
-        {
-            if(LogsRefreshed != null)
+            try
             {
-                LogsRefreshed(sender, e);
+                LoggerEventArgs currentArgs = new LoggerEventArgs(logs, lastUpdate);
+                if (this.LogsRefreshed != null)
+                {
+                    this.LogsRefreshed((object)this, currentArgs);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

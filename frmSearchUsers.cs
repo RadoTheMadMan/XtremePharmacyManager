@@ -22,7 +22,6 @@ namespace XtremePharmacyManager
             ent = entity;
             logger = logger;
             InitializeComponent();
-            RefreshUsers();
         }
 
         private void RefreshUsers()
@@ -301,6 +300,11 @@ namespace XtremePharmacyManager
             {
                 MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void frmSearchUsers_Load(object sender, EventArgs e)
+        {
+            RefreshUsers();
         }
     }
 }

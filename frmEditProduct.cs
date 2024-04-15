@@ -21,19 +21,6 @@ namespace XtremePharmacyManager
             InitializeComponent();
             this.target = target;
             brands = brands;
-            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
-            this.txtProductName.Text = (!String.IsNullOrEmpty(target.ProductName)) ? target.ProductName.ToString() : string.Empty;
-            this.cbSelectBrand.DataSource = brands;
-            this.cbSelectBrand.SelectedValue = target.BrandID;
-            this.txtProductDescription.Text = (!String.IsNullOrEmpty(target.ProductDescription)) ? target.ProductDescription.ToString() : string.Empty;
-            this.dtExpiryDate.Value = (target.ProductExpiryDate != null && target.ProductExpiryDate > DateTime.MinValue && target.ProductExpiryDate < DateTime.MaxValue) ? target.ProductExpiryDate : DateTime.Now;
-            this.txtRegistrationNumber.Text = (!String.IsNullOrEmpty(target.ProductRegNum)) ? target.ProductRegNum.ToString() : string.Empty;
-            this.txtPartitudeNumber.Text = (!String.IsNullOrEmpty(target.ProductPartNum)) ? target.ProductPartNum.ToString() : string.Empty;
-            this.txtStorageLocation.Text = (!String.IsNullOrEmpty(target.ProductStorageLocation)) ? target.ProductStorageLocation.ToString() : string.Empty;
-            trbQuantity.Value = (target.ProductQuantity >= 0) ? target.ProductQuantity : 0;
-            lblShowQuantity.Text = (target.ProductQuantity >= 0) ? target.ProductQuantity.ToString() : string.Empty;
-            trbPrice.Value = (target.ProductPrice >= 0) ? Convert.ToInt32(target.ProductPrice) : 0;
-            lblShowPrice.Text = (target.ProductPrice >= 0) ? target.ProductPrice.ToString() : string.Empty;
         }
 
         
@@ -124,6 +111,23 @@ namespace XtremePharmacyManager
             {
                 target.ProductStorageLocation = txtStorageLocation.Text;
             }
+        }
+
+        private void frmEditProduct_Load(object sender, EventArgs e)
+        {
+            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
+            this.txtProductName.Text = (!String.IsNullOrEmpty(target.ProductName)) ? target.ProductName.ToString() : string.Empty;
+            this.cbSelectBrand.DataSource = brands;
+            this.cbSelectBrand.SelectedValue = target.BrandID;
+            this.txtProductDescription.Text = (!String.IsNullOrEmpty(target.ProductDescription)) ? target.ProductDescription.ToString() : string.Empty;
+            this.dtExpiryDate.Value = (target.ProductExpiryDate != null && target.ProductExpiryDate > DateTime.MinValue && target.ProductExpiryDate < DateTime.MaxValue) ? target.ProductExpiryDate : DateTime.Now;
+            this.txtRegistrationNumber.Text = (!String.IsNullOrEmpty(target.ProductRegNum)) ? target.ProductRegNum.ToString() : string.Empty;
+            this.txtPartitudeNumber.Text = (!String.IsNullOrEmpty(target.ProductPartNum)) ? target.ProductPartNum.ToString() : string.Empty;
+            this.txtStorageLocation.Text = (!String.IsNullOrEmpty(target.ProductStorageLocation)) ? target.ProductStorageLocation.ToString() : string.Empty;
+            trbQuantity.Value = (target.ProductQuantity >= 0) ? target.ProductQuantity : 0;
+            lblShowQuantity.Text = (target.ProductQuantity >= 0) ? target.ProductQuantity.ToString() : string.Empty;
+            trbPrice.Value = (target.ProductPrice >= 0) ? Convert.ToInt32(target.ProductPrice) : 0;
+            lblShowPrice.Text = (target.ProductPrice >= 0) ? target.ProductPrice.ToString() : string.Empty;
         }
     }
 }

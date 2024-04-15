@@ -41,11 +41,14 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.dgvPaymentMethods = new System.Windows.Forms.DataGridView();
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MethodNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MethodNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.methodNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderDeliveriesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPaymentMethods)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
@@ -187,7 +190,10 @@
             this.dgvPaymentMethods.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPaymentMethods.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDColumn,
-            this.MethodNameColumn});
+            this.MethodNameColumn,
+            this.iDDataGridViewTextBoxColumn,
+            this.methodNameDataGridViewTextBoxColumn,
+            this.orderDeliveriesDataGridViewTextBoxColumn});
             this.dgvPaymentMethods.DataSource = this.paymentMethodBindingSource;
             this.dgvPaymentMethods.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPaymentMethods.Location = new System.Drawing.Point(0, 290);
@@ -208,10 +214,6 @@
             this.dgvPaymentMethods.TabIndex = 1;
             this.dgvPaymentMethods.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPaymentMethods_CellClick);
             // 
-            // paymentMethodBindingSource
-            // 
-            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
-            // 
             // IDColumn
             // 
             this.IDColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -230,6 +232,34 @@
             this.MethodNameColumn.Name = "MethodNameColumn";
             this.MethodNameColumn.ReadOnly = true;
             // 
+            // paymentMethodBindingSource
+            // 
+            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
+            // 
+            // iDDataGridViewTextBoxColumn
+            // 
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // methodNameDataGridViewTextBoxColumn
+            // 
+            this.methodNameDataGridViewTextBoxColumn.DataPropertyName = "MethodName";
+            this.methodNameDataGridViewTextBoxColumn.HeaderText = "MethodName";
+            this.methodNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.methodNameDataGridViewTextBoxColumn.Name = "methodNameDataGridViewTextBoxColumn";
+            this.methodNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // orderDeliveriesDataGridViewTextBoxColumn
+            // 
+            this.orderDeliveriesDataGridViewTextBoxColumn.DataPropertyName = "OrderDeliveries";
+            this.orderDeliveriesDataGridViewTextBoxColumn.HeaderText = "OrderDeliveries";
+            this.orderDeliveriesDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.orderDeliveriesDataGridViewTextBoxColumn.Name = "orderDeliveriesDataGridViewTextBoxColumn";
+            this.orderDeliveriesDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // frmSearchPaymentMethods
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -239,6 +269,7 @@
             this.MaximizeBox = false;
             this.Name = "frmSearchPaymentMethods";
             this.Text = "Payment Methods";
+            this.Load += new System.EventHandler(this.frmSearchPaymentMethods_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPaymentMethods)).EndInit();
@@ -270,5 +301,8 @@
         private System.Windows.Forms.BindingSource paymentMethodBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn MethodNameColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn methodNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderDeliveriesDataGridViewTextBoxColumn;
     }
 }

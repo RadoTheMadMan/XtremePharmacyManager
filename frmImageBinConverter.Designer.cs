@@ -119,6 +119,7 @@
             this.MaximizeBox = false;
             this.Name = "frmImageBinConverter";
             this.Text = "Convert Image To Binary and Vice Versa";
+            this.Load += new System.EventHandler(this.frmImageBinConverter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbLoadedImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

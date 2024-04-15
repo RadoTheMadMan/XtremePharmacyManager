@@ -19,8 +19,6 @@ namespace XtremePharmacyManager
         {
             InitializeComponent();
             this.target = target;
-            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
-            this.txtMethodName.Text = (!String.IsNullOrEmpty(target.MethodName)) ? target.MethodName.ToString() : string.Empty;
         }
 
         
@@ -42,6 +40,12 @@ namespace XtremePharmacyManager
             {
                 target.MethodName = txtMethodName.Text;
             }
+        }
+
+        private void frmEditPaymentMethod_Load(object sender, EventArgs e)
+        {
+            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
+            this.txtMethodName.Text = (!String.IsNullOrEmpty(target.MethodName)) ? target.MethodName.ToString() : string.Empty;
         }
     }
 }

@@ -405,6 +405,7 @@
             this.MaximizeBox = false;
             this.Name = "frmEditProduct";
             this.Text = "Product Editor. Add or Edit Product";
+            this.Load += new System.EventHandler(this.frmEditProduct_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).EndInit();

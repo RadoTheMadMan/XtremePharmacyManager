@@ -367,6 +367,7 @@
             this.MaximizeBox = false;
             this.Name = "frmEditProductOrder";
             this.Text = "Product Order Editor. Add or Edit Product Orders";
+            this.Load += new System.EventHandler(this.frmEditProductOrder_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).EndInit();

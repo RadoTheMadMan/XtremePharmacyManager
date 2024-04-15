@@ -21,7 +21,6 @@ namespace XtremePharmacyManager.Properties.DataSources
             InitializeComponent();
             target_image = new Bitmap(256, 256);
             ConvertImageToBinary(target_image,out image_bytes);
-            LoadImageAndBytes();
         }
 
         public frmImageBinConverter(ref Bitmap target_image)
@@ -29,36 +28,61 @@ namespace XtremePharmacyManager.Properties.DataSources
             InitializeComponent();
             this.target_image = target_image;
             ConvertImageToBinary(target_image, out image_bytes);
-            LoadImageAndBytes();
         }
 
         private void LoadImageAndBytes()
         {
-            if (target_image != null && image_bytes != null)
+            try
             {
-                pbLoadedImage.Image = target_image;
-                txtImageBytes.Text = Convert.ToBase64String(image_bytes);
+                if (target_image != null && image_bytes != null)
+                {
+                    pbLoadedImage.Image = target_image;
+                    txtImageBytes.Text = Convert.ToBase64String(image_bytes);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnConvertImageToBinary_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Images|*.png*;*.bmp*;*.jpg*;*.jpeg*;*.jfif*";
-            ofd.Multiselect = false;
-            ofd.Title = "Select an image to upload or for add/update operation";
-            if (ofd.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(ofd.FileName))
+            try
             {
-                target_image = new Bitmap(ofd.FileName);
-                ConvertImageToBinary(target_image, out image_bytes);
-                LoadImageAndBytes();
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.Filter = "Images|*.png*;*.bmp*;*.jpg*;*.jpeg*;*.jfif*";
+                ofd.Multiselect = false;
+                ofd.Title = "Select an image to upload or for add/update operation";
+                if (ofd.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(ofd.FileName))
+                {
+                    target_image = new Bitmap(ofd.FileName);
+                    ConvertImageToBinary(target_image, out image_bytes);
+                    LoadImageAndBytes();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void buttonConvertBinaryToImage_Click(object sender, EventArgs e)
         {
-            image_bytes = Convert.FromBase64String(txtImageBytes.Text);
-            ConvertBinaryToImage(image_bytes,out target_image);
+            try
+            {
+                image_bytes = Convert.FromBase64String(txtImageBytes.Text);
+                ConvertBinaryToImage(image_bytes, out target_image);
+                LoadImageAndBytes();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void frmImageBinConverter_Load(object sender, EventArgs e)
+        {
             LoadImageAndBytes();
         }
     }

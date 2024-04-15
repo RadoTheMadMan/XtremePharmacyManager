@@ -178,6 +178,7 @@
             this.MaximizeBox = false;
             this.Name = "frmEditDeliveryService";
             this.Text = "Delivery Service Editor. Add or Update Delivery Service";
+            this.Load += new System.EventHandler(this.frmEditDeliveryService_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).EndInit();

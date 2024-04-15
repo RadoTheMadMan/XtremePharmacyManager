@@ -412,6 +412,7 @@
             this.MaximizeBox = false;
             this.Name = "frmEditUser";
             this.Text = "User Editor. Add or Edit User";
+            this.Load += new System.EventHandler(this.frmEditUser_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).EndInit();

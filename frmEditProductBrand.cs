@@ -19,8 +19,6 @@ namespace XtremePharmacyManager
         {
             InitializeComponent();
             this.target = target;
-            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
-            this.txtBrandName.Text = (!String.IsNullOrEmpty(target.BrandName)) ? target.BrandName.ToString() : string.Empty;
         }
 
         
@@ -42,6 +40,12 @@ namespace XtremePharmacyManager
             {
                 target.BrandName = txtBrandName.Text;
             }
+        }
+
+        private void frmEditProductBrand_Load(object sender, EventArgs e)
+        {
+            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
+            this.txtBrandName.Text = (!String.IsNullOrEmpty(target.BrandName)) ? target.BrandName.ToString() : string.Empty;
         }
     }
 }

@@ -192,6 +192,7 @@
             this.MaximizeBox = false;
             this.Name = "frmEditProductImage";
             this.Text = "Product Image Editor. Add or Edit Product Image";
+            this.Load += new System.EventHandler(this.frmEditProductImage_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProductImageData)).EndInit();

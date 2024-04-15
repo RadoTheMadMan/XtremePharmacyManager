@@ -19,10 +19,6 @@ namespace XtremePharmacyManager
         {
             InitializeComponent();
             this.target = target;
-            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
-            this.txtServiceName.Text = (!String.IsNullOrEmpty(target.ServiceName)) ? target.ServiceName.ToString() : string.Empty;
-            trbPrice.Value = (target.ServicePrice >= 0) ? Convert.ToInt32(target.ServicePrice) : 0;
-            lblShowPrice.Text = (target.ServicePrice >= 0) ? target.ServicePrice.ToString() : string.Empty;
         }
 
         
@@ -52,6 +48,14 @@ namespace XtremePharmacyManager
             {
                 target.ServiceName = txtServiceName.Text;
             }
+        }
+
+        private void frmEditDeliveryService_Load(object sender, EventArgs e)
+        {
+            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
+            this.txtServiceName.Text = (!String.IsNullOrEmpty(target.ServiceName)) ? target.ServiceName.ToString() : string.Empty;
+            trbPrice.Value = (target.ServicePrice >= 0) ? Convert.ToInt32(target.ServicePrice) : 0;
+            lblShowPrice.Text = (target.ServicePrice >= 0) ? target.ServicePrice.ToString() : string.Empty;
         }
     }
 }

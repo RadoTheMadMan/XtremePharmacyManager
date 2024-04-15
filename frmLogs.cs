@@ -19,6 +19,7 @@ namespace XtremePharmacyManager.Properties.DataSources
             this.logger = logger;
             InitializeComponent();
             logger.LogsRefreshed += OnLogsRefreshed;
+            logger.RefreshLogs();
         }
 
         private void OnLogsRefreshed(object sender, LoggerEventArgs e)

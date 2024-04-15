@@ -29,9 +29,6 @@ namespace XtremePharmacyManager
             ent = entity;
             logger = logger;
             InitializeComponent();
-            RefreshProductBrands();
-            RefreshProducts();
-            RefreshProductImages();
         }
 
         private void RefreshProducts()
@@ -718,6 +715,13 @@ namespace XtremePharmacyManager
             {
                 MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void frmSearchProducts_Load(object sender, EventArgs e)
+        {
+            RefreshProductBrands();
+            RefreshProducts();
+            RefreshProductImages();
         }
     }
 }

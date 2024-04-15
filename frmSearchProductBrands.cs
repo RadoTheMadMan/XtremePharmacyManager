@@ -22,7 +22,6 @@ namespace XtremePharmacyManager
             ent = entity;
             logger = logger;
             InitializeComponent();
-            RefreshProductBrands();
         }
 
         private void RefreshProductBrands()
@@ -230,6 +229,9 @@ namespace XtremePharmacyManager
             }
         }
 
-
+        private void frmSearchProductBrands_Load(object sender, EventArgs e)
+        {
+            RefreshProductBrands();
+        }
     }
 }

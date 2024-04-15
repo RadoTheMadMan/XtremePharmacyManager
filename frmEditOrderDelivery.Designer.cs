@@ -38,25 +38,25 @@
             this.userBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.lblEmployee = new System.Windows.Forms.Label();
             this.cbSelectDeliveryService = new System.Windows.Forms.ComboBox();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblDeliveryService = new System.Windows.Forms.Label();
             this.cbSelectProductOrders = new System.Windows.Forms.ComboBox();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblSelectProductOrder = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
@@ -179,9 +179,9 @@
             this.cbSelectDeliveryService.ValueMember = "ID";
             this.cbSelectDeliveryService.SelectedIndexChanged += new System.EventHandler(this.cbSelectDeliveryService_SelectedIndexChanged);
             // 
-            // userBindingSource
+            // deliveryServiceBindingSource
             // 
-            this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            this.deliveryServiceBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.DeliveryService);
             // 
             // lblDeliveryService
             // 
@@ -207,9 +207,9 @@
             this.cbSelectProductOrders.ValueMember = "ID";
             this.cbSelectProductOrders.SelectedIndexChanged += new System.EventHandler(this.cbSelectProductOrders_SelectedIndexChanged);
             // 
-            // productBindingSource
+            // productOrderBindingSource
             // 
-            this.productBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.Product);
+            this.productOrderBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductOrder);
             // 
             // btnOK
             // 
@@ -270,17 +270,17 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.Product);
+            // 
             // productBrandBindingSource
             // 
             this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
-            // 
-            // productOrderBindingSource
-            // 
-            this.productOrderBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductOrder);
-            // 
-            // deliveryServiceBindingSource
-            // 
-            this.deliveryServiceBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.DeliveryService);
             // 
             // frmEditOrderDelivery
             // 
@@ -292,14 +292,15 @@
             this.MaximizeBox = false;
             this.Name = "frmEditOrderDelivery";
             this.Text = "Product Order Editor. Add or Edit Product Orders";
+            this.Load += new System.EventHandler(this.frmEditOrderDelivery_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

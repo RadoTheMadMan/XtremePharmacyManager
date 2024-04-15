@@ -22,7 +22,6 @@ namespace XtremePharmacyManager
             ent = entity;
             logger = logger;
             InitializeComponent();
-            RefreshPaymentMethods();
         }
 
         private void RefreshPaymentMethods()
@@ -230,6 +229,9 @@ namespace XtremePharmacyManager
             }
         }
 
-
+        private void frmSearchPaymentMethods_Load(object sender, EventArgs e)
+        {
+            RefreshPaymentMethods();
+        }
     }
 }

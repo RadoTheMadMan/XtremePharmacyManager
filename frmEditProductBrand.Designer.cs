@@ -135,6 +135,7 @@
             this.MaximizeBox = false;
             this.Name = "frmEditProductBrand";
             this.Text = "Delivery Service Editor. Add or Update Payment Method";
+            this.Load += new System.EventHandler(this.frmEditProductBrand_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();

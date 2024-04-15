@@ -25,19 +25,6 @@ namespace XtremePharmacyManager
             products = products;
             clients = clients;
             employees = employees;
-            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
-            this.cbSelectProduct.DataSource = products;
-            this.cbSelectClient.DataSource = clients;
-            this.cbSelectEmployee.DataSource = employees;
-            this.cbSelectProduct.SelectedValue = target.ProductID;
-            this.cbSelectClient.SelectedValue = target.ClientID;
-            this.cbSelectEmployee.SelectedValue = target.EmployeeID;
-            trbDesiredQuantity.Value = (target.DesiredQuantity >= 0) ? target.DesiredQuantity : 0;
-            lblShowDesiredQuantity.Text = (target.DesiredQuantity >= 0) ? target.DesiredQuantity.ToString() : string.Empty;
-            trbPriceOverride.Value = (target.OrderPrice >= 0) ? Convert.ToInt32(target.OrderPrice) : 0;
-            lblShowPriceOverride.Text = (target.OrderPrice >= 0) ? target.OrderPrice.ToString() : string.Empty;
-            cbSelectOrderStatus.SelectedValue = cbSelectOrderStatus.Items[target.OrderStatus];
-            txtOrderReason.Text = target.OrderReason;
         }
 
         private void trbPriceOverride_Scroll(object sender, EventArgs e)
@@ -106,5 +93,21 @@ namespace XtremePharmacyManager
             }
         }
 
+        private void frmEditProductOrder_Load(object sender, EventArgs e)
+        {
+            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
+            this.cbSelectProduct.DataSource = products;
+            this.cbSelectClient.DataSource = clients;
+            this.cbSelectEmployee.DataSource = employees;
+            this.cbSelectProduct.SelectedValue = target.ProductID;
+            this.cbSelectClient.SelectedValue = target.ClientID;
+            this.cbSelectEmployee.SelectedValue = target.EmployeeID;
+            trbDesiredQuantity.Value = (target.DesiredQuantity >= 0) ? target.DesiredQuantity : 0;
+            lblShowDesiredQuantity.Text = (target.DesiredQuantity >= 0) ? target.DesiredQuantity.ToString() : string.Empty;
+            trbPriceOverride.Value = (target.OrderPrice >= 0) ? Convert.ToInt32(target.OrderPrice) : 0;
+            lblShowPriceOverride.Text = (target.OrderPrice >= 0) ? target.OrderPrice.ToString() : string.Empty;
+            cbSelectOrderStatus.SelectedValue = cbSelectOrderStatus.Items[target.OrderStatus];
+            txtOrderReason.Text = target.OrderReason;
+        }
     }
 }

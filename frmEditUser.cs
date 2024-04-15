@@ -19,21 +19,6 @@ namespace XtremePharmacyManager
         {
             InitializeComponent();
             this.target = target;
-            Bitmap currentpfp = new Bitmap(64, 64);
-            if (target.UserProfilePic != null) { ConvertBinaryToImage(target.UserProfilePic, out currentpfp); }
-            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
-            this.txtUsername.Text = (!String.IsNullOrEmpty(target.UserName)) ? target.UserName.ToString() : string.Empty;
-            this.txtPassword.Text = (!String.IsNullOrEmpty(target.UserPassword)) ? target.UserPassword.ToString() : string.Empty;
-            this.txtDisplayName.Text = (!String.IsNullOrEmpty(target.UserDisplayName)) ? target.UserDisplayName.ToString() : string.Empty;
-            this.dtBirthDate.Value = (target.UserBirthDate != null && target.UserBirthDate > DateTime.MinValue && target.UserBirthDate < DateTime.MaxValue) ? target.UserBirthDate : DateTime.Now;
-            this.txtPhone.Text = (!String.IsNullOrEmpty(target.UserPhone)) ? target.UserPhone.ToString() : string.Empty;
-            this.txtEmail.Text = (!String.IsNullOrEmpty(target.UserEmail)) ? target.UserEmail.ToString() : string.Empty;
-            this.txtAddress.Text = (!String.IsNullOrEmpty(target.UserAddress)) ? target.UserAddress.ToString() : string.Empty;
-            trbBalance.Value = (target.UserBalance >= 0) ? Convert.ToInt32(target.UserBalance) : 0;
-            lblShowBalance.Text = (target.UserBalance >= 0) ? target.UserBalance.ToString() : string.Empty;
-            txtDiagnose.Text = (!String.IsNullOrEmpty(target.UserDiagnose)) ? target.UserDiagnose : string.Empty;
-            cbRole.SelectedIndex = (target.UserRole >= 0 && target.UserRole <= 2) ? target.UserRole : 1;
-            pbUserProfilePic.Image = (target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
         }
 
         
@@ -147,6 +132,25 @@ namespace XtremePharmacyManager
             {
                 target.UserAddress = txtAddress.Text;
             }
+        }
+
+        private void frmEditUser_Load(object sender, EventArgs e)
+        {
+            Bitmap currentpfp = new Bitmap(64, 64);
+            if (target.UserProfilePic != null) { ConvertBinaryToImage(target.UserProfilePic, out currentpfp); }
+            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
+            this.txtUsername.Text = (!String.IsNullOrEmpty(target.UserName)) ? target.UserName.ToString() : string.Empty;
+            this.txtPassword.Text = (!String.IsNullOrEmpty(target.UserPassword)) ? target.UserPassword.ToString() : string.Empty;
+            this.txtDisplayName.Text = (!String.IsNullOrEmpty(target.UserDisplayName)) ? target.UserDisplayName.ToString() : string.Empty;
+            this.dtBirthDate.Value = (target.UserBirthDate != null && target.UserBirthDate > DateTime.MinValue && target.UserBirthDate < DateTime.MaxValue) ? target.UserBirthDate : DateTime.Now;
+            this.txtPhone.Text = (!String.IsNullOrEmpty(target.UserPhone)) ? target.UserPhone.ToString() : string.Empty;
+            this.txtEmail.Text = (!String.IsNullOrEmpty(target.UserEmail)) ? target.UserEmail.ToString() : string.Empty;
+            this.txtAddress.Text = (!String.IsNullOrEmpty(target.UserAddress)) ? target.UserAddress.ToString() : string.Empty;
+            trbBalance.Value = (target.UserBalance >= 0) ? Convert.ToInt32(target.UserBalance) : 0;
+            lblShowBalance.Text = (target.UserBalance >= 0) ? target.UserBalance.ToString() : string.Empty;
+            txtDiagnose.Text = (!String.IsNullOrEmpty(target.UserDiagnose)) ? target.UserDiagnose : string.Empty;
+            cbRole.SelectedIndex = (target.UserRole >= 0 && target.UserRole <= 2) ? target.UserRole : 1;
+            pbUserProfilePic.Image = (target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
         }
     }
 }

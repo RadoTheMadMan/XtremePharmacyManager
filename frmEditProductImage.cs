@@ -21,13 +21,6 @@ namespace XtremePharmacyManager
             InitializeComponent();
             this.target = target;
             products = products;
-            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
-            this.txtImageName.Text = (!String.IsNullOrEmpty(target.ImageName)) ? target.ImageName.ToString() : string.Empty;
-            this.cbSelectProduct.DataSource = products;
-            this.cbSelectProduct.SelectedValue = target.ProductID;
-            Bitmap extractedbitmap;
-            ConvertBinaryToImage(target.ImageData, out extractedbitmap);
-            pbProductImageData.Image = (extractedbitmap != null)? extractedbitmap: new Bitmap(64,64);
         }
 
         private void txtID_TextChanged(object sender, EventArgs e)
@@ -72,6 +65,17 @@ namespace XtremePharmacyManager
                     target.ImageData = imageBytes;
                 }
             }
+        }
+
+        private void frmEditProductImage_Load(object sender, EventArgs e)
+        {
+            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
+            this.txtImageName.Text = (!String.IsNullOrEmpty(target.ImageName)) ? target.ImageName.ToString() : string.Empty;
+            this.cbSelectProduct.DataSource = products;
+            this.cbSelectProduct.SelectedValue = target.ProductID;
+            Bitmap extractedbitmap;
+            ConvertBinaryToImage(target.ImageData, out extractedbitmap);
+            pbProductImageData.Image = (extractedbitmap != null) ? extractedbitmap : new Bitmap(64, 64);
         }
     }
 }

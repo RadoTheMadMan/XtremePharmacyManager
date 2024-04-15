@@ -34,10 +34,6 @@ namespace XtremePharmacyManager
             ent = entity;
             logger = logger;
             InitializeComponent();
-            RefreshEmployees();
-            RefreshClients();
-            RefreshProducts();
-            RefreshProductOrders();
         }
 
         private void RefreshProducts()
@@ -486,5 +482,12 @@ namespace XtremePharmacyManager
             }
         }
 
+        private void frmSearchProductOrders_Load(object sender, EventArgs e)
+        {
+            RefreshEmployees();
+            RefreshClients();
+            RefreshProducts();
+            RefreshProductOrders();
+        }
     }
 }

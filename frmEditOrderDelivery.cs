@@ -22,18 +22,6 @@ namespace XtremePharmacyManager
         {
             InitializeComponent();
             this.target = target;
-            product_orders = product_orders;
-            payment_methods = payment_methods;
-            delivery_services = delivery_services;
-            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
-            this.cbSelectProductOrders.DataSource = product_orders;
-            this.cbSelectDeliveryService.DataSource = delivery_services;
-            this.cbSelectPaymentMethod.DataSource = payment_methods;
-            this.cbSelectProductOrders.SelectedValue = target.OrderID;
-            this.cbSelectDeliveryService.SelectedValue = target.DeliveryServiceID;
-            this.cbSelectPaymentMethod.SelectedValue = target.PaymentMethodID;
-            cbSelectDeliveryStatus.SelectedValue = cbSelectDeliveryStatus.Items[target.DeliveryStatus];
-            txtDeliveryReason.Text = target.DeliveryReason;
         }
 
 
@@ -87,6 +75,22 @@ namespace XtremePharmacyManager
             {
                 target.DeliveryReason = txtDeliveryReason.Text;
             }
+        }
+
+        private void frmEditOrderDelivery_Load(object sender, EventArgs e)
+        {
+            product_orders = product_orders;
+            payment_methods = payment_methods;
+            delivery_services = delivery_services;
+            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
+            this.cbSelectProductOrders.DataSource = product_orders;
+            this.cbSelectDeliveryService.DataSource = delivery_services;
+            this.cbSelectPaymentMethod.DataSource = payment_methods;
+            this.cbSelectProductOrders.SelectedValue = target.OrderID;
+            this.cbSelectDeliveryService.SelectedValue = target.DeliveryServiceID;
+            this.cbSelectPaymentMethod.SelectedValue = target.PaymentMethodID;
+            cbSelectDeliveryStatus.SelectedValue = cbSelectDeliveryStatus.Items[target.DeliveryStatus];
+            txtDeliveryReason.Text = target.DeliveryReason;
         }
     }
 }

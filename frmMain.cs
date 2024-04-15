@@ -357,7 +357,7 @@ namespace XtremePharmacyManager
             {
                 try
                 {
-                    if (logsform == null)
+                    if (imgbinform == null)
                     {
                         imgbinform = new frmImageBinConverter();
                         imgbinform.MdiParent = this;
@@ -380,6 +380,110 @@ namespace XtremePharmacyManager
         private void Imgbinform_FormClosed(object sender, FormClosedEventArgs e)
         {
             imgbinform = null;
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Do you want to close? All unsaved changes incl. bulk operations will be lost", "Exit", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            if (res == DialogResult.Yes)
+            {
+                if (userssearchform != null)
+                {
+                    userssearchform = null;
+                }
+                if (deliveryservicessearchform != null)
+                {
+                    deliveryservicessearchform.Close();
+                }
+                if (paymentmethodssearchform != null)
+                {
+                    paymentmethodssearchform.Close();
+                }
+                if (productbrandssearchform != null)
+                {
+                    productbrandssearchform.Close();
+                }
+                if (productssearchform != null)
+                {
+                    productssearchform.Close();
+                }
+                if (orderssearchform != null)
+                {
+                    orderssearchform.Close();
+                }
+                if (orderdeliveriessearchform != null)
+                {
+                    orderdeliveriessearchform.Close();
+                }
+                if (logsform != null)
+                {
+                    logsform.Close();
+                }
+                if (imgbinform != null)
+                {
+                    imgbinform.Close();
+                }
+                Application.Exit();
+            }
+        }
+
+        private void frmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                if (logger != null)
+                {
+                    logger = null;
+                }
+                if (entities != null)
+                {
+                    if (entities.Database.Connection.State == ConnectionState.Open)
+                    {
+                        entities.Database.Connection.Close();
+                    }
+                    entities = null;
+                }
+                if (userssearchform != null)
+                {
+                    userssearchform = null;
+                }
+                if (deliveryservicessearchform != null)
+                {
+                    deliveryservicessearchform = null;
+                }
+                if (paymentmethodssearchform != null)
+                {
+                    paymentmethodssearchform = null;
+                }
+                if (productbrandssearchform != null)
+                {
+                    productbrandssearchform = null;
+                }
+                if(productssearchform!= null);
+                {
+                    productssearchform = null;
+                }
+                if(orderssearchform != null)
+                {
+                    orderssearchform = null;
+                }
+                if(orderdeliveriessearchform != null)
+                {
+                    orderdeliveriessearchform = null;
+                }
+                if(logsform != null)
+                {
+                    logsform = null;
+                }
+                if (imgbinform != null)
+                {
+                    imgbinform = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
