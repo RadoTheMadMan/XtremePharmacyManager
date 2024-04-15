@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -53,6 +54,38 @@ namespace XtremePharmacyManager
                     logs = entities.GetLog(-1, new DateTime(), new DateTime(), "", "", "").ToList();
                     lastUpdate = DateTime.Now;
                     this.InvokeRefreshEvent();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void RefreshLogs(int ID, DateTime LogDateFrom, DateTime LogDateTo, string Title, string Message, string AdditionalInformation, int SearchMode)
+        {
+            try
+            {
+                if (entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                {
+                    if (SearchMode == 1)
+                    {
+                        logs = entities.Logs.Where(
+                            x => x.ID == ID ^ x.LogTitle.Contains(Title) ^ (x.LogDate >= LogDateFrom && x.LogDate <= LogDateTo) ^ x.LogMessage.Contains(Message) ^ x.AdditionalLogInformation.Contains(AdditionalInformation)).ToList();
+                    }
+                    else if (SearchMode == 2)
+                    {
+                        logs = entities.Logs.Where(
+                           x => x.ID == ID || x.LogTitle.Contains(Title) || (x.LogDate >= LogDateFrom && x.LogDate <= LogDateTo) ||  x.LogMessage.Contains(Message) || x.AdditionalLogInformation.Contains(AdditionalInformation)).ToList();
+                    }
+                    else if (SearchMode == 3)
+                    {
+                        logs = entities.GetLog(ID, LogDateFrom, LogDateTo, Title, Message, AdditionalInformation).ToList();
+                    }
+                    else
+                    {
+                        RefreshLogs();
+                    }
                 }
             }
             catch (Exception ex)

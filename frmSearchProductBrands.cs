@@ -15,10 +15,12 @@ namespace XtremePharmacyManager
     public partial class frmSearchProductBrands : Form
     {
         static Entities ent;
+        static Logger logger;
         static List<ProductBrand> product_brands;
-        public frmSearchProductBrands(Entities entity)
+        public frmSearchProductBrands(ref Entities entity, ref Logger logger)
         {
             ent = entity;
+            logger = logger;
             InitializeComponent();
             RefreshProductBrands();
         }
@@ -69,6 +71,7 @@ namespace XtremePharmacyManager
             {
                 RefreshProductBrands();
             }
+            logger.RefreshLogs();
         }
 
 
@@ -148,6 +151,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                logger.RefreshLogs();
             }
             catch(Exception ex)
             {
@@ -190,6 +194,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                logger.RefreshLogs();
             }
             catch (Exception ex)
             {

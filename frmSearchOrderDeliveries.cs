@@ -24,13 +24,15 @@ namespace XtremePharmacyManager
         //for easy to use separation between users who are employees and users who are clients and minimal error
         //I hope it works for 
         static Entities ent;
+        static Logger logger;
         static List<ProductOrder> product_orders;
         static List<OrderDelivery> order_deliveries;
         static List<DeliveryService> delivery_services;
         static List<PaymentMethod> payment_methods;
-        public frmSearchOrderDeliveries(Entities entity)
+        public frmSearchOrderDeliveries(ref Entities entity,ref Logger logger)
         {
             ent = entity;
+            logger = logger;
             InitializeComponent();
             RefreshDeliveryServices();
             RefreshPaymentMethods();
@@ -178,6 +180,7 @@ namespace XtremePharmacyManager
                 RefreshPaymentMethods();
                 RefreshOrderDeliveries();
             }
+            logger.RefreshLogs();
         }
 
         private void trbTotalPrice_Scroll(object sender, EventArgs e)
@@ -275,7 +278,8 @@ namespace XtremePharmacyManager
                         RefreshOrderDeliveries();
                     }
                 }
-            }
+                }
+                logger.RefreshLogs();
             }
             catch (Exception ex)
             {
@@ -321,6 +325,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                logger.RefreshLogs();
             }
             catch (Exception ex)
             {

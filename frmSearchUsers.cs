@@ -16,9 +16,11 @@ namespace XtremePharmacyManager
     {
         static Entities ent;
         static List<User> users;
-        public frmSearchUsers(Entities entity)
+        static  Logger logger;
+        public frmSearchUsers(ref Entities entity, ref Logger logger)
         {
             ent = entity;
+            logger = logger;
             InitializeComponent();
             RefreshUsers();
         }
@@ -89,6 +91,7 @@ namespace XtremePharmacyManager
             {
                 RefreshUsers();
             }
+            logger.RefreshLogs();
         }
 
         private void trbBalance_Scroll(object sender, EventArgs e)
@@ -179,6 +182,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                logger.RefreshLogs();
             }
             catch(Exception ex)
             {
@@ -221,6 +225,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                logger.RefreshLogs();
             }
             catch (Exception ex)
             {

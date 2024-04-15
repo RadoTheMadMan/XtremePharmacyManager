@@ -15,10 +15,12 @@ namespace XtremePharmacyManager
     public partial class frmSearchDeliveryServices : Form
     {
         static Entities ent;
+        static Logger logger;
         static List<DeliveryService> delivery_services;
-        public frmSearchDeliveryServices(Entities entity)
+        public frmSearchDeliveryServices(ref Entities entity, ref Logger logger)
         {
             ent = entity;
+            logger = logger;
             InitializeComponent();
             RefreshDeliveryServices();
         }
@@ -70,6 +72,7 @@ namespace XtremePharmacyManager
             {
                 RefreshDeliveryServices();
             }
+            logger.RefreshLogs();
         }
 
         private void trbPrice_Scroll(object sender, EventArgs e)
@@ -152,6 +155,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                logger.RefreshLogs();
             }
             catch(Exception ex)
             {
@@ -194,6 +198,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                logger.RefreshLogs();
             }
             catch (Exception ex)
             {

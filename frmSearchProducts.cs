@@ -20,12 +20,14 @@ namespace XtremePharmacyManager
     public partial class frmSearchProducts : Form
     {
         static Entities ent;
+        static Logger logger;
         static List<Product> products;
         static List<ProductBrand> product_brands;
         static List<ProductImage> product_images;
-        public frmSearchProducts(Entities entity)
+        public frmSearchProducts(ref Entities entity,ref Logger logger)
         {
             ent = entity;
+            logger = logger;
             InitializeComponent();
             RefreshProductBrands();
             RefreshProducts();
@@ -238,6 +240,7 @@ namespace XtremePharmacyManager
                 RefreshProducts();
                 RefreshProductImages();
             }
+            logger.RefreshLogs();
         }
 
         private void trbPrice_Scroll(object sender, EventArgs e)
@@ -342,6 +345,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                logger.RefreshLogs();
             }
             catch(Exception ex)
             {
@@ -386,6 +390,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                logger.RefreshLogs();
             }
             catch (Exception ex)
             {
@@ -585,6 +590,7 @@ namespace XtremePharmacyManager
                 RefreshProductBrands();
                 RefreshProductImages();
             }
+            logger.RefreshLogs();
         }
 
         private void btnDeleteProductImage_Click(object sender, EventArgs e)
@@ -620,6 +626,7 @@ namespace XtremePharmacyManager
                     }
 
                 }
+                logger.RefreshLogs();
             }
             catch (Exception ex)
             {
@@ -705,6 +712,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                logger.RefreshLogs();
             }
             catch (Exception ex)
             {

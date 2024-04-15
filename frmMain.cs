@@ -106,7 +106,7 @@ namespace XtremePharmacyManager
                 {
                     if (userssearchform == null)
                     {
-                        userssearchform = new frmSearchUsers(entities);
+                        userssearchform = new frmSearchUsers(ref entities, ref logger);
                         userssearchform.MdiParent = this;
                         userssearchform.FormClosed += Usersearchform_FormClosed;
                         userssearchform.Show();
@@ -142,7 +142,7 @@ namespace XtremePharmacyManager
                 {
                     if (deliveryservicessearchform == null)
                     {
-                        deliveryservicessearchform = new frmSearchDeliveryServices(entities);
+                        deliveryservicessearchform = new frmSearchDeliveryServices(ref entities, ref logger);
                         deliveryservicessearchform.MdiParent = this;
                         deliveryservicessearchform.FormClosed += Deliveryservicessearchform_FormClosed;
                         deliveryservicessearchform.Show();
@@ -173,7 +173,7 @@ namespace XtremePharmacyManager
                 {
                     if (paymentmethodssearchform == null)
                     {   
-                        paymentmethodssearchform = new frmSearchPaymentMethods(entities);
+                        paymentmethodssearchform = new frmSearchPaymentMethods(ref entities, ref logger);
                         paymentmethodssearchform.MdiParent = this;
                         paymentmethodssearchform.FormClosed += Paymentmethodssearchform_FormClosed;
                         paymentmethodssearchform.Show();
@@ -204,7 +204,7 @@ namespace XtremePharmacyManager
                 {
                     if (productbrandssearchform == null)
                     {   
-                        productbrandssearchform = new frmSearchProductBrands(entities);
+                        productbrandssearchform = new frmSearchProductBrands(ref entities, ref logger);
                         productbrandssearchform.MdiParent = this;
                         productbrandssearchform.FormClosed += Productbrandssearchform_FormClosed;
                         productbrandssearchform.Show();
@@ -235,7 +235,7 @@ namespace XtremePharmacyManager
                 {
                     if (productssearchform == null)
                     {
-                        productssearchform = new frmSearchProducts(entities);
+                        productssearchform = new frmSearchProducts(ref entities, ref logger);
                         productssearchform.MdiParent = this;
                         productssearchform.FormClosed += Productssearchform_FormClosed;
                         productssearchform.Show();
@@ -266,7 +266,7 @@ namespace XtremePharmacyManager
                 {
                     if (orderssearchform == null)
                     {
-                        orderssearchform = new frmSearchProductOrders(entities);
+                        orderssearchform = new frmSearchProductOrders(ref entities, ref logger);
                         orderssearchform.MdiParent = this;
                         orderssearchform.FormClosed += Orderssearchform_FormClosed;
                         orderssearchform.Show();
@@ -297,7 +297,7 @@ namespace XtremePharmacyManager
                 {
                     if (orderdeliveriessearchform == null)
                     {
-                        orderdeliveriessearchform = new frmSearchOrderDeliveries(entities);
+                        orderdeliveriessearchform = new frmSearchOrderDeliveries(ref entities, ref logger);
                         orderdeliveriessearchform.MdiParent = this;
                         orderdeliveriessearchform.FormClosed += Orderdeliveriessearchform_FormClosed;
                         orderdeliveriessearchform.Show();
@@ -359,7 +359,7 @@ namespace XtremePharmacyManager
                 {
                     if (logsform == null)
                     {
-                        imgbinform = new frmSearchOrderDeliveries(entities);
+                        imgbinform = new frmImageBinConverter();
                         imgbinform.MdiParent = this;
                         imgbinform.FormClosed += Imgbinform_FormClosed;
                         imgbinform.Show();

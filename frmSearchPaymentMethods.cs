@@ -15,10 +15,12 @@ namespace XtremePharmacyManager
     public partial class frmSearchPaymentMethods : Form
     {
         static Entities ent;
+        static Logger logger;
         static List<PaymentMethod> payment_methods;
-        public frmSearchPaymentMethods(Entities entity)
+        public frmSearchPaymentMethods(ref Entities entity, ref Logger logger)
         {
             ent = entity;
+            logger = logger;
             InitializeComponent();
             RefreshPaymentMethods();
         }
@@ -69,6 +71,7 @@ namespace XtremePharmacyManager
             {
                 RefreshPaymentMethods();
             }
+            logger.RefreshLogs();
         }
 
 
@@ -148,6 +151,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                logger.RefreshLogs();
             }
             catch(Exception ex)
             {
@@ -190,6 +194,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                logger.RefreshLogs();
             }
             catch (Exception ex)
             {
