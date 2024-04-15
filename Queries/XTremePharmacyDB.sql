@@ -134,6 +134,7 @@ ID int identity primary key not null,
 OrderID int foreign key references ProductOrders(ID) on update cascade on delete set default default -1,
 DeliveryServiceID int foreign key references DeliveryServices(ID) on update cascade on delete set default default -1,
 PaymentMethodID int foreign key references PaymentMethods(ID) on update cascade on delete set default default -1,
+CargoID varchar(max) not null default 'TSTCARGO123',
 TotalPrice money not null default 0,
 DateAdded date not null default getdate(),
 DateModified date not null default getdate(),
@@ -1237,6 +1238,7 @@ create or alter procedure AddOrderDelivery(
 @orderid int,
 @serviceid int,
 @methodid int,
+@cargoid varchar(max),
 @deliveryreason varchar(max)
 )
 as
@@ -1248,8 +1250,8 @@ select @serviceprice = ServicePrice from DeliveryServices where ID = @serviceid;
 /* total price for order deliveries is calculated automatically */
 declare @finalprice as money; /* the final calculated price */
 set @finalprice = @orderprice + @serviceprice;
-insert into OrderDeliveries(OrderID,DeliveryServiceID, PaymentMethodID,TotalPrice,DateAdded,DateModified,DeliveryReason)
-values(@orderid,@serviceid,@methodid,@finalprice,getdate(),getdate(), @deliveryreason);
+insert into OrderDeliveries(OrderID, DeliveryServiceID, PaymentMethodID, CargoID, TotalPrice, DateAdded, DateModified, DeliveryReason)
+values(@orderid,@serviceid,@methodid,@cargoid,@finalprice,getdate(),getdate(), @deliveryreason);
 end
 go
 /* Get Order Delivery stored procedure, if blank parameters are put it is supposed to return everything, if specific parameters
@@ -1260,6 +1262,7 @@ create or alter procedure GetOrderDelivery(
 @orderid int,
 @serviceid int,
 @methodid int,
+@cargoid varchar(max),
 @price money,
 @dateaddedfrom date,
 @dateaddedto date,
@@ -1270,11 +1273,11 @@ create or alter procedure GetOrderDelivery(
 )
 as
 begin
-if @id >= 0 and @orderid >= 0 and @serviceid >= 0 and @methodid >= 0 and @price >= 0 and 
+if @id >= 0 and @orderid >= 0 and @serviceid >= 0 and @methodid >= 0 and @cargoid != '' and @price >= 0 and 
 @dateaddedfrom != '' and @dateaddedto != '' and @datemodifiedfrom != '' and @datemodifiedto != '' and @status >= 0 and @reason != ''
 begin
 select * from OrderDeliveries where ID = @id and OrderID = @orderid and DeliveryServiceID = @serviceid and PaymentMethodID = @methodid and
-(TotalPrice >= @price or TotalPrice <= @price) and DateAdded between @dateaddedfrom and @dateaddedto
+CargoID like '%'+@cargoid+'%' and (TotalPrice >= @price or TotalPrice <= @price) and DateAdded between @dateaddedfrom and @dateaddedto
 and DateModified between @datemodifiedfrom and @datemodifiedto and DeliveryStatus = @status and DeliveryReason like '%'+@reason+'%' ;
 end
 else
@@ -1293,6 +1296,7 @@ create or alter procedure UpdateOrderDeliveryByID(
 @new_order_id int,
 @new_service_id int,
 @new_method_id int,
+@new_cargo_id varchar(max),
 @new_status int,
 @new_reason varchar(max)
 )
@@ -1305,7 +1309,9 @@ select @old_order_id = OrderID from OrderDeliveries where ID = @id;
 declare @old_service_id as int;
 select @old_service_id = DeliveryServiceID from OrderDeliveries where ID = @id;
 declare @old_method_id as int;
-select @old_service_id = PaymentMethodID from OrderDeliveries where ID = @id;
+select @old_method_id = PaymentMethodID from OrderDeliveries where ID = @id;
+declare @old_cargo_id as varchar(max);
+select @old_cargo_id = CargoID from OrderDeliveries where ID = @id;
 declare @old_status as int;
 select @old_status = DeliveryStatus from OrderDeliveries where ID = @id;
 declare @old_reason as varchar(max);
@@ -1331,6 +1337,10 @@ if @new_method_id is null
 begin
 set @new_method_id = @old_method_id;
 end
+if @new_cargo_id is null or @new_cargo_id = ''
+begin
+set @new_cargo_id = @old_cargo_id;
+end
 if @new_status is null or @new_status < 0
 begin
 set @new_status = @old_status;
@@ -1347,7 +1357,7 @@ select @new_delivery_price = ServicePrice from DeliveryServices where ID = @new_
 set @final_price = @new_order_price + @new_delivery_price;
 /* and then update */
 update OrderDeliveries set OrderID = @new_order_id, DeliveryServiceID = @new_service_id,
-PaymentMethodID = @new_method_id, TotalPrice = @final_price, DateModified = getdate(), 
+PaymentMethodID = @new_method_id, CargoID = @new_cargo_id,TotalPrice = @final_price, DateModified = getdate(), 
 DeliveryStatus = @new_status, DeliveryReason = @new_reason where ID = @id;
 end
 end
@@ -1361,6 +1371,7 @@ create or alter procedure DeleteOrderDelivery(
 @orderid int,
 @serviceid int,
 @methodid int,
+@cargoid varchar(max),
 @price money,
 @dateaddedfrom date,
 @dateaddedto date,
@@ -1371,11 +1382,11 @@ create or alter procedure DeleteOrderDelivery(
 )
 as
 begin
-if @id >= 0 and @orderid >= 0 and @serviceid >= 0 and @methodid >= 0 and @price >= 0 and 
+if @id >= 0 and @orderid >= 0 and @serviceid >= 0 and @methodid >= 0 and @cargoid != '' and @price >= 0 and 
 @dateaddedfrom != '' and @dateaddedto != '' and @datemodifiedfrom != '' and @datemodifiedto != '' and @status >= 0 and @reason != ''
 begin
 delete from OrderDeliveries where ID = @id and OrderID = @orderid and DeliveryServiceID = @serviceid and PaymentMethodID = @methodid and
-(TotalPrice >= @price or TotalPrice <= @price) and DateAdded between @dateaddedfrom and @dateaddedto
+CargoID like '%'+@cargoid+'%' and (TotalPrice >= @price or TotalPrice <= @price) and DateAdded between @dateaddedfrom and @dateaddedto
 and DateModified between @datemodifiedfrom and @datemodifiedto and DeliveryStatus = @status and DeliveryReason like '%'+@reason+'%' ;
 end
 else
@@ -2911,6 +2922,7 @@ declare @new_id as int;
 declare @new_order_id as int;
 declare @new_service_id as int;
 declare @new_method_id as int;
+declare @new_cargo_id as varchar(max);
 declare @new_total_price as money;
 declare @new_date_added as date;
 declare @new_date_modified as date;
@@ -2923,6 +2935,7 @@ select @new_id = ID from inserted;
 select @new_order_id = OrderID from inserted;
 select @new_service_id = DeliveryServiceID from inserted;
 select @new_method_id = PaymentMethodID from inserted;
+select @new_cargo_id = CargoID from inserted;
 select @new_total_price = TotalPrice from inserted;
 select @new_date_added = DateAdded from inserted;
 select @new_date_modified = DateModified from inserted;
@@ -2931,9 +2944,9 @@ select @new_delivery_reason = DeliveryReason from inserted;
 set @log_message = 'An order delivery was added to the list with the id: ' + try_cast(@new_id as varchar);
 set @additional_information = 'Delivery ID: ' + try_cast(@new_id as varchar) + '\n' + 'Order ID: ' + try_cast(@new_order_id as varchar) + '\n' +
 'Delivery Service ID: ' + try_cast(@new_service_id as varchar) + '\n' + 'Payment Method ID: ' + try_cast(@new_method_id as varchar) + '\n' +
-'Total Price: ' + try_cast(@new_total_price as varchar) + '\n' + 'Date Added: ' + try_cast(@new_date_added as varchar) + '\n' +
-'Date Modified: ' + try_cast(@new_date_modified as varchar) + '\n' + 'Delivery Status ID: ' + try_cast(@new_delivery_status as varchar) + '\n' +
-'Delivery Reason: ' + try_cast(@new_delivery_reason as varchar) + '\n';
+'Cargo ID: ' + try_cast(@new_cargo_id as varchar) + '\n'+ 'Total Price: ' + try_cast(@new_total_price as varchar) + '\n'+ 
+'Date Added: ' + try_cast(@new_date_added as varchar) + '\n' + 'Date Modified: ' + try_cast(@new_date_modified as varchar) + '\n' +
+'Delivery Status ID: ' + try_cast(@new_delivery_status as varchar) + '\n' + 'Delivery Reason: ' + try_cast(@new_delivery_reason as varchar) + '\n';
 set @current_date = getdate();
 exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Order Delivery Added', 
@@ -2955,7 +2968,9 @@ declare @old_service_id as int;
 declare @new_service_id as int;
 declare @old_method_id as int;
 declare @new_method_id as int;
-declare @old_total_price as int;
+declare @old_cargo_id as varchar(max);
+declare @new_cargo_id as varchar(max);
+declare @old_total_price as money;
 declare @new_total_price as money;
 declare @old_date_added as date;
 declare @new_date_added as date;
@@ -2976,6 +2991,8 @@ select @old_service_id = DeliveryServiceID from deleted;
 select @new_service_id = DeliveryServiceID from inserted;
 select @old_method_id = PaymentMethodID from deleted;
 select @new_method_id = PaymentMethodID from inserted;
+select @old_cargo_id = CargoID from deleted;
+select @new_cargo_id = CargoID from inserted;
 select @old_total_price = TotalPrice from deleted;
 select @new_total_price = TotalPrice from inserted;
 select @old_date_added = DateAdded from deleted;
@@ -3027,6 +3044,7 @@ if (@old_delivery_status != 1 and @old_delivery_status != 2 and @old_delivery_st
 @old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
 and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status = 3
 and @new_delivery_status != 7 and @new_delivery_status != 8 and @new_delivery_status != 9)
+and ((@old_cargo_id is not null and @old_cargo_id != 'TSTCARGO123') or (@new_cargo_id is not null and @new_cargo_id != 'TSTCARGO123')) /* validate the cargo ID */
 begin
 select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
 select @current_client_id = ClientID from ProductOrders where ID = @new_order_id;
@@ -3074,14 +3092,14 @@ end
 end
 set @additional_information = 'Old Delivery ID: ' + try_cast(@old_id as varchar) + '\n' + 'Old Order ID: ' + try_cast(@old_order_id as varchar) + '\n' +
 'Old Delivery Service ID: ' + try_cast(@old_service_id as varchar) + '\n' + 'Old Payment Method ID: ' + try_cast(@old_method_id as varchar) + '\n' +
-'Old Total Price: ' + try_cast(@old_total_price as varchar) + '\n' + 'Old Date Added: ' + try_cast(@old_date_added as varchar) + '\n' +
-'Old Date Modified: ' + try_cast(@old_date_modified as varchar) + '\n' + 'Old Delivery Status ID: ' + try_cast(@old_delivery_status as varchar) + '\n' +
-'Old Delivery Reason: ' + try_cast(@old_delivery_reason as varchar) + '\n' +
+'Old Cargo ID: ' + try_cast(@old_cargo_id as varchar) + '\n' + 'Old Total Price: ' + try_cast(@old_total_price as varchar) +
+'\n' + 'Old Date Added: ' + try_cast(@old_date_added as varchar) + '\n' + 'Old Date Modified: ' + try_cast(@old_date_modified as varchar) + '\n' +
+'Old Delivery Status ID: ' + try_cast(@old_delivery_status as varchar) + '\n' + 'Old Delivery Reason: ' + try_cast(@old_delivery_reason as varchar) + '\n' +
 'New Delivery ID: ' + try_cast(@new_id as varchar) + '\n' + 'New Order ID: ' + try_cast(@new_order_id as varchar) + '\n' +
 'New Delivery Service ID: ' + try_cast(@new_service_id as varchar) + '\n' + 'New Payment Method ID: ' + try_cast(@new_method_id as varchar) + '\n' +
-'New Total Price: ' + try_cast(@new_total_price as varchar) + '\n' + 'New Date Added: ' + try_cast(@new_date_added as varchar) + '\n' +
-'New Date Modified: ' + try_cast(@new_date_modified as varchar) + '\n' + 'New Delivery Status ID: ' + try_cast(@new_delivery_status as varchar) + '\n' +
-'New Delivery Reason: ' + try_cast(@new_delivery_reason as varchar) + '\n';
+'New Cargo ID: ' + try_cast(@new_cargo_id as varchar) + '\n' + 'New Total Price: ' + try_cast(@new_total_price as varchar) + '\n' + 
+'New Date Added: ' + try_cast(@new_date_added as varchar) + '\n' + 'New Date Modified: ' + try_cast(@new_date_modified as varchar) +'\n' +
+'New Delivery Status ID: ' + try_cast(@new_delivery_status as varchar) + '\n' + 'New Delivery Reason: ' + try_cast(@new_delivery_reason as varchar) + '\n';
 exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Order Delivery Updated', 
 @logmessage = @log_message,
@@ -3095,23 +3113,16 @@ as
 begin
 set nocount on;
 declare @old_id as int;
-declare @new_id as int;
 declare @old_order_id as int;
-declare @new_order_id as int;
 declare @old_service_id as int;
-declare @new_service_id as int;
 declare @old_method_id as int;
-declare @new_method_id as int;
-declare @old_total_price as int;
+declare @old_cargo_id as varchar(max);
+declare @old_total_price as money;
 declare @new_total_price as money;
 declare @old_date_added as date;
-declare @new_date_added as date;
 declare @old_date_modified as date;
-declare @new_date_modified as date;
 declare @old_delivery_status as int;
-declare @new_delivery_status as int;
 declare @old_delivery_reason as varchar(max);
-declare @new_delivery_reason as varchar(max);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
 declare @current_date as date;
@@ -3119,6 +3130,7 @@ select @old_id = ID from deleted;
 select @old_order_id = OrderID from deleted;
 select @old_service_id = DeliveryServiceID from deleted;
 select @old_method_id = PaymentMethodID from deleted;
+select @old_cargo_id = CargoID from deleted;
 select @old_total_price = TotalPrice from deleted;
 select @old_date_added = DateAdded from deleted;
 select @old_date_modified = DateModified from deleted;
@@ -3128,9 +3140,9 @@ set @current_date = getdate();
 set @log_message = 'An order delivery was removed list with the id: ' + try_cast(@old_id as varchar);
 set @additional_information = 'Old Delivery ID: ' + try_cast(@old_id as varchar) + '\n' + 'Old Order ID: ' + try_cast(@old_order_id as varchar) + '\n' +
 'Old Delivery Service ID: ' + try_cast(@old_service_id as varchar) + '\n' + 'Old Payment Method ID: ' + try_cast(@old_method_id as varchar) + '\n' +
-'Old Total Price: ' + try_cast(@old_total_price as varchar) + '\n' + 'Old Date Added: ' + try_cast(@old_date_added as varchar) + '\n' +
-'Old Date Modified: ' + try_cast(@old_date_modified as varchar) + '\n' + 'Old Delivery Status ID: ' + try_cast(@old_delivery_status as varchar) + '\n' +
-'Old Delivery Reason: ' + try_cast(@old_delivery_reason as varchar) + '\n';
+'Old Cargo ID: ' + try_cast(@old_cargo_id as varchar) + '\n' + 'Old Total Price: ' + try_cast(@old_total_price as varchar) + '\n' +
+'Old Date Added: ' + try_cast(@old_date_added as varchar) + '\n' + 'Old Date Modified: ' + try_cast(@old_date_modified as varchar) + '\n' +
+'Old Delivery Status ID: ' + try_cast(@old_delivery_status as varchar) + '\n' + 'Old Delivery Reason: ' + try_cast(@old_delivery_reason as varchar) + '\n';
 exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Order Delivery Removed', 
 @logmessage = @log_message,
@@ -3154,7 +3166,7 @@ go
  declare @additionalloginformation as varchar(max);
  declare @current_date as date;
  set @current_date = getdate();
- set @logtitle = 'User ' + original_login() + 'has failed to login.';
+ set @logtitle = '[XTremePharmacyDB] User Logon';
  set @success_message ='Welcome, ' + original_login() + '.';
  set @failed_message = 'Sorry, ' + original_login() + ' you aren''t allowed to access the database.\nPossible unauthorised login so access denied.\n
  Please ask an existing user to register you.';
@@ -3165,14 +3177,14 @@ go
  if @found_user_id >0 /* on success give a message with an ID */
  begin
  print @success_message;
- set @logmessage = 'User ' + original_login() + 'has logged in successfully.';
+ set @logmessage = 'User ' + original_login() + 'has logged in successfully. Logged in at: ' + try_cast(@current_date as varchar);
  set @additionalloginformation = 'Host Name: ' + HOST_NAME() + '\n';
  insert into XTremePharmacyDB.dbo.Logs(LogDate,LogTitle,LogMessage,AdditionalLogInformation) values (@current_date, @logtitle,@logmessage,@additionalloginformation);
  end
  else /* on failure send the failure message and rollback the login, a.k.a. deny access */
  begin
  print @failed_message;
- set @logmessage = 'User ' + original_login() + 'has failed to login.';
+ set @logmessage = 'User ' + original_login() + 'has failed to login. Login attempt at: ' + try_cast(@current_date as varchar);
  set @additionalloginformation = 'Host Name: ' + HOST_NAME() + '\n';
  insert into XTremePharmacyDB.dbo.Logs(LogDate,LogTitle,LogMessage,AdditionalLogInformation) values (@current_date, @logtitle,@logmessage,@additionalloginformation);
  rollback;
