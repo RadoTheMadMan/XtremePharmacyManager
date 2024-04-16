@@ -61,7 +61,7 @@ namespace XtremePharmacyManager
                 //Never try to execute any function if it is not online
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
-                    order_deliveries = ent.GetOrderDelivery(-1,-1,-1,-1,new decimal(),new DateTime(), new DateTime(), new DateTime(), new DateTime(),0,"").ToList();
+                    order_deliveries = ent.GetOrderDelivery(-1,-1,-1,-1,"",new decimal(),new DateTime(), new DateTime(), new DateTime(), new DateTime(),0,"").ToList();
                     dgvOrderDeliveries.DataSource = order_deliveries;
                 }
             }
@@ -135,6 +135,7 @@ namespace XtremePharmacyManager
             DateTime DateModifiedFrom = dtDateModifiedFrom.Value;
             DateTime DateModifiedTo = dtDateModifiedTo.Value;
             decimal TotalPrice = trbTotalPrice.Value;
+            string CargoID = txtCargoID.Text;
             string DeliveryReason = txtDeliveryReason.Text;
             int SearchMode = cbSearchMode.SelectedIndex;
             if (SearchMode == 1)
@@ -146,7 +147,7 @@ namespace XtremePharmacyManager
                     x => x.ID == DeliveryID ^ x.OrderID == OrderID ^ x.DeliveryServiceID == DeliveryServiceID ^ x.PaymentMethodID == PaymentMethodID ^
                         (x.DateAdded >= DateAddedFrom && x.DateAdded <= DateAddedTo) ^ x.DeliveryReason.Contains(DeliveryReason) ^
                         (x.DateModified >= DateModifiedFrom && x.DateModified <= DateModifiedTo) ^ x.DeliveryStatus == DeliveryStatus ^
-                        (x.TotalPrice <= TotalPrice || x.TotalPrice >= TotalPrice)).ToList();
+                        x.CargoID.Contains(CargoID) ^ (x.TotalPrice <= TotalPrice || x.TotalPrice >= TotalPrice)).ToList();
                 dgvOrderDeliveries.DataSource = order_deliveries;
             }
             else if (SearchMode == 2)
@@ -158,7 +159,7 @@ namespace XtremePharmacyManager
                     x => x.ID == DeliveryID || x.OrderID == OrderID || x.DeliveryServiceID == DeliveryServiceID || x.PaymentMethodID == PaymentMethodID ||
                         (x.DateAdded >= DateAddedFrom && x.DateAdded <= DateAddedTo) || x.DeliveryReason.Contains(DeliveryReason) ||
                         (x.DateModified >= DateModifiedFrom && x.DateModified <= DateModifiedTo) || x.DeliveryStatus == DeliveryStatus ||
-                        (x.TotalPrice <= TotalPrice || x.TotalPrice >= TotalPrice)).ToList();
+                        x.CargoID.Contains(CargoID) || (x.TotalPrice <= TotalPrice || x.TotalPrice >= TotalPrice)).ToList();
                 dgvOrderDeliveries.DataSource = order_deliveries;
             }
             else if (SearchMode == 3)
@@ -166,7 +167,7 @@ namespace XtremePharmacyManager
                 RefreshProductOrders();
                 RefreshDeliveryServices();
                 RefreshPaymentMethods();
-                order_deliveries = ent.GetOrderDelivery(DeliveryID,OrderID,DeliveryServiceID,PaymentMethodID,new decimal(),new DateTime(),new DateTime(), new DateTime(), new DateTime(),0,"").ToList();
+                order_deliveries = ent.GetOrderDelivery(DeliveryID,OrderID,DeliveryServiceID,PaymentMethodID,CargoID,new decimal(),new DateTime(),new DateTime(), new DateTime(), new DateTime(),0,"").ToList();
                 dgvOrderDeliveries.DataSource = order_deliveries;
             }
             else
@@ -212,7 +213,7 @@ namespace XtremePharmacyManager
                                 {
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
-                                        ent.UpdateOrderDeliveryByID(selectedDelivery.ID, selectedDelivery.OrderID,selectedDelivery.DeliveryServiceID,selectedDelivery.PaymentMethodID,selectedDelivery.DeliveryStatus,selectedDelivery.DeliveryReason);
+                                        ent.UpdateOrderDeliveryByID(selectedDelivery.ID, selectedDelivery.OrderID,selectedDelivery.DeliveryServiceID,selectedDelivery.PaymentMethodID,selectedDelivery.CargoID,selectedDelivery.DeliveryStatus,selectedDelivery.DeliveryReason);
                                         RefreshDeliveryServices();
                                         RefreshPaymentMethods();
                                         RefreshProductOrders();
@@ -229,7 +230,7 @@ namespace XtremePharmacyManager
                                 {
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
-                                        ent.AddOrderDelivery(selectedDelivery.OrderID,selectedDelivery.DeliveryServiceID,selectedDelivery.PaymentMethodID,selectedDelivery.DeliveryReason);
+                                        ent.AddOrderDelivery(selectedDelivery.OrderID,selectedDelivery.DeliveryServiceID,selectedDelivery.PaymentMethodID,selectedDelivery.CargoID,selectedDelivery.DeliveryReason);
                                         RefreshDeliveryServices();
                                         RefreshPaymentMethods();
                                         RefreshProductOrders();
@@ -247,7 +248,7 @@ namespace XtremePharmacyManager
                             {
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
-                                    ent.AddOrderDelivery(selectedDelivery.OrderID, selectedDelivery.DeliveryServiceID, selectedDelivery.PaymentMethodID, selectedDelivery.DeliveryReason);
+                                    ent.AddOrderDelivery(selectedDelivery.OrderID, selectedDelivery.DeliveryServiceID, selectedDelivery.PaymentMethodID, selectedDelivery.CargoID, selectedDelivery.DeliveryReason);
                                     RefreshDeliveryServices();
                                     RefreshPaymentMethods();
                                     RefreshProductOrders();
@@ -267,7 +268,7 @@ namespace XtremePharmacyManager
                 {
                     if (ent.Database.Connection.State == ConnectionState.Open)
                     {
-                        ent.AddOrderDelivery(selectedDelivery.OrderID, selectedDelivery.DeliveryServiceID, selectedDelivery.PaymentMethodID, selectedDelivery.DeliveryReason);
+                        ent.AddOrderDelivery(selectedDelivery.OrderID, selectedDelivery.DeliveryServiceID, selectedDelivery.PaymentMethodID, selectedDelivery.CargoID, selectedDelivery.DeliveryReason);
                         RefreshDeliveryServices();
                         RefreshPaymentMethods();
                         RefreshProductOrders();
@@ -360,6 +361,7 @@ namespace XtremePharmacyManager
                             }
                             dtDateAddedFrom.Value = target_delivery.DateAdded;
                             dtDateModifiedFrom.Value = target_delivery.DateModified;
+                            txtCargoID.Text = target_delivery.CargoID;
                             txtDeliveryReason.Text = target_delivery.DeliveryReason.ToString();
                             trbTotalPrice.Value = Convert.ToInt32(target_delivery.TotalPrice);
                             lblShowTotalPrice.Text = target_delivery.TotalPrice.ToString();

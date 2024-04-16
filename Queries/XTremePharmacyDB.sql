@@ -1649,7 +1649,7 @@ ProductOrders.DesiredQuantity, ProductOrders.OrderPrice,
 (select UserEmail from Users, ProductOrders where ProductOrders.ClientID = Users.ID) as ClientEmail,
 (select UserAddress from Users, ProductOrders where ProductOrders.ClientID = Users.ID) as ClientAddress,
 (select UserDisplayName from Users,ProductOrders where ProductOrders.EmployeeID = Users.ID) as EmployeeName,
-DeliveryServices.ServiceName, DeliveryServices.ServicePrice as DeliveryPrice, PaymentMethods.MethodName, OrderDeliveries.TotalPrice,
+DeliveryServices.ServiceName, DeliveryServices.ServicePrice as DeliveryPrice, PaymentMethods.MethodName,OrderDeliveries.CargoID, OrderDeliveries.TotalPrice,
 OrderDeliveries.DateAdded,OrderDeliveries.DateModified, OrderDeliveries.DeliveryStatus, OrderDeliveries.DeliveryReason
 from OrderDeliveries inner join ProductOrders on OrderDeliveries.OrderID = ProductOrders.ID
 inner join DeliveryServices on OrderDeliveries.DeliveryServiceID = DeliveryServices.ID

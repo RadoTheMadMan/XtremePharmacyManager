@@ -21,6 +21,7 @@ namespace XtremePharmacyManager.DataEntities
         public Entities()
             : base("name=Entities")
         {
+
         }
 
         public Entities(EntityConnectionStringBuilder esb) :base(esb.ConnectionString)

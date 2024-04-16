@@ -77,6 +77,14 @@ namespace XtremePharmacyManager
             }
         }
 
+        private void txtCargoID_TextChanged(object sender, EventArgs e)
+        {
+            if (target != null)
+            {
+                target.CargoID = txtCargoID.Text;
+            }
+        }
+
         private void frmEditOrderDelivery_Load(object sender, EventArgs e)
         {
             product_orders = product_orders;
@@ -91,6 +99,9 @@ namespace XtremePharmacyManager
             this.cbSelectPaymentMethod.SelectedValue = target.PaymentMethodID;
             cbSelectDeliveryStatus.SelectedValue = cbSelectDeliveryStatus.Items[target.DeliveryStatus];
             txtDeliveryReason.Text = target.DeliveryReason;
+            txtCargoID.Text = target.CargoID;
         }
+
+
     }
 }

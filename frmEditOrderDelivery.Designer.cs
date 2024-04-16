@@ -36,7 +36,7 @@
             this.cbSelectDeliveryStatus = new System.Windows.Forms.ComboBox();
             this.cbSelectPaymentMethod = new System.Windows.Forms.ComboBox();
             this.userBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.lblEmployee = new System.Windows.Forms.Label();
+            this.lblPaymentMethod = new System.Windows.Forms.Label();
             this.cbSelectDeliveryService = new System.Windows.Forms.ComboBox();
             this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblDeliveryService = new System.Windows.Forms.Label();
@@ -50,6 +50,8 @@
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtCargoID = new System.Windows.Forms.TextBox();
+            this.lblCargoID = new System.Windows.Forms.Label();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
@@ -61,12 +63,14 @@
             // 
             // pnlData
             // 
+            this.pnlData.Controls.Add(this.lblCargoID);
+            this.pnlData.Controls.Add(this.txtCargoID);
             this.pnlData.Controls.Add(this.txtDeliveryReason);
             this.pnlData.Controls.Add(this.lblDeliveryReason);
             this.pnlData.Controls.Add(this.lblOrderStatus);
             this.pnlData.Controls.Add(this.cbSelectDeliveryStatus);
             this.pnlData.Controls.Add(this.cbSelectPaymentMethod);
-            this.pnlData.Controls.Add(this.lblEmployee);
+            this.pnlData.Controls.Add(this.lblPaymentMethod);
             this.pnlData.Controls.Add(this.cbSelectDeliveryService);
             this.pnlData.Controls.Add(this.lblDeliveryService);
             this.pnlData.Controls.Add(this.cbSelectProductOrders);
@@ -110,7 +114,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lblOrderStatus.AutoSize = true;
             this.lblOrderStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrderStatus.Location = new System.Drawing.Point(20, 150);
+            this.lblOrderStatus.Location = new System.Drawing.Point(20, 169);
             this.lblOrderStatus.Name = "lblOrderStatus";
             this.lblOrderStatus.Size = new System.Drawing.Size(97, 16);
             this.lblOrderStatus.TabIndex = 52;
@@ -132,7 +136,7 @@
             "cancelled delivery",
             "returned delivery",
             "delivery completed"});
-            this.cbSelectDeliveryStatus.Location = new System.Drawing.Point(194, 147);
+            this.cbSelectDeliveryStatus.Location = new System.Drawing.Point(194, 166);
             this.cbSelectDeliveryStatus.Name = "cbSelectDeliveryStatus";
             this.cbSelectDeliveryStatus.Size = new System.Drawing.Size(201, 24);
             this.cbSelectDeliveryStatus.TabIndex = 51;
@@ -144,7 +148,7 @@
             this.cbSelectPaymentMethod.DataSource = this.userBindingSource1;
             this.cbSelectPaymentMethod.DisplayMember = "UserDisplayName";
             this.cbSelectPaymentMethod.FormattingEnabled = true;
-            this.cbSelectPaymentMethod.Location = new System.Drawing.Point(194, 110);
+            this.cbSelectPaymentMethod.Location = new System.Drawing.Point(194, 105);
             this.cbSelectPaymentMethod.Name = "cbSelectPaymentMethod";
             this.cbSelectPaymentMethod.Size = new System.Drawing.Size(201, 24);
             this.cbSelectPaymentMethod.TabIndex = 48;
@@ -155,17 +159,17 @@
             // 
             this.userBindingSource1.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
             // 
-            // lblEmployee
+            // lblPaymentMethod
             // 
-            this.lblEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblPaymentMethod.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblEmployee.AutoSize = true;
-            this.lblEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployee.Location = new System.Drawing.Point(20, 113);
-            this.lblEmployee.Name = "lblEmployee";
-            this.lblEmployee.Size = new System.Drawing.Size(129, 16);
-            this.lblEmployee.TabIndex = 47;
-            this.lblEmployee.Text = "Select Employee:";
+            this.lblPaymentMethod.AutoSize = true;
+            this.lblPaymentMethod.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPaymentMethod.Location = new System.Drawing.Point(20, 108);
+            this.lblPaymentMethod.Name = "lblPaymentMethod";
+            this.lblPaymentMethod.Size = new System.Drawing.Size(174, 16);
+            this.lblPaymentMethod.TabIndex = 47;
+            this.lblPaymentMethod.Text = "Select Payment Method:";
             // 
             // cbSelectDeliveryService
             // 
@@ -282,6 +286,28 @@
             // 
             this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
             // 
+            // txtCargoID
+            // 
+            this.txtCargoID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCargoID.Location = new System.Drawing.Point(194, 135);
+            this.txtCargoID.Name = "txtCargoID";
+            this.txtCargoID.Size = new System.Drawing.Size(201, 22);
+            this.txtCargoID.TabIndex = 55;
+            this.txtCargoID.TextChanged += new System.EventHandler(this.txtCargoID_TextChanged);
+            // 
+            // lblCargoID
+            // 
+            this.lblCargoID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCargoID.AutoSize = true;
+            this.lblCargoID.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCargoID.Location = new System.Drawing.Point(20, 138);
+            this.lblCargoID.Name = "lblCargoID";
+            this.lblCargoID.Size = new System.Drawing.Size(72, 16);
+            this.lblCargoID.TabIndex = 56;
+            this.lblCargoID.Text = "Cargo ID:";
+            // 
             // frmEditOrderDelivery
             // 
             this.AcceptButton = this.btnOK;
@@ -321,12 +347,14 @@
         private System.Windows.Forms.ComboBox cbSelectDeliveryService;
         private System.Windows.Forms.Label lblDeliveryService;
         private System.Windows.Forms.ComboBox cbSelectPaymentMethod;
-        private System.Windows.Forms.Label lblEmployee;
+        private System.Windows.Forms.Label lblPaymentMethod;
         private System.Windows.Forms.Label lblOrderStatus;
         private System.Windows.Forms.ComboBox cbSelectDeliveryStatus;
         private System.Windows.Forms.TextBox txtDeliveryReason;
         private System.Windows.Forms.Label lblDeliveryReason;
         private System.Windows.Forms.BindingSource productOrderBindingSource;
         private System.Windows.Forms.BindingSource deliveryServiceBindingSource;
+        private System.Windows.Forms.TextBox txtCargoID;
+        private System.Windows.Forms.Label lblCargoID;
     }
 }

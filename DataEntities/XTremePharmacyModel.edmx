@@ -215,6 +215,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedOrderDeliveriesView' 
             <PropertyRef Name="ServiceName" />
             <PropertyRef Name="DeliveryPrice" />
             <PropertyRef Name="MethodName" />
+            <PropertyRef Name="CargoID" />
             <PropertyRef Name="TotalPrice" />
             <PropertyRef Name="DateAdded" />
             <PropertyRef Name="DateModified" />
@@ -236,6 +237,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedOrderDeliveriesView' 
           <Property Name="ServiceName" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="DeliveryPrice" Type="money" Nullable="false" />
           <Property Name="MethodName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="CargoID" Type="varchar(max)" Nullable="false" />
           <Property Name="TotalPrice" Type="money" Nullable="false" />
           <Property Name="DateAdded" Type="date" Nullable="false" />
           <Property Name="DateModified" Type="date" Nullable="false" />
@@ -836,6 +838,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
     [ExtendedOrderDeliveriesView].[ServiceName] AS [ServiceName], 
     [ExtendedOrderDeliveriesView].[DeliveryPrice] AS [DeliveryPrice], 
     [ExtendedOrderDeliveriesView].[MethodName] AS [MethodName], 
+    [ExtendedOrderDeliveriesView].[CargoID] AS [CargoID], 
     [ExtendedOrderDeliveriesView].[TotalPrice] AS [TotalPrice], 
     [ExtendedOrderDeliveriesView].[DateAdded] AS [DateAdded], 
     [ExtendedOrderDeliveriesView].[DateModified] AS [DateModified], 
@@ -1142,6 +1145,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <PropertyRef Name="DateModified" />
             <PropertyRef Name="DeliveryStatus" />
             <PropertyRef Name="DeliveryReason" />
+            <PropertyRef Name="CargoID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -1163,6 +1167,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <Property Name="DateModified" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DeliveryStatus" Type="Int32" Nullable="false" />
           <Property Name="DeliveryReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CargoID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ExtendedPaymentMethodsView">
           <Key>
@@ -2003,6 +2008,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <EntitySetMapping Name="ExtendedOrderDeliveriesViews">
             <EntityTypeMapping TypeName="XTremePharmacyModel.ExtendedOrderDeliveriesView">
               <MappingFragment StoreEntitySet="ExtendedOrderDeliveriesView">
+                <ScalarProperty Name="CargoID" ColumnName="CargoID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="BrandName" ColumnName="BrandName" />
