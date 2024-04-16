@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BulkOperationManager.cs" />
     <Compile Include="DataEntities\ClientView.cs">
       <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
     </Compile>
