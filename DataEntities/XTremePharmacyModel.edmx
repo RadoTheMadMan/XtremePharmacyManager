@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="XTremePharmacyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="XTremePharmacyModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="DeliveryServices">
           <Key>
             <PropertyRef Name="ID" />
@@ -31,6 +31,7 @@
           <Property Name="OrderID" Type="int" />
           <Property Name="DeliveryServiceID" Type="int" />
           <Property Name="PaymentMethodID" Type="int" />
+          <Property Name="CargoID" Type="varchar(max)" Nullable="false" />
           <Property Name="TotalPrice" Type="money" Nullable="false" />
           <Property Name="DateAdded" Type="date" Nullable="false" />
           <Property Name="DateModified" Type="date" Nullable="false" />
@@ -309,7 +310,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <Property Name="AverageProductSale" Type="money" />
           <Property Name="ProductImageCount" Type="int" />
         </EntityType>
-        <Association Name="FK__OrderDeli__Deliv__0D0FEE32">
+        <Association Name="FK__OrderDeli__Deliv__3B95D2F1">
           <End Role="DeliveryServices" Type="Self.DeliveryServices" Multiplicity="0..1" />
           <End Role="OrderDeliveries" Type="Self.OrderDeliveries" Multiplicity="*" />
           <ReferentialConstraint>
@@ -321,7 +322,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeli__Order__0B27A5C0">
+        <Association Name="FK__OrderDeli__Order__39AD8A7F">
           <End Role="ProductOrders" Type="Self.ProductOrders" Multiplicity="0..1" />
           <End Role="OrderDeliveries" Type="Self.OrderDeliveries" Multiplicity="*" />
           <ReferentialConstraint>
@@ -333,7 +334,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeli__Payme__0EF836A4">
+        <Association Name="FK__OrderDeli__Payme__3D7E1B63">
           <End Role="PaymentMethods" Type="Self.PaymentMethods" Multiplicity="0..1" />
           <End Role="OrderDeliveries" Type="Self.OrderDeliveries" Multiplicity="*" />
           <ReferentialConstraint>
@@ -422,6 +423,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <Parameter Name="orderid" Type="int" Mode="In" />
           <Parameter Name="serviceid" Type="int" Mode="In" />
           <Parameter Name="methodid" Type="int" Mode="In" />
+          <Parameter Name="cargoid" Type="varchar(max)" Mode="In" />
           <Parameter Name="deliveryreason" Type="varchar(max)" Mode="In" />
         </Function>
         <Function Name="AddPaymentMethod" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -496,6 +498,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <Parameter Name="orderid" Type="int" Mode="In" />
           <Parameter Name="serviceid" Type="int" Mode="In" />
           <Parameter Name="methodid" Type="int" Mode="In" />
+          <Parameter Name="cargoid" Type="varchar(max)" Mode="In" />
           <Parameter Name="price" Type="money" Mode="In" />
           <Parameter Name="dateaddedfrom" Type="date" Mode="In" />
           <Parameter Name="dateaddedto" Type="date" Mode="In" />
@@ -597,6 +600,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <Parameter Name="orderid" Type="int" Mode="In" />
           <Parameter Name="serviceid" Type="int" Mode="In" />
           <Parameter Name="methodid" Type="int" Mode="In" />
+          <Parameter Name="cargoid" Type="varchar(max)" Mode="In" />
           <Parameter Name="price" Type="money" Mode="In" />
           <Parameter Name="dateaddedfrom" Type="date" Mode="In" />
           <Parameter Name="dateaddedto" Type="date" Mode="In" />
@@ -707,6 +711,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <Parameter Name="new_order_id" Type="int" Mode="In" />
           <Parameter Name="new_service_id" Type="int" Mode="In" />
           <Parameter Name="new_method_id" Type="int" Mode="In" />
+          <Parameter Name="new_cargo_id" Type="varchar(max)" Mode="In" />
           <Parameter Name="new_status" Type="int" Mode="In" />
           <Parameter Name="new_reason" Type="varchar(max)" Mode="In" />
         </Function>
@@ -879,15 +884,15 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
     [ExtendedProductView].[ProductImageCount] AS [ProductImageCount]
     FROM [dbo].[ExtendedProductView] AS [ExtendedProductView]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__OrderDeli__Deliv__0D0FEE32" Association="Self.FK__OrderDeli__Deliv__0D0FEE32">
+          <AssociationSet Name="FK__OrderDeli__Deliv__3B95D2F1" Association="Self.FK__OrderDeli__Deliv__3B95D2F1">
             <End Role="DeliveryServices" EntitySet="DeliveryServices" />
             <End Role="OrderDeliveries" EntitySet="OrderDeliveries" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeli__Order__0B27A5C0" Association="Self.FK__OrderDeli__Order__0B27A5C0">
+          <AssociationSet Name="FK__OrderDeli__Order__39AD8A7F" Association="Self.FK__OrderDeli__Order__39AD8A7F">
             <End Role="ProductOrders" EntitySet="ProductOrders" />
             <End Role="OrderDeliveries" EntitySet="OrderDeliveries" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeli__Payme__0EF836A4" Association="Self.FK__OrderDeli__Payme__0EF836A4">
+          <AssociationSet Name="FK__OrderDeli__Payme__3D7E1B63" Association="Self.FK__OrderDeli__Payme__3D7E1B63">
             <End Role="PaymentMethods" EntitySet="PaymentMethods" />
             <End Role="OrderDeliveries" EntitySet="OrderDeliveries" />
           </AssociationSet>
@@ -912,8 +917,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <End Role="Products" EntitySet="Products" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="XTremePharmacyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -952,6 +956,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <NavigationProperty Name="DeliveryService" Relationship="Self.FK__OrderDeli__Deliv__0D0FEE32" FromRole="OrderDeliveries" ToRole="DeliveryServices" />
           <NavigationProperty Name="ProductOrder" Relationship="Self.FK__OrderDeli__Order__0B27A5C0" FromRole="OrderDeliveries" ToRole="ProductOrders" />
           <NavigationProperty Name="PaymentMethod" Relationship="Self.FK__OrderDeli__Payme__0EF836A4" FromRole="OrderDeliveries" ToRole="PaymentMethods" />
+          <Property Name="CargoID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="PaymentMethod">
           <Key>
@@ -1369,7 +1374,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <End Role="ProductOrders" EntitySet="ProductOrders" />
           </AssociationSet>
           <FunctionImport Name="AddBrand">
-            <Parameter Name="brandname" Mode="In" Type="String" />
+          <Parameter Name="brandname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AddDeliveryService">
             <Parameter Name="servicename" Mode="In" Type="String" />
@@ -1385,10 +1390,11 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="orderid" Mode="In" Type="Int32" />
             <Parameter Name="serviceid" Mode="In" Type="Int32" />
             <Parameter Name="methodid" Mode="In" Type="Int32" />
+            <Parameter Name="cargoid" Mode="In" Type="String" />
             <Parameter Name="deliveryreason" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AddPaymentMethod">
-            <Parameter Name="methodname" Mode="In" Type="String" />
+          <Parameter Name="methodname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="AddProduct">
             <Parameter Name="productname" Mode="In" Type="String" />
@@ -1433,7 +1439,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="brandname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DeleteBrandByID">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteDeliveryService">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -1441,7 +1447,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="serviceprice" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="DeleteDeliveryServiceByID">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteLog">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -1452,13 +1458,14 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="additionalinformation" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DeleteLogByID">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteOrderDelivery">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="orderid" Mode="In" Type="Int32" />
             <Parameter Name="serviceid" Mode="In" Type="Int32" />
             <Parameter Name="methodid" Mode="In" Type="Int32" />
+            <Parameter Name="cargoid" Mode="In" Type="String" />
             <Parameter Name="price" Mode="In" Type="Decimal" />
             <Parameter Name="dateaddedfrom" Mode="In" Type="DateTime" />
             <Parameter Name="dateaddedto" Mode="In" Type="DateTime" />
@@ -1468,14 +1475,14 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="reason" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DeleteOrderDeliveryByID">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeletePaymentMethod">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="methodname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DeletePaymentMethodByID">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteProduct">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -1491,7 +1498,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="storagelocation" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DeleteProductByID">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteProductImage">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -1499,7 +1506,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="imagename" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DeleteProductImageByID">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteProductOrder">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -1516,7 +1523,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="reason" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DeleteProductOrderByID">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteUser">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -1535,7 +1542,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="role" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="DeleteUserByID">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetBrand" EntitySet="ProductBrands" ReturnType="Collection(XTremePharmacyModel.ProductBrand)">
             <Parameter Name="id" Mode="In" Type="Int32" />
@@ -1559,6 +1566,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="orderid" Mode="In" Type="Int32" />
             <Parameter Name="serviceid" Mode="In" Type="Int32" />
             <Parameter Name="methodid" Mode="In" Type="Int32" />
+            <Parameter Name="cargoid" Mode="In" Type="String" />
             <Parameter Name="price" Mode="In" Type="Decimal" />
             <Parameter Name="dateaddedfrom" Mode="In" Type="DateTime" />
             <Parameter Name="dateaddedto" Mode="In" Type="DateTime" />
@@ -1669,6 +1677,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <Parameter Name="new_order_id" Mode="In" Type="Int32" />
             <Parameter Name="new_service_id" Mode="In" Type="Int32" />
             <Parameter Name="new_method_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_cargo_id" Mode="In" Type="String" />
             <Parameter Name="new_status" Mode="In" Type="Int32" />
             <Parameter Name="new_reason" Mode="In" Type="String" />
           </FunctionImport>
@@ -1835,6 +1844,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <EntitySetMapping Name="OrderDeliveries">
             <EntityTypeMapping TypeName="XTremePharmacyModel.OrderDelivery">
               <MappingFragment StoreEntitySet="OrderDeliveries">
+                <ScalarProperty Name="CargoID" ColumnName="CargoID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="DeliveryServiceID" ColumnName="DeliveryServiceID" />

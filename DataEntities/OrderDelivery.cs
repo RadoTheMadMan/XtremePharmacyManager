@@ -23,6 +23,7 @@ namespace XtremePharmacyManager.DataEntities
         public System.DateTime DateModified { get; set; }
         public int DeliveryStatus { get; set; }
         public string DeliveryReason { get; set; }
+        public string CargoID { get; set; }
     
         public virtual DeliveryService DeliveryService { get; set; }
         public virtual ProductOrder ProductOrder { get; set; }
