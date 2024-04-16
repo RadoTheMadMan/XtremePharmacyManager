@@ -470,7 +470,7 @@ namespace XtremePharmacyManager
                                 {
                                     clientcell.Value = target_client.ID;
                                 }
-                                statuscell.Value = target_product_order.OrderStatus; //this is not good
+                                statuscell.Value = statuscolumn.Items[target_product_order.OrderStatus]; //this is not good
                             }
                         }
                     }

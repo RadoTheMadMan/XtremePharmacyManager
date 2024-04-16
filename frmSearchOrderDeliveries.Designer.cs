@@ -43,6 +43,8 @@ namespace XtremePharmacyManager
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.imgListProductImages = new System.Windows.Forms.ImageList(this.components);
             this.pnlData = new System.Windows.Forms.Panel();
+            this.txtCargoID = new System.Windows.Forms.TextBox();
+            this.lblCargoID = new System.Windows.Forms.Label();
             this.lblDeliveryStatus = new System.Windows.Forms.Label();
             this.cbSelectDeliveryStatus = new System.Windows.Forms.ComboBox();
             this.lblOrderDeliveryNotice = new System.Windows.Forms.Label();
@@ -74,8 +76,6 @@ namespace XtremePharmacyManager
             this.lblID = new System.Windows.Forms.Label();
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productImageBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.txtCargoID = new System.Windows.Forms.TextBox();
-            this.lblCargoID = new System.Windows.Forms.Label();
             this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductOrderIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.TotalPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -206,6 +206,27 @@ namespace XtremePharmacyManager
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(820, 563);
             this.pnlData.TabIndex = 0;
+            // 
+            // txtCargoID
+            // 
+            this.txtCargoID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCargoID.Location = new System.Drawing.Point(195, 183);
+            this.txtCargoID.Name = "txtCargoID";
+            this.txtCargoID.Size = new System.Drawing.Size(200, 22);
+            this.txtCargoID.TabIndex = 52;
+            // 
+            // lblCargoID
+            // 
+            this.lblCargoID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCargoID.AutoSize = true;
+            this.lblCargoID.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCargoID.Location = new System.Drawing.Point(20, 189);
+            this.lblCargoID.Name = "lblCargoID";
+            this.lblCargoID.Size = new System.Drawing.Size(72, 16);
+            this.lblCargoID.TabIndex = 51;
+            this.lblCargoID.Text = "Cargo ID:";
             // 
             // lblDeliveryStatus
             // 
@@ -561,27 +582,6 @@ namespace XtremePharmacyManager
             // 
             this.productImageBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductImage);
             // 
-            // txtCargoID
-            // 
-            this.txtCargoID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCargoID.Location = new System.Drawing.Point(195, 183);
-            this.txtCargoID.Name = "txtCargoID";
-            this.txtCargoID.Size = new System.Drawing.Size(200, 22);
-            this.txtCargoID.TabIndex = 52;
-            // 
-            // lblCargoID
-            // 
-            this.lblCargoID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblCargoID.AutoSize = true;
-            this.lblCargoID.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCargoID.Location = new System.Drawing.Point(20, 189);
-            this.lblCargoID.Name = "lblCargoID";
-            this.lblCargoID.Size = new System.Drawing.Size(72, 16);
-            this.lblCargoID.TabIndex = 51;
-            this.lblCargoID.Text = "Cargo ID:";
-            // 
             // IDColumn
             // 
             this.IDColumn.DataPropertyName = "ID";
@@ -673,7 +673,6 @@ namespace XtremePharmacyManager
             // 
             // DeliveryStatusColumn
             // 
-            this.DeliveryStatusColumn.DataPropertyName = "DeliveryStatus";
             this.DeliveryStatusColumn.HeaderText = "Delivery Status";
             this.DeliveryStatusColumn.Items.AddRange(new object[] {
             "pending delivery",

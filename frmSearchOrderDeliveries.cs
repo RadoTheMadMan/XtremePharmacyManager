@@ -427,7 +427,7 @@ namespace XtremePharmacyManager
                                 {
                                     paymentmethodcell.Value = target_payment_method.ID;
                                 }
-                                statuscell.Value = target_order_delivery.DeliveryStatus; //this is not good
+                                statuscell.Value = statuscolumn.Items[target_order_delivery.DeliveryStatus]; //this is not good
                             }
                         }
                     }

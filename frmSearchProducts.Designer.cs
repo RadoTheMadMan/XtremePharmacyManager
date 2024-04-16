@@ -71,16 +71,6 @@ namespace XtremePharmacyManager
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
-            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrandIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.ProductNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductDescriptionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductQuantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductExpiryDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductRegistrationNumColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductPartitudeNumColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductSLocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblImages = new System.Windows.Forms.Label();
@@ -97,19 +87,16 @@ namespace XtremePharmacyManager
             this.txtImageName = new System.Windows.Forms.TextBox();
             this.btnAddEditProductImage = new System.Windows.Forms.Button();
             this.productImageBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.brandIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productQuantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productExpiryDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productRegNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productPartNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productStorageLocationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productBrandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productImagesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productOrdersDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrandIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.ProductNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductDescriptionColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductQuantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductExpiryDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductRegistrationNumColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductPartitudeNumColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductSLocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
@@ -573,20 +560,7 @@ namespace XtremePharmacyManager
             this.ProductExpiryDateColumn,
             this.ProductRegistrationNumColumn,
             this.ProductPartitudeNumColumn,
-            this.ProductSLocationColumn,
-            this.iDDataGridViewTextBoxColumn,
-            this.productNameDataGridViewTextBoxColumn,
-            this.brandIDDataGridViewTextBoxColumn,
-            this.productDescriptionDataGridViewTextBoxColumn,
-            this.productQuantityDataGridViewTextBoxColumn,
-            this.productPriceDataGridViewTextBoxColumn,
-            this.productExpiryDateDataGridViewTextBoxColumn,
-            this.productRegNumDataGridViewTextBoxColumn,
-            this.productPartNumDataGridViewTextBoxColumn,
-            this.productStorageLocationDataGridViewTextBoxColumn,
-            this.productBrandDataGridViewTextBoxColumn,
-            this.productImagesDataGridViewTextBoxColumn,
-            this.productOrdersDataGridViewTextBoxColumn});
+            this.ProductSLocationColumn});
             this.dgvProducts.DataSource = this.productBindingSource;
             this.dgvProducts.Location = new System.Drawing.Point(0, 376);
             this.dgvProducts.MultiSelect = false;
@@ -606,103 +580,6 @@ namespace XtremePharmacyManager
             this.dgvProducts.TabIndex = 1;
             this.dgvProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellClick);
             this.dgvProducts.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvProducts_RowsAdded);
-            // 
-            // IDColumn
-            // 
-            this.IDColumn.DataPropertyName = "ID";
-            this.IDColumn.HeaderText = "ID";
-            this.IDColumn.MinimumWidth = 6;
-            this.IDColumn.Name = "IDColumn";
-            this.IDColumn.ReadOnly = true;
-            this.IDColumn.Width = 125;
-            // 
-            // BrandIDColumn
-            // 
-            this.BrandIDColumn.DataPropertyName = "BrandID";
-            this.BrandIDColumn.DataSource = this.productBrandBindingSource;
-            this.BrandIDColumn.DisplayMember = "BrandName";
-            this.BrandIDColumn.HeaderText = "Brand ID";
-            this.BrandIDColumn.MinimumWidth = 6;
-            this.BrandIDColumn.Name = "BrandIDColumn";
-            this.BrandIDColumn.ReadOnly = true;
-            this.BrandIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.BrandIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.BrandIDColumn.ValueMember = "ID";
-            this.BrandIDColumn.Width = 125;
-            // 
-            // ProductNameColumn
-            // 
-            this.ProductNameColumn.DataPropertyName = "ProductName";
-            this.ProductNameColumn.HeaderText = "Product Name";
-            this.ProductNameColumn.MinimumWidth = 6;
-            this.ProductNameColumn.Name = "ProductNameColumn";
-            this.ProductNameColumn.ReadOnly = true;
-            this.ProductNameColumn.Width = 125;
-            // 
-            // ProductDescriptionColumn
-            // 
-            this.ProductDescriptionColumn.DataPropertyName = "ProductDescription";
-            this.ProductDescriptionColumn.HeaderText = "Product Description";
-            this.ProductDescriptionColumn.MinimumWidth = 6;
-            this.ProductDescriptionColumn.Name = "ProductDescriptionColumn";
-            this.ProductDescriptionColumn.ReadOnly = true;
-            this.ProductDescriptionColumn.Width = 200;
-            // 
-            // ProductQuantityColumn
-            // 
-            this.ProductQuantityColumn.DataPropertyName = "ProductQuantity";
-            this.ProductQuantityColumn.HeaderText = "Product Quantity";
-            this.ProductQuantityColumn.MinimumWidth = 6;
-            this.ProductQuantityColumn.Name = "ProductQuantityColumn";
-            this.ProductQuantityColumn.ReadOnly = true;
-            this.ProductQuantityColumn.Width = 200;
-            // 
-            // ProductPriceColumn
-            // 
-            this.ProductPriceColumn.DataPropertyName = "ProductPrice";
-            this.ProductPriceColumn.HeaderText = "Product Price";
-            this.ProductPriceColumn.MinimumWidth = 6;
-            this.ProductPriceColumn.Name = "ProductPriceColumn";
-            this.ProductPriceColumn.ReadOnly = true;
-            this.ProductPriceColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProductPriceColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ProductPriceColumn.Width = 125;
-            // 
-            // ProductExpiryDateColumn
-            // 
-            this.ProductExpiryDateColumn.DataPropertyName = "ProductExpiryDate";
-            this.ProductExpiryDateColumn.HeaderText = "Expiry Date";
-            this.ProductExpiryDateColumn.MinimumWidth = 6;
-            this.ProductExpiryDateColumn.Name = "ProductExpiryDateColumn";
-            this.ProductExpiryDateColumn.ReadOnly = true;
-            this.ProductExpiryDateColumn.Width = 125;
-            // 
-            // ProductRegistrationNumColumn
-            // 
-            this.ProductRegistrationNumColumn.DataPropertyName = "ProductRegNum";
-            this.ProductRegistrationNumColumn.HeaderText = "Registration Number";
-            this.ProductRegistrationNumColumn.MinimumWidth = 6;
-            this.ProductRegistrationNumColumn.Name = "ProductRegistrationNumColumn";
-            this.ProductRegistrationNumColumn.ReadOnly = true;
-            this.ProductRegistrationNumColumn.Width = 200;
-            // 
-            // ProductPartitudeNumColumn
-            // 
-            this.ProductPartitudeNumColumn.DataPropertyName = "ProductPartNum";
-            this.ProductPartitudeNumColumn.HeaderText = "Partitude Number";
-            this.ProductPartitudeNumColumn.MinimumWidth = 6;
-            this.ProductPartitudeNumColumn.Name = "ProductPartitudeNumColumn";
-            this.ProductPartitudeNumColumn.ReadOnly = true;
-            this.ProductPartitudeNumColumn.Width = 200;
-            // 
-            // ProductSLocationColumn
-            // 
-            this.ProductSLocationColumn.DataPropertyName = "ProductStorageLocation";
-            this.ProductSLocationColumn.HeaderText = "Storage Location";
-            this.ProductSLocationColumn.MinimumWidth = 6;
-            this.ProductSLocationColumn.Name = "ProductSLocationColumn";
-            this.ProductSLocationColumn.ReadOnly = true;
-            this.ProductSLocationColumn.Width = 200;
             // 
             // productBindingSource
             // 
@@ -873,122 +750,102 @@ namespace XtremePharmacyManager
             // 
             this.productImageBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductImage);
             // 
-            // iDDataGridViewTextBoxColumn
+            // IDColumn
             // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Width = 125;
+            this.IDColumn.DataPropertyName = "ID";
+            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.MinimumWidth = 6;
+            this.IDColumn.Name = "IDColumn";
+            this.IDColumn.ReadOnly = true;
+            this.IDColumn.Width = 125;
             // 
-            // productNameDataGridViewTextBoxColumn
+            // BrandIDColumn
             // 
-            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
-            this.productNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productNameDataGridViewTextBoxColumn.Width = 125;
+            this.BrandIDColumn.DataPropertyName = "BrandID";
+            this.BrandIDColumn.DataSource = this.productBrandBindingSource;
+            this.BrandIDColumn.DisplayMember = "BrandName";
+            this.BrandIDColumn.HeaderText = "Brand ID";
+            this.BrandIDColumn.MinimumWidth = 6;
+            this.BrandIDColumn.Name = "BrandIDColumn";
+            this.BrandIDColumn.ReadOnly = true;
+            this.BrandIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.BrandIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.BrandIDColumn.ValueMember = "ID";
+            this.BrandIDColumn.Width = 125;
             // 
-            // brandIDDataGridViewTextBoxColumn
+            // ProductNameColumn
             // 
-            this.brandIDDataGridViewTextBoxColumn.DataPropertyName = "BrandID";
-            this.brandIDDataGridViewTextBoxColumn.HeaderText = "BrandID";
-            this.brandIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.brandIDDataGridViewTextBoxColumn.Name = "brandIDDataGridViewTextBoxColumn";
-            this.brandIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.brandIDDataGridViewTextBoxColumn.Width = 125;
+            this.ProductNameColumn.DataPropertyName = "ProductName";
+            this.ProductNameColumn.HeaderText = "Product Name";
+            this.ProductNameColumn.MinimumWidth = 6;
+            this.ProductNameColumn.Name = "ProductNameColumn";
+            this.ProductNameColumn.ReadOnly = true;
+            this.ProductNameColumn.Width = 125;
             // 
-            // productDescriptionDataGridViewTextBoxColumn
+            // ProductDescriptionColumn
             // 
-            this.productDescriptionDataGridViewTextBoxColumn.DataPropertyName = "ProductDescription";
-            this.productDescriptionDataGridViewTextBoxColumn.HeaderText = "ProductDescription";
-            this.productDescriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productDescriptionDataGridViewTextBoxColumn.Name = "productDescriptionDataGridViewTextBoxColumn";
-            this.productDescriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productDescriptionDataGridViewTextBoxColumn.Width = 125;
+            this.ProductDescriptionColumn.DataPropertyName = "ProductDescription";
+            this.ProductDescriptionColumn.HeaderText = "Product Description";
+            this.ProductDescriptionColumn.MinimumWidth = 6;
+            this.ProductDescriptionColumn.Name = "ProductDescriptionColumn";
+            this.ProductDescriptionColumn.ReadOnly = true;
+            this.ProductDescriptionColumn.Width = 200;
             // 
-            // productQuantityDataGridViewTextBoxColumn
+            // ProductQuantityColumn
             // 
-            this.productQuantityDataGridViewTextBoxColumn.DataPropertyName = "ProductQuantity";
-            this.productQuantityDataGridViewTextBoxColumn.HeaderText = "ProductQuantity";
-            this.productQuantityDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productQuantityDataGridViewTextBoxColumn.Name = "productQuantityDataGridViewTextBoxColumn";
-            this.productQuantityDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productQuantityDataGridViewTextBoxColumn.Width = 125;
+            this.ProductQuantityColumn.DataPropertyName = "ProductQuantity";
+            this.ProductQuantityColumn.HeaderText = "Product Quantity";
+            this.ProductQuantityColumn.MinimumWidth = 6;
+            this.ProductQuantityColumn.Name = "ProductQuantityColumn";
+            this.ProductQuantityColumn.ReadOnly = true;
+            this.ProductQuantityColumn.Width = 200;
             // 
-            // productPriceDataGridViewTextBoxColumn
+            // ProductPriceColumn
             // 
-            this.productPriceDataGridViewTextBoxColumn.DataPropertyName = "ProductPrice";
-            this.productPriceDataGridViewTextBoxColumn.HeaderText = "ProductPrice";
-            this.productPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productPriceDataGridViewTextBoxColumn.Name = "productPriceDataGridViewTextBoxColumn";
-            this.productPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productPriceDataGridViewTextBoxColumn.Width = 125;
+            this.ProductPriceColumn.DataPropertyName = "ProductPrice";
+            this.ProductPriceColumn.HeaderText = "Product Price";
+            this.ProductPriceColumn.MinimumWidth = 6;
+            this.ProductPriceColumn.Name = "ProductPriceColumn";
+            this.ProductPriceColumn.ReadOnly = true;
+            this.ProductPriceColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductPriceColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.ProductPriceColumn.Width = 125;
             // 
-            // productExpiryDateDataGridViewTextBoxColumn
+            // ProductExpiryDateColumn
             // 
-            this.productExpiryDateDataGridViewTextBoxColumn.DataPropertyName = "ProductExpiryDate";
-            this.productExpiryDateDataGridViewTextBoxColumn.HeaderText = "ProductExpiryDate";
-            this.productExpiryDateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productExpiryDateDataGridViewTextBoxColumn.Name = "productExpiryDateDataGridViewTextBoxColumn";
-            this.productExpiryDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productExpiryDateDataGridViewTextBoxColumn.Width = 125;
+            this.ProductExpiryDateColumn.DataPropertyName = "ProductExpiryDate";
+            this.ProductExpiryDateColumn.HeaderText = "Expiry Date";
+            this.ProductExpiryDateColumn.MinimumWidth = 6;
+            this.ProductExpiryDateColumn.Name = "ProductExpiryDateColumn";
+            this.ProductExpiryDateColumn.ReadOnly = true;
+            this.ProductExpiryDateColumn.Width = 125;
             // 
-            // productRegNumDataGridViewTextBoxColumn
+            // ProductRegistrationNumColumn
             // 
-            this.productRegNumDataGridViewTextBoxColumn.DataPropertyName = "ProductRegNum";
-            this.productRegNumDataGridViewTextBoxColumn.HeaderText = "ProductRegNum";
-            this.productRegNumDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productRegNumDataGridViewTextBoxColumn.Name = "productRegNumDataGridViewTextBoxColumn";
-            this.productRegNumDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productRegNumDataGridViewTextBoxColumn.Width = 125;
+            this.ProductRegistrationNumColumn.DataPropertyName = "ProductRegNum";
+            this.ProductRegistrationNumColumn.HeaderText = "Registration Number";
+            this.ProductRegistrationNumColumn.MinimumWidth = 6;
+            this.ProductRegistrationNumColumn.Name = "ProductRegistrationNumColumn";
+            this.ProductRegistrationNumColumn.ReadOnly = true;
+            this.ProductRegistrationNumColumn.Width = 200;
             // 
-            // productPartNumDataGridViewTextBoxColumn
+            // ProductPartitudeNumColumn
             // 
-            this.productPartNumDataGridViewTextBoxColumn.DataPropertyName = "ProductPartNum";
-            this.productPartNumDataGridViewTextBoxColumn.HeaderText = "ProductPartNum";
-            this.productPartNumDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productPartNumDataGridViewTextBoxColumn.Name = "productPartNumDataGridViewTextBoxColumn";
-            this.productPartNumDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productPartNumDataGridViewTextBoxColumn.Width = 125;
+            this.ProductPartitudeNumColumn.DataPropertyName = "ProductPartNum";
+            this.ProductPartitudeNumColumn.HeaderText = "Partitude Number";
+            this.ProductPartitudeNumColumn.MinimumWidth = 6;
+            this.ProductPartitudeNumColumn.Name = "ProductPartitudeNumColumn";
+            this.ProductPartitudeNumColumn.ReadOnly = true;
+            this.ProductPartitudeNumColumn.Width = 200;
             // 
-            // productStorageLocationDataGridViewTextBoxColumn
+            // ProductSLocationColumn
             // 
-            this.productStorageLocationDataGridViewTextBoxColumn.DataPropertyName = "ProductStorageLocation";
-            this.productStorageLocationDataGridViewTextBoxColumn.HeaderText = "ProductStorageLocation";
-            this.productStorageLocationDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productStorageLocationDataGridViewTextBoxColumn.Name = "productStorageLocationDataGridViewTextBoxColumn";
-            this.productStorageLocationDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productStorageLocationDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productBrandDataGridViewTextBoxColumn
-            // 
-            this.productBrandDataGridViewTextBoxColumn.DataPropertyName = "ProductBrand";
-            this.productBrandDataGridViewTextBoxColumn.HeaderText = "ProductBrand";
-            this.productBrandDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productBrandDataGridViewTextBoxColumn.Name = "productBrandDataGridViewTextBoxColumn";
-            this.productBrandDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productBrandDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productImagesDataGridViewTextBoxColumn
-            // 
-            this.productImagesDataGridViewTextBoxColumn.DataPropertyName = "ProductImages";
-            this.productImagesDataGridViewTextBoxColumn.HeaderText = "ProductImages";
-            this.productImagesDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productImagesDataGridViewTextBoxColumn.Name = "productImagesDataGridViewTextBoxColumn";
-            this.productImagesDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productImagesDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productOrdersDataGridViewTextBoxColumn
-            // 
-            this.productOrdersDataGridViewTextBoxColumn.DataPropertyName = "ProductOrders";
-            this.productOrdersDataGridViewTextBoxColumn.HeaderText = "ProductOrders";
-            this.productOrdersDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productOrdersDataGridViewTextBoxColumn.Name = "productOrdersDataGridViewTextBoxColumn";
-            this.productOrdersDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productOrdersDataGridViewTextBoxColumn.Width = 125;
+            this.ProductSLocationColumn.DataPropertyName = "ProductStorageLocation";
+            this.ProductSLocationColumn.HeaderText = "Storage Location";
+            this.ProductSLocationColumn.MinimumWidth = 6;
+            this.ProductSLocationColumn.Name = "ProductSLocationColumn";
+            this.ProductSLocationColumn.ReadOnly = true;
+            this.ProductSLocationColumn.Width = 200;
             // 
             // frmSearchProducts
             // 
@@ -1085,18 +942,5 @@ namespace XtremePharmacyManager
         private DataGridViewTextBoxColumn ProductRegistrationNumColumn;
         private DataGridViewTextBoxColumn ProductPartitudeNumColumn;
         private DataGridViewTextBoxColumn ProductSLocationColumn;
-        private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn brandIDDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productDescriptionDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productQuantityDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productPriceDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productExpiryDateDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productRegNumDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productPartNumDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productStorageLocationDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productBrandDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productImagesDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productOrdersDataGridViewTextBoxColumn;
     }
 }
