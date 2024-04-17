@@ -45,7 +45,7 @@ namespace XtremePharmacyManager
         public BulkOperation(BulkOperationType optype, ref T obj, bool is_silent)
         {
             type = optype;
-            if (obj != null && target_object.GetType() == obj.GetType())
+            if (obj != null && typeof(T) == obj.GetType())  
             {
                 target_object = obj;
             }
@@ -1402,7 +1402,7 @@ namespace XtremePharmacyManager
             {
                 foreach(BulkOperation<T> bulk_operation in bulk_operations)
                 {
-                    if (bulk_operation.TargetObject.GetType() == target_object.GetType())
+                    if (bulk_operation.TargetObject.GetType() == typeof(T))
                     {
                         bool result = await bulk_operation.Execute();
                         if (result == true)

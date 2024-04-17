@@ -28,6 +28,7 @@ namespace XtremePharmacyManager
 
         private void OnBulkOperationExecuted(object sender, BulkOperationEventArgs e)
         {
+            lstBulkOperations.DataSource = null;
             lstBulkOperations.DataSource = e.OperationsList;
             lblOperationResults.Text = lblOperationResults.Text + e.Result;
         }
@@ -200,6 +201,7 @@ namespace XtremePharmacyManager
                 selected_operation = new BulkUserOperation(current_operation_type, ref manager_entities, current_operation_target, current_operation_silent_value);
                 manager.BulkOperations[current_operation_index] = selected_operation;
             }
+            lstBulkOperations.DataSource = null;
             lstBulkOperations.DataSource = manager.BulkOperations;
         }
 
@@ -208,7 +210,15 @@ namespace XtremePharmacyManager
             ListBox current = (ListBox)sender;
             if (current.SelectedItems.Count > 0 || current.SelectedValue != null)
             {
-                selected_operation = (BulkOperation<User>)current.SelectedValue;
+                foreach(BulkUserOperation operation in manager.BulkOperations)
+                {
+                    if(operation.TargetObject == current.SelectedValue as User)
+                    {
+                        selected_operation = operation;
+                        selected_target = operation.TargetObject;
+                        break;
+                    }
+                }
                 selected_target = selected_operation.TargetObject;
             }
             Bitmap currentpfp = new Bitmap(64, 64);
@@ -246,6 +256,7 @@ namespace XtremePharmacyManager
                 new_operation = new BulkUserOperation(operationType, ref manager_entities, new_user, IsSilent);
                 manager.BulkOperations.Add(new_operation);
             }
+            lstBulkOperations.DataSource = null;
             lstBulkOperations.DataSource = manager.BulkOperations;
             lblOperationResults.Text = "Operation Results: ";
         }
@@ -259,6 +270,7 @@ namespace XtremePharmacyManager
                 selected_target = null;
                 selected_operation = null;
             }
+            lstBulkOperations.DataSource = null;
             lstBulkOperations.DataSource= manager.BulkOperations;
             lblOperationResults.Text = "Operation Results: ";
         }
@@ -291,6 +303,7 @@ namespace XtremePharmacyManager
                 selected_operation = new BulkUserOperation(current_type,ref manager_entities, selected_target, IsSilent);
                 manager.BulkOperations[operation_index] = selected_operation;
             }
+            lstBulkOperations.DataSource = null;
             lstBulkOperations.DataSource = manager.BulkOperations;
             lblOperationResults.Text = "Operation Results: ";
         }
@@ -305,6 +318,7 @@ namespace XtremePharmacyManager
                 selected_operation = new BulkUserOperation(current_type, ref manager_entities, selected_target, IsSilent);
                 manager.BulkOperations[operation_index] = selected_operation;
             }
+            lstBulkOperations.DataSource = null;
             lstBulkOperations.DataSource = manager.BulkOperations;
         }
 
@@ -318,6 +332,7 @@ namespace XtremePharmacyManager
                 selected_operation = new BulkUserOperation(current_type, ref manager_entities, selected_target, IsSilent);
                 manager.BulkOperations[operation_index] = selected_operation;
             }
+            lstBulkOperations.DataSource = null;
             lstBulkOperations.DataSource = manager.BulkOperations;
         }
     }
