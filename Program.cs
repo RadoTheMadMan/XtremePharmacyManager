@@ -15,13 +15,15 @@ namespace XtremePharmacyManager
         public static string CRITICAL_ERROR_TITLE = "";
         public static string CLOSE_PROMPT = "";
         public static string CLOSE_PROMPT_TITLE = "";
+        public static string CONNECTION_SUCCESSFUL_MESSAGE = "";
         public GLOBAL_RESOURCES()
         {
             ResourceManager manager = Resources.ResourceManager;
             CRITICAL_ERROR_MESSAGE = manager.GetString("CriticalErrorMessage", CultureInfo.CurrentCulture);
             CRITICAL_ERROR_TITLE = manager.GetString("CriticalErrorTitle", CultureInfo.CurrentCulture);
             CLOSE_PROMPT = manager.GetString("ClosePrompt", CultureInfo.CurrentCulture);
-            CLOSE_PROMPT_TITLE = manager.GetString("ClosePromptTile", CultureInfo.CurrentCulture);
+            CLOSE_PROMPT_TITLE = manager.GetString("ClosePromptTitle", CultureInfo.CurrentCulture);
+            CONNECTION_SUCCESSFUL_MESSAGE = manager.GetString("ConnectionSuccessfulMessage", CultureInfo.CurrentCulture);
         }
     }
     internal static class Program

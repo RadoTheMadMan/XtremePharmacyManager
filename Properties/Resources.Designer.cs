@@ -61,7 +61,7 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {GLOBAL_RESOURCES.CLOSE_PROMPT}.
+        ///   Looks up a localized string similar to Do you want to close? All unsaved changes incl. bulk operations will be lost.
         /// </summary>
         internal static string ClosePrompt {
             get {
@@ -75,6 +75,15 @@ namespace XtremePharmacyManager.Properties {
         internal static string ClosePromptTitle {
             get {
                 return ResourceManager.GetString("ClosePromptTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connection successfuly open..
+        /// </summary>
+        internal static string ConnectionSuccessfulMessage {
+            get {
+                return ResourceManager.GetString("ConnectionSuccessfulMessage", resourceCulture);
             }
         }
         
@@ -93,15 +102,6 @@ namespace XtremePharmacyManager.Properties {
         internal static string CriticalErrorTitle {
             get {
                 return ResourceManager.GetString("CriticalErrorTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
     }

@@ -59,7 +59,7 @@ namespace XtremePharmacyManager
                     }
                     if (entities.Database.Connection.State == ConnectionState.Open)
                     {
-                        MessageBox.Show("Connection successfuly open.", "Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CONNECTION_SUCCESSFUL_MESSAGE}", "Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
             }
