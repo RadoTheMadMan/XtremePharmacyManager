@@ -231,7 +231,7 @@ namespace XtremePharmacyManager
         static User current_user;
         static Entities entities;
 
-        public BulkUserOperation(BulkOperationType type,ref Entities ent, ref User target_user, bool is_silent) : base(type, ref target_user, is_silent)
+        public BulkUserOperation(BulkOperationType type,ref Entities ent, User target_user, bool is_silent) : base(type, ref target_user, is_silent)
         {
             current_user = base.TargetObject;
             entities = ent;
@@ -372,7 +372,7 @@ namespace XtremePharmacyManager
         static ProductBrand current_brand;
         static Entities entities;
 
-        public BulkProductBrandOperation(BulkOperationType type, ref Entities ent, ref ProductBrand target_brand, bool is_silent) : base(type, ref target_brand, is_silent)
+        public BulkProductBrandOperation(BulkOperationType type, ref Entities ent, ProductBrand target_brand, bool is_silent) : base(type, ref target_brand, is_silent)
         {
             current_brand = base.TargetObject;
             entities = ent;
@@ -509,7 +509,7 @@ namespace XtremePharmacyManager
         static PaymentMethod current_payment_method;
         static Entities entities;
 
-        public BulkPaymentMethodOperation(BulkOperationType type, ref Entities ent, ref PaymentMethod target_method, bool is_silent) : base(type, ref target_method, is_silent)
+        public BulkPaymentMethodOperation(BulkOperationType type, ref Entities ent, PaymentMethod target_method, bool is_silent) : base(type, ref target_method, is_silent)
         {
             current_payment_method = base.TargetObject;
             entities = ent;
@@ -646,7 +646,7 @@ namespace XtremePharmacyManager
         static DeliveryService current_service;
         static Entities entities;
 
-        public BulkDeliveryServiceOperation(BulkOperationType type, ref Entities ent, ref DeliveryService target_service, bool is_silent) : base(type, ref target_service, is_silent)
+        public BulkDeliveryServiceOperation(BulkOperationType type, ref Entities ent, DeliveryService target_service, bool is_silent) : base(type, ref target_service, is_silent)
         {
             current_service = base.TargetObject;
             entities = ent;
@@ -783,7 +783,7 @@ namespace XtremePharmacyManager
         static Product current_product;
         static Entities entities;
 
-        public BulkProductOperation(BulkOperationType type, ref Entities ent, ref Product target_product, bool is_silent) : base(type, ref target_product, is_silent)
+        public BulkProductOperation(BulkOperationType type, ref Entities ent, Product target_product, bool is_silent) : base(type, ref target_product, is_silent)
         {
             current_product = base.TargetObject;
             entities = ent;
@@ -924,7 +924,7 @@ namespace XtremePharmacyManager
         static ProductImage current_image;
         static Entities entities;
 
-        public BulkProductImageOperation(BulkOperationType type, ref Entities ent, ref ProductImage target_image, bool is_silent) : base(type, ref target_image, is_silent)
+        public BulkProductImageOperation(BulkOperationType type, ref Entities ent, ProductImage target_image, bool is_silent) : base(type, ref target_image, is_silent)
         {
             current_image = base.TargetObject;
             entities = ent;
@@ -1062,7 +1062,7 @@ namespace XtremePharmacyManager
         static Entities entities;
         bool add_total_price_override_on_create;
 
-        public BulkProductOrderOperation(BulkOperationType type, ref Entities ent, ref ProductOrder target_order, bool add_total_price_override_on_create, bool is_silent) : base(type, ref target_order, is_silent)
+        public BulkProductOrderOperation(BulkOperationType type, ref Entities ent, ProductOrder target_order, bool add_total_price_override_on_create, bool is_silent) : base(type, ref target_order, is_silent)
         {
             current_order = base.TargetObject;
             entities = ent;
@@ -1202,7 +1202,7 @@ namespace XtremePharmacyManager
         static OrderDelivery current_delivery;
         static Entities entities;
 
-        public BulkOrderDeliveryOperation(BulkOperationType type, ref Entities ent, ref OrderDelivery target_delivery, bool is_silent) : base(type, ref target_delivery, is_silent)
+        public BulkOrderDeliveryOperation(BulkOperationType type, ref Entities ent, OrderDelivery target_delivery, bool is_silent) : base(type, ref target_delivery, is_silent)
         {
             current_delivery = base.TargetObject;
             entities = ent;
@@ -1376,6 +1376,7 @@ namespace XtremePharmacyManager
                     }
                 }
             }
+            bulk_operations.Clear();
             result = $"Operation Result:\nCompleted Operations: {completed_operations} Failed Operations: {failed_operations}";
         }
     }
