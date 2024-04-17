@@ -25,6 +25,7 @@ namespace XtremePharmacyManager
     {
         static BulkOperationType type;
         static T target_object;
+        static string operation_name = "";
         static string success_message = "";
         static string error_message = "";
         static string stack_trace = "";
@@ -33,6 +34,7 @@ namespace XtremePharmacyManager
         bool is_silent = true;
         public T TargetObject { get { return target_object; } }
         public BulkOperationType OperationType { get { return type; } set { type = value; } }
+        public string OperationName { get { return operation_name; } set { operation_name = value; } }
         public string SuccessMessage { get { return success_message; } set { success_message = value; } }
         public string ErrorMessage { get { return error_message; } set { error_message = value; } }
         public string StackTrace { get { return stack_trace; } set { stack_trace = value; } }
@@ -47,6 +49,7 @@ namespace XtremePharmacyManager
                 target_object = obj;
             }
             this.is_silent = is_silent;
+            operation_name = $"{type} operation on {target_object.GetType()}";
         }
 
         public  async Task<bool> Execute()
@@ -235,6 +238,7 @@ namespace XtremePharmacyManager
         {
             current_user = base.TargetObject;
             entities = ent;
+            base.OperationName = $"{type} operation on {current_user.GetType()} with ID: {current_user.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -376,6 +380,7 @@ namespace XtremePharmacyManager
         {
             current_brand = base.TargetObject;
             entities = ent;
+            base.OperationName = $"{type} operation on {current_brand.GetType()} with ID: {current_brand.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -513,6 +518,7 @@ namespace XtremePharmacyManager
         {
             current_payment_method = base.TargetObject;
             entities = ent;
+            base.OperationName = $"{type} operation on {current_payment_method.GetType()} with ID: {current_payment_method.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -650,6 +656,7 @@ namespace XtremePharmacyManager
         {
             current_service = base.TargetObject;
             entities = ent;
+            base.OperationName = $"{type} operation on {current_service.GetType()} with ID: {current_service.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -787,6 +794,7 @@ namespace XtremePharmacyManager
         {
             current_product = base.TargetObject;
             entities = ent;
+            base.OperationName = $"{type} operation on {current_product.GetType()} with ID: {current_product.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -928,6 +936,7 @@ namespace XtremePharmacyManager
         {
             current_image = base.TargetObject;
             entities = ent;
+            base.OperationName = $"{type} operation on {current_image.GetType()} with ID: {current_image.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -1066,6 +1075,7 @@ namespace XtremePharmacyManager
         {
             current_order = base.TargetObject;
             entities = ent;
+            base.OperationName = $"{type} operation on {current_order.GetType()} with ID: {current_order.ID}";
             this.add_total_price_override_on_create = add_total_price_override_on_create;
         }
 
@@ -1206,6 +1216,7 @@ namespace XtremePharmacyManager
         {
             current_delivery = base.TargetObject;
             entities = ent;
+            base.OperationName = $"{type} operation on {current_delivery.GetType()} with ID: {current_delivery.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -1348,9 +1359,23 @@ namespace XtremePharmacyManager
         public int FailedOperations { get { return failed_operations; } }
         public string Result { get { return result; } }
 
+        public BulkOperationManager()
+        {
+            bulk_operations = new ArrayList();
+            completed_operations = 0;
+            failed_operations = 0;
+            result = "";
+        }
         public BulkOperationManager(ref ArrayList operations)
         {
-            bulk_operations = operations;
+            if (operations != null)
+            {
+                bulk_operations = operations;
+            }
+            else
+            {
+                bulk_operations = new ArrayList();
+            }
             completed_operations = 0;
             failed_operations = 0;
             result = "";
@@ -1377,7 +1402,7 @@ namespace XtremePharmacyManager
                 }
             }
             bulk_operations.Clear();
-            result = $"Operation Result:\nCompleted Operations: {completed_operations} Failed Operations: {failed_operations}";
+            result = $"Operations Result:\nCompleted Operations: {completed_operations} Failed Operations: {failed_operations}";
         }
     }
 }

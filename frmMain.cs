@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -23,6 +24,13 @@ namespace XtremePharmacyManager
     {
         static Entities entities;
         static Logger logger;
+        static BulkOperationManager<User> bulkUserOperationManager;
+        static BulkOperationManager<ProductBrand> bulkProductBrandOperationManager;
+        static BulkOperationManager<PaymentMethod> bulkPaymentMethodOperationManager;
+        static BulkOperationManager<DeliveryService> bulkDeliveryServiceOperationManager;
+        static BulkOperationManager<Product> bulkProductOperationManager;
+        static BulkOperationManager<ProductOrder> bulkProductOrderOperationManager;
+        static BulkOperationManager<OrderDelivery> bulkOrderDeliveryOperationManager;
         static string connString = "";
         static frmSearchUsers userssearchform;
         static frmSearchDeliveryServices deliveryservicessearchform;
@@ -36,9 +44,6 @@ namespace XtremePharmacyManager
         public frmMain()
         {
             InitializeComponent();
-            InitializeEntities(out entities);
-            InitializeLogger(ref entities,out logger);
-            TestConnection();
         }
 
         private void TestConnection()
@@ -93,10 +98,27 @@ namespace XtremePharmacyManager
             target = new Logger(ref ent);
         }
 
+        private void InitializeBulkManagers()
+        {
+            bulkUserOperationManager = new BulkOperationManager<User>();
+            bulkProductBrandOperationManager = new BulkOperationManager<ProductBrand>();
+            bulkPaymentMethodOperationManager = new BulkOperationManager<PaymentMethod>();
+            bulkDeliveryServiceOperationManager = new BulkOperationManager<DeliveryService>();
+            bulkProductOperationManager = new BulkOperationManager<Product>();
+            bulkProductOrderOperationManager = new BulkOperationManager<ProductOrder>();
+            bulkOrderDeliveryOperationManager = new BulkOperationManager<OrderDelivery>();
+        }
+
         private void frmMain_Load(object sender, EventArgs e)
         {
-
+            //moved these here so it constructs and loads faster
+            InitializeEntities(out entities);
+            InitializeLogger(ref entities, out logger);
+            InitializeBulkManagers();
+            TestConnection();
         }
+
+
 
         private void tsmenuUsers_Click(object sender, EventArgs e)
         {

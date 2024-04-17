@@ -221,6 +221,12 @@
     <Compile Include="frmEditProduct.Designer.cs">
       <DependentUpon>frmEditProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBulkUserOperations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBulkUserOperations.Designer.cs">
+      <DependentUpon>frmBulkUserOperations.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmImageBinConverter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -313,6 +319,9 @@
     <EmbeddedResource Include="frmEditProduct.resx">
       <DependentUpon>frmEditProduct.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmBulkUserOperations.resx">
+      <DependentUpon>frmBulkUserOperations.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmImageBinConverter.resx">
       <DependentUpon>frmImageBinConverter.cs</DependentUpon>
     </EmbeddedResource>
@@ -363,6 +372,7 @@
       <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BulkUserOperation.datasource" />
     <None Include="Properties\DataSources\frmEditDeliveryService.datasource" />
     <None Include="Properties\DataSources\frmEditUser.datasource" />
     <None Include="Properties\DataSources\frmMain.datasource" />
