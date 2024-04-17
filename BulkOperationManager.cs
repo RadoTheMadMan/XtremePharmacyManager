@@ -1348,6 +1348,15 @@ namespace XtremePharmacyManager
 
     }
 
+    public class BulkOperationEventArgs : EventArgs 
+    {
+        public ArrayList OperationsList = new ArrayList();
+        public int CompletedOperations = 0;
+        public int FailedOperations = 0;
+        public string Result = "";
+        public Entities Entities = new Entities();
+    }
+
     public class BulkOperationManager <T>//this will be the class that will be exposed
     {
         static T target_object;
@@ -1356,6 +1365,7 @@ namespace XtremePharmacyManager
         static int completed_operations = 0;
         static int failed_operations = 0;
         static string result = "";
+        public EventHandler<BulkOperationEventArgs> BulkOperationExecuted;
         public Entities Entities { get { return entities; } }
         public ArrayList BulkOperations { get { return bulk_operations; } set { bulk_operations = value; } }
         public int CompletedOperations { get { return completed_operations; } }
@@ -1408,6 +1418,21 @@ namespace XtremePharmacyManager
             }
             bulk_operations.Clear();
             result = $"Operations Result:\nCompleted Operations: {completed_operations} Failed Operations: {failed_operations}";
+            BulkOperationEventArgs ev_args = new BulkOperationEventArgs();
+            ev_args.OperationsList = bulk_operations;
+            ev_args.CompletedOperations = completed_operations;
+            ev_args.FailedOperations = failed_operations;
+            ev_args.Result = result;
+            ev_args.Entities = entities;
+            InvokeBulkOperationExecutedEvent(this,ev_args);
+        }
+
+        private void InvokeBulkOperationExecutedEvent(object sender, BulkOperationEventArgs e)
+        {
+            if(BulkOperationExecuted != null)
+            {
+                BulkOperationExecuted(this,e);
+            }
         }
     }
 }

@@ -23,11 +23,14 @@ namespace XtremePharmacyManager
             InitializeComponent();
             manager = operation_manager;
             manager_entities = manager.Entities;
+            manager.BulkOperationExecuted += OnBulkOperationExecuted;
         }
 
-        
-        
-       
+        private void OnBulkOperationExecuted(object sender, BulkOperationEventArgs e)
+        {
+            lstBulkOperations.DataSource = e.OperationsList;
+            lblOperationResults.Text = lblOperationResults.Text + e.Result;
+        }
 
         private void trbBalance_Scroll(object sender, EventArgs e)
         {
@@ -165,8 +168,6 @@ namespace XtremePharmacyManager
         private void btnExecuteOperations_Click(object sender, EventArgs e)
         {
             manager.ExecuteOperations();
-            lstBulkOperations.DataSource = manager.BulkOperations;
-            lblOperationResults.Text = lblOperationResults.Text + manager.Result;
         }
 
         private void btnApplyChangesToAllTargets_Click(object sender, EventArgs e)
@@ -199,6 +200,7 @@ namespace XtremePharmacyManager
                 selected_operation = new BulkUserOperation(current_operation_type, ref manager_entities, current_operation_target, current_operation_silent_value);
                 manager.BulkOperations[current_operation_index] = selected_operation;
             }
+            lstBulkOperations.DataSource = manager.BulkOperations;
         }
 
         private void lstBulkOperations_SelectedIndexChanged(object sender, EventArgs e)
