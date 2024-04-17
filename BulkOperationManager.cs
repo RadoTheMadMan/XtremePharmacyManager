@@ -45,7 +45,7 @@ namespace XtremePharmacyManager
         public BulkOperation(BulkOperationType optype, ref T obj, bool is_silent)
         {
             type = optype;
-            if (obj == null && target_object.GetType() == obj.GetType())
+            if (obj != null && target_object.GetType() == obj.GetType())
             {
                 target_object = obj;
             }
