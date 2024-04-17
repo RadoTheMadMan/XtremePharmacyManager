@@ -44,7 +44,7 @@ namespace XtremePharmacyManager
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Images|*.png*;*.bmp*;*.jpg*;*.jpeg*;*.jfif*";
             ofd.Multiselect = false;
-            ofd.Title = "Select an image to upload or for add/update operation";
+            ofd.Title = "Select an image to upload or for bulk operation";
             if(selected_target != null)
             {
                 if(ofd.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(ofd.FileName))
@@ -138,10 +138,11 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void frmEditUser_Load(object sender, EventArgs e)
+        private void frmBulkUserOperations_Load(object sender, EventArgs e)
         {
             Bitmap currentpfp = new Bitmap(64, 64);
-            if (selected_target != null && selected_target != null)
+            lstBulkOperations.DataSource = manager.BulkOperations;
+            if (selected_operation != null && selected_target != null)
             {
                 if (selected_target.UserProfilePic != null) { ConvertBinaryToImage(selected_target.UserProfilePic, out currentpfp); }
                 this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
@@ -164,12 +165,40 @@ namespace XtremePharmacyManager
         private void btnExecuteOperations_Click(object sender, EventArgs e)
         {
             manager.ExecuteOperations();
+            lstBulkOperations.DataSource = manager.BulkOperations;
             lblOperationResults.Text = lblOperationResults.Text + manager.Result;
         }
 
         private void btnApplyChangesToAllTargets_Click(object sender, EventArgs e)
         {
-
+            int current_operation_index = 0;
+            BulkOperationType current_operation_type;
+            User current_operation_target;
+            bool current_operation_silent_value;
+            foreach(BulkUserOperation operation in manager.BulkOperations)
+            {
+                current_operation_index = manager.BulkOperations.IndexOf(operation);
+                current_operation_type = operation.OperationType;
+                current_operation_silent_value = operation.IsSilent;
+                current_operation_target = operation.TargetObject as User;
+                current_operation_target.UserDisplayName = txtDisplayName.Text;
+                current_operation_target.UserBirthDate = dtBirthDate.Value;
+                current_operation_target.UserPhone = txtPhone.Text;
+                current_operation_target.UserEmail = txtEmail.Text;
+                current_operation_target.UserAddress = txtAddress.Text;
+                current_operation_target.UserBalance = trbBalance.Value;
+                current_operation_target.UserDiagnose = txtDiagnose.Text;
+                current_operation_target.UserRole = cbRole.SelectedIndex;
+                if (pbUserProfilePic.Image != null)
+                {
+                    Bitmap current_image = (Bitmap)pbUserProfilePic.Image;
+                    byte[] image_data;
+                    ConvertImageToBinary(current_image, out image_data);
+                    current_operation_target.UserProfilePic = image_data;
+                }
+                selected_operation = new BulkUserOperation(current_operation_type, ref manager_entities, current_operation_target, current_operation_silent_value);
+                manager.BulkOperations[current_operation_index] = selected_operation;
+            }
         }
 
         private void lstBulkOperations_SelectedIndexChanged(object sender, EventArgs e)
@@ -181,7 +210,7 @@ namespace XtremePharmacyManager
                 selected_target = selected_operation.TargetObject;
             }
             Bitmap currentpfp = new Bitmap(64, 64);
-            if (selected_target != null && selected_target != null)
+            if (selected_operation != null && selected_target != null)
             {
                 if (selected_target.UserProfilePic != null) { ConvertBinaryToImage(selected_target.UserProfilePic, out currentpfp); }
                 this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
@@ -199,6 +228,7 @@ namespace XtremePharmacyManager
                 pbUserProfilePic.Image = (selected_target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
                 cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
             }
+            lblOperationResults.Text = "Operation Results: ";
         }
 
         private void btnAddOperation_Click(object sender, EventArgs e)
@@ -207,10 +237,15 @@ namespace XtremePharmacyManager
             BulkUserOperation new_operation;
             User new_user = new User();
             DialogResult res = new frmEditUser(ref new_user).ShowDialog();
+            BulkOperationType operationType = (BulkOperationType)cbOperationType.SelectedIndex;
+            bool IsSilent = checkSilentOperation.Checked;
             if(res == DialogResult.OK)
             {
-                new_operation = new BulkUserOperation((BulkOperationType)cbOperationType.SelectedIndex, ref manager_entities, new_user, true);
+                new_operation = new BulkUserOperation(operationType, ref manager_entities, new_user, IsSilent);
+                manager.BulkOperations.Add(new_operation);
             }
+            lstBulkOperations.DataSource = manager.BulkOperations;
+            lblOperationResults.Text = "Operation Results: ";
         }
 
         private void btnRemoveOperation_Click(object sender, EventArgs e)
@@ -222,6 +257,8 @@ namespace XtremePharmacyManager
                 selected_target = null;
                 selected_operation = null;
             }
+            lstBulkOperations.DataSource= manager.BulkOperations;
+            lblOperationResults.Text = "Operation Results: ";
         }
 
         private void btnApplyChangesToCurrentTarget_Click(object sender, EventArgs e)
@@ -252,6 +289,8 @@ namespace XtremePharmacyManager
                 selected_operation = new BulkUserOperation(current_type,ref manager_entities, selected_target, IsSilent);
                 manager.BulkOperations[operation_index] = selected_operation;
             }
+            lstBulkOperations.DataSource = manager.BulkOperations;
+            lblOperationResults.Text = "Operation Results: ";
         }
 
         private void checkSilentOperation_CheckedChanged(object sender, EventArgs e)
@@ -264,6 +303,20 @@ namespace XtremePharmacyManager
                 selected_operation = new BulkUserOperation(current_type, ref manager_entities, selected_target, IsSilent);
                 manager.BulkOperations[operation_index] = selected_operation;
             }
+            lstBulkOperations.DataSource = manager.BulkOperations;
+        }
+
+        private void cbOperationType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (selected_operation == null)
+            {
+                int operation_index = manager.BulkOperations.IndexOf(selected_operation);
+                BulkOperationType current_type = (BulkOperationType)cbOperationType.SelectedIndex;
+                bool IsSilent = selected_operation.IsSilent;
+                selected_operation = new BulkUserOperation(current_type, ref manager_entities, selected_target, IsSilent);
+                manager.BulkOperations[operation_index] = selected_operation;
+            }
+            lstBulkOperations.DataSource = manager.BulkOperations;
         }
     }
 }

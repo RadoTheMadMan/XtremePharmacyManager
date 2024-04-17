@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.checkSilentOperation = new System.Windows.Forms.CheckBox();
             this.lblOperationResults = new System.Windows.Forms.Label();
             this.cbOperationType = new System.Windows.Forms.ComboBox();
             this.lblOperationType = new System.Windows.Forms.Label();
@@ -65,7 +66,6 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.checkSilentOperation = new System.Windows.Forms.CheckBox();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).BeginInit();
@@ -116,13 +116,25 @@
             this.pnlData.Size = new System.Drawing.Size(800, 593);
             this.pnlData.TabIndex = 0;
             // 
+            // checkSilentOperation
+            // 
+            this.checkSilentOperation.AutoSize = true;
+            this.checkSilentOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkSilentOperation.Location = new System.Drawing.Point(255, 415);
+            this.checkSilentOperation.Name = "checkSilentOperation";
+            this.checkSilentOperation.Size = new System.Drawing.Size(140, 20);
+            this.checkSilentOperation.TabIndex = 44;
+            this.checkSilentOperation.Text = "Silent Operation";
+            this.checkSilentOperation.UseVisualStyleBackColor = true;
+            this.checkSilentOperation.CheckedChanged += new System.EventHandler(this.checkSilentOperation_CheckedChanged);
+            // 
             // lblOperationResults
             // 
             this.lblOperationResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOperationResults.AutoSize = true;
             this.lblOperationResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationResults.Location = new System.Drawing.Point(133, 448);
+            this.lblOperationResults.Location = new System.Drawing.Point(20, 453);
             this.lblOperationResults.Name = "lblOperationResults";
             this.lblOperationResults.Size = new System.Drawing.Size(139, 16);
             this.lblOperationResults.TabIndex = 43;
@@ -144,6 +156,7 @@
             this.cbOperationType.Size = new System.Drawing.Size(229, 24);
             this.cbOperationType.TabIndex = 42;
             this.cbOperationType.Text = "ADD";
+            this.cbOperationType.SelectedIndexChanged += new System.EventHandler(this.cbOperationType_SelectedIndexChanged);
             // 
             // lblOperationType
             // 
@@ -285,7 +298,7 @@
             this.txtDiagnose.Location = new System.Drawing.Point(475, 45);
             this.txtDiagnose.Multiline = true;
             this.txtDiagnose.Name = "txtDiagnose";
-            this.txtDiagnose.Size = new System.Drawing.Size(313, 115);
+            this.txtDiagnose.Size = new System.Drawing.Size(313, 75);
             this.txtDiagnose.TabIndex = 23;
             this.txtDiagnose.TextChanged += new System.EventHandler(this.txtDiagnose_TextChanged);
             // 
@@ -308,7 +321,7 @@
             this.trbBalance.Location = new System.Drawing.Point(475, 18);
             this.trbBalance.Maximum = 5000;
             this.trbBalance.Name = "trbBalance";
-            this.trbBalance.Size = new System.Drawing.Size(259, 96);
+            this.trbBalance.Size = new System.Drawing.Size(259, 56);
             this.trbBalance.TabIndex = 21;
             this.trbBalance.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
@@ -344,7 +357,7 @@
             this.txtAddress.Location = new System.Drawing.Point(137, 214);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(258, 113);
+            this.txtAddress.Size = new System.Drawing.Size(258, 62);
             this.txtAddress.TabIndex = 18;
             this.txtAddress.TextChanged += new System.EventHandler(this.txtAddress_TextChanged);
             // 
@@ -519,18 +532,6 @@
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
             // 
-            // checkSilentOperation
-            // 
-            this.checkSilentOperation.AutoSize = true;
-            this.checkSilentOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkSilentOperation.Location = new System.Drawing.Point(255, 415);
-            this.checkSilentOperation.Name = "checkSilentOperation";
-            this.checkSilentOperation.Size = new System.Drawing.Size(140, 20);
-            this.checkSilentOperation.TabIndex = 44;
-            this.checkSilentOperation.Text = "Silent Operation";
-            this.checkSilentOperation.UseVisualStyleBackColor = true;
-            this.checkSilentOperation.CheckedChanged += new System.EventHandler(this.checkSilentOperation_CheckedChanged);
-            // 
             // frmBulkUserOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -539,7 +540,7 @@
             this.MaximizeBox = false;
             this.Name = "frmBulkUserOperations";
             this.Text = "User Editor. Add or Edit User";
-            this.Load += new System.EventHandler(this.frmEditUser_Load);
+            this.Load += new System.EventHandler(this.frmBulkUserOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).EndInit();

@@ -43,6 +43,8 @@
             this.tsmenuDebugTools = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuTestConnection = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuBitmapToBinary = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmenuBulkOperations = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmenuBulkUserOperations = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,7 +84,8 @@
             this.tsmenuProducts,
             this.tsmenuProductOrders,
             this.tsmenuOrderDeliveries,
-            this.tsmenuLogs});
+            this.tsmenuLogs,
+            this.tsmenuBulkOperations});
             this.tsmenuWindow.Name = "tsmenuWindow";
             this.tsmenuWindow.Size = new System.Drawing.Size(78, 24);
             this.tsmenuWindow.Text = "Window";
@@ -90,56 +93,56 @@
             // tsmenuUsers
             // 
             this.tsmenuUsers.Name = "tsmenuUsers";
-            this.tsmenuUsers.Size = new System.Drawing.Size(210, 26);
+            this.tsmenuUsers.Size = new System.Drawing.Size(224, 26);
             this.tsmenuUsers.Text = "Users";
             this.tsmenuUsers.Click += new System.EventHandler(this.tsmenuUsers_Click);
             // 
             // tsmenuProductBrands
             // 
             this.tsmenuProductBrands.Name = "tsmenuProductBrands";
-            this.tsmenuProductBrands.Size = new System.Drawing.Size(210, 26);
+            this.tsmenuProductBrands.Size = new System.Drawing.Size(224, 26);
             this.tsmenuProductBrands.Text = "Product Brands";
             this.tsmenuProductBrands.Click += new System.EventHandler(this.tsmenuProductBrands_Click);
             // 
             // tsmenuPaymentMethods
             // 
             this.tsmenuPaymentMethods.Name = "tsmenuPaymentMethods";
-            this.tsmenuPaymentMethods.Size = new System.Drawing.Size(210, 26);
+            this.tsmenuPaymentMethods.Size = new System.Drawing.Size(224, 26);
             this.tsmenuPaymentMethods.Text = "Payment Methods";
             this.tsmenuPaymentMethods.Click += new System.EventHandler(this.tsmenuPaymentMethods_Click);
             // 
             // tsmenuDeliveryServices
             // 
             this.tsmenuDeliveryServices.Name = "tsmenuDeliveryServices";
-            this.tsmenuDeliveryServices.Size = new System.Drawing.Size(210, 26);
+            this.tsmenuDeliveryServices.Size = new System.Drawing.Size(224, 26);
             this.tsmenuDeliveryServices.Text = "Delivery Services";
             this.tsmenuDeliveryServices.Click += new System.EventHandler(this.tsmenuDeliveryServices_Click);
             // 
             // tsmenuProducts
             // 
             this.tsmenuProducts.Name = "tsmenuProducts";
-            this.tsmenuProducts.Size = new System.Drawing.Size(210, 26);
+            this.tsmenuProducts.Size = new System.Drawing.Size(224, 26);
             this.tsmenuProducts.Text = "Products";
             this.tsmenuProducts.Click += new System.EventHandler(this.tsmenuProducts_Click);
             // 
             // tsmenuProductOrders
             // 
             this.tsmenuProductOrders.Name = "tsmenuProductOrders";
-            this.tsmenuProductOrders.Size = new System.Drawing.Size(210, 26);
+            this.tsmenuProductOrders.Size = new System.Drawing.Size(224, 26);
             this.tsmenuProductOrders.Text = "Product Orders";
             this.tsmenuProductOrders.Click += new System.EventHandler(this.tsmenuProductOrders_Click);
             // 
             // tsmenuOrderDeliveries
             // 
             this.tsmenuOrderDeliveries.Name = "tsmenuOrderDeliveries";
-            this.tsmenuOrderDeliveries.Size = new System.Drawing.Size(210, 26);
+            this.tsmenuOrderDeliveries.Size = new System.Drawing.Size(224, 26);
             this.tsmenuOrderDeliveries.Text = "Order Deliveries";
             this.tsmenuOrderDeliveries.Click += new System.EventHandler(this.tsmenuOrderDeliveries_Click);
             // 
             // tsmenuLogs
             // 
             this.tsmenuLogs.Name = "tsmenuLogs";
-            this.tsmenuLogs.Size = new System.Drawing.Size(210, 26);
+            this.tsmenuLogs.Size = new System.Drawing.Size(224, 26);
             this.tsmenuLogs.Text = "Logs";
             this.tsmenuLogs.Click += new System.EventHandler(this.tsmenuLogs_Click);
             // 
@@ -165,6 +168,20 @@
             this.tsmenuBitmapToBinary.Size = new System.Drawing.Size(205, 26);
             this.tsmenuBitmapToBinary.Text = "&Bitmap To Binary";
             this.tsmenuBitmapToBinary.Click += new System.EventHandler(this.tsmenuBitmapToBinary_Click);
+            // 
+            // tsmenuBulkOperations
+            // 
+            this.tsmenuBulkOperations.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmenuBulkUserOperations});
+            this.tsmenuBulkOperations.Name = "tsmenuBulkOperations";
+            this.tsmenuBulkOperations.Size = new System.Drawing.Size(224, 26);
+            this.tsmenuBulkOperations.Text = "Bulk Operations";
+            // 
+            // tsmenuBulkUserOperations
+            // 
+            this.tsmenuBulkUserOperations.Name = "tsmenuBulkUserOperations";
+            this.tsmenuBulkUserOperations.Size = new System.Drawing.Size(230, 26);
+            this.tsmenuBulkUserOperations.Text = "Bulk User Operations";
             // 
             // frmMain
             // 
@@ -203,6 +220,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmenuProductOrders;
         private System.Windows.Forms.ToolStripMenuItem tsmenuOrderDeliveries;
         private System.Windows.Forms.ToolStripMenuItem tsmenuLogs;
+        private System.Windows.Forms.ToolStripMenuItem tsmenuBulkOperations;
+        private System.Windows.Forms.ToolStripMenuItem tsmenuBulkUserOperations;
     }
 }
 
