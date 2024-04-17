@@ -25,16 +25,27 @@ namespace XtremePharmacyManager
             CLOSE_PROMPT_TITLE = manager.GetString("ClosePromptTitle", CultureInfo.CurrentCulture);
             CONNECTION_SUCCESSFUL_MESSAGE = manager.GetString("ConnectionSuccessfulMessage", CultureInfo.CurrentCulture);
         }
+
+        public static void UpdateCurrentCultureResources()
+        {
+            ResourceManager manager = Resources.ResourceManager;
+            CRITICAL_ERROR_MESSAGE = manager.GetString("CriticalErrorMessage", CultureInfo.CurrentCulture);
+            CRITICAL_ERROR_TITLE = manager.GetString("CriticalErrorTitle", CultureInfo.CurrentCulture);
+            CLOSE_PROMPT = manager.GetString("ClosePrompt", CultureInfo.CurrentCulture);
+            CLOSE_PROMPT_TITLE = manager.GetString("ClosePromptTitle", CultureInfo.CurrentCulture);
+            CONNECTION_SUCCESSFUL_MESSAGE = manager.GetString("ConnectionSuccessfulMessage", CultureInfo.CurrentCulture);
+        }
     }
     internal static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-        public static GLOBAL_RESOURCES resources = new GLOBAL_RESOURCES();
+        public static GLOBAL_RESOURCES resources;
         [STAThread]
         static void Main()
         {
+            resources = new GLOBAL_RESOURCES();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMain());

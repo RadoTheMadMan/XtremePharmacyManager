@@ -163,6 +163,7 @@ namespace XtremePharmacyManager
         private void btnExecuteOperations_Click(object sender, EventArgs e)
         {
             manager.ExecuteOperations();
+            lblOperationResults.Text = lblOperationResults.Text + manager.Result;
         }
 
         private void btnApplyChangesToAllTargets_Click(object sender, EventArgs e)
@@ -197,6 +198,30 @@ namespace XtremePharmacyManager
                 pbUserProfilePic.Image = (selected_target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
                 cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
             }
+        }
+
+        private void btnAddOperation_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRemoveOperation_Click(object sender, EventArgs e)
+        {
+            //Remove it from the list of the manager and nullify it here
+            if(selected_operation != null)
+            {
+                manager.BulkOperations.Remove(selected_operation);
+                selected_target = null;
+                selected_operation = null;
+            }
+        }
+
+        private void btnApplyChangesToCurrentTarget_Click(object sender, EventArgs e)
+        {
+            selected_target.UserDisplayName = txtDisplayName.Text;
+            selected_target.UserBirthDate = dtBirthDate.Value;
+            selected_target.UserBalance = trbBalance.Value;
+            selected_target.UserDiagnose = txtUsername.Text;
         }
     }
 }

@@ -30,6 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.cbOperationType = new System.Windows.Forms.ComboBox();
+            this.lblOperationType = new System.Windows.Forms.Label();
+            this.btnAddOperation = new System.Windows.Forms.Button();
+            this.btnRemoveOperation = new System.Windows.Forms.Button();
+            this.btnApplyChangesToCurrentTarget = new System.Windows.Forms.Button();
+            this.btnExecuteOperations = new System.Windows.Forms.Button();
+            this.btnApplyChangesToAllTargets = new System.Windows.Forms.Button();
+            this.lstBulkOperations = new System.Windows.Forms.ListBox();
+            this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pbUserProfilePic = new System.Windows.Forms.PictureBox();
             this.cbRole = new System.Windows.Forms.ComboBox();
             this.lblRole = new System.Windows.Forms.Label();
@@ -55,25 +64,18 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lstBulkOperations = new System.Windows.Forms.ListBox();
-            this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnExecuteOperations = new System.Windows.Forms.Button();
-            this.btnApplyChangesToAllTargets = new System.Windows.Forms.Button();
-            this.btnApplyChangesToCurrentTarget = new System.Windows.Forms.Button();
-            this.btnRemoveOperation = new System.Windows.Forms.Button();
-            this.btnAddOperation = new System.Windows.Forms.Button();
-            this.cbOperationType = new System.Windows.Forms.ComboBox();
-            this.lblOperationType = new System.Windows.Forms.Label();
+            this.lblOperationResults = new System.Windows.Forms.Label();
             this.pnlData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
             // 
             this.pnlData.AutoSize = true;
+            this.pnlData.Controls.Add(this.lblOperationResults);
             this.pnlData.Controls.Add(this.cbOperationType);
             this.pnlData.Controls.Add(this.lblOperationType);
             this.pnlData.Controls.Add(this.btnAddOperation);
@@ -111,6 +113,117 @@
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(800, 553);
             this.pnlData.TabIndex = 0;
+            // 
+            // cbOperationType
+            // 
+            this.cbOperationType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbOperationType.FormattingEnabled = true;
+            this.cbOperationType.Items.AddRange(new object[] {
+            "DEFAULT(Invalid Operation)",
+            "ADD",
+            "UPDATE",
+            "DELETE",
+            "CUSTOM(Only for operations with custom action overrides)"});
+            this.cbOperationType.Location = new System.Drawing.Point(555, 415);
+            this.cbOperationType.Name = "cbOperationType";
+            this.cbOperationType.Size = new System.Drawing.Size(229, 24);
+            this.cbOperationType.TabIndex = 42;
+            this.cbOperationType.Text = "ADD";
+            // 
+            // lblOperationType
+            // 
+            this.lblOperationType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOperationType.AutoSize = true;
+            this.lblOperationType.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOperationType.Location = new System.Drawing.Point(412, 419);
+            this.lblOperationType.Name = "lblOperationType";
+            this.lblOperationType.Size = new System.Drawing.Size(119, 16);
+            this.lblOperationType.TabIndex = 41;
+            this.lblOperationType.Text = "Operation Type:";
+            // 
+            // btnAddOperation
+            // 
+            this.btnAddOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnAddOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddOperation.Location = new System.Drawing.Point(143, 445);
+            this.btnAddOperation.Name = "btnAddOperation";
+            this.btnAddOperation.Size = new System.Drawing.Size(211, 47);
+            this.btnAddOperation.TabIndex = 40;
+            this.btnAddOperation.Text = "ADD OPERATION";
+            this.btnAddOperation.UseVisualStyleBackColor = true;
+            this.btnAddOperation.Click += new System.EventHandler(this.btnAddOperation_Click);
+            // 
+            // btnRemoveOperation
+            // 
+            this.btnRemoveOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnRemoveOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveOperation.Location = new System.Drawing.Point(360, 445);
+            this.btnRemoveOperation.Name = "btnRemoveOperation";
+            this.btnRemoveOperation.Size = new System.Drawing.Size(211, 47);
+            this.btnRemoveOperation.TabIndex = 39;
+            this.btnRemoveOperation.Text = "REMOVE OPERATION";
+            this.btnRemoveOperation.UseVisualStyleBackColor = true;
+            this.btnRemoveOperation.Click += new System.EventHandler(this.btnRemoveOperation_Click);
+            // 
+            // btnApplyChangesToCurrentTarget
+            // 
+            this.btnApplyChangesToCurrentTarget.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnApplyChangesToCurrentTarget.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnApplyChangesToCurrentTarget.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(360, 498);
+            this.btnApplyChangesToCurrentTarget.Name = "btnApplyChangesToCurrentTarget";
+            this.btnApplyChangesToCurrentTarget.Size = new System.Drawing.Size(211, 47);
+            this.btnApplyChangesToCurrentTarget.TabIndex = 38;
+            this.btnApplyChangesToCurrentTarget.Text = "APPLY CHANGES TO THIS TARGET";
+            this.btnApplyChangesToCurrentTarget.UseVisualStyleBackColor = true;
+            this.btnApplyChangesToCurrentTarget.Click += new System.EventHandler(this.btnApplyChangesToCurrentTarget_Click);
+            // 
+            // btnExecuteOperations
+            // 
+            this.btnExecuteOperations.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnExecuteOperations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExecuteOperations.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExecuteOperations.Location = new System.Drawing.Point(577, 445);
+            this.btnExecuteOperations.Name = "btnExecuteOperations";
+            this.btnExecuteOperations.Size = new System.Drawing.Size(211, 47);
+            this.btnExecuteOperations.TabIndex = 37;
+            this.btnExecuteOperations.Text = "EXECUTE OPERATIONS";
+            this.btnExecuteOperations.UseVisualStyleBackColor = true;
+            this.btnExecuteOperations.Click += new System.EventHandler(this.btnExecuteOperations_Click);
+            // 
+            // btnApplyChangesToAllTargets
+            // 
+            this.btnApplyChangesToAllTargets.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnApplyChangesToAllTargets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnApplyChangesToAllTargets.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(577, 498);
+            this.btnApplyChangesToAllTargets.Name = "btnApplyChangesToAllTargets";
+            this.btnApplyChangesToAllTargets.Size = new System.Drawing.Size(211, 47);
+            this.btnApplyChangesToAllTargets.TabIndex = 36;
+            this.btnApplyChangesToAllTargets.Text = "APPLY CHANGES TO ALL TARGETS";
+            this.btnApplyChangesToAllTargets.UseVisualStyleBackColor = true;
+            this.btnApplyChangesToAllTargets.Click += new System.EventHandler(this.btnApplyChangesToAllTargets_Click);
+            // 
+            // lstBulkOperations
+            // 
+            this.lstBulkOperations.DataSource = this.bulkUserOperationBindingSource;
+            this.lstBulkOperations.DisplayMember = "OperationName";
+            this.lstBulkOperations.FormattingEnabled = true;
+            this.lstBulkOperations.ItemHeight = 16;
+            this.lstBulkOperations.Location = new System.Drawing.Point(22, 302);
+            this.lstBulkOperations.Name = "lstBulkOperations";
+            this.lstBulkOperations.Size = new System.Drawing.Size(766, 100);
+            this.lstBulkOperations.TabIndex = 35;
+            this.lstBulkOperations.ValueMember = "TargetObject";
+            this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);
+            // 
+            // bulkUserOperationBindingSource
+            // 
+            this.bulkUserOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkUserOperation);
             // 
             // pbUserProfilePic
             // 
@@ -181,7 +294,7 @@
             this.trbBalance.Location = new System.Drawing.Point(475, 18);
             this.trbBalance.Maximum = 5000;
             this.trbBalance.Name = "trbBalance";
-            this.trbBalance.Size = new System.Drawing.Size(259, 308);
+            this.trbBalance.Size = new System.Drawing.Size(259, 56);
             this.trbBalance.TabIndex = 21;
             this.trbBalance.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
@@ -325,6 +438,7 @@
             // 
             this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtPassword.Enabled = false;
             this.txtPassword.Location = new System.Drawing.Point(136, 70);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(258, 22);
@@ -346,6 +460,7 @@
             // 
             this.txtUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtUsername.Enabled = false;
             this.txtUsername.Location = new System.Drawing.Point(136, 42);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(258, 22);
@@ -390,113 +505,17 @@
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
             // 
-            // lstBulkOperations
+            // lblOperationResults
             // 
-            this.lstBulkOperations.DataSource = this.bulkUserOperationBindingSource;
-            this.lstBulkOperations.DisplayMember = "TargetObject";
-            this.lstBulkOperations.FormattingEnabled = true;
-            this.lstBulkOperations.ItemHeight = 16;
-            this.lstBulkOperations.Location = new System.Drawing.Point(22, 302);
-            this.lstBulkOperations.Name = "lstBulkOperations";
-            this.lstBulkOperations.Size = new System.Drawing.Size(766, 100);
-            this.lstBulkOperations.TabIndex = 35;
-            this.lstBulkOperations.ValueMember = "TargetObject";
-            this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);
-            // 
-            // bulkUserOperationBindingSource
-            // 
-            this.bulkUserOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkUserOperation);
-            // 
-            // btnExecuteOperations
-            // 
-            this.btnExecuteOperations.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnExecuteOperations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExecuteOperations.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExecuteOperations.Location = new System.Drawing.Point(577, 445);
-            this.btnExecuteOperations.Name = "btnExecuteOperations";
-            this.btnExecuteOperations.Size = new System.Drawing.Size(211, 47);
-            this.btnExecuteOperations.TabIndex = 37;
-            this.btnExecuteOperations.Text = "EXECUTE OPERATIONS";
-            this.btnExecuteOperations.UseVisualStyleBackColor = true;
-            this.btnExecuteOperations.Click += new System.EventHandler(this.btnExecuteOperations_Click);
-            // 
-            // btnApplyChangesToAllTargets
-            // 
-            this.btnApplyChangesToAllTargets.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnApplyChangesToAllTargets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnApplyChangesToAllTargets.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(577, 498);
-            this.btnApplyChangesToAllTargets.Name = "btnApplyChangesToAllTargets";
-            this.btnApplyChangesToAllTargets.Size = new System.Drawing.Size(211, 47);
-            this.btnApplyChangesToAllTargets.TabIndex = 36;
-            this.btnApplyChangesToAllTargets.Text = "APPLY CHANGES TO ALL TARGETS";
-            this.btnApplyChangesToAllTargets.UseVisualStyleBackColor = true;
-            this.btnApplyChangesToAllTargets.Click += new System.EventHandler(this.btnApplyChangesToAllTargets_Click);
-            // 
-            // btnApplyChangesToCurrentTarget
-            // 
-            this.btnApplyChangesToCurrentTarget.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnApplyChangesToCurrentTarget.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnApplyChangesToCurrentTarget.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(360, 498);
-            this.btnApplyChangesToCurrentTarget.Name = "btnApplyChangesToCurrentTarget";
-            this.btnApplyChangesToCurrentTarget.Size = new System.Drawing.Size(211, 47);
-            this.btnApplyChangesToCurrentTarget.TabIndex = 38;
-            this.btnApplyChangesToCurrentTarget.Text = "APPLY CHANGES TO THIS TARGET";
-            this.btnApplyChangesToCurrentTarget.UseVisualStyleBackColor = true;
-            // 
-            // btnRemoveOperation
-            // 
-            this.btnRemoveOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnRemoveOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveOperation.Location = new System.Drawing.Point(360, 445);
-            this.btnRemoveOperation.Name = "btnRemoveOperation";
-            this.btnRemoveOperation.Size = new System.Drawing.Size(211, 47);
-            this.btnRemoveOperation.TabIndex = 39;
-            this.btnRemoveOperation.Text = "REMOVE OPERATION";
-            this.btnRemoveOperation.UseVisualStyleBackColor = true;
-            // 
-            // btnAddOperation
-            // 
-            this.btnAddOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnAddOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOperation.Location = new System.Drawing.Point(143, 445);
-            this.btnAddOperation.Name = "btnAddOperation";
-            this.btnAddOperation.Size = new System.Drawing.Size(211, 47);
-            this.btnAddOperation.TabIndex = 40;
-            this.btnAddOperation.Text = "ADD OPERATION";
-            this.btnAddOperation.UseVisualStyleBackColor = true;
-            // 
-            // cbOperationType
-            // 
-            this.cbOperationType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblOperationResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbOperationType.FormattingEnabled = true;
-            this.cbOperationType.Items.AddRange(new object[] {
-            "DEFAULT(Invalid Operation)",
-            "ADD",
-            "UPDATE",
-            "DELETE",
-            "CUSTOM(Only for operations with custom action overrides)"});
-            this.cbOperationType.Location = new System.Drawing.Point(555, 415);
-            this.cbOperationType.Name = "cbOperationType";
-            this.cbOperationType.Size = new System.Drawing.Size(229, 24);
-            this.cbOperationType.TabIndex = 42;
-            this.cbOperationType.Text = "ADD";
-            // 
-            // lblOperationType
-            // 
-            this.lblOperationType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblOperationType.AutoSize = true;
-            this.lblOperationType.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationType.Location = new System.Drawing.Point(412, 419);
-            this.lblOperationType.Name = "lblOperationType";
-            this.lblOperationType.Size = new System.Drawing.Size(119, 16);
-            this.lblOperationType.TabIndex = 41;
-            this.lblOperationType.Text = "Operation Type:";
+            this.lblOperationResults.AutoSize = true;
+            this.lblOperationResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOperationResults.Location = new System.Drawing.Point(20, 419);
+            this.lblOperationResults.Name = "lblOperationResults";
+            this.lblOperationResults.Size = new System.Drawing.Size(139, 16);
+            this.lblOperationResults.TabIndex = 43;
+            this.lblOperationResults.Text = "Operation Results: ";
             // 
             // frmBulkUserOperations
             // 
@@ -509,10 +528,10 @@
             this.Load += new System.EventHandler(this.frmEditUser_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -555,5 +574,6 @@
         private System.Windows.Forms.Label lblOperationType;
         private System.Windows.Forms.Button btnAddOperation;
         private System.Windows.Forms.Button btnRemoveOperation;
+        private System.Windows.Forms.Label lblOperationResults;
     }
 }
