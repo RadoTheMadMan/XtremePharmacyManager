@@ -29,6 +29,7 @@ namespace XtremePharmacyManager
         static BulkOperationManager<PaymentMethod> bulkPaymentMethodOperationManager;
         static BulkOperationManager<DeliveryService> bulkDeliveryServiceOperationManager;
         static BulkOperationManager<Product> bulkProductOperationManager;
+        static BulkOperationManager<ProductImage> bulkProductImageOperationManager;
         static BulkOperationManager<ProductOrder> bulkProductOrderOperationManager;
         static BulkOperationManager<OrderDelivery> bulkOrderDeliveryOperationManager;
         static string connString = "";
@@ -105,6 +106,7 @@ namespace XtremePharmacyManager
             bulkPaymentMethodOperationManager = new BulkOperationManager<PaymentMethod>();
             bulkDeliveryServiceOperationManager = new BulkOperationManager<DeliveryService>();
             bulkProductOperationManager = new BulkOperationManager<Product>();
+            bulkProductImageOperationManager = new BulkOperationManager<ProductImage>();
             bulkProductOrderOperationManager = new BulkOperationManager<ProductOrder>();
             bulkOrderDeliveryOperationManager = new BulkOperationManager<OrderDelivery>();
         }
