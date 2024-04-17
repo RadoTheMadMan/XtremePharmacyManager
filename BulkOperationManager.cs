@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using XtremePharmacyManager;
 using XtremePharmacyManager.DataEntities;
 
 namespace XtremePharmacyManager
@@ -95,10 +96,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -132,10 +133,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -169,10 +170,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -206,10 +207,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -262,10 +263,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}:::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -305,10 +306,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -346,10 +347,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -402,10 +403,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -443,10 +444,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -484,10 +485,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -540,10 +541,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -581,10 +582,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -622,10 +623,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -678,10 +679,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -719,10 +720,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -760,10 +761,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -818,10 +819,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -861,10 +862,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -902,10 +903,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -958,10 +959,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -999,10 +1000,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1040,10 +1041,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1099,10 +1100,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1141,10 +1142,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1182,10 +1183,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1239,10 +1240,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1281,10 +1282,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1322,10 +1323,10 @@ namespace XtremePharmacyManager
                 {
                     await Task.Run(() =>
                     {
-                        MessageBox.Show($"An exception occured:{ex.Message}\nStackTrace:{ex.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\nStackTrace:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
