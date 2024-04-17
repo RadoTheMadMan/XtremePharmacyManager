@@ -1352,23 +1352,27 @@ namespace XtremePharmacyManager
     {
         static T target_object;
         static ArrayList bulk_operations;
+        static Entities entities;
         static int completed_operations = 0;
         static int failed_operations = 0;
         static string result = "";
+        public Entities Entities { get { return entities; } }
         public ArrayList BulkOperations { get { return bulk_operations; } set { bulk_operations = value; } }
         public int CompletedOperations { get { return completed_operations; } }
         public int FailedOperations { get { return failed_operations; } }
         public string Result { get { return result; } }
 
-        public BulkOperationManager()
+        public BulkOperationManager(ref Entities ext_entities)
         {
+            entities = ext_entities;
             bulk_operations = new ArrayList();
             completed_operations = 0;
             failed_operations = 0;
             result = "";
         }
-        public BulkOperationManager(ref ArrayList operations)
+        public BulkOperationManager(ref Entities ext_entities, ref ArrayList operations)
         {
+            entities = ext_entities;
             if (operations != null)
             {
                 bulk_operations = operations;

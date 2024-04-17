@@ -14,14 +14,15 @@ namespace XtremePharmacyManager
 {
     public partial class frmBulkUserOperations : Form
     {
-        BulkOperationManager<User> manager;
-        BulkOperation<User> selected_operation;
-        User selected_target;
+        static BulkOperationManager<User> manager;
+        static BulkOperation<User> selected_operation;
+        static User selected_target;
+        static Entities manager_entities;
         public frmBulkUserOperations(ref BulkOperationManager<User> operation_manager)
         {
             InitializeComponent();
             manager = operation_manager;
-
+            manager_entities = manager.Entities;
         }
 
         
@@ -202,7 +203,14 @@ namespace XtremePharmacyManager
 
         private void btnAddOperation_Click(object sender, EventArgs e)
         {
-
+            
+            BulkUserOperation new_operation;
+            User new_user = new User();
+            DialogResult res = new frmEditUser(ref new_user).ShowDialog();
+            if(res == DialogResult.OK)
+            {
+                new_operation = new BulkUserOperation((BulkOperationType)cbOperationType.SelectedIndex, ref manager_entities, new_user, true);
+            }
         }
 
         private void btnRemoveOperation_Click(object sender, EventArgs e)
@@ -218,10 +226,44 @@ namespace XtremePharmacyManager
 
         private void btnApplyChangesToCurrentTarget_Click(object sender, EventArgs e)
         {
-            selected_target.UserDisplayName = txtDisplayName.Text;
-            selected_target.UserBirthDate = dtBirthDate.Value;
-            selected_target.UserBalance = trbBalance.Value;
-            selected_target.UserDiagnose = txtUsername.Text;
+            if (selected_target != null)
+            {
+                selected_target.UserDisplayName = txtDisplayName.Text;
+                selected_target.UserBirthDate = dtBirthDate.Value;
+                selected_target.UserPhone = txtPhone.Text;
+                selected_target.UserEmail = txtEmail.Text;
+                selected_target.UserAddress = txtAddress.Text;
+                selected_target.UserBalance = trbBalance.Value;
+                selected_target.UserDiagnose = txtDiagnose.Text;
+                selected_target.UserRole = cbRole.SelectedIndex;
+                if (pbUserProfilePic.Image != null)
+                {
+                    Bitmap current_image = (Bitmap)pbUserProfilePic.Image;
+                    byte[] image_data;
+                    ConvertImageToBinary(current_image, out image_data);
+                    selected_target.UserProfilePic = image_data;
+                }
+            }
+            if(selected_operation != null)
+            {
+                int operation_index = manager.BulkOperations.IndexOf(selected_operation);
+                BulkOperationType current_type = selected_operation.OperationType;
+                bool IsSilent = selected_operation.IsSilent;
+                selected_operation = new BulkUserOperation(current_type,ref manager_entities, selected_target, IsSilent);
+                manager.BulkOperations[operation_index] = selected_operation;
+            }
+        }
+
+        private void checkSilentOperation_CheckedChanged(object sender, EventArgs e)
+        {
+            if(selected_operation == null)
+            {
+                int operation_index = manager.BulkOperations.IndexOf(selected_operation);
+                BulkOperationType current_type = selected_operation.OperationType;
+                bool IsSilent = checkSilentOperation.Checked;
+                selected_operation = new BulkUserOperation(current_type, ref manager_entities, selected_target, IsSilent);
+                manager.BulkOperations[operation_index] = selected_operation;
+            }
         }
     }
 }

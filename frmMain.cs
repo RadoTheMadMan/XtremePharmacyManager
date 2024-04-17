@@ -101,14 +101,14 @@ namespace XtremePharmacyManager
 
         private void InitializeBulkManagers()
         {
-            bulkUserOperationManager = new BulkOperationManager<User>();
-            bulkProductBrandOperationManager = new BulkOperationManager<ProductBrand>();
-            bulkPaymentMethodOperationManager = new BulkOperationManager<PaymentMethod>();
-            bulkDeliveryServiceOperationManager = new BulkOperationManager<DeliveryService>();
-            bulkProductOperationManager = new BulkOperationManager<Product>();
-            bulkProductImageOperationManager = new BulkOperationManager<ProductImage>();
-            bulkProductOrderOperationManager = new BulkOperationManager<ProductOrder>();
-            bulkOrderDeliveryOperationManager = new BulkOperationManager<OrderDelivery>();
+            bulkUserOperationManager = new BulkOperationManager<User>(ref entities);
+            bulkProductBrandOperationManager = new BulkOperationManager<ProductBrand>(ref entities);
+            bulkPaymentMethodOperationManager = new BulkOperationManager<PaymentMethod>(ref entities);
+            bulkDeliveryServiceOperationManager = new BulkOperationManager<DeliveryService>(ref entities);
+            bulkProductOperationManager = new BulkOperationManager<Product>(ref entities);
+            bulkProductImageOperationManager = new BulkOperationManager<ProductImage>(ref entities);
+            bulkProductOrderOperationManager = new BulkOperationManager<ProductOrder>(ref entities);
+            bulkOrderDeliveryOperationManager = new BulkOperationManager<OrderDelivery>(ref entities);
         }
 
         private void frmMain_Load(object sender, EventArgs e)
@@ -462,18 +462,6 @@ namespace XtremePharmacyManager
         {
             try
             {
-                if (logger != null)
-                {
-                    logger = null;
-                }
-                if (entities != null)
-                {
-                    if (entities.Database.Connection.State == ConnectionState.Open)
-                    {
-                        entities.Database.Connection.Close();
-                    }
-                    entities = null;
-                }
                 if (userssearchform != null)
                 {
                     userssearchform = null;
@@ -509,6 +497,50 @@ namespace XtremePharmacyManager
                 if (imgbinform != null)
                 {
                     imgbinform = null;
+                }
+                if(bulkUserOperationManager != null)
+                {
+                    bulkUserOperationManager = null;
+                }
+                if(bulkProductBrandOperationManager != null)
+                {
+                    bulkProductBrandOperationManager = null;
+                }
+                if(bulkPaymentMethodOperationManager != null)
+                {
+                    bulkPaymentMethodOperationManager = null;
+                }
+                if(bulkDeliveryServiceOperationManager != null)
+                {
+                    bulkDeliveryServiceOperationManager = null;
+                }
+                if(bulkProductOperationManager != null)
+                {
+                    bulkProductOperationManager = null;
+                }
+                if(bulkProductImageOperationManager != null)
+                {
+                    bulkProductImageOperationManager = null;
+                }
+                if(bulkProductOrderOperationManager != null)
+                {
+                    bulkProductOrderOperationManager = null;
+                }
+                if(bulkOrderDeliveryOperationManager != null)
+                {
+                    bulkOrderDeliveryOperationManager = null;
+                }
+                if (logger != null)
+                {
+                    logger = null;
+                }
+                if (entities != null)
+                {
+                    if (entities.Database.Connection.State == ConnectionState.Open)
+                    {
+                        entities.Database.Connection.Close();
+                    }
+                    entities = null;
                 }
             }
             catch (Exception ex)

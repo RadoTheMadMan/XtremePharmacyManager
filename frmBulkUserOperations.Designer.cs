@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.lblOperationResults = new System.Windows.Forms.Label();
             this.cbOperationType = new System.Windows.Forms.ComboBox();
             this.lblOperationType = new System.Windows.Forms.Label();
             this.btnAddOperation = new System.Windows.Forms.Button();
@@ -64,7 +65,7 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblOperationResults = new System.Windows.Forms.Label();
+            this.checkSilentOperation = new System.Windows.Forms.CheckBox();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).BeginInit();
@@ -75,6 +76,7 @@
             // pnlData
             // 
             this.pnlData.AutoSize = true;
+            this.pnlData.Controls.Add(this.checkSilentOperation);
             this.pnlData.Controls.Add(this.lblOperationResults);
             this.pnlData.Controls.Add(this.cbOperationType);
             this.pnlData.Controls.Add(this.lblOperationType);
@@ -111,8 +113,20 @@
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlData.Location = new System.Drawing.Point(0, 0);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(800, 553);
+            this.pnlData.Size = new System.Drawing.Size(800, 593);
             this.pnlData.TabIndex = 0;
+            // 
+            // lblOperationResults
+            // 
+            this.lblOperationResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOperationResults.AutoSize = true;
+            this.lblOperationResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOperationResults.Location = new System.Drawing.Point(133, 448);
+            this.lblOperationResults.Name = "lblOperationResults";
+            this.lblOperationResults.Size = new System.Drawing.Size(139, 16);
+            this.lblOperationResults.TabIndex = 43;
+            this.lblOperationResults.Text = "Operation Results: ";
             // 
             // cbOperationType
             // 
@@ -148,7 +162,7 @@
             this.btnAddOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAddOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOperation.Location = new System.Drawing.Point(143, 445);
+            this.btnAddOperation.Location = new System.Drawing.Point(143, 483);
             this.btnAddOperation.Name = "btnAddOperation";
             this.btnAddOperation.Size = new System.Drawing.Size(211, 47);
             this.btnAddOperation.TabIndex = 40;
@@ -161,7 +175,7 @@
             this.btnRemoveOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnRemoveOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveOperation.Location = new System.Drawing.Point(360, 445);
+            this.btnRemoveOperation.Location = new System.Drawing.Point(360, 483);
             this.btnRemoveOperation.Name = "btnRemoveOperation";
             this.btnRemoveOperation.Size = new System.Drawing.Size(211, 47);
             this.btnRemoveOperation.TabIndex = 39;
@@ -174,7 +188,7 @@
             this.btnApplyChangesToCurrentTarget.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnApplyChangesToCurrentTarget.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApplyChangesToCurrentTarget.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(360, 498);
+            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(360, 536);
             this.btnApplyChangesToCurrentTarget.Name = "btnApplyChangesToCurrentTarget";
             this.btnApplyChangesToCurrentTarget.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToCurrentTarget.TabIndex = 38;
@@ -187,7 +201,7 @@
             this.btnExecuteOperations.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnExecuteOperations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExecuteOperations.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExecuteOperations.Location = new System.Drawing.Point(577, 445);
+            this.btnExecuteOperations.Location = new System.Drawing.Point(577, 483);
             this.btnExecuteOperations.Name = "btnExecuteOperations";
             this.btnExecuteOperations.Size = new System.Drawing.Size(211, 47);
             this.btnExecuteOperations.TabIndex = 37;
@@ -200,7 +214,7 @@
             this.btnApplyChangesToAllTargets.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnApplyChangesToAllTargets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApplyChangesToAllTargets.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(577, 498);
+            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(577, 536);
             this.btnApplyChangesToAllTargets.Name = "btnApplyChangesToAllTargets";
             this.btnApplyChangesToAllTargets.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToAllTargets.TabIndex = 36;
@@ -271,7 +285,7 @@
             this.txtDiagnose.Location = new System.Drawing.Point(475, 45);
             this.txtDiagnose.Multiline = true;
             this.txtDiagnose.Name = "txtDiagnose";
-            this.txtDiagnose.Size = new System.Drawing.Size(313, 75);
+            this.txtDiagnose.Size = new System.Drawing.Size(313, 115);
             this.txtDiagnose.TabIndex = 23;
             this.txtDiagnose.TextChanged += new System.EventHandler(this.txtDiagnose_TextChanged);
             // 
@@ -294,7 +308,7 @@
             this.trbBalance.Location = new System.Drawing.Point(475, 18);
             this.trbBalance.Maximum = 5000;
             this.trbBalance.Name = "trbBalance";
-            this.trbBalance.Size = new System.Drawing.Size(259, 56);
+            this.trbBalance.Size = new System.Drawing.Size(259, 96);
             this.trbBalance.TabIndex = 21;
             this.trbBalance.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
@@ -330,7 +344,7 @@
             this.txtAddress.Location = new System.Drawing.Point(137, 214);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(258, 73);
+            this.txtAddress.Size = new System.Drawing.Size(258, 113);
             this.txtAddress.TabIndex = 18;
             this.txtAddress.TextChanged += new System.EventHandler(this.txtAddress_TextChanged);
             // 
@@ -505,17 +519,17 @@
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
             // 
-            // lblOperationResults
+            // checkSilentOperation
             // 
-            this.lblOperationResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblOperationResults.AutoSize = true;
-            this.lblOperationResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationResults.Location = new System.Drawing.Point(20, 419);
-            this.lblOperationResults.Name = "lblOperationResults";
-            this.lblOperationResults.Size = new System.Drawing.Size(139, 16);
-            this.lblOperationResults.TabIndex = 43;
-            this.lblOperationResults.Text = "Operation Results: ";
+            this.checkSilentOperation.AutoSize = true;
+            this.checkSilentOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkSilentOperation.Location = new System.Drawing.Point(255, 415);
+            this.checkSilentOperation.Name = "checkSilentOperation";
+            this.checkSilentOperation.Size = new System.Drawing.Size(140, 20);
+            this.checkSilentOperation.TabIndex = 44;
+            this.checkSilentOperation.Text = "Silent Operation";
+            this.checkSilentOperation.UseVisualStyleBackColor = true;
+            this.checkSilentOperation.CheckedChanged += new System.EventHandler(this.checkSilentOperation_CheckedChanged);
             // 
             // frmBulkUserOperations
             // 
@@ -575,5 +589,6 @@
         private System.Windows.Forms.Button btnAddOperation;
         private System.Windows.Forms.Button btnRemoveOperation;
         private System.Windows.Forms.Label lblOperationResults;
+        private System.Windows.Forms.CheckBox checkSilentOperation;
     }
 }
