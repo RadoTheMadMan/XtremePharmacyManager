@@ -182,6 +182,7 @@
             this.tsmenuBulkUserOperations.Name = "tsmenuBulkUserOperations";
             this.tsmenuBulkUserOperations.Size = new System.Drawing.Size(230, 26);
             this.tsmenuBulkUserOperations.Text = "Bulk User Operations";
+            this.tsmenuBulkUserOperations.Click += new System.EventHandler(this.tsmenuBulkUserOperations_Click);
             // 
             // frmMain
             // 

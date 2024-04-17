@@ -23,7 +23,7 @@ namespace XtremePharmacyManager
             InitializeComponent();
             manager = operation_manager;
             manager_entities = manager.Entities;
-            manager.BulkOperationExecuted += OnBulkOperationExecuted;
+            manager.BulkOperationsExecuted += OnBulkOperationExecuted;
         }
 
         private void OnBulkOperationExecuted(object sender, BulkOperationEventArgs e)

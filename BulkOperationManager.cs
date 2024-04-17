@@ -1365,7 +1365,7 @@ namespace XtremePharmacyManager
         static int completed_operations = 0;
         static int failed_operations = 0;
         static string result = "";
-        public EventHandler<BulkOperationEventArgs> BulkOperationExecuted;
+        public EventHandler<BulkOperationEventArgs> BulkOperationsExecuted;
         public Entities Entities { get { return entities; } }
         public ArrayList BulkOperations { get { return bulk_operations; } set { bulk_operations = value; } }
         public int CompletedOperations { get { return completed_operations; } }
@@ -1429,9 +1429,9 @@ namespace XtremePharmacyManager
 
         private void InvokeBulkOperationExecutedEvent(object sender, BulkOperationEventArgs e)
         {
-            if(BulkOperationExecuted != null)
+            if(BulkOperationsExecuted != null)
             {
-                BulkOperationExecuted(this,e);
+                BulkOperationsExecuted(this,e);
             }
         }
     }

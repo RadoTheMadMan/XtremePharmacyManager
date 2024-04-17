@@ -42,6 +42,7 @@ namespace XtremePharmacyManager
         static frmSearchOrderDeliveries orderdeliveriessearchform;
         static frmLogs logsform;
         static frmImageBinConverter imgbinform;
+        static frmBulkUserOperations bulkUserOperationsform;
         public frmMain()
         {
             InitializeComponent();
@@ -502,6 +503,10 @@ namespace XtremePharmacyManager
                 {
                     bulkUserOperationManager = null;
                 }
+                if(bulkUserOperationsform != null)
+                {
+                    bulkUserOperationsform = null;
+                }
                 if(bulkProductBrandOperationManager != null)
                 {
                     bulkProductBrandOperationManager = null;
@@ -547,6 +552,37 @@ namespace XtremePharmacyManager
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void tsmenuBulkUserOperations_Click(object sender, EventArgs e)
+        {
+            if (entities.Database.Connection.State == ConnectionState.Open)
+            {
+                try
+                {
+                    if (bulkUserOperationsform == null)
+                    {
+                        bulkUserOperationsform = new frmBulkUserOperations(ref bulkUserOperationManager);
+                        bulkUserOperationsform.MdiParent = this;
+                        bulkUserOperationsform.FormClosed += bulkUserOperationsform_FormClosed;
+                        bulkUserOperationsform.Show();
+                    }
+                    else
+                    {
+                        bulkUserOperationsform.WindowState = FormWindowState.Normal;
+                        bulkUserOperationsform.Activate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void bulkUserOperationsform_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            bulkUserOperationsform = null;
         }
     }
 }
