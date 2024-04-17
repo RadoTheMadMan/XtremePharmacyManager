@@ -203,6 +203,7 @@ namespace XtremePharmacyManager
             }
             lstBulkOperations.DataSource = null;
             lstBulkOperations.DataSource = manager.BulkOperations;
+            lblOperationResults.Text = "Operation Results: ";
         }
 
         private void lstBulkOperations_SelectedIndexChanged(object sender, EventArgs e)
@@ -310,7 +311,7 @@ namespace XtremePharmacyManager
 
         private void checkSilentOperation_CheckedChanged(object sender, EventArgs e)
         {
-            if(selected_operation == null)
+            if(selected_operation != null)
             {
                 int operation_index = manager.BulkOperations.IndexOf(selected_operation);
                 BulkOperationType current_type = selected_operation.OperationType;
@@ -324,7 +325,7 @@ namespace XtremePharmacyManager
 
         private void cbOperationType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selected_operation == null)
+            if (selected_operation != null)
             {
                 int operation_index = manager.BulkOperations.IndexOf(selected_operation);
                 BulkOperationType current_type = (BulkOperationType)cbOperationType.SelectedIndex;
