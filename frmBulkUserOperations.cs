@@ -146,14 +146,22 @@ namespace XtremePharmacyManager
 
         private void btnAddOperation_Click(object sender, EventArgs e)
         {
-            User new_user = new User();
-            DialogResult res = new frmEditUser(ref new_user).ShowDialog();
-            BulkOperationType operationType = (BulkOperationType)cbOperationType.SelectedIndex;
             bool IsSilent = checkSilentOperation.Checked;
-            if(res == DialogResult.OK)
+            BulkOperationType operationType = (BulkOperationType)cbOperationType.SelectedIndex;
+            manager.AddOperation(new BulkUserOperation(operationType, ref manager_entities, new User()
             {
-                manager.AddOperation(new BulkUserOperation(operationType, ref manager_entities, new_user, IsSilent));
-            }
+                ID = -1,
+                UserName = $"USER_{new Random().Next(manager_entities.Users.LastOrDefault().ID + 10)}",
+                UserPassword = $"PWD_{new Random().NextDouble()}",
+                UserDisplayName = txtDisplayName.Text,
+                UserBirthDate = dtBirthDate.Value,
+                UserPhone = txtPhone.Text,
+                UserEmail = txtEmail.Text,
+                UserAddress = txtAddress.Text,
+                UserBalance = Convert.ToDecimal(trbBalance.Value),
+                UserDiagnose = txtDiagnose.Text,
+                UserRole = cbRole.SelectedIndex
+            }, IsSilent));
         }
 
         private void btnRemoveOperation_Click(object sender, EventArgs e)
