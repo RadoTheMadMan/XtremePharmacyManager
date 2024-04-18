@@ -41,13 +41,6 @@ namespace XtremePharmacyManager
             lstBulkOperations.DataSource = null;
             lstBulkOperations.DataSource = e.OperationsList;
             lblOperationResults.Text = "Operation Results: ";
-            //here let's make a test
-            foreach (BulkUserOperation user_operation in e.OperationsList)
-            {
-                MessageBox.Show($"Current Index: {e.OperationsList.IndexOf(user_operation)}");
-                MessageBox.Show(user_operation.OperationName);
-                MessageBox.Show(user_operation.TargetObject.UserDisplayName);
-            }
         }
 
 
@@ -142,20 +135,48 @@ namespace XtremePharmacyManager
         {
             bool IsSilent = checkSilentOperation.Checked;
             BulkOperationType operationType = (BulkOperationType)cbOperationType.SelectedIndex;
-            manager.AddOperation(new BulkUserOperation(operationType, ref manager_entities, new User()
+            Bitmap current_image = (Bitmap)pbUserProfilePic.Image;
+            byte[] image_bytes;
+            ConvertImageToBinary(current_image,out image_bytes);
+            //Because of the unique constraint of the user and password in the database the added users should not have
+            //existing user credentials if they are added so that's why i am adding a prevention here
+            bool UserCredentialMet = false;
+            foreach(BulkUserOperation operation in manager.BulkOperations)
             {
-                ID = -1,
-                UserName = $"USER_{new Random().Next(manager_entities.Users.LastOrDefault().ID + 10)}",
-                UserPassword = $"PWD_{new Random().NextDouble()}",
-                UserDisplayName = txtDisplayName.Text,
-                UserBirthDate = dtBirthDate.Value,
-                UserPhone = txtPhone.Text,
-                UserEmail = txtEmail.Text,
-                UserAddress = txtAddress.Text,
-                UserBalance = Convert.ToDecimal(trbBalance.Value),
-                UserDiagnose = txtDiagnose.Text,
-                UserRole = cbRole.SelectedIndex
-            }, IsSilent));
+                if((operation.TargetObject.UserName == txtUsername.Text || operation.TargetObject.UserPassword == txtPassword.Text) ||
+                   (operation.TargetObject.UserName == txtUsername.Text && operation.TargetObject.UserPassword == txtPassword.Text))
+                {
+                    UserCredentialMet = true;
+                    break;
+                }
+                else
+                {
+                    UserCredentialMet = false;
+                }
+            }
+            if (!UserCredentialMet)
+            {
+                manager.AddOperation(new BulkUserOperation(operationType, ref manager_entities, new User()
+                {
+                    ID = -1,
+                    UserName = txtUsername.Text,
+                    UserPassword = txtPassword.Text,
+                    UserDisplayName = txtDisplayName.Text,
+                    UserBirthDate = dtBirthDate.Value,
+                    UserPhone = txtPhone.Text,
+                    UserEmail = txtEmail.Text,
+                    UserAddress = txtAddress.Text,
+                    UserProfilePic = image_bytes,
+                    UserBalance = Convert.ToDecimal(trbBalance.Value),
+                    UserDiagnose = txtDiagnose.Text,
+                    UserRole = cbRole.SelectedIndex
+                }, IsSilent));
+            }
+            else
+            {
+                errBulkProvider.SetError(txtUsername, "Username and/or password already exist.");
+                errBulkProvider.SetError(txtPassword, "Username and/or password already exist.");
+            }
         }
 
         private void btnRemoveOperation_Click(object sender, EventArgs e)
@@ -194,6 +215,7 @@ namespace XtremePharmacyManager
                 int operation_index = manager.BulkOperations.IndexOf(selected_operation);
                 BulkOperationType current_type = (BulkOperationType)cbOperationType.SelectedIndex;
                 bool IsSilent = checkSilentOperation.Checked;
+                selected_operation.TargetObject = selected_target;
                 selected_operation.OperationType = current_type;
                 selected_operation.IsSilent = IsSilent;
                 selected_operation.UpdateName();
@@ -201,8 +223,18 @@ namespace XtremePharmacyManager
             }
         }
 
-       
-
-       
+        private void pbUserProfilePic_Click(object sender, EventArgs e)
+        {
+            PictureBox current = (PictureBox)sender;
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Images|*.png*;*.bmp*;*.jpg*;*.jpeg*;*.jfif*";
+            ofd.Multiselect = false;
+            ofd.Title = "Select an image to upload or for bulk operation";
+            if (ofd.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(ofd.FileName))
+            {
+                Bitmap selectedImage = new Bitmap(ofd.FileName);
+                current.Image = new Bitmap(selectedImage);
+            }
+        }
     }
 }

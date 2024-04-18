@@ -57,6 +57,7 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblUserNotice = new System.Windows.Forms.Label();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).BeginInit();
@@ -66,6 +67,7 @@
             // pnlData
             // 
             this.pnlData.AutoSize = true;
+            this.pnlData.Controls.Add(this.lblUserNotice);
             this.pnlData.Controls.Add(this.pbUserProfilePic);
             this.pnlData.Controls.Add(this.btnOK);
             this.pnlData.Controls.Add(this.btnCancel);
@@ -402,6 +404,19 @@
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
             // 
+            // lblUserNotice
+            // 
+            this.lblUserNotice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUserNotice.AutoSize = true;
+            this.lblUserNotice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserNotice.ForeColor = System.Drawing.Color.Firebrick;
+            this.lblUserNotice.Location = new System.Drawing.Point(398, 160);
+            this.lblUserNotice.Name = "lblUserNotice";
+            this.lblUserNotice.Size = new System.Drawing.Size(179, 48);
+            this.lblUserNotice.TabIndex = 42;
+            this.lblUserNotice.Text = "IMPORTANT NOTICE:\r\nUsername and password\r\nshould be unique\r\n";
+            // 
             // frmEditUser
             // 
             this.AcceptButton = this.btnOK;
@@ -453,5 +468,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.PictureBox pbUserProfilePic;
+        private System.Windows.Forms.Label lblUserNotice;
     }
 }

@@ -1480,10 +1480,6 @@ namespace XtremePharmacyManager
                 bulk_operations.Add(bulk_operation);  
             }
             //let's test the memory addresses of the items
-            foreach(BulkOperation<T> operation in bulk_operations)
-            {
-                MessageBox.Show($"Operation Hash Code: {operation.GetHashCode()}\nOperation Target Has Code: {operation.TargetObject.GetHashCode()}\n");
-            }
             BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
             ev_args.OperationsList = bulk_operations;
             ev_args.CompletedOperations = completed_operations;
@@ -1500,10 +1496,6 @@ namespace XtremePharmacyManager
                 int operation_index = bulk_operations.IndexOf(bulk_operation);
                 bulk_operations.RemoveAt(operation_index);
             }
-            foreach (BulkOperation<T> operation in bulk_operations)
-            {
-                MessageBox.Show($"Operation Hash Code: {operation.GetHashCode()}\nOperation Target Has Code: {operation.TargetObject.GetHashCode()}\n");
-            }
             BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
             ev_args.OperationsList = bulk_operations;
             ev_args.CompletedOperations = completed_operations;
@@ -1519,10 +1511,6 @@ namespace XtremePharmacyManager
             {
                 int operation_index = bulk_operations.IndexOf(bulk_operation);
                 bulk_operations[operation_index] = bulk_operation;
-            }
-            foreach (BulkOperation<T> operation in bulk_operations)
-            {
-                MessageBox.Show($"Operation Hash Code: {operation.GetHashCode()}\nOperation Target Has Code: {operation.TargetObject.GetHashCode()}\n");
             }
             BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
             ev_args.OperationsList = bulk_operations;
@@ -1542,10 +1530,6 @@ namespace XtremePharmacyManager
                     bulk_operations[i] = bulk_operation;
                 }
             }
-            foreach (BulkOperation<T> operation in bulk_operations)
-            {
-                MessageBox.Show($"Operation Hash Code: {operation.GetHashCode()}\nOperation Target Has Code: {operation.TargetObject.GetHashCode()}\n");
-            }
             BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
             ev_args.OperationsList = bulk_operations;
             ev_args.CompletedOperations = completed_operations;
@@ -1554,6 +1538,7 @@ namespace XtremePharmacyManager
             ev_args.Entities = entities;
             InvokeBulkOperationUpdatedEvent(this, ev_args);
         }
+
 
         private void InvokeBulkOperationsExecutedEvent(object sender, BulkOperationEventArgs<T> e)
         {

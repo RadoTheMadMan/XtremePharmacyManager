@@ -66,16 +66,20 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblUserNotice = new System.Windows.Forms.Label();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
             // 
             this.pnlData.AutoSize = true;
+            this.pnlData.Controls.Add(this.lblUserNotice);
             this.pnlData.Controls.Add(this.checkSilentOperation);
             this.pnlData.Controls.Add(this.lblOperationResults);
             this.pnlData.Controls.Add(this.cbOperationType);
@@ -259,6 +263,7 @@
             this.pbUserProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbUserProfilePic.TabIndex = 34;
             this.pbUserProfilePic.TabStop = false;
+            this.pbUserProfilePic.Click += new System.EventHandler(this.pbUserProfilePic_Click);
             // 
             // cbRole
             // 
@@ -454,7 +459,6 @@
             // 
             this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtPassword.Enabled = false;
             this.txtPassword.Location = new System.Drawing.Point(136, 70);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(258, 22);
@@ -476,7 +480,6 @@
             // 
             this.txtUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtUsername.Enabled = false;
             this.txtUsername.Location = new System.Drawing.Point(136, 42);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(258, 22);
@@ -520,6 +523,23 @@
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
             // 
+            // errBulkProvider
+            // 
+            this.errBulkProvider.ContainerControl = this;
+            // 
+            // lblUserNotice
+            // 
+            this.lblUserNotice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUserNotice.AutoSize = true;
+            this.lblUserNotice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserNotice.ForeColor = System.Drawing.Color.Firebrick;
+            this.lblUserNotice.Location = new System.Drawing.Point(412, 203);
+            this.lblUserNotice.Name = "lblUserNotice";
+            this.lblUserNotice.Size = new System.Drawing.Size(179, 48);
+            this.lblUserNotice.TabIndex = 45;
+            this.lblUserNotice.Text = "IMPORTANT NOTICE:\r\nUsername and password\r\nshould be unique\r\n";
+            // 
             // frmBulkUserOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -527,7 +547,7 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmBulkUserOperations";
-            this.Text = "User Editor. Add or Edit User";
+            this.Text = "Bulk User Operations";
             this.Load += new System.EventHandler(this.frmBulkUserOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -535,6 +555,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -579,5 +600,7 @@
         private System.Windows.Forms.Button btnRemoveOperation;
         private System.Windows.Forms.Label lblOperationResults;
         private System.Windows.Forms.CheckBox checkSilentOperation;
+        private System.Windows.Forms.ErrorProvider errBulkProvider;
+        private System.Windows.Forms.Label lblUserNotice;
     }
 }
