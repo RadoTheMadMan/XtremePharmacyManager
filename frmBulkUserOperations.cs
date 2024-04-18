@@ -15,8 +15,8 @@ namespace XtremePharmacyManager
     public partial class frmBulkUserOperations : Form
     {
         static BulkOperationManager<User> manager;
-        static BulkOperation<User> selected_operation;
-        static User selected_target;
+        BulkOperation<User> selected_operation;
+        User selected_target;
         static Entities manager_entities;
         public frmBulkUserOperations(ref BulkOperationManager<User> operation_manager)
         {
@@ -24,13 +24,30 @@ namespace XtremePharmacyManager
             manager = operation_manager;
             manager_entities = manager.Entities;
             manager.BulkOperationsExecuted += OnBulkOperationExecuted;
+            manager.BulkOperationAdded += OnBulkOperationListChanged;
+            manager.BulkOperationRemoved += OnBulkOperationListChanged;
+            manager.BulkOperationUpdated += OnBulkOperationListChanged;
         }
 
-        private void OnBulkOperationExecuted(object sender, BulkOperationEventArgs e)
+        private void OnBulkOperationExecuted(object sender, BulkOperationEventArgs<User> e)
         {
             lstBulkOperations.DataSource = null;
             lstBulkOperations.DataSource = e.OperationsList;
             lblOperationResults.Text = lblOperationResults.Text + e.Result;
+        }
+
+        private void OnBulkOperationListChanged(object sender, BulkOperationEventArgs<User> e)
+        {
+            lstBulkOperations.DataSource = null;
+            lstBulkOperations.DataSource = e.OperationsList;
+            lblOperationResults.Text = "Operation Results: ";
+            //here let's make a test
+            foreach (BulkUserOperation user_operation in e.OperationsList)
+            {
+                MessageBox.Show($"Current Index: {e.OperationsList.IndexOf(user_operation)}");
+                MessageBox.Show(user_operation.OperationName);
+                MessageBox.Show(user_operation.TargetObject.UserDisplayName);
+            }
         }
 
         private void trbBalance_Scroll(object sender, EventArgs e)
@@ -164,11 +181,6 @@ namespace XtremePharmacyManager
                 pbUserProfilePic.Image = (selected_target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
                 cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
             }
-            foreach(BulkUserOperation user_operation in manager.BulkOperations)
-            {
-                MessageBox.Show(user_operation.OperationName);
-                MessageBox.Show(user_operation.TargetObject.UserDisplayName);
-            }
         }
 
         private void btnExecuteOperations_Click(object sender, EventArgs e)
@@ -204,11 +216,8 @@ namespace XtremePharmacyManager
                     current_operation_target.UserProfilePic = image_data;
                 }
                 selected_operation = new BulkUserOperation(current_operation_type, ref manager_entities, current_operation_target, current_operation_silent_value);
-                manager.BulkOperations[current_operation_index] = selected_operation;
+                manager.UpdateOperation(selected_operation);
             }
-            lstBulkOperations.DataSource = null;
-            lstBulkOperations.DataSource = manager.BulkOperations;
-            lblOperationResults.Text = "Operation Results: ";
         }
 
         private void lstBulkOperations_SelectedIndexChanged(object sender, EventArgs e)
@@ -252,11 +261,8 @@ namespace XtremePharmacyManager
             if(res == DialogResult.OK)
             {
                 new_operation = new BulkUserOperation(operationType, ref manager_entities, new_user, IsSilent);
-                manager.BulkOperations.Add(new_operation);
+                manager.AddOperation(new_operation);
             }
-            lstBulkOperations.DataSource = null;
-            lstBulkOperations.DataSource = manager.BulkOperations;
-            lblOperationResults.Text = "Operation Results: ";
         }
 
         private void btnRemoveOperation_Click(object sender, EventArgs e)
@@ -264,13 +270,10 @@ namespace XtremePharmacyManager
             //Remove it from the list of the manager and nullify it here
             if(selected_operation != null)
             {
-                manager.BulkOperations.Remove(selected_operation);
+                manager.RemoveOperation(selected_operation);
                 selected_target = null;
                 selected_operation = null;
             }
-            lstBulkOperations.DataSource = null;
-            lstBulkOperations.DataSource= manager.BulkOperations;
-            lblOperationResults.Text = "Operation Results: ";
         }
 
         private void btnApplyChangesToCurrentTarget_Click(object sender, EventArgs e)
@@ -299,11 +302,8 @@ namespace XtremePharmacyManager
                 BulkOperationType current_type = (BulkOperationType)cbOperationType.SelectedIndex;
                 bool IsSilent = checkSilentOperation.Checked;
                 selected_operation = new BulkUserOperation(current_type,ref manager_entities, selected_target, IsSilent);
-                manager.BulkOperations[operation_index] = selected_operation;
+                manager.UpdateOperation(selected_operation);
             }
-            lstBulkOperations.DataSource = null;
-            lstBulkOperations.DataSource = manager.BulkOperations;
-            lblOperationResults.Text = "Operation Results: ";
         }
 
         private void checkSilentOperation_CheckedChanged(object sender, EventArgs e)
@@ -313,11 +313,8 @@ namespace XtremePharmacyManager
                 BulkOperationType current_type = selected_operation.OperationType;
                 bool IsSilent = checkSilentOperation.Checked;
                 selected_operation = new BulkUserOperation(current_type, ref manager_entities, selected_target, IsSilent);
-                manager.BulkOperations.Remove(selected_operation);
-                manager.BulkOperations.Add(selected_operation);
+                manager.UpdateOperation(selected_operation);
             }
-            lstBulkOperations.DataSource = null;
-            lstBulkOperations.DataSource = manager.BulkOperations;
         }
 
         private void cbOperationType_SelectedIndexChanged(object sender, EventArgs e)
@@ -328,11 +325,8 @@ namespace XtremePharmacyManager
                 BulkOperationType current_type = (BulkOperationType)cbOperationType.SelectedIndex;
                 bool IsSilent = selected_operation.IsSilent;
                 selected_operation = new BulkUserOperation(current_type, ref manager_entities, selected_target, IsSilent);
-                manager.BulkOperations.Remove(selected_operation);
-                manager.BulkOperations.Add(selected_operation);
+                manager.UpdateOperation(selected_operation);
             }
-            lstBulkOperations.DataSource = null;
-            lstBulkOperations.DataSource = manager.BulkOperations;
         }
 
        

@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data.Entity;
 using System.Data.SqlTypes;
 using System.Diagnostics;
@@ -42,7 +43,7 @@ namespace XtremePharmacyManager
         public bool IsSilent { get { return is_silent; } }
         public int ErrorCode {  get { return error_code; } set { error_code = value; } }
         public int InnerErrorCode { get { return inner_error_code; } set { inner_error_code = value; } }
-        public BulkOperation(BulkOperationType optype, ref T obj, bool is_silent)
+        public BulkOperation(BulkOperationType optype,T obj, bool is_silent)
         {
             type = optype;
             if (obj != null && typeof(T) == obj.GetType())  
@@ -235,7 +236,7 @@ namespace XtremePharmacyManager
         static User current_user;
         static Entities entities;
 
-        public BulkUserOperation(BulkOperationType type,ref Entities ent, User target_user, bool is_silent) : base(type, ref target_user, is_silent)
+        public BulkUserOperation(BulkOperationType type,ref Entities ent, User target_user, bool is_silent) : base(type, target_user, is_silent)
         {
             current_user = base.TargetObject;
             entities = ent;
@@ -377,7 +378,7 @@ namespace XtremePharmacyManager
         static ProductBrand current_brand;
         static Entities entities;
 
-        public BulkProductBrandOperation(BulkOperationType type, ref Entities ent, ProductBrand target_brand, bool is_silent) : base(type, ref target_brand, is_silent)
+        public BulkProductBrandOperation(BulkOperationType type, ref Entities ent, ProductBrand target_brand, bool is_silent) : base(type, target_brand, is_silent)
         {
             current_brand = base.TargetObject;
             entities = ent;
@@ -515,7 +516,7 @@ namespace XtremePharmacyManager
         static PaymentMethod current_payment_method;
         static Entities entities;
 
-        public BulkPaymentMethodOperation(BulkOperationType type, ref Entities ent, PaymentMethod target_method, bool is_silent) : base(type, ref target_method, is_silent)
+        public BulkPaymentMethodOperation(BulkOperationType type, ref Entities ent, PaymentMethod target_method, bool is_silent) : base(type, target_method, is_silent)
         {
             current_payment_method = base.TargetObject;
             entities = ent;
@@ -653,7 +654,7 @@ namespace XtremePharmacyManager
         static DeliveryService current_service;
         static Entities entities;
 
-        public BulkDeliveryServiceOperation(BulkOperationType type, ref Entities ent, DeliveryService target_service, bool is_silent) : base(type, ref target_service, is_silent)
+        public BulkDeliveryServiceOperation(BulkOperationType type, ref Entities ent, DeliveryService target_service, bool is_silent) : base(type, target_service, is_silent)
         {
             current_service = base.TargetObject;
             entities = ent;
@@ -791,7 +792,7 @@ namespace XtremePharmacyManager
         static Product current_product;
         static Entities entities;
 
-        public BulkProductOperation(BulkOperationType type, ref Entities ent, Product target_product, bool is_silent) : base(type, ref target_product, is_silent)
+        public BulkProductOperation(BulkOperationType type, ref Entities ent, Product target_product, bool is_silent) : base(type, target_product, is_silent)
         {
             current_product = base.TargetObject;
             entities = ent;
@@ -933,7 +934,7 @@ namespace XtremePharmacyManager
         static ProductImage current_image;
         static Entities entities;
 
-        public BulkProductImageOperation(BulkOperationType type, ref Entities ent, ProductImage target_image, bool is_silent) : base(type, ref target_image, is_silent)
+        public BulkProductImageOperation(BulkOperationType type, ref Entities ent, ProductImage target_image, bool is_silent) : base(type, target_image, is_silent)
         {
             current_image = base.TargetObject;
             entities = ent;
@@ -1072,7 +1073,7 @@ namespace XtremePharmacyManager
         static Entities entities;
         bool add_total_price_override_on_create;
 
-        public BulkProductOrderOperation(BulkOperationType type, ref Entities ent, ProductOrder target_order, bool add_total_price_override_on_create, bool is_silent) : base(type, ref target_order, is_silent)
+        public BulkProductOrderOperation(BulkOperationType type, ref Entities ent, ProductOrder target_order, bool add_total_price_override_on_create, bool is_silent) : base(type, target_order, is_silent)
         {
             current_order = base.TargetObject;
             entities = ent;
@@ -1213,7 +1214,7 @@ namespace XtremePharmacyManager
         static OrderDelivery current_delivery;
         static Entities entities;
 
-        public BulkOrderDeliveryOperation(BulkOperationType type, ref Entities ent, OrderDelivery target_delivery, bool is_silent) : base(type, ref target_delivery, is_silent)
+        public BulkOrderDeliveryOperation(BulkOperationType type, ref Entities ent, OrderDelivery target_delivery, bool is_silent) : base(type, target_delivery, is_silent)
         {
             current_delivery = base.TargetObject;
             entities = ent;
@@ -1348,9 +1349,9 @@ namespace XtremePharmacyManager
 
     }
 
-    public class BulkOperationEventArgs : EventArgs 
+    public class BulkOperationEventArgs<T> : EventArgs 
     {
-        public ArrayList OperationsList = new ArrayList();
+        public ObservableCollection<BulkOperation<T>> OperationsList = new ObservableCollection<BulkOperation<T>>();
         public int CompletedOperations = 0;
         public int FailedOperations = 0;
         public string Result = "";
@@ -1360,14 +1361,17 @@ namespace XtremePharmacyManager
     public class BulkOperationManager <T>//this will be the class that will be exposed
     {
         static T target_object;
-        static ArrayList bulk_operations;
+        List<BulkOperation<T>> bulk_operations;
         static Entities entities;
         static int completed_operations = 0;
         static int failed_operations = 0;
         static string result = "";
-        public EventHandler<BulkOperationEventArgs> BulkOperationsExecuted;
+        public EventHandler<BulkOperationEventArgs<T>> BulkOperationsExecuted;
+        public EventHandler<BulkOperationEventArgs<T>> BulkOperationAdded;
+        public EventHandler<BulkOperationEventArgs<T>> BulkOperationRemoved;
+        public EventHandler<BulkOperationEventArgs<T>> BulkOperationUpdated;
         public Entities Entities { get { return entities; } }
-        public ArrayList BulkOperations { get { return bulk_operations; } set { bulk_operations = value; } }
+        public List<BulkOperation<T>> BulkOperations { get { return bulk_operations; } }
         public int CompletedOperations { get { return completed_operations; } }
         public int FailedOperations { get { return failed_operations; } }
         public string Result { get { return result; } }
@@ -1375,12 +1379,12 @@ namespace XtremePharmacyManager
         public BulkOperationManager(ref Entities ext_entities)
         {
             entities = ext_entities;
-            bulk_operations = new ArrayList();
+            bulk_operations = new  List<BulkOperation<T>> ();
             completed_operations = 0;
             failed_operations = 0;
             result = "";
         }
-        public BulkOperationManager(ref Entities ext_entities, ref ArrayList operations)
+        public BulkOperationManager(ref Entities ext_entities, ref List<BulkOperation<T>> operations)
         {
             entities = ext_entities;
             if (operations != null)
@@ -1389,7 +1393,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                bulk_operations = new ArrayList();
+                bulk_operations = new List<BulkOperation<T>>();
             }
             completed_operations = 0;
             failed_operations = 0;
@@ -1418,20 +1422,91 @@ namespace XtremePharmacyManager
             }
             bulk_operations.Clear();
             result = $"Operations Result:\nCompleted Operations: {completed_operations} Failed Operations: {failed_operations}";
-            BulkOperationEventArgs ev_args = new BulkOperationEventArgs();
+            BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
             ev_args.OperationsList = bulk_operations;
             ev_args.CompletedOperations = completed_operations;
             ev_args.FailedOperations = failed_operations;
             ev_args.Result = result;
             ev_args.Entities = entities;
-            InvokeBulkOperationExecutedEvent(this,ev_args);
+            InvokeBulkOperationsExecutedEvent(this,ev_args);
         }
 
-        private void InvokeBulkOperationExecutedEvent(object sender, BulkOperationEventArgs e)
+        public void AddOperation(BulkOperation<T> bulk_operation)
+        {
+            if (bulk_operation != null && bulk_operation.TargetObject.GetType() == typeof(T))
+            { // don't allow any operation of type that is not of the type of the manager to be added
+                bulk_operations.Insert(bulk_operations.Count,bulk_operation);   
+            }
+            BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
+            ev_args.OperationsList = bulk_operations;
+            ev_args.CompletedOperations = completed_operations;
+            ev_args.FailedOperations = failed_operations;
+            ev_args.Result = result;
+            ev_args.Entities = entities;
+            InvokeBulkOperationAddedEvent(this, ev_args);
+        }
+
+        public void RemoveOperation(BulkOperation<T> bulk_operation)
+        {   //Look what I did on the add opration method, same is here but for removing bulk operation
+            if(bulk_operation != null && bulk_operation.TargetObject.GetType() == typeof(T) && bulk_operations.Contains(bulk_operation))
+            {
+                int operation_index = bulk_operations.IndexOf(bulk_operation);
+                bulk_operations.RemoveAt(operation_index);
+            }
+            BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
+            ev_args.OperationsList = bulk_operations;
+            ev_args.CompletedOperations = completed_operations;
+            ev_args.FailedOperations = failed_operations;
+            ev_args.Result = result;
+            ev_args.Entities = entities;
+            InvokeBulkOperationRemovedEvent(this, ev_args);
+        }
+
+        public void UpdateOperation(BulkOperation<T> bulk_operation)
+        {   //Look what I did on the add opration method and remove operation, same is here but for updating bulk operation
+            if (bulk_operation != null && bulk_operation.TargetObject.GetType() == typeof(T) && bulk_operations.Contains(bulk_operation))
+            {
+                int operation_index = bulk_operations.IndexOf(bulk_operation);
+                bulk_operations[operation_index] = bulk_operation;
+            }
+            BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
+            ev_args.OperationsList = bulk_operations;
+            ev_args.CompletedOperations = completed_operations;
+            ev_args.FailedOperations = failed_operations;
+            ev_args.Result = result;
+            ev_args.Entities = entities;
+            InvokeBulkOperationUpdatedEvent(this, ev_args);
+        }
+
+        private void InvokeBulkOperationsExecutedEvent(object sender, BulkOperationEventArgs<T> e)
         {
             if(BulkOperationsExecuted != null)
             {
                 BulkOperationsExecuted(this,e);
+            }
+        }
+
+        private void InvokeBulkOperationAddedEvent(object sender, BulkOperationEventArgs<T> e)
+        {
+            if (BulkOperationAdded != null)
+            {
+                BulkOperationAdded(this, e);
+            }
+        }
+
+        private void InvokeBulkOperationRemovedEvent(object sender, BulkOperationEventArgs<T> e)
+        {
+            if (BulkOperationRemoved != null)
+            {
+                BulkOperationRemoved(this, e);
+            }
+        }
+
+        private void InvokeBulkOperationUpdatedEvent(object sender, BulkOperationEventArgs<T> e)
+        {
+            if (BulkOperationUpdated != null)
+            {
+                BulkOperationUpdated(this, e);
             }
         }
     }
