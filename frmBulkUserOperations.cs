@@ -85,32 +85,26 @@ namespace XtremePharmacyManager
 
         private void btnApplyChangesToAllTargets_Click(object sender, EventArgs e)
         {
-            int current_operation_index = 0;
-            User current_operation_target;
-            foreach(BulkUserOperation operation in manager.BulkOperations)
+            selected_target.UserDisplayName = txtDisplayName.Text;
+            selected_target.UserBirthDate = dtBirthDate.Value;
+            selected_target.UserPhone = txtPhone.Text;
+            selected_target.UserEmail = txtEmail.Text;
+            selected_target.UserAddress = txtAddress.Text;
+            selected_target.UserBalance = trbBalance.Value;
+            selected_target.UserDiagnose = txtDiagnose.Text;
+            selected_target.UserRole = cbRole.SelectedIndex;
+            if (pbUserProfilePic.Image != null)
             {
-                current_operation_index = manager.BulkOperations.IndexOf(operation);
-                current_operation_target = operation.TargetObject as User;
-                current_operation_target.UserDisplayName = txtDisplayName.Text;
-                current_operation_target.UserBirthDate = dtBirthDate.Value;
-                current_operation_target.UserPhone = txtPhone.Text;
-                current_operation_target.UserEmail = txtEmail.Text;
-                current_operation_target.UserAddress = txtAddress.Text;
-                current_operation_target.UserBalance = trbBalance.Value;
-                current_operation_target.UserDiagnose = txtDiagnose.Text;
-                current_operation_target.UserRole = cbRole.SelectedIndex;
-                if (pbUserProfilePic.Image != null)
-                {
-                    Bitmap current_image = (Bitmap)pbUserProfilePic.Image;
-                    byte[] image_data;
-                    ConvertImageToBinary(current_image, out image_data);
-                    current_operation_target.UserProfilePic = image_data;
-                }
-                operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
-                operation.IsSilent = checkSilentOperation.Checked;
-                operation.UpdateName();
-                manager.UpdateOperation(operation);
+                Bitmap current_image = (Bitmap)pbUserProfilePic.Image;
+                byte[] image_data;
+                ConvertImageToBinary(current_image, out image_data);
+                selected_target.UserProfilePic = image_data;
             }
+            selected_operation.TargetObject = selected_target;
+            selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
+            selected_operation.IsSilent = checkSilentOperation.Checked;
+            selected_operation.UpdateName();
+            manager.UpdateAllOperations(selected_operation);
         }
 
         private void lstBulkOperations_SelectedIndexChanged(object sender, EventArgs e)

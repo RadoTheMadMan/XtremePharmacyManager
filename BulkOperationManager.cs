@@ -4,10 +4,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,18 +26,22 @@ namespace XtremePharmacyManager
         DELETE = 3,
         CUSTOM = 4
     }
-    public class BulkOperation<T> //This is the class to derive all bulk operations from and its tasks will be overriden
+
+    public class BulkOperation<T>: INotifyPropertyChanged//This is the class to derive all bulk operations from and its tasks will be overriden
     {
-        static BulkOperationType type;
-        static T target_object;
-        static string operation_name = "";
-        static string success_message = "";
-        static string error_message = "";
-        static string stack_trace = "";
-        static int error_code = -1;
-        static int inner_error_code = -1;
+        BulkOperationType type;
+        T target_object;
+        string operation_name = "";
+        string success_message = "";
+        string error_message = "";
+        string stack_trace = "";
+        int error_code = -1;
+        int inner_error_code = -1;
         bool is_silent = true;
-        public T TargetObject { get { return target_object; } }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public T TargetObject { get { return target_object; } set { target_object = value; }  }
         public BulkOperationType OperationType { get { return type; } set { type = value; } }
         public string OperationName { get { return operation_name; } set { operation_name = value; } }
         public string SuccessMessage { get { return success_message; } set { success_message = value; } }
@@ -59,6 +65,8 @@ namespace XtremePharmacyManager
         {
             operation_name = $"{type} operation on {target_object.GetType()}";
         }
+
+        
 
         public  async Task<bool> Execute()
         {
@@ -239,15 +247,19 @@ namespace XtremePharmacyManager
 
     public class BulkUserOperation : BulkOperation<User>
     {
-        static User current_user;
+        User current_user;
         static Entities entities;
+
+        
 
         public BulkUserOperation(BulkOperationType type,ref Entities ent, User target_user, bool is_silent) : base(type, target_user, is_silent)
         {
-            current_user = target_user;
+            current_user = base.TargetObject;
             entities = ent;
             base.OperationName = $"{type} operation on {current_user.GetType()} with ID: {current_user.ID}";
         }
+
+
 
         public override void UpdateName()
         {
@@ -386,12 +398,12 @@ namespace XtremePharmacyManager
 
     public class BulkProductBrandOperation : BulkOperation<ProductBrand>
     {
-        static ProductBrand current_brand;
+        ProductBrand current_brand;
         static Entities entities;
 
         public BulkProductBrandOperation(BulkOperationType type, ref Entities ent, ProductBrand target_brand, bool is_silent) : base(type, target_brand, is_silent)
         {
-            current_brand = target_brand;
+            current_brand = base.TargetObject;
             entities = ent;
             base.OperationName = $"{type} operation on {current_brand.GetType()} with ID: {current_brand.ID}";
         }
@@ -529,12 +541,12 @@ namespace XtremePharmacyManager
 
     public class BulkPaymentMethodOperation : BulkOperation<PaymentMethod>
     {
-        static PaymentMethod current_payment_method;
+        PaymentMethod current_payment_method;
         static Entities entities;
 
         public BulkPaymentMethodOperation(BulkOperationType type, ref Entities ent, PaymentMethod target_method, bool is_silent) : base(type, target_method, is_silent)
         {
-            current_payment_method = target_method;
+            current_payment_method = base.TargetObject;
             entities = ent;
             base.OperationName = $"{type} operation on {current_payment_method.GetType()} with ID: {current_payment_method.ID}";
         }
@@ -672,12 +684,12 @@ namespace XtremePharmacyManager
 
     public class BulkDeliveryServiceOperation : BulkOperation<DeliveryService>
     {
-        static DeliveryService current_service;
+        DeliveryService current_service;
         static Entities entities;
 
         public BulkDeliveryServiceOperation(BulkOperationType type, ref Entities ent, DeliveryService target_service, bool is_silent) : base(type, target_service, is_silent)
         {
-            current_service = target_service;
+            current_service = base.TargetObject;
             entities = ent;
             base.OperationName = $"{type} operation on {current_service.GetType()} with ID: {current_service.ID}";
         }
@@ -815,12 +827,12 @@ namespace XtremePharmacyManager
 
     public class BulkProductOperation : BulkOperation<Product>
     {
-        static Product current_product;
+        Product current_product;
         static Entities entities;
 
         public BulkProductOperation(BulkOperationType type, ref Entities ent, Product target_product, bool is_silent) : base(type, target_product, is_silent)
         {
-            current_product = target_product;
+            current_product = base.TargetObject;
             entities = ent;
             base.OperationName = $"{type} operation on {current_product.GetType()} with ID: {current_product.ID}";
         }
@@ -962,12 +974,12 @@ namespace XtremePharmacyManager
 
     public class BulkProductImageOperation : BulkOperation<ProductImage>
     {
-        static ProductImage current_image;
+        ProductImage current_image;
         static Entities entities;
 
         public BulkProductImageOperation(BulkOperationType type, ref Entities ent, ProductImage target_image, bool is_silent) : base(type, target_image, is_silent)
         {
-            current_image = target_image;
+            current_image = base.TargetObject;
             entities = ent;
             base.OperationName = $"{type} operation on {current_image.GetType()} with ID: {current_image.ID}";
         }
@@ -1105,13 +1117,13 @@ namespace XtremePharmacyManager
 
     public class BulkProductOrderOperation : BulkOperation<ProductOrder>
     {
-        static ProductOrder current_order;
+        ProductOrder current_order;
         static Entities entities;
         bool add_total_price_override_on_create;
 
         public BulkProductOrderOperation(BulkOperationType type, ref Entities ent, ProductOrder target_order, bool add_total_price_override_on_create, bool is_silent) : base(type, target_order, is_silent)
         {
-            current_order = target_order;
+            current_order = base.TargetObject;
             entities = ent;
             base.OperationName = $"{type} operation on {current_order.GetType()} with ID: {current_order.ID}";
             this.add_total_price_override_on_create = add_total_price_override_on_create;
@@ -1252,12 +1264,12 @@ namespace XtremePharmacyManager
 
     public class BulkOrderDeliveryOperation : BulkOperation<OrderDelivery>
     {
-        static OrderDelivery current_delivery;
+        OrderDelivery current_delivery;
         static Entities entities;
 
         public BulkOrderDeliveryOperation(BulkOperationType type, ref Entities ent, OrderDelivery target_delivery, bool is_silent) : base(type, target_delivery, is_silent)
         {
-            current_delivery = target_delivery;
+            current_delivery = base.TargetObject;
             entities = ent;
             base.OperationName = $"{type} operation on {current_delivery.GetType()} with ID: {current_delivery.ID}";
         }
@@ -1406,7 +1418,6 @@ namespace XtremePharmacyManager
 
     public class BulkOperationManager <T>//this will be the class that will be exposed
     {
-        static T target_object;
         ObservableCollection<BulkOperation<T>> bulk_operations;
         static Entities entities;
         static int completed_operations = 0;
@@ -1523,6 +1534,28 @@ namespace XtremePharmacyManager
             {
                 int operation_index = bulk_operations.IndexOf(bulk_operation);
                 bulk_operations[operation_index] = bulk_operation;
+            }
+            foreach (BulkOperation<T> operation in bulk_operations)
+            {
+                MessageBox.Show($"Operation Hash Code: {operation.GetHashCode()}\nOperation Target Has Code: {operation.TargetObject.GetHashCode()}\n");
+            }
+            BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
+            ev_args.OperationsList = bulk_operations;
+            ev_args.CompletedOperations = completed_operations;
+            ev_args.FailedOperations = failed_operations;
+            ev_args.Result = result;
+            ev_args.Entities = entities;
+            InvokeBulkOperationUpdatedEvent(this, ev_args);
+        }
+
+        public void UpdateAllOperations(BulkOperation<T> bulk_operation)
+        {   //This safely update everything according to the updating operation method
+            if (bulk_operation != null && bulk_operation.TargetObject.GetType() == typeof(T))
+            {
+                for(int i = 0; i<bulk_operations.Count; i++)
+                {
+                    bulk_operations[i] = bulk_operation;
+                }
             }
             foreach (BulkOperation<T> operation in bulk_operations)
             {
