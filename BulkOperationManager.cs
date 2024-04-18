@@ -1361,7 +1361,7 @@ namespace XtremePharmacyManager
     public class BulkOperationManager <T>//this will be the class that will be exposed
     {
         static T target_object;
-        List<BulkOperation<T>> bulk_operations;
+        ObservableCollection<BulkOperation<T>> bulk_operations;
         static Entities entities;
         static int completed_operations = 0;
         static int failed_operations = 0;
@@ -1371,7 +1371,7 @@ namespace XtremePharmacyManager
         public EventHandler<BulkOperationEventArgs<T>> BulkOperationRemoved;
         public EventHandler<BulkOperationEventArgs<T>> BulkOperationUpdated;
         public Entities Entities { get { return entities; } }
-        public List<BulkOperation<T>> BulkOperations { get { return bulk_operations; } }
+        public ObservableCollection<BulkOperation<T>> BulkOperations { get { return bulk_operations; } }
         public int CompletedOperations { get { return completed_operations; } }
         public int FailedOperations { get { return failed_operations; } }
         public string Result { get { return result; } }
@@ -1379,12 +1379,12 @@ namespace XtremePharmacyManager
         public BulkOperationManager(ref Entities ext_entities)
         {
             entities = ext_entities;
-            bulk_operations = new  List<BulkOperation<T>> ();
+            bulk_operations = new  ObservableCollection<BulkOperation<T>> ();
             completed_operations = 0;
             failed_operations = 0;
             result = "";
         }
-        public BulkOperationManager(ref Entities ext_entities, ref List<BulkOperation<T>> operations)
+        public BulkOperationManager(ref Entities ext_entities, ref ObservableCollection<BulkOperation<T>> operations)
         {
             entities = ext_entities;
             if (operations != null)
@@ -1393,7 +1393,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                bulk_operations = new List<BulkOperation<T>>();
+                bulk_operations = new ObservableCollection<BulkOperation<T>>();
             }
             completed_operations = 0;
             failed_operations = 0;
@@ -1433,9 +1433,14 @@ namespace XtremePharmacyManager
 
         public void AddOperation(BulkOperation<T> bulk_operation)
         {
-            if (bulk_operation != null && bulk_operation.TargetObject.GetType() == typeof(T))
+            if (bulk_operation != null && bulk_operation.TargetObject.GetType() == typeof(T) && !bulk_operations.Contains(bulk_operation))
             { // don't allow any operation of type that is not of the type of the manager to be added
-                bulk_operations.Insert(bulk_operations.Count,bulk_operation);   
+                bulk_operations.Add(bulk_operation);  
+            }
+            //let's test the memory addresses of the items
+            foreach(BulkOperation<T> operation in bulk_operations)
+            {
+                MessageBox.Show($"Operation Hash Code: {operation.GetHashCode()}\nOperation Target Has Code: {operation.TargetObject.GetHashCode()}\n");
             }
             BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
             ev_args.OperationsList = bulk_operations;
@@ -1453,6 +1458,10 @@ namespace XtremePharmacyManager
                 int operation_index = bulk_operations.IndexOf(bulk_operation);
                 bulk_operations.RemoveAt(operation_index);
             }
+            foreach (BulkOperation<T> operation in bulk_operations)
+            {
+                MessageBox.Show($"Operation Hash Code: {operation.GetHashCode()}\nOperation Target Has Code: {operation.TargetObject.GetHashCode()}\n");
+            }
             BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
             ev_args.OperationsList = bulk_operations;
             ev_args.CompletedOperations = completed_operations;
@@ -1468,6 +1477,10 @@ namespace XtremePharmacyManager
             {
                 int operation_index = bulk_operations.IndexOf(bulk_operation);
                 bulk_operations[operation_index] = bulk_operation;
+            }
+            foreach (BulkOperation<T> operation in bulk_operations)
+            {
+                MessageBox.Show($"Operation Hash Code: {operation.GetHashCode()}\nOperation Target Has Code: {operation.TargetObject.GetHashCode()}\n");
             }
             BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
             ev_args.OperationsList = bulk_operations;
