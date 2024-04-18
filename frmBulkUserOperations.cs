@@ -86,14 +86,10 @@ namespace XtremePharmacyManager
         private void btnApplyChangesToAllTargets_Click(object sender, EventArgs e)
         {
             int current_operation_index = 0;
-            BulkOperationType current_operation_type;
             User current_operation_target;
-            bool current_operation_silent_value;
             foreach(BulkUserOperation operation in manager.BulkOperations)
             {
                 current_operation_index = manager.BulkOperations.IndexOf(operation);
-                current_operation_type = operation.OperationType;
-                current_operation_silent_value = operation.IsSilent;
                 current_operation_target = operation.TargetObject as User;
                 current_operation_target.UserDisplayName = txtDisplayName.Text;
                 current_operation_target.UserBirthDate = dtBirthDate.Value;
@@ -110,8 +106,10 @@ namespace XtremePharmacyManager
                     ConvertImageToBinary(current_image, out image_data);
                     current_operation_target.UserProfilePic = image_data;
                 }
-                selected_operation = new BulkUserOperation(current_operation_type, ref manager_entities, current_operation_target, current_operation_silent_value);
-                manager.UpdateOperation(selected_operation);
+                operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
+                operation.IsSilent = checkSilentOperation.Checked;
+                operation.UpdateName();
+                manager.UpdateOperation(operation);
             }
         }
 
@@ -194,7 +192,9 @@ namespace XtremePharmacyManager
                 int operation_index = manager.BulkOperations.IndexOf(selected_operation);
                 BulkOperationType current_type = (BulkOperationType)cbOperationType.SelectedIndex;
                 bool IsSilent = checkSilentOperation.Checked;
-                selected_operation = new BulkUserOperation(current_type,ref manager_entities, selected_target, IsSilent);
+                selected_operation.OperationType = current_type;
+                selected_operation.IsSilent = IsSilent;
+                selected_operation.UpdateName();
                 manager.UpdateOperation(selected_operation);
             }
         }

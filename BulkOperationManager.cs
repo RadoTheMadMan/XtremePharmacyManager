@@ -1,4 +1,5 @@
 ﻿using Microsoft.ReportingServices.Diagnostics.Utilities;
+using Microsoft.ReportingServices.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -40,7 +41,7 @@ namespace XtremePharmacyManager
         public string SuccessMessage { get { return success_message; } set { success_message = value; } }
         public string ErrorMessage { get { return error_message; } set { error_message = value; } }
         public string StackTrace { get { return stack_trace; } set { stack_trace = value; } }
-        public bool IsSilent { get { return is_silent; } }
+        public bool IsSilent { get { return is_silent; } set { is_silent = value; } }
         public int ErrorCode {  get { return error_code; } set { error_code = value; } }
         public int InnerErrorCode { get { return inner_error_code; } set { inner_error_code = value; } }
         public BulkOperation(BulkOperationType optype,T obj, bool is_silent)
@@ -51,6 +52,11 @@ namespace XtremePharmacyManager
                 target_object = obj;
             }
             this.is_silent = is_silent;
+            operation_name = $"{type} operation on {target_object.GetType()}";
+        }
+
+        public virtual void UpdateName()
+        {
             operation_name = $"{type} operation on {target_object.GetType()}";
         }
 
@@ -243,6 +249,11 @@ namespace XtremePharmacyManager
             base.OperationName = $"{type} operation on {current_user.GetType()} with ID: {current_user.ID}";
         }
 
+        public override void UpdateName()
+        {
+            base.OperationName = $"{base.OperationType} operation on {current_user.GetType()} with ID: {current_user.ID}";
+        }
+
         protected override async Task<bool> createTask()
         {
             bool result = false;
@@ -385,6 +396,11 @@ namespace XtremePharmacyManager
             base.OperationName = $"{type} operation on {current_brand.GetType()} with ID: {current_brand.ID}";
         }
 
+        public override void UpdateName()
+        {
+            base.OperationName = $"{base.OperationType} operation on {current_brand.GetType()} with ID: {current_brand.ID}";
+        }
+
         protected override async Task<bool> createTask()
         {
             bool result = false;
@@ -521,6 +537,11 @@ namespace XtremePharmacyManager
             current_payment_method = target_method;
             entities = ent;
             base.OperationName = $"{type} operation on {current_payment_method.GetType()} with ID: {current_payment_method.ID}";
+        }
+
+        public override void UpdateName()
+        {
+            base.OperationName = $"{base.OperationType} operation on {current_payment_method.GetType()} with ID: {current_payment_method.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -661,6 +682,11 @@ namespace XtremePharmacyManager
             base.OperationName = $"{type} operation on {current_service.GetType()} with ID: {current_service.ID}";
         }
 
+        public override void UpdateName()
+        {
+            base.OperationName = $"{base.OperationType} operation on {current_service.GetType()} with ID: {current_service.ID}";
+        }
+
         protected override async Task<bool> createTask()
         {
             bool result = false;
@@ -797,6 +823,11 @@ namespace XtremePharmacyManager
             current_product = target_product;
             entities = ent;
             base.OperationName = $"{type} operation on {current_product.GetType()} with ID: {current_product.ID}";
+        }
+
+        public override void UpdateName()
+        {
+            base.OperationName = $"{base.OperationType} operation on {current_product.GetType()} with ID: {current_product.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -941,6 +972,11 @@ namespace XtremePharmacyManager
             base.OperationName = $"{type} operation on {current_image.GetType()} with ID: {current_image.ID}";
         }
 
+        public override void UpdateName()
+        {
+            base.OperationName = $"{base.OperationType} operation on {current_image.GetType()} with ID: {current_image.ID}";
+        }
+
         protected override async Task<bool> createTask()
         {
             bool result = false;
@@ -1081,6 +1117,11 @@ namespace XtremePharmacyManager
             this.add_total_price_override_on_create = add_total_price_override_on_create;
         }
 
+        public override void UpdateName()
+        {
+            base.OperationName = $"{base.OperationType} operation on {current_order.GetType()} with ID: {current_order.ID}";
+        }
+
         protected override async Task<bool> createTask()
         {
             bool result = false;
@@ -1219,6 +1260,11 @@ namespace XtremePharmacyManager
             current_delivery = target_delivery;
             entities = ent;
             base.OperationName = $"{type} operation on {current_delivery.GetType()} with ID: {current_delivery.ID}";
+        }
+
+        public override void UpdateName()
+        {
+            base.OperationName = $"{base.OperationType} operation on {current_delivery.GetType()} with ID: {current_delivery.ID}";
         }
 
         protected override async Task<bool> createTask()
