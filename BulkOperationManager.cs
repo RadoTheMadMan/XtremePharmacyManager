@@ -27,7 +27,7 @@ namespace XtremePharmacyManager
         CUSTOM = 4
     }
 
-    public class BulkOperation<T>: INotifyPropertyChanged//This is the class to derive all bulk operations from and its tasks will be overriden
+    public class BulkOperation<T>//This is the class to derive all bulk operations from and its tasks will be overriden
     {
         BulkOperationType type;
         T target_object;
@@ -39,7 +39,6 @@ namespace XtremePharmacyManager
         int inner_error_code = -1;
         bool is_silent = true;
 
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public T TargetObject { get { return target_object; } set { target_object = value; }  }
         public BulkOperationType OperationType { get { return type; } set { type = value; } }
@@ -247,23 +246,22 @@ namespace XtremePharmacyManager
 
     public class BulkUserOperation : BulkOperation<User>
     {
-        User current_user;
         static Entities entities;
-
-        
 
         public BulkUserOperation(BulkOperationType type,ref Entities ent, User target_user, bool is_silent) : base(type, target_user, is_silent)
         {
-            current_user = base.TargetObject;
             entities = ent;
-            base.OperationName = $"{type} operation on {current_user.GetType()} with ID: {current_user.ID}";
+            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
-
+        private PropertyChangedEventHandler OnTargetObjectChanged(EventArgs eventArgs)
+        {
+            throw new NotImplementedException();
+        }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {current_user.GetType()} with ID: {current_user.ID}";
+            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -274,9 +272,9 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "User has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.AddUser(current_user.UserName, current_user.UserPassword, current_user.UserDisplayName, current_user.UserBirthDate, current_user.UserPhone,
-                                     current_user.UserEmail, current_user.UserAddress, current_user.UserProfilePic, current_user.UserBalance, current_user.UserDiagnose,
-                                     current_user.UserRole);
+                    entities.AddUser(base.TargetObject.UserName, base.TargetObject.UserPassword, base.TargetObject.UserDisplayName, base.TargetObject.UserBirthDate, base.TargetObject.UserPhone,
+                                     base.TargetObject.UserEmail, base.TargetObject.UserAddress, base.TargetObject.UserProfilePic, base.TargetObject.UserBalance, base.TargetObject.UserDiagnose,
+                                     base.TargetObject.UserRole);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -317,9 +315,9 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "User has been updated.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.UpdateUserByID(current_user.ID,current_user.UserName, current_user.UserPassword, current_user.UserDisplayName, current_user.UserBirthDate, current_user.UserPhone,
-                                     current_user.UserEmail, current_user.UserAddress, current_user.UserProfilePic, current_user.UserBalance, current_user.UserDiagnose,
-                                     current_user.UserRole);
+                    entities.UpdateUserByID(base.TargetObject.ID, base.TargetObject.UserName, base.TargetObject.UserPassword, base.TargetObject.UserDisplayName, base.TargetObject.UserBirthDate, base.TargetObject.UserPhone,
+                                     base.TargetObject.UserEmail, base.TargetObject.UserAddress, base.TargetObject.UserProfilePic, base.TargetObject.UserBalance, base.TargetObject.UserDiagnose,
+                                     base.TargetObject.UserRole);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -360,7 +358,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "User has been deleted.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.DeleteUserByID(current_user.ID);
+                    entities.DeleteUserByID(base.TargetObject.ID);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -398,19 +396,17 @@ namespace XtremePharmacyManager
 
     public class BulkProductBrandOperation : BulkOperation<ProductBrand>
     {
-        ProductBrand current_brand;
         static Entities entities;
 
         public BulkProductBrandOperation(BulkOperationType type, ref Entities ent, ProductBrand target_brand, bool is_silent) : base(type, target_brand, is_silent)
         {
-            current_brand = base.TargetObject;
             entities = ent;
-            base.OperationName = $"{type} operation on {current_brand.GetType()} with ID: {current_brand.ID}";
+            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {current_brand.GetType()} with ID: {current_brand.ID}";
+            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -421,7 +417,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Product Brand has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.AddBrand(current_brand.BrandName);
+                    entities.AddBrand(base.TargetObject.BrandName);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -462,7 +458,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Product Brand has been updated.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.UpdateBrandByID(current_brand.ID, current_brand.BrandName);
+                    entities.UpdateBrandByID(base.TargetObject.ID, base.TargetObject.BrandName);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -503,7 +499,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Product Brand has been deleted.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.DeleteBrandByID(current_brand.ID);
+                    entities.DeleteBrandByID(base.TargetObject.ID);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -541,19 +537,17 @@ namespace XtremePharmacyManager
 
     public class BulkPaymentMethodOperation : BulkOperation<PaymentMethod>
     {
-        PaymentMethod current_payment_method;
         static Entities entities;
 
         public BulkPaymentMethodOperation(BulkOperationType type, ref Entities ent, PaymentMethod target_method, bool is_silent) : base(type, target_method, is_silent)
         {
-            current_payment_method = base.TargetObject;
             entities = ent;
-            base.OperationName = $"{type} operation on {current_payment_method.GetType()} with ID: {current_payment_method.ID}";
+            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {current_payment_method.GetType()} with ID: {current_payment_method.ID}";
+            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -564,7 +558,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Payment Method has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.AddPaymentMethod(current_payment_method.MethodName);
+                    entities.AddPaymentMethod(base.TargetObject.MethodName);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -605,7 +599,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Payment Method has been updated.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.UpdatePaymentMethodByID(current_payment_method.ID, current_payment_method.MethodName);
+                    entities.UpdatePaymentMethodByID(base.TargetObject.ID, base.TargetObject.MethodName);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -646,7 +640,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Payment Method has been deleted.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.DeletePaymentMethodByID(current_payment_method.ID);
+                    entities.DeletePaymentMethodByID(base.TargetObject.ID);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -684,19 +678,17 @@ namespace XtremePharmacyManager
 
     public class BulkDeliveryServiceOperation : BulkOperation<DeliveryService>
     {
-        DeliveryService current_service;
         static Entities entities;
 
         public BulkDeliveryServiceOperation(BulkOperationType type, ref Entities ent, DeliveryService target_service, bool is_silent) : base(type, target_service, is_silent)
         {
-            current_service = base.TargetObject;
             entities = ent;
-            base.OperationName = $"{type} operation on {current_service.GetType()} with ID: {current_service.ID}";
+            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {current_service.GetType()} with ID: {current_service.ID}";
+            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -707,7 +699,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Delivery Service has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.AddDeliveryService(current_service.ServiceName, current_service.ServicePrice);
+                    entities.AddDeliveryService(base.TargetObject.ServiceName, base.TargetObject.ServicePrice);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -748,7 +740,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Delivery Service has been updated.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.UpdateDeliveryServiceByID(current_service.ID, current_service.ServiceName, current_service.ServicePrice);
+                    entities.UpdateDeliveryServiceByID(base.TargetObject.ID, base.TargetObject.ServiceName, base.TargetObject.ServicePrice);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -789,7 +781,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Delivery Service has been deleted.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.DeleteDeliveryServiceByID(current_service.ID);
+                    entities.DeleteDeliveryServiceByID(base.TargetObject.ID);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -827,19 +819,18 @@ namespace XtremePharmacyManager
 
     public class BulkProductOperation : BulkOperation<Product>
     {
-        Product current_product;
         static Entities entities;
 
         public BulkProductOperation(BulkOperationType type, ref Entities ent, Product target_product, bool is_silent) : base(type, target_product, is_silent)
         {
-            current_product = base.TargetObject;
+            base.TargetObject = base.TargetObject;
             entities = ent;
-            base.OperationName = $"{type} operation on {current_product.GetType()} with ID: {current_product.ID}";
+            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {current_product.GetType()} with ID: {current_product.ID}";
+            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -850,9 +841,9 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Product has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.AddProduct(current_product.ProductName,current_product.BrandID, current_product.ProductDescription,
-                        current_product.ProductQuantity, current_product.ProductPrice, current_product.ProductExpiryDate,
-                        current_product.ProductRegNum, current_product.ProductPartNum, current_product.ProductStorageLocation);
+                    entities.AddProduct(base.TargetObject.ProductName,base.TargetObject.BrandID, base.TargetObject.ProductDescription,
+                        base.TargetObject.ProductQuantity, base.TargetObject.ProductPrice, base.TargetObject.ProductExpiryDate,
+                        base.TargetObject.ProductRegNum, base.TargetObject.ProductPartNum, base.TargetObject.ProductStorageLocation);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -893,9 +884,9 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Product has been updated.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.UpdateProductByID(current_product.ID,current_product.ProductName, current_product.BrandID, current_product.ProductDescription,
-                        current_product.ProductQuantity, current_product.ProductPrice, current_product.ProductExpiryDate,
-                        current_product.ProductRegNum, current_product.ProductPartNum, current_product.ProductStorageLocation);
+                    entities.UpdateProductByID(base.TargetObject.ID,base.TargetObject.ProductName, base.TargetObject.BrandID, base.TargetObject.ProductDescription,
+                        base.TargetObject.ProductQuantity, base.TargetObject.ProductPrice, base.TargetObject.ProductExpiryDate,
+                        base.TargetObject.ProductRegNum, base.TargetObject.ProductPartNum, base.TargetObject.ProductStorageLocation);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -936,7 +927,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Product has been deleted.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.DeleteProductByID(current_product.ID);
+                    entities.DeleteProductByID(base.TargetObject.ID);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -974,19 +965,17 @@ namespace XtremePharmacyManager
 
     public class BulkProductImageOperation : BulkOperation<ProductImage>
     {
-        ProductImage current_image;
         static Entities entities;
 
         public BulkProductImageOperation(BulkOperationType type, ref Entities ent, ProductImage target_image, bool is_silent) : base(type, target_image, is_silent)
         {
-            current_image = base.TargetObject;
             entities = ent;
-            base.OperationName = $"{type} operation on {current_image.GetType()} with ID: {current_image.ID}";
+            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {current_image.GetType()} with ID: {current_image.ID}";
+            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -997,7 +986,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Product Image has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.AddProductImage(current_image.ProductID,current_image.ImageName,current_image.ImageData);
+                    entities.AddProductImage(base.TargetObject.ProductID,base.TargetObject.ImageName,base.TargetObject.ImageData);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1038,7 +1027,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Product Image has been updated.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.UpdateProductImageByID(current_image.ID,current_image.ProductID, current_image.ImageName, current_image.ImageData);
+                    entities.UpdateProductImageByID(base.TargetObject.ID,base.TargetObject.ProductID, base.TargetObject.ImageName, base.TargetObject.ImageData);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1079,7 +1068,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Product Image has been deleted.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.DeleteProductImageByID(current_image.ID);
+                    entities.DeleteProductImageByID(base.TargetObject.ID);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1117,21 +1106,19 @@ namespace XtremePharmacyManager
 
     public class BulkProductOrderOperation : BulkOperation<ProductOrder>
     {
-        ProductOrder current_order;
         static Entities entities;
         bool add_total_price_override_on_create;
 
         public BulkProductOrderOperation(BulkOperationType type, ref Entities ent, ProductOrder target_order, bool add_total_price_override_on_create, bool is_silent) : base(type, target_order, is_silent)
         {
-            current_order = base.TargetObject;
             entities = ent;
-            base.OperationName = $"{type} operation on {current_order.GetType()} with ID: {current_order.ID}";
+            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
             this.add_total_price_override_on_create = add_total_price_override_on_create;
         }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {current_order.GetType()} with ID: {current_order.ID}";
+            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -1142,8 +1129,8 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Product Order has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.AddProductOrder(current_order.ProductID, current_order.DesiredQuantity, current_order.OrderPrice,
-                    current_order.ClientID, current_order.EmployeeID, current_order.OrderReason, add_total_price_override_on_create);
+                    entities.AddProductOrder(base.TargetObject.ProductID, base.TargetObject.DesiredQuantity, base.TargetObject.OrderPrice,
+                    base.TargetObject.ClientID, base.TargetObject.EmployeeID, base.TargetObject.OrderReason, add_total_price_override_on_create);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1184,8 +1171,8 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Product Order has been updated.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.UpdateProductOrderByID(current_order.ID,current_order.ProductID, current_order.DesiredQuantity, current_order.OrderPrice,
-                    current_order.ClientID, current_order.EmployeeID, current_order.OrderStatus, current_order.OrderReason);
+                    entities.UpdateProductOrderByID(base.TargetObject.ID,base.TargetObject.ProductID, base.TargetObject.DesiredQuantity, base.TargetObject.OrderPrice,
+                    base.TargetObject.ClientID, base.TargetObject.EmployeeID, base.TargetObject.OrderStatus, base.TargetObject.OrderReason);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1226,7 +1213,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Product Order has been deleted.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.DeleteProductOrderByID(current_order.ID);
+                    entities.DeleteProductOrderByID(base.TargetObject.ID);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1264,19 +1251,17 @@ namespace XtremePharmacyManager
 
     public class BulkOrderDeliveryOperation : BulkOperation<OrderDelivery>
     {
-        OrderDelivery current_delivery;
         static Entities entities;
 
         public BulkOrderDeliveryOperation(BulkOperationType type, ref Entities ent, OrderDelivery target_delivery, bool is_silent) : base(type, target_delivery, is_silent)
         {
-            current_delivery = base.TargetObject;
             entities = ent;
-            base.OperationName = $"{type} operation on {current_delivery.GetType()} with ID: {current_delivery.ID}";
+            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {current_delivery.GetType()} with ID: {current_delivery.ID}";
+            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -1287,8 +1272,8 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Order Delivery has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.AddOrderDelivery(current_delivery.OrderID,current_delivery.DeliveryServiceID,current_delivery.PaymentMethodID,
-                        current_delivery.CargoID,current_delivery.DeliveryReason);
+                    entities.AddOrderDelivery(base.TargetObject.OrderID,base.TargetObject.DeliveryServiceID,base.TargetObject.PaymentMethodID,
+                        base.TargetObject.CargoID,base.TargetObject.DeliveryReason);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1329,8 +1314,8 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Order Delivery has been updated.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.UpdateOrderDeliveryByID(current_delivery.ID,current_delivery.OrderID, current_delivery.DeliveryServiceID, current_delivery.PaymentMethodID,
-                        current_delivery.CargoID, current_delivery.DeliveryStatus , current_delivery.DeliveryReason);
+                    entities.UpdateOrderDeliveryByID(base.TargetObject.ID,base.TargetObject.OrderID, base.TargetObject.DeliveryServiceID, base.TargetObject.PaymentMethodID,
+                        base.TargetObject.CargoID, base.TargetObject.DeliveryStatus , base.TargetObject.DeliveryReason);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1371,7 +1356,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "User has been deleted.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.DeleteOrderDeliveryByID(current_delivery.ID);
+                    entities.DeleteOrderDeliveryByID(base.TargetObject.ID);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
