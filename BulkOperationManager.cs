@@ -238,7 +238,7 @@ namespace XtremePharmacyManager
 
         public BulkUserOperation(BulkOperationType type,ref Entities ent, User target_user, bool is_silent) : base(type, target_user, is_silent)
         {
-            current_user = base.TargetObject;
+            current_user = target_user;
             entities = ent;
             base.OperationName = $"{type} operation on {current_user.GetType()} with ID: {current_user.ID}";
         }
@@ -380,7 +380,7 @@ namespace XtremePharmacyManager
 
         public BulkProductBrandOperation(BulkOperationType type, ref Entities ent, ProductBrand target_brand, bool is_silent) : base(type, target_brand, is_silent)
         {
-            current_brand = base.TargetObject;
+            current_brand = target_brand;
             entities = ent;
             base.OperationName = $"{type} operation on {current_brand.GetType()} with ID: {current_brand.ID}";
         }
@@ -518,7 +518,7 @@ namespace XtremePharmacyManager
 
         public BulkPaymentMethodOperation(BulkOperationType type, ref Entities ent, PaymentMethod target_method, bool is_silent) : base(type, target_method, is_silent)
         {
-            current_payment_method = base.TargetObject;
+            current_payment_method = target_method;
             entities = ent;
             base.OperationName = $"{type} operation on {current_payment_method.GetType()} with ID: {current_payment_method.ID}";
         }
@@ -656,7 +656,7 @@ namespace XtremePharmacyManager
 
         public BulkDeliveryServiceOperation(BulkOperationType type, ref Entities ent, DeliveryService target_service, bool is_silent) : base(type, target_service, is_silent)
         {
-            current_service = base.TargetObject;
+            current_service = target_service;
             entities = ent;
             base.OperationName = $"{type} operation on {current_service.GetType()} with ID: {current_service.ID}";
         }
@@ -794,7 +794,7 @@ namespace XtremePharmacyManager
 
         public BulkProductOperation(BulkOperationType type, ref Entities ent, Product target_product, bool is_silent) : base(type, target_product, is_silent)
         {
-            current_product = base.TargetObject;
+            current_product = target_product;
             entities = ent;
             base.OperationName = $"{type} operation on {current_product.GetType()} with ID: {current_product.ID}";
         }
@@ -936,7 +936,7 @@ namespace XtremePharmacyManager
 
         public BulkProductImageOperation(BulkOperationType type, ref Entities ent, ProductImage target_image, bool is_silent) : base(type, target_image, is_silent)
         {
-            current_image = base.TargetObject;
+            current_image = target_image;
             entities = ent;
             base.OperationName = $"{type} operation on {current_image.GetType()} with ID: {current_image.ID}";
         }
@@ -1075,7 +1075,7 @@ namespace XtremePharmacyManager
 
         public BulkProductOrderOperation(BulkOperationType type, ref Entities ent, ProductOrder target_order, bool add_total_price_override_on_create, bool is_silent) : base(type, target_order, is_silent)
         {
-            current_order = base.TargetObject;
+            current_order = target_order;
             entities = ent;
             base.OperationName = $"{type} operation on {current_order.GetType()} with ID: {current_order.ID}";
             this.add_total_price_override_on_create = add_total_price_override_on_create;
@@ -1216,7 +1216,7 @@ namespace XtremePharmacyManager
 
         public BulkOrderDeliveryOperation(BulkOperationType type, ref Entities ent, OrderDelivery target_delivery, bool is_silent) : base(type, target_delivery, is_silent)
         {
-            current_delivery = base.TargetObject;
+            current_delivery = target_delivery;
             entities = ent;
             base.OperationName = $"{type} operation on {current_delivery.GetType()} with ID: {current_delivery.ID}";
         }

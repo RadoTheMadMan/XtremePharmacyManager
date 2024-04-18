@@ -126,7 +126,6 @@
             this.checkSilentOperation.TabIndex = 44;
             this.checkSilentOperation.Text = "Silent Operation";
             this.checkSilentOperation.UseVisualStyleBackColor = true;
-            this.checkSilentOperation.CheckedChanged += new System.EventHandler(this.checkSilentOperation_CheckedChanged);
             // 
             // lblOperationResults
             // 
@@ -156,7 +155,6 @@
             this.cbOperationType.Size = new System.Drawing.Size(229, 24);
             this.cbOperationType.TabIndex = 42;
             this.cbOperationType.Text = "ADD";
-            this.cbOperationType.SelectedIndexChanged += new System.EventHandler(this.cbOperationType_SelectedIndexChanged);
             // 
             // lblOperationType
             // 
@@ -261,7 +259,6 @@
             this.pbUserProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbUserProfilePic.TabIndex = 34;
             this.pbUserProfilePic.TabStop = false;
-            this.pbUserProfilePic.Click += new System.EventHandler(this.pbUserProfilePic_Click);
             // 
             // cbRole
             // 
@@ -277,7 +274,6 @@
             this.cbRole.Size = new System.Drawing.Size(229, 24);
             this.cbRole.TabIndex = 29;
             this.cbRole.Text = "Employee";
-            this.cbRole.SelectedIndexChanged += new System.EventHandler(this.cbRole_SelectedIndexChanged);
             // 
             // lblRole
             // 
@@ -300,7 +296,6 @@
             this.txtDiagnose.Name = "txtDiagnose";
             this.txtDiagnose.Size = new System.Drawing.Size(313, 75);
             this.txtDiagnose.TabIndex = 23;
-            this.txtDiagnose.TextChanged += new System.EventHandler(this.txtDiagnose_TextChanged);
             // 
             // lblDiagnose
             // 
@@ -324,7 +319,6 @@
             this.trbBalance.Size = new System.Drawing.Size(259, 56);
             this.trbBalance.TabIndex = 21;
             this.trbBalance.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
             // 
             // lblShowBalance
             // 
@@ -359,7 +353,6 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(258, 62);
             this.txtAddress.TabIndex = 18;
-            this.txtAddress.TextChanged += new System.EventHandler(this.txtAddress_TextChanged);
             // 
             // lblAddress
             // 
@@ -381,7 +374,6 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(258, 22);
             this.txtEmail.TabIndex = 16;
-            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // lblEmail
             // 
@@ -403,7 +395,6 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(258, 22);
             this.txtPhone.TabIndex = 14;
-            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
             // 
             // lblPhone
             // 
@@ -425,7 +416,6 @@
             this.dtBirthDate.Name = "dtBirthDate";
             this.dtBirthDate.Size = new System.Drawing.Size(257, 22);
             this.dtBirthDate.TabIndex = 10;
-            this.dtBirthDate.ValueChanged += new System.EventHandler(this.dtBirthDate_ValueChanged);
             // 
             // lblBirthDateFrom
             // 
@@ -447,7 +437,6 @@
             this.txtDisplayName.Name = "txtDisplayName";
             this.txtDisplayName.Size = new System.Drawing.Size(258, 22);
             this.txtDisplayName.TabIndex = 8;
-            this.txtDisplayName.TextChanged += new System.EventHandler(this.txtDisplayName_TextChanged);
             // 
             // lblDisplayName
             // 
@@ -514,7 +503,6 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(258, 22);
             this.txtID.TabIndex = 2;
-            this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
             // lblID
             // 

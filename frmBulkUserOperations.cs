@@ -50,114 +50,8 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void trbBalance_Scroll(object sender, EventArgs e)
-        {
-            lblShowBalance.Text = trbBalance.Value.ToString();
-            if (selected_target != null)
-            {
-                selected_target.UserBalance = trbBalance.Value;
-            }
-        }
 
-        private void pbUserProfilePic_Click(object sender, EventArgs e)
-        {
-            PictureBox current = (PictureBox)sender;
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Filter = "Images|*.png*;*.bmp*;*.jpg*;*.jpeg*;*.jfif*";
-            ofd.Multiselect = false;
-            ofd.Title = "Select an image to upload or for bulk operation";
-            if(selected_target != null)
-            {
-                if(ofd.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(ofd.FileName))
-                {
-                    Bitmap selectedImage = new Bitmap(ofd.FileName);
-                    byte[] imageBytes;
-                    ConvertImageToBinary(selectedImage, out imageBytes);
-                    current.Image = new Bitmap(selectedImage);
-                    selected_target.UserProfilePic = imageBytes;
-                }
-            }
-        }
 
-        private void cbRole_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(selected_target != null)
-            {
-                selected_target.UserRole = cbRole.SelectedIndex;
-            }
-        }
-
-        private void txtDiagnose_TextChanged(object sender, EventArgs e)
-        {
-            if (selected_target != null)
-            {
-                selected_target.UserDiagnose = txtDiagnose.Text;
-            }
-        }
-
-        private void txtID_TextChanged(object sender, EventArgs e)
-        {
-            if(selected_target !=null)
-            {
-                selected_target.ID = Int32.Parse(txtID.Text);
-            }
-        }
-
-        private void txtUsername_TextChanged(object sender, EventArgs e)
-        {
-            if(selected_target !=null)
-            {
-                selected_target.UserName = txtUsername.Text;
-            }
-        }
-
-        private void txtPassword_TextChanged(object sender, EventArgs e)
-        {
-            if(selected_target != null)
-            {
-                selected_target.UserPassword = txtPassword.Text;
-            }
-        }
-
-        private void txtDisplayName_TextChanged(object sender, EventArgs e)
-        {
-            if(selected_target != null)
-            {
-                selected_target.UserDisplayName = txtDisplayName.Text;
-            }
-        }
-
-        private void dtBirthDate_ValueChanged(object sender, EventArgs e)
-        {
-            if(selected_target != null)
-            {
-                selected_target.UserBirthDate = dtBirthDate.Value;
-            }
-        }
-
-        private void txtPhone_TextChanged(object sender, EventArgs e)
-        {
-            if(selected_target != null)
-            {
-                selected_target.UserPhone = txtPhone.Text;
-            }
-        }
-
-        private void txtEmail_TextChanged(object sender, EventArgs e)
-        {
-            if(selected_target != null)
-            {
-                selected_target.UserEmail = txtEmail.Text; 
-            }    
-        }
-
-        private void txtAddress_TextChanged(object sender, EventArgs e)
-        {
-            if(selected_target != null)
-            {
-                selected_target.UserAddress = txtAddress.Text;
-            }
-        }
 
         private void frmBulkUserOperations_Load(object sender, EventArgs e)
         {
@@ -180,6 +74,7 @@ namespace XtremePharmacyManager
                 cbRole.SelectedIndex = (selected_target.UserRole >= 0 && selected_target.UserRole <= 2) ? selected_target.UserRole : 1;
                 pbUserProfilePic.Image = (selected_target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
                 cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
+                checkSilentOperation.Checked = selected_operation.IsSilent;
             }
         }
 
@@ -246,22 +141,20 @@ namespace XtremePharmacyManager
                 cbRole.SelectedIndex = (selected_target.UserRole >= 0 && selected_target.UserRole <= 2) ? selected_target.UserRole : 1;
                 pbUserProfilePic.Image = (selected_target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
                 cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
+                checkSilentOperation.Checked = selected_operation.IsSilent;
             }
             lblOperationResults.Text = "Operation Results: ";
         }
 
         private void btnAddOperation_Click(object sender, EventArgs e)
         {
-            
-            BulkUserOperation new_operation;
             User new_user = new User();
             DialogResult res = new frmEditUser(ref new_user).ShowDialog();
             BulkOperationType operationType = (BulkOperationType)cbOperationType.SelectedIndex;
             bool IsSilent = checkSilentOperation.Checked;
             if(res == DialogResult.OK)
             {
-                new_operation = new BulkUserOperation(operationType, ref manager_entities, new_user, IsSilent);
-                manager.AddOperation(new_operation);
+                manager.AddOperation(new BulkUserOperation(operationType, ref manager_entities, new_user, IsSilent));
             }
         }
 
@@ -306,28 +199,7 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void checkSilentOperation_CheckedChanged(object sender, EventArgs e)
-        {
-            if(selected_operation != null)
-            {
-                BulkOperationType current_type = selected_operation.OperationType;
-                bool IsSilent = checkSilentOperation.Checked;
-                selected_operation = new BulkUserOperation(current_type, ref manager_entities, selected_target, IsSilent);
-                manager.UpdateOperation(selected_operation);
-            }
-        }
-
-        private void cbOperationType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (selected_operation != null)
-            {
-                int operation_index = manager.BulkOperations.IndexOf(selected_operation);
-                BulkOperationType current_type = (BulkOperationType)cbOperationType.SelectedIndex;
-                bool IsSilent = selected_operation.IsSilent;
-                selected_operation = new BulkUserOperation(current_type, ref manager_entities, selected_target, IsSilent);
-                manager.UpdateOperation(selected_operation);
-            }
-        }
+       
 
        
     }
