@@ -30,10 +30,7 @@ namespace XtremePharmacyManager
         {
             try
             {
-                using(var context = new DbContext(ent.Database.Connection.ConnectionString))
-                {
-                    context.Entry(ent).Reload();
-                }
+                ent.Entry(ent).Reload();
                 //Never try to execute any function if it is not online
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
