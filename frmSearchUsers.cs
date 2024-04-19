@@ -31,9 +31,6 @@ namespace XtremePharmacyManager
         {
             try
             {
-                //refresh the data because the fucking async CRUD operations seem to not reflect on the regular CRUD operations
-                //in the entity model
-                ent.Entry<Entities>(ent).Reload();
                 //Never try to execute any function if it is not online
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {

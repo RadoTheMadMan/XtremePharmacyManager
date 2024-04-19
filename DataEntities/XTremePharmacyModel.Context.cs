@@ -31,9 +31,8 @@ namespace XtremePharmacyManager.DataEntities
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            throw new UnintentionalCodeFirstException();
+            modelBuilder.Entity<User>().ToTable("Users");
         }
-    
         public virtual DbSet<DeliveryService> DeliveryServices { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<OrderDelivery> OrderDeliveries { get; set; }

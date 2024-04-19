@@ -311,6 +311,7 @@ namespace XtremePharmacyManager
                                      base.TargetObject.UserEmail, base.TargetObject.UserAddress, base.TargetObject.UserProfilePic, base.TargetObject.UserBalance, base.TargetObject.UserDiagnose,
                                      base.TargetObject.UserRole);
                     entities.SaveChanges();
+                    entities.Entry<User>(base.TargetObject).Reload();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
