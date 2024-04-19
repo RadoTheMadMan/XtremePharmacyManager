@@ -31,7 +31,16 @@ namespace XtremePharmacyManager.DataEntities
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //Precaution so we can attach, detach and reload things if needed
             modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<ProductBrand>().ToTable("ProductBrands");
+            modelBuilder.Entity<PaymentMethod>().ToTable("PaymentMethods");
+            modelBuilder.Entity<DeliveryService>().ToTable("DeliveryServices");
+            modelBuilder.Entity<Product>().ToTable("Products");
+            modelBuilder.Entity<ProductImage>().ToTable("ProductImages");
+            modelBuilder.Entity<ProductOrder>().ToTable("ProductOrders");
+            modelBuilder.Entity<OrderDelivery>().ToTable("OrderDeliveries");
+            modelBuilder.Entity<Log>().ToTable("Logs");
         }
         public virtual DbSet<DeliveryService> DeliveryServices { get; set; }
         public virtual DbSet<Log> Logs { get; set; }

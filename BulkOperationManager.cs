@@ -52,7 +52,7 @@ namespace XtremePharmacyManager
         public BulkOperation(BulkOperationType optype,T obj, bool is_silent)
         {
             type = optype;
-            if (obj != null && typeof(T) == obj.GetType())  
+            if (obj != null)  
             {
                 target_object = obj;
             }
@@ -311,14 +311,13 @@ namespace XtremePharmacyManager
                                      base.TargetObject.UserEmail, base.TargetObject.UserAddress, base.TargetObject.UserProfilePic, base.TargetObject.UserBalance, base.TargetObject.UserDiagnose,
                                      base.TargetObject.UserRole);
                     entities.SaveChanges();
-                    //Reloading after updating asynchronyously needs a thorough test
-                    entities.Entry<User>(base.TargetObject).Reload();
+                    entities.Entry<User>(entities.Users.Where(x=>x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
             catch (Exception ex)
             {
-                if (base.IsSilent)
+                if (!base.IsSilent)
                 {
                     await Task.Run(() =>
                     {
@@ -413,6 +412,7 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.AddBrand(base.TargetObject.BrandName);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -453,12 +453,14 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.UpdateBrandByID(base.TargetObject.ID, base.TargetObject.BrandName);
+                    entities.SaveChanges();
+                    entities.Entry<ProductBrand>(entities.ProductBrands.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
             catch (Exception ex)
             {
-                if (base.IsSilent)
+                if (!base.IsSilent)
                 {
                     await Task.Run(() =>
                     {
@@ -493,6 +495,7 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.DeleteBrandByID(base.TargetObject.ID);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -552,6 +555,7 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.AddPaymentMethod(base.TargetObject.MethodName);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -592,13 +596,15 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.UpdatePaymentMethodByID(base.TargetObject.ID, base.TargetObject.MethodName);
+                    entities.SaveChanges();
+                    entities.Entry<PaymentMethod>(entities.PaymentMethods.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
             }
             catch (Exception ex)
             {
-                if (base.IsSilent)
+                if (!base.IsSilent)
                 {
                     await Task.Run(() =>
                     {
@@ -633,6 +639,7 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.DeletePaymentMethodByID(base.TargetObject.ID);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -692,6 +699,7 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.AddDeliveryService(base.TargetObject.ServiceName, base.TargetObject.ServicePrice);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -732,12 +740,14 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.UpdateDeliveryServiceByID(base.TargetObject.ID, base.TargetObject.ServiceName, base.TargetObject.ServicePrice);
+                    entities.SaveChanges();
+                    entities.Entry<DeliveryService>(entities.DeliveryServices.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
             catch (Exception ex)
             {
-                if (base.IsSilent)
+                if (!base.IsSilent)
                 {
                     await Task.Run(() =>
                     {
@@ -772,6 +782,7 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.DeleteDeliveryServiceByID(base.TargetObject.ID);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -834,6 +845,7 @@ namespace XtremePharmacyManager
                     entities.AddProduct(base.TargetObject.ProductName,base.TargetObject.BrandID, base.TargetObject.ProductDescription,
                         base.TargetObject.ProductQuantity, base.TargetObject.ProductPrice, base.TargetObject.ProductExpiryDate,
                         base.TargetObject.ProductRegNum, base.TargetObject.ProductPartNum, base.TargetObject.ProductStorageLocation);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -876,12 +888,14 @@ namespace XtremePharmacyManager
                     entities.UpdateProductByID(base.TargetObject.ID,base.TargetObject.ProductName, base.TargetObject.BrandID, base.TargetObject.ProductDescription,
                         base.TargetObject.ProductQuantity, base.TargetObject.ProductPrice, base.TargetObject.ProductExpiryDate,
                         base.TargetObject.ProductRegNum, base.TargetObject.ProductPartNum, base.TargetObject.ProductStorageLocation);
+                    entities.SaveChanges();
+                    entities.Entry<Product>(entities.Products.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
             catch (Exception ex)
             {
-                if (base.IsSilent)
+                if (!base.IsSilent)
                 {
                     await Task.Run(() =>
                     {
@@ -916,6 +930,7 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.DeleteProductByID(base.TargetObject.ID);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -975,6 +990,7 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.AddProductImage(base.TargetObject.ProductID,base.TargetObject.ImageName,base.TargetObject.ImageData);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1015,12 +1031,14 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.UpdateProductImageByID(base.TargetObject.ID,base.TargetObject.ProductID, base.TargetObject.ImageName, base.TargetObject.ImageData);
+                    entities.SaveChanges();
+                    entities.Entry<ProductImage>(entities.ProductImages.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
             catch (Exception ex)
             {
-                if (base.IsSilent)
+                if (!base.IsSilent)
                 {
                     await Task.Run(() =>
                     {
@@ -1055,6 +1073,7 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.DeleteProductImageByID(base.TargetObject.ID);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1117,6 +1136,7 @@ namespace XtremePharmacyManager
                 {
                     entities.AddProductOrder(base.TargetObject.ProductID, base.TargetObject.DesiredQuantity, base.TargetObject.OrderPrice,
                     base.TargetObject.ClientID, base.TargetObject.EmployeeID, base.TargetObject.OrderReason, add_total_price_override_on_create);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1159,13 +1179,15 @@ namespace XtremePharmacyManager
                 {
                     entities.UpdateProductOrderByID(base.TargetObject.ID,base.TargetObject.ProductID, base.TargetObject.DesiredQuantity, base.TargetObject.OrderPrice,
                     base.TargetObject.ClientID, base.TargetObject.EmployeeID, base.TargetObject.OrderStatus, base.TargetObject.OrderReason);
+                    entities.SaveChanges();
+                    entities.Entry<ProductOrder>(entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
             }
             catch (Exception ex)
             {
-                if (base.IsSilent)
+                if (!base.IsSilent)
                 {
                     await Task.Run(() =>
                     {
@@ -1200,6 +1222,7 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.DeleteProductOrderByID(base.TargetObject.ID);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1261,6 +1284,7 @@ namespace XtremePharmacyManager
                 {
                     entities.AddOrderDelivery(base.TargetObject.OrderID,base.TargetObject.DeliveryServiceID,base.TargetObject.PaymentMethodID,
                         base.TargetObject.CargoID,base.TargetObject.DeliveryReason);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1302,12 +1326,14 @@ namespace XtremePharmacyManager
                 {
                     entities.UpdateOrderDeliveryByID(base.TargetObject.ID,base.TargetObject.OrderID, base.TargetObject.DeliveryServiceID, base.TargetObject.PaymentMethodID,
                         base.TargetObject.CargoID, base.TargetObject.DeliveryStatus , base.TargetObject.DeliveryReason);
+                    entities.SaveChanges();
+                    entities.Entry<OrderDelivery>(entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
             catch (Exception ex)
             {
-                if (base.IsSilent)
+                if (!base.IsSilent)
                 {
                     await Task.Run(() =>
                     {
@@ -1342,6 +1368,7 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.DeleteOrderDeliveryByID(base.TargetObject.ID);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1437,21 +1464,18 @@ namespace XtremePharmacyManager
             {
                 foreach(BulkOperation<T> bulk_operation in bulk_operations)
                 {
-                    if (bulk_operation.TargetObject.GetType() == typeof(T))
+                    bool result = await bulk_operation.Execute();
+                    operation_log += $"Executing operation: {bulk_operation.OperationName}\n";
+                    if (result == true)
                     {
-                        bool result = await bulk_operation.Execute();
-                        operation_log += $"Executing operation: {bulk_operation.OperationName}\n";
-                        if (result == true)
-                        {
-                            completed_operations++;
-                            operation_log += $"Operation successful.Output: {bulk_operation.SuccessMessage}\n";
-                        }
-                        else
-                        {
-                            failed_operations++;
-                            operation_log += $"Operation failed. Here are details:\nError Code:{bulk_operation.ErrorCode}\n" +
-                                $"ErrorMessage:{bulk_operation.ErrorMessage}\nStackTrace: {bulk_operation.StackTrace}\n";
-                        }
+                        completed_operations++;
+                        operation_log += $"Operation successful.Output: {bulk_operation.SuccessMessage}\n";
+                    }
+                    else
+                    {
+                        failed_operations++;
+                        operation_log += $"Operation failed. Here are details:\nError Code:{bulk_operation.ErrorCode}\n" +
+                            $"ErrorMessage:{bulk_operation.ErrorMessage}\nStackTrace: {bulk_operation.StackTrace}\n";
                     }
                 }
             }
@@ -1469,7 +1493,7 @@ namespace XtremePharmacyManager
 
         public void AddOperation(BulkOperation<T> bulk_operation)
         {
-            if (bulk_operation != null && bulk_operation.TargetObject.GetType() == typeof(T) && !bulk_operations.Contains(bulk_operation))
+            if (bulk_operation != null && !bulk_operations.Contains(bulk_operation))
             { // don't allow any operation of type that is not of the type of the manager to be added
                 bulk_operations.Add(bulk_operation);  
             }
@@ -1485,7 +1509,7 @@ namespace XtremePharmacyManager
 
         public void RemoveOperation(BulkOperation<T> bulk_operation)
         {   //Look what I did on the add opration method, same is here but for removing bulk operation
-            if(bulk_operation != null && bulk_operation.TargetObject.GetType() == typeof(T) && bulk_operations.Contains(bulk_operation))
+            if(bulk_operation != null && bulk_operations.Contains(bulk_operation))
             {
                 int operation_index = bulk_operations.IndexOf(bulk_operation);
                 bulk_operations.RemoveAt(operation_index);
@@ -1502,7 +1526,7 @@ namespace XtremePharmacyManager
 
         public void UpdateOperation(BulkOperation<T> bulk_operation)
         {   //Look what I did on the add opration method and remove operation, same is here but for updating bulk operation
-            if (bulk_operation != null && bulk_operation.TargetObject.GetType() == typeof(T) && bulk_operations.Contains(bulk_operation))
+            if (bulk_operation != null && bulk_operations.Contains(bulk_operation))
             {
                 int operation_index = bulk_operations.IndexOf(bulk_operation);
                 bulk_operations[operation_index] = bulk_operation;
@@ -1519,7 +1543,7 @@ namespace XtremePharmacyManager
 
         public void UpdateAllOperations(BulkOperation<T> bulk_operation)
         {   //This safely update everything according to the updating operation method
-            if (bulk_operation != null && bulk_operation.TargetObject.GetType() == typeof(T))
+            if (bulk_operation != null)
             {
                 for(int i = 0; i<bulk_operations.Count; i++)
                 {

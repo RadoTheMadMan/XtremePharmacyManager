@@ -131,7 +131,7 @@ namespace XtremePharmacyManager
                 {
                     if (userssearchform == null)
                     {
-                        userssearchform = new frmSearchUsers(ref entities, ref logger);
+                        userssearchform = new frmSearchUsers(ref entities, ref logger, ref bulkUserOperationManager);
                         userssearchform.MdiParent = this;
                         userssearchform.FormClosed += Usersearchform_FormClosed;
                         userssearchform.Show();

@@ -19,11 +19,13 @@ namespace XtremePharmacyManager
     {
         static Entities ent;
         static List<User> users;
-        static  Logger logger;
-        public frmSearchUsers(ref Entities entity, ref Logger extlogger)
+        static Logger logger;
+        static BulkOperationManager<User> manager;
+        public frmSearchUsers(ref Entities entity, ref Logger extlogger, ref BulkOperationManager<User> bulkusermanager)
         {
             ent = entity;
             logger = extlogger;
+            manager = bulkusermanager;
             InitializeComponent();
         }
 
@@ -134,11 +136,20 @@ namespace XtremePharmacyManager
                                         RefreshUsers();
                                     }
                                 }
+                                else
+                                {
+                                    if(MessageBox.Show("Do you want to add this as a bulk operation?","Bulk Operations",MessageBoxButtons.YesNo,MessageBoxIcon.Question)  == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        manager.AddOperation(new BulkUserOperation(BulkOperationType.UPDATE, ref ent, selectedUser, true));
+                                    }
+                                }
                             }
                             else
                             {
                                 //Create a new user
                                 selectedUser = new User();
+                                //show the editor and after the editor confirms add it
                                 DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
                                 if (res == DialogResult.OK)
                                 {
@@ -151,7 +162,14 @@ namespace XtremePharmacyManager
                                         RefreshUsers();
                                     }
                                 }
-                                //show the editor and after the editor confirms add it
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        manager.AddOperation(new BulkUserOperation(BulkOperationType.ADD, ref ent, selectedUser, true));
+                                    }
+                                }
                             }
                         }
                         else
@@ -167,6 +185,14 @@ namespace XtremePharmacyManager
                                         selectedUser.UserDiagnose, selectedUser.UserRole);
                                     ent.SaveChanges();
                                     RefreshUsers();
+                                }
+                            }
+                            else // or add it as a bulk operation
+                            {
+                                if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    //on user prompt add a silent operation by default
+                                    manager.AddOperation(new BulkUserOperation(BulkOperationType.ADD, ref ent, selectedUser, true));
                                 }
                             }
                         }
@@ -185,6 +211,14 @@ namespace XtremePharmacyManager
                                 selectedUser.UserDiagnose, selectedUser.UserRole);
                             ent.SaveChanges();
                             RefreshUsers();
+                        }
+                    }
+                    else // or add it as a bulk operation
+                    {
+                        if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            //on user prompt add a silent operation by default
+                            manager.AddOperation(new BulkUserOperation(BulkOperationType.ADD, ref ent, selectedUser, true));
                         }
                     }
                 }
@@ -226,6 +260,14 @@ namespace XtremePharmacyManager
                                         ent.DeleteUserByID(selectedUser.ID);
                                         ent.SaveChanges();
                                         RefreshUsers();
+                                    }
+                                }
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        manager.AddOperation(new BulkUserOperation(BulkOperationType.DELETE, ref ent, selectedUser, true));
                                     }
                                 }
                             }
