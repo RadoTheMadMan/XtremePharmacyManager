@@ -249,10 +249,6 @@ namespace XtremePharmacyManager
             base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }
 
-        private PropertyChangedEventHandler OnTargetObjectChanged(EventArgs eventArgs)
-        {
-            throw new NotImplementedException();
-        }
 
         public override void UpdateName()
         {

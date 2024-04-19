@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -28,10 +30,14 @@ namespace XtremePharmacyManager
         {
             try
             {
+                using(var context = new DbContext(ent.Database.Connection.ConnectionString))
+                {
+                    context.Entry(ent).Reload();
+                }
                 //Never try to execute any function if it is not online
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
-                    users = ent.GetUser(-1,"","","",new DateTime(),new DateTime(),"","","",0,"",new DateTime(),new DateTime(), 0).ToList();
+                    users = ent.GetUser(-1, "", "", "", DateTime.Now, DateTime.Now, "", "", "", new decimal(), "", DateTime.Now, DateTime.Now, 0).ToList();
                     dgvUsers.DataSource = users;
                 }
             }
