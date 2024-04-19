@@ -33,7 +33,8 @@ namespace XtremePharmacyManager
         {
             lstBulkOperations.DataSource = null;
             lstBulkOperations.DataSource = e.OperationsList;
-            lblOperationResults.Text = lblOperationResults.Text + e.Result;
+            lblOperationResults.Text = e.Result;
+            txtOperationLogs.Text = e.OperationLog;
         }
 
         private void OnBulkOperationListChanged(object sender, BulkOperationEventArgs<User> e)
@@ -41,6 +42,7 @@ namespace XtremePharmacyManager
             lstBulkOperations.DataSource = null;
             lstBulkOperations.DataSource = e.OperationsList;
             lblOperationResults.Text = "Operation Results: ";
+            txtOperationLogs.Text = "";
         }
 
 
@@ -129,6 +131,7 @@ namespace XtremePharmacyManager
                 checkSilentOperation.Checked = selected_operation.IsSilent;
             }
             lblOperationResults.Text = "Operation Results: ";
+            txtOperationLogs.Text = "";
         }
 
         private void btnAddOperation_Click(object sender, EventArgs e)
@@ -137,7 +140,7 @@ namespace XtremePharmacyManager
             BulkOperationType operationType = (BulkOperationType)cbOperationType.SelectedIndex;
             Bitmap current_image = (Bitmap)pbUserProfilePic.Image;
             byte[] image_bytes;
-            ConvertImageToBinary(current_image,out image_bytes);
+            ConvertImageToBinary(current_image, out image_bytes);
             //Because of the unique constraint of the user and password in the database the added users should not have
             //existing user credentials if they are added so that's why i am adding a prevention here
             bool UserCredentialMet = false;

@@ -102,7 +102,6 @@ namespace XtremePharmacyManager
                 result = true;
                 success_message = "Sample bulk create task executed successfully.";
                 Debug.WriteLineIf(result, success_message);
-                return result;
             }
             catch (Exception ex)
             {
@@ -126,9 +125,8 @@ namespace XtremePharmacyManager
                     error_message += "Inner exception details:\n" + ex.InnerException.Message + "\n";
                     stack_trace += ex.InnerException.StackTrace + "\n";
                 }
-                result = false;
-                return result;
             }
+            return result;
         }
 
         protected virtual async Task<bool> updateTask()
@@ -139,7 +137,6 @@ namespace XtremePharmacyManager
                 result = true;
                 success_message = "Sample bulk update task executed successfully.";
                 Debug.WriteLineIf(result, success_message);
-                return result;
             }
             catch (Exception ex)
             {
@@ -164,8 +161,8 @@ namespace XtremePharmacyManager
                     stack_trace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected virtual async Task<bool> deleteTask()
@@ -176,7 +173,6 @@ namespace XtremePharmacyManager
                 result = true;
                 success_message = "Sample bulk update task executed successfully.";
                 Debug.WriteLineIf(result, success_message);
-                return result;
             }
             catch (Exception ex)
             {
@@ -201,8 +197,8 @@ namespace XtremePharmacyManager
                     stack_trace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected virtual async Task<bool> customTask()
@@ -213,7 +209,6 @@ namespace XtremePharmacyManager
                 result = true;
                 success_message = "Sample custom bulk task executed successfully.";
                 Debug.WriteLineIf(result, success_message);
-                return result;
             }
             catch (Exception ex)
             {
@@ -238,8 +233,8 @@ namespace XtremePharmacyManager
                     stack_trace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
     }
@@ -269,6 +264,7 @@ namespace XtremePharmacyManager
             bool result = false;
             try
             {
+                result = true;
                 base.SuccessMessage = "User has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
@@ -277,7 +273,6 @@ namespace XtremePharmacyManager
                                      base.TargetObject.UserRole);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -302,8 +297,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected override async Task<bool> updateTask()
@@ -320,7 +315,6 @@ namespace XtremePharmacyManager
                                      base.TargetObject.UserRole);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -345,8 +339,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected override async Task<bool> deleteTask()
@@ -361,7 +355,6 @@ namespace XtremePharmacyManager
                     entities.DeleteUserByID(base.TargetObject.ID);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -386,8 +379,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         //No custom task by default, if you want custom tasks inherit from this class
@@ -414,13 +407,13 @@ namespace XtremePharmacyManager
             bool result = false;
             try
             {
+                result = true;
                 base.SuccessMessage = "Product Brand has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.AddBrand(base.TargetObject.BrandName);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -445,8 +438,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected override async Task<bool> updateTask()
@@ -461,7 +454,6 @@ namespace XtremePharmacyManager
                     entities.UpdateBrandByID(base.TargetObject.ID, base.TargetObject.BrandName);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -486,8 +478,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected override async Task<bool> deleteTask()
@@ -502,7 +494,6 @@ namespace XtremePharmacyManager
                     entities.DeleteBrandByID(base.TargetObject.ID);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -527,8 +518,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         //No custom task by default, if you want custom tasks inherit from this class
@@ -555,13 +546,13 @@ namespace XtremePharmacyManager
             bool result = false;
             try
             {
+                result = true;
                 base.SuccessMessage = "Payment Method has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.AddPaymentMethod(base.TargetObject.MethodName);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -586,8 +577,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected override async Task<bool> updateTask()
@@ -627,8 +618,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected override async Task<bool> deleteTask()
@@ -643,7 +634,6 @@ namespace XtremePharmacyManager
                     entities.DeletePaymentMethodByID(base.TargetObject.ID);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -668,8 +658,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         //No custom task by default, if you want custom tasks inherit from this class
@@ -696,13 +686,13 @@ namespace XtremePharmacyManager
             bool result = false;
             try
             {
+                result = true;
                 base.SuccessMessage = "Delivery Service has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.AddDeliveryService(base.TargetObject.ServiceName, base.TargetObject.ServicePrice);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -727,8 +717,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected override async Task<bool> updateTask()
@@ -743,7 +733,6 @@ namespace XtremePharmacyManager
                     entities.UpdateDeliveryServiceByID(base.TargetObject.ID, base.TargetObject.ServiceName, base.TargetObject.ServicePrice);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -768,8 +757,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected override async Task<bool> deleteTask()
@@ -784,7 +773,6 @@ namespace XtremePharmacyManager
                     entities.DeleteDeliveryServiceByID(base.TargetObject.ID);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -809,8 +797,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         //No custom task by default, if you want custom tasks inherit from this class
@@ -838,6 +826,7 @@ namespace XtremePharmacyManager
             bool result = false;
             try
             {
+                result = true;
                 base.SuccessMessage = "Product has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
@@ -846,7 +835,6 @@ namespace XtremePharmacyManager
                         base.TargetObject.ProductRegNum, base.TargetObject.ProductPartNum, base.TargetObject.ProductStorageLocation);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -871,8 +859,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected override async Task<bool> updateTask()
@@ -889,7 +877,6 @@ namespace XtremePharmacyManager
                         base.TargetObject.ProductRegNum, base.TargetObject.ProductPartNum, base.TargetObject.ProductStorageLocation);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -914,8 +901,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected override async Task<bool> deleteTask()
@@ -930,7 +917,6 @@ namespace XtremePharmacyManager
                     entities.DeleteProductByID(base.TargetObject.ID);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -955,8 +941,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         //No custom task by default, if you want custom tasks inherit from this class
@@ -983,13 +969,13 @@ namespace XtremePharmacyManager
             bool result = false;
             try
             {
+                result = true;
                 base.SuccessMessage = "Product Image has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.AddProductImage(base.TargetObject.ProductID,base.TargetObject.ImageName,base.TargetObject.ImageData);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -1014,8 +1000,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected override async Task<bool> updateTask()
@@ -1030,7 +1016,6 @@ namespace XtremePharmacyManager
                     entities.UpdateProductImageByID(base.TargetObject.ID,base.TargetObject.ProductID, base.TargetObject.ImageName, base.TargetObject.ImageData);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -1055,8 +1040,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected override async Task<bool> deleteTask()
@@ -1071,7 +1056,6 @@ namespace XtremePharmacyManager
                     entities.DeleteProductImageByID(base.TargetObject.ID);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -1096,8 +1080,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         //No custom task by default, if you want custom tasks inherit from this class
@@ -1126,6 +1110,7 @@ namespace XtremePharmacyManager
             bool result = false;
             try
             {
+                result = true;
                 base.SuccessMessage = "Product Order has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
@@ -1269,6 +1254,7 @@ namespace XtremePharmacyManager
             bool result = false;
             try
             {
+                result = true;
                 base.SuccessMessage = "Order Delivery has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
@@ -1276,7 +1262,6 @@ namespace XtremePharmacyManager
                         base.TargetObject.CargoID,base.TargetObject.DeliveryReason);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -1301,8 +1286,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected override async Task<bool> updateTask()
@@ -1318,7 +1303,6 @@ namespace XtremePharmacyManager
                         base.TargetObject.CargoID, base.TargetObject.DeliveryStatus , base.TargetObject.DeliveryReason);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -1343,8 +1327,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         protected override async Task<bool> deleteTask()
@@ -1359,7 +1343,6 @@ namespace XtremePharmacyManager
                     entities.DeleteOrderDeliveryByID(base.TargetObject.ID);
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
-                return result;
             }
             catch (Exception ex)
             {
@@ -1384,8 +1367,8 @@ namespace XtremePharmacyManager
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
-                return result;
             }
+            return result;
         }
 
         //No custom task by default, if you want custom tasks inherit from this class
@@ -1398,6 +1381,7 @@ namespace XtremePharmacyManager
         public int CompletedOperations = 0;
         public int FailedOperations = 0;
         public string Result = "";
+        public string OperationLog = "";
         public Entities Entities = new Entities();
     }
 
@@ -1405,18 +1389,20 @@ namespace XtremePharmacyManager
     {
         ObservableCollection<BulkOperation<T>> bulk_operations;
         static Entities entities;
-        static int completed_operations = 0;
-        static int failed_operations = 0;
-        static string result = "";
+        int completed_operations = 0;
+        int failed_operations = 0;
+        string result = "";
+        string operation_log = "";
         public EventHandler<BulkOperationEventArgs<T>> BulkOperationsExecuted;
         public EventHandler<BulkOperationEventArgs<T>> BulkOperationAdded;
         public EventHandler<BulkOperationEventArgs<T>> BulkOperationRemoved;
         public EventHandler<BulkOperationEventArgs<T>> BulkOperationUpdated;
-        public Entities Entities { get { return entities; } }
+        public  Entities Entities { get { return entities; } }
         public ObservableCollection<BulkOperation<T>> BulkOperations { get { return bulk_operations; } }
         public int CompletedOperations { get { return completed_operations; } }
         public int FailedOperations { get { return failed_operations; } }
         public string Result { get { return result; } }
+        public string OperationLog { get { return operation_log; } }
 
         public BulkOperationManager(ref Entities ext_entities)
         {
@@ -1425,6 +1411,7 @@ namespace XtremePharmacyManager
             completed_operations = 0;
             failed_operations = 0;
             result = "";
+            operation_log = "";
         }
         public BulkOperationManager(ref Entities ext_entities, ref ObservableCollection<BulkOperation<T>> operations)
         {
@@ -1440,6 +1427,7 @@ namespace XtremePharmacyManager
             completed_operations = 0;
             failed_operations = 0;
             result = "";
+            operation_log = "";
         }
 
         public async void ExecuteOperations()
@@ -1451,24 +1439,29 @@ namespace XtremePharmacyManager
                     if (bulk_operation.TargetObject.GetType() == typeof(T))
                     {
                         bool result = await bulk_operation.Execute();
+                        operation_log += $"Executing operation: {bulk_operation.OperationName}\n";
                         if (result == true)
                         {
                             completed_operations++;
+                            operation_log += $"Operation successful.Output: {bulk_operation.SuccessMessage}\n";
                         }
                         else
                         {
                             failed_operations++;
+                            operation_log += $"Operation failed. Here are details:\nError Code:{bulk_operation.ErrorCode}\n" +
+                                $"ErrorMessage:{bulk_operation.ErrorMessage}\nStackTrace: {bulk_operation.StackTrace}\n";
                         }
                     }
                 }
             }
             bulk_operations.Clear();
-            result = $"Operations Result:\nCompleted Operations: {completed_operations} Failed Operations: {failed_operations}";
+            result = $"Operations Results:\nCompleted Operations: {completed_operations} Failed Operations: {failed_operations}";
             BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
             ev_args.OperationsList = bulk_operations;
             ev_args.CompletedOperations = completed_operations;
             ev_args.FailedOperations = failed_operations;
             ev_args.Result = result;
+            ev_args.OperationLog = operation_log;
             ev_args.Entities = entities;
             InvokeBulkOperationsExecutedEvent(this,ev_args);
         }
@@ -1501,6 +1494,7 @@ namespace XtremePharmacyManager
             ev_args.CompletedOperations = completed_operations;
             ev_args.FailedOperations = failed_operations;
             ev_args.Result = result;
+            ev_args.OperationLog = operation_log;
             ev_args.Entities = entities;
             InvokeBulkOperationRemovedEvent(this, ev_args);
         }
@@ -1517,6 +1511,7 @@ namespace XtremePharmacyManager
             ev_args.CompletedOperations = completed_operations;
             ev_args.FailedOperations = failed_operations;
             ev_args.Result = result;
+            ev_args.OperationLog = operation_log;
             ev_args.Entities = entities;
             InvokeBulkOperationUpdatedEvent(this, ev_args);
         }
@@ -1535,6 +1530,7 @@ namespace XtremePharmacyManager
             ev_args.CompletedOperations = completed_operations;
             ev_args.FailedOperations = failed_operations;
             ev_args.Result = result;
+            ev_args.OperationLog = operation_log;
             ev_args.Entities = entities;
             InvokeBulkOperationUpdatedEvent(this, ev_args);
         }
