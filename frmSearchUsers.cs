@@ -129,6 +129,7 @@ namespace XtremePharmacyManager
                                         ent.UpdateUserByID(selectedUser.ID, selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName,
                                             selectedUser.UserBirthDate, selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic,
                                             selectedUser.UserBalance, selectedUser.UserDiagnose, selectedUser.UserRole);
+                                        ent.SaveChanges();
                                         RefreshUsers();
                                     }
                                 }
@@ -145,6 +146,7 @@ namespace XtremePharmacyManager
                                         ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
                                             selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
                                             selectedUser.UserDiagnose, selectedUser.UserRole);
+                                        ent.SaveChanges();
                                         RefreshUsers();
                                     }
                                 }
@@ -162,6 +164,7 @@ namespace XtremePharmacyManager
                                     ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
                                         selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
                                         selectedUser.UserDiagnose, selectedUser.UserRole);
+                                    ent.SaveChanges();
                                     RefreshUsers();
                                 }
                             }
@@ -179,6 +182,7 @@ namespace XtremePharmacyManager
                             ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
                                 selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
                                 selectedUser.UserDiagnose, selectedUser.UserRole);
+                            ent.SaveChanges();
                             RefreshUsers();
                         }
                     }
@@ -219,6 +223,7 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteUserByID(selectedUser.ID);
+                                        ent.SaveChanges();
                                         RefreshUsers();
                                     }
                                 }

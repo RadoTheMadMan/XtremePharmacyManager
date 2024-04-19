@@ -267,6 +267,7 @@ namespace XtremePharmacyManager
                     entities.AddUser(base.TargetObject.UserName, base.TargetObject.UserPassword, base.TargetObject.UserDisplayName, base.TargetObject.UserBirthDate, base.TargetObject.UserPhone,
                                      base.TargetObject.UserEmail, base.TargetObject.UserAddress, base.TargetObject.UserProfilePic, base.TargetObject.UserBalance, base.TargetObject.UserDiagnose,
                                      base.TargetObject.UserRole);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -309,6 +310,7 @@ namespace XtremePharmacyManager
                     entities.UpdateUserByID(base.TargetObject.ID, base.TargetObject.UserName, base.TargetObject.UserPassword, base.TargetObject.UserDisplayName, base.TargetObject.UserBirthDate, base.TargetObject.UserPhone,
                                      base.TargetObject.UserEmail, base.TargetObject.UserAddress, base.TargetObject.UserProfilePic, base.TargetObject.UserBalance, base.TargetObject.UserDiagnose,
                                      base.TargetObject.UserRole);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -349,6 +351,7 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.DeleteUserByID(base.TargetObject.ID);
+                    entities.SaveChanges();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
