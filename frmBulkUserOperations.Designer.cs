@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.txtOperationLogs = new System.Windows.Forms.RichTextBox();
             this.lblUserNotice = new System.Windows.Forms.Label();
             this.checkSilentOperation = new System.Windows.Forms.CheckBox();
             this.lblOperationResults = new System.Windows.Forms.Label();
@@ -68,7 +69,6 @@
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtOperationLogs = new System.Windows.Forms.RichTextBox();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).BeginInit();
@@ -121,6 +121,14 @@
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(800, 726);
             this.pnlData.TabIndex = 0;
+            // 
+            // txtOperationLogs
+            // 
+            this.txtOperationLogs.Location = new System.Drawing.Point(22, 492);
+            this.txtOperationLogs.Name = "txtOperationLogs";
+            this.txtOperationLogs.Size = new System.Drawing.Size(766, 122);
+            this.txtOperationLogs.TabIndex = 46;
+            this.txtOperationLogs.Text = "";
             // 
             // lblUserNotice
             // 
@@ -336,7 +344,7 @@
             this.trbBalance.Location = new System.Drawing.Point(475, 18);
             this.trbBalance.Maximum = 5000;
             this.trbBalance.Name = "trbBalance";
-            this.trbBalance.Size = new System.Drawing.Size(259, 189);
+            this.trbBalance.Size = new System.Drawing.Size(259, 56);
             this.trbBalance.TabIndex = 21;
             this.trbBalance.TickStyle = System.Windows.Forms.TickStyle.None;
             // 
@@ -516,7 +524,6 @@
             // 
             this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtID.Enabled = false;
             this.txtID.Location = new System.Drawing.Point(136, 14);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(258, 22);
@@ -541,14 +548,6 @@
             // errBulkProvider
             // 
             this.errBulkProvider.ContainerControl = this;
-            // 
-            // txtOperationLogs
-            // 
-            this.txtOperationLogs.Location = new System.Drawing.Point(22, 492);
-            this.txtOperationLogs.Name = "txtOperationLogs";
-            this.txtOperationLogs.Size = new System.Drawing.Size(766, 122);
-            this.txtOperationLogs.TabIndex = 46;
-            this.txtOperationLogs.Text = "";
             // 
             // frmBulkUserOperations
             // 
