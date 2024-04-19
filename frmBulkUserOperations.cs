@@ -141,45 +141,21 @@ namespace XtremePharmacyManager
             Bitmap current_image = (Bitmap)pbUserProfilePic.Image;
             byte[] image_bytes;
             ConvertImageToBinary(current_image, out image_bytes);
-            //Because of the unique constraint of the user and password in the database the added users should not have
-            //existing user credentials if they are added so that's why i am adding a prevention here
-            bool UserCredentialMet = false;
-            foreach(BulkUserOperation operation in manager.BulkOperations)
+            manager.AddOperation(new BulkUserOperation(operationType, ref manager_entities, new User()
             {
-                if((operation.TargetObject.UserName == txtUsername.Text || operation.TargetObject.UserPassword == txtPassword.Text) ||
-                   (operation.TargetObject.UserName == txtUsername.Text && operation.TargetObject.UserPassword == txtPassword.Text))
-                {
-                    UserCredentialMet = true;
-                    break;
-                }
-                else
-                {
-                    UserCredentialMet = false;
-                }
-            }
-            if (!UserCredentialMet)
-            {
-                manager.AddOperation(new BulkUserOperation(operationType, ref manager_entities, new User()
-                {
-                    ID = -1,
-                    UserName = txtUsername.Text,
-                    UserPassword = txtPassword.Text,
-                    UserDisplayName = txtDisplayName.Text,
-                    UserBirthDate = dtBirthDate.Value,
-                    UserPhone = txtPhone.Text,
-                    UserEmail = txtEmail.Text,
-                    UserAddress = txtAddress.Text,
-                    UserProfilePic = image_bytes,
-                    UserBalance = Convert.ToDecimal(trbBalance.Value),
-                    UserDiagnose = txtDiagnose.Text,
-                    UserRole = cbRole.SelectedIndex
-                }, IsSilent));
-            }
-            else
-            {
-                errBulkProvider.SetError(txtUsername, "Username and/or password already exist.");
-                errBulkProvider.SetError(txtPassword, "Username and/or password already exist.");
-            }
+                ID = -1,
+                UserName = txtUsername.Text,
+                UserPassword = txtPassword.Text,
+                UserDisplayName = txtDisplayName.Text,
+                UserBirthDate = dtBirthDate.Value,
+                UserPhone = txtPhone.Text,
+                UserEmail = txtEmail.Text,
+                UserAddress = txtAddress.Text,
+                UserProfilePic = image_bytes,
+                UserBalance = Convert.ToDecimal(trbBalance.Value),
+                UserDiagnose = txtDiagnose.Text,
+                UserRole = cbRole.SelectedIndex
+            }, IsSilent));
         }
 
         private void btnRemoveOperation_Click(object sender, EventArgs e)
