@@ -104,13 +104,19 @@ namespace XtremePharmacyManager
         {
             try
             {
-                selected_target.ServiceName = txtServiceName.Text;
-                selected_target.ServicePrice = trbPrice.Value;
-                selected_operation.TargetObject = selected_target;
-                selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
-                selected_operation.IsSilent = checkSilentOperation.Checked;
-                selected_operation.UpdateName();
-                manager.UpdateAllOperations(selected_operation);
+                if (selected_target != null)
+                {
+                    selected_target.ServiceName = txtServiceName.Text;
+                    selected_target.ServicePrice = trbPrice.Value;
+                }
+                if (selected_operation != null)
+                {
+                    selected_operation.TargetObject = selected_target;
+                    selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
+                    selected_operation.IsSilent = checkSilentOperation.Checked;
+                    selected_operation.UpdateName();
+                    manager.UpdateAllOperations(selected_operation);
+                }
             }
             catch (Exception ex)
             {

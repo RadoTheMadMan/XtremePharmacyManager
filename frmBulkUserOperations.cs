@@ -114,26 +114,32 @@ namespace XtremePharmacyManager
         {
             try
             {
-                selected_target.UserDisplayName = txtDisplayName.Text;
-                selected_target.UserBirthDate = dtBirthDate.Value;
-                selected_target.UserPhone = txtPhone.Text;
-                selected_target.UserEmail = txtEmail.Text;
-                selected_target.UserAddress = txtAddress.Text;
-                selected_target.UserBalance = trbBalance.Value;
-                selected_target.UserDiagnose = txtDiagnose.Text;
-                selected_target.UserRole = cbRole.SelectedIndex;
-                if (pbUserProfilePic.Image != null)
+                if (selected_target != null)
                 {
-                    Bitmap current_image = (Bitmap)pbUserProfilePic.Image;
-                    byte[] image_data;
-                    ConvertImageToBinary(current_image, out image_data);
-                    selected_target.UserProfilePic = image_data;
+                    selected_target.UserDisplayName = txtDisplayName.Text;
+                    selected_target.UserBirthDate = dtBirthDate.Value;
+                    selected_target.UserPhone = txtPhone.Text;
+                    selected_target.UserEmail = txtEmail.Text;
+                    selected_target.UserAddress = txtAddress.Text;
+                    selected_target.UserBalance = trbBalance.Value;
+                    selected_target.UserDiagnose = txtDiagnose.Text;
+                    selected_target.UserRole = cbRole.SelectedIndex;
+                    if (pbUserProfilePic.Image != null)
+                    {
+                        Bitmap current_image = (Bitmap)pbUserProfilePic.Image;
+                        byte[] image_data;
+                        ConvertImageToBinary(current_image, out image_data);
+                        selected_target.UserProfilePic = image_data;
+                    }
                 }
-                selected_operation.TargetObject = selected_target;
-                selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
-                selected_operation.IsSilent = checkSilentOperation.Checked;
-                selected_operation.UpdateName();
-                manager.UpdateAllOperations(selected_operation);
+                if (selected_operation != null)
+                {
+                    selected_operation.TargetObject = selected_target;
+                    selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
+                    selected_operation.IsSilent = checkSilentOperation.Checked;
+                    selected_operation.UpdateName();
+                    manager.UpdateAllOperations(selected_operation);
+                };
             }
             catch (Exception ex)
             {

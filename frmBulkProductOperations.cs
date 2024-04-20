@@ -36,6 +36,7 @@ namespace XtremePharmacyManager
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
                 cbSelectRecord.DataSource = manager_entities.Products.ToList();
+                cbBrand.DataSource = manager_entities.ProductBrands.ToList();
                 lblOperationResults.Text = e.Result;
                 txtOperationLogs.Text = e.OperationLog;
             }
@@ -52,6 +53,7 @@ namespace XtremePharmacyManager
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
                 cbSelectRecord.DataSource = manager_entities.Products.ToList();
+                cbBrand.DataSource = manager_entities.ProductBrands.ToList();
                 lblOperationResults.Text = "Operation Results: ";
                 txtOperationLogs.Text = "";
             }
@@ -69,17 +71,25 @@ namespace XtremePharmacyManager
             Bitmap currentpfp = new Bitmap(64, 64);
             lstBulkOperations.DataSource = manager.BulkOperations;
             cbSelectRecord.DataSource = manager_entities.Products.ToList();
+            cbBrand.DataSource = manager_entities.ProductBrands.ToList();
             try
             {
                 if (selected_operation != null && selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtProductName.Text = (!String.IsNullOrEmpty(selected_target.ProductName)) ? selected_target.ProductName.ToString() : string.Empty;
+                    this.txtProductDescription.Text = (!String.IsNullOrEmpty(selected_target.ProductDescription)) ? selected_target.ProductDescription.ToString() : string.Empty;
+                    this.txtRegNum.Text = (!String.IsNullOrEmpty(selected_target.ProductRegNum)) ? selected_target.ProductRegNum.ToString() : string.Empty;
+                    this.txtPartNum.Text = (!String.IsNullOrEmpty(selected_target.ProductPartNum)) ? selected_target.ProductPartNum.ToString() : string.Empty;
+                    this.txtStorageLocation.Text = (!String.IsNullOrEmpty(selected_target.ProductStorageLocation)) ? selected_target.ProductStorageLocation.ToString() : string.Empty;
+                    dtExpiryDate.Value = (selected_target.ProductExpiryDate>= DateTime.MinValue && selected_target.ProductExpiryDate <= DateTime.MaxValue) ? selected_target.ProductExpiryDate : DateTime.Now;
                     this.trbPrice.Value = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_target.ProductPrice) : 0;
+                    this.trbQuantity.Value = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity : 0;
                     this.lblShowPrice.Text = (selected_target.ProductPrice >= 0) ? selected_target.ProductPrice.ToString() : string.Empty;
+                    this.lblShowQuantity.Text = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
+                    cbBrand.SelectedValue = selected_target.BrandID;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
-                    cbSelectRecord.SelectedValue = selected_target.ID;
                 }
             }
             catch (Exception ex)
@@ -104,13 +114,26 @@ namespace XtremePharmacyManager
         {
             try
             {
-                selected_target.ProductName = txtProductName.Text;
-                selected_target.ProductPrice = trbPrice.Value;
-                selected_operation.TargetObject = selected_target;
-                selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
-                selected_operation.IsSilent = checkSilentOperation.Checked;
-                selected_operation.UpdateName();
-                manager.UpdateAllOperations(selected_operation);
+                if (selected_target != null)
+                {
+                    selected_target.ProductName = txtProductName.Text;
+                    selected_target.BrandID = Int32.Parse(cbBrand.SelectedValue.ToString());
+                    selected_target.ProductDescription = txtProductDescription.Text;
+                    selected_target.ProductQuantity = trbQuantity.Value;
+                    selected_target.ProductPrice = trbPrice.Value;
+                    selected_target.ProductExpiryDate = dtExpiryDate.Value;
+                    selected_target.ProductRegNum = txtRegNum.Text;
+                    selected_target.ProductPartNum = txtPartNum.Text;
+                    selected_target.ProductStorageLocation = txtStorageLocation.Text;
+                }
+                if (selected_operation != null)
+                {
+                    selected_operation.TargetObject = selected_target;
+                    selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
+                    selected_operation.IsSilent = checkSilentOperation.Checked;
+                    selected_operation.UpdateName();
+                    manager.UpdateAllOperations(selected_operation);
+                }
             }
             catch (Exception ex)
             {
@@ -132,11 +155,18 @@ namespace XtremePharmacyManager
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtProductName.Text = (!String.IsNullOrEmpty(selected_target.ProductName)) ? selected_target.ProductName.ToString() : string.Empty;
+                    this.txtProductDescription.Text = (!String.IsNullOrEmpty(selected_target.ProductDescription)) ? selected_target.ProductDescription.ToString() : string.Empty;
+                    this.txtRegNum.Text = (!String.IsNullOrEmpty(selected_target.ProductRegNum)) ? selected_target.ProductRegNum.ToString() : string.Empty;
+                    this.txtPartNum.Text = (!String.IsNullOrEmpty(selected_target.ProductPartNum)) ? selected_target.ProductPartNum.ToString() : string.Empty;
+                    this.txtStorageLocation.Text = (!String.IsNullOrEmpty(selected_target.ProductStorageLocation)) ? selected_target.ProductStorageLocation.ToString() : string.Empty;
+                    dtExpiryDate.Value = (selected_target.ProductExpiryDate >= DateTime.MinValue && selected_target.ProductExpiryDate <= DateTime.MaxValue) ? selected_target.ProductExpiryDate : DateTime.Now;
                     this.trbPrice.Value = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_target.ProductPrice) : 0;
+                    this.trbQuantity.Value = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity : 0;
                     this.lblShowPrice.Text = (selected_target.ProductPrice >= 0) ? selected_target.ProductPrice.ToString() : string.Empty;
+                    this.lblShowQuantity.Text = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
+                    cbBrand.SelectedValue = selected_target.BrandID;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
-                    cbSelectRecord.SelectedValue = selected_target.ID;
                 }
                 lblOperationResults.Text = "Operation Results: ";
                 txtOperationLogs.Text = "";
@@ -157,8 +187,14 @@ namespace XtremePharmacyManager
                 {
                     ID = Int32.Parse(txtID.Text),
                     ProductName = txtProductName.Text,
-                    ProductPrice = trbPrice.Value
-            }, IsSilent)) ;
+                    ProductDescription = txtProductDescription.Text,
+                    ProductQuantity = trbQuantity.Value,
+                    ProductPrice = trbPrice.Value,
+                    ProductExpiryDate = dtExpiryDate.Value,
+                    ProductRegNum = txtRegNum.Text,
+                    ProductPartNum = txtPartNum.Text,
+                    ProductStorageLocation = txtStorageLocation.Text,
+                }, IsSilent)) ;
             }
             catch(Exception ex)
             {
@@ -191,7 +227,14 @@ namespace XtremePharmacyManager
                 if (selected_target != null)
                 {
                     selected_target.ProductName = txtProductName.Text;
+                    selected_target.BrandID = Int32.Parse(cbBrand.SelectedValue.ToString());
+                    selected_target.ProductDescription = txtProductDescription.Text;
+                    selected_target.ProductQuantity = trbQuantity.Value;
                     selected_target.ProductPrice = trbPrice.Value;
+                    selected_target.ProductExpiryDate = dtExpiryDate.Value;
+                    selected_target.ProductRegNum = txtRegNum.Text;
+                    selected_target.ProductPartNum = txtPartNum.Text;
+                    selected_target.ProductStorageLocation = txtStorageLocation.Text;
                 }
                 if (selected_operation != null)
                 {
@@ -224,9 +267,17 @@ namespace XtremePharmacyManager
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtProductName.Text = (!String.IsNullOrEmpty(selected_target.ProductName)) ? selected_target.ProductName.ToString() : string.Empty;
+                    this.txtProductDescription.Text = (!String.IsNullOrEmpty(selected_target.ProductDescription)) ? selected_target.ProductDescription.ToString() : string.Empty;
+                    this.txtRegNum.Text = (!String.IsNullOrEmpty(selected_target.ProductRegNum)) ? selected_target.ProductRegNum.ToString() : string.Empty;
+                    this.txtPartNum.Text = (!String.IsNullOrEmpty(selected_target.ProductPartNum)) ? selected_target.ProductPartNum.ToString() : string.Empty;
+                    this.txtStorageLocation.Text = (!String.IsNullOrEmpty(selected_target.ProductStorageLocation)) ? selected_target.ProductStorageLocation.ToString() : string.Empty;
+                    dtExpiryDate.Value = (selected_target.ProductExpiryDate >= DateTime.MinValue && selected_target.ProductExpiryDate <= DateTime.MaxValue) ? selected_target.ProductExpiryDate : DateTime.Now;
                     this.trbPrice.Value = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_target.ProductPrice) : 0;
+                    this.trbQuantity.Value = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity : 0;
                     this.lblShowPrice.Text = (selected_target.ProductPrice >= 0) ? selected_target.ProductPrice.ToString() : string.Empty;
+                    this.lblShowQuantity.Text = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
+                    cbBrand.SelectedValue = selected_target.BrandID;
                 }
             }
             catch (Exception ex)
