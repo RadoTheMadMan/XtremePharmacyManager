@@ -12,13 +12,13 @@ using XtremePharmacyManager.DataEntities;
 using static XtremePharmacyManager.ImageBinConverter;
 namespace XtremePharmacyManager
 {
-    public partial class frmBulkPaymentMethodOperations : Form
+    public partial class frmBulkDeliveryServiceOperations : Form
     {
-        static BulkOperationManager<PaymentMethod> manager;
-        BulkOperation<PaymentMethod> selected_operation;
-        PaymentMethod selected_target;
+        static BulkOperationManager<DeliveryService> manager;
+        BulkOperation<DeliveryService> selected_operation;
+        DeliveryService selected_target;
         static Entities manager_entities;
-        public frmBulkPaymentMethodOperations(ref BulkOperationManager<PaymentMethod> operation_manager)
+        public frmBulkDeliveryServiceOperations(ref BulkOperationManager<DeliveryService> operation_manager)
         {
             InitializeComponent();
             manager = operation_manager;
@@ -29,13 +29,13 @@ namespace XtremePharmacyManager
             manager.BulkOperationUpdated += OnBulkOperationListChanged;
         }
 
-        private void OnBulkOperationExecuted(object sender, BulkOperationEventArgs<PaymentMethod> e)
+        private void OnBulkOperationExecuted(object sender, BulkOperationEventArgs<DeliveryService> e)
         {
             try
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.ProductBrands.ToList();
+                cbSelectRecord.DataSource = manager_entities.DeliveryServices.ToList();
                 lblOperationResults.Text = e.Result;
                 txtOperationLogs.Text = e.OperationLog;
             }
@@ -45,13 +45,13 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void OnBulkOperationListChanged(object sender, BulkOperationEventArgs<PaymentMethod> e)
+        private void OnBulkOperationListChanged(object sender, BulkOperationEventArgs<DeliveryService> e)
         {
             try
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.ProductBrands.ToList();
+                cbSelectRecord.DataSource = manager_entities.DeliveryServices.ToList();
                 lblOperationResults.Text = "Operation Results: ";
                 txtOperationLogs.Text = "";
             }
@@ -68,13 +68,17 @@ namespace XtremePharmacyManager
         {
             Bitmap currentpfp = new Bitmap(64, 64);
             lstBulkOperations.DataSource = manager.BulkOperations;
-            cbSelectRecord.DataSource = manager_entities.ProductBrands.ToList();
+            cbSelectRecord.DataSource = manager_entities.DeliveryServices.ToList();
             try
             {
                 if (selected_operation != null && selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    this.txtMethodName.Text = (!String.IsNullOrEmpty(selected_target.MethodName)) ? selected_target.MethodName.ToString() : string.Empty;
+                    this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_target.ServiceName)) ? selected_target.ServiceName.ToString() : string.Empty;
+                    this.trbPrice.Value = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice) : 0;
+                    this.lblShowPrice.Text = (selected_target.ServicePrice >= 0) ? selected_target.ServicePrice.ToString() : string.Empty;
+                    cbSelectRecord.SelectedValue = selected_target.ID;
+                    checkSilentOperation.Checked = selected_operation.IsSilent;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                 }
             }
@@ -100,7 +104,8 @@ namespace XtremePharmacyManager
         {
             try
             {
-                selected_target.MethodName = txtMethodName.Text;
+                selected_target.ServiceName = txtServiceName.Text;
+                selected_target.ServicePrice = trbPrice.Value;
                 selected_operation.TargetObject = selected_target;
                 selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
                 selected_operation.IsSilent = checkSilentOperation.Checked;
@@ -120,13 +125,16 @@ namespace XtremePharmacyManager
             {
                 if (current.SelectedItems.Count > 0 || (current.SelectedIndex >= 0 && current.SelectedIndex < current.Items.Count))
                 {
-                    selected_operation = current.Items[current.SelectedIndex] as BulkPaymentMethodOperation;
+                    selected_operation = current.Items[current.SelectedIndex] as BulkDeliveryServiceOperation;
                     selected_target = selected_operation.TargetObject;
                 }
                 if (selected_operation != null && selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    this.txtMethodName.Text = (!String.IsNullOrEmpty(selected_target.MethodName)) ? selected_target.MethodName.ToString() : string.Empty;
+                    this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_target.ServiceName)) ? selected_target.ServiceName.ToString() : string.Empty;
+                    this.trbPrice.Value = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice) : 0;
+                    this.lblShowPrice.Text = (selected_target.ServicePrice >= 0) ? selected_target.ServicePrice.ToString() : string.Empty;
+                    cbSelectRecord.SelectedValue = selected_target.ID;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                 }
@@ -145,11 +153,12 @@ namespace XtremePharmacyManager
             {
                 bool IsSilent = checkSilentOperation.Checked;
                 BulkOperationType operationType = (BulkOperationType)cbOperationType.SelectedIndex;
-                manager.AddOperation(new BulkPaymentMethodOperation(operationType, ref manager_entities, new PaymentMethod()
+                manager.AddOperation(new BulkDeliveryServiceOperation(operationType, ref manager_entities, new DeliveryService()
                 {
                     ID = Int32.Parse(txtID.Text),
-                    MethodName = txtMethodName.Text
-                }, IsSilent)) ;
+                    ServiceName = txtServiceName.Text,
+                    ServicePrice = trbPrice.Value
+            }, IsSilent)) ;
             }
             catch(Exception ex)
             {
@@ -181,7 +190,8 @@ namespace XtremePharmacyManager
             {
                 if (selected_target != null)
                 {
-                    selected_target.MethodName = txtMethodName.Text;
+                    selected_target.ServiceName = txtServiceName.Text;
+                    selected_target.ServicePrice = trbPrice.Value;
                 }
                 if (selected_operation != null)
                 {
@@ -209,11 +219,13 @@ namespace XtremePharmacyManager
         {
             try
             {
-                selected_target = manager_entities.PaymentMethods.Where(x => x.ID == ((PaymentMethod)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
+                selected_target = manager_entities.DeliveryServices.Where(x => x.ID == ((DeliveryService)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
                 if (selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    this.txtMethodName.Text = (!String.IsNullOrEmpty(selected_target.MethodName)) ? selected_target.MethodName.ToString() : string.Empty;
+                    this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_target.ServiceName)) ? selected_target.ServiceName.ToString() : string.Empty;
+                    this.trbPrice.Value = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice) : 0;
+                    this.lblShowPrice.Text = (selected_target.ServicePrice >= 0) ? selected_target.ServicePrice.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                 }
             }
@@ -221,6 +233,11 @@ namespace XtremePharmacyManager
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void trbPrice_Scroll(object sender, EventArgs e)
+        {
+            lblShowPrice.Text = ((TrackBar)sender).Value.ToString();
         }
     }
 }

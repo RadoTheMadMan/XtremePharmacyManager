@@ -1,6 +1,6 @@
 ﻿namespace XtremePharmacyManager
 {
-    partial class frmBulkPaymentMethodOperations
+    partial class frmBulkDeliveryServiceOperations
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
             this.cbSelectRecord = new System.Windows.Forms.ComboBox();
-            this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblSelectRecord = new System.Windows.Forms.Label();
             this.txtOperationLogs = new System.Windows.Forms.RichTextBox();
             this.checkSilentOperation = new System.Windows.Forms.CheckBox();
@@ -44,28 +44,39 @@
             this.btnExecuteOperations = new System.Windows.Forms.Button();
             this.btnApplyChangesToAllTargets = new System.Windows.Forms.Button();
             this.lstBulkOperations = new System.Windows.Forms.ListBox();
-            this.bulkProductBrandOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.txtMethodName = new System.Windows.Forms.TextBox();
-            this.lblMethodName = new System.Windows.Forms.Label();
+            this.bulkDeliveryServiceOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtServiceName = new System.Windows.Forms.TextBox();
+            this.lblServiceName = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
+            this.bulkPaymentMethodOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bulkProductBrandOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bulkPaymentMethodOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.trbPrice = new System.Windows.Forms.TrackBar();
+            this.lblShowPrice = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
             this.pnlData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkDeliveryServiceOperationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkPaymentMethodOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkProductBrandOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkPaymentMethodOperationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
             // 
+            this.pnlData.Controls.Add(this.trbPrice);
+            this.pnlData.Controls.Add(this.lblShowPrice);
+            this.pnlData.Controls.Add(this.lblPrice);
             this.pnlData.Controls.Add(this.cbSelectRecord);
             this.pnlData.Controls.Add(this.lblSelectRecord);
             this.pnlData.Controls.Add(this.txtOperationLogs);
@@ -79,8 +90,8 @@
             this.pnlData.Controls.Add(this.btnExecuteOperations);
             this.pnlData.Controls.Add(this.btnApplyChangesToAllTargets);
             this.pnlData.Controls.Add(this.lstBulkOperations);
-            this.pnlData.Controls.Add(this.txtMethodName);
-            this.pnlData.Controls.Add(this.lblMethodName);
+            this.pnlData.Controls.Add(this.txtServiceName);
+            this.pnlData.Controls.Add(this.lblServiceName);
             this.pnlData.Controls.Add(this.txtID);
             this.pnlData.Controls.Add(this.lblID);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
@@ -93,7 +104,7 @@
             // 
             this.cbSelectRecord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbSelectRecord.DataSource = this.paymentMethodBindingSource;
+            this.cbSelectRecord.DataSource = this.deliveryServiceBindingSource;
             this.cbSelectRecord.DisplayMember = "ID";
             this.cbSelectRecord.FormattingEnabled = true;
             this.cbSelectRecord.Location = new System.Drawing.Point(137, 16);
@@ -103,9 +114,9 @@
             this.cbSelectRecord.ValueMember = "ID";
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
-            // productBrandBindingSource
+            // paymentMethodBindingSource
             // 
-            this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
+            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
             // 
             // lblSelectRecord
             // 
@@ -246,7 +257,7 @@
             // 
             // lstBulkOperations
             // 
-            this.lstBulkOperations.DataSource = this.bulkPaymentMethodOperationBindingSource;
+            this.lstBulkOperations.DataSource = this.bulkDeliveryServiceOperationBindingSource;
             this.lstBulkOperations.DisplayMember = "OperationName";
             this.lstBulkOperations.FormattingEnabled = true;
             this.lstBulkOperations.ItemHeight = 16;
@@ -257,30 +268,30 @@
             this.lstBulkOperations.ValueMember = "TargetObject";
             this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);
             // 
-            // bulkProductBrandOperationBindingSource
+            // bulkDeliveryServiceOperationBindingSource
             // 
-            this.bulkProductBrandOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkProductBrandOperation);
+            this.bulkDeliveryServiceOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkDeliveryServiceOperation);
             // 
-            // txtMethodName
+            // txtServiceName
             // 
-            this.txtMethodName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtServiceName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtMethodName.Location = new System.Drawing.Point(136, 72);
-            this.txtMethodName.Name = "txtMethodName";
-            this.txtMethodName.Size = new System.Drawing.Size(258, 22);
-            this.txtMethodName.TabIndex = 4;
+            this.txtServiceName.Location = new System.Drawing.Point(136, 72);
+            this.txtServiceName.Name = "txtServiceName";
+            this.txtServiceName.Size = new System.Drawing.Size(258, 22);
+            this.txtServiceName.TabIndex = 4;
             // 
-            // lblMethodName
+            // lblServiceName
             // 
-            this.lblMethodName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblServiceName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblMethodName.AutoSize = true;
-            this.lblMethodName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMethodName.Location = new System.Drawing.Point(19, 75);
-            this.lblMethodName.Name = "lblMethodName";
-            this.lblMethodName.Size = new System.Drawing.Size(107, 16);
-            this.lblMethodName.TabIndex = 3;
-            this.lblMethodName.Text = "Method Name:";
+            this.lblServiceName.AutoSize = true;
+            this.lblServiceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblServiceName.Location = new System.Drawing.Point(19, 75);
+            this.lblServiceName.Name = "lblServiceName";
+            this.lblServiceName.Size = new System.Drawing.Size(109, 16);
+            this.lblServiceName.TabIndex = 3;
+            this.lblServiceName.Text = "Service Name:";
             // 
             // txtID
             // 
@@ -303,6 +314,18 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
+            // bulkPaymentMethodOperationBindingSource
+            // 
+            this.bulkPaymentMethodOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkPaymentMethodOperation);
+            // 
+            // productBrandBindingSource
+            // 
+            this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
+            // 
+            // bulkProductBrandOperationBindingSource
+            // 
+            this.bulkProductBrandOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkProductBrandOperation);
+            // 
             // userBindingSource
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
@@ -315,32 +338,67 @@
             // 
             this.errBulkProvider.ContainerControl = this;
             // 
-            // paymentMethodBindingSource
+            // deliveryServiceBindingSource
             // 
-            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
+            this.deliveryServiceBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.DeliveryService);
             // 
-            // bulkPaymentMethodOperationBindingSource
+            // trbPrice
             // 
-            this.bulkPaymentMethodOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkPaymentMethodOperation);
+            this.trbPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trbPrice.Location = new System.Drawing.Point(489, 21);
+            this.trbPrice.Maximum = 5000;
+            this.trbPrice.Name = "trbPrice";
+            this.trbPrice.Size = new System.Drawing.Size(259, 56);
+            this.trbPrice.TabIndex = 51;
+            this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
             // 
-            // frmBulkPaymentMethodOperations
+            // lblShowPrice
+            // 
+            this.lblShowPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblShowPrice.AutoSize = true;
+            this.lblShowPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowPrice.Location = new System.Drawing.Point(763, 24);
+            this.lblShowPrice.Name = "lblShowPrice";
+            this.lblShowPrice.Size = new System.Drawing.Size(35, 16);
+            this.lblShowPrice.TabIndex = 50;
+            this.lblShowPrice.Text = "0.00";
+            // 
+            // lblPrice
+            // 
+            this.lblPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice.Location = new System.Drawing.Point(412, 20);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(47, 16);
+            this.lblPrice.TabIndex = 49;
+            this.lblPrice.Text = "Price:";
+            // 
+            // frmBulkDeliveryServiceOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(800, 552);
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
-            this.Name = "frmBulkPaymentMethodOperations";
-            this.Text = "Bulk Product Brand Operations";
+            this.Name = "frmBulkDeliveryServiceOperations";
+            this.Text = "Bulk Delivery Service Operations";
             this.Load += new System.EventHandler(this.frmBulkUserOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkDeliveryServiceOperationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkPaymentMethodOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkProductBrandOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkPaymentMethodOperationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -350,8 +408,8 @@
         private System.Windows.Forms.Panel pnlData;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.TextBox txtID;
-        private System.Windows.Forms.TextBox txtMethodName;
-        private System.Windows.Forms.Label lblMethodName;
+        private System.Windows.Forms.TextBox txtServiceName;
+        private System.Windows.Forms.Label lblServiceName;
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.ListBox lstBulkOperations;
         private System.Windows.Forms.BindingSource bulkUserOperationBindingSource;
@@ -372,5 +430,10 @@
         private System.Windows.Forms.BindingSource bulkProductBrandOperationBindingSource;
         private System.Windows.Forms.BindingSource paymentMethodBindingSource;
         private System.Windows.Forms.BindingSource bulkPaymentMethodOperationBindingSource;
+        private System.Windows.Forms.BindingSource bulkDeliveryServiceOperationBindingSource;
+        private System.Windows.Forms.BindingSource deliveryServiceBindingSource;
+        private System.Windows.Forms.TrackBar trbPrice;
+        private System.Windows.Forms.Label lblShowPrice;
+        private System.Windows.Forms.Label lblPrice;
     }
 }

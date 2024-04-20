@@ -403,6 +403,7 @@
       <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BulkDeliveryServiceOperation.datasource" />
     <None Include="Properties\DataSources\BulkPaymentMethodOperation.datasource" />
     <None Include="Properties\DataSources\BulkProductBrandOperation.datasource" />
     <None Include="Properties\DataSources\BulkUserOperation.datasource" />

@@ -35,7 +35,7 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.ProductBrands.ToList();
+                cbSelectRecord.DataSource = manager_entities.PaymentMethods.ToList();
                 lblOperationResults.Text = e.Result;
                 txtOperationLogs.Text = e.OperationLog;
             }
@@ -51,7 +51,7 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.ProductBrands.ToList();
+                cbSelectRecord.DataSource = manager_entities.PaymentMethods.ToList();
                 lblOperationResults.Text = "Operation Results: ";
                 txtOperationLogs.Text = "";
             }
@@ -68,7 +68,7 @@ namespace XtremePharmacyManager
         {
             Bitmap currentpfp = new Bitmap(64, 64);
             lstBulkOperations.DataSource = manager.BulkOperations;
-            cbSelectRecord.DataSource = manager_entities.ProductBrands.ToList();
+            cbSelectRecord.DataSource = manager_entities.PaymentMethods.ToList();
             try
             {
                 if (selected_operation != null && selected_target != null)
