@@ -1,6 +1,6 @@
 ﻿namespace XtremePharmacyManager
 {
-    partial class frmBulkProductImageOperations
+    partial class frmBulkProductOrderOperations
     {
         /// <summary>
         /// Required designer variable.
@@ -30,11 +30,27 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.cbStatus = new System.Windows.Forms.ComboBox();
+            this.cbEmployee = new System.Windows.Forms.ComboBox();
+            this.userBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.lblEmployee = new System.Windows.Forms.Label();
+            this.cbClient = new System.Windows.Forms.ComboBox();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblClient = new System.Windows.Forms.Label();
+            this.txtReason = new System.Windows.Forms.TextBox();
+            this.lblReason = new System.Windows.Forms.Label();
+            this.trbQuantity = new System.Windows.Forms.TrackBar();
+            this.lblShowQuantity = new System.Windows.Forms.Label();
+            this.lblQuantity = new System.Windows.Forms.Label();
             this.cbProduct = new System.Windows.Forms.ComboBox();
-            this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblProduct = new System.Windows.Forms.Label();
+            this.trbPrice = new System.Windows.Forms.TrackBar();
+            this.lblShowPrice = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
             this.cbSelectRecord = new System.Windows.Forms.ComboBox();
-            this.productImageBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblSelectRecord = new System.Windows.Forms.Label();
             this.txtOperationLogs = new System.Windows.Forms.RichTextBox();
             this.checkSilentOperation = new System.Windows.Forms.CheckBox();
@@ -47,44 +63,55 @@
             this.btnExecuteOperations = new System.Windows.Forms.Button();
             this.btnApplyChangesToAllTargets = new System.Windows.Forms.Button();
             this.lstBulkOperations = new System.Windows.Forms.ListBox();
-            this.bulkProductOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.txtImageName = new System.Windows.Forms.TextBox();
-            this.lblImageName = new System.Windows.Forms.Label();
+            this.bulkProductOrderOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bulkProductOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkDeliveryServiceOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkPaymentMethodOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkProductBrandOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.pbProductImageData = new System.Windows.Forms.PictureBox();
-            this.bulkProductImageOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkProductOperationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkProductOrderOperationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkProductOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkDeliveryServiceOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkPaymentMethodOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkProductBrandOperationBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbProductImageData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkProductImageOperationBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
             // 
-            this.pnlData.Controls.Add(this.pbProductImageData);
+            this.pnlData.Controls.Add(this.lblStatus);
+            this.pnlData.Controls.Add(this.cbStatus);
+            this.pnlData.Controls.Add(this.cbEmployee);
+            this.pnlData.Controls.Add(this.lblEmployee);
+            this.pnlData.Controls.Add(this.cbClient);
+            this.pnlData.Controls.Add(this.lblClient);
+            this.pnlData.Controls.Add(this.txtReason);
+            this.pnlData.Controls.Add(this.lblReason);
+            this.pnlData.Controls.Add(this.trbQuantity);
+            this.pnlData.Controls.Add(this.lblShowQuantity);
+            this.pnlData.Controls.Add(this.lblQuantity);
             this.pnlData.Controls.Add(this.cbProduct);
             this.pnlData.Controls.Add(this.lblProduct);
+            this.pnlData.Controls.Add(this.trbPrice);
+            this.pnlData.Controls.Add(this.lblShowPrice);
+            this.pnlData.Controls.Add(this.lblPrice);
             this.pnlData.Controls.Add(this.cbSelectRecord);
             this.pnlData.Controls.Add(this.lblSelectRecord);
             this.pnlData.Controls.Add(this.txtOperationLogs);
@@ -98,15 +125,164 @@
             this.pnlData.Controls.Add(this.btnExecuteOperations);
             this.pnlData.Controls.Add(this.btnApplyChangesToAllTargets);
             this.pnlData.Controls.Add(this.lstBulkOperations);
-            this.pnlData.Controls.Add(this.txtImageName);
-            this.pnlData.Controls.Add(this.lblImageName);
             this.pnlData.Controls.Add(this.txtID);
             this.pnlData.Controls.Add(this.lblID);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlData.Location = new System.Drawing.Point(0, 0);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(800, 638);
+            this.pnlData.Size = new System.Drawing.Size(800, 779);
             this.pnlData.TabIndex = 0;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(19, 171);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(97, 16);
+            this.lblStatus.TabIndex = 72;
+            this.lblStatus.Text = "Order Status:";
+            // 
+            // cbStatus
+            // 
+            this.cbStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Items.AddRange(new object[] {
+            "Awaiting processing",
+            "Prepaid",
+            "Paid on delivery",
+            "Directly paid",
+            "Generating invoice",
+            "Generating report",
+            "Processing",
+            "Cancelled order",
+            "Returned order",
+            "Completed"});
+            this.cbStatus.Location = new System.Drawing.Point(169, 168);
+            this.cbStatus.Name = "cbStatus";
+            this.cbStatus.Size = new System.Drawing.Size(226, 24);
+            this.cbStatus.TabIndex = 71;
+            this.cbStatus.Text = "Awaiting processing";
+            // 
+            // cbEmployee
+            // 
+            this.cbEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbEmployee.DataSource = this.userBindingSource1;
+            this.cbEmployee.DisplayMember = "UserDisplayName";
+            this.cbEmployee.FormattingEnabled = true;
+            this.cbEmployee.Location = new System.Drawing.Point(169, 138);
+            this.cbEmployee.Name = "cbEmployee";
+            this.cbEmployee.Size = new System.Drawing.Size(226, 24);
+            this.cbEmployee.TabIndex = 70;
+            this.cbEmployee.ValueMember = "ID";
+            // 
+            // userBindingSource1
+            // 
+            this.userBindingSource1.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            // 
+            // lblEmployee
+            // 
+            this.lblEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblEmployee.AutoSize = true;
+            this.lblEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEmployee.Location = new System.Drawing.Point(19, 142);
+            this.lblEmployee.Name = "lblEmployee";
+            this.lblEmployee.Size = new System.Drawing.Size(129, 16);
+            this.lblEmployee.TabIndex = 69;
+            this.lblEmployee.Text = "Select Employee:";
+            // 
+            // cbClient
+            // 
+            this.cbClient.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbClient.DataSource = this.userBindingSource;
+            this.cbClient.DisplayMember = "UserDisplayName";
+            this.cbClient.FormattingEnabled = true;
+            this.cbClient.Location = new System.Drawing.Point(169, 106);
+            this.cbClient.Name = "cbClient";
+            this.cbClient.Size = new System.Drawing.Size(226, 24);
+            this.cbClient.TabIndex = 68;
+            this.cbClient.ValueMember = "ID";
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            // 
+            // lblClient
+            // 
+            this.lblClient.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblClient.AutoSize = true;
+            this.lblClient.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClient.Location = new System.Drawing.Point(20, 110);
+            this.lblClient.Name = "lblClient";
+            this.lblClient.Size = new System.Drawing.Size(98, 16);
+            this.lblClient.TabIndex = 67;
+            this.lblClient.Text = "Select Client:";
+            // 
+            // txtReason
+            // 
+            this.txtReason.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtReason.Location = new System.Drawing.Point(169, 197);
+            this.txtReason.Multiline = true;
+            this.txtReason.Name = "txtReason";
+            this.txtReason.Size = new System.Drawing.Size(227, 74);
+            this.txtReason.TabIndex = 62;
+            // 
+            // lblReason
+            // 
+            this.lblReason.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblReason.AutoSize = true;
+            this.lblReason.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReason.Location = new System.Drawing.Point(23, 200);
+            this.lblReason.Name = "lblReason";
+            this.lblReason.Size = new System.Drawing.Size(108, 16);
+            this.lblReason.TabIndex = 61;
+            this.lblReason.Text = "Order Reason:";
+            // 
+            // trbQuantity
+            // 
+            this.trbQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trbQuantity.AutoSize = false;
+            this.trbQuantity.Location = new System.Drawing.Point(534, 25);
+            this.trbQuantity.Maximum = 5000;
+            this.trbQuantity.Name = "trbQuantity";
+            this.trbQuantity.Size = new System.Drawing.Size(214, 41);
+            this.trbQuantity.TabIndex = 58;
+            this.trbQuantity.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trbQuantity.Scroll += new System.EventHandler(this.trbQuantity_Scroll);
+            // 
+            // lblShowQuantity
+            // 
+            this.lblShowQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblShowQuantity.AutoSize = true;
+            this.lblShowQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowQuantity.Location = new System.Drawing.Point(763, 28);
+            this.lblShowQuantity.Name = "lblShowQuantity";
+            this.lblShowQuantity.Size = new System.Drawing.Size(35, 16);
+            this.lblShowQuantity.TabIndex = 57;
+            this.lblShowQuantity.Text = "0.00";
+            // 
+            // lblQuantity
+            // 
+            this.lblQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblQuantity.AutoSize = true;
+            this.lblQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuantity.Location = new System.Drawing.Point(401, 24);
+            this.lblQuantity.Name = "lblQuantity";
+            this.lblQuantity.Size = new System.Drawing.Size(126, 16);
+            this.lblQuantity.TabIndex = 56;
+            this.lblQuantity.Text = "Desired Quantity:";
             // 
             // cbProduct
             // 
@@ -115,15 +291,15 @@
             this.cbProduct.DataSource = this.productBindingSource;
             this.cbProduct.DisplayMember = "ProductName";
             this.cbProduct.FormattingEnabled = true;
-            this.cbProduct.Location = new System.Drawing.Point(234, 77);
+            this.cbProduct.Location = new System.Drawing.Point(169, 74);
             this.cbProduct.Name = "cbProduct";
-            this.cbProduct.Size = new System.Drawing.Size(221, 24);
+            this.cbProduct.Size = new System.Drawing.Size(226, 24);
             this.cbProduct.TabIndex = 55;
             this.cbProduct.ValueMember = "ID";
             // 
-            // productBrandBindingSource
+            // productBindingSource
             // 
-            this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
+            this.productBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.Product);
             // 
             // lblProduct
             // 
@@ -131,29 +307,66 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lblProduct.AutoSize = true;
             this.lblProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProduct.Location = new System.Drawing.Point(20, 81);
+            this.lblProduct.Location = new System.Drawing.Point(20, 78);
             this.lblProduct.Name = "lblProduct";
             this.lblProduct.Size = new System.Drawing.Size(112, 16);
             this.lblProduct.TabIndex = 54;
             this.lblProduct.Text = "Select Product:";
             // 
+            // trbPrice
+            // 
+            this.trbPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trbPrice.AutoSize = false;
+            this.trbPrice.Location = new System.Drawing.Point(534, 77);
+            this.trbPrice.Maximum = 5000;
+            this.trbPrice.Name = "trbPrice";
+            this.trbPrice.Size = new System.Drawing.Size(214, 52);
+            this.trbPrice.TabIndex = 51;
+            this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
+            // 
+            // lblShowPrice
+            // 
+            this.lblShowPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblShowPrice.AutoSize = true;
+            this.lblShowPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowPrice.Location = new System.Drawing.Point(762, 86);
+            this.lblShowPrice.Name = "lblShowPrice";
+            this.lblShowPrice.Size = new System.Drawing.Size(35, 16);
+            this.lblShowPrice.TabIndex = 50;
+            this.lblShowPrice.Text = "0.00";
+            // 
+            // lblPrice
+            // 
+            this.lblPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice.Location = new System.Drawing.Point(401, 85);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(116, 16);
+            this.lblPrice.TabIndex = 49;
+            this.lblPrice.Text = "Price Overrride:";
+            // 
             // cbSelectRecord
             // 
             this.cbSelectRecord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.cbSelectRecord.DataSource = this.productImageBindingSource;
-            this.cbSelectRecord.DisplayMember = "ImageName";
+            this.cbSelectRecord.DataSource = this.productOrderBindingSource;
+            this.cbSelectRecord.DisplayMember = "ID";
             this.cbSelectRecord.FormattingEnabled = true;
-            this.cbSelectRecord.Location = new System.Drawing.Point(233, 16);
+            this.cbSelectRecord.Location = new System.Drawing.Point(169, 16);
             this.cbSelectRecord.Name = "cbSelectRecord";
-            this.cbSelectRecord.Size = new System.Drawing.Size(222, 24);
+            this.cbSelectRecord.Size = new System.Drawing.Size(226, 24);
             this.cbSelectRecord.TabIndex = 48;
             this.cbSelectRecord.ValueMember = "ID";
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
-            // productImageBindingSource
+            // productOrderBindingSource
             // 
-            this.productImageBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductImage);
+            this.productOrderBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductOrder);
             // 
             // lblSelectRecord
             // 
@@ -172,9 +385,9 @@
             this.txtOperationLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOperationLogs.Location = new System.Drawing.Point(29, 340);
+            this.txtOperationLogs.Location = new System.Drawing.Point(22, 490);
             this.txtOperationLogs.Name = "txtOperationLogs";
-            this.txtOperationLogs.Size = new System.Drawing.Size(766, 193);
+            this.txtOperationLogs.Size = new System.Drawing.Size(766, 171);
             this.txtOperationLogs.TabIndex = 46;
             this.txtOperationLogs.Text = "";
             // 
@@ -182,7 +395,7 @@
             // 
             this.checkSilentOperation.AutoSize = true;
             this.checkSilentOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkSilentOperation.Location = new System.Drawing.Point(261, 310);
+            this.checkSilentOperation.Location = new System.Drawing.Point(255, 447);
             this.checkSilentOperation.Name = "checkSilentOperation";
             this.checkSilentOperation.Size = new System.Drawing.Size(140, 20);
             this.checkSilentOperation.TabIndex = 44;
@@ -195,7 +408,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOperationResults.AutoSize = true;
             this.lblOperationResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationResults.Location = new System.Drawing.Point(26, 321);
+            this.lblOperationResults.Location = new System.Drawing.Point(20, 471);
             this.lblOperationResults.Name = "lblOperationResults";
             this.lblOperationResults.Size = new System.Drawing.Size(139, 16);
             this.lblOperationResults.TabIndex = 43;
@@ -212,7 +425,7 @@
             "UPDATE",
             "DELETE",
             "CUSTOM(Only for operations with custom action overrides)"});
-            this.cbOperationType.Location = new System.Drawing.Point(561, 310);
+            this.cbOperationType.Location = new System.Drawing.Point(555, 447);
             this.cbOperationType.Name = "cbOperationType";
             this.cbOperationType.Size = new System.Drawing.Size(229, 24);
             this.cbOperationType.TabIndex = 42;
@@ -224,7 +437,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOperationType.AutoSize = true;
             this.lblOperationType.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationType.Location = new System.Drawing.Point(418, 314);
+            this.lblOperationType.Location = new System.Drawing.Point(412, 451);
             this.lblOperationType.Name = "lblOperationType";
             this.lblOperationType.Size = new System.Drawing.Size(119, 16);
             this.lblOperationType.TabIndex = 41;
@@ -235,9 +448,9 @@
             this.btnAddOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAddOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOperation.Location = new System.Drawing.Point(150, 541);
+            this.btnAddOperation.Location = new System.Drawing.Point(139, 669);
             this.btnAddOperation.Name = "btnAddOperation";
-            this.btnAddOperation.Size = new System.Drawing.Size(211, 37);
+            this.btnAddOperation.Size = new System.Drawing.Size(211, 47);
             this.btnAddOperation.TabIndex = 40;
             this.btnAddOperation.Text = "ADD OPERATION";
             this.btnAddOperation.UseVisualStyleBackColor = true;
@@ -248,9 +461,9 @@
             this.btnRemoveOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnRemoveOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveOperation.Location = new System.Drawing.Point(367, 541);
+            this.btnRemoveOperation.Location = new System.Drawing.Point(356, 669);
             this.btnRemoveOperation.Name = "btnRemoveOperation";
-            this.btnRemoveOperation.Size = new System.Drawing.Size(211, 37);
+            this.btnRemoveOperation.Size = new System.Drawing.Size(211, 47);
             this.btnRemoveOperation.TabIndex = 39;
             this.btnRemoveOperation.Text = "REMOVE OPERATION";
             this.btnRemoveOperation.UseVisualStyleBackColor = true;
@@ -261,9 +474,9 @@
             this.btnApplyChangesToCurrentTarget.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnApplyChangesToCurrentTarget.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApplyChangesToCurrentTarget.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(367, 594);
+            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(356, 722);
             this.btnApplyChangesToCurrentTarget.Name = "btnApplyChangesToCurrentTarget";
-            this.btnApplyChangesToCurrentTarget.Size = new System.Drawing.Size(211, 37);
+            this.btnApplyChangesToCurrentTarget.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToCurrentTarget.TabIndex = 38;
             this.btnApplyChangesToCurrentTarget.Text = "APPLY CHANGES TO THIS TARGET";
             this.btnApplyChangesToCurrentTarget.UseVisualStyleBackColor = true;
@@ -274,9 +487,9 @@
             this.btnExecuteOperations.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnExecuteOperations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExecuteOperations.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExecuteOperations.Location = new System.Drawing.Point(584, 539);
+            this.btnExecuteOperations.Location = new System.Drawing.Point(573, 667);
             this.btnExecuteOperations.Name = "btnExecuteOperations";
-            this.btnExecuteOperations.Size = new System.Drawing.Size(211, 37);
+            this.btnExecuteOperations.Size = new System.Drawing.Size(211, 47);
             this.btnExecuteOperations.TabIndex = 37;
             this.btnExecuteOperations.Text = "EXECUTE OPERATIONS";
             this.btnExecuteOperations.UseVisualStyleBackColor = true;
@@ -287,9 +500,9 @@
             this.btnApplyChangesToAllTargets.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnApplyChangesToAllTargets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApplyChangesToAllTargets.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(584, 594);
+            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(573, 722);
             this.btnApplyChangesToAllTargets.Name = "btnApplyChangesToAllTargets";
-            this.btnApplyChangesToAllTargets.Size = new System.Drawing.Size(211, 37);
+            this.btnApplyChangesToAllTargets.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToAllTargets.TabIndex = 36;
             this.btnApplyChangesToAllTargets.Text = "APPLY CHANGES TO ALL TARGETS";
             this.btnApplyChangesToAllTargets.UseVisualStyleBackColor = true;
@@ -300,49 +513,28 @@
             this.lstBulkOperations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstBulkOperations.DataSource = this.bulkProductImageOperationBindingSource;
+            this.lstBulkOperations.DataSource = this.bulkProductOrderOperationBindingSource;
             this.lstBulkOperations.DisplayMember = "OperationName";
             this.lstBulkOperations.FormattingEnabled = true;
             this.lstBulkOperations.ItemHeight = 16;
-            this.lstBulkOperations.Location = new System.Drawing.Point(24, 153);
+            this.lstBulkOperations.Location = new System.Drawing.Point(22, 277);
             this.lstBulkOperations.Name = "lstBulkOperations";
-            this.lstBulkOperations.Size = new System.Drawing.Size(766, 148);
+            this.lstBulkOperations.Size = new System.Drawing.Size(766, 164);
             this.lstBulkOperations.TabIndex = 35;
             this.lstBulkOperations.ValueMember = "TargetObject";
             this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);
             // 
-            // bulkProductOperationBindingSource
+            // bulkProductOrderOperationBindingSource
             // 
-            this.bulkProductOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkProductOperation);
-            // 
-            // txtImageName
-            // 
-            this.txtImageName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtImageName.Location = new System.Drawing.Point(234, 107);
-            this.txtImageName.Name = "txtImageName";
-            this.txtImageName.Size = new System.Drawing.Size(221, 22);
-            this.txtImageName.TabIndex = 4;
-            // 
-            // lblImageName
-            // 
-            this.lblImageName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblImageName.AutoSize = true;
-            this.lblImageName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblImageName.Location = new System.Drawing.Point(21, 110);
-            this.lblImageName.Name = "lblImageName";
-            this.lblImageName.Size = new System.Drawing.Size(99, 16);
-            this.lblImageName.TabIndex = 3;
-            this.lblImageName.Text = "Image Name:";
+            this.bulkProductOrderOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkProductOrderOperation);
             // 
             // txtID
             // 
             this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtID.Location = new System.Drawing.Point(232, 44);
+            this.txtID.Location = new System.Drawing.Point(169, 44);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(223, 22);
+            this.txtID.Size = new System.Drawing.Size(226, 22);
             this.txtID.TabIndex = 2;
             // 
             // lblID
@@ -357,9 +549,13 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
-            // productBindingSource
+            // productBrandBindingSource
             // 
-            this.productBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.Product);
+            this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
+            // 
+            // bulkProductOperationBindingSource
+            // 
+            this.bulkProductOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkProductOperation);
             // 
             // deliveryServiceBindingSource
             // 
@@ -381,10 +577,6 @@
             // 
             this.bulkProductBrandOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkProductBrandOperation);
             // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
-            // 
             // bulkUserOperationBindingSource
             // 
             this.bulkUserOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkUserOperation);
@@ -393,46 +585,33 @@
             // 
             this.errBulkProvider.ContainerControl = this;
             // 
-            // pbProductImageData
-            // 
-            this.pbProductImageData.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbProductImageData.Location = new System.Drawing.Point(639, 16);
-            this.pbProductImageData.Name = "pbProductImageData";
-            this.pbProductImageData.Size = new System.Drawing.Size(151, 113);
-            this.pbProductImageData.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbProductImageData.TabIndex = 56;
-            this.pbProductImageData.TabStop = false;
-            this.pbProductImageData.Click += new System.EventHandler(this.pbProductImageData_Click);
-            // 
-            // bulkProductImageOperationBindingSource
-            // 
-            this.bulkProductImageOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkProductImageOperation);
-            // 
-            // frmBulkProductImageOperations
+            // frmBulkProductOrderOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 641);
+            this.ClientSize = new System.Drawing.Size(800, 781);
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
-            this.Name = "frmBulkProductImageOperations";
-            this.Text = "Bulk Product Image Operations";
-            this.Load += new System.EventHandler(this.frmBulkProductImageOperations_Load);
+            this.Name = "frmBulkProductOrderOperations";
+            this.Text = "Bulk Product Order Operations";
+            this.Load += new System.EventHandler(this.frmBulkProductOrderOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkProductOperationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkProductOrderOperationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkProductOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkDeliveryServiceOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkPaymentMethodOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkProductBrandOperationBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbProductImageData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkProductImageOperationBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -442,8 +621,6 @@
         private System.Windows.Forms.Panel pnlData;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.TextBox txtID;
-        private System.Windows.Forms.TextBox txtImageName;
-        private System.Windows.Forms.Label lblImageName;
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.ListBox lstBulkOperations;
         private System.Windows.Forms.BindingSource bulkUserOperationBindingSource;
@@ -466,12 +643,26 @@
         private System.Windows.Forms.BindingSource bulkPaymentMethodOperationBindingSource;
         private System.Windows.Forms.BindingSource bulkDeliveryServiceOperationBindingSource;
         private System.Windows.Forms.BindingSource deliveryServiceBindingSource;
+        private System.Windows.Forms.TrackBar trbPrice;
+        private System.Windows.Forms.Label lblShowPrice;
+        private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.BindingSource productBindingSource;
         private System.Windows.Forms.BindingSource bulkProductOperationBindingSource;
         private System.Windows.Forms.ComboBox cbProduct;
         private System.Windows.Forms.Label lblProduct;
-        private System.Windows.Forms.BindingSource productImageBindingSource;
-        private System.Windows.Forms.PictureBox pbProductImageData;
-        private System.Windows.Forms.BindingSource bulkProductImageOperationBindingSource;
+        private System.Windows.Forms.TrackBar trbQuantity;
+        private System.Windows.Forms.Label lblShowQuantity;
+        private System.Windows.Forms.Label lblQuantity;
+        private System.Windows.Forms.TextBox txtReason;
+        private System.Windows.Forms.Label lblReason;
+        private System.Windows.Forms.BindingSource productOrderBindingSource;
+        private System.Windows.Forms.ComboBox cbClient;
+        private System.Windows.Forms.Label lblClient;
+        private System.Windows.Forms.ComboBox cbEmployee;
+        private System.Windows.Forms.BindingSource userBindingSource1;
+        private System.Windows.Forms.Label lblEmployee;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.ComboBox cbStatus;
+        private System.Windows.Forms.BindingSource bulkProductOrderOperationBindingSource;
     }
 }

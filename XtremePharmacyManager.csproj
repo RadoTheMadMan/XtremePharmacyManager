@@ -188,6 +188,12 @@
     <Compile Include="frmBulkProductImageOperations.Designer.cs">
       <DependentUpon>frmBulkProductImageOperations.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBulkProductOrderOperations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBulkProductOrderOperations.Designer.cs">
+      <DependentUpon>frmBulkProductOrderOperations.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBulkProductOperations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -334,6 +340,9 @@
     <EmbeddedResource Include="frmBulkProductImageOperations.resx">
       <DependentUpon>frmBulkProductImageOperations.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmBulkProductOrderOperations.resx">
+      <DependentUpon>frmBulkProductOrderOperations.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBulkProductOperations.resx">
       <DependentUpon>frmBulkProductOperations.cs</DependentUpon>
     </EmbeddedResource>
@@ -426,6 +435,7 @@
     <None Include="Properties\DataSources\BulkProductBrandOperation.datasource" />
     <None Include="Properties\DataSources\BulkProductImageOperation.datasource" />
     <None Include="Properties\DataSources\BulkProductOperation.datasource" />
+    <None Include="Properties\DataSources\BulkProductOrderOperation.datasource" />
     <None Include="Properties\DataSources\BulkUserOperation.datasource" />
     <None Include="Properties\DataSources\frmEditDeliveryService.datasource" />
     <None Include="Properties\DataSources\frmEditUser.datasource" />

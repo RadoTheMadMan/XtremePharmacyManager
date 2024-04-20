@@ -64,7 +64,7 @@ namespace XtremePharmacyManager
 
 
 
-        private void frmBulkUserOperations_Load(object sender, EventArgs e)
+        private void frmBulkDeliveryServiceOperations_Load(object sender, EventArgs e)
         {
             Bitmap currentpfp = new Bitmap(64, 64);
             lstBulkOperations.DataSource = manager.BulkOperations;
@@ -77,7 +77,7 @@ namespace XtremePharmacyManager
                     this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_target.ServiceName)) ? selected_target.ServiceName.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice) : 0;
                     this.lblShowPrice.Text = (selected_target.ServicePrice >= 0) ? selected_target.ServicePrice.ToString() : string.Empty;
-                    cbSelectRecord.SelectedValue = selected_target.ID;
+                    cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                 }
@@ -140,7 +140,7 @@ namespace XtremePharmacyManager
                     this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_target.ServiceName)) ? selected_target.ServiceName.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice) : 0;
                     this.lblShowPrice.Text = (selected_target.ServicePrice >= 0) ? selected_target.ServicePrice.ToString() : string.Empty;
-                    cbSelectRecord.SelectedValue = selected_target.ID;
+                    cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                 }

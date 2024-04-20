@@ -325,7 +325,7 @@
             this.MaximizeBox = false;
             this.Name = "frmBulkProductBrandOperations";
             this.Text = "Bulk Product Brand Operations";
-            this.Load += new System.EventHandler(this.frmBulkUserOperations_Load);
+            this.Load += new System.EventHandler(this.frmBulkProductBrandOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();

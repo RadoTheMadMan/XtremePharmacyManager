@@ -337,7 +337,7 @@
             this.MaximizeBox = false;
             this.Name = "frmBulkPaymentMethodOperations";
             this.Text = "Bulk Payment Method Operations";
-            this.Load += new System.EventHandler(this.frmBulkUserOperations_Load);
+            this.Load += new System.EventHandler(this.frmBulkPaymentMethodOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).EndInit();

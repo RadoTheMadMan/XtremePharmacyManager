@@ -619,7 +619,7 @@
             this.MaximizeBox = false;
             this.Name = "frmBulkProductOperations";
             this.Text = "Bulk Product Operations";
-            this.Load += new System.EventHandler(this.frmBulkUserOperations_Load);
+            this.Load += new System.EventHandler(this.frmBulkProductOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).EndInit();

@@ -64,7 +64,7 @@ namespace XtremePharmacyManager
 
 
 
-        private void frmBulkUserOperations_Load(object sender, EventArgs e)
+        private void frmBulkProductBrandOperations_Load(object sender, EventArgs e)
         {
             Bitmap currentpfp = new Bitmap(64, 64);
             lstBulkOperations.DataSource = manager.BulkOperations;
@@ -75,6 +75,8 @@ namespace XtremePharmacyManager
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtBrandName.Text = (!String.IsNullOrEmpty(selected_target.BrandName)) ? selected_target.BrandName.ToString() : string.Empty;
+                    cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
+                    checkSilentOperation.Checked = selected_operation.IsSilent;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                 }
             }
@@ -133,6 +135,7 @@ namespace XtremePharmacyManager
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtBrandName.Text = (!String.IsNullOrEmpty(selected_target.BrandName)) ? selected_target.BrandName.ToString() : string.Empty;
+                    cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                 }
