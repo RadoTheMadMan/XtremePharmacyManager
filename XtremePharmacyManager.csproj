@@ -188,6 +188,12 @@
     <Compile Include="frmBulkProductImageOperations.Designer.cs">
       <DependentUpon>frmBulkProductImageOperations.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmBulkOrderDeliveryOperations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBulkOrderDeliveryOperations.Designer.cs">
+      <DependentUpon>frmBulkOrderDeliveryOperations.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBulkProductOrderOperations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -339,6 +345,9 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="frmBulkProductImageOperations.resx">
       <DependentUpon>frmBulkProductImageOperations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBulkOrderDeliveryOperations.resx">
+      <DependentUpon>frmBulkOrderDeliveryOperations.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmBulkProductOrderOperations.resx">
       <DependentUpon>frmBulkProductOrderOperations.cs</DependentUpon>
