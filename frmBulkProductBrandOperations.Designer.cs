@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
             this.cbSelectRecord = new System.Windows.Forms.ComboBox();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblSelectRecord = new System.Windows.Forms.Label();
             this.txtOperationLogs = new System.Windows.Forms.RichTextBox();
             this.checkSilentOperation = new System.Windows.Forms.CheckBox();
@@ -44,20 +44,20 @@
             this.btnExecuteOperations = new System.Windows.Forms.Button();
             this.btnApplyChangesToAllTargets = new System.Windows.Forms.Button();
             this.lstBulkOperations = new System.Windows.Forms.ListBox();
-            this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bulkProductBrandOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtBrandName = new System.Windows.Forms.TextBox();
             this.lblBrandName = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.bulkProductBrandOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkProductBrandOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkProductBrandOperationBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
@@ -88,8 +88,9 @@
             // cbSelectRecord
             // 
             this.cbSelectRecord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.cbSelectRecord.DataSource = this.productBrandBindingSource;
+            this.cbSelectRecord.DisplayMember = "BrandName";
             this.cbSelectRecord.FormattingEnabled = true;
             this.cbSelectRecord.Location = new System.Drawing.Point(137, 16);
             this.cbSelectRecord.Name = "cbSelectRecord";
@@ -98,14 +99,14 @@
             this.cbSelectRecord.ValueMember = "ID";
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
-            // userBindingSource
+            // productBrandBindingSource
             // 
-            this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
             // 
             // lblSelectRecord
             // 
             this.lblSelectRecord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblSelectRecord.AutoSize = true;
             this.lblSelectRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelectRecord.Location = new System.Drawing.Point(19, 20);
@@ -116,6 +117,9 @@
             // 
             // txtOperationLogs
             // 
+            this.txtOperationLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOperationLogs.Location = new System.Drawing.Point(22, 300);
             this.txtOperationLogs.Name = "txtOperationLogs";
             this.txtOperationLogs.Size = new System.Drawing.Size(766, 122);
@@ -241,6 +245,9 @@
             // 
             // lstBulkOperations
             // 
+            this.lstBulkOperations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstBulkOperations.DataSource = this.bulkProductBrandOperationBindingSource;
             this.lstBulkOperations.DisplayMember = "OperationName";
             this.lstBulkOperations.FormattingEnabled = true;
@@ -252,9 +259,9 @@
             this.lstBulkOperations.ValueMember = "TargetObject";
             this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);
             // 
-            // bulkUserOperationBindingSource
+            // bulkProductBrandOperationBindingSource
             // 
-            this.bulkUserOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkUserOperation);
+            this.bulkProductBrandOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkProductBrandOperation);
             // 
             // txtBrandName
             // 
@@ -298,17 +305,17 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            // 
+            // bulkUserOperationBindingSource
+            // 
+            this.bulkUserOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkUserOperation);
+            // 
             // errBulkProvider
             // 
             this.errBulkProvider.ContainerControl = this;
-            // 
-            // productBrandBindingSource
-            // 
-            this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
-            // 
-            // bulkProductBrandOperationBindingSource
-            // 
-            this.bulkProductBrandOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkProductBrandOperation);
             // 
             // frmBulkProductBrandOperations
             // 
@@ -321,11 +328,11 @@
             this.Load += new System.EventHandler(this.frmBulkUserOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkProductBrandOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkProductBrandOperationBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

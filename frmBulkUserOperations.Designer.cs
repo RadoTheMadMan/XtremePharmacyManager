@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.cbSelectRecord = new System.Windows.Forms.ComboBox();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblSelectRecord = new System.Windows.Forms.Label();
             this.txtOperationLogs = new System.Windows.Forms.RichTextBox();
             this.lblUserNotice = new System.Windows.Forms.Label();
             this.checkSilentOperation = new System.Windows.Forms.CheckBox();
@@ -67,15 +70,12 @@
             this.lblUsername = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.cbSelectRecord = new System.Windows.Forms.ComboBox();
-            this.lblSelectRecord = new System.Windows.Forms.Label();
             this.pnlData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,8 +126,41 @@
             this.pnlData.Size = new System.Drawing.Size(800, 726);
             this.pnlData.TabIndex = 0;
             // 
+            // cbSelectRecord
+            // 
+            this.cbSelectRecord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbSelectRecord.DataSource = this.userBindingSource;
+            this.cbSelectRecord.DisplayMember = "UserDisplayName";
+            this.cbSelectRecord.FormattingEnabled = true;
+            this.cbSelectRecord.Location = new System.Drawing.Point(137, 16);
+            this.cbSelectRecord.Name = "cbSelectRecord";
+            this.cbSelectRecord.Size = new System.Drawing.Size(254, 24);
+            this.cbSelectRecord.TabIndex = 48;
+            this.cbSelectRecord.ValueMember = "ID";
+            this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            // 
+            // lblSelectRecord
+            // 
+            this.lblSelectRecord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblSelectRecord.AutoSize = true;
+            this.lblSelectRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectRecord.Location = new System.Drawing.Point(19, 20);
+            this.lblSelectRecord.Name = "lblSelectRecord";
+            this.lblSelectRecord.Size = new System.Drawing.Size(110, 16);
+            this.lblSelectRecord.TabIndex = 47;
+            this.lblSelectRecord.Text = "Select Record:";
+            // 
             // txtOperationLogs
             // 
+            this.txtOperationLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOperationLogs.Location = new System.Drawing.Point(22, 492);
             this.txtOperationLogs.Name = "txtOperationLogs";
             this.txtOperationLogs.Size = new System.Drawing.Size(766, 122);
@@ -266,6 +299,9 @@
             // 
             // lstBulkOperations
             // 
+            this.lstBulkOperations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstBulkOperations.DataSource = this.bulkUserOperationBindingSource;
             this.lstBulkOperations.DisplayMember = "OperationName";
             this.lstBulkOperations.FormattingEnabled = true;
@@ -283,6 +319,8 @@
             // 
             // pbUserProfilePic
             // 
+            this.pbUserProfilePic.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pbUserProfilePic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbUserProfilePic.Location = new System.Drawing.Point(660, 191);
             this.pbUserProfilePic.Name = "pbUserProfilePic";
@@ -546,39 +584,9 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
-            // 
             // errBulkProvider
             // 
             this.errBulkProvider.ContainerControl = this;
-            // 
-            // cbSelectRecord
-            // 
-            this.cbSelectRecord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbSelectRecord.DataSource = this.userBindingSource;
-            this.cbSelectRecord.DisplayMember = "UserDisplayName";
-            this.cbSelectRecord.FormattingEnabled = true;
-            this.cbSelectRecord.Location = new System.Drawing.Point(137, 16);
-            this.cbSelectRecord.Name = "cbSelectRecord";
-            this.cbSelectRecord.Size = new System.Drawing.Size(254, 24);
-            this.cbSelectRecord.TabIndex = 48;
-            this.cbSelectRecord.ValueMember = "ID";
-            this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
-            // 
-            // lblSelectRecord
-            // 
-            this.lblSelectRecord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSelectRecord.AutoSize = true;
-            this.lblSelectRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSelectRecord.Location = new System.Drawing.Point(19, 20);
-            this.lblSelectRecord.Name = "lblSelectRecord";
-            this.lblSelectRecord.Size = new System.Drawing.Size(110, 16);
-            this.lblSelectRecord.TabIndex = 47;
-            this.lblSelectRecord.Text = "Select Record:";
             // 
             // frmBulkUserOperations
             // 
@@ -591,10 +599,10 @@
             this.Load += new System.EventHandler(this.frmBulkUserOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

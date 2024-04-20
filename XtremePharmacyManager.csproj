@@ -182,6 +182,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="frmBulkProductOperations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBulkProductOperations.Designer.cs">
+      <DependentUpon>frmBulkProductOperations.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBulkDeliveryServiceOperations.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -319,6 +325,9 @@
       <DependentUpon>frmLogs.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="frmBulkProductOperations.resx">
+      <DependentUpon>frmBulkProductOperations.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBulkDeliveryServiceOperations.resx">
       <DependentUpon>frmBulkDeliveryServiceOperations.cs</DependentUpon>
     </EmbeddedResource>
@@ -406,6 +415,7 @@
     <None Include="Properties\DataSources\BulkDeliveryServiceOperation.datasource" />
     <None Include="Properties\DataSources\BulkPaymentMethodOperation.datasource" />
     <None Include="Properties\DataSources\BulkProductBrandOperation.datasource" />
+    <None Include="Properties\DataSources\BulkProductOperation.datasource" />
     <None Include="Properties\DataSources\BulkUserOperation.datasource" />
     <None Include="Properties\DataSources\frmEditDeliveryService.datasource" />
     <None Include="Properties\DataSources\frmEditUser.datasource" />

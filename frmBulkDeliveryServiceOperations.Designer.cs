@@ -30,8 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.trbPrice = new System.Windows.Forms.TrackBar();
+            this.lblShowPrice = new System.Windows.Forms.Label();
+            this.lblPrice = new System.Windows.Forms.Label();
             this.cbSelectRecord = new System.Windows.Forms.ComboBox();
-            this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblSelectRecord = new System.Windows.Forms.Label();
             this.txtOperationLogs = new System.Windows.Forms.RichTextBox();
             this.checkSilentOperation = new System.Windows.Forms.CheckBox();
@@ -49,27 +52,24 @@
             this.lblServiceName = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
+            this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkPaymentMethodOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkProductBrandOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.trbPrice = new System.Windows.Forms.TrackBar();
-            this.lblShowPrice = new System.Windows.Forms.Label();
-            this.lblPrice = new System.Windows.Forms.Label();
             this.pnlData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkDeliveryServiceOperationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkPaymentMethodOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkProductBrandOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
@@ -100,12 +100,48 @@
             this.pnlData.Size = new System.Drawing.Size(800, 549);
             this.pnlData.TabIndex = 0;
             // 
+            // trbPrice
+            // 
+            this.trbPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.trbPrice.Location = new System.Drawing.Point(489, 21);
+            this.trbPrice.Maximum = 5000;
+            this.trbPrice.Name = "trbPrice";
+            this.trbPrice.Size = new System.Drawing.Size(259, 56);
+            this.trbPrice.TabIndex = 51;
+            this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
+            // 
+            // lblShowPrice
+            // 
+            this.lblShowPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblShowPrice.AutoSize = true;
+            this.lblShowPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowPrice.Location = new System.Drawing.Point(763, 24);
+            this.lblShowPrice.Name = "lblShowPrice";
+            this.lblShowPrice.Size = new System.Drawing.Size(35, 16);
+            this.lblShowPrice.TabIndex = 50;
+            this.lblShowPrice.Text = "0.00";
+            // 
+            // lblPrice
+            // 
+            this.lblPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPrice.AutoSize = true;
+            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrice.Location = new System.Drawing.Point(412, 20);
+            this.lblPrice.Name = "lblPrice";
+            this.lblPrice.Size = new System.Drawing.Size(47, 16);
+            this.lblPrice.TabIndex = 49;
+            this.lblPrice.Text = "Price:";
+            // 
             // cbSelectRecord
             // 
             this.cbSelectRecord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.cbSelectRecord.DataSource = this.deliveryServiceBindingSource;
-            this.cbSelectRecord.DisplayMember = "ID";
+            this.cbSelectRecord.DisplayMember = "ServiceName";
             this.cbSelectRecord.FormattingEnabled = true;
             this.cbSelectRecord.Location = new System.Drawing.Point(137, 16);
             this.cbSelectRecord.Name = "cbSelectRecord";
@@ -114,14 +150,14 @@
             this.cbSelectRecord.ValueMember = "ID";
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
-            // paymentMethodBindingSource
+            // deliveryServiceBindingSource
             // 
-            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
+            this.deliveryServiceBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.DeliveryService);
             // 
             // lblSelectRecord
             // 
             this.lblSelectRecord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblSelectRecord.AutoSize = true;
             this.lblSelectRecord.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSelectRecord.Location = new System.Drawing.Point(19, 20);
@@ -132,6 +168,9 @@
             // 
             // txtOperationLogs
             // 
+            this.txtOperationLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOperationLogs.Location = new System.Drawing.Point(22, 300);
             this.txtOperationLogs.Name = "txtOperationLogs";
             this.txtOperationLogs.Size = new System.Drawing.Size(766, 122);
@@ -257,6 +296,9 @@
             // 
             // lstBulkOperations
             // 
+            this.lstBulkOperations.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lstBulkOperations.DataSource = this.bulkDeliveryServiceOperationBindingSource;
             this.lstBulkOperations.DisplayMember = "OperationName";
             this.lstBulkOperations.FormattingEnabled = true;
@@ -314,6 +356,10 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
+            // paymentMethodBindingSource
+            // 
+            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
+            // 
             // bulkPaymentMethodOperationBindingSource
             // 
             this.bulkPaymentMethodOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkPaymentMethodOperation);
@@ -338,46 +384,6 @@
             // 
             this.errBulkProvider.ContainerControl = this;
             // 
-            // deliveryServiceBindingSource
-            // 
-            this.deliveryServiceBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.DeliveryService);
-            // 
-            // trbPrice
-            // 
-            this.trbPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.trbPrice.Location = new System.Drawing.Point(489, 21);
-            this.trbPrice.Maximum = 5000;
-            this.trbPrice.Name = "trbPrice";
-            this.trbPrice.Size = new System.Drawing.Size(259, 56);
-            this.trbPrice.TabIndex = 51;
-            this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
-            // 
-            // lblShowPrice
-            // 
-            this.lblShowPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblShowPrice.AutoSize = true;
-            this.lblShowPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowPrice.Location = new System.Drawing.Point(763, 24);
-            this.lblShowPrice.Name = "lblShowPrice";
-            this.lblShowPrice.Size = new System.Drawing.Size(35, 16);
-            this.lblShowPrice.TabIndex = 50;
-            this.lblShowPrice.Text = "0.00";
-            // 
-            // lblPrice
-            // 
-            this.lblPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPrice.AutoSize = true;
-            this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(412, 20);
-            this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(47, 16);
-            this.lblPrice.TabIndex = 49;
-            this.lblPrice.Text = "Price:";
-            // 
             // frmBulkDeliveryServiceOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -389,16 +395,16 @@
             this.Load += new System.EventHandler(this.frmBulkUserOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkDeliveryServiceOperationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkPaymentMethodOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkProductBrandOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).EndInit();
             this.ResumeLayout(false);
 
         }
