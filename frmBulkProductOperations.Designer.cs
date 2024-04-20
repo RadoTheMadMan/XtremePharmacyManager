@@ -70,6 +70,12 @@
             this.lblQuantity = new System.Windows.Forms.Label();
             this.lblExpiryDate = new System.Windows.Forms.Label();
             this.dtExpiryDate = new System.Windows.Forms.DateTimePicker();
+            this.txtRegNum = new System.Windows.Forms.TextBox();
+            this.lblRegNum = new System.Windows.Forms.Label();
+            this.txtPartNum = new System.Windows.Forms.TextBox();
+            this.lblPartNum = new System.Windows.Forms.Label();
+            this.txtStorageLocation = new System.Windows.Forms.TextBox();
+            this.lblStorageLocation = new System.Windows.Forms.Label();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
@@ -88,6 +94,12 @@
             // 
             // pnlData
             // 
+            this.pnlData.Controls.Add(this.txtStorageLocation);
+            this.pnlData.Controls.Add(this.lblStorageLocation);
+            this.pnlData.Controls.Add(this.txtPartNum);
+            this.pnlData.Controls.Add(this.lblPartNum);
+            this.pnlData.Controls.Add(this.txtRegNum);
+            this.pnlData.Controls.Add(this.lblRegNum);
             this.pnlData.Controls.Add(this.dtExpiryDate);
             this.pnlData.Controls.Add(this.lblExpiryDate);
             this.pnlData.Controls.Add(this.trbQuantity);
@@ -120,7 +132,7 @@
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlData.Location = new System.Drawing.Point(0, 0);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(800, 664);
+            this.pnlData.Size = new System.Drawing.Size(800, 779);
             this.pnlData.TabIndex = 0;
             // 
             // trbPrice
@@ -128,10 +140,10 @@
             this.trbPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.trbPrice.AutoSize = false;
-            this.trbPrice.Location = new System.Drawing.Point(489, 86);
+            this.trbPrice.Location = new System.Drawing.Point(534, 77);
             this.trbPrice.Maximum = 5000;
             this.trbPrice.Name = "trbPrice";
-            this.trbPrice.Size = new System.Drawing.Size(259, 45);
+            this.trbPrice.Size = new System.Drawing.Size(214, 52);
             this.trbPrice.TabIndex = 51;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
@@ -154,7 +166,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(412, 85);
+            this.lblPrice.Location = new System.Drawing.Point(461, 85);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(47, 16);
             this.lblPrice.TabIndex = 49;
@@ -167,9 +179,9 @@
             this.cbSelectRecord.DataSource = this.productBindingSource;
             this.cbSelectRecord.DisplayMember = "ProductName";
             this.cbSelectRecord.FormattingEnabled = true;
-            this.cbSelectRecord.Location = new System.Drawing.Point(166, 16);
+            this.cbSelectRecord.Location = new System.Drawing.Point(233, 16);
             this.cbSelectRecord.Name = "cbSelectRecord";
-            this.cbSelectRecord.Size = new System.Drawing.Size(231, 24);
+            this.cbSelectRecord.Size = new System.Drawing.Size(222, 24);
             this.cbSelectRecord.TabIndex = 48;
             this.cbSelectRecord.ValueMember = "ID";
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
@@ -195,9 +207,9 @@
             this.txtOperationLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOperationLogs.Location = new System.Drawing.Point(22, 419);
+            this.txtOperationLogs.Location = new System.Drawing.Point(22, 490);
             this.txtOperationLogs.Name = "txtOperationLogs";
-            this.txtOperationLogs.Size = new System.Drawing.Size(766, 122);
+            this.txtOperationLogs.Size = new System.Drawing.Size(766, 171);
             this.txtOperationLogs.TabIndex = 46;
             this.txtOperationLogs.Text = "";
             // 
@@ -205,7 +217,7 @@
             // 
             this.checkSilentOperation.AutoSize = true;
             this.checkSilentOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkSilentOperation.Location = new System.Drawing.Point(255, 342);
+            this.checkSilentOperation.Location = new System.Drawing.Point(255, 447);
             this.checkSilentOperation.Name = "checkSilentOperation";
             this.checkSilentOperation.Size = new System.Drawing.Size(140, 20);
             this.checkSilentOperation.TabIndex = 44;
@@ -218,7 +230,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOperationResults.AutoSize = true;
             this.lblOperationResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationResults.Location = new System.Drawing.Point(20, 380);
+            this.lblOperationResults.Location = new System.Drawing.Point(20, 471);
             this.lblOperationResults.Name = "lblOperationResults";
             this.lblOperationResults.Size = new System.Drawing.Size(139, 16);
             this.lblOperationResults.TabIndex = 43;
@@ -235,7 +247,7 @@
             "UPDATE",
             "DELETE",
             "CUSTOM(Only for operations with custom action overrides)"});
-            this.cbOperationType.Location = new System.Drawing.Point(555, 342);
+            this.cbOperationType.Location = new System.Drawing.Point(555, 447);
             this.cbOperationType.Name = "cbOperationType";
             this.cbOperationType.Size = new System.Drawing.Size(229, 24);
             this.cbOperationType.TabIndex = 42;
@@ -247,7 +259,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOperationType.AutoSize = true;
             this.lblOperationType.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationType.Location = new System.Drawing.Point(412, 346);
+            this.lblOperationType.Location = new System.Drawing.Point(412, 451);
             this.lblOperationType.Name = "lblOperationType";
             this.lblOperationType.Size = new System.Drawing.Size(119, 16);
             this.lblOperationType.TabIndex = 41;
@@ -258,7 +270,7 @@
             this.btnAddOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAddOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOperation.Location = new System.Drawing.Point(144, 554);
+            this.btnAddOperation.Location = new System.Drawing.Point(139, 669);
             this.btnAddOperation.Name = "btnAddOperation";
             this.btnAddOperation.Size = new System.Drawing.Size(211, 47);
             this.btnAddOperation.TabIndex = 40;
@@ -271,7 +283,7 @@
             this.btnRemoveOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnRemoveOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveOperation.Location = new System.Drawing.Point(361, 554);
+            this.btnRemoveOperation.Location = new System.Drawing.Point(356, 669);
             this.btnRemoveOperation.Name = "btnRemoveOperation";
             this.btnRemoveOperation.Size = new System.Drawing.Size(211, 47);
             this.btnRemoveOperation.TabIndex = 39;
@@ -284,7 +296,7 @@
             this.btnApplyChangesToCurrentTarget.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnApplyChangesToCurrentTarget.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApplyChangesToCurrentTarget.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(361, 607);
+            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(356, 722);
             this.btnApplyChangesToCurrentTarget.Name = "btnApplyChangesToCurrentTarget";
             this.btnApplyChangesToCurrentTarget.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToCurrentTarget.TabIndex = 38;
@@ -297,7 +309,7 @@
             this.btnExecuteOperations.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnExecuteOperations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExecuteOperations.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExecuteOperations.Location = new System.Drawing.Point(578, 554);
+            this.btnExecuteOperations.Location = new System.Drawing.Point(573, 667);
             this.btnExecuteOperations.Name = "btnExecuteOperations";
             this.btnExecuteOperations.Size = new System.Drawing.Size(211, 47);
             this.btnExecuteOperations.TabIndex = 37;
@@ -310,7 +322,7 @@
             this.btnApplyChangesToAllTargets.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnApplyChangesToAllTargets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApplyChangesToAllTargets.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(578, 607);
+            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(573, 722);
             this.btnApplyChangesToAllTargets.Name = "btnApplyChangesToAllTargets";
             this.btnApplyChangesToAllTargets.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToAllTargets.TabIndex = 36;
@@ -327,9 +339,9 @@
             this.lstBulkOperations.DisplayMember = "OperationName";
             this.lstBulkOperations.FormattingEnabled = true;
             this.lstBulkOperations.ItemHeight = 16;
-            this.lstBulkOperations.Location = new System.Drawing.Point(22, 229);
+            this.lstBulkOperations.Location = new System.Drawing.Point(22, 277);
             this.lstBulkOperations.Name = "lstBulkOperations";
-            this.lstBulkOperations.Size = new System.Drawing.Size(766, 100);
+            this.lstBulkOperations.Size = new System.Drawing.Size(766, 164);
             this.lstBulkOperations.TabIndex = 35;
             this.lstBulkOperations.ValueMember = "TargetObject";
             this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);
@@ -342,9 +354,9 @@
             // 
             this.txtProductName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtProductName.Location = new System.Drawing.Point(167, 107);
+            this.txtProductName.Location = new System.Drawing.Point(234, 107);
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(230, 22);
+            this.txtProductName.Size = new System.Drawing.Size(221, 22);
             this.txtProductName.TabIndex = 4;
             // 
             // lblProductName
@@ -363,9 +375,9 @@
             // 
             this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtID.Location = new System.Drawing.Point(165, 44);
+            this.txtID.Location = new System.Drawing.Point(232, 44);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(232, 22);
+            this.txtID.Size = new System.Drawing.Size(223, 22);
             this.txtID.TabIndex = 2;
             // 
             // lblID
@@ -420,9 +432,9 @@
             // 
             this.txtProductDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtProductDescription.Location = new System.Drawing.Point(168, 136);
+            this.txtProductDescription.Location = new System.Drawing.Point(235, 136);
             this.txtProductDescription.Name = "txtProductDescription";
-            this.txtProductDescription.Size = new System.Drawing.Size(229, 22);
+            this.txtProductDescription.Size = new System.Drawing.Size(220, 22);
             this.txtProductDescription.TabIndex = 53;
             // 
             // lblProductDescription
@@ -444,9 +456,9 @@
             this.cbBrand.DataSource = this.productBrandBindingSource;
             this.cbBrand.DisplayMember = "BrandName";
             this.cbBrand.FormattingEnabled = true;
-            this.cbBrand.Location = new System.Drawing.Point(167, 77);
+            this.cbBrand.Location = new System.Drawing.Point(234, 77);
             this.cbBrand.Name = "cbBrand";
-            this.cbBrand.Size = new System.Drawing.Size(230, 24);
+            this.cbBrand.Size = new System.Drawing.Size(221, 24);
             this.cbBrand.TabIndex = 55;
             this.cbBrand.ValueMember = "ID";
             // 
@@ -467,10 +479,10 @@
             this.trbQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.trbQuantity.AutoSize = false;
-            this.trbQuantity.Location = new System.Drawing.Point(489, 25);
+            this.trbQuantity.Location = new System.Drawing.Point(534, 25);
             this.trbQuantity.Maximum = 5000;
             this.trbQuantity.Name = "trbQuantity";
-            this.trbQuantity.Size = new System.Drawing.Size(259, 45);
+            this.trbQuantity.Size = new System.Drawing.Size(214, 41);
             this.trbQuantity.TabIndex = 58;
             this.trbQuantity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbQuantity.Scroll += new System.EventHandler(this.trbQuantity_Scroll);
@@ -493,7 +505,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuantity.Location = new System.Drawing.Point(412, 24);
+            this.lblQuantity.Location = new System.Drawing.Point(461, 24);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(67, 16);
             this.lblQuantity.TabIndex = 56;
@@ -515,15 +527,78 @@
             // 
             this.dtExpiryDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.dtExpiryDate.Location = new System.Drawing.Point(168, 166);
+            this.dtExpiryDate.Location = new System.Drawing.Point(235, 166);
             this.dtExpiryDate.Name = "dtExpiryDate";
-            this.dtExpiryDate.Size = new System.Drawing.Size(229, 22);
+            this.dtExpiryDate.Size = new System.Drawing.Size(220, 22);
             this.dtExpiryDate.TabIndex = 60;
+            // 
+            // txtRegNum
+            // 
+            this.txtRegNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtRegNum.Location = new System.Drawing.Point(236, 197);
+            this.txtRegNum.Name = "txtRegNum";
+            this.txtRegNum.Size = new System.Drawing.Size(220, 22);
+            this.txtRegNum.TabIndex = 62;
+            // 
+            // lblRegNum
+            // 
+            this.lblRegNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblRegNum.AutoSize = true;
+            this.lblRegNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegNum.Location = new System.Drawing.Point(23, 200);
+            this.lblRegNum.Name = "lblRegNum";
+            this.lblRegNum.Size = new System.Drawing.Size(210, 16);
+            this.lblRegNum.TabIndex = 61;
+            this.lblRegNum.Text = "Product Registration Number:";
+            // 
+            // txtPartNum
+            // 
+            this.txtPartNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtPartNum.Location = new System.Drawing.Point(235, 223);
+            this.txtPartNum.Name = "txtPartNum";
+            this.txtPartNum.Size = new System.Drawing.Size(220, 22);
+            this.txtPartNum.TabIndex = 64;
+            // 
+            // lblPartNum
+            // 
+            this.lblPartNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblPartNum.AutoSize = true;
+            this.lblPartNum.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPartNum.Location = new System.Drawing.Point(22, 226);
+            this.lblPartNum.Name = "lblPartNum";
+            this.lblPartNum.Size = new System.Drawing.Size(188, 16);
+            this.lblPartNum.TabIndex = 63;
+            this.lblPartNum.Text = "Product Partitude Number:";
+            // 
+            // txtStorageLocation
+            // 
+            this.txtStorageLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtStorageLocation.Location = new System.Drawing.Point(233, 251);
+            this.txtStorageLocation.Name = "txtStorageLocation";
+            this.txtStorageLocation.Size = new System.Drawing.Size(223, 22);
+            this.txtStorageLocation.TabIndex = 66;
+            // 
+            // lblStorageLocation
+            // 
+            this.lblStorageLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblStorageLocation.AutoSize = true;
+            this.lblStorageLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStorageLocation.Location = new System.Drawing.Point(23, 254);
+            this.lblStorageLocation.Name = "lblStorageLocation";
+            this.lblStorageLocation.Size = new System.Drawing.Size(186, 16);
+            this.lblStorageLocation.TabIndex = 65;
+            this.lblStorageLocation.Text = "Product Storage Location:";
             // 
             // frmBulkProductOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 664);
+            this.ClientSize = new System.Drawing.Size(800, 781);
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmBulkProductOperations";
@@ -591,5 +666,11 @@
         private System.Windows.Forms.Label lblQuantity;
         private System.Windows.Forms.Label lblExpiryDate;
         private System.Windows.Forms.DateTimePicker dtExpiryDate;
+        private System.Windows.Forms.TextBox txtRegNum;
+        private System.Windows.Forms.Label lblRegNum;
+        private System.Windows.Forms.TextBox txtPartNum;
+        private System.Windows.Forms.Label lblPartNum;
+        private System.Windows.Forms.TextBox txtStorageLocation;
+        private System.Windows.Forms.Label lblStorageLocation;
     }
 }
