@@ -76,6 +76,7 @@
             this.lblPartNum = new System.Windows.Forms.Label();
             this.txtStorageLocation = new System.Windows.Forms.TextBox();
             this.lblStorageLocation = new System.Windows.Forms.Label();
+            this.lblProductNotice = new System.Windows.Forms.Label();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
@@ -94,6 +95,7 @@
             // 
             // pnlData
             // 
+            this.pnlData.Controls.Add(this.lblProductNotice);
             this.pnlData.Controls.Add(this.txtStorageLocation);
             this.pnlData.Controls.Add(this.lblStorageLocation);
             this.pnlData.Controls.Add(this.txtPartNum);
@@ -595,6 +597,20 @@
             this.lblStorageLocation.TabIndex = 65;
             this.lblStorageLocation.Text = "Product Storage Location:";
             // 
+            // lblProductNotice
+            // 
+            this.lblProductNotice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblProductNotice.AutoSize = true;
+            this.lblProductNotice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductNotice.ForeColor = System.Drawing.Color.Firebrick;
+            this.lblProductNotice.Location = new System.Drawing.Point(469, 171);
+            this.lblProductNotice.Name = "lblProductNotice";
+            this.lblProductNotice.Size = new System.Drawing.Size(319, 48);
+            this.lblProductNotice.TabIndex = 67;
+            this.lblProductNotice.Text = "IMPORTANT NOTICE: To see the expiry date\r\ncheck the side of the product package\r\n" +
+    "where the partitude number is\r\n";
+            // 
             // frmBulkProductOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -672,5 +688,6 @@
         private System.Windows.Forms.Label lblPartNum;
         private System.Windows.Forms.TextBox txtStorageLocation;
         private System.Windows.Forms.Label lblStorageLocation;
+        private System.Windows.Forms.Label lblProductNotice;
     }
 }
