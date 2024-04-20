@@ -12,13 +12,13 @@ using XtremePharmacyManager.DataEntities;
 using static XtremePharmacyManager.ImageBinConverter;
 namespace XtremePharmacyManager
 {
-    public partial class frmBulkProductOperations : Form
+    public partial class frmBulkProductImageOperations : Form
     {
-        static BulkOperationManager<Product> manager;
-        BulkOperation<Product> selected_operation;
-        Product selected_target;
+        static BulkOperationManager<ProductImage> manager;
+        BulkOperation<ProductImage> selected_operation;
+        ProductImage selected_target;
         static Entities manager_entities;
-        public frmBulkProductOperations(ref BulkOperationManager<Product> operation_manager)
+        public frmBulkProductImageOperations(ref BulkOperationManager<ProductImage> operation_manager)
         {
             InitializeComponent();
             manager = operation_manager;
@@ -29,14 +29,14 @@ namespace XtremePharmacyManager
             manager.BulkOperationUpdated += OnBulkOperationListChanged;
         }
 
-        private void OnBulkOperationExecuted(object sender, BulkOperationEventArgs<Product> e)
+        private void OnBulkOperationExecuted(object sender, BulkOperationEventArgs<ProductImage> e)
         {
             try
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.Products.ToList();
-                cbBrand.DataSource = manager_entities.ProductBrands.ToList();
+                cbSelectRecord.DataSource = manager_entities.ProductImages.ToList();
+                cbProduct.DataSource = manager_entities.Products.ToList();
                 lblOperationResults.Text = e.Result;
                 txtOperationLogs.Text = e.OperationLog;
             }
@@ -46,14 +46,14 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void OnBulkOperationListChanged(object sender, BulkOperationEventArgs<Product> e)
+        private void OnBulkOperationListChanged(object sender, BulkOperationEventArgs<ProductImage> e)
         {
             try
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.Products.ToList();
-                cbBrand.DataSource = manager_entities.ProductBrands.ToList();
+                cbSelectRecord.DataSource = manager_entities.ProductImages.ToList();
+                cbProduct.DataSource = manager_entities.Products.ToList();
                 lblOperationResults.Text = "Operation Results: ";
                 txtOperationLogs.Text = "";
             }
@@ -68,27 +68,20 @@ namespace XtremePharmacyManager
 
         private void frmBulkUserOperations_Load(object sender, EventArgs e)
         {
-            Bitmap currentpfp = new Bitmap(64, 64);
+            Bitmap current_image = new Bitmap(64, 64);
             lstBulkOperations.DataSource = manager.BulkOperations;
-            cbSelectRecord.DataSource = manager_entities.Products.ToList();
-            cbBrand.DataSource = manager_entities.ProductBrands.ToList();
+            cbSelectRecord.DataSource = manager_entities.ProductImages.ToList();
+            cbProduct.DataSource = manager_entities.Products.ToList();
             try
             {
                 if (selected_operation != null && selected_target != null)
                 {
+                    ConvertBinaryToImage(selected_target.ImageData, out current_image);
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    this.txtProductName.Text = (!String.IsNullOrEmpty(selected_target.ProductName)) ? selected_target.ProductName.ToString() : string.Empty;
-                    this.txtProductDescription.Text = (!String.IsNullOrEmpty(selected_target.ProductDescription)) ? selected_target.ProductDescription.ToString() : string.Empty;
-                    this.txtRegNum.Text = (!String.IsNullOrEmpty(selected_target.ProductRegNum)) ? selected_target.ProductRegNum.ToString() : string.Empty;
-                    this.txtPartNum.Text = (!String.IsNullOrEmpty(selected_target.ProductPartNum)) ? selected_target.ProductPartNum.ToString() : string.Empty;
-                    this.txtStorageLocation.Text = (!String.IsNullOrEmpty(selected_target.ProductStorageLocation)) ? selected_target.ProductStorageLocation.ToString() : string.Empty;
-                    dtExpiryDate.Value = (selected_target.ProductExpiryDate>= DateTime.MinValue && selected_target.ProductExpiryDate <= DateTime.MaxValue) ? selected_target.ProductExpiryDate : DateTime.Now;
-                    this.trbPrice.Value = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_target.ProductPrice) : 0;
-                    this.trbQuantity.Value = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity : 0;
-                    this.lblShowPrice.Text = (selected_target.ProductPrice >= 0) ? selected_target.ProductPrice.ToString() : string.Empty;
-                    this.lblShowQuantity.Text = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity.ToString() : string.Empty;
+                    this.txtImageName.Text = (!String.IsNullOrEmpty(selected_target.ImageName)) ? selected_target.ImageName.ToString() : string.Empty;
+                    this.pbProductImageData.Image = current_image;
                     cbSelectRecord.SelectedValue = selected_target.ID;
-                    cbBrand.SelectedValue = selected_target.BrandID;
+                    cbProduct.SelectedValue = selected_target.ProductID;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                 }
             }
@@ -112,19 +105,15 @@ namespace XtremePharmacyManager
 
         private void btnApplyChangesToAllTargets_Click(object sender, EventArgs e)
         {
+            byte[] current_bytes;
             try
             {
+                ConvertImageToBinary((Bitmap)pbProductImageData.Image, out current_bytes);
                 if (selected_target != null)
                 {
-                    selected_target.ProductName = txtProductName.Text;
-                    selected_target.BrandID = Int32.Parse(cbBrand.SelectedValue.ToString());
-                    selected_target.ProductDescription = txtProductDescription.Text;
-                    selected_target.ProductQuantity = trbQuantity.Value;
-                    selected_target.ProductPrice = trbPrice.Value;
-                    selected_target.ProductExpiryDate = dtExpiryDate.Value;
-                    selected_target.ProductRegNum = txtRegNum.Text;
-                    selected_target.ProductPartNum = txtPartNum.Text;
-                    selected_target.ProductStorageLocation = txtStorageLocation.Text;
+                    selected_target.ImageName = txtImageName.Text;
+                    selected_target.ProductID = Int32.Parse(cbProduct.SelectedValue.ToString());
+                    selected_target.ImageData = current_bytes;
                 }
                 if (selected_operation != null)
                 {
@@ -148,24 +137,15 @@ namespace XtremePharmacyManager
             {
                 if (current.SelectedItems.Count > 0 || (current.SelectedIndex >= 0 && current.SelectedIndex < current.Items.Count))
                 {
-                    selected_operation = current.Items[current.SelectedIndex] as BulkProductOperation;
+                    selected_operation = current.Items[current.SelectedIndex] as BulkProductImageOperation;
                     selected_target = selected_operation.TargetObject;
                 }
                 if (selected_operation != null && selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    this.txtProductName.Text = (!String.IsNullOrEmpty(selected_target.ProductName)) ? selected_target.ProductName.ToString() : string.Empty;
-                    this.txtProductDescription.Text = (!String.IsNullOrEmpty(selected_target.ProductDescription)) ? selected_target.ProductDescription.ToString() : string.Empty;
-                    this.txtRegNum.Text = (!String.IsNullOrEmpty(selected_target.ProductRegNum)) ? selected_target.ProductRegNum.ToString() : string.Empty;
-                    this.txtPartNum.Text = (!String.IsNullOrEmpty(selected_target.ProductPartNum)) ? selected_target.ProductPartNum.ToString() : string.Empty;
-                    this.txtStorageLocation.Text = (!String.IsNullOrEmpty(selected_target.ProductStorageLocation)) ? selected_target.ProductStorageLocation.ToString() : string.Empty;
-                    dtExpiryDate.Value = (selected_target.ProductExpiryDate >= DateTime.MinValue && selected_target.ProductExpiryDate <= DateTime.MaxValue) ? selected_target.ProductExpiryDate : DateTime.Now;
-                    this.trbPrice.Value = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_target.ProductPrice) : 0;
-                    this.trbQuantity.Value = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity : 0;
-                    this.lblShowPrice.Text = (selected_target.ProductPrice >= 0) ? selected_target.ProductPrice.ToString() : string.Empty;
-                    this.lblShowQuantity.Text = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity.ToString() : string.Empty;
+                    this.txtImageName.Text = (!String.IsNullOrEmpty(selected_target.ImageName)) ? selected_target.ImageName.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
-                    cbBrand.SelectedValue = selected_target.BrandID;
+                    cbProduct.SelectedValue = selected_target.ProductID;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                 }
                 lblOperationResults.Text = "Operation Results: ";
@@ -179,22 +159,18 @@ namespace XtremePharmacyManager
 
         private void btnAddOperation_Click(object sender, EventArgs e)
         {
+            byte[] image_bytes;
             try
             {
+                ConvertImageToBinary((Bitmap)pbProductImageData.Image, out image_bytes);
                 bool IsSilent = checkSilentOperation.Checked;
                 BulkOperationType operationType = (BulkOperationType)cbOperationType.SelectedIndex;
-                manager.AddOperation(new BulkProductOperation(operationType, ref manager_entities, new Product()
+                manager.AddOperation(new BulkProductImageOperation(operationType, ref manager_entities, new ProductImage()
                 {
                     ID = Int32.Parse(txtID.Text),
-                    ProductName = txtProductName.Text,
-                    BrandID = Int32.Parse(cbBrand.SelectedValue.ToString()),
-                    ProductDescription = txtProductDescription.Text,
-                    ProductQuantity = trbQuantity.Value,
-                    ProductPrice = trbPrice.Value,
-                    ProductExpiryDate = dtExpiryDate.Value,
-                    ProductRegNum = txtRegNum.Text,
-                    ProductPartNum = txtPartNum.Text,
-                    ProductStorageLocation = txtStorageLocation.Text,
+                    ProductID = Int32.Parse(cbProduct.SelectedValue.ToString()),
+                    ImageName = txtImageName.Text,
+                    ImageData = image_bytes
                 }, IsSilent)) ;
             }
             catch(Exception ex)
@@ -223,19 +199,15 @@ namespace XtremePharmacyManager
 
         private void btnApplyChangesToCurrentTarget_Click(object sender, EventArgs e)
         {
+            byte[] current_bytes;
             try
             {
+                ConvertImageToBinary((Bitmap)pbProductImageData.Image, out current_bytes);
                 if (selected_target != null)
                 {
-                    selected_target.ProductName = txtProductName.Text;
-                    selected_target.BrandID = Int32.Parse(cbBrand.SelectedValue.ToString());
-                    selected_target.ProductDescription = txtProductDescription.Text;
-                    selected_target.ProductQuantity = trbQuantity.Value;
-                    selected_target.ProductPrice = trbPrice.Value;
-                    selected_target.ProductExpiryDate = dtExpiryDate.Value;
-                    selected_target.ProductRegNum = txtRegNum.Text;
-                    selected_target.ProductPartNum = txtPartNum.Text;
-                    selected_target.ProductStorageLocation = txtStorageLocation.Text;
+                    selected_target.ImageName = txtImageName.Text;
+                    selected_target.ProductID = Int32.Parse(cbProduct.SelectedValue.ToString());
+                    selected_target.ImageData = current_bytes;
                 }
                 if (selected_operation != null)
                 {
@@ -263,22 +235,13 @@ namespace XtremePharmacyManager
         {
             try
             {
-                selected_target = manager_entities.Products.Where(x => x.ID == ((Product)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
+                selected_target = manager_entities.ProductImages.Where(x => x.ID == ((ProductImage)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
                 if (selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    this.txtProductName.Text = (!String.IsNullOrEmpty(selected_target.ProductName)) ? selected_target.ProductName.ToString() : string.Empty;
-                    this.txtProductDescription.Text = (!String.IsNullOrEmpty(selected_target.ProductDescription)) ? selected_target.ProductDescription.ToString() : string.Empty;
-                    this.txtRegNum.Text = (!String.IsNullOrEmpty(selected_target.ProductRegNum)) ? selected_target.ProductRegNum.ToString() : string.Empty;
-                    this.txtPartNum.Text = (!String.IsNullOrEmpty(selected_target.ProductPartNum)) ? selected_target.ProductPartNum.ToString() : string.Empty;
-                    this.txtStorageLocation.Text = (!String.IsNullOrEmpty(selected_target.ProductStorageLocation)) ? selected_target.ProductStorageLocation.ToString() : string.Empty;
-                    dtExpiryDate.Value = (selected_target.ProductExpiryDate >= DateTime.MinValue && selected_target.ProductExpiryDate <= DateTime.MaxValue) ? selected_target.ProductExpiryDate : DateTime.Now;
-                    this.trbPrice.Value = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_target.ProductPrice) : 0;
-                    this.trbQuantity.Value = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity : 0;
-                    this.lblShowPrice.Text = (selected_target.ProductPrice >= 0) ? selected_target.ProductPrice.ToString() : string.Empty;
-                    this.lblShowQuantity.Text = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity.ToString() : string.Empty;
+                    this.txtImageName.Text = (!String.IsNullOrEmpty(selected_target.ImageName)) ? selected_target.ImageName.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
-                    cbBrand.SelectedValue = selected_target.BrandID;
+                    cbProduct.SelectedValue = selected_target.ProductID;
                 }
             }
             catch (Exception ex)
@@ -287,14 +250,18 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void trbPrice_Scroll(object sender, EventArgs e)
+        private void pbProductImageData_Click(object sender, EventArgs e)
         {
-            lblShowPrice.Text = ((TrackBar)sender).Value.ToString();
-        }
-
-        private void trbQuantity_Scroll(object sender, EventArgs e)
-        {
-            lblShowQuantity.Text = ((TrackBar)sender).Value.ToString();
+            PictureBox current = (PictureBox)sender;
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Filter = "Images|*.png*;*.bmp*;*.jpg*;*.jpeg*;*.jfif*";
+            ofd.Multiselect = false;
+            ofd.Title = "Select an image to upload or for bulk operation";
+            if (ofd.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(ofd.FileName))
+            {
+                Bitmap selectedImage = new Bitmap(ofd.FileName);
+                current.Image = new Bitmap(selectedImage);
+            }
         }
     }
 }
