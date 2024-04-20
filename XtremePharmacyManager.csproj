@@ -182,6 +182,24 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="frmBulkDeliveryServiceOperations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBulkDeliveryServiceOperations.Designer.cs">
+      <DependentUpon>frmBulkDeliveryServiceOperations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBulkPaymentMethodOperations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBulkPaymentMethodOperations.Designer.cs">
+      <DependentUpon>frmBulkPaymentMethodOperations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmBulkProductBrandOperations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBulkProductBrandOperations.Designer.cs">
+      <DependentUpon>frmBulkProductBrandOperations.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEditOrderDelivery.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,6 +319,15 @@
       <DependentUpon>frmLogs.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="frmBulkDeliveryServiceOperations.resx">
+      <DependentUpon>frmBulkDeliveryServiceOperations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBulkPaymentMethodOperations.resx">
+      <DependentUpon>frmBulkPaymentMethodOperations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBulkProductBrandOperations.resx">
+      <DependentUpon>frmBulkProductBrandOperations.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmEditOrderDelivery.resx">
       <DependentUpon>frmEditOrderDelivery.cs</DependentUpon>
     </EmbeddedResource>
@@ -376,6 +403,8 @@
       <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\BulkPaymentMethodOperation.datasource" />
+    <None Include="Properties\DataSources\BulkProductBrandOperation.datasource" />
     <None Include="Properties\DataSources\BulkUserOperation.datasource" />
     <None Include="Properties\DataSources\frmEditDeliveryService.datasource" />
     <None Include="Properties\DataSources\frmEditUser.datasource" />

@@ -170,6 +170,7 @@ namespace XtremePharmacyManager
                     pbUserProfilePic.Image = (selected_target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
                     cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
+                    cbSelectRecord.SelectedValue = selected_target.ID;
                 }
                 lblOperationResults.Text = "Operation Results: ";
                 txtOperationLogs.Text = "";
