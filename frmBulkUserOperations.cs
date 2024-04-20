@@ -35,6 +35,7 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
+                cbSelectRecord.DataSource = manager_entities.Users.ToList();
                 lblOperationResults.Text = e.Result;
                 txtOperationLogs.Text = e.OperationLog;
             }
@@ -50,6 +51,7 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
+                cbSelectRecord.DataSource = manager_entities.Users.ToList();
                 lblOperationResults.Text = "Operation Results: ";
                 txtOperationLogs.Text = "";
             }
@@ -66,6 +68,7 @@ namespace XtremePharmacyManager
         {
             Bitmap currentpfp = new Bitmap(64, 64);
             lstBulkOperations.DataSource = manager.BulkOperations;
+            cbSelectRecord.DataSource = manager_entities.Users.ToList();
             try
             {
                 if (selected_operation != null && selected_target != null)
@@ -86,6 +89,7 @@ namespace XtremePharmacyManager
                     pbUserProfilePic.Image = (selected_target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
                     cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
+                    cbSelectRecord.SelectedValue = selected_target.ID;
                 }
             }
             catch (Exception ex)
@@ -276,6 +280,42 @@ namespace XtremePharmacyManager
             {
                 Bitmap selectedImage = new Bitmap(ofd.FileName);
                 current.Image = new Bitmap(selectedImage);
+            }
+        }
+
+        private void trbBalance_Scroll(object sender, EventArgs e)
+        {
+            lblShowBalance.Text = ((TrackBar)sender).Value.ToString();
+        }
+
+        private void cbSelectRecord_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                selected_target = manager_entities.Users.Where(x => x.ID == ((User)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
+                Bitmap currentpfp = new Bitmap(64, 64);
+                if (selected_target != null)
+                {
+                    if (selected_target.UserProfilePic != null) { ConvertBinaryToImage(selected_target.UserProfilePic, out currentpfp); }
+                    this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
+                    this.txtUsername.Text = (!String.IsNullOrEmpty(selected_target.UserName)) ? selected_target.UserName.ToString() : string.Empty;
+                    this.txtPassword.Text = (!String.IsNullOrEmpty(selected_target.UserPassword)) ? selected_target.UserPassword.ToString() : string.Empty;
+                    this.txtDisplayName.Text = (!String.IsNullOrEmpty(selected_target.UserDisplayName)) ? selected_target.UserDisplayName.ToString() : string.Empty;
+                    this.dtBirthDate.Value = (selected_target.UserBirthDate != null && selected_target.UserBirthDate > DateTime.MinValue && selected_target.UserBirthDate < DateTime.MaxValue) ? selected_target.UserBirthDate : DateTime.Now;
+                    this.txtPhone.Text = (!String.IsNullOrEmpty(selected_target.UserPhone)) ? selected_target.UserPhone.ToString() : string.Empty;
+                    this.txtEmail.Text = (!String.IsNullOrEmpty(selected_target.UserEmail)) ? selected_target.UserEmail.ToString() : string.Empty;
+                    this.txtAddress.Text = (!String.IsNullOrEmpty(selected_target.UserAddress)) ? selected_target.UserAddress.ToString() : string.Empty;
+                    trbBalance.Value = (selected_target.UserBalance >= 0) ? Convert.ToInt32(selected_target.UserBalance) : 0;
+                    lblShowBalance.Text = (selected_target.UserBalance >= 0) ? selected_target.UserBalance.ToString() : string.Empty;
+                    txtDiagnose.Text = (!String.IsNullOrEmpty(selected_target.UserDiagnose)) ? selected_target.UserDiagnose : string.Empty;
+                    cbRole.SelectedIndex = (selected_target.UserRole >= 0 && selected_target.UserRole <= 2) ? selected_target.UserRole : 1;
+                    pbUserProfilePic.Image = (selected_target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
+                    cbSelectRecord.SelectedValue = selected_target.ID;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
