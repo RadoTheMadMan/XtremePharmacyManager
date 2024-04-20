@@ -133,6 +133,7 @@ namespace XtremePharmacyManager
         private void lstBulkOperations_SelectedIndexChanged(object sender, EventArgs e)
         {
             ListBox current = (ListBox)sender;
+            Bitmap selected_image;
             try
             {
                 if (current.SelectedItems.Count > 0 || (current.SelectedIndex >= 0 && current.SelectedIndex < current.Items.Count))
@@ -142,8 +143,10 @@ namespace XtremePharmacyManager
                 }
                 if (selected_operation != null && selected_target != null)
                 {
+                    ConvertBinaryToImage(selected_target.ImageData, out selected_image);
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtImageName.Text = (!String.IsNullOrEmpty(selected_target.ImageName)) ? selected_target.ImageName.ToString() : string.Empty;
+                    this.pbProductImageData.Image = selected_image;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                     cbProduct.SelectedValue = selected_target.ProductID;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
@@ -233,13 +236,16 @@ namespace XtremePharmacyManager
 
         private void cbSelectRecord_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Bitmap selected_image;
             try
             {
                 selected_target = manager_entities.ProductImages.Where(x => x.ID == ((ProductImage)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
                 if (selected_target != null)
                 {
+                    ConvertBinaryToImage(selected_target.ImageData, out selected_image);
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtImageName.Text = (!String.IsNullOrEmpty(selected_target.ImageName)) ? selected_target.ImageName.ToString() : string.Empty;
+                    this.pbProductImageData.Image = selected_image;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                     cbProduct.SelectedValue = selected_target.ProductID;
                 }
