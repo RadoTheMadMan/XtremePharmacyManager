@@ -75,6 +75,7 @@
             this.bulkProductBrandOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.checkOverridePriceAsTotalOnAdd = new System.Windows.Forms.CheckBox();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -96,6 +97,7 @@
             // 
             // pnlData
             // 
+            this.pnlData.Controls.Add(this.checkOverridePriceAsTotalOnAdd);
             this.pnlData.Controls.Add(this.lblStatus);
             this.pnlData.Controls.Add(this.cbStatus);
             this.pnlData.Controls.Add(this.cbEmployee);
@@ -585,6 +587,19 @@
             // 
             this.errBulkProvider.ContainerControl = this;
             // 
+            // checkOverridePriceAsTotalOnAdd
+            // 
+            this.checkOverridePriceAsTotalOnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkOverridePriceAsTotalOnAdd.AutoSize = true;
+            this.checkOverridePriceAsTotalOnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkOverridePriceAsTotalOnAdd.Location = new System.Drawing.Point(404, 251);
+            this.checkOverridePriceAsTotalOnAdd.Name = "checkOverridePriceAsTotalOnAdd";
+            this.checkOverridePriceAsTotalOnAdd.Size = new System.Drawing.Size(250, 20);
+            this.checkOverridePriceAsTotalOnAdd.TabIndex = 74;
+            this.checkOverridePriceAsTotalOnAdd.Text = "Override Price As Total On Add:";
+            this.checkOverridePriceAsTotalOnAdd.UseVisualStyleBackColor = true;
+            // 
             // frmBulkProductOrderOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -664,5 +679,6 @@
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.ComboBox cbStatus;
         private System.Windows.Forms.BindingSource bulkProductOrderOperationBindingSource;
+        private System.Windows.Forms.CheckBox checkOverridePriceAsTotalOnAdd;
     }
 }

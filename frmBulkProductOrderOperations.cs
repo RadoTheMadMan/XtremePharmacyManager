@@ -183,21 +183,19 @@ namespace XtremePharmacyManager
         {
             try
             {
+                bool OverridePriceAsTotalOnAdd = checkOverridePriceAsTotalOnAdd.Checked;
                 bool IsSilent = checkSilentOperation.Checked;
                 BulkOperationType operationType = (BulkOperationType)cbOperationType.SelectedIndex;
-                manager.AddOperation(new BulkProductOperation(operationType, ref manager_entities, new Product()
+                manager.AddOperation(new BulkProductOrderOperation(operationType, ref manager_entities, new ProductOrder()
                 {
                     ID = Int32.Parse(txtID.Text),
-                    ProductName = txtProductName.Text,
-                    BrandID = Int32.Parse(cbProduct.SelectedValue.ToString()),
-                    ProductDescription = txtProductDescription.Text,
-                    ProductQuantity = trbQuantity.Value,
-                    ProductPrice = trbPrice.Value,
-                    ProductExpiryDate = dtExpiryDate.Value,
-                    ProductRegNum = txtReason.Text,
-                    ProductPartNum = txtPartNum.Text,
-                    ProductStorageLocation = txtStorageLocation.Text,
-                }, IsSilent)) ;
+                    ProductID = Int32.Parse(cbProduct.SelectedValue.ToString()),
+                    ClientID = Int32.Parse(cbClient.SelectedValue.ToString()),
+                    EmployeeID = Int32.Parse(cbEmployee.SelectedValue.ToString()),
+                    DesiredQuantity = trbQuantity.Value,
+                    OrderPrice = trbPrice.Value,
+                    OrderReason = txtReason.Text,
+            }, OverridePriceAsTotalOnAdd,IsSilent));
             }
             catch(Exception ex)
             {
@@ -229,15 +227,13 @@ namespace XtremePharmacyManager
             {
                 if (selected_target != null)
                 {
-                    selected_target.ProductName = txtProductName.Text;
-                    selected_target.BrandID = Int32.Parse(cbProduct.SelectedValue.ToString());
-                    selected_target.ProductDescription = txtProductDescription.Text;
-                    selected_target.ProductQuantity = trbQuantity.Value;
+                    selected_target.ProductID = Int32.Parse(cbProduct.SelectedValue.ToString());
+                    selected_target.ClientID = Int32.Parse(cbClient.SelectedValue.ToString());
+                    selected_target.EmployeeID = Int32.Parse(cbEmployee.SelectedValue.ToString());
+                    selected_target.DesiredQuantity = trbQuantity.Value;
                     selected_target.OrderPrice = trbPrice.Value;
-                    selected_target.ProductExpiryDate = dtExpiryDate.Value;
-                    selected_target.ProductRegNum = txtReason.Text;
-                    selected_target.ProductPartNum = txtPartNum.Text;
-                    selected_target.ProductStorageLocation = txtStorageLocation.Text;
+                    selected_target.OrderStatus = cbStatus.SelectedIndex;
+                    selected_target.OrderReason = txtReason.Text;
                 }
                 if (selected_operation != null)
                 {
