@@ -104,5 +104,14 @@ namespace XtremePharmacyManager.Properties {
                 return ResourceManager.GetString("CriticalErrorTitle", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stack Trace: .
+        /// </summary>
+        internal static string StackTraceMessage {
+            get {
+                return ResourceManager.GetString("StackTraceMessage", resourceCulture);
+            }
+        }
     }
 }

@@ -32,9 +32,21 @@ namespace XtremePharmacyManager
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UsernameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PasswordColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DisplayNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BirthDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PhoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProfilePicColumn = new System.Windows.Forms.DataGridViewImageColumn();
+            this.BalanceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiagnoseColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RegisterDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RoleColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.lblID = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
@@ -71,23 +83,27 @@ namespace XtremePharmacyManager
             this.btnDelete = new System.Windows.Forms.Button();
             this.pnlData = new System.Windows.Forms.Panel();
             this.lblUserNotice = new System.Windows.Forms.Label();
-            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UsernameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PasswordColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DisplayNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BirthDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PhoneColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmailColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AddressColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProfilePicColumn = new System.Windows.Forms.DataGridViewImageColumn();
-            this.BalanceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiagnoseColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RegisterDateColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.RoleColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userPasswordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userDisplayNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userBirthDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userEmailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userAddressDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userProfilePicDataGridViewImageColumn = new System.Windows.Forms.DataGridViewImageColumn();
+            this.userBalanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userDiagnoseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userDateOfRegisterDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userRoleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productOrdersDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.productOrders1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnGenerateReport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).BeginInit();
             this.pnlData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvUsers
@@ -110,31 +126,169 @@ namespace XtremePharmacyManager
             this.BalanceColumn,
             this.DiagnoseColumn,
             this.RegisterDateColumn,
-            this.RoleColumn});
+            this.RoleColumn,
+            this.iDDataGridViewTextBoxColumn,
+            this.userNameDataGridViewTextBoxColumn,
+            this.userPasswordDataGridViewTextBoxColumn,
+            this.userDisplayNameDataGridViewTextBoxColumn,
+            this.userBirthDateDataGridViewTextBoxColumn,
+            this.userPhoneDataGridViewTextBoxColumn,
+            this.userEmailDataGridViewTextBoxColumn,
+            this.userAddressDataGridViewTextBoxColumn,
+            this.userProfilePicDataGridViewImageColumn,
+            this.userBalanceDataGridViewTextBoxColumn,
+            this.userDiagnoseDataGridViewTextBoxColumn,
+            this.userDateOfRegisterDataGridViewTextBoxColumn,
+            this.userRoleDataGridViewTextBoxColumn,
+            this.productOrdersDataGridViewTextBoxColumn,
+            this.productOrders1DataGridViewTextBoxColumn});
             this.dgvUsers.DataSource = this.userBindingSource;
             this.dgvUsers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvUsers.Location = new System.Drawing.Point(0, 345);
             this.dgvUsers.MultiSelect = false;
             this.dgvUsers.Name = "dgvUsers";
             this.dgvUsers.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsers.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUsers.RowHeadersWidth = 51;
             this.dgvUsers.RowTemplate.Height = 24;
-            this.dgvUsers.Size = new System.Drawing.Size(800, 105);
+            this.dgvUsers.Size = new System.Drawing.Size(917, 105);
             this.dgvUsers.TabIndex = 1;
             this.dgvUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellClick);
             this.dgvUsers.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvUsers_RowsAdded);
             // 
-            // userBindingSource
+            // IDColumn
             // 
-            this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            this.IDColumn.DataPropertyName = "ID";
+            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.MinimumWidth = 6;
+            this.IDColumn.Name = "IDColumn";
+            this.IDColumn.ReadOnly = true;
+            this.IDColumn.Width = 125;
+            // 
+            // UsernameColumn
+            // 
+            this.UsernameColumn.DataPropertyName = "UserName";
+            this.UsernameColumn.HeaderText = "Username";
+            this.UsernameColumn.MinimumWidth = 6;
+            this.UsernameColumn.Name = "UsernameColumn";
+            this.UsernameColumn.ReadOnly = true;
+            this.UsernameColumn.Width = 125;
+            // 
+            // PasswordColumn
+            // 
+            this.PasswordColumn.DataPropertyName = "UserPassword";
+            this.PasswordColumn.HeaderText = "Password";
+            this.PasswordColumn.MinimumWidth = 6;
+            this.PasswordColumn.Name = "PasswordColumn";
+            this.PasswordColumn.ReadOnly = true;
+            this.PasswordColumn.Width = 125;
+            // 
+            // DisplayNameColumn
+            // 
+            this.DisplayNameColumn.DataPropertyName = "UserDisplayName";
+            this.DisplayNameColumn.HeaderText = "Display Name";
+            this.DisplayNameColumn.MinimumWidth = 6;
+            this.DisplayNameColumn.Name = "DisplayNameColumn";
+            this.DisplayNameColumn.ReadOnly = true;
+            this.DisplayNameColumn.Width = 125;
+            // 
+            // BirthDateColumn
+            // 
+            this.BirthDateColumn.DataPropertyName = "UserBirthDate";
+            this.BirthDateColumn.HeaderText = "Birth Date";
+            this.BirthDateColumn.MinimumWidth = 6;
+            this.BirthDateColumn.Name = "BirthDateColumn";
+            this.BirthDateColumn.ReadOnly = true;
+            this.BirthDateColumn.Width = 125;
+            // 
+            // PhoneColumn
+            // 
+            this.PhoneColumn.DataPropertyName = "UserPhone";
+            this.PhoneColumn.HeaderText = "Phone";
+            this.PhoneColumn.MinimumWidth = 6;
+            this.PhoneColumn.Name = "PhoneColumn";
+            this.PhoneColumn.ReadOnly = true;
+            this.PhoneColumn.Width = 125;
+            // 
+            // EmailColumn
+            // 
+            this.EmailColumn.DataPropertyName = "UserEmail";
+            this.EmailColumn.HeaderText = "Email";
+            this.EmailColumn.MinimumWidth = 6;
+            this.EmailColumn.Name = "EmailColumn";
+            this.EmailColumn.ReadOnly = true;
+            this.EmailColumn.Width = 125;
+            // 
+            // AddressColumn
+            // 
+            this.AddressColumn.DataPropertyName = "UserAddress";
+            this.AddressColumn.HeaderText = "Address";
+            this.AddressColumn.MinimumWidth = 6;
+            this.AddressColumn.Name = "AddressColumn";
+            this.AddressColumn.ReadOnly = true;
+            this.AddressColumn.Width = 125;
+            // 
+            // ProfilePicColumn
+            // 
+            this.ProfilePicColumn.DataPropertyName = "UserProfilePic";
+            this.ProfilePicColumn.HeaderText = "Profile Picture";
+            this.ProfilePicColumn.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.ProfilePicColumn.MinimumWidth = 6;
+            this.ProfilePicColumn.Name = "ProfilePicColumn";
+            this.ProfilePicColumn.ReadOnly = true;
+            this.ProfilePicColumn.Width = 125;
+            // 
+            // BalanceColumn
+            // 
+            this.BalanceColumn.DataPropertyName = "UserBalance";
+            this.BalanceColumn.HeaderText = "Balance";
+            this.BalanceColumn.MinimumWidth = 6;
+            this.BalanceColumn.Name = "BalanceColumn";
+            this.BalanceColumn.ReadOnly = true;
+            this.BalanceColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.BalanceColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.BalanceColumn.Width = 125;
+            // 
+            // DiagnoseColumn
+            // 
+            this.DiagnoseColumn.DataPropertyName = "UserDiagnose";
+            this.DiagnoseColumn.HeaderText = "Diagnose";
+            this.DiagnoseColumn.MinimumWidth = 6;
+            this.DiagnoseColumn.Name = "DiagnoseColumn";
+            this.DiagnoseColumn.ReadOnly = true;
+            this.DiagnoseColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DiagnoseColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.DiagnoseColumn.Width = 125;
+            // 
+            // RegisterDateColumn
+            // 
+            this.RegisterDateColumn.DataPropertyName = "UserDateOfRegister";
+            this.RegisterDateColumn.HeaderText = "Register Date";
+            this.RegisterDateColumn.MinimumWidth = 6;
+            this.RegisterDateColumn.Name = "RegisterDateColumn";
+            this.RegisterDateColumn.ReadOnly = true;
+            this.RegisterDateColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.RegisterDateColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.RegisterDateColumn.Width = 125;
+            // 
+            // RoleColumn
+            // 
+            this.RoleColumn.HeaderText = "Role";
+            this.RoleColumn.Items.AddRange(new object[] {
+            "Admin",
+            "Employee",
+            "Client"});
+            this.RoleColumn.MinimumWidth = 6;
+            this.RoleColumn.Name = "RoleColumn";
+            this.RoleColumn.ReadOnly = true;
+            this.RoleColumn.Width = 125;
             // 
             // lblID
             // 
@@ -332,7 +486,7 @@ namespace XtremePharmacyManager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBalance.AutoSize = true;
             this.lblBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBalance.Location = new System.Drawing.Point(398, 17);
+            this.lblBalance.Location = new System.Drawing.Point(515, 17);
             this.lblBalance.Name = "lblBalance";
             this.lblBalance.Size = new System.Drawing.Size(68, 16);
             this.lblBalance.TabIndex = 19;
@@ -344,7 +498,7 @@ namespace XtremePharmacyManager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblShowBalance.AutoSize = true;
             this.lblShowBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowBalance.Location = new System.Drawing.Point(749, 21);
+            this.lblShowBalance.Location = new System.Drawing.Point(866, 21);
             this.lblShowBalance.Name = "lblShowBalance";
             this.lblShowBalance.Size = new System.Drawing.Size(35, 16);
             this.lblShowBalance.TabIndex = 20;
@@ -354,7 +508,7 @@ namespace XtremePharmacyManager
             // 
             this.trbBalance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trbBalance.Location = new System.Drawing.Point(475, 18);
+            this.trbBalance.Location = new System.Drawing.Point(592, 18);
             this.trbBalance.Maximum = 10000000;
             this.trbBalance.Name = "trbBalance";
             this.trbBalance.Size = new System.Drawing.Size(259, 56);
@@ -367,7 +521,7 @@ namespace XtremePharmacyManager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDiagnose.AutoSize = true;
             this.lblDiagnose.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDiagnose.Location = new System.Drawing.Point(397, 60);
+            this.lblDiagnose.Location = new System.Drawing.Point(514, 60);
             this.lblDiagnose.Name = "lblDiagnose";
             this.lblDiagnose.Size = new System.Drawing.Size(78, 16);
             this.lblDiagnose.TabIndex = 22;
@@ -377,7 +531,7 @@ namespace XtremePharmacyManager
             // 
             this.txtDiagnose.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDiagnose.Location = new System.Drawing.Point(475, 57);
+            this.txtDiagnose.Location = new System.Drawing.Point(592, 57);
             this.txtDiagnose.Multiline = true;
             this.txtDiagnose.Name = "txtDiagnose";
             this.txtDiagnose.Size = new System.Drawing.Size(313, 63);
@@ -389,7 +543,7 @@ namespace XtremePharmacyManager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRegisterDateFrom.AutoSize = true;
             this.lblRegisterDateFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegisterDateFrom.Location = new System.Drawing.Point(402, 123);
+            this.lblRegisterDateFrom.Location = new System.Drawing.Point(519, 123);
             this.lblRegisterDateFrom.Name = "lblRegisterDateFrom";
             this.lblRegisterDateFrom.Size = new System.Drawing.Size(150, 16);
             this.lblRegisterDateFrom.TabIndex = 24;
@@ -399,7 +553,7 @@ namespace XtremePharmacyManager
             // 
             this.dtRegisterDateFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtRegisterDateFrom.Location = new System.Drawing.Point(559, 123);
+            this.dtRegisterDateFrom.Location = new System.Drawing.Point(676, 123);
             this.dtRegisterDateFrom.Name = "dtRegisterDateFrom";
             this.dtRegisterDateFrom.Size = new System.Drawing.Size(229, 22);
             this.dtRegisterDateFrom.TabIndex = 25;
@@ -410,7 +564,7 @@ namespace XtremePharmacyManager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRegisterDateTo.AutoSize = true;
             this.lblRegisterDateTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRegisterDateTo.Location = new System.Drawing.Point(403, 152);
+            this.lblRegisterDateTo.Location = new System.Drawing.Point(520, 152);
             this.lblRegisterDateTo.Name = "lblRegisterDateTo";
             this.lblRegisterDateTo.Size = new System.Drawing.Size(134, 16);
             this.lblRegisterDateTo.TabIndex = 26;
@@ -420,7 +574,7 @@ namespace XtremePharmacyManager
             // 
             this.dtRegisterDateTo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtRegisterDateTo.Location = new System.Drawing.Point(559, 152);
+            this.dtRegisterDateTo.Location = new System.Drawing.Point(676, 152);
             this.dtRegisterDateTo.Name = "dtRegisterDateTo";
             this.dtRegisterDateTo.Size = new System.Drawing.Size(229, 22);
             this.dtRegisterDateTo.TabIndex = 27;
@@ -431,7 +585,7 @@ namespace XtremePharmacyManager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblRole.AutoSize = true;
             this.lblRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRole.Location = new System.Drawing.Point(402, 178);
+            this.lblRole.Location = new System.Drawing.Point(519, 178);
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(44, 16);
             this.lblRole.TabIndex = 28;
@@ -446,7 +600,7 @@ namespace XtremePharmacyManager
             "Admin",
             "Employee",
             "Client"});
-            this.cbRole.Location = new System.Drawing.Point(559, 181);
+            this.cbRole.Location = new System.Drawing.Point(676, 181);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(229, 24);
             this.cbRole.TabIndex = 29;
@@ -456,7 +610,7 @@ namespace XtremePharmacyManager
             // 
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(509, 292);
+            this.btnSearch.Location = new System.Drawing.Point(441, 295);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(90, 47);
             this.btnSearch.TabIndex = 30;
@@ -474,7 +628,7 @@ namespace XtremePharmacyManager
             "Single Criteria",
             "Multiple Criterias",
             "All Criterias"});
-            this.cbSearchMode.Location = new System.Drawing.Point(559, 211);
+            this.cbSearchMode.Location = new System.Drawing.Point(676, 211);
             this.cbSearchMode.Name = "cbSearchMode";
             this.cbSearchMode.Size = new System.Drawing.Size(229, 24);
             this.cbSearchMode.TabIndex = 31;
@@ -486,7 +640,7 @@ namespace XtremePharmacyManager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblSearchMode.AutoSize = true;
             this.lblSearchMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearchMode.Location = new System.Drawing.Point(403, 214);
+            this.lblSearchMode.Location = new System.Drawing.Point(520, 214);
             this.lblSearchMode.Name = "lblSearchMode";
             this.lblSearchMode.Size = new System.Drawing.Size(103, 16);
             this.lblSearchMode.TabIndex = 32;
@@ -496,7 +650,7 @@ namespace XtremePharmacyManager
             // 
             this.btnAddOrEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddOrEdit.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOrEdit.Location = new System.Drawing.Point(606, 292);
+            this.btnAddOrEdit.Location = new System.Drawing.Point(538, 295);
             this.btnAddOrEdit.Name = "btnAddOrEdit";
             this.btnAddOrEdit.Size = new System.Drawing.Size(90, 47);
             this.btnAddOrEdit.TabIndex = 33;
@@ -508,7 +662,7 @@ namespace XtremePharmacyManager
             // 
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(702, 292);
+            this.btnDelete.Location = new System.Drawing.Point(634, 295);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(90, 47);
             this.btnDelete.TabIndex = 34;
@@ -519,6 +673,7 @@ namespace XtremePharmacyManager
             // pnlData
             // 
             this.pnlData.AutoSize = true;
+            this.pnlData.Controls.Add(this.btnGenerateReport);
             this.pnlData.Controls.Add(this.lblUserNotice);
             this.pnlData.Controls.Add(this.btnDelete);
             this.pnlData.Controls.Add(this.btnAddOrEdit);
@@ -557,7 +712,7 @@ namespace XtremePharmacyManager
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlData.Location = new System.Drawing.Point(0, 0);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(800, 345);
+            this.pnlData.Size = new System.Drawing.Size(917, 345);
             this.pnlData.TabIndex = 0;
             // 
             // lblUserNotice
@@ -567,143 +722,167 @@ namespace XtremePharmacyManager
             this.lblUserNotice.AutoSize = true;
             this.lblUserNotice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserNotice.ForeColor = System.Drawing.Color.Firebrick;
-            this.lblUserNotice.Location = new System.Drawing.Point(403, 238);
+            this.lblUserNotice.Location = new System.Drawing.Point(520, 238);
             this.lblUserNotice.Name = "lblUserNotice";
             this.lblUserNotice.Size = new System.Drawing.Size(179, 48);
             this.lblUserNotice.TabIndex = 43;
             this.lblUserNotice.Text = "IMPORTANT NOTICE:\r\nUsername and password\r\nshould be unique\r\n";
             // 
-            // IDColumn
+            // iDDataGridViewTextBoxColumn
             // 
-            this.IDColumn.DataPropertyName = "ID";
-            this.IDColumn.HeaderText = "ID";
-            this.IDColumn.MinimumWidth = 6;
-            this.IDColumn.Name = "IDColumn";
-            this.IDColumn.ReadOnly = true;
-            this.IDColumn.Width = 125;
+            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
+            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
+            this.iDDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Width = 125;
             // 
-            // UsernameColumn
+            // userNameDataGridViewTextBoxColumn
             // 
-            this.UsernameColumn.DataPropertyName = "UserName";
-            this.UsernameColumn.HeaderText = "Username";
-            this.UsernameColumn.MinimumWidth = 6;
-            this.UsernameColumn.Name = "UsernameColumn";
-            this.UsernameColumn.ReadOnly = true;
-            this.UsernameColumn.Width = 125;
+            this.userNameDataGridViewTextBoxColumn.DataPropertyName = "UserName";
+            this.userNameDataGridViewTextBoxColumn.HeaderText = "UserName";
+            this.userNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userNameDataGridViewTextBoxColumn.Name = "userNameDataGridViewTextBoxColumn";
+            this.userNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userNameDataGridViewTextBoxColumn.Width = 125;
             // 
-            // PasswordColumn
+            // userPasswordDataGridViewTextBoxColumn
             // 
-            this.PasswordColumn.DataPropertyName = "UserPassword";
-            this.PasswordColumn.HeaderText = "Password";
-            this.PasswordColumn.MinimumWidth = 6;
-            this.PasswordColumn.Name = "PasswordColumn";
-            this.PasswordColumn.ReadOnly = true;
-            this.PasswordColumn.Width = 125;
+            this.userPasswordDataGridViewTextBoxColumn.DataPropertyName = "UserPassword";
+            this.userPasswordDataGridViewTextBoxColumn.HeaderText = "UserPassword";
+            this.userPasswordDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userPasswordDataGridViewTextBoxColumn.Name = "userPasswordDataGridViewTextBoxColumn";
+            this.userPasswordDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userPasswordDataGridViewTextBoxColumn.Width = 125;
             // 
-            // DisplayNameColumn
+            // userDisplayNameDataGridViewTextBoxColumn
             // 
-            this.DisplayNameColumn.DataPropertyName = "UserDisplayName";
-            this.DisplayNameColumn.HeaderText = "Display Name";
-            this.DisplayNameColumn.MinimumWidth = 6;
-            this.DisplayNameColumn.Name = "DisplayNameColumn";
-            this.DisplayNameColumn.ReadOnly = true;
-            this.DisplayNameColumn.Width = 125;
+            this.userDisplayNameDataGridViewTextBoxColumn.DataPropertyName = "UserDisplayName";
+            this.userDisplayNameDataGridViewTextBoxColumn.HeaderText = "UserDisplayName";
+            this.userDisplayNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userDisplayNameDataGridViewTextBoxColumn.Name = "userDisplayNameDataGridViewTextBoxColumn";
+            this.userDisplayNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userDisplayNameDataGridViewTextBoxColumn.Width = 125;
             // 
-            // BirthDateColumn
+            // userBirthDateDataGridViewTextBoxColumn
             // 
-            this.BirthDateColumn.DataPropertyName = "UserBirthDate";
-            this.BirthDateColumn.HeaderText = "Birth Date";
-            this.BirthDateColumn.MinimumWidth = 6;
-            this.BirthDateColumn.Name = "BirthDateColumn";
-            this.BirthDateColumn.ReadOnly = true;
-            this.BirthDateColumn.Width = 125;
+            this.userBirthDateDataGridViewTextBoxColumn.DataPropertyName = "UserBirthDate";
+            this.userBirthDateDataGridViewTextBoxColumn.HeaderText = "UserBirthDate";
+            this.userBirthDateDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userBirthDateDataGridViewTextBoxColumn.Name = "userBirthDateDataGridViewTextBoxColumn";
+            this.userBirthDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userBirthDateDataGridViewTextBoxColumn.Width = 125;
             // 
-            // PhoneColumn
+            // userPhoneDataGridViewTextBoxColumn
             // 
-            this.PhoneColumn.DataPropertyName = "UserPhone";
-            this.PhoneColumn.HeaderText = "Phone";
-            this.PhoneColumn.MinimumWidth = 6;
-            this.PhoneColumn.Name = "PhoneColumn";
-            this.PhoneColumn.ReadOnly = true;
-            this.PhoneColumn.Width = 125;
+            this.userPhoneDataGridViewTextBoxColumn.DataPropertyName = "UserPhone";
+            this.userPhoneDataGridViewTextBoxColumn.HeaderText = "UserPhone";
+            this.userPhoneDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userPhoneDataGridViewTextBoxColumn.Name = "userPhoneDataGridViewTextBoxColumn";
+            this.userPhoneDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userPhoneDataGridViewTextBoxColumn.Width = 125;
             // 
-            // EmailColumn
+            // userEmailDataGridViewTextBoxColumn
             // 
-            this.EmailColumn.DataPropertyName = "UserEmail";
-            this.EmailColumn.HeaderText = "Email";
-            this.EmailColumn.MinimumWidth = 6;
-            this.EmailColumn.Name = "EmailColumn";
-            this.EmailColumn.ReadOnly = true;
-            this.EmailColumn.Width = 125;
+            this.userEmailDataGridViewTextBoxColumn.DataPropertyName = "UserEmail";
+            this.userEmailDataGridViewTextBoxColumn.HeaderText = "UserEmail";
+            this.userEmailDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userEmailDataGridViewTextBoxColumn.Name = "userEmailDataGridViewTextBoxColumn";
+            this.userEmailDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userEmailDataGridViewTextBoxColumn.Width = 125;
             // 
-            // AddressColumn
+            // userAddressDataGridViewTextBoxColumn
             // 
-            this.AddressColumn.DataPropertyName = "UserAddress";
-            this.AddressColumn.HeaderText = "Address";
-            this.AddressColumn.MinimumWidth = 6;
-            this.AddressColumn.Name = "AddressColumn";
-            this.AddressColumn.ReadOnly = true;
-            this.AddressColumn.Width = 125;
+            this.userAddressDataGridViewTextBoxColumn.DataPropertyName = "UserAddress";
+            this.userAddressDataGridViewTextBoxColumn.HeaderText = "UserAddress";
+            this.userAddressDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userAddressDataGridViewTextBoxColumn.Name = "userAddressDataGridViewTextBoxColumn";
+            this.userAddressDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userAddressDataGridViewTextBoxColumn.Width = 125;
             // 
-            // ProfilePicColumn
+            // userProfilePicDataGridViewImageColumn
             // 
-            this.ProfilePicColumn.DataPropertyName = "UserProfilePic";
-            this.ProfilePicColumn.HeaderText = "Profile Picture";
-            this.ProfilePicColumn.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.ProfilePicColumn.MinimumWidth = 6;
-            this.ProfilePicColumn.Name = "ProfilePicColumn";
-            this.ProfilePicColumn.ReadOnly = true;
-            this.ProfilePicColumn.Width = 125;
+            this.userProfilePicDataGridViewImageColumn.DataPropertyName = "UserProfilePic";
+            this.userProfilePicDataGridViewImageColumn.HeaderText = "UserProfilePic";
+            this.userProfilePicDataGridViewImageColumn.MinimumWidth = 6;
+            this.userProfilePicDataGridViewImageColumn.Name = "userProfilePicDataGridViewImageColumn";
+            this.userProfilePicDataGridViewImageColumn.ReadOnly = true;
+            this.userProfilePicDataGridViewImageColumn.Width = 125;
             // 
-            // BalanceColumn
+            // userBalanceDataGridViewTextBoxColumn
             // 
-            this.BalanceColumn.DataPropertyName = "UserBalance";
-            this.BalanceColumn.HeaderText = "Balance";
-            this.BalanceColumn.MinimumWidth = 6;
-            this.BalanceColumn.Name = "BalanceColumn";
-            this.BalanceColumn.ReadOnly = true;
-            this.BalanceColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.BalanceColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.BalanceColumn.Width = 125;
+            this.userBalanceDataGridViewTextBoxColumn.DataPropertyName = "UserBalance";
+            this.userBalanceDataGridViewTextBoxColumn.HeaderText = "UserBalance";
+            this.userBalanceDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userBalanceDataGridViewTextBoxColumn.Name = "userBalanceDataGridViewTextBoxColumn";
+            this.userBalanceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userBalanceDataGridViewTextBoxColumn.Width = 125;
             // 
-            // DiagnoseColumn
+            // userDiagnoseDataGridViewTextBoxColumn
             // 
-            this.DiagnoseColumn.DataPropertyName = "UserDiagnose";
-            this.DiagnoseColumn.HeaderText = "Diagnose";
-            this.DiagnoseColumn.MinimumWidth = 6;
-            this.DiagnoseColumn.Name = "DiagnoseColumn";
-            this.DiagnoseColumn.ReadOnly = true;
-            this.DiagnoseColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DiagnoseColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DiagnoseColumn.Width = 125;
+            this.userDiagnoseDataGridViewTextBoxColumn.DataPropertyName = "UserDiagnose";
+            this.userDiagnoseDataGridViewTextBoxColumn.HeaderText = "UserDiagnose";
+            this.userDiagnoseDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userDiagnoseDataGridViewTextBoxColumn.Name = "userDiagnoseDataGridViewTextBoxColumn";
+            this.userDiagnoseDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userDiagnoseDataGridViewTextBoxColumn.Width = 125;
             // 
-            // RegisterDateColumn
+            // userDateOfRegisterDataGridViewTextBoxColumn
             // 
-            this.RegisterDateColumn.DataPropertyName = "UserDateOfRegister";
-            this.RegisterDateColumn.HeaderText = "Register Date";
-            this.RegisterDateColumn.MinimumWidth = 6;
-            this.RegisterDateColumn.Name = "RegisterDateColumn";
-            this.RegisterDateColumn.ReadOnly = true;
-            this.RegisterDateColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.RegisterDateColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.RegisterDateColumn.Width = 125;
+            this.userDateOfRegisterDataGridViewTextBoxColumn.DataPropertyName = "UserDateOfRegister";
+            this.userDateOfRegisterDataGridViewTextBoxColumn.HeaderText = "UserDateOfRegister";
+            this.userDateOfRegisterDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userDateOfRegisterDataGridViewTextBoxColumn.Name = "userDateOfRegisterDataGridViewTextBoxColumn";
+            this.userDateOfRegisterDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userDateOfRegisterDataGridViewTextBoxColumn.Width = 125;
             // 
-            // RoleColumn
+            // userRoleDataGridViewTextBoxColumn
             // 
-            this.RoleColumn.HeaderText = "Role";
-            this.RoleColumn.Items.AddRange(new object[] {
-            "Admin",
-            "Employee",
-            "Client"});
-            this.RoleColumn.MinimumWidth = 6;
-            this.RoleColumn.Name = "RoleColumn";
-            this.RoleColumn.ReadOnly = true;
-            this.RoleColumn.Width = 125;
+            this.userRoleDataGridViewTextBoxColumn.DataPropertyName = "UserRole";
+            this.userRoleDataGridViewTextBoxColumn.HeaderText = "UserRole";
+            this.userRoleDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.userRoleDataGridViewTextBoxColumn.Name = "userRoleDataGridViewTextBoxColumn";
+            this.userRoleDataGridViewTextBoxColumn.ReadOnly = true;
+            this.userRoleDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // productOrdersDataGridViewTextBoxColumn
+            // 
+            this.productOrdersDataGridViewTextBoxColumn.DataPropertyName = "ProductOrders";
+            this.productOrdersDataGridViewTextBoxColumn.HeaderText = "ProductOrders";
+            this.productOrdersDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.productOrdersDataGridViewTextBoxColumn.Name = "productOrdersDataGridViewTextBoxColumn";
+            this.productOrdersDataGridViewTextBoxColumn.ReadOnly = true;
+            this.productOrdersDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // productOrders1DataGridViewTextBoxColumn
+            // 
+            this.productOrders1DataGridViewTextBoxColumn.DataPropertyName = "ProductOrders1";
+            this.productOrders1DataGridViewTextBoxColumn.HeaderText = "ProductOrders1";
+            this.productOrders1DataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.productOrders1DataGridViewTextBoxColumn.Name = "productOrders1DataGridViewTextBoxColumn";
+            this.productOrders1DataGridViewTextBoxColumn.ReadOnly = true;
+            this.productOrders1DataGridViewTextBoxColumn.Width = 125;
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            // 
+            // btnGenerateReport
+            // 
+            this.btnGenerateReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerateReport.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerateReport.Location = new System.Drawing.Point(730, 295);
+            this.btnGenerateReport.Name = "btnGenerateReport";
+            this.btnGenerateReport.Size = new System.Drawing.Size(175, 47);
+            this.btnGenerateReport.TabIndex = 44;
+            this.btnGenerateReport.Text = "GENERATE REPORT";
+            this.btnGenerateReport.UseVisualStyleBackColor = true;
+            this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
             // frmSearchUsers
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(917, 450);
             this.Controls.Add(this.dgvUsers);
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
@@ -711,10 +890,10 @@ namespace XtremePharmacyManager
             this.Text = "Users";
             this.Load += new System.EventHandler(this.frmSearchUsers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).EndInit();
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -774,5 +953,21 @@ namespace XtremePharmacyManager
         private DataGridViewTextBoxColumn DiagnoseColumn;
         private DataGridViewTextBoxColumn RegisterDateColumn;
         private DataGridViewComboBoxColumn RoleColumn;
+        private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn userNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn userPasswordDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn userDisplayNameDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn userBirthDateDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn userPhoneDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn userEmailDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn userAddressDataGridViewTextBoxColumn;
+        private DataGridViewImageColumn userProfilePicDataGridViewImageColumn;
+        private DataGridViewTextBoxColumn userBalanceDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn userDiagnoseDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn userDateOfRegisterDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn userRoleDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn productOrdersDataGridViewTextBoxColumn;
+        private DataGridViewTextBoxColumn productOrders1DataGridViewTextBoxColumn;
+        private Button btnGenerateReport;
     }
 }

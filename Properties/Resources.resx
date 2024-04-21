@@ -132,4 +132,7 @@
   <data name="CriticalErrorTitle" xml:space="preserve">
     <value>Critical Error</value>
   </data>
+  <data name="StackTraceMessage" xml:space="preserve">
+    <value>Stack Trace: </value>
+  </data>
 </root>

@@ -1,18 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using XtremePharmacyManager.DataEntities;
 using XtremePharmacyManager.Properties;
 
 namespace XtremePharmacyManager
 {
     public class GLOBAL_RESOURCES
     {
+        public static string REPORT_DIRECTORY = "";
+        public static string EMPLOYEE_REPORT_NAME = "";
+        public static string CLIENT_REPORT_NAME = "";
+        public static string PRODUCT_BRAND_REPORT_NAME = "";
+        public static string PAYMENT_METHOD_REPORT_NAME = "";
+        public static string DELIVERY_SERVICE_REPORT_NAME = "";
+        public static string PRODUCT_REPORT_NAME = "";
+        public static string PRODUCT_ORDER_REPORT_NAME = "";
+        public static string ORDER_DELIVERY_REPORT_NAME = "";
         public static string CRITICAL_ERROR_MESSAGE = "";
+        public static string STACK_TRACE_MESSAGE = "";
         public static string CRITICAL_ERROR_TITLE = "";
         public static string CLOSE_PROMPT = "";
         public static string CLOSE_PROMPT_TITLE = "";
@@ -27,7 +40,20 @@ namespace XtremePharmacyManager
             {
                 instance = this;
             }
+            REPORT_DIRECTORY = (ConfigurationSettings.AppSettings["report_directory"] != null && 
+                Directory.Exists(Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"])))? 
+                Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"]) :
+                Path.GetFullPath($"{Application.StartupPath}/{ConfigurationSettings.AppSettings["report_directory"]}/");
+            EMPLOYEE_REPORT_NAME = ConfigurationSettings.AppSettings["emp_report_name"];
+            CLIENT_REPORT_NAME = ConfigurationSettings.AppSettings["cl_report_name"];
+            PRODUCT_BRAND_REPORT_NAME = ConfigurationSettings.AppSettings["pb_report_name"];
+            PAYMENT_METHOD_REPORT_NAME = ConfigurationSettings.AppSettings["pm_report_name"];
+            DELIVERY_SERVICE_REPORT_NAME = ConfigurationSettings.AppSettings["ds_report_name"];
+            PRODUCT_REPORT_NAME = ConfigurationSettings.AppSettings["p_report_name"];
+            PRODUCT_ORDER_REPORT_NAME = ConfigurationSettings.AppSettings["po_report_name"];
+            ORDER_DELIVERY_REPORT_NAME = ConfigurationSettings.AppSettings["od_report_name"];
             CRITICAL_ERROR_MESSAGE = manager.GetString("CriticalErrorMessage", CultureInfo.CurrentCulture);
+            STACK_TRACE_MESSAGE = manager.GetString("StackTraceMessage", CultureInfo.CurrentCulture);
             CRITICAL_ERROR_TITLE = manager.GetString("CriticalErrorTitle", CultureInfo.CurrentCulture);
             CLOSE_PROMPT = manager.GetString("ClosePrompt", CultureInfo.CurrentCulture);
             CLOSE_PROMPT_TITLE = manager.GetString("ClosePromptTitle", CultureInfo.CurrentCulture);
@@ -42,10 +68,27 @@ namespace XtremePharmacyManager
             }
         }
 
+        public static void RefreshSettings()
+        {
+            REPORT_DIRECTORY = (ConfigurationSettings.AppSettings["report_directory"] != null &&
+                Directory.Exists(Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"]))) ?
+                Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"]) :
+                Path.GetFullPath($"{Application.StartupPath}/{ConfigurationSettings.AppSettings["report_directory"]}/");
+            EMPLOYEE_REPORT_NAME = ConfigurationSettings.AppSettings["emp_report_name"];
+            CLIENT_REPORT_NAME = ConfigurationSettings.AppSettings["cl_report_name"];
+            PRODUCT_BRAND_REPORT_NAME = ConfigurationSettings.AppSettings["pb_report_name"];
+            PAYMENT_METHOD_REPORT_NAME = ConfigurationSettings.AppSettings["pm_report_name"];
+            DELIVERY_SERVICE_REPORT_NAME = ConfigurationSettings.AppSettings["ds_report_name"];
+            PRODUCT_REPORT_NAME = ConfigurationSettings.AppSettings["p_report_name"];
+            PRODUCT_ORDER_REPORT_NAME = ConfigurationSettings.AppSettings["po_report_name"];
+            ORDER_DELIVERY_REPORT_NAME = ConfigurationSettings.AppSettings["od_report_name"];
+        }
+
         public static void UpdateCurrentCultureResources()
         {
             ResourceManager manager = Resources.ResourceManager;
             CRITICAL_ERROR_MESSAGE = manager.GetString("CriticalErrorMessage", CultureInfo.CurrentCulture);
+            STACK_TRACE_MESSAGE = manager.GetString("StackTraceMessage", CultureInfo.CurrentCulture);
             CRITICAL_ERROR_TITLE = manager.GetString("CriticalErrorTitle", CultureInfo.CurrentCulture);
             CLOSE_PROMPT = manager.GetString("ClosePrompt", CultureInfo.CurrentCulture);
             CLOSE_PROMPT_TITLE = manager.GetString("ClosePromptTitle", CultureInfo.CurrentCulture);
