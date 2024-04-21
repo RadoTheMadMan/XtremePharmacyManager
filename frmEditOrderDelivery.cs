@@ -18,10 +18,12 @@ namespace XtremePharmacyManager
         static List<ProductOrder> product_orders;
         static List<PaymentMethod> payment_methods;
         static List<DeliveryService> delivery_services;
-        public frmEditOrderDelivery(ref OrderDelivery target, ref List<ProductOrder> product_orders, ref List<PaymentMethod> payment_methods, ref List<DeliveryService> delivery_services)
+        public frmEditOrderDelivery(ref OrderDelivery target, ref List<ProductOrder> ref_product_orders, ref List<PaymentMethod> ref_payment_methods, ref List<DeliveryService> ref_delivery_services)
         {
             InitializeComponent();
             this.target = target;
+            payment_methods = ref_payment_methods;
+            delivery_services = ref_delivery_services;
         }
 
 

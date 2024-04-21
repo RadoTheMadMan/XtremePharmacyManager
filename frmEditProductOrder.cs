@@ -18,13 +18,13 @@ namespace XtremePharmacyManager
         static List<Product> products;
         static List<User> clients;
         static List<User> employees;
-        public frmEditProductOrder(ref ProductOrder target, ref List<Product> products, ref List<User> clients, ref List<User> employees)
+        public frmEditProductOrder(ref ProductOrder target, ref List<Product> ref_products, ref List<User> ref_clients, ref List<User> ref_employees)
         {
             InitializeComponent();
             this.target = target;
-            products = products;
-            clients = clients;
-            employees = employees;
+            products = ref_products;
+            clients = ref_clients;
+            employees = ref_employees;
         }
 
         private void trbPriceOverride_Scroll(object sender, EventArgs e)
