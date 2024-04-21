@@ -83,10 +83,10 @@ namespace XtremePharmacyManager
             EntityConnectionStringBuilder esb = new EntityConnectionStringBuilder();
             try
             {
-                scsb.DataSource = ConfigurationSettings.AppSettings["domain"];
-                scsb.InitialCatalog = ConfigurationSettings.AppSettings["dbname"];
-                scsb.UserID = ConfigurationSettings.AppSettings["dbuser"];
-                scsb.Password = ConfigurationSettings.AppSettings["dbpassword"];
+                scsb.DataSource = GLOBAL_RESOURCES.DOMAIN_ADDRESS;
+                scsb.InitialCatalog = GLOBAL_RESOURCES.DB_NAME; ;
+                scsb.UserID = GLOBAL_RESOURCES.DB_USER;
+                scsb.Password = GLOBAL_RESOURCES.DB_PASSWORD;
                 scsb.IntegratedSecurity = true;
                 connString = scsb.ConnectionString;
                 esb.Metadata = $"{Application.StartupPath}/DataEntities/XTremePharmacyModel.csdl|"+

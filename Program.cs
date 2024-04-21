@@ -13,8 +13,19 @@ using XtremePharmacyManager.Properties;
 
 namespace XtremePharmacyManager
 {
-    public class GLOBAL_RESOURCES
+    ///<summary>
+    ///here will be all resources and settings we need to get at startup except the
+    ///Entity framework metadata path which  is always looked in the DataEntities folder
+    ///as seen in obj/WhateverConfigurationYouCompileFor/edmxResourcesToEmbed
+    ///it basically sets the directory the same as the project directory, in
+    ///my case the DataEntities/entitymodelresourcesfile.csdl and etc
+    ///</summary>
+    public class GLOBAL_RESOURCES 
     {
+        public static string DOMAIN_ADDRESS = "";
+        public static string DB_NAME = "";
+        public static string DB_USER = "";
+        public static string DB_PASSWORD = "";
         public static string REPORT_DIRECTORY = "";
         public static string EMPLOYEE_REPORT_NAME = "";
         public static string CLIENT_REPORT_NAME = "";
@@ -40,6 +51,10 @@ namespace XtremePharmacyManager
             {
                 instance = this;
             }
+            DOMAIN_ADDRESS = ConfigurationSettings.AppSettings["domain"];
+            DB_NAME = ConfigurationSettings.AppSettings["dbname"];
+            DB_USER = ConfigurationSettings.AppSettings["dbuser"];
+            DB_PASSWORD = ConfigurationSettings.AppSettings["dbpassword"];
             REPORT_DIRECTORY = (ConfigurationSettings.AppSettings["report_directory"] != null && 
                 Directory.Exists(Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"])))? 
                 Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"]) :
@@ -70,6 +85,10 @@ namespace XtremePharmacyManager
 
         public static void RefreshSettings()
         {
+            DOMAIN_ADDRESS = ConfigurationSettings.AppSettings["domain"];
+            DB_NAME = ConfigurationSettings.AppSettings["dbname"];
+            DB_USER = ConfigurationSettings.AppSettings["dbuser"];
+            DB_PASSWORD = ConfigurationSettings.AppSettings["dbpassword"];
             REPORT_DIRECTORY = (ConfigurationSettings.AppSettings["report_directory"] != null &&
                 Directory.Exists(Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"]))) ?
                 Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"]) :
