@@ -364,6 +364,7 @@ namespace XtremePharmacyManager
             DataGridViewRow row;
             int ID = -1;
             User currentUser;
+            string target_report_file = $"{GLOBAL_RESOURCES.EMPLOYEE_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
             try
             {
                 if(dgvUsers.SelectedRows.Count > 0)
@@ -379,11 +380,21 @@ namespace XtremePharmacyManager
                         {
                             if(currentUser.UserRole == 0 ||  currentUser.UserRole == 1) //if the user is employee or admin(considered an employee)
                             {
-
+                                EmployeeView view = ent.EmployeeViews.Where(x=>x.UserName == currentUser.UserName
+                                && x.UserPassword == currentUser.UserPassword).FirstOrDefault();
+                                if(view != null)
+                                {
+                                    new frmReports();
+                                }
                             }
                             else if(currentUser.UserRole == 2) //if the user is a client
                             {
-
+                                ClientView view = ent.ClientViews.Where(x => x.UserName == currentUser.UserName
+                               && x.UserPassword == currentUser.UserPassword).FirstOrDefault();
+                                if (view != null)
+                                {
+                                    new frmReports();
+                                }
                             }
                         }
                     }

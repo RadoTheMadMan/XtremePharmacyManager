@@ -43,7 +43,7 @@
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="EmployeeReport">
+    <DataSet Name="EmployeeReportData">
       <Query>
         <DataSourceName>XtremePharmacyManagerDataEntities</DataSourceName>
         <CommandText>/* Local Query */</CommandText>

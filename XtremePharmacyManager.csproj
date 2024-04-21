@@ -290,6 +290,12 @@
     <Compile Include="frmEditUser.Designer.cs">
       <DependentUpon>frmEditUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReportcs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReportcs.Designer.cs">
+      <DependentUpon>frmReportcs.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSearchProductBrands.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -397,6 +403,9 @@
     <EmbeddedResource Include="frmEditUser.resx">
       <DependentUpon>frmEditUser.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmReportcs.resx">
+      <DependentUpon>frmReportcs.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSearchProductBrands.resx">
       <DependentUpon>frmSearchProductBrands.cs</DependentUpon>
     </EmbeddedResource>
@@ -431,7 +440,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Reports\EmployeeReport.en-US.rdlc" />
+    <EmbeddedResource Include="Reports\EmployeeReport.en-US.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EntityDeploy Include="DataEntities\XTremePharmacyModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>XTremePharmacyModel.Designer.cs</LastGenOutput>
