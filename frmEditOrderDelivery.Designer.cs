@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.lblCargoID = new System.Windows.Forms.Label();
+            this.txtCargoID = new System.Windows.Forms.TextBox();
             this.txtDeliveryReason = new System.Windows.Forms.TextBox();
             this.lblDeliveryReason = new System.Windows.Forms.Label();
             this.lblOrderStatus = new System.Windows.Forms.Label();
@@ -50,8 +52,7 @@
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.txtCargoID = new System.Windows.Forms.TextBox();
-            this.lblCargoID = new System.Windows.Forms.Label();
+            this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
@@ -59,6 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
@@ -84,6 +86,28 @@
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(800, 209);
             this.pnlData.TabIndex = 0;
+            // 
+            // lblCargoID
+            // 
+            this.lblCargoID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCargoID.AutoSize = true;
+            this.lblCargoID.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCargoID.Location = new System.Drawing.Point(20, 138);
+            this.lblCargoID.Name = "lblCargoID";
+            this.lblCargoID.Size = new System.Drawing.Size(72, 16);
+            this.lblCargoID.TabIndex = 56;
+            this.lblCargoID.Text = "Cargo ID:";
+            // 
+            // txtCargoID
+            // 
+            this.txtCargoID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtCargoID.Location = new System.Drawing.Point(194, 135);
+            this.txtCargoID.Name = "txtCargoID";
+            this.txtCargoID.Size = new System.Drawing.Size(201, 22);
+            this.txtCargoID.TabIndex = 55;
+            this.txtCargoID.TextChanged += new System.EventHandler(this.txtCargoID_TextChanged);
             // 
             // txtDeliveryReason
             // 
@@ -145,8 +169,8 @@
             // 
             // cbSelectPaymentMethod
             // 
-            this.cbSelectPaymentMethod.DataSource = this.userBindingSource1;
-            this.cbSelectPaymentMethod.DisplayMember = "UserDisplayName";
+            this.cbSelectPaymentMethod.DataSource = this.paymentMethodBindingSource;
+            this.cbSelectPaymentMethod.DisplayMember = "MethodName";
             this.cbSelectPaymentMethod.FormattingEnabled = true;
             this.cbSelectPaymentMethod.Location = new System.Drawing.Point(194, 105);
             this.cbSelectPaymentMethod.Name = "cbSelectPaymentMethod";
@@ -286,27 +310,9 @@
             // 
             this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
             // 
-            // txtCargoID
+            // paymentMethodBindingSource
             // 
-            this.txtCargoID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCargoID.Location = new System.Drawing.Point(194, 135);
-            this.txtCargoID.Name = "txtCargoID";
-            this.txtCargoID.Size = new System.Drawing.Size(201, 22);
-            this.txtCargoID.TabIndex = 55;
-            this.txtCargoID.TextChanged += new System.EventHandler(this.txtCargoID_TextChanged);
-            // 
-            // lblCargoID
-            // 
-            this.lblCargoID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCargoID.AutoSize = true;
-            this.lblCargoID.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCargoID.Location = new System.Drawing.Point(20, 138);
-            this.lblCargoID.Name = "lblCargoID";
-            this.lblCargoID.Size = new System.Drawing.Size(72, 16);
-            this.lblCargoID.TabIndex = 56;
-            this.lblCargoID.Text = "Cargo ID:";
+            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
             // 
             // frmEditOrderDelivery
             // 
@@ -327,6 +333,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -356,5 +363,6 @@
         private System.Windows.Forms.BindingSource deliveryServiceBindingSource;
         private System.Windows.Forms.TextBox txtCargoID;
         private System.Windows.Forms.Label lblCargoID;
+        private System.Windows.Forms.BindingSource paymentMethodBindingSource;
     }
 }
