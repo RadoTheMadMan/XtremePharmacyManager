@@ -43,6 +43,13 @@ namespace XtremePharmacyManager
         static frmLogs logsform;
         static frmImageBinConverter imgbinform;
         static frmBulkUserOperations bulkUserOperationsform;
+        static frmBulkProductBrandOperations bulkProductBrandOperationsform;
+        static frmBulkPaymentMethodOperations bulkPaymentMethodOperationsform;
+        static frmBulkDeliveryServiceOperations bulkDeliveryServiceOperationsform;
+        static frmBulkProductOperations bulkProductOperationsform;
+        static frmBulkProductImageOperations bulkProductImageOperationsform;
+        static frmBulkProductOrderOperations bulkProductOrderOperationsform;
+        static frmBulkOrderDeliveryOperations bulkOrderDeliveryOperationsform;
         public frmMain()
         {
             InitializeComponent();
@@ -167,7 +174,7 @@ namespace XtremePharmacyManager
                 {
                     if (deliveryservicessearchform == null)
                     {
-                        deliveryservicessearchform = new frmSearchDeliveryServices(ref entities, ref logger);
+                        deliveryservicessearchform = new frmSearchDeliveryServices(ref entities, ref logger, ref bulkDeliveryServiceOperationManager);
                         deliveryservicessearchform.MdiParent = this;
                         deliveryservicessearchform.FormClosed += Deliveryservicessearchform_FormClosed;
                         deliveryservicessearchform.Show();
@@ -198,7 +205,7 @@ namespace XtremePharmacyManager
                 {
                     if (paymentmethodssearchform == null)
                     {   
-                        paymentmethodssearchform = new frmSearchPaymentMethods(ref entities, ref logger);
+                        paymentmethodssearchform = new frmSearchPaymentMethods(ref entities, ref logger, ref bulkPaymentMethodOperationManager);
                         paymentmethodssearchform.MdiParent = this;
                         paymentmethodssearchform.FormClosed += Paymentmethodssearchform_FormClosed;
                         paymentmethodssearchform.Show();
@@ -229,7 +236,7 @@ namespace XtremePharmacyManager
                 {
                     if (productbrandssearchform == null)
                     {   
-                        productbrandssearchform = new frmSearchProductBrands(ref entities, ref logger);
+                        productbrandssearchform = new frmSearchProductBrands(ref entities, ref logger, ref bulkProductBrandOperationManager);
                         productbrandssearchform.MdiParent = this;
                         productbrandssearchform.FormClosed += Productbrandssearchform_FormClosed;
                         productbrandssearchform.Show();
@@ -260,7 +267,7 @@ namespace XtremePharmacyManager
                 {
                     if (productssearchform == null)
                     {
-                        productssearchform = new frmSearchProducts(ref entities, ref logger);
+                        productssearchform = new frmSearchProducts(ref entities, ref logger, ref bulkProductOperationManager, ref bulkProductImageOperationManager);
                         productssearchform.MdiParent = this;
                         productssearchform.FormClosed += Productssearchform_FormClosed;
                         productssearchform.Show();
@@ -291,7 +298,7 @@ namespace XtremePharmacyManager
                 {
                     if (orderssearchform == null)
                     {
-                        orderssearchform = new frmSearchProductOrders(ref entities, ref logger);
+                        orderssearchform = new frmSearchProductOrders(ref entities, ref logger, ref bulkProductOrderOperationManager);
                         orderssearchform.MdiParent = this;
                         orderssearchform.FormClosed += Orderssearchform_FormClosed;
                         orderssearchform.Show();
@@ -322,7 +329,7 @@ namespace XtremePharmacyManager
                 {
                     if (orderdeliveriessearchform == null)
                     {
-                        orderdeliveriessearchform = new frmSearchOrderDeliveries(ref entities, ref logger);
+                        orderdeliveriessearchform = new frmSearchOrderDeliveries(ref entities, ref logger, ref bulkOrderDeliveryOperationManager);
                         orderdeliveriessearchform.MdiParent = this;
                         orderdeliveriessearchform.FormClosed += Orderdeliveriessearchform_FormClosed;
                         orderdeliveriessearchform.Show();
@@ -583,6 +590,223 @@ namespace XtremePharmacyManager
         private void bulkUserOperationsform_FormClosed(object sender, FormClosedEventArgs e)
         {
             bulkUserOperationsform = null;
+        }
+
+        private void tsmenuBulkProductBrandOperations_Click(object sender, EventArgs e)
+        {
+            if (entities.Database.Connection.State == ConnectionState.Open)
+            {
+                try
+                {
+                    if (bulkProductBrandOperationsform == null)
+                    {
+                        bulkProductBrandOperationsform = new frmBulkProductBrandOperations(ref bulkProductBrandOperationManager);
+                        bulkProductBrandOperationsform.MdiParent = this;
+                        bulkProductBrandOperationsform.FormClosed += bulkProductBrandOperationsform_FormClosed;
+                        bulkProductBrandOperationsform.Show();
+                    }
+                    else
+                    {
+                        bulkProductBrandOperationsform.WindowState = FormWindowState.Normal;
+                        bulkProductBrandOperationsform.Activate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void bulkProductBrandOperationsform_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            bulkProductBrandOperationsform = null;
+        }
+
+        private void tsmenuBulkPaymentMethodOperations_Click(object sender, EventArgs e)
+        {
+            if (entities.Database.Connection.State == ConnectionState.Open)
+            {
+                try
+                {
+                    if (bulkPaymentMethodOperationsform == null)
+                    {
+                        bulkPaymentMethodOperationsform = new frmBulkPaymentMethodOperations(ref bulkPaymentMethodOperationManager);
+                        bulkPaymentMethodOperationsform.MdiParent = this;
+                        bulkPaymentMethodOperationsform.FormClosed += bulkPaymentMethodOperationsform_FormClosed;
+                        bulkPaymentMethodOperationsform.Show();
+                    }
+                    else
+                    {
+                        bulkPaymentMethodOperationsform.WindowState = FormWindowState.Normal;
+                        bulkPaymentMethodOperationsform.Activate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void bulkPaymentMethodOperationsform_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            bulkPaymentMethodOperationsform = null;
+        }
+
+        private void tsmenuBulkDeliveryServiceOperations_Click(object sender, EventArgs e)
+        {
+            if (entities.Database.Connection.State == ConnectionState.Open)
+            {
+                try
+                {
+                    if (bulkDeliveryServiceOperationsform == null)
+                    {
+                        bulkDeliveryServiceOperationsform = new frmBulkDeliveryServiceOperations(ref bulkDeliveryServiceOperationManager);
+                        bulkDeliveryServiceOperationsform.MdiParent = this;
+                        bulkDeliveryServiceOperationsform.FormClosed += bulkDeliveryServiceOperationsform_FormClosed;
+                        bulkDeliveryServiceOperationsform.Show();
+                    }
+                    else
+                    {
+                        bulkDeliveryServiceOperationsform.WindowState = FormWindowState.Normal;
+                        bulkDeliveryServiceOperationsform.Activate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void bulkDeliveryServiceOperationsform_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            bulkDeliveryServiceOperationsform = null;
+        }
+
+        private void tsmenuBulkProductOperations_Click(object sender, EventArgs e)
+        {
+            if (entities.Database.Connection.State == ConnectionState.Open)
+            {
+                try
+                {
+                    if (bulkProductOperationsform == null)
+                    {
+                        bulkProductOperationsform = new frmBulkProductOperations(ref bulkProductOperationManager);
+                        bulkProductOperationsform.MdiParent = this;
+                        bulkProductOperationsform.FormClosed += bulkProductOperationsform_FormClosed;
+                        bulkProductOperationsform.Show();
+                    }
+                    else
+                    {
+                        bulkProductOperationsform.WindowState = FormWindowState.Normal;
+                        bulkProductOperationsform.Activate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void bulkProductOperationsform_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            bulkProductOperationsform = null;
+        }
+
+        private void tsmenuBulkProductImageOperations_Click(object sender, EventArgs e)
+        {
+            if (entities.Database.Connection.State == ConnectionState.Open)
+            {
+                try
+                {
+                    if (bulkProductImageOperationsform == null)
+                    {
+                        bulkProductImageOperationsform = new frmBulkProductImageOperations(ref bulkProductImageOperationManager);
+                        bulkProductImageOperationsform.MdiParent = this;
+                        bulkProductImageOperationsform.FormClosed += bulkProductImageOperationsform_FormClosed;
+                        bulkProductImageOperationsform.Show();
+                    }
+                    else
+                    {
+                        bulkProductImageOperationsform.WindowState = FormWindowState.Normal;
+                        bulkProductImageOperationsform.Activate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void bulkProductImageOperationsform_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            bulkProductImageOperationsform = null;
+        }
+
+        private void tsmenuBulkProductOrderOperations_Click(object sender, EventArgs e)
+        {
+            if (entities.Database.Connection.State == ConnectionState.Open)
+            {
+                try
+                {
+                    if (bulkProductOrderOperationsform == null)
+                    {
+                        bulkProductOrderOperationsform = new frmBulkProductOrderOperations(ref bulkProductOrderOperationManager);
+                        bulkProductOrderOperationsform.MdiParent = this;
+                        bulkProductOrderOperationsform.FormClosed += bulkProductOrderOperationsform_FormClosed;
+                        bulkProductOrderOperationsform.Show();
+                    }
+                    else
+                    {
+                        bulkProductOrderOperationsform.WindowState = FormWindowState.Normal;
+                        bulkProductOrderOperationsform.Activate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void bulkProductOrderOperationsform_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            bulkProductOrderOperationsform = null;
+        }
+
+        private void tsmenuBulkOrderDeliveryOperations_Click(object sender, EventArgs e)
+        {
+            if (entities.Database.Connection.State == ConnectionState.Open)
+            {
+                try
+                {
+                    if (bulkOrderDeliveryOperationsform == null)
+                    {
+                        bulkOrderDeliveryOperationsform = new frmBulkOrderDeliveryOperations(ref bulkOrderDeliveryOperationManager);
+                        bulkOrderDeliveryOperationsform.MdiParent = this;
+                        bulkOrderDeliveryOperationsform.FormClosed += bulkOrderDeliveryOperationsform_FormClosed;
+                        bulkOrderDeliveryOperationsform.Show();
+                    }
+                    else
+                    {
+                        bulkOrderDeliveryOperationsform.WindowState = FormWindowState.Normal;
+                        bulkOrderDeliveryOperationsform.Activate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\nStackTrace:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void bulkOrderDeliveryOperationsform_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            bulkOrderDeliveryOperationsform = null;
         }
     }
 }
