@@ -355,13 +355,13 @@ namespace XtremePharmacyManager
                                         RefreshProductOrders();
                                         RefreshOrderDeliveries();
                                     }
-                                    else // or add it as a bulk operation
+                                }
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
-                                        if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                        {
-                                            //on user prompt add a silent operation by default
-                                            manager.AddOperation(new BulkOrderDeliveryOperation(BulkOperationType.DELETE, ref ent, selectedDelivery, true));
-                                        }
+                                        //on user prompt add a silent operation by default
+                                        manager.AddOperation(new BulkOrderDeliveryOperation(BulkOperationType.DELETE, ref ent, selectedDelivery, true));
                                     }
                                 }
                             }
