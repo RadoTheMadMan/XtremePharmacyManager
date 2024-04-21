@@ -21,13 +21,17 @@ namespace XtremePharmacyManager
     {
         static Entities ent;
         static Logger logger;
+        static BulkOperationManager<Product> product_manager;
+        static BulkOperationManager<ProductImage> image_manager;
         static List<Product> products;
         static List<ProductBrand> product_brands;
         static List<ProductImage> product_images;
-        public frmSearchProducts(ref Entities entity,ref Logger extlogger)
+        public frmSearchProducts(ref Entities entity,ref Logger extlogger, ref BulkOperationManager<Product> productmanager, ref BulkOperationManager<ProductImage> imagemanager)
         {
             ent = entity;
             logger = extlogger;
+            product_manager = productmanager;
+            image_manager = imagemanager;
             InitializeComponent();
         }
 
@@ -280,9 +284,18 @@ namespace XtremePharmacyManager
                                             selectedProduct.ProductDescription,selectedProduct.ProductQuantity,selectedProduct.ProductPrice,
                                             selectedProduct.ProductExpiryDate,selectedProduct.ProductRegNum,selectedProduct.ProductPartNum,
                                             selectedProduct.ProductStorageLocation);
+                                        ent.SaveChanges();
                                         RefreshProductBrands();
                                         RefreshProducts();
                                         RefreshProductImages();
+                                    }
+                                }
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        product_manager.AddOperation(new BulkProductOperation(BulkOperationType.UPDATE, ref ent, selectedProduct, true));
                                     }
                                 }
                             }
@@ -298,12 +311,20 @@ namespace XtremePharmacyManager
                                         ent.AddProduct(selectedProduct.ProductName, selectedProduct.BrandID, selectedProduct.ProductDescription,
                                             selectedProduct.ProductQuantity, selectedProduct.ProductPrice, selectedProduct.ProductExpiryDate,
                                             selectedProduct.ProductRegNum, selectedProduct.ProductPartNum, selectedProduct.ProductStorageLocation);
+                                        ent.SaveChanges();
                                         RefreshProductBrands();
                                         RefreshProducts();
                                         RefreshProductImages();
                                     }
                                 }
-                                //show the editor and after the editor confirms add it
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        product_manager.AddOperation(new BulkProductOperation(BulkOperationType.ADD, ref ent, selectedProduct, true));
+                                    }
+                                }
                             }
                         }
                         else
@@ -317,9 +338,18 @@ namespace XtremePharmacyManager
                                     ent.AddProduct(selectedProduct.ProductName, selectedProduct.BrandID, selectedProduct.ProductDescription,
                                         selectedProduct.ProductQuantity, selectedProduct.ProductPrice, selectedProduct.ProductExpiryDate,
                                         selectedProduct.ProductRegNum, selectedProduct.ProductPartNum, selectedProduct.ProductStorageLocation);
+                                    ent.SaveChanges();
                                     RefreshProductBrands();
                                     RefreshProducts();
                                     RefreshProductImages();
+                                }
+                            }
+                            else // or add it as a bulk operation
+                            {
+                                if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    //on user prompt add a silent operation by default
+                                    product_manager.AddOperation(new BulkProductOperation(BulkOperationType.ADD, ref ent, selectedProduct, true));
                                 }
                             }
                         }
@@ -328,7 +358,7 @@ namespace XtremePharmacyManager
                 else
                 {
                     selectedProduct = new Product();
-                    DialogResult res = new frmEditProduct(ref selectedProduct,ref product_brands).ShowDialog();
+                    DialogResult res = new frmEditProduct(ref selectedProduct, ref product_brands).ShowDialog();
                     if (res == DialogResult.OK)
                     {
                         if (ent.Database.Connection.State == ConnectionState.Open)
@@ -336,9 +366,18 @@ namespace XtremePharmacyManager
                             ent.AddProduct(selectedProduct.ProductName, selectedProduct.BrandID, selectedProduct.ProductDescription,
                                 selectedProduct.ProductQuantity, selectedProduct.ProductPrice, selectedProduct.ProductExpiryDate,
                                 selectedProduct.ProductRegNum, selectedProduct.ProductPartNum, selectedProduct.ProductStorageLocation);
+                            ent.SaveChanges();
                             RefreshProductBrands();
                             RefreshProducts();
                             RefreshProductImages();
+                        }
+                    }
+                    else // or add it as a bulk operation
+                    {
+                        if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            //on user prompt add a silent operation by default
+                            product_manager.AddOperation(new BulkProductOperation(BulkOperationType.ADD, ref ent, selectedProduct, true));
                         }
                     }
                 }
@@ -378,9 +417,18 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteProductByID(selectedProduct.ID);
+                                        ent.SaveChanges();
                                         RefreshProductBrands();
                                         RefreshProducts();
                                         RefreshProductImages();
+                                    }
+                                }
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        product_manager.AddOperation(new BulkProductOperation(BulkOperationType.DELETE, ref ent, selectedProduct, true));
                                     }
                                 }
                             }
@@ -614,9 +662,18 @@ namespace XtremePharmacyManager
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
                                     ent.DeleteProductImageByID(selectedImage.ID);
+                                    ent.SaveChanges();
                                     RefreshProductBrands();
                                     RefreshProducts();
                                     RefreshProductImages();
+                                }
+                            }
+                            else // or add it as a bulk operation
+                            {
+                                if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    //on user prompt add a silent operation by default
+                                    image_manager.AddOperation(new BulkProductImageOperation(BulkOperationType.DELETE, ref ent, selectedImage, true));
                                 }
                             }
                         }
@@ -655,9 +712,18 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.UpdateProductImageByID(selectedImage.ID,selectedImage.ProductID,selectedImage.ImageName,selectedImage.ImageData);
+                                        ent.SaveChanges();
                                         RefreshProductBrands();
                                         RefreshProducts();
                                         RefreshProductImages();
+                                    }
+                                }
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        image_manager.AddOperation(new BulkProductImageOperation(BulkOperationType.UPDATE, ref ent, selectedImage, true));
                                     }
                                 }
                             }
@@ -670,9 +736,18 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.AddProductImage(selectedImage.ProductID, selectedImage.ImageName, selectedImage.ImageData);
+                                        ent.SaveChanges();
                                         RefreshProductBrands();
                                         RefreshProducts();
                                         RefreshProductImages();
+                                    }
+                                }
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        image_manager.AddOperation(new BulkProductImageOperation(BulkOperationType.ADD, ref ent, selectedImage, true));
                                     }
                                 }
                             }
@@ -686,9 +761,18 @@ namespace XtremePharmacyManager
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
                                     ent.AddProductImage(selectedImage.ProductID, selectedImage.ImageName, selectedImage.ImageData);
+                                    ent.SaveChanges();
                                     RefreshProductBrands();
                                     RefreshProducts();
                                     RefreshProductImages();
+                                }
+                            }
+                            else // or add it as a bulk operation
+                            {
+                                if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    //on user prompt add a silent operation by default
+                                    image_manager.AddOperation(new BulkProductImageOperation(BulkOperationType.ADD, ref ent, selectedImage, true));
                                 }
                             }
                         }
@@ -703,9 +787,18 @@ namespace XtremePharmacyManager
                         if (ent.Database.Connection.State == ConnectionState.Open)
                         {
                             ent.AddProductImage(selectedImage.ProductID, selectedImage.ImageName, selectedImage.ImageData);
+                            ent.SaveChanges();
                             RefreshProductBrands();
                             RefreshProducts();
                             RefreshProductImages();
+                        }
+                    }
+                    else // or add it as a bulk operation
+                    {
+                        if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            //on user prompt add a silent operation by default
+                            image_manager.AddOperation(new BulkProductImageOperation(BulkOperationType.ADD, ref ent, selectedImage, true));
                         }
                     }
                 }

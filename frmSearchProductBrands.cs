@@ -17,10 +17,12 @@ namespace XtremePharmacyManager
         static Entities ent;
         static Logger logger;
         static List<ProductBrand> product_brands;
-        public frmSearchProductBrands(ref Entities entity, ref Logger extlogger)
+        static BulkOperationManager<ProductBrand> manager;
+        public frmSearchProductBrands(ref Entities entity, ref Logger extlogger, ref BulkOperationManager<ProductBrand> bulkbrandmanager)
         {
             ent = entity;
             logger = extlogger;
+            manager = bulkbrandmanager;
             InitializeComponent();
         }
 
@@ -102,13 +104,22 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.UpdateBrandByID(selectedBrand.ID,selectedBrand.BrandName);
+                                        ent.SaveChanges();
                                         RefreshProductBrands();
+                                    }
+                                    else // or add it as a bulk operation
+                                    {
+                                        if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                        {
+                                            //on user prompt add a silent operation by default
+                                            manager.AddOperation(new BulkProductBrandOperation(BulkOperationType.UPDATE, ref ent, selectedBrand, true));
+                                        }
                                     }
                                 }
                             }
                             else
                             {
-                                //Create a new user
+                                //Create a new brand
                                 selectedBrand = new ProductBrand();
                                 DialogResult res = new frmEditProductBrand(ref selectedBrand).ShowDialog();
                                 if (res == DialogResult.OK)
@@ -116,10 +127,18 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.AddBrand(selectedBrand.BrandName);
+                                        ent.SaveChanges();
                                         RefreshProductBrands();
                                     }
                                 }
-                                //show the editor and after the editor confirms add it
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        manager.AddOperation(new BulkProductBrandOperation(BulkOperationType.ADD, ref ent, selectedBrand, true));
+                                    }
+                                }
                             }
                         }
                         else
@@ -131,7 +150,16 @@ namespace XtremePharmacyManager
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
                                     ent.AddBrand(selectedBrand.BrandName);
+                                    ent.SaveChanges();
                                     RefreshProductBrands();
+                                }
+                            }
+                            else // or add it as a bulk operation
+                            {
+                                if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    //on user prompt add a silent operation by default
+                                    manager.AddOperation(new BulkProductBrandOperation(BulkOperationType.ADD, ref ent, selectedBrand, true));
                                 }
                             }
                         }
@@ -146,7 +174,16 @@ namespace XtremePharmacyManager
                         if (ent.Database.Connection.State == ConnectionState.Open)
                         {
                             ent.AddBrand(selectedBrand.BrandName);
+                            ent.SaveChanges();
                             RefreshProductBrands();
+                        }
+                    }
+                    else // or add it as a bulk operation
+                    {
+                        if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            //on user prompt add a silent operation by default
+                            manager.AddOperation(new BulkProductBrandOperation(BulkOperationType.ADD, ref ent, selectedBrand, true));
                         }
                     }
                 }
@@ -186,7 +223,16 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteBrandByID(selectedBrand.ID);
+                                        ent.SaveChanges();
                                         RefreshProductBrands();
+                                    }
+                                }
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        manager.AddOperation(new BulkProductBrandOperation(BulkOperationType.DELETE, ref ent, selectedBrand, true));
                                     }
                                 }
                             }

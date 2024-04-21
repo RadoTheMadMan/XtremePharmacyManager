@@ -25,14 +25,16 @@ namespace XtremePharmacyManager
         //I hope it works for 
         static Entities ent;
         static Logger logger;
+        static BulkOperationManager<OrderDelivery> manager;
         static List<ProductOrder> product_orders;
         static List<OrderDelivery> order_deliveries;
         static List<DeliveryService> delivery_services;
         static List<PaymentMethod> payment_methods;
-        public frmSearchOrderDeliveries(ref Entities entity,ref Logger extlogger)
+        public frmSearchOrderDeliveries(ref Entities entity,ref Logger extlogger, ref BulkOperationManager<OrderDelivery> deliverymanager)
         {
             ent = entity;
             logger = extlogger;
+            manager = deliverymanager;
             InitializeComponent();
         }
 
@@ -202,7 +204,7 @@ namespace XtremePharmacyManager
                         Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out DeliveryID);
                         if (DeliveryID > 0)
                         {
-                            //For Orders we will not allow anyone to edit orders who were completed, returned or cancelled
+                            //For Deliveries we will not allow anyone to edit orders who were completed, returned or cancelled
                             selectedDelivery = order_deliveries.Where(x => x.ID == DeliveryID && (x.DeliveryStatus != 7 || x.DeliveryStatus!= 8 || x.DeliveryStatus != 9)).FirstOrDefault();
                             if (selectedDelivery != null)
                             {
@@ -214,10 +216,19 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.UpdateOrderDeliveryByID(selectedDelivery.ID, selectedDelivery.OrderID,selectedDelivery.DeliveryServiceID,selectedDelivery.PaymentMethodID,selectedDelivery.CargoID,selectedDelivery.DeliveryStatus,selectedDelivery.DeliveryReason);
+                                        ent.SaveChanges();
                                         RefreshDeliveryServices();
                                         RefreshPaymentMethods();
                                         RefreshProductOrders();
                                         RefreshOrderDeliveries();
+                                    }
+                                }
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        manager.AddOperation(new BulkOrderDeliveryOperation(BulkOperationType.UPDATE, ref ent, selectedDelivery, true));
                                     }
                                 }
                             }
@@ -231,10 +242,19 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.AddOrderDelivery(selectedDelivery.OrderID,selectedDelivery.DeliveryServiceID,selectedDelivery.PaymentMethodID,selectedDelivery.CargoID,selectedDelivery.DeliveryReason);
+                                        ent.SaveChanges();
                                         RefreshDeliveryServices();
                                         RefreshPaymentMethods();
                                         RefreshProductOrders();
                                         RefreshOrderDeliveries();
+                                    }
+                                }
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        manager.AddOperation(new BulkOrderDeliveryOperation(BulkOperationType.ADD, ref ent, selectedDelivery, true));
                                     }
                                 }
                             }
@@ -249,10 +269,19 @@ namespace XtremePharmacyManager
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
                                     ent.AddOrderDelivery(selectedDelivery.OrderID, selectedDelivery.DeliveryServiceID, selectedDelivery.PaymentMethodID, selectedDelivery.CargoID, selectedDelivery.DeliveryReason);
+                                    ent.SaveChanges();
                                     RefreshDeliveryServices();
                                     RefreshPaymentMethods();
                                     RefreshProductOrders();
                                     RefreshOrderDeliveries();
+                                }
+                            }
+                            else // or add it as a bulk operation
+                            {
+                                if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    //on user prompt add a silent operation by default
+                                    manager.AddOperation(new BulkOrderDeliveryOperation(BulkOperationType.ADD, ref ent, selectedDelivery, true));
                                 }
                             }
                         }
@@ -260,21 +289,29 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                //Create a new one
-                //Create a new one
-                selectedDelivery = new OrderDelivery();
-                DialogResult res = new frmEditOrderDelivery(ref selectedDelivery, ref product_orders, ref payment_methods, ref delivery_services).ShowDialog();
-                if (res == DialogResult.OK)
-                {
-                    if (ent.Database.Connection.State == ConnectionState.Open)
+                    //Create a new one
+                    selectedDelivery = new OrderDelivery();
+                    DialogResult res = new frmEditOrderDelivery(ref selectedDelivery, ref product_orders, ref payment_methods, ref delivery_services).ShowDialog();
+                    if (res == DialogResult.OK)
                     {
-                        ent.AddOrderDelivery(selectedDelivery.OrderID, selectedDelivery.DeliveryServiceID, selectedDelivery.PaymentMethodID, selectedDelivery.CargoID, selectedDelivery.DeliveryReason);
-                        RefreshDeliveryServices();
-                        RefreshPaymentMethods();
-                        RefreshProductOrders();
-                        RefreshOrderDeliveries();
+                        if (ent.Database.Connection.State == ConnectionState.Open)
+                        {
+                            ent.AddOrderDelivery(selectedDelivery.OrderID, selectedDelivery.DeliveryServiceID, selectedDelivery.PaymentMethodID, selectedDelivery.CargoID, selectedDelivery.DeliveryReason);
+                            ent.SaveChanges();
+                            RefreshDeliveryServices();
+                            RefreshPaymentMethods();
+                            RefreshProductOrders();
+                            RefreshOrderDeliveries();
+                        }
                     }
-                }
+                    else // or add it as a bulk operation
+                    {
+                        if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            //on user prompt add a silent operation by default
+                            manager.AddOperation(new BulkOrderDeliveryOperation(BulkOperationType.ADD, ref ent, selectedDelivery, true));
+                        }
+                    }
                 }
                 logger.RefreshLogs();
             }
@@ -312,10 +349,19 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteOrderDeliveryByID(selectedDelivery.ID);
+                                        ent.SaveChanges();
                                         RefreshDeliveryServices();
                                         RefreshPaymentMethods();
                                         RefreshProductOrders();
                                         RefreshOrderDeliveries();
+                                    }
+                                    else // or add it as a bulk operation
+                                    {
+                                        if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                        {
+                                            //on user prompt add a silent operation by default
+                                            manager.AddOperation(new BulkOrderDeliveryOperation(BulkOperationType.DELETE, ref ent, selectedDelivery, true));
+                                        }
                                     }
                                 }
                             }

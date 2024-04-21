@@ -25,14 +25,16 @@ namespace XtremePharmacyManager
         //I hope it works for 
         static Entities ent;
         static Logger logger;
+        static BulkOperationManager<ProductOrder> manager;
         static List<Product> products;
         static List<ProductOrder> product_orders;
         static List<User> employees;
         static List<User> clients;
-        public frmSearchProductOrders(ref Entities entity, ref Logger extlogger)
+        public frmSearchProductOrders(ref Entities entity, ref Logger extlogger, ref BulkOperationManager<ProductOrder> ordermanager)
         {
             ent = entity;
             logger = extlogger;
+            manager = ordermanager;
             InitializeComponent();
         }
 
@@ -223,10 +225,26 @@ namespace XtremePharmacyManager
                                         ent.UpdateProductOrderByID(selectedOrder.ID, selectedOrder.ProductID, selectedOrder.DesiredQuantity,
                                             selectedOrder.OrderPrice, selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderStatus,
                                             selectedOrder.OrderReason);
+                                        ent.SaveChanges();
                                         RefreshEmployees();
                                         RefreshClients();
                                         RefreshProducts();
                                         RefreshProductOrders();
+                                    }
+                                }
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                        {
+                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.UPDATE, ref ent, selectedOrder, true, true));
+                                        }
+                                        else
+                                        {
+                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.UPDATE, ref ent, selectedOrder, false, true));
+                                        }
                                     }
                                 }
                             }
@@ -251,13 +269,28 @@ namespace XtremePharmacyManager
                                             ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                             selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, false);
                                         }
+                                        ent.SaveChanges();
                                         RefreshEmployees();
                                         RefreshClients();
                                         RefreshProducts();
                                         RefreshProductOrders();
                                     }
                                 }
-                                //show the editor and after the editor confirms add it and ask question if the price will be overriden as total
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                        {
+                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, true, true));
+                                        }
+                                        else
+                                        {
+                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, false, true));
+                                        }
+                                    }
+                                }
                             }
                         }
                         else
@@ -281,10 +314,26 @@ namespace XtremePharmacyManager
                                         ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                         selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, false);
                                     }
+                                    ent.SaveChanges();
                                     RefreshEmployees();
                                     RefreshClients();
                                     RefreshProducts();
                                     RefreshProductOrders();
+                                }
+                            }
+                            else // or add it as a bulk operation
+                            {
+                                if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    //on user prompt add a silent operation by default
+                                    if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, true, true));
+                                    }
+                                    else
+                                    {
+                                        manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, false, true));
+                                    }
                                 }
                             }
                         }
@@ -311,10 +360,26 @@ namespace XtremePharmacyManager
                                 ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                 selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, false);
                             }
+                            ent.SaveChanges();
                             RefreshEmployees();
                             RefreshClients();
                             RefreshProducts();
                             RefreshProductOrders();
+                        }
+                    }
+                    else // or add it as a bulk operation
+                    {
+                        if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            //on user prompt add a silent operation by default
+                            if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            {
+                                manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, true, true));
+                            }
+                            else
+                            {
+                                manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, false, true));
+                            }
                         }
                     }
                 }
@@ -354,10 +419,26 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteProductOrderByID(selectedOrder.ID);
+                                        ent.SaveChanges();
                                         RefreshEmployees();
                                         RefreshClients();
                                         RefreshProducts();
                                         RefreshProductOrders();
+                                    }
+                                }
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                        {
+                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.DELETE, ref ent, selectedOrder, true, true));
+                                        }
+                                        else
+                                        {
+                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.DELETE, ref ent, selectedOrder, false, true));
+                                        }
                                     }
                                 }
                             }

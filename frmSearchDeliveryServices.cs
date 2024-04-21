@@ -17,10 +17,12 @@ namespace XtremePharmacyManager
         static Entities ent;
         static Logger logger;
         static List<DeliveryService> delivery_services;
-        public frmSearchDeliveryServices(ref Entities entity, ref Logger extlogger)
+        static BulkOperationManager<DeliveryService> manager;
+        public frmSearchDeliveryServices(ref Entities entity, ref Logger extlogger, ref BulkOperationManager<DeliveryService> servicemanager)
         {
             ent = entity;
             logger = extlogger;
+            manager = servicemanager;
             InitializeComponent();
         }
 
@@ -106,13 +108,22 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.UpdateDeliveryServiceByID(selectedService.ID,selectedService.ServiceName,selectedService.ServicePrice);
+                                        ent.SaveChanges();
                                         RefreshDeliveryServices();
+                                    }
+                                }
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        manager.AddOperation(new BulkDeliveryServiceOperation(BulkOperationType.UPDATE, ref ent, selectedService, true));
                                     }
                                 }
                             }
                             else
                             {
-                                //Create a new user
+                                //Create a new service
                                 selectedService = new DeliveryService();
                                 DialogResult res = new frmEditDeliveryService(ref selectedService).ShowDialog();
                                 if (res == DialogResult.OK)
@@ -120,10 +131,18 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.AddDeliveryService(selectedService.ServiceName,selectedService.ServicePrice);
+                                        ent.SaveChanges();
                                         RefreshDeliveryServices();
                                     }
                                 }
-                                //show the editor and after the editor confirms add it
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        manager.AddOperation(new BulkDeliveryServiceOperation(BulkOperationType.ADD, ref ent, selectedService, true));
+                                    }
+                                }
                             }
                         }
                         else
@@ -135,7 +154,16 @@ namespace XtremePharmacyManager
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
                                     ent.AddDeliveryService(selectedService.ServiceName, selectedService.ServicePrice);
+                                    ent.SaveChanges();
                                     RefreshDeliveryServices();
+                                }
+                            }
+                            else // or add it as a bulk operation
+                            {
+                                if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                {
+                                    //on user prompt add a silent operation by default
+                                    manager.AddOperation(new BulkDeliveryServiceOperation(BulkOperationType.ADD, ref ent, selectedService, true));
                                 }
                             }
                         }
@@ -150,7 +178,16 @@ namespace XtremePharmacyManager
                         if (ent.Database.Connection.State == ConnectionState.Open)
                         {
                             ent.AddDeliveryService(selectedService.ServiceName, selectedService.ServicePrice);
+                            ent.SaveChanges();
                             RefreshDeliveryServices();
+                        }
+                    }
+                    else // or add it as a bulk operation
+                    {
+                        if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        {
+                            //on user prompt add a silent operation by default
+                            manager.AddOperation(new BulkDeliveryServiceOperation(BulkOperationType.ADD, ref ent, selectedService, true));
                         }
                     }
                 }
@@ -190,7 +227,16 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteDeliveryServiceByID(selectedService.ID);
+                                        ent.SaveChanges();
                                         RefreshDeliveryServices();
+                                    }
+                                }
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    {
+                                        //on user prompt add a silent operation by default
+                                        manager.AddOperation(new BulkDeliveryServiceOperation(BulkOperationType.DELETE, ref ent, selectedService, true));
                                     }
                                 }
                             }
