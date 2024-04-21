@@ -16,10 +16,10 @@ namespace XtremePharmacyManager
         {
             try
             {
-                int Size = Image.Width * Image.Height;
-                byte[] result = new byte[Size];
-                MemoryStream memoryStream = new MemoryStream(result);
+                byte[] result;
+                MemoryStream memoryStream = new MemoryStream();
                 Image.Save(memoryStream, ImageFormat.Png);
+                result = memoryStream.ToArray();
                 target = result;
             }
             catch (Exception ex)
