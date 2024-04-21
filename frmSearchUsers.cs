@@ -384,7 +384,7 @@ namespace XtremePharmacyManager
                                 && x.UserPassword == currentUser.UserPassword).FirstOrDefault();
                                 if(view != null)
                                 {
-                                    new frmReports();
+                                    new frmReports().Show();
                                 }
                             }
                             else if(currentUser.UserRole == 2) //if the user is a client
@@ -393,7 +393,7 @@ namespace XtremePharmacyManager
                                && x.UserPassword == currentUser.UserPassword).FirstOrDefault();
                                 if (view != null)
                                 {
-                                    new frmReports();
+                                    new frmReports().Show();
                                 }
                             }
                         }
