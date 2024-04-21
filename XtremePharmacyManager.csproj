@@ -431,6 +431,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\EmployeeReport.en-US.rdlc" />
     <EntityDeploy Include="DataEntities\XTremePharmacyModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>XTremePharmacyModel.Designer.cs</LastGenOutput>
@@ -455,6 +456,7 @@
     <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\DataSources\SqlServerTypes.Utilities.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.DeliveryService.datasource" />
+    <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.EmployeeView.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.OrderDelivery.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.PaymentMethod.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.Product.datasource" />
@@ -477,9 +479,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reports\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="DataEntities\XTremePharmacyModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
