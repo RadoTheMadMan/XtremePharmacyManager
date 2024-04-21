@@ -16,11 +16,11 @@ namespace XtremePharmacyManager
     {
         ProductImage target;
         static List<Product> products;
-        public frmEditProductImage(ref ProductImage target, ref List<Product> products)
+        public frmEditProductImage(ref ProductImage target, ref List<Product> ref_products)
         {
             InitializeComponent();
             this.target = target;
-            products = products;
+            products = ref_products;
         }
 
         private void txtID_TextChanged(object sender, EventArgs e)
