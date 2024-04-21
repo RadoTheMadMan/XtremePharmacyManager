@@ -22,6 +22,7 @@ namespace XtremePharmacyManager
         {
             InitializeComponent();
             this.target = target;
+            product_orders = ref_product_orders;
             payment_methods = ref_payment_methods;
             delivery_services = ref_delivery_services;
         }
@@ -89,16 +90,22 @@ namespace XtremePharmacyManager
 
         private void frmEditOrderDelivery_Load(object sender, EventArgs e)
         {
-            product_orders = product_orders;
-            payment_methods = payment_methods;
-            delivery_services = delivery_services;
             this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
             this.cbSelectProductOrders.DataSource = product_orders;
             this.cbSelectDeliveryService.DataSource = delivery_services;
             this.cbSelectPaymentMethod.DataSource = payment_methods;
-            this.cbSelectProductOrders.SelectedValue = target.OrderID;
-            this.cbSelectDeliveryService.SelectedValue = target.DeliveryServiceID;
-            this.cbSelectPaymentMethod.SelectedValue = target.PaymentMethodID;
+            if (product_orders.Where(x => x.ID == target.OrderID).FirstOrDefault() != null)
+            {
+                this.cbSelectProductOrders.SelectedValue = target.OrderID;
+            }
+            if (delivery_services.Where(x => x.ID == target.DeliveryServiceID).FirstOrDefault() != null)
+            {
+                this.cbSelectDeliveryService.SelectedValue = target.DeliveryServiceID;
+            }
+            if (delivery_services.Where(x => x.ID == target.PaymentMethodID).FirstOrDefault() != null)
+            {
+                this.cbSelectPaymentMethod.SelectedValue = target.PaymentMethodID;
+            }
             cbSelectDeliveryStatus.SelectedValue = cbSelectDeliveryStatus.Items[target.DeliveryStatus];
             txtDeliveryReason.Text = target.DeliveryReason;
             txtCargoID.Text = target.CargoID;

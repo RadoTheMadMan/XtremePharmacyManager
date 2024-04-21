@@ -99,9 +99,18 @@ namespace XtremePharmacyManager
             this.cbSelectProduct.DataSource = products;
             this.cbSelectClient.DataSource = clients;
             this.cbSelectEmployee.DataSource = employees;
-            this.cbSelectProduct.SelectedValue = target.ProductID;
-            this.cbSelectClient.SelectedValue = target.ClientID;
-            this.cbSelectEmployee.SelectedValue = target.EmployeeID;
+            if (products.Where(x=>x.ID == target.ProductID).FirstOrDefault() != null)
+            {
+                this.cbSelectProduct.SelectedValue = target.ProductID;
+            }
+            if (clients.Where(x => x.ID == target.ClientID).FirstOrDefault() != null)
+            {
+                this.cbSelectClient.SelectedValue = target.ClientID;
+            }
+            if (employees.Where(x => x.ID == target.EmployeeID).FirstOrDefault() != null)
+            {
+                this.cbSelectEmployee.SelectedValue = target.EmployeeID;
+            }
             trbDesiredQuantity.Value = (target.DesiredQuantity >= 0) ? target.DesiredQuantity : 0;
             lblShowDesiredQuantity.Text = (target.DesiredQuantity >= 0) ? target.DesiredQuantity.ToString() : string.Empty;
             trbPriceOverride.Value = (target.OrderPrice >= 0) ? Convert.ToInt32(target.OrderPrice) : 0;

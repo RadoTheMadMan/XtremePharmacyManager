@@ -118,7 +118,10 @@ namespace XtremePharmacyManager
             this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
             this.txtProductName.Text = (!String.IsNullOrEmpty(target.ProductName)) ? target.ProductName.ToString() : string.Empty;
             this.cbSelectBrand.DataSource = brands;
-            this.cbSelectBrand.SelectedValue = target.BrandID;
+            if (brands.Where(x => x.ID == target.BrandID).FirstOrDefault() != null)
+            {
+                this.cbSelectBrand.SelectedValue = target.BrandID;
+            }
             this.txtProductDescription.Text = (!String.IsNullOrEmpty(target.ProductDescription)) ? target.ProductDescription.ToString() : string.Empty;
             this.dtExpiryDate.Value = (target.ProductExpiryDate != null && target.ProductExpiryDate > DateTime.MinValue && target.ProductExpiryDate < DateTime.MaxValue) ? target.ProductExpiryDate : DateTime.Now;
             this.txtRegistrationNumber.Text = (!String.IsNullOrEmpty(target.ProductRegNum)) ? target.ProductRegNum.ToString() : string.Empty;
