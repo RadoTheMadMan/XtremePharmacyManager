@@ -1364,7 +1364,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "User has been deleted.";
+                base.SuccessMessage = "Order Delivery has been deleted.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.DeleteOrderDeliveryByID(base.TargetObject.ID);
