@@ -378,6 +378,10 @@ namespace XtremePharmacyManager
                         currentUser = users.Where(x=>x.ID == ID).FirstOrDefault();
                         if(currentUser != null)
                         {
+                            foreach(EmployeeView view in ent.EmployeeViews.ToList())
+                            {
+                                MessageBox.Show(view.UserDisplayName);
+                            }
                             if(currentUser.UserRole == 0 ||  currentUser.UserRole == 1) //if the user is employee or admin(considered an employee)
                             {
                                 EmployeeView view = ent.EmployeeViews.Where(x=>x.UserName == currentUser.UserName
