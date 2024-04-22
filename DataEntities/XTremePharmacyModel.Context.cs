@@ -21,7 +21,6 @@ namespace XtremePharmacyManager.DataEntities
         public Entities()
             : base("name=Entities")
         {
-
         }
 
         public Entities(EntityConnectionStringBuilder esb) :base(esb.ConnectionString)
@@ -31,7 +30,8 @@ namespace XtremePharmacyManager.DataEntities
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //Precaution so we can attach, detach and reload things if needed
+            //Let's make the model builder again sync with the actual values in the database
+            //tables
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<ProductBrand>().ToTable("ProductBrands");
             modelBuilder.Entity<PaymentMethod>().ToTable("PaymentMethods");
@@ -41,7 +41,19 @@ namespace XtremePharmacyManager.DataEntities
             modelBuilder.Entity<ProductOrder>().ToTable("ProductOrders");
             modelBuilder.Entity<OrderDelivery>().ToTable("OrderDeliveries");
             modelBuilder.Entity<Log>().ToTable("Logs");
+            //views
+            //weirdly enough there are no toview function in this entity model version
+            //so I am using ToTable function. If this crashes I will remove the views from the equation
+            modelBuilder.Entity<ClientView>().ToTable("ClientView");
+            modelBuilder.Entity<EmployeeView>().ToTable("EmployeeView");
+            modelBuilder.Entity<ExtendedBrandsView>().ToTable("ExtendedBrandsView");
+            modelBuilder.Entity<ExtendedDeliveryServicesView>().ToTable("ExtendedDeliveryServicesView");
+            modelBuilder.Entity<ExtendedPaymentMethodsView>().ToTable("ExtendedPaymentMethodsView");
+            modelBuilder.Entity<ExtendedProductView>().ToTable("ExtendedProductView");
+            modelBuilder.Entity<ExtendedProductOrdersView>().ToTable("ExtendedProductOrdersView");
+            modelBuilder.Entity<ExtendedOrderDeliveriesView>().ToTable("ExtendedOrderDeliveriesView");
         }
+    
         public virtual DbSet<DeliveryService> DeliveryServices { get; set; }
         public virtual DbSet<Log> Logs { get; set; }
         public virtual DbSet<OrderDelivery> OrderDeliveries { get; set; }

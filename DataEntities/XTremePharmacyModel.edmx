@@ -148,7 +148,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ClientView' does not have a p
           <Property Name="UserDiagnose" Type="varchar(max)" Nullable="false" />
           <Property Name="UserDateOfRegister" Type="date" Nullable="false" />
           <Property Name="UserRole" Type="int" Nullable="false" />
-          <Property Name="AverageClientSpending" Type="money" />
+          <Property Name="PredictedAverageClientSpending" Type="money" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'XTremePharmacyDB.dbo.EmployeeView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -179,7 +179,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.EmployeeView' does not have a
           <Property Name="UserDiagnose" Type="varchar(max)" Nullable="false" />
           <Property Name="UserDateOfRegister" Type="date" Nullable="false" />
           <Property Name="UserRole" Type="int" Nullable="false" />
-          <Property Name="AverageEmployeeIncome" Type="money" />
+          <Property Name="PredictedAverageEmployeeIncome" Type="money" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedBrandsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -788,7 +788,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
     [ClientView].[UserDiagnose] AS [UserDiagnose], 
     [ClientView].[UserDateOfRegister] AS [UserDateOfRegister], 
     [ClientView].[UserRole] AS [UserRole], 
-    [ClientView].[AverageClientSpending] AS [AverageClientSpending]
+    [ClientView].[PredictedAverageClientSpending] AS [PredictedAverageClientSpending]
     FROM [dbo].[ClientView] AS [ClientView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="EmployeeView" EntityType="Self.EmployeeView" store:Type="Views" store:Schema="dbo">
@@ -805,7 +805,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
     [EmployeeView].[UserDiagnose] AS [UserDiagnose], 
     [EmployeeView].[UserDateOfRegister] AS [UserDateOfRegister], 
     [EmployeeView].[UserRole] AS [UserRole], 
-    [EmployeeView].[AverageEmployeeIncome] AS [AverageEmployeeIncome]
+    [EmployeeView].[PredictedAverageEmployeeIncome] AS [PredictedAverageEmployeeIncome]
     FROM [dbo].[EmployeeView] AS [EmployeeView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ExtendedBrandsView" EntityType="Self.ExtendedBrandsView" store:Type="Views" store:Schema="dbo">
@@ -1081,7 +1081,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <Property Name="UserDiagnose" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UserDateOfRegister" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="UserRole" Type="Int32" Nullable="false" />
-          <Property Name="AverageClientSpending" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PredictedAverageClientSpending" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="EmployeeView">
           <Key>
@@ -1110,7 +1110,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <Property Name="UserDiagnose" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UserDateOfRegister" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="UserRole" Type="Int32" Nullable="false" />
-          <Property Name="AverageEmployeeIncome" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="PredictedAverageEmployeeIncome" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="ExtendedBrandsView">
           <Key>
@@ -1953,6 +1953,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <EntitySetMapping Name="ClientViews">
             <EntityTypeMapping TypeName="XTremePharmacyModel.ClientView">
               <MappingFragment StoreEntitySet="ClientView">
+                <ScalarProperty Name="PredictedAverageClientSpending" ColumnName="PredictedAverageClientSpending" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
                 <ScalarProperty Name="UserDisplayName" ColumnName="UserDisplayName" />
@@ -1965,13 +1966,13 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
                 <ScalarProperty Name="UserDiagnose" ColumnName="UserDiagnose" />
                 <ScalarProperty Name="UserDateOfRegister" ColumnName="UserDateOfRegister" />
                 <ScalarProperty Name="UserRole" ColumnName="UserRole" />
-                <ScalarProperty Name="AverageClientSpending" ColumnName="AverageClientSpending" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EmployeeViews">
             <EntityTypeMapping TypeName="XTremePharmacyModel.EmployeeView">
               <MappingFragment StoreEntitySet="EmployeeView">
+                <ScalarProperty Name="PredictedAverageEmployeeIncome" ColumnName="PredictedAverageEmployeeIncome" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
                 <ScalarProperty Name="UserDisplayName" ColumnName="UserDisplayName" />
@@ -1984,7 +1985,6 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
                 <ScalarProperty Name="UserDiagnose" ColumnName="UserDiagnose" />
                 <ScalarProperty Name="UserDateOfRegister" ColumnName="UserDateOfRegister" />
                 <ScalarProperty Name="UserRole" ColumnName="UserRole" />
-                <ScalarProperty Name="AverageEmployeeIncome" ColumnName="AverageEmployeeIncome" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

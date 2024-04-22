@@ -1547,8 +1547,8 @@ because they work for your company after all
 go
 create or alter view EmployeeView as
 select Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
-Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, AVG(ProductOrders.OrderPrice) as AverageEmployeeIncome 
-from Users, ProductOrders where Users.ID = ProductOrders.EmployeeID and Users.UserRole = 0 or Users.UserRole = 1 and ProductOrders.OrderStatus = 9
+Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, AVG(ProductOrders.OrderPrice) as PredictedAverageEmployeeIncome 
+from Users, ProductOrders where Users.ID = ProductOrders.EmployeeID and (Users.UserRole = 0 or Users.UserRole = 1)
 group by Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
 Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, ProductOrders.ID,ProductOrders.ProductID,
 ProductOrders.DesiredQuantity, ProductOrders.OrderPrice, ProductOrders.ClientID,ProductOrders.EmployeeID, ProductOrders.DateAdded,ProductOrders.DateModified, 
@@ -1561,8 +1561,8 @@ select * from Users;
 go
 create or alter view ClientView as
 select Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
-Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, AVG(ProductOrders.OrderPrice) as AverageClientSpending 
-from Users, ProductOrders where Users.ID = ProductOrders.ClientID and Users.UserRole = 2 and ProductOrders.OrderStatus = 9
+Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, AVG(ProductOrders.OrderPrice) as PredictedAverageClientSpending 
+from Users, ProductOrders where Users.ID = ProductOrders.ClientID and Users.UserRole = 2
 group by Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
 Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, ProductOrders.ID,ProductOrders.ProductID,
 ProductOrders.DesiredQuantity, ProductOrders.OrderPrice, ProductOrders.ClientID,ProductOrders.EmployeeID, ProductOrders.DateAdded,ProductOrders.DateModified, 
@@ -1627,11 +1627,11 @@ go
 create or alter view ExtendedProductOrdersView as
 select ProductOrders.ID, Products.ProductName, ProductBrands.BrandName, Products.ProductDescription, Products.ProductExpiryDate,
 ProductOrders.DesiredQuantity, ProductOrders.OrderPrice,
-(select UserDisplayName from Users, ProductOrders where ProductOrders.ClientID = Users.ID) as ClientName,
-(select UserPhone from Users, ProductOrders where ProductOrders.ClientID = Users.ID) as ClientPhone,
-(select UserEmail from Users, ProductOrders where ProductOrders.ClientID = Users.ID) as ClientEmail,
-(select UserAddress from Users, ProductOrders where ProductOrders.ClientID = Users.ID) as ClientAddress,
-(select UserDisplayName from Users,ProductOrders where ProductOrders.EmployeeID = Users.ID) as EmployeeName,
+(select UserDisplayName from Users, ProductOrders where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientName,
+(select UserPhone from Users, ProductOrders where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientPhone,
+(select UserEmail from Users, ProductOrders where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientEmail,
+(select UserAddress from Users, ProductOrders where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientAddress,
+(select UserDisplayName from Users,ProductOrders where ProductOrders.EmployeeID = Users.ID and (Users.UserRole = 0 or Users.UserRole = 1)) as EmployeeName,
 ProductOrders.DateAdded,ProductOrders.DateModified,ProductOrders.OrderStatus,ProductOrders.OrderReason
 from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join ProductBrands on Products.BrandID = ProductBrands.ID
 inner join Users on ProductOrders.EmployeeID = Users.ID or ProductOrders.ClientID = Users.ID;
@@ -1644,11 +1644,11 @@ go
 create or alter view ExtendedOrderDeliveriesView as
 select OrderDeliveries.ID, Products.ProductName, ProductBrands.BrandName, Products.ProductDescription, Products.ProductExpiryDate,
 ProductOrders.DesiredQuantity, ProductOrders.OrderPrice,
-(select UserDisplayName from Users, ProductOrders where ProductOrders.ClientID = Users.ID) as ClientName,
-(select UserPhone from Users, ProductOrders where ProductOrders.ClientID = Users.ID) as ClientPhone,
-(select UserEmail from Users, ProductOrders where ProductOrders.ClientID = Users.ID) as ClientEmail,
-(select UserAddress from Users, ProductOrders where ProductOrders.ClientID = Users.ID) as ClientAddress,
-(select UserDisplayName from Users,ProductOrders where ProductOrders.EmployeeID = Users.ID) as EmployeeName,
+(select UserDisplayName from Users, ProductOrders where ProductOrders.ClientID = Users.ID and UserRole = 2) as ClientName,
+(select UserPhone from Users, ProductOrders where ProductOrders.ClientID = Users.ID and UserRole = 2) as ClientPhone,
+(select UserEmail from Users, ProductOrders where ProductOrders.ClientID = Users.ID and UserRole = 2) as ClientEmail,
+(select UserAddress from Users, ProductOrders where ProductOrders.ClientID = Users.ID and UserRole = 2) as ClientAddress,
+(select UserDisplayName from Users,ProductOrders where ProductOrders.EmployeeID = Users.ID and (UserRole = 0 or UserRole = 1)) as EmployeeName,
 DeliveryServices.ServiceName, DeliveryServices.ServicePrice as DeliveryPrice, PaymentMethods.MethodName,OrderDeliveries.CargoID, OrderDeliveries.TotalPrice,
 OrderDeliveries.DateAdded,OrderDeliveries.DateModified, OrderDeliveries.DeliveryStatus, OrderDeliveries.DeliveryReason
 from OrderDeliveries inner join ProductOrders on OrderDeliveries.OrderID = ProductOrders.ID
