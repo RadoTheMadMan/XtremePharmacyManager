@@ -35,6 +35,7 @@ namespace XtremePharmacyManager
             try
             {
                 this.rwReports.LocalReport.ReportPath = ReportSourceFile;
+                this.rwReports.LocalReport.DataSources.Clear();
                 this.rwReports.LocalReport.DataSources.Add(source);
                 this.rwReports.LocalReport.SetParameters(reportParams);
                 this.rwReports.RefreshReport();

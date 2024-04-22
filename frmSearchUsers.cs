@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -364,7 +365,9 @@ namespace XtremePharmacyManager
             DataGridViewRow row;
             int ID = -1;
             User currentUser;
-            string target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.EMPLOYEE_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+            string target_report_file;
+            ReportDataSource current_source;
+            ReportParameterCollection current_params;
             try
             {
                 if(dgvUsers.SelectedRows.Count > 0)
@@ -380,20 +383,42 @@ namespace XtremePharmacyManager
                         {
                             if(currentUser.UserRole == 0 ||  currentUser.UserRole == 1) //if the user is employee or admin(considered an employee)
                             {
+                                target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.EMPLOYEE_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
                                 EmployeeView view = ent.EmployeeViews.Where(x=>x.UserName == currentUser.UserName &&
                                 x.UserPassword == currentUser.UserPassword).FirstOrDefault();
                                 if (view != null)
                                 {
-                                    new frmReports().Show();
+                                    DataTable dt = new DataTable();
+                                    dt.Columns.Add(nameof(view.UserName));
+                                    dt.Columns.Add(view.UserPassword);
+                                    dt.Columns.Add(view.UserDisplayName);
+                                    dt.Rows.Add(new object[]{ view.UserName, view.UserPassword, view.UserDisplayName});
+                                    foreach(DataRow data_row in dt.Rows)
+                                    {
+                                        foreach(var data_cell in data_row.ItemArray)
+                                        {
+                                            MessageBox.Show($"Row: {dt.Rows.IndexOf(data_row)}\n" +
+                                                $"Column Name: {dt.Columns[Array.IndexOf(data_row.ItemArray,data_cell)]}\n" +
+                                                $"Cell: {Array.IndexOf(data_row.ItemArray,data_cell)}\n" +
+                                                $"Value: {data_cell.ToString()}\n");
+                                        }
+                                    }
+                                    current_source = new ReportDataSource("EmployeeReportData",dt);
+                                    current_params = new ReportParameterCollection();
+                                    new frmReports(target_report_file, ref current_source, ref current_params).Show();
                                 }
                             }
                             else if(currentUser.UserRole == 2) //if the user is a client
                             {
+                                target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.CLIENT_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
                                 ClientView view = ent.ClientViews.Where(x => x.UserName == currentUser.UserName
                                && x.UserPassword == currentUser.UserPassword).FirstOrDefault();
                                 if (view != null)
                                 {
-                                    new frmReports().Show();
+                                    current_source = new ReportDataSource();
+                                    current_source.Value = view;
+                                    current_params = new ReportParameterCollection();
+                                    new frmReports(target_report_file, ref current_source, ref current_params).Show();
                                 }
                             }
                         }
