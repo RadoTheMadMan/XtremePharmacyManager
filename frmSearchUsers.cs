@@ -364,7 +364,7 @@ namespace XtremePharmacyManager
             DataGridViewRow row;
             int ID = -1;
             User currentUser;
-            string target_report_file = $"{GLOBAL_RESOURCES.EMPLOYEE_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+            string target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.EMPLOYEE_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
             try
             {
                 if(dgvUsers.SelectedRows.Count > 0)

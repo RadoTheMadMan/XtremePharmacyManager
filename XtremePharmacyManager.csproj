@@ -290,11 +290,11 @@
     <Compile Include="frmEditUser.Designer.cs">
       <DependentUpon>frmEditUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmReportcs.cs">
+    <Compile Include="frmReports.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmReportcs.Designer.cs">
-      <DependentUpon>frmReportcs.cs</DependentUpon>
+    <Compile Include="frmReports.Designer.cs">
+      <DependentUpon>frmReports.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSearchProductBrands.cs">
       <SubType>Form</SubType>
@@ -403,8 +403,8 @@
     <EmbeddedResource Include="frmEditUser.resx">
       <DependentUpon>frmEditUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmReportcs.resx">
-      <DependentUpon>frmReportcs.cs</DependentUpon>
+    <EmbeddedResource Include="frmReports.resx">
+      <DependentUpon>frmReports.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSearchProductBrands.resx">
       <DependentUpon>frmSearchProductBrands.cs</DependentUpon>
