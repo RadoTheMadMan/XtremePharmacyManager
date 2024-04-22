@@ -1547,12 +1547,11 @@ because they work for your company after all
 go
 create or alter view EmployeeView as
 select Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
-Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, AVG(ProductOrders.OrderPrice) as PredictedAverageEmployeeIncome 
-from Users, ProductOrders where Users.ID = ProductOrders.EmployeeID and (Users.UserRole = 0 or Users.UserRole = 1)
-group by Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
-Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, ProductOrders.ID,ProductOrders.ProductID,
-ProductOrders.DesiredQuantity, ProductOrders.OrderPrice, ProductOrders.ClientID,ProductOrders.EmployeeID, ProductOrders.DateAdded,ProductOrders.DateModified, 
-ProductOrders.OrderStatus, ProductOrders.OrderReason;
+Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, 
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = Users.ID ) as PredictedAverageEmployeeIncome 
+from Users where UserRole = 0 or UserRole = 1
+group by Users.ID, Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
+Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole;
 go
 /* first time creating views so I am gonna test this one and the next ones */
 select * from EmployeeView;
@@ -1561,9 +1560,10 @@ select * from Users;
 go
 create or alter view ClientView as
 select Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
-Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, AVG(ProductOrders.OrderPrice) as PredictedAverageClientSpending 
-from Users, ProductOrders where Users.ID = ProductOrders.ClientID and Users.UserRole = 2
-group by Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
+Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, 
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = Users.ID) as PredictedAverageClientSpending 
+from Users, ProductOrders where Users.UserRole = 2
+group by Users.ID,Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
 Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, ProductOrders.ID,ProductOrders.ProductID,
 ProductOrders.DesiredQuantity, ProductOrders.OrderPrice, ProductOrders.ClientID,ProductOrders.EmployeeID, ProductOrders.DateAdded,ProductOrders.DateModified, 
 ProductOrders.OrderStatus, ProductOrders.OrderReason;
@@ -1577,13 +1577,16 @@ select * from Users;
 in the database(images are directly uploaded to the database in a binary format) */
 go
 create or alter view ExtendedProductView as
-select ProductName, BrandName, ProductDescription, ProductQuantity, ProductPrice,
-ProductExpiryDate, ProductRegNum, ProductPartNum, ProductStorageLocation, AVG(ProductOrders.OrderPrice) as AverageProductSale, Count(ProductImages.ImageName) as ProductImageCount
-from Products, ProductBrands, ProductImages ,ProductOrders where ProductOrders.ProductID = Products.ID and Products.BrandID = ProductBrands.ID
-and ProductImages.ProductID = Products.ID
-group by ProductName, BrandName, ProductDescription, ProductQuantity, ProductPrice,
-ProductExpiryDate, ProductRegNum, ProductPartNum, ProductStorageLocation, Products.ID, ProductOrders.ProductID, ProductImages.ProductID, DesiredQuantity,OrderPrice,ClientID,EmployeeID,
-DateAdded,DateModified,OrderStatus,OrderReason, ProductImages.ImageName, ProductImages.ProductID
+select ProductName,
+(select ProductBrands.BrandName from ProductBrands where Products.BrandID = ProductBrands.ID) as BrandName,
+ProductDescription, ProductQuantity, ProductPrice,
+ProductExpiryDate, ProductRegNum, ProductPartNum, ProductStorageLocation, 
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = Products.ID) as AverageProductSale, 
+(select Count(ProductImages.ID) from ProductImages where ProductImages.ProductID = Products.ID) as ProductImageCount
+from Products
+group by ProductName, ProductDescription, ProductQuantity, ProductPrice,
+ProductExpiryDate, ProductRegNum, ProductPartNum, ProductStorageLocation,
+Products.ID,Products.BrandID
 go
 
 select * from ExtendedProductView;
@@ -1592,8 +1595,9 @@ select * from Products;
 /* product brands extended view with added number of products of this brand */
 go
 create or alter view ExtendedBrandsView as
-select BrandName, Count(Products.ID) as CountProductsFromBrand from ProductBrands, Products where Products.BrandID = ProductBrands.ID
-group by BrandName;
+select BrandName, 
+(select Count(Products.ID) from Products where ProductBrands.ID = Products.BrandID) as CountProductsFromBrand from ProductBrands
+group by ID,BrandName;
 go
 
 select * from ExtendedBrandsView;
@@ -1602,8 +1606,8 @@ select * from productBrands;
 /* payment methods extended view with times the payment method was used in order deliveries(if it is used in order deliveries it is used in orders) */
 go
 create or alter view ExtendedPaymentMethodsView as
-select MethodName, count(OrderDeliveries.ID) as TimesThisMethodWasUsed from PaymentMethods, OrderDeliveries
-where OrderDeliveries.PaymentMethodID = PaymentMethods.ID group by MethodName;
+select MethodName, (select count(OrderDeliveries.ID) from OrderDeliveries where PaymentMethods.ID = OrderDeliveries.PaymentMethodID ) as TimesThisMethodWasUsed
+from PaymentMethods group by ID,MethodName;
 go
 
 select * from ExtendedPaymentMethodsView;
@@ -1612,8 +1616,9 @@ select * from PaymentMethods;
 /* delivery services extended view with times the service was used in the orders and deliveries(it is the same as the payment method) */
 go
 create or alter view ExtendedDeliveryServicesView as
-select ServiceName, ServicePrice, Count(OrderDeliveries.ID) as TimesThisServiceWasUsed from DeliveryServices, OrderDeliveries
-where OrderDeliveries.DeliveryServiceID = DeliveryServices.ID group by ServiceName,ServicePrice;
+select ServiceName, ServicePrice, (
+select Count(OrderDeliveries.ID) from OrderDeliveries where DeliveryServices.ID = OrderDeliveries.DeliveryServiceID) as TimesThisServiceWasUsed from DeliveryServices
+group by ID, ServiceName,ServicePrice;
 go
 
 select * from ExtendedDeliveryServicesView;
@@ -1625,7 +1630,11 @@ this case  */
 
 go
 create or alter view ExtendedProductOrdersView as
-select ProductOrders.ID, Products.ProductName, ProductBrands.BrandName, Products.ProductDescription, Products.ProductExpiryDate,
+select ProductOrders.ID, 
+(select Products.ProductName from Products where ProductOrders.ProductID = Products.ID) as ProductName, 
+(select ProductBrands.BrandName from ProductBrands inner join Products on Products.BrandID = ProductBrands.ID where Products.ID = ProductOrders.ProductID) as BrandName, 
+(select Products.ProductDescription from Products where ProductOrders.ProductID = Products.ID) as ProductDescription, 
+(select Products.ProductExpiryDate from Products where ProductOrders.ProductID = Products.ID) as ProductExpiryDate,
 ProductOrders.DesiredQuantity, ProductOrders.OrderPrice,
 (select UserDisplayName from Users, ProductOrders where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientName,
 (select UserPhone from Users, ProductOrders where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientPhone,
@@ -1633,8 +1642,7 @@ ProductOrders.DesiredQuantity, ProductOrders.OrderPrice,
 (select UserAddress from Users, ProductOrders where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientAddress,
 (select UserDisplayName from Users,ProductOrders where ProductOrders.EmployeeID = Users.ID and (Users.UserRole = 0 or Users.UserRole = 1)) as EmployeeName,
 ProductOrders.DateAdded,ProductOrders.DateModified,ProductOrders.OrderStatus,ProductOrders.OrderReason
-from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join ProductBrands on Products.BrandID = ProductBrands.ID
-inner join Users on ProductOrders.EmployeeID = Users.ID or ProductOrders.ClientID = Users.ID;
+from ProductOrders;
 go
 
 select * from ExtendedProductOrdersView;
@@ -1642,20 +1650,30 @@ select * from ProductOrders;
 
 go
 create or alter view ExtendedOrderDeliveriesView as
-select OrderDeliveries.ID, Products.ProductName, ProductBrands.BrandName, Products.ProductDescription, Products.ProductExpiryDate,
-ProductOrders.DesiredQuantity, ProductOrders.OrderPrice,
+select OrderDeliveries.ID, 
+(select Products.ProductName from Products inner join ProductOrders on Products.ID = ProductOrders.ProductID 
+where OrderDeliveries.OrderID = ProductOrders.ID) as ProductName, 
+(select ProductBrands.BrandName from ProductBrands inner join Products on Products.BrandID = ProductBrands.ID
+inner join ProductOrders on ProductOrders.ProductID = Products.ID
+inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID
+where OrderDeliveries.OrderID = ProductOrders.ID) as BrandName,
+(select Products.ProductDescription from Products inner join ProductOrders on Products.ID = ProductOrders.ProductID 
+where OrderDeliveries.OrderID = ProductOrders.ID) as ProductDescription,
+(select Products.ProductExpiryDate from Products inner join ProductOrders on Products.ID = ProductOrders.ProductID 
+where OrderDeliveries.OrderID = ProductOrders.ID) as ProductExpiryDate,
+(select ProductOrders.DesiredQuantity from ProductOrders where OrderDeliveries.OrderID = ProductOrders.ID) as DesiredQuantity, 
+(select ProductOrders.OrderPrice from ProductOrders where OrderDeliveries.OrderID = ProductOrders.ID) as OrderPrice,
 (select UserDisplayName from Users, ProductOrders where ProductOrders.ClientID = Users.ID and UserRole = 2) as ClientName,
 (select UserPhone from Users, ProductOrders where ProductOrders.ClientID = Users.ID and UserRole = 2) as ClientPhone,
 (select UserEmail from Users, ProductOrders where ProductOrders.ClientID = Users.ID and UserRole = 2) as ClientEmail,
 (select UserAddress from Users, ProductOrders where ProductOrders.ClientID = Users.ID and UserRole = 2) as ClientAddress,
 (select UserDisplayName from Users,ProductOrders where ProductOrders.EmployeeID = Users.ID and (UserRole = 0 or UserRole = 1)) as EmployeeName,
-DeliveryServices.ServiceName, DeliveryServices.ServicePrice as DeliveryPrice, PaymentMethods.MethodName,OrderDeliveries.CargoID, OrderDeliveries.TotalPrice,
-OrderDeliveries.DateAdded,OrderDeliveries.DateModified, OrderDeliveries.DeliveryStatus, OrderDeliveries.DeliveryReason
-from OrderDeliveries inner join ProductOrders on OrderDeliveries.OrderID = ProductOrders.ID
-inner join DeliveryServices on OrderDeliveries.DeliveryServiceID = DeliveryServices.ID
-inner join PaymentMethods on OrderDeliveries.PaymentMethodID = PaymentMethods.ID
-inner join Products on ProductOrders.ProductID = Products.ID
-inner join ProductBrands on Products.BrandID = ProductBrands.ID;
+(select DeliveryServices.ServiceName from DeliveryServices where OrderDeliveries.DeliveryServiceID = DeliveryServices.ID) as ServiceName,
+(select DeliveryServices.ServicePrice from DeliveryServices where OrderDeliveries.DeliveryServiceID = DeliveryServices.ID) as DeliveryPrice,
+(select PaymentMethods.MethodName from PaymentMethods where OrderDeliveries.PaymentMethodID = PaymentMethods.ID) as MethodName, 
+OrderDeliveries.CargoID, OrderDeliveries.TotalPrice, OrderDeliveries.DateAdded,OrderDeliveries.DateModified,
+OrderDeliveries.DeliveryStatus, OrderDeliveries.DeliveryReason
+from OrderDeliveries;
 go
 
 select * from ExtendedOrderDeliveriesView;

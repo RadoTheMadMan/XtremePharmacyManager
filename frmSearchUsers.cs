@@ -380,16 +380,17 @@ namespace XtremePharmacyManager
                         {
                             foreach(EmployeeView view in ent.EmployeeViews.ToList())
                             {
-                                MessageBox.Show(view.UserDisplayName);
+                                MessageBox.Show(view.UserName,"Username from Employee View");
+                                MessageBox.Show(view.UserPassword, "Password from Employee View");
+                                MessageBox.Show(view.UserDisplayName, "Display Name from Employee View");
                             }
+                            MessageBox.Show(currentUser.UserName, "Current User Username");
+                            MessageBox.Show(currentUser.UserPassword, "Current User Password");
+                            MessageBox.Show(currentUser.UserDisplayName, "Current User Display Name");
                             if(currentUser.UserRole == 0 ||  currentUser.UserRole == 1) //if the user is employee or admin(considered an employee)
                             {
-                                EmployeeView view = ent.EmployeeViews.Where(x=>x.UserName == currentUser.UserName
-                                && x.UserPassword == currentUser.UserPassword).FirstOrDefault();
-                                if(view != null)
-                                {
-                                    new frmReports().Show();
-                                }
+                                MessageBox.Show(ent.EmployeeViews.Where(x=>x.UserName == currentUser.UserName).FirstOrDefault().ToString());
+                                new frmReports().Show();
                             }
                             else if(currentUser.UserRole == 2) //if the user is a client
                             {
