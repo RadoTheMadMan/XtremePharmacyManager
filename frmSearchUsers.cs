@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Infrastructure;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -15,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using XtremePharmacyManager.DataEntities;
+using static XtremePharmacyManager.ImageBinConverter;
 
 namespace XtremePharmacyManager
 {
@@ -390,21 +392,41 @@ namespace XtremePharmacyManager
                                 {
                                     DataTable dt = new DataTable();
                                     dt.Columns.Add(nameof(view.UserName));
-                                    dt.Columns.Add(view.UserPassword);
-                                    dt.Columns.Add(view.UserDisplayName);
-                                    dt.Rows.Add(new object[]{ view.UserName, view.UserPassword, view.UserDisplayName});
-                                    foreach(DataRow data_row in dt.Rows)
-                                    {
-                                        foreach(var data_cell in data_row.ItemArray)
-                                        {
-                                            MessageBox.Show($"Row: {dt.Rows.IndexOf(data_row)}\n" +
-                                                $"Column Name: {dt.Columns[Array.IndexOf(data_row.ItemArray,data_cell)]}\n" +
-                                                $"Cell: {Array.IndexOf(data_row.ItemArray,data_cell)}\n" +
-                                                $"Value: {data_cell.ToString()}\n");
-                                        }
-                                    }
+                                    dt.Columns.Add(nameof(view.UserPassword));
+                                    dt.Columns.Add(nameof(view.UserDisplayName));
+                                    dt.Columns.Add(nameof(view.UserBirthDate));
+                                    dt.Columns.Add(nameof(view.UserPhone));
+                                    dt.Columns.Add(nameof(view.UserEmail));
+                                    dt.Columns.Add(nameof(view.UserAddress));
+                                    dt.Columns.Add(nameof(view.UserProfilePic));
+                                    dt.Columns.Add(nameof(view.UserBalance));
+                                    dt.Columns.Add(nameof(view.UserDiagnose));
+                                    dt.Columns.Add(nameof(view.UserDateOfRegister));
+                                    dt.Columns.Add(nameof(view.UserRole));
+                                    dt.Columns.Add(nameof(view.PredictedAverageEmployeeIncome));
+                                    dt.Rows.Add(new object[]{ view.UserName,
+                                                              view.UserPassword,
+                                                              view.UserDisplayName,
+                                                              view.UserBirthDate,
+                                                              view.UserPhone,
+                                                              view.UserEmail,
+                                                              view.UserAddress,
+                                                              Convert.ToBase64String(view.UserProfilePic),
+                                                              view.UserBalance,
+                                                              view.UserDiagnose,
+                                                              view.UserDateOfRegister,
+                                                              view.UserRole,
+                                                              view.PredictedAverageEmployeeIncome});
                                     current_source = new ReportDataSource("EmployeeReportData",dt);
                                     current_params = new ReportParameterCollection();
+                                    Bitmap bmp;
+                                    ConvertBinaryToImage(view.UserProfilePic, out bmp);
+                                    ImageFormat bmp_format = bmp.RawFormat;
+                                    ImageCodecInfo bmp_codec_info = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == bmp.RawFormat.Guid);
+                                    string bmp_mime_type = bmp_codec_info.MimeType;
+                                    MessageBox.Show(bmp_mime_type, "Debug");
+                                    current_params.Add(new ReportParameter("Encoding",bmp_mime_type));
+                                    current_params.Add(new ReportParameter("RoleName", cbRole.Items[view.UserRole].ToString()));
                                     new frmReports(target_report_file, ref current_source, ref current_params).Show();
                                 }
                             }

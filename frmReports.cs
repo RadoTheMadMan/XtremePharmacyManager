@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -34,7 +35,7 @@ namespace XtremePharmacyManager
             //Generate report and then refresh it
             try
             {
-                this.rwReports.LocalReport.ReportPath = ReportSourceFile;
+                this.rwReports.LocalReport.ReportPath = Path.GetFullPath(ReportSourceFile);
                 this.rwReports.LocalReport.DataSources.Clear();
                 this.rwReports.LocalReport.DataSources.Add(source);
                 this.rwReports.LocalReport.SetParameters(reportParams);

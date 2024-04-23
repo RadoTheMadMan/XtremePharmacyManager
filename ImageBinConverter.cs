@@ -27,9 +27,10 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Bitmap blank = new Bitmap(Image.Width, Image.Height);
                 int Size = blank.Width * blank.Height;
-                byte[] result = new byte[Size];
-                MemoryStream memoryStream = new MemoryStream(result);
+                byte[] result;
+                MemoryStream memoryStream = new MemoryStream();
                 blank.Save(memoryStream, ImageFormat.Png);
+                result = memoryStream.ToArray();
                 target = result;
             }
         }
