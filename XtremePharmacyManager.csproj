@@ -443,6 +443,15 @@
     <EmbeddedResource Include="Reports\ClientReport.en-US.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\DeliveryServiceReport.en-US .rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PaymentMethodReport.en-US.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ProductBrandReport.en-US.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\EmployeeReport.en-US.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -472,6 +481,9 @@
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ClientView.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.DeliveryService.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.EmployeeView.datasource" />
+    <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ExtendedBrandsView.datasource" />
+    <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ExtendedDeliveryServicesView.datasource" />
+    <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ExtendedPaymentMethodsView.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.OrderDelivery.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.PaymentMethod.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.Product.datasource" />

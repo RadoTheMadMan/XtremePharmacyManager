@@ -2,78 +2,34 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="XtremePharmacyManagerDataEntities">
+    <DataSource Name="XtremePharmacyManagerDataEntities1">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>308f6ae8-7263-4e6d-9116-21a9122890bd</rd:DataSourceID>
+      <rd:DataSourceID>06f2730b-78d9-43d1-8041-f4214a9e3dc9</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
-    <DataSet Name="ClientReportData">
+    <DataSet Name="PaymentMethodReportData">
       <Query>
-        <DataSourceName>XtremePharmacyManagerDataEntities</DataSourceName>
+        <DataSourceName>XtremePharmacyManagerDataEntities1</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="PredictedAverageClientSpending">
-          <DataField>PredictedAverageClientSpending</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="UserAddress">
-          <DataField>UserAddress</DataField>
+        <Field Name="MethodName">
+          <DataField>MethodName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="UserBalance">
-          <DataField>UserBalance</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
-        </Field>
-        <Field Name="UserBirthDate">
-          <DataField>UserBirthDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="UserDateOfRegister">
-          <DataField>UserDateOfRegister</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="UserDiagnose">
-          <DataField>UserDiagnose</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="UserDisplayName">
-          <DataField>UserDisplayName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="UserEmail">
-          <DataField>UserEmail</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="UserName">
-          <DataField>UserName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="UserPassword">
-          <DataField>UserPassword</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="UserPhone">
-          <DataField>UserPhone</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="UserProfilePic">
-          <DataField>UserProfilePic</DataField>
-          <rd:TypeName>System.Byte[]</rd:TypeName>
-        </Field>
-        <Field Name="UserRole">
-          <DataField>UserRole</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
+        <Field Name="TimesThisMethodWasUsed">
+          <DataField>TimesThisMethodWasUsed</DataField>
+          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>XtremePharmacyManager.DataEntities</rd:DataSetName>
-        <rd:TableName>ClientView</rd:TableName>
-        <rd:ObjectDataSourceType>XtremePharmacyManager.DataEntities.ClientView, XtremePharmacyManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableName>ExtendedPaymentMethodsView</rd:TableName>
+        <rd:ObjectDataSourceType>XtremePharmacyManager.DataEntities.ExtendedPaymentMethodsView, XtremePharmacyManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -81,437 +37,41 @@
     <ReportSection>
       <Body>
         <ReportItems>
-          <Textbox Name="UserName2">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>UserName:</Value>
-                    <Style>
-                      <FontFamily>Arial Black</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserName</rd:DefaultName>
-            <Top>0.33in</Top>
-            <Height>0.25in</Height>
-            <Width>1.29167in</Width>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserName3">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Password:</Value>
-                    <Style>
-                      <FontFamily>Arial Black</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserName</rd:DefaultName>
-            <Top>0.64944in</Top>
-            <Left>0.005in</Left>
-            <Height>0.25in</Height>
-            <Width>1.29167in</Width>
-            <ZIndex>1</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserName4">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Display Name:</Value>
-                    <Style>
-                      <FontFamily>Arial Black</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserName</rd:DefaultName>
-            <Top>0.96888in</Top>
-            <Left>0.005in</Left>
-            <Height>0.25in</Height>
-            <Width>1.29167in</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Image Name="imgUserProfilePic">
-            <Source>Database</Source>
-            <Value>=Convert.FromBase64String(First(Fields!UserProfilePic.Value, "ClientReportData"))</Value>
-            <MIMEType>=Parameters!Encoding.Value</MIMEType>
-            <Sizing>FitProportional</Sizing>
-            <Top>0.33in</Top>
-            <Left>5.50833in</Left>
-            <Height>0.72722in</Height>
-            <Width>0.89167in</Width>
-            <ZIndex>3</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Image>
-          <Textbox Name="UserName5">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Born On:</Value>
-                    <Style>
-                      <FontFamily>Arial Black</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserName</rd:DefaultName>
-            <Top>1.28833in</Top>
-            <Left>0.005in</Left>
-            <Height>0.25in</Height>
-            <Width>1.29167in</Width>
-            <ZIndex>4</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserName6">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Phone:</Value>
-                    <Style>
-                      <FontFamily>Arial Black</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserName</rd:DefaultName>
-            <Top>1.60777in</Top>
-            <Height>0.25in</Height>
-            <Width>1.29167in</Width>
-            <ZIndex>5</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserName7">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Email:</Value>
-                    <Style>
-                      <FontFamily>Arial Black</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserName</rd:DefaultName>
-            <Top>1.92722in</Top>
-            <Left>0.005in</Left>
-            <Height>0.25in</Height>
-            <Width>1.29167in</Width>
-            <ZIndex>6</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserName8">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Address:</Value>
-                    <Style>
-                      <FontFamily>Arial Black</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserName</rd:DefaultName>
-            <Top>2.24666in</Top>
-            <Left>0.005in</Left>
-            <Height>0.25in</Height>
-            <Width>1.29167in</Width>
-            <ZIndex>7</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserName9">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Balance:</Value>
-                    <Style>
-                      <FontFamily>Arial Black</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserName</rd:DefaultName>
-            <Top>1.28833in</Top>
-            <Left>3.30416in</Left>
-            <Height>0.25in</Height>
-            <Width>1.40834in</Width>
-            <ZIndex>8</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserName10">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Diagnose:</Value>
-                    <Style>
-                      <FontFamily>Arial Black</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserName</rd:DefaultName>
-            <Top>1.60777in</Top>
-            <Left>3.30416in</Left>
-            <Height>0.25in</Height>
-            <Width>1.40834in</Width>
-            <ZIndex>9</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserName11">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Registerered On:</Value>
-                    <Style>
-                      <FontFamily>Arial Black</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserName</rd:DefaultName>
-            <Top>1.92722in</Top>
-            <Left>3.30416in</Left>
-            <Height>0.25in</Height>
-            <Width>1.40834in</Width>
-            <ZIndex>10</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserName12">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Role:</Value>
-                    <Style>
-                      <FontFamily>Arial Black</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserName</rd:DefaultName>
-            <Top>2.24666in</Top>
-            <Left>3.30416in</Left>
-            <Height>0.25in</Height>
-            <Width>1.40834in</Width>
-            <ZIndex>11</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserRole">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Parameters!RoleName.Value</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <Top>2.23278in</Top>
-            <Left>4.78195in</Left>
-            <Height>0.25in</Height>
-            <Width>1.61805in</Width>
-            <ZIndex>12</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
           <Chart Name="Chart1">
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
                   <Group Name="Chart1_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!PredictedAverageClientSpending.Value</GroupExpression>
+                      <GroupExpression>=Fields!TimesThisMethodWasUsed.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!PredictedAverageClientSpending.Value</Value>
+                      <Value>=Fields!TimesThisMethodWasUsed.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!PredictedAverageClientSpending.Value</Label>
+                  <Label>=Fields!TimesThisMethodWasUsed.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
             <ChartSeriesHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Label>Predicted Average Client Spending</Label>
+                  <Label>Times This Method Was Used</Label>
                 </ChartMember>
                 <ChartMember>
-                  <Label>Predicted Average Client Spending</Label>
+                  <Label>Times This Method Was Used</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
             <ChartData>
               <ChartSeriesCollection>
-                <ChartSeries Name="PredictedAverageClientSpending">
+                <ChartSeries Name="TimesThisMethodWasUsed">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=First(Fields!PredictedAverageClientSpending.Value)</Y>
+                        <Y>=First(Fields!TimesThisMethodWasUsed.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -542,11 +102,11 @@
                     <MinMovingDistance>0pt</MinMovingDistance>
                   </ChartSmartLabel>
                 </ChartSeries>
-                <ChartSeries Name="PredictedAverageClientSpending1">
+                <ChartSeries Name="TimesThisMethodWasUsed1">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!PredictedAverageClientSpending.Value)</Y>
+                        <Y>=Sum(Fields!TimesThisMethodWasUsed.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -834,7 +394,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Average Spent</Caption>
+                <Caption>Times this Method was used</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -862,15 +422,11 @@
                 <VerticalAlign>Top</VerticalAlign>
               </Style>
             </ChartNoDataMessage>
-            <DataSetName>ClientReportData</DataSetName>
-            <Top>2.67444in</Top>
+            <DataSetName>PaymentMethodReportData</DataSetName>
+            <Top>0.85222in</Top>
             <Left>0.005in</Left>
             <Height>2.59167in</Height>
             <Width>6.395in</Width>
-            <ZIndex>13</ZIndex>
-            <Visibility>
-              <Hidden>=First(Fields!PredictedAverageClientSpending.Value, "ClientReportData")</Hidden>
-            </Visibility>
             <Style>
               <Border>
                 <Color>LightGrey</Color>
@@ -881,39 +437,39 @@
             </Style>
           </Chart>
           <Line Name="Line3">
-            <Top>2.61333in</Top>
+            <Top>0.78278in</Top>
             <Left>0.005in</Left>
             <Height>0in</Height>
-            <Width>7.23667in</Width>
-            <ZIndex>14</ZIndex>
+            <Width>6.6in</Width>
+            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
               </Border>
             </Style>
           </Line>
-          <Textbox Name="UserName">
+          <Textbox Name="Textbox6">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!UserName.Value, "ClientReportData")</Value>
+                    <Value>Method Name:</Value>
                     <Style>
-                      <FontWeight>Bold</FontWeight>
+                      <FontFamily>Arial Black</FontFamily>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>UserName</rd:DefaultName>
-            <Top>0.33in</Top>
-            <Left>1.405in</Left>
+            <rd:DefaultName>Textbox6</rd:DefaultName>
+            <Top>0.09361in</Top>
+            <Left>0.105in</Left>
             <Height>0.25in</Height>
-            <Width>1.75in</Width>
-            <ZIndex>15</ZIndex>
+            <Width>1.80833in</Width>
+            <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -924,28 +480,28 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="UserPassword">
+          <Textbox Name="Textbox8">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!UserPassword.Value, "ClientReportData")</Value>
+                    <Value>Times Used:</Value>
                     <Style>
-                      <FontWeight>Bold</FontWeight>
+                      <FontFamily>Arial Black</FontFamily>
                     </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>UserPassword</rd:DefaultName>
-            <Top>0.63556in</Top>
-            <Left>1.41333in</Left>
+            <rd:DefaultName>Textbox6</rd:DefaultName>
+            <Top>0.46333in</Top>
+            <Left>0.105in</Left>
             <Height>0.25in</Height>
-            <Width>1.75in</Width>
-            <ZIndex>16</ZIndex>
+            <Width>1.80833in</Width>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -956,14 +512,14 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="UserDisplayName">
+          <Textbox Name="MethodName">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!UserDisplayName.Value, "ClientReportData")</Value>
+                    <Value>=First(Fields!MethodName.Value, "PaymentMethodReportData")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -972,12 +528,12 @@
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>UserDisplayName</rd:DefaultName>
-            <Top>0.96611in</Top>
-            <Left>1.405in</Left>
+            <rd:DefaultName>MethodName</rd:DefaultName>
+            <Top>0.09361in</Top>
+            <Left>1.98277in</Left>
             <Height>0.25in</Height>
-            <Width>1.75in</Width>
-            <ZIndex>17</ZIndex>
+            <Width>1.81667in</Width>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -988,14 +544,14 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
-          <Textbox Name="UserBirthDate">
+          <Textbox Name="TimesThisMethodWasUsed">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
             <Paragraphs>
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=First(Fields!UserBirthDate.Value, "ClientReportData")</Value>
+                    <Value>=First(Fields!TimesThisMethodWasUsed.Value, "PaymentMethodReportData")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1004,204 +560,12 @@
                 <Style />
               </Paragraph>
             </Paragraphs>
-            <rd:DefaultName>UserBirthDate</rd:DefaultName>
-            <Top>1.28833in</Top>
-            <Left>1.41333in</Left>
+            <rd:DefaultName>TimesThisMethodWasUsed</rd:DefaultName>
+            <Top>0.46334in</Top>
+            <Left>1.98277in</Left>
             <Height>0.25in</Height>
-            <Width>1.75in</Width>
-            <ZIndex>18</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserPhone">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!UserPhone.Value, "ClientReportData")</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserPhone</rd:DefaultName>
-            <Top>1.60777in</Top>
-            <Left>1.41333in</Left>
-            <Height>0.25in</Height>
-            <Width>1.75in</Width>
-            <ZIndex>19</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserEmail">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!UserEmail.Value, "ClientReportData")</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserEmail</rd:DefaultName>
-            <Top>1.92722in</Top>
-            <Left>1.41333in</Left>
-            <Height>0.25in</Height>
-            <Width>1.75in</Width>
-            <ZIndex>20</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserAddress">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!UserAddress.Value, "ClientReportData")</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserAddress</rd:DefaultName>
-            <Top>2.24666in</Top>
-            <Left>1.41333in</Left>
-            <Height>0.25in</Height>
-            <Width>1.75in</Width>
-            <ZIndex>21</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserBalance">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Sum(Fields!UserBalance.Value, "ClientReportData")</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserBalance</rd:DefaultName>
-            <Top>1.28833in</Top>
-            <Left>4.78195in</Left>
-            <Height>0.25in</Height>
-            <Width>1.61805in</Width>
-            <ZIndex>22</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserDiagnose">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!UserDiagnose.Value, "ClientReportData")</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserDiagnose</rd:DefaultName>
-            <Top>1.60777in</Top>
-            <Left>4.78195in</Left>
-            <Height>0.25in</Height>
-            <Width>1.618in</Width>
-            <ZIndex>23</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="UserDateOfRegister">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!UserDateOfRegister.Value, "ClientReportData")</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>UserDateOfRegister</rd:DefaultName>
-            <Top>1.92722in</Top>
-            <Left>4.78195in</Left>
-            <Height>0.25in</Height>
-            <Width>1.618in</Width>
-            <ZIndex>24</ZIndex>
+            <Width>1.81667in</Width>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1213,10 +577,10 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>5.39667in</Height>
+        <Height>3.5in</Height>
         <Style />
       </Body>
-      <Width>7.24167in</Width>
+      <Width>6.605in</Width>
       <Page>
         <PageHeader>
           <Height>1in</Height>
@@ -1230,7 +594,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>CLIENT REPORT</Value>
+                      <Value>PAYMENT METHOD REPORT</Value>
                       <Style>
                         <FontFamily>Arial Black</FontFamily>
                         <FontWeight>Bold</FontWeight>
@@ -1262,7 +626,7 @@
               <Top>0.91333in</Top>
               <Left>0.005in</Left>
               <Height>0in</Height>
-              <Width>7.23667in</Width>
+              <Width>6.6in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1421,7 +785,7 @@
             <Line Name="Line2">
               <Top>0.06944in</Top>
               <Height>0in</Height>
-              <Width>7.24167in</Width>
+              <Width>6.605in</Width>
               <Style>
                 <Border>
                   <Style>Solid</Style>
@@ -1500,7 +864,7 @@
               <Top>0.94167in</Top>
               <Left>0.005in</Left>
               <Height>0in</Height>
-              <Width>7.23667in</Width>
+              <Width>6.6in</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>
@@ -1524,19 +888,6 @@
     </ReportSection>
   </ReportSections>
   <ReportParameters>
-    <ReportParameter Name="Encoding">
-      <DataType>String</DataType>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
-    <ReportParameter Name="RoleName">
-      <DataType>String</DataType>
-      <DefaultValue>
-        <Values>
-          <Value>"Invalid Value"</Value>
-        </Values>
-      </DefaultValue>
-      <Prompt>ReportParameter1</Prompt>
-    </ReportParameter>
     <ReportParameter Name="CompanyName">
       <DataType>String</DataType>
       <DefaultValue>
@@ -1552,16 +903,6 @@
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
       <CellDefinitions>
-        <CellDefinition>
-          <ColumnIndex>0</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>Encoding</ParameterName>
-        </CellDefinition>
-        <CellDefinition>
-          <ColumnIndex>1</ColumnIndex>
-          <RowIndex>0</RowIndex>
-          <ParameterName>RoleName</ParameterName>
-        </CellDefinition>
         <CellDefinition>
           <ColumnIndex>2</ColumnIndex>
           <RowIndex>0</RowIndex>
