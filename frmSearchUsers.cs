@@ -424,9 +424,9 @@ namespace XtremePharmacyManager
                                     ImageFormat bmp_format = bmp.RawFormat;
                                     ImageCodecInfo bmp_codec_info = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == bmp.RawFormat.Guid);
                                     string bmp_mime_type = bmp_codec_info.MimeType;
-                                    MessageBox.Show(bmp_mime_type, "Debug");
                                     current_params.Add(new ReportParameter("Encoding",bmp_mime_type));
                                     current_params.Add(new ReportParameter("RoleName", cbRole.Items[view.UserRole].ToString()));
+                                    current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
                                     new frmReports(target_report_file, ref current_source, ref current_params).Show();
                                 }
                             }
@@ -437,9 +437,43 @@ namespace XtremePharmacyManager
                                && x.UserPassword == currentUser.UserPassword).FirstOrDefault();
                                 if (view != null)
                                 {
-                                    current_source = new ReportDataSource();
-                                    current_source.Value = view;
+                                    DataTable dt = new DataTable();
+                                    dt.Columns.Add(nameof(view.UserName));
+                                    dt.Columns.Add(nameof(view.UserPassword));
+                                    dt.Columns.Add(nameof(view.UserDisplayName));
+                                    dt.Columns.Add(nameof(view.UserBirthDate));
+                                    dt.Columns.Add(nameof(view.UserPhone));
+                                    dt.Columns.Add(nameof(view.UserEmail));
+                                    dt.Columns.Add(nameof(view.UserAddress));
+                                    dt.Columns.Add(nameof(view.UserProfilePic));
+                                    dt.Columns.Add(nameof(view.UserBalance));
+                                    dt.Columns.Add(nameof(view.UserDiagnose));
+                                    dt.Columns.Add(nameof(view.UserDateOfRegister));
+                                    dt.Columns.Add(nameof(view.UserRole));
+                                    dt.Columns.Add(nameof(view.PredictedAverageClientSpending));
+                                    dt.Rows.Add(new object[]{ view.UserName,
+                                                              view.UserPassword,
+                                                              view.UserDisplayName,
+                                                              view.UserBirthDate,
+                                                              view.UserPhone,
+                                                              view.UserEmail,
+                                                              view.UserAddress,
+                                                              Convert.ToBase64String(view.UserProfilePic),
+                                                              view.UserBalance,
+                                                              view.UserDiagnose,
+                                                              view.UserDateOfRegister,
+                                                              view.UserRole,
+                                                              view.PredictedAverageClientSpending});
+                                    current_source = new ReportDataSource("ClientReportData", dt);
                                     current_params = new ReportParameterCollection();
+                                    Bitmap bmp;
+                                    ConvertBinaryToImage(view.UserProfilePic, out bmp);
+                                    ImageFormat bmp_format = bmp.RawFormat;
+                                    ImageCodecInfo bmp_codec_info = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == bmp.RawFormat.Guid);
+                                    string bmp_mime_type = bmp_codec_info.MimeType;
+                                    current_params.Add(new ReportParameter("Encoding", bmp_mime_type));
+                                    current_params.Add(new ReportParameter("RoleName", cbRole.Items[view.UserRole].ToString()));
+                                    current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
                                     new frmReports(target_report_file, ref current_source, ref current_params).Show();
                                 }
                             }

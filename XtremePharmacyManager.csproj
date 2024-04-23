@@ -440,6 +440,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Reports\ClientReport.en-US.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\EmployeeReport.en-US.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -466,6 +469,7 @@
     <None Include="Properties\DataSources\ImageBinConverter.datasource" />
     <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\DataSources\SqlServerTypes.Utilities.datasource" />
+    <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ClientView.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.DeliveryService.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.EmployeeView.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.OrderDelivery.datasource" />

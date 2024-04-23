@@ -26,6 +26,7 @@ namespace XtremePharmacyManager
         public static string DB_NAME = "";
         public static string DB_USER = "";
         public static string DB_PASSWORD = "";
+        public static string COMPANY_NAME = "";
         public static string REPORT_DIRECTORY = "";
         public static string EMPLOYEE_REPORT_NAME = "";
         public static string CLIENT_REPORT_NAME = "";
@@ -55,6 +56,7 @@ namespace XtremePharmacyManager
             DB_NAME = ConfigurationSettings.AppSettings["dbname"];
             DB_USER = ConfigurationSettings.AppSettings["dbuser"];
             DB_PASSWORD = ConfigurationSettings.AppSettings["dbpassword"];
+            COMPANY_NAME = ConfigurationSettings.AppSettings["company_name"];
             REPORT_DIRECTORY = (ConfigurationSettings.AppSettings["report_directory"] != null && 
                 Directory.Exists(Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"])))? 
                 Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"]) :
@@ -89,6 +91,7 @@ namespace XtremePharmacyManager
             DB_NAME = ConfigurationSettings.AppSettings["dbname"];
             DB_USER = ConfigurationSettings.AppSettings["dbuser"];
             DB_PASSWORD = ConfigurationSettings.AppSettings["dbpassword"];
+            COMPANY_NAME = ConfigurationSettings.AppSettings["company_name"];
             REPORT_DIRECTORY = (ConfigurationSettings.AppSettings["report_directory"] != null &&
                 Directory.Exists(Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"]))) ?
                 Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"]) :
