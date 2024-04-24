@@ -455,7 +455,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Method Name:</Value>
+                    <Value>Name:</Value>
                     <Style>
                       <FontFamily>Arial Black</FontFamily>
                     </Style>

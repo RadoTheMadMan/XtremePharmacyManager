@@ -582,7 +582,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Product Name:</Value>
+                    <Value>Name:</Value>
                     <Style>
                       <FontFamily>Arial Black</FontFamily>
                     </Style>
@@ -614,7 +614,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Average Product Sale:</Value>
+                    <Value>Average Sale:</Value>
                     <Style>
                       <FontFamily>Arial Black</FontFamily>
                     </Style>
@@ -646,7 +646,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Product Price:</Value>
+                    <Value>Price:</Value>
                     <Style>
                       <FontFamily>Arial Black</FontFamily>
                     </Style>
@@ -678,7 +678,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Brand Name:</Value>
+                    <Value>Brand:</Value>
                     <Style>
                       <FontFamily>Arial Black</FontFamily>
                     </Style>
@@ -710,7 +710,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Product Description:</Value>
+                    <Value>Description:</Value>
                     <Style>
                       <FontFamily>Arial Black</FontFamily>
                     </Style>
@@ -742,7 +742,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Product Quantity:</Value>
+                    <Value>Quantity:</Value>
                     <Style>
                       <FontFamily>Arial Black</FontFamily>
                     </Style>
@@ -774,7 +774,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Product Expiry Date:</Value>
+                    <Value>Expiry Date:</Value>
                     <Style>
                       <FontFamily>Arial Black</FontFamily>
                     </Style>
@@ -806,7 +806,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Product Registration Number:</Value>
+                    <Value>Registration Number:</Value>
                     <Style>
                       <FontFamily>Arial Black</FontFamily>
                     </Style>
@@ -838,7 +838,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Product Partitude Number:</Value>
+                    <Value>Partitude Number:</Value>
                     <Style>
                       <FontFamily>Arial Black</FontFamily>
                     </Style>
@@ -870,7 +870,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Product Storage Location:</Value>
+                    <Value>Storage Location:</Value>
                     <Style>
                       <FontFamily>Arial Black</FontFamily>
                     </Style>
@@ -902,7 +902,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Product Image Count:</Value>
+                    <Value>Number of Images:</Value>
                     <Style>
                       <FontFamily>Arial Black</FontFamily>
                     </Style>

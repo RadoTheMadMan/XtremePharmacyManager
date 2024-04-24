@@ -458,7 +458,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Service Name:</Value>
+                    <Value>Name:</Value>
                     <Style>
                       <FontFamily>Arial Black</FontFamily>
                     </Style>
@@ -522,7 +522,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Service Price:</Value>
+                    <Value>Price:</Value>
                     <Style>
                       <FontFamily>Arial Black</FontFamily>
                     </Style>
