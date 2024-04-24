@@ -2830,16 +2830,18 @@ if (@new_product_id >= 0 and @new_client_id >= 0 and @new_employee_id >= 0 and @
 and @new_order_status != 6 and @old_order_status != 6 and @old_order_status!= 4 and @new_order_status!= 4
 and @old_order_status != 5 and @new_order_status != 5)
 begin
-if (@old_order_status = 1 or @old_order_status = 3 and @old_order_status != 9)
-and (@new_order_status != 2 or @new_order_status != 7 or @new_order_status != 8 or @new_order_status != 9)
+if (@old_order_status != 1 and @old_order_status != 3 and @old_order_status != 2 and @old_order_status != 9)
+and (@new_order_status != 2 and @new_order_status != 7 and @new_order_status != 8 and @new_order_status != 9 and @new_order_status = 1 or @new_order_status = 3)
 begin
+print 'this is the prepaid/directly paid condition in the product order update trigger';
 select @current_client_balance = UserBalance from Users where ID = @new_client_id;
 set @final_client_balance = @current_client_balance - @new_order_price;
 update Users set UserBalance = @final_client_balance where ID = @new_client_id;
 end
-else if (@old_order_status != 0 and @old_order_status != 1 and @old_order_status != 9 and @old_order_status = 2)
-and (@new_order_status != 7 or @new_order_status != 8 or @new_order_status != 9)
+else if (@old_order_status != 0 and @old_order_status != 1  and @old_order_status != 3 and @old_order_status != 9 and @old_order_status != 2)
+and (@new_order_status != 7 or @new_order_status != 8 or @new_order_status != 9 and @new_order_status = 2)
 begin
+print 'this is the paid on delivery condition in the product order update trigger';
 select @current_client_balance = UserBalance from Users where ID = @new_client_id;
 set @final_client_balance = @current_client_balance - @new_order_price;
 update Users set UserBalance = @final_client_balance where ID = @new_client_id;
@@ -2850,6 +2852,7 @@ end
 else if (@old_order_status = 1 or @old_order_status = 2 or @old_order_status = 3 and @old_order_status != 7 and @old_order_status!= 8 and @old_order_status != 9)
 and (@new_order_status = 7 or @new_order_status = 8 and @new_order_status != 9)
 begin
+print 'this is the cancelled/returned condition in the product order update trigger';
 select @current_client_balance = UserBalance from Users where ID = @new_client_id;
 set @final_client_balance = @current_client_balance + @new_order_price;
 update Users set UserBalance = @final_client_balance where ID = @new_client_id;
@@ -2857,9 +2860,18 @@ select @current_employee_balance = UserBalance from Users where ID = @new_employ
 set @final_employee_balance = @current_employee_balance - @new_order_price;
 update Users set UserBalance = @final_employee_balance where ID = @new_employee_id;
 end
-else if (@old_order_status = 0 or @old_order_status = 1 or @old_order_status = 3 or @old_order_status = 2 or @old_order_status != 7 or @old_order_status != 8 or @old_order_status != 9)
+else if (@old_order_status = 0 or @old_order_status = 1 or @old_order_status = 3 or @old_order_status = 2 and @old_order_status != 7 and @old_order_status != 8 and @old_order_status != 9)
+and (@new_order_status != 7 and @new_order_status != 8 and @new_order_status  = 9)
+begin
+print 'this is the first finished condition in the product order update trigger and triggers when the product order was paid in any way but the order wasn''t marked finished ';
+select @current_product_quantity = ProductQuantity from Products where ID = @new_product_id;
+set @final_product_quantity = @current_product_quantity - @new_desired_quantity;
+update Products set ProductQuantity = @final_product_quantity where ID = @new_product_id;
+end
+else if (@old_order_status != 0 and @old_order_status != 1 and @old_order_status != 3 and @old_order_status != 2 and @old_order_status != 7 and @old_order_status != 8 and @old_order_status != 9)
 and (@new_order_status != 7 or @new_order_status != 8 or @new_order_status  = 9)
 begin
+print 'this is the second finished condition in the product order update trigger and triggers when the product order wasn''t paid in any way but the order was marked finished ';
 select @current_client_balance = UserBalance from Users where ID = @new_client_id;
 set @final_client_balance = @current_client_balance - @new_order_price;
 update Users set UserBalance = @final_client_balance where ID = @new_client_id;
@@ -3046,11 +3058,12 @@ if(@new_order_id >= 0 and @new_service_id >= 0 and @new_method_id >= 0 and @new_
 and @old_delivery_status != 4 and @new_delivery_status != 4 and @old_delivery_status!=5 and @new_delivery_status!=5 and 
 @old_delivery_status != 6 and @new_delivery_status != 6)
 begin
-if (@old_delivery_status = 1 or @old_delivery_status = 2) and (@old_delivery_status != 3 and
+if (@old_delivery_status != 1 and @old_delivery_status != 2) and (@old_delivery_status != 3 and
 @old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
 and ( @new_delivery_status = 1 or @new_delivery_status = 2 and @new_delivery_status != 3
 and @new_delivery_status != 7 and @new_delivery_status != 8 and @new_delivery_status != 9)
 begin
+print 'this is the prepaid/directly paid condition in the order delivery update trigger';
 select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
 select @current_client_id = ClientID from ProductOrders where ID = @new_order_id;
 select @current_client_balance = UserBalance from Users where ID = @current_client_id;
@@ -3058,12 +3071,13 @@ set @final_client_balance = @current_client_balance - @current_delivery_price;
 update Users set UserBalance = @final_client_balance where ID = @current_client_id;
 update ProductOrders set OrderStatus = 2 where ID = @new_order_id;
 end
-if (@old_delivery_status != 1 and @old_delivery_status != 2 and @old_delivery_status = 3 and
+if (@old_delivery_status != 1 and @old_delivery_status != 2 and @old_delivery_status != 3 and
 @old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
 and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status = 3
 and @new_delivery_status != 7 and @new_delivery_status != 8 and @new_delivery_status != 9)
 and ((@old_cargo_id is not null and @old_cargo_id != 'TSTCARGO123') or (@new_cargo_id is not null and @new_cargo_id != 'TSTCARGO123')) /* validate the cargo ID */
 begin
+print 'this is the paid on delivery condition in the order delivery update trigger';
 select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
 select @current_client_id = ClientID from ProductOrders where ID = @new_order_id;
 select @current_client_balance = UserBalance from Users where ID = @current_client_id;
@@ -3073,9 +3087,18 @@ update ProductOrders set OrderStatus = 3 where ID = @new_order_id;
 end
 if (@old_delivery_status = 1 or @old_delivery_status = 2 or @old_delivery_status = 3) and
 (@old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
-and ( @new_delivery_status != 1 or @new_delivery_status != 2 and @new_delivery_status != 3
+and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status != 3
 and @new_delivery_status != 7 and @new_delivery_status != 8 and @new_delivery_status = 9)
 begin
+print 'this is the first completed condition in the order delivery update trigger where it was paid by any means but wasn''t marked as completed';
+update ProductOrders set OrderStatus = 9 where ID = @new_order_id;
+end
+if (@old_delivery_status != 1 and @old_delivery_status != 2 and @old_delivery_status != 3) and
+(@old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
+and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status != 3
+and @new_delivery_status != 7 and @new_delivery_status != 8 and @new_delivery_status = 9)
+begin
+print 'this is the second completed condition in the order delivery update trigger where it wasn''t paid but was marked as completed';
 select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
 select @current_client_id = ClientID from ProductOrders where ID = @new_order_id;
 select @current_client_balance = UserBalance from Users where ID = @current_client_id;
@@ -3088,6 +3111,7 @@ if (@old_delivery_status = 1 or @old_delivery_status = 2 or @old_delivery_status
 and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status != 3
 and @new_delivery_status = 7 and @new_delivery_status != 8 and @new_delivery_status != 9)
 begin
+print 'this is the cancelled condition in the order delivery update trigger';
 select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
 select @current_client_id = ClientID from ProductOrders where ID = @new_order_id;
 select @current_client_balance = UserBalance from Users where ID = @current_client_id;
@@ -3100,6 +3124,7 @@ if (@old_delivery_status = 1 or @old_delivery_status = 2 or @old_delivery_status
 and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status != 3
 and @new_delivery_status != 7 and @new_delivery_status = 8 and @new_delivery_status != 9)
 begin
+print 'this is the returned condition in the order delivery update trigger';
 select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
 select @current_client_id = ClientID from ProductOrders where ID = @new_order_id;
 select @current_client_balance = UserBalance from Users where ID = @current_client_id;
