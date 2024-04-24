@@ -349,6 +349,11 @@
       <DependentUpon>frmLogs.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="XTremePharmacyDBDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>XTremePharmacyDBDataSet.xsd</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmBulkProductImageOperations.resx">
       <DependentUpon>frmBulkProductImageOperations.cs</DependentUpon>
     </EmbeddedResource>
@@ -443,6 +448,12 @@
     <EmbeddedResource Include="Reports\ClientReport.en-US.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ProductOrderInvoiceReport.en-US.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ProductOrderReport.en-US.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ProductReport.en-US.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -487,6 +498,7 @@
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ExtendedBrandsView.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ExtendedDeliveryServicesView.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ExtendedPaymentMethodsView.datasource" />
+    <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ExtendedProductOrdersView.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ExtendedProductView.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.OrderDelivery.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.PaymentMethod.datasource" />
@@ -506,6 +518,17 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="XTremePharmacyDBDataSet.xsc">
+      <DependentUpon>XTremePharmacyDBDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="XTremePharmacyDBDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>XTremePharmacyDBDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="XTremePharmacyDBDataSet.xss">
+      <DependentUpon>XTremePharmacyDBDataSet.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
