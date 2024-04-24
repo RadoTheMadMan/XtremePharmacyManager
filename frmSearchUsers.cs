@@ -417,6 +417,26 @@ namespace XtremePharmacyManager
                                                               view.UserDateOfRegister,
                                                               view.UserRole,
                                                               view.PredictedAverageEmployeeIncome});
+                                    foreach (EmployeeView em_view in ent.EmployeeViews)
+                                    {
+                                        if (em_view != view)
+                                        {
+                                            dt.Rows.Add(new object[]{
+                                                              em_view.UserName,
+                                                              em_view.UserPassword,
+                                                              em_view.UserDisplayName,
+                                                              em_view.UserBirthDate,
+                                                              em_view.UserPhone,
+                                                              em_view.UserEmail,
+                                                              em_view.UserAddress,
+                                                              Convert.ToBase64String(em_view.UserProfilePic),
+                                                              em_view.UserBalance,
+                                                              em_view.UserDiagnose,
+                                                              em_view.UserDateOfRegister,
+                                                              em_view.UserRole,
+                                                              em_view.PredictedAverageEmployeeIncome});
+                                        }
+                                    }
                                     current_source = new ReportDataSource("EmployeeReportData",dt);
                                     current_params = new ReportParameterCollection();
                                     Bitmap bmp;
@@ -464,6 +484,26 @@ namespace XtremePharmacyManager
                                                               view.UserDateOfRegister,
                                                               view.UserRole,
                                                               view.PredictedAverageClientSpending});
+                                    foreach(ClientView cl_view in ent.ClientViews)
+                                    {
+                                        if(cl_view != view)
+                                        {
+                                            dt.Rows.Add(new object[]{ 
+                                                              cl_view.UserName,
+                                                              cl_view.UserPassword,
+                                                              cl_view.UserDisplayName,
+                                                              cl_view.UserBirthDate,
+                                                              cl_view.UserPhone,
+                                                              cl_view.UserEmail,
+                                                              cl_view.UserAddress,
+                                                              Convert.ToBase64String(cl_view.UserProfilePic),
+                                                              cl_view.UserBalance,
+                                                              cl_view.UserDiagnose,
+                                                              cl_view.UserDateOfRegister,
+                                                              cl_view.UserRole,
+                                                              cl_view.PredictedAverageClientSpending});
+                                        }
+                                    }
                                     current_source = new ReportDataSource("ClientReportData", dt);
                                     current_params = new ReportParameterCollection();
                                     Bitmap bmp;
