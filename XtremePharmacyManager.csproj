@@ -552,6 +552,7 @@
       <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
       <LastGenOutput>XTremePharmacyModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Language.xml" />
     <Content Include="Queries\XTremePharmacyDB.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
