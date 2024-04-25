@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
@@ -149,7 +151,7 @@ namespace XtremePharmacyManager
                     x => x.ID == OrderID ^ x.ProductID == ProductID ^ x.EmployeeID == EmployeeID ^ x.ClientID == ClientID ^
                         (x.DateAdded >= DateAddedFrom && x.DateAdded <= DateAddedTo) ^ x.OrderReason.Contains(OrderReason) ^
                         (x.DateModified >= DateModifiedFrom && x.DateModified <= DateModifiedTo) ^ x.OrderStatus == OrderStatus ^
-                        (x.DesiredQuantity <= DesiredQuantity || x.DesiredQuantity >= DesiredQuantity) ^ 
+                        (x.DesiredQuantity <= DesiredQuantity || x.DesiredQuantity >= DesiredQuantity) ^
                         (x.OrderPrice <= PriceOverride || x.OrderPrice >= PriceOverride)).ToList();
                 dgvProductOrders.DataSource = product_orders;
             }
@@ -171,8 +173,8 @@ namespace XtremePharmacyManager
                 RefreshProducts();
                 RefreshEmployees();
                 RefreshClients();
-                product_orders = ent.GetProductOrder(OrderID,ProductID,DesiredQuantity,PriceOverride,ClientID,EmployeeID,
-                    DateAddedFrom,DateAddedTo,DateModifiedFrom,DateModifiedTo,OrderStatus,OrderReason).ToList();
+                product_orders = ent.GetProductOrder(OrderID, ProductID, DesiredQuantity, PriceOverride, ClientID, EmployeeID,
+                    DateAddedFrom, DateAddedTo, DateModifiedFrom, DateModifiedTo, OrderStatus, OrderReason).ToList();
                 dgvProductOrders.DataSource = product_orders;
             }
             else
@@ -212,7 +214,7 @@ namespace XtremePharmacyManager
                         if (OrderID > 0)
                         {
                             //For Orders we will not allow anyone to edit orders who were completed, returned or cancelled
-                            selectedOrder = product_orders.Where(x => x.ID == OrderID && (x.OrderStatus != 7 || x.OrderStatus!= 8 || x.OrderStatus != 9)).FirstOrDefault();
+                            selectedOrder = product_orders.Where(x => x.ID == OrderID && (x.OrderStatus != 7 || x.OrderStatus != 8 || x.OrderStatus != 9)).FirstOrDefault();
                             if (selectedOrder != null)
                             {
                                 //Show the editor window to edit the selected user
@@ -470,15 +472,15 @@ namespace XtremePharmacyManager
                         if (target_order != null)
                         {
                             txtID.Text = target_order.ID.ToString();
-                            if (cbSelectProduct.Items.Contains(products.Where(x=>x.ID ==target_order.ProductID)))
+                            if (cbSelectProduct.Items.Contains(products.Where(x => x.ID == target_order.ProductID)))
                             {
                                 cbSelectProduct.SelectedValue = target_order.ProductID;
                             }
-                            if (cbSelectEmployee.Items.Contains(employees.Where(x=>x.ID == target_order.EmployeeID)))
+                            if (cbSelectEmployee.Items.Contains(employees.Where(x => x.ID == target_order.EmployeeID)))
                             {
                                 cbSelectEmployee.SelectedValue = target_order.EmployeeID;
                             }
-                            if (cbSelectClient.Items.Contains(clients.Where(x=>x.ID == target_order.ClientID)))
+                            if (cbSelectClient.Items.Contains(clients.Where(x => x.ID == target_order.ClientID)))
                             {
                                 cbSelectClient.SelectedValue = target_order.ClientID;
                             }
@@ -569,6 +571,156 @@ namespace XtremePharmacyManager
             RefreshClients();
             RefreshProducts();
             RefreshProductOrders();
+        }
+
+        private void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row;
+            int ID = -1;
+            Product currentOrder;
+            string target_report_file;
+            bool IsInvoice = false;
+            ReportDataSource current_source;
+            ReportParameterCollection current_params;
+            try
+            {
+                if (MessageBox.Show("Do you want to generate invoice for this product order?", "Report Generation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                    == DialogResult.Yes)
+                {
+                    IsInvoice = true;
+                }
+                else
+                {
+                    IsInvoice = false;
+                }
+                if (dgvProductOrders.SelectedRows.Count > 0)
+                {
+                    row = dgvProductOrders.SelectedRows[0];
+                    if (row != null && products != null)
+                    {
+                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
+                        //Contrary to the CRUD operations, report generating will be for all records no matter
+                        //if they are dummy or not
+                        currentOrder = products.Where(x => x.ID == ID).FirstOrDefault();
+                        if (currentOrder != null)
+                        {
+                            if (IsInvoice)
+                            {
+                                target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PRODUCT_ORDER_INVOICE_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+                            }
+                            else
+                            {
+                                target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PRODUCT_ORDER_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+                            }
+                            ExtendedProductOrdersView view = ent.ExtendedProductOrdersViews.Where(x => x.ID == currentOrder.ID).FirstOrDefault();
+                            if (view != null)
+                            {
+                                DataTable dt = new DataTable();
+                                dt.Columns.Add(nameof(view.ID));
+                                dt.Columns.Add(nameof(view.ProductName));
+                                dt.Columns.Add(nameof(view.BrandName));
+                                dt.Columns.Add(nameof(view.ProductDescription));
+                                dt.Columns.Add(nameof(view.DesiredQuantity));
+                                dt.Columns.Add(nameof(view.OrderPrice));
+                                dt.Columns.Add(nameof(view.ProductExpiryDate));
+                                dt.Columns.Add(nameof(view.ClientName));
+                                dt.Columns.Add(nameof(view.ClientPhone));
+                                dt.Columns.Add(nameof(view.ClientEmail));
+                                dt.Columns.Add(nameof(view.ClientAddress));
+                                dt.Columns.Add(nameof(view.EmployeeName));
+                                dt.Columns.Add(nameof(view.DateAdded));
+                                dt.Columns.Add(nameof(view.DateModified));
+                                dt.Columns.Add(nameof(view.OrderStatus));
+                                dt.Columns.Add(nameof(view.OrderReason));
+                                dt.Rows.Add(new object[]{
+                                                          view.ID,
+                                                          view.ProductName,
+                                                          view.BrandName,
+                                                          view.ProductDescription,
+                                                          view.DesiredQuantity,
+                                                          view.OrderPrice,
+                                                          view.ProductExpiryDate,
+                                                          view.ClientName,
+                                                          view.ClientPhone,
+                                                          view.ClientEmail,
+                                                          view.ClientAddress,
+                                                          view.EmployeeName,
+                                                          view.DateAdded,
+                                                          view.DateModified,
+                                                          view.OrderStatus,
+                                                          view.OrderReason
+                                });
+                                foreach (ExtendedProductOrdersView po_view in ent.ExtendedProductOrdersViews)
+                                {
+                                    if (po_view != view)
+                                    {
+                                        if (!IsInvoice)
+                                        {
+                                            //If there is a regular order add every other order as well so the target
+                                            //order can be compared to the rest
+                                            dt.Rows.Add(new object[]{
+                                                             view.ID,
+                                                             view.ProductName,
+                                                             view.BrandName,
+                                                             view.ProductDescription,
+                                                             view.DesiredQuantity,
+                                                             view.OrderPrice,
+                                                             view.ProductExpiryDate,
+                                                             view.ClientName,
+                                                             view.ClientPhone,
+                                                             view.ClientEmail,
+                                                             view.ClientAddress,
+                                                             view.EmployeeName,
+                                                             view.DateAdded,
+                                                             view.DateModified,
+                                                             view.OrderStatus,
+                                                             view.OrderReason
+                                            });
+                                        }
+                                        else
+                                        {
+                                            //Here only orders who are related by client name and date added to the
+                                            //target order shall be added because if a client made an order for more
+                                            //than one product there will be multiple orders with the same client ID
+                                            //and same date of adding to the database thus grouping them as one
+                                            if (po_view.DateAdded == view.DateAdded && po_view.ClientName == view.ClientName)
+                                            {
+                                                dt.Rows.Add(new object[]{
+                                                             view.ID,
+                                                             view.ProductName,
+                                                             view.BrandName,
+                                                             view.ProductDescription,
+                                                             view.DesiredQuantity,
+                                                             view.OrderPrice,
+                                                             view.ProductExpiryDate,
+                                                             view.ClientName,
+                                                             view.ClientPhone,
+                                                             view.ClientEmail,
+                                                             view.ClientAddress,
+                                                             view.EmployeeName,
+                                                             view.DateAdded,
+                                                             view.DateModified,
+                                                             view.OrderStatus,
+                                                             view.OrderReason
+                                            });
+                                            }
+                                        }
+                                    }
+                                }
+                                current_source = new ReportDataSource("ProductOrderReportData", dt);
+                                current_params = new ReportParameterCollection();
+                                current_params.Add(new ReportParameter("StatusName", cbSelectOrderStatus.Items[view.OrderStatus].ToString()));
+                                current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
+                                new frmReports(target_report_file, ref current_source, ref current_params).Show();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
