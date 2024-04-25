@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -815,6 +817,90 @@ namespace XtremePharmacyManager
             RefreshProductBrands();
             RefreshProducts();
             RefreshProductImages();
+        }
+
+        private void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row;
+            int ID = -1;
+            Product currentProduct;
+            string target_report_file;
+            ReportDataSource current_source;
+            ReportParameterCollection current_params;
+            try
+            {
+                if (dgvProducts.SelectedRows.Count > 0)
+                {
+                    row = dgvProducts.SelectedRows[0];
+                    if (row != null && products != null)
+                    {
+                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
+                        //Contrary to the CRUD operations, report generating will be for all records no matter
+                        //if they are dummy or not
+                        currentProduct = products.Where(x => x.ID == ID).FirstOrDefault();
+                        if (currentProduct != null)
+                        {
+                            target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PRODUCT_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+                            ExtendedProductView view = ent.ExtendedProductViews.Where(x => x.ProductName == currentProduct.ProductName).FirstOrDefault();
+                            if (view != null)
+                            {
+                                DataTable dt = new DataTable();
+                                dt.Columns.Add(nameof(view.ProductName));
+                                dt.Columns.Add(nameof(view.BrandName));
+                                dt.Columns.Add(nameof(view.ProductDescription));
+                                dt.Columns.Add(nameof(view.ProductQuantity));
+                                dt.Columns.Add(nameof(view.ProductPrice));
+                                dt.Columns.Add(nameof(view.ProductExpiryDate));
+                                dt.Columns.Add(nameof(view.ProductRegNum));
+                                dt.Columns.Add(nameof(view.ProductPartNum));
+                                dt.Columns.Add(nameof(view.ProductStorageLocation));
+                                dt.Columns.Add(nameof(view.AverageProductSale));
+                                dt.Columns.Add(nameof(view.ProductImageCount));
+                                dt.Rows.Add(new object[]{
+                                                          view.ProductName,
+                                                          view.BrandName,
+                                                          view.ProductDescription,
+                                                          view.ProductQuantity,
+                                                          view.ProductPrice,
+                                                          view.ProductExpiryDate,
+                                                          view.ProductRegNum,
+                                                          view.ProductPartNum,
+                                                          view.ProductStorageLocation,
+                                                          view.AverageProductSale,
+                                                          view.ProductImageCount
+                                });
+                                foreach (ExtendedProductView pr_view in ent.ExtendedProductViews)
+                                {
+                                    if (pr_view != view)
+                                    {
+                                        dt.Rows.Add(new object[]{
+                                                             view.ProductName,
+                                                             view.BrandName,
+                                                             view.ProductDescription,
+                                                             view.ProductQuantity,
+                                                             view.ProductPrice,
+                                                             view.ProductExpiryDate,
+                                                             view.ProductRegNum,
+                                                             view.ProductPartNum,
+                                                             view.ProductStorageLocation,
+                                                             view.AverageProductSale,
+                                                             view.ProductImageCount
+                                        });
+                                    }
+                                }
+                                current_source = new ReportDataSource("ProductReportData", dt);
+                                current_params = new ReportParameterCollection();
+                                current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
+                                new frmReports(target_report_file, ref current_source, ref current_params).Show();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
