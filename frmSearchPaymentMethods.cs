@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -278,6 +280,60 @@ namespace XtremePharmacyManager
         private void frmSearchPaymentMethods_Load(object sender, EventArgs e)
         {
             RefreshPaymentMethods();
+        }
+
+        private void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row;
+            int ID = -1;
+            PaymentMethod currentMethod;
+            string target_report_file;
+            ReportDataSource current_source;
+            ReportParameterCollection current_params;
+            try
+            {
+                if (dgvPaymentMethods.SelectedRows.Count > 0)
+                {
+                    row = dgvPaymentMethods.SelectedRows[0];
+                    if (row != null && payment_methods != null)
+                    {
+                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
+                        //Contrary to the CRUD operations, report generating will be for all records no matter
+                        //if they are dummy or not
+                        currentMethod = payment_methods.Where(x => x.ID == ID).FirstOrDefault();
+                        if (currentMethod != null)
+                        {
+                            target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PAYMENT_METHOD_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+                            ExtendedPaymentMethodsView view = ent.ExtendedPaymentMethodsViews.Where(x => x.MethodName == currentMethod.MethodName).FirstOrDefault();
+                            if (view != null)
+                            {
+                                DataTable dt = new DataTable();
+                                dt.Columns.Add(nameof(view.MethodName));
+                                dt.Columns.Add(nameof(view.TimesThisMethodWasUsed));
+                                dt.Rows.Add(new object[]{ view.MethodName,
+                                                          view.TimesThisMethodWasUsed});
+                                foreach (ExtendedPaymentMethodsView pm_view in ent.ExtendedPaymentMethodsViews)
+                                {
+                                    if (pm_view != view)
+                                    {
+                                        dt.Rows.Add(new object[]{
+                                                              pm_view.MethodName,
+                                                              pm_view.TimesThisMethodWasUsed});
+                                    }
+                                }
+                                current_source = new ReportDataSource("PaymentMethodReportData", dt);
+                                current_params = new ReportParameterCollection();
+                                current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
+                                new frmReports(target_report_file, ref current_source, ref current_params).Show();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

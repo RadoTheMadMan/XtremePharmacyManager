@@ -27,6 +27,7 @@ namespace XtremePharmacyManager
         public static string DB_USER = "";
         public static string DB_PASSWORD = "";
         public static string COMPANY_NAME = "";
+        public static string CURRENT_CULTURE = "";
         public static string REPORT_DIRECTORY = "";
         public static string EMPLOYEE_REPORT_NAME = "";
         public static string CLIENT_REPORT_NAME = "";
@@ -35,7 +36,9 @@ namespace XtremePharmacyManager
         public static string DELIVERY_SERVICE_REPORT_NAME = "";
         public static string PRODUCT_REPORT_NAME = "";
         public static string PRODUCT_ORDER_REPORT_NAME = "";
+        public static string PRODUCT_ORDER_INVOICE_REPORT_NAME = "";
         public static string ORDER_DELIVERY_REPORT_NAME = "";
+        public static string ORDER_DELIVERY_INVOICE_REPORT_NAME = "";
         public static string CRITICAL_ERROR_MESSAGE = "";
         public static string STACK_TRACE_MESSAGE = "";
         public static string CRITICAL_ERROR_TITLE = "";
@@ -52,29 +55,9 @@ namespace XtremePharmacyManager
             {
                 instance = this;
             }
-            DOMAIN_ADDRESS = ConfigurationSettings.AppSettings["domain"];
-            DB_NAME = ConfigurationSettings.AppSettings["dbname"];
-            DB_USER = ConfigurationSettings.AppSettings["dbuser"];
-            DB_PASSWORD = ConfigurationSettings.AppSettings["dbpassword"];
-            COMPANY_NAME = ConfigurationSettings.AppSettings["company_name"];
-            REPORT_DIRECTORY = (ConfigurationSettings.AppSettings["report_directory"] != null && 
-                Directory.Exists(Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"])))? 
-                Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"]) :
-                Path.GetFullPath($"{Application.StartupPath}/{ConfigurationSettings.AppSettings["report_directory"]}/");
-            EMPLOYEE_REPORT_NAME = ConfigurationSettings.AppSettings["emp_report_name"];
-            CLIENT_REPORT_NAME = ConfigurationSettings.AppSettings["cl_report_name"];
-            PRODUCT_BRAND_REPORT_NAME = ConfigurationSettings.AppSettings["pb_report_name"];
-            PAYMENT_METHOD_REPORT_NAME = ConfigurationSettings.AppSettings["pm_report_name"];
-            DELIVERY_SERVICE_REPORT_NAME = ConfigurationSettings.AppSettings["ds_report_name"];
-            PRODUCT_REPORT_NAME = ConfigurationSettings.AppSettings["p_report_name"];
-            PRODUCT_ORDER_REPORT_NAME = ConfigurationSettings.AppSettings["po_report_name"];
-            ORDER_DELIVERY_REPORT_NAME = ConfigurationSettings.AppSettings["od_report_name"];
-            CRITICAL_ERROR_MESSAGE = manager.GetString("CriticalErrorMessage", CultureInfo.CurrentCulture);
-            STACK_TRACE_MESSAGE = manager.GetString("StackTraceMessage", CultureInfo.CurrentCulture);
-            CRITICAL_ERROR_TITLE = manager.GetString("CriticalErrorTitle", CultureInfo.CurrentCulture);
-            CLOSE_PROMPT = manager.GetString("ClosePrompt", CultureInfo.CurrentCulture);
-            CLOSE_PROMPT_TITLE = manager.GetString("ClosePromptTitle", CultureInfo.CurrentCulture);
-            CONNECTION_SUCCESSFUL_MESSAGE = manager.GetString("ConnectionSuccessfulMessage", CultureInfo.CurrentCulture);
+            RefreshSettings();
+            Application.CurrentCulture = CultureInfo.GetCultureInfo(GLOBAL_RESOURCES.CURRENT_CULTURE);
+            UpdateCurrentCultureResources();
         }
 
         private void InvokeCultureInfoChangedEvent(CultureInfo culture)
@@ -85,25 +68,30 @@ namespace XtremePharmacyManager
             }
         }
 
+
+
         public static void RefreshSettings()
         {
-            DOMAIN_ADDRESS = ConfigurationSettings.AppSettings["domain"];
-            DB_NAME = ConfigurationSettings.AppSettings["dbname"];
-            DB_USER = ConfigurationSettings.AppSettings["dbuser"];
-            DB_PASSWORD = ConfigurationSettings.AppSettings["dbpassword"];
-            COMPANY_NAME = ConfigurationSettings.AppSettings["company_name"];
-            REPORT_DIRECTORY = (ConfigurationSettings.AppSettings["report_directory"] != null &&
-                Directory.Exists(Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"]))) ?
-                Path.GetFullPath(ConfigurationSettings.AppSettings["report_directory"]) :
-                Path.GetFullPath($"{Application.StartupPath}/{ConfigurationSettings.AppSettings["report_directory"]}/");
-            EMPLOYEE_REPORT_NAME = ConfigurationSettings.AppSettings["emp_report_name"];
-            CLIENT_REPORT_NAME = ConfigurationSettings.AppSettings["cl_report_name"];
-            PRODUCT_BRAND_REPORT_NAME = ConfigurationSettings.AppSettings["pb_report_name"];
-            PAYMENT_METHOD_REPORT_NAME = ConfigurationSettings.AppSettings["pm_report_name"];
-            DELIVERY_SERVICE_REPORT_NAME = ConfigurationSettings.AppSettings["ds_report_name"];
-            PRODUCT_REPORT_NAME = ConfigurationSettings.AppSettings["p_report_name"];
-            PRODUCT_ORDER_REPORT_NAME = ConfigurationSettings.AppSettings["po_report_name"];
-            ORDER_DELIVERY_REPORT_NAME = ConfigurationSettings.AppSettings["od_report_name"];
+            DOMAIN_ADDRESS = ConfigurationManager.AppSettings["domain"];
+            DB_NAME = ConfigurationManager.AppSettings["dbname"];
+            DB_USER = ConfigurationManager.AppSettings["dbuser"];
+            DB_PASSWORD = ConfigurationManager.AppSettings["dbpassword"];
+            COMPANY_NAME = ConfigurationManager.AppSettings["company_name"];
+            CURRENT_CULTURE = ConfigurationManager.AppSettings["current_culture"];
+            REPORT_DIRECTORY = (ConfigurationManager.AppSettings["report_directory"] != null &&
+                Directory.Exists(Path.GetFullPath(ConfigurationManager.AppSettings["report_directory"]))) ?
+                Path.GetFullPath(ConfigurationManager.AppSettings["report_directory"]) :
+                Path.GetFullPath($"{Application.StartupPath}/{ConfigurationManager.AppSettings["report_directory"]}/");
+            EMPLOYEE_REPORT_NAME = ConfigurationManager.AppSettings["emp_report_name"];
+            CLIENT_REPORT_NAME = ConfigurationManager.AppSettings["cl_report_name"];
+            PRODUCT_BRAND_REPORT_NAME = ConfigurationManager.AppSettings["pb_report_name"];
+            PAYMENT_METHOD_REPORT_NAME = ConfigurationManager.AppSettings["pm_report_name"];
+            DELIVERY_SERVICE_REPORT_NAME = ConfigurationManager.AppSettings["ds_report_name"];
+            PRODUCT_REPORT_NAME = ConfigurationManager.AppSettings["p_report_name"];
+            PRODUCT_ORDER_REPORT_NAME = ConfigurationManager.AppSettings["po_report_name"];
+            PRODUCT_ORDER_INVOICE_REPORT_NAME = ConfigurationManager.AppSettings["poi_report_name"];
+            ORDER_DELIVERY_REPORT_NAME = ConfigurationManager.AppSettings["od_report_name"];
+            ORDER_DELIVERY_INVOICE_REPORT_NAME = ConfigurationManager.AppSettings["odi_report_name"];
         }
 
         public static void UpdateCurrentCultureResources()
@@ -128,6 +116,8 @@ namespace XtremePharmacyManager
         static void Main()
         {
             resources = new GLOBAL_RESOURCES();
+            GLOBAL_RESOURCES.RefreshSettings();
+            GLOBAL_RESOURCES.UpdateCurrentCultureResources();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmMain());

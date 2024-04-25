@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -284,6 +286,63 @@ namespace XtremePharmacyManager
         private void frmSearchDeliveryServices_Load(object sender, EventArgs e)
         {
             RefreshDeliveryServices();
+        }
+
+        private void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row;
+            int ID = -1;
+            DeliveryService currentService;
+            string target_report_file;
+            ReportDataSource current_source;
+            ReportParameterCollection current_params;
+            try
+            {
+                if (dgvDeliveryServices.SelectedRows.Count > 0)
+                {
+                    row = dgvDeliveryServices.SelectedRows[0];
+                    if (row != null && delivery_services != null)
+                    {
+                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
+                        //Contrary to the CRUD operations, report generating will be for all records no matter
+                        //if they are dummy or not
+                        currentService = delivery_services.Where(x => x.ID == ID).FirstOrDefault();
+                        if (currentService != null)
+                        {
+                            target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.DELIVERY_SERVICE_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+                            ExtendedDeliveryServicesView view = ent.ExtendedDeliveryServicesViews.Where(x => x.ServiceName == currentService.ServiceName).FirstOrDefault();
+                            if (view != null)
+                            {
+                                DataTable dt = new DataTable();
+                                dt.Columns.Add(nameof(view.ServiceName));
+                                dt.Columns.Add(nameof(view.ServicePrice));
+                                dt.Columns.Add(nameof(view.TimesThisServiceWasUsed));
+                                dt.Rows.Add(new object[]{ view.ServiceName,
+                                                          view.ServicePrice,
+                                                          view.TimesThisServiceWasUsed});
+                                foreach (ExtendedDeliveryServicesView ds_view in ent.ExtendedDeliveryServicesViews)
+                                {
+                                    if (ds_view != view)
+                                    {
+                                        dt.Rows.Add(new object[]{
+                                                              ds_view.ServiceName,
+                                                              ds_view.ServicePrice,
+                                                              ds_view.TimesThisServiceWasUsed});
+                                    }
+                                }
+                                current_source = new ReportDataSource("DeliveryServiceReportData", dt);
+                                current_params = new ReportParameterCollection();
+                                current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
+                                new frmReports(target_report_file, ref current_source, ref current_params).Show();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

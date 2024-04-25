@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -278,6 +282,60 @@ namespace XtremePharmacyManager
         private void frmSearchProductBrands_Load(object sender, EventArgs e)
         {
             RefreshProductBrands();
+        }
+
+        private void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row;
+            int ID = -1;
+            ProductBrand currentBrand;
+            string target_report_file;
+            ReportDataSource current_source;
+            ReportParameterCollection current_params;
+            try
+            {
+                if (dgvProductBrands.SelectedRows.Count > 0)
+                {
+                    row = dgvProductBrands.SelectedRows[0];
+                    if (row != null && product_brands != null)
+                    {
+                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
+                        //Contrary to the CRUD operations, report generating will be for all records no matter
+                        //if they are dummy or not
+                        currentBrand = product_brands.Where(x => x.ID == ID).FirstOrDefault();
+                        if (currentBrand != null)
+                        {
+                            target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PRODUCT_BRAND_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+                            ExtendedBrandsView view = ent.ExtendedBrandsViews.Where(x => x.BrandName == currentBrand.BrandName).FirstOrDefault();
+                            if (view != null)
+                            {
+                                DataTable dt = new DataTable();
+                                dt.Columns.Add(nameof(view.BrandName));
+                                dt.Columns.Add(nameof(view.CountProductsFromBrand));
+                                dt.Rows.Add(new object[]{ view.BrandName,
+                                                          view.CountProductsFromBrand});
+                                foreach (ExtendedBrandsView br_view in ent.ExtendedBrandsViews)
+                                {
+                                    if (br_view != view)
+                                    {
+                                        dt.Rows.Add(new object[]{
+                                                              br_view.BrandName,
+                                                              br_view.CountProductsFromBrand});
+                                    }
+                                }
+                                current_source = new ReportDataSource("ProductBrandReportData", dt);
+                                current_params = new ReportParameterCollection();
+                                current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
+                                new frmReports(target_report_file, ref current_source, ref current_params).Show();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
