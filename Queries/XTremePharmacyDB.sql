@@ -1631,12 +1631,12 @@ this case  */
 go
 create or alter view ExtendedProductOrdersView as
 select ProductOrders.ID, 
-(select Products.ProductName from Products where ProductOrders.ProductID = Products.ID) as ProductName, 
-(select ProductBrands.BrandName from ProductBrands inner join Products on Products.BrandID = ProductBrands.ID where Products.ID = ProductOrders.ProductID) as BrandName, 
-(select Products.ProductDescription from Products where ProductOrders.ProductID = Products.ID) as ProductDescription, 
+(select Products.ProductName from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID where ProductOrders.ProductID = Products.ID) as ProductName, 
+(select ProductBrands.BrandName from ProductBrands inner join Products on Products.BrandID = ProductBrands.ID inner join ProductOrders on ProductOrders.ProductID = Products.ID where Products.ID = ProductOrders.ProductID) as BrandName, 
+(select Products.ProductDescription from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID where ProductOrders.ProductID = Products.ID) as ProductDescription, 
 (select Products.ProductExpiryDate from Products where ProductOrders.ProductID = Products.ID) as ProductExpiryDate,
 ProductOrders.DesiredQuantity, ProductOrders.OrderPrice,
-(select UserDisplayName from Users, ProductOrders where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientName,
+(select UserDisplayName from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientName,
 (select UserPhone from Users, ProductOrders where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientPhone,
 (select UserEmail from Users, ProductOrders where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientEmail,
 (select UserAddress from Users, ProductOrders where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientAddress,

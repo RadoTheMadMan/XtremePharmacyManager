@@ -973,7 +973,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!ID.Value, "ProductOrderReportData")</Value>
+                    <Value>=First(Fields!ID.Value, "ProductOrderReportData")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1069,7 +1069,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!DesiredQuantity.Value, "ProductOrderReportData")</Value>
+                    <Value>=First(Fields!DesiredQuantity.Value, "ProductOrderReportData")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1101,7 +1101,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!OrderPrice.Value, "ProductOrderReportData")</Value>
+                    <Value>=First(Fields!OrderPrice.Value, "ProductOrderReportData")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
