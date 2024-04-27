@@ -1546,9 +1546,9 @@ because they work for your company after all
 */
 go
 create or alter view EmployeeView as
-select Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
+select distinct Users.ID, Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
 Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, 
-(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = Users.ID ) as PredictedAverageEmployeeIncome 
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = Users.ID and ProductOrders.OrderStatus = 9 ) as AverageEmployeeIncome 
 from Users where UserRole = 0 or UserRole = 1
 group by Users.ID, Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
 Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole;
@@ -1559,9 +1559,9 @@ select * from Users;
 
 go
 create or alter view ClientView as
-select Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
+select distinct Users.ID, Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
 Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, 
-(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = Users.ID) as PredictedAverageClientSpending 
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = Users.ID and ProductOrders.OrderStatus = 9) as AverageClientSpending 
 from Users, ProductOrders where Users.UserRole = 2
 group by Users.ID,Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
 Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, ProductOrders.ID,ProductOrders.ProductID,
@@ -1577,14 +1577,14 @@ select * from Users;
 in the database(images are directly uploaded to the database in a binary format) */
 go
 create or alter view ExtendedProductView as
-select ProductName,
-(select ProductBrands.BrandName from ProductBrands where Products.BrandID = ProductBrands.ID) as BrandName,
+select distinct ID, ProductName,
+(select top 1 ProductBrands.BrandName from ProductBrands where ProductBrands.ID = Products.BrandID) as BrandName,
 ProductDescription, ProductQuantity, ProductPrice,
 ProductExpiryDate, ProductRegNum, ProductPartNum, ProductStorageLocation, 
-(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = Products.ID) as AverageProductSale, 
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = Products.ID and ProductOrders.OrderStatus = 9) as AverageProductSale, 
 (select Count(ProductImages.ID) from ProductImages where ProductImages.ProductID = Products.ID) as ProductImageCount
 from Products
-group by ProductName, ProductDescription, ProductQuantity, ProductPrice,
+group by ID, ProductName, ProductDescription, ProductQuantity, ProductPrice,
 ProductExpiryDate, ProductRegNum, ProductPartNum, ProductStorageLocation,
 Products.ID,Products.BrandID
 go
@@ -1595,7 +1595,7 @@ select * from Products;
 /* product brands extended view with added number of products of this brand */
 go
 create or alter view ExtendedBrandsView as
-select BrandName, 
+select distinct ID,BrandName, 
 (select Count(Products.ID) from Products where ProductBrands.ID = Products.BrandID) as CountProductsFromBrand from ProductBrands
 group by ID,BrandName;
 go
@@ -1606,7 +1606,7 @@ select * from productBrands;
 /* payment methods extended view with times the payment method was used in order deliveries(if it is used in order deliveries it is used in orders) */
 go
 create or alter view ExtendedPaymentMethodsView as
-select MethodName, (select count(OrderDeliveries.ID) from OrderDeliveries where PaymentMethods.ID = OrderDeliveries.PaymentMethodID ) as TimesThisMethodWasUsed
+select distinct ID, MethodName, (select count(OrderDeliveries.ID) from OrderDeliveries where PaymentMethods.ID = OrderDeliveries.PaymentMethodID ) as TimesThisMethodWasUsed
 from PaymentMethods group by ID,MethodName;
 go
 
@@ -1616,7 +1616,7 @@ select * from PaymentMethods;
 /* delivery services extended view with times the service was used in the orders and deliveries(it is the same as the payment method) */
 go
 create or alter view ExtendedDeliveryServicesView as
-select ServiceName, ServicePrice, (
+select distinct ID, ServiceName, ServicePrice, (
 select Count(OrderDeliveries.ID) from OrderDeliveries where DeliveryServices.ID = OrderDeliveries.DeliveryServiceID) as TimesThisServiceWasUsed from DeliveryServices
 group by ID, ServiceName,ServicePrice;
 go
@@ -1630,17 +1630,17 @@ this case  */
 
 go
 create or alter view ExtendedProductOrdersView as
-select ProductOrders.ID, 
-(select Products.ProductName from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID where ProductOrders.ProductID = Products.ID) as ProductName, 
-(select ProductBrands.BrandName from ProductBrands inner join Products on Products.BrandID = ProductBrands.ID inner join ProductOrders on ProductOrders.ProductID = Products.ID where Products.ID = ProductOrders.ProductID) as BrandName, 
-(select Products.ProductDescription from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID where ProductOrders.ProductID = Products.ID) as ProductDescription, 
-(select Products.ProductExpiryDate from Products where ProductOrders.ProductID = Products.ID) as ProductExpiryDate,
+select distinct ProductOrders.ID, 
+(select top 1 Products.ProductName from Products where Products.ID = ProductOrders.ProductID) as ProductName, 
+(select top 1 ProductBrands.BrandName from ProductBrands inner join Products on Products.BrandID = ProductBrands.ID where Products.ID = ProductOrders.ProductID and ProductBrands.ID = Products.BrandID) as BrandName, 
+(select top 1 Products.ProductDescription from Products where ProductOrders.ProductID = Products.ID) as ProductDescription, 
+(select top 1 Products.ProductExpiryDate from Products where ProductOrders.ProductID = Products.ID) as ProductExpiryDate,
 ProductOrders.DesiredQuantity, ProductOrders.OrderPrice,
-(select UserDisplayName from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientName,
-(select UserPhone from Users, ProductOrders where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientPhone,
-(select UserEmail from Users, ProductOrders where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientEmail,
-(select UserAddress from Users, ProductOrders where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientAddress,
-(select UserDisplayName from Users,ProductOrders where ProductOrders.EmployeeID = Users.ID and (Users.UserRole = 0 or Users.UserRole = 1)) as EmployeeName,
+(select top 1 UserDisplayName from Users where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientName,
+(select top 1 UserPhone from Users where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientPhone,
+(select top 1 UserEmail from Users where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientEmail,
+(select top 1 UserAddress from Users where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientAddress,
+(select top 1 UserDisplayName from Users where ProductOrders.EmployeeID = Users.ID and (Users.UserRole = 0 or Users.UserRole = 1)) as EmployeeName,
 ProductOrders.DateAdded,ProductOrders.DateModified,ProductOrders.OrderStatus,ProductOrders.OrderReason
 from ProductOrders;
 go
@@ -1650,27 +1650,25 @@ select * from ProductOrders;
 
 go
 create or alter view ExtendedOrderDeliveriesView as
-select OrderDeliveries.ID, 
-(select Products.ProductName from Products inner join ProductOrders on Products.ID = ProductOrders.ProductID 
+select distinct OrderDeliveries.ID, 
+(select top 1 Products.ProductName from Products inner join ProductOrders on Products.ID = ProductOrders.ProductID 
 where OrderDeliveries.OrderID = ProductOrders.ID) as ProductName, 
-(select ProductBrands.BrandName from ProductBrands inner join Products on Products.BrandID = ProductBrands.ID
-inner join ProductOrders on ProductOrders.ProductID = Products.ID
-inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID
-where OrderDeliveries.OrderID = ProductOrders.ID) as BrandName,
-(select Products.ProductDescription from Products inner join ProductOrders on Products.ID = ProductOrders.ProductID 
+(select top 1 ProductBrands.BrandName from ProductBrands inner join Products on Products.BrandID = ProductBrands.ID inner join ProductOrders on ProductOrders.ProductID = Products.ID
+where OrderDeliveries.OrderID = ProductOrders.ID and ProductOrders.ProductID = Products.ID and OrderDeliveries.OrderID = ProductOrders.ID) as BrandName,
+(select top 1 Products.ProductDescription from Products inner join ProductOrders on Products.ID = ProductOrders.ProductID 
 where OrderDeliveries.OrderID = ProductOrders.ID) as ProductDescription,
-(select Products.ProductExpiryDate from Products inner join ProductOrders on Products.ID = ProductOrders.ProductID 
+(select top 1 Products.ProductExpiryDate from Products inner join ProductOrders on Products.ID = ProductOrders.ProductID 
 where OrderDeliveries.OrderID = ProductOrders.ID) as ProductExpiryDate,
-(select ProductOrders.DesiredQuantity from ProductOrders where OrderDeliveries.OrderID = ProductOrders.ID) as DesiredQuantity, 
-(select ProductOrders.OrderPrice from ProductOrders where OrderDeliveries.OrderID = ProductOrders.ID) as OrderPrice,
-(select UserDisplayName from Users, ProductOrders where ProductOrders.ClientID = Users.ID and UserRole = 2) as ClientName,
-(select UserPhone from Users, ProductOrders where ProductOrders.ClientID = Users.ID and UserRole = 2) as ClientPhone,
-(select UserEmail from Users, ProductOrders where ProductOrders.ClientID = Users.ID and UserRole = 2) as ClientEmail,
-(select UserAddress from Users, ProductOrders where ProductOrders.ClientID = Users.ID and UserRole = 2) as ClientAddress,
-(select UserDisplayName from Users,ProductOrders where ProductOrders.EmployeeID = Users.ID and (UserRole = 0 or UserRole = 1)) as EmployeeName,
-(select DeliveryServices.ServiceName from DeliveryServices where OrderDeliveries.DeliveryServiceID = DeliveryServices.ID) as ServiceName,
-(select DeliveryServices.ServicePrice from DeliveryServices where OrderDeliveries.DeliveryServiceID = DeliveryServices.ID) as DeliveryPrice,
-(select PaymentMethods.MethodName from PaymentMethods where OrderDeliveries.PaymentMethodID = PaymentMethods.ID) as MethodName, 
+(select top 1 ProductOrders.DesiredQuantity from ProductOrders where OrderDeliveries.OrderID = ProductOrders.ID) as DesiredQuantity, 
+(select top 1 ProductOrders.OrderPrice from ProductOrders where OrderDeliveries.OrderID = ProductOrders.ID) as OrderPrice,
+(select top 1 UserDisplayName from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID and Users.UserRole = 2 where OrderDeliveries.OrderID = ProductOrders.ID) as ClientName,
+(select top 1 UserPhone from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID and Users.UserRole = 2 where OrderDeliveries.OrderID = ProductOrders.ID) as ClientPhone,
+(select top 1 UserEmail from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID and Users.UserRole = 2 where OrderDeliveries.OrderID = ProductOrders.ID) as ClientEmail,
+(select top 1 UserAddress from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID and Users.UserRole = 2 where OrderDeliveries.OrderID = ProductOrders.ID) as ClientAddress,
+(select top 1 UserDisplayName from Users inner join ProductOrders on ProductOrders.EmployeeID = Users.ID and (UserRole = 0 or UserRole = 1) where OrderDeliveries.OrderID = ProductOrders.ID ) as EmployeeName,
+(select top 1 DeliveryServices.ServiceName from DeliveryServices where OrderDeliveries.DeliveryServiceID = DeliveryServices.ID) as ServiceName,
+(select top 1 DeliveryServices.ServicePrice from DeliveryServices where OrderDeliveries.DeliveryServiceID = DeliveryServices.ID) as DeliveryPrice,
+(select top 1 PaymentMethods.MethodName from PaymentMethods where OrderDeliveries.PaymentMethodID = PaymentMethods.ID) as MethodName, 
 OrderDeliveries.CargoID, OrderDeliveries.TotalPrice, OrderDeliveries.DateAdded,OrderDeliveries.DateModified,
 OrderDeliveries.DeliveryStatus, OrderDeliveries.DeliveryReason
 from OrderDeliveries;
@@ -1874,10 +1872,10 @@ declare @current_date as date;
 select @new_id = ID from inserted;
 select @new_service_name = ServiceName from inserted;
 select @new_service_price = ServicePrice from inserted;
+set @current_date = getdate();
 set @log_message = 'A delivery service was added to the list with the id: ' + try_cast(@new_id as varchar);
 set @additional_information = 'Service ID: ' + try_cast(@new_id as varchar) + '\n' + 'Service Name: ' + try_cast(@new_service_name as varchar) + '\n'
 + 'Service Price: ' + try_cast(@new_service_price as varchar) + '\n';
-set @current_date = getdate();
 exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Delivery Service Added', 
 @logmessage = @log_message,
@@ -1913,11 +1911,11 @@ select @old_service_price = ServicePrice from deleted;
 select @new_service_price = ServicePrice from inserted;
 select @old_service_price as 'Old Service Price';
 select @new_service_price as 'New Service Price';
+set @current_date = getdate();
 set @log_message = 'A delivery service was updated with the id: ' + try_cast(@old_id as varchar) + '.\nAll deliveries related to that service will be updated.\n';
 /* I forgot to update the deliveries total price on changing price of the service */
 if (@old_service_price is not null and @new_service_price is not null and @old_service_price!=@new_service_price)
 begin
-select 'Updating Delivery prices';
 select @old_service_price as 'Old Service Price';
 select @new_service_price as 'New Service Price';
 insert into @affected_order_deliveries select OrderDeliveries.ID,OrderDeliveries.OrderID,ProductOrders.OrderPrice from OrderDeliveries inner join ProductOrders on ProductOrders.ID = OrderDeliveries.OrderID where DeliveryServiceID = @old_id or DeliveryServiceID = @new_id;
@@ -1931,7 +1929,7 @@ select @current_order_price = OrderPrice from @affected_order_deliveries where O
 select @current_order_id as 'Current Order ID';
 select @current_order_price as 'Current Order Price';
 set @new_total_price = @current_order_price + @new_service_price;
-update OrderDeliveries set TotalPrice = @new_total_price where OrderID = @current_order_id;
+update OrderDeliveries set TotalPrice = @new_total_price, DateModified = @current_date, DeliveryReason = 'Data in the delivery was automatically changed by the system due to delivery service data change' where OrderID = @current_order_id;
 set @affected_delivery_count = @affected_delivery_count + 1;
 end
 end
@@ -1939,7 +1937,6 @@ set @additional_information = 'Old Service ID: ' + try_cast(@old_id as varchar) 
 + 'Old Service Price: ' + try_cast(@old_service_price as varchar) + '\n'+
 + 'New Method ID: ' + try_cast(@new_id as varchar) + '\n' + 'New Method Name: ' + try_cast(@new_service_name as varchar) + '\n' +
 'New Service Price: ' + try_cast(@new_service_price as varchar);
-set @current_date = getdate();
 exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Delivery Service Updated', 
 @logmessage = @log_message,
@@ -1961,7 +1958,8 @@ declare @current_date as date;
 select @old_id = ID from deleted;
 select @old_service_name = ServiceName from deleted;
 select @old_service_price = ServicePrice from deleted;
-set @log_message = 'A delivery service was removed list with the id: ' + try_cast(@old_id as varchar) + '.\nAll order deliveries that belonged to this service will be nullified.\n';
+set @current_date = getdate();
+set @log_message = 'A delivery service was removed list with the id: ' + try_cast(@old_id as varchar) + '.\nAll order deliveries that belonged to this service will be set to the order price the delivery is assigned to.\n';
 /* I forgot to nullify the order delivery prices if the service is removed now let's do it */
 declare @affected_order_deliveries as table(DeliveryCount int identity primary key not null, DeliveryID int unique not null, OrderID int unique not null, OrderPrice money not null);
 declare @affected_delivery_count as int;
@@ -1978,14 +1976,13 @@ while @affected_delivery_count <= @affected_delivery_last
 begin
 select @current_order_id = OrderID from @affected_order_deliveries where DeliveryCount = @affected_delivery_count;
 select @current_order_price = OrderPrice from @affected_order_deliveries where OrderID = @current_order_id;
-set @new_total_price = 0;
-update OrderDeliveries set TotalPrice = @new_total_price where OrderID = @current_order_id;
+set @new_total_price = @current_order_price;
+update OrderDeliveries set TotalPrice = @new_total_price, DateModified = @current_date, DeliveryReason = 'Data in the delivery was automatically changed by the system due to delivery service data change' where OrderID = @current_order_id;
 set @affected_delivery_count = @affected_delivery_count + 1;
 end
 end
 set @additional_information = 'Old Service ID: ' + try_cast(@old_id as varchar) + '\n' + ' Old Service Name: ' + try_cast(@old_service_name as varchar) + '\n'
 + 'Old Service Price: ' + try_cast(@old_service_price as varchar) + '\n';
-set @current_date = getdate();
 exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Delivery Service Removed', 
 @logmessage = @log_message,
@@ -2023,13 +2020,13 @@ select @new_product_expiry_date = ProductExpiryDate from inserted;
 select @new_product_reg_num = ProductRegNum from inserted;
 select @new_product_part_num = ProductPartNum from inserted;
 select @new_product_location = ProductStorageLocation from inserted;
+set @current_date = getdate();
 set @log_message = 'A product was added to the list with the id: ' + try_cast(@new_id as varchar);
 set @additional_information = 'Product ID: ' + try_cast(@new_id as varchar) + '\n' + 'Product Name: ' + try_cast(@new_product_name as varchar) + '\n'
 + 'Brand ID: ' + try_cast(@new_brand_id as varchar) + '\n' + 'Product Description: ' + try_cast(@new_product_description as varchar) + '\n' +
 'Product Quantity: ' + try_cast(@new_product_quantity as varchar) + '\n' + 'Product Price: ' + try_cast(@new_product_price as varchar) + '\n' + 
 'Product Expiry Date: ' + try_cast(@new_product_expiry_date as varchar) + '\n' + 'Product Reg. Number: ' + try_cast(@new_product_reg_num as varchar) + '\n' + 
 'Product Part. Number: ' + try_cast(@new_product_part_num as varchar) + '\n' + 'Product Storage Location: ' + try_cast(@new_product_location as varchar) + '\n';
-set @current_date = getdate();
 exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Added', 
 @logmessage = @log_message,
@@ -2085,6 +2082,7 @@ select @old_product_part_num = ProductPartNum from deleted;
 select @new_product_part_num = ProductPartNum from inserted;
 select @old_product_location = ProductStorageLocation from deleted;
 select @new_product_location = ProductStorageLocation from inserted;
+set @current_date = getdate();
 set @log_message = 'A product was updated with the id: ' + try_cast(@old_id as varchar) + 
 '.\nThe product orders for the following product will be updated with new prices as well.\nThe affected orders will have standart prices
 and you have to override their prices again.\n';
@@ -2110,7 +2108,7 @@ select @affected_order_id = OrderID from @affected_orders where OrderCounter = @
 select @affected_order_quantity = DesiredQuantity from @affected_orders where OrderCounter = @affected_orders_count;
 select @affected_order_price = OrderPrice from @affected_orders where OrderCounter = @affected_orders_count;
 set @new_order_price = @affected_order_quantity * @new_product_price;
-update ProductOrders set OrderPrice = @new_order_price where ID = @affected_order_id; /* set a new price for the order */
+update ProductOrders set OrderPrice = @new_order_price, DateModified = @current_date, OrderReason = 'Data in the order was automatically changed by the system due to product data change' where ID = @affected_order_id; /* set a new price for the order */
 set @affected_orders_count = @affected_orders_count + 1; /* this counts upwards otherwise the loop will be stuck */
 end
 end
@@ -2125,7 +2123,6 @@ set @additional_information =   'Old Product ID: ' + try_cast(@old_id as varchar
 'New Product Quantity: ' + try_cast(@new_product_quantity as varchar) + '\n' + 'New Product Price: ' + try_cast(@new_product_price as varchar) + '\n' + 
 'New Product Expiry Date: ' + try_cast(@new_product_expiry_date as varchar) + '\n' + 'New Product Reg. Number: ' + try_cast(@new_product_reg_num as varchar) + '\n' + 
 'New Product Part. Number: ' + try_cast(@new_product_part_num as varchar) + '\n' + 'New Product Storage Location: ' + try_cast(@new_product_location as varchar) + '\n' ;
-set @current_date = getdate();
 exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Updated', 
 @logmessage = @log_message,
@@ -2161,6 +2158,7 @@ select @old_product_expiry_date = ProductExpiryDate from deleted;
 select @old_product_reg_num = ProductRegNum from deleted;
 select @old_product_part_num = ProductPartNum from deleted;
 select @old_product_location = ProductStorageLocation from deleted;
+set @current_date = getdate();
 set @log_message = 'A product was removed list with the id: ' + try_cast(@old_id as varchar) + '.\nAll orders with that product will have their price nullified automatically.\n';
 /* okay, set the price of the order that had the product there to zero */
 declare @affected_orders as table(OrderCounter int identity primary key not null, OrderID int unique not null, DesiredQuantity int not null, OrderPrice money not null);
@@ -2181,7 +2179,7 @@ select @affected_order_id = OrderID from @affected_orders where OrderCounter = @
 select @affected_order_quantity = DesiredQuantity from @affected_orders where OrderCounter = @affected_orders_count;
 select @affected_order_price = OrderPrice from @affected_orders where OrderCounter = @affected_orders_count;
 set @new_order_price = 0;
-update ProductOrders set OrderPrice = @new_order_price where ID = @affected_order_id; /* set a new price for the order */
+update ProductOrders set OrderPrice = @new_order_price, DateModified = @current_date, OrderReason = 'Data in the order was automatically changed by the system due to product data change' where ID = @affected_order_id; /* set a new price for the order */
 set @affected_orders_count = @affected_orders_count + 1; /* this counts upwards otherwise the loop will be stuck */
 end
 set @additional_information =  'Product ID: ' + try_cast(@old_id as varchar) + '\n' + 'Product Name: ' + try_cast(@old_product_name as varchar) + '\n'
@@ -2189,7 +2187,6 @@ set @additional_information =  'Product ID: ' + try_cast(@old_id as varchar) + '
 'Product Quantity: ' + try_cast(@old_product_quantity as varchar) + '\n' + 'Product Price: ' + try_cast(@old_product_price as varchar) + '\n' + 
 'Product Expiry Date: ' + try_cast(@old_product_expiry_date as varchar) + '\n' + 'Product Reg. Number: ' + try_cast(@old_product_reg_num as varchar) + '\n' + 
 'Product Part. Number: ' + try_cast(@old_product_part_num as varchar) + '\n' + 'Product Storage Location: ' + try_cast(@old_product_location as varchar) + '\n';
-set @current_date = getdate();
 exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Product Removed', 
 @logmessage = @log_message,
@@ -2428,6 +2425,7 @@ select @old_register_date = UserDateOfRegister from deleted;
 select @new_register_date = UserDateOfRegister from inserted;
 select @old_role = UserRole from deleted;
 select @new_role = UserRole from inserted;
+set @currentdate = getdate();
 /* and before that let's check if the username and/or password are changed and change the logins and users*/
 if @new_user_name != @old_user_name or @new_user_password != @old_user_password or (@old_user_name != @new_user_name and @old_user_password != @new_user_password)
 begin
@@ -2498,7 +2496,7 @@ select  top 1 @affected_orders_last = OrderCounter from @affected_orders order b
 while @affected_orders_count <= @affected_orders_last
 begin
 select @current_affected_order_id = OrderID from @affected_orders where OrderCounter = @affected_orders_count;
-update ProductOrders set ClientID = @new_id where ID = @current_affected_order_id;
+update ProductOrders set ClientID = @new_id, DateModified = @currentdate, OrderReason = 'Data in the order was automatically changed by the system due to user data change' where ID = @current_affected_order_id;
 set @affected_orders_count = @affected_orders_count + 1;
 end
 end
@@ -2510,7 +2508,7 @@ select  top 1 @affected_orders_last = OrderCounter from @affected_orders order b
 while @affected_orders_count <= @affected_orders_last
 begin
 select @current_affected_order_id = OrderID from @affected_orders where OrderCounter = @affected_orders_count;
-update ProductOrders set EmployeeID = -1 where ID = @current_affected_order_id;
+update ProductOrders set EmployeeID = -1, DateModified = @currentdate, OrderReason = 'Data in the order was automatically changed by the system due to user data change' where ID = @current_affected_order_id;
 set @affected_orders_count = @affected_orders_count + 1;
 end
 end
@@ -2522,7 +2520,7 @@ select  top 1 @affected_orders_last = OrderCounter from @affected_orders order b
 while @affected_orders_count <= @affected_orders_last
 begin
 select @current_affected_order_id = OrderID from @affected_orders where OrderCounter = @affected_orders_count;
-update ProductOrders set ClientID = -1 where ID = @current_affected_order_id;
+update ProductOrders set ClientID = -1, DateModified = @currentdate, OrderReason = 'Data in the order was automatically changed by the system due to user data change' where ID = @current_affected_order_id;
 set @affected_orders_count = @affected_orders_count + 1;
 end
 end
@@ -2538,7 +2536,7 @@ select  top 1 @affected_orders_last = OrderCounter from @affected_orders order b
 while @affected_orders_count <= @affected_orders_last
 begin
 select @current_affected_order_id = OrderID from @affected_orders where OrderCounter = @affected_orders_count;
-update ProductOrders set EmployeeID = @new_id where ID = @current_affected_order_id;
+update ProductOrders set EmployeeID = @new_id, DateModified = @currentdate, OrderReason = 'Data in the order was automatically changed by the system due to user data change' where ID = @current_affected_order_id;
 set @affected_orders_count = @affected_orders_count + 1;
 end
 end
@@ -2550,7 +2548,7 @@ select  top 1 @affected_orders_last = OrderCounter from @affected_orders order b
 while @affected_orders_count <= @affected_orders_last
 begin
 select @current_affected_order_id = OrderID from @affected_orders where OrderCounter = @affected_orders_count;
-update ProductOrders set ClientID = @new_id where ID = @current_affected_order_id;
+update ProductOrders set ClientID = @new_id, DateModified = @currentdate, OrderReason = 'Data in the order was automatically changed by the system due to user data change' where ID = @current_affected_order_id;
 set @affected_orders_count = @affected_orders_count + 1;
 end
 end
@@ -2562,7 +2560,7 @@ select  top 1 @affected_orders_last = OrderCounter from @affected_orders order b
 while @affected_orders_count <= @affected_orders_last
 begin
 select @current_affected_order_id = OrderID from @affected_orders where OrderCounter = @affected_orders_count;
-update ProductOrders set EmployeeID = -1 where ID = @current_affected_order_id;
+update ProductOrders set EmployeeID = -1, DateModified = @currentdate, OrderReason = 'Data in the order was automatically changed by the system due to user data change' where ID = @current_affected_order_id;
 set @affected_orders_count = @affected_orders_count + 1;
 end
 end
@@ -2574,12 +2572,11 @@ select  top 1 @affected_orders_last = OrderCounter from @affected_orders order b
 while @affected_orders_count <= @affected_orders_last
 begin
 select @current_affected_order_id = OrderID from @affected_orders where OrderCounter = @affected_orders_count;
-update ProductOrders set ClientID = -1 where ID = @current_affected_order_id;
+update ProductOrders set ClientID = -1, DateModified = @currentdate, OrderReason = 'Data in the order was automatically changed by the system due to user data change' where ID = @current_affected_order_id;
 set @affected_orders_count = @affected_orders_count + 1;
 end
 end
 end
-set @currentdate = getdate();
 set @log_message = 'An user was updated with the id: ' + try_cast(@old_id as varchar) + 
 '.\n If its role is the same the ID will be updated on the orders,\notherwise it will beed to be manually reselected in the orders.\n';
 set @additional_information = 'Old User ID: ' + try_cast(@old_id as varchar) + '\n' +
@@ -2638,6 +2635,7 @@ select @old_user_balance = UserBalance from deleted;
 select @old_diagnose = UserDiagnose from deleted;
 select @old_register_date = UserDateOfRegister from deleted;
 select @old_role = UserRole from deleted;
+set @currentdate = getdate();
 /* so here for a deleted user remove the user their role */
 if @old_role is not null
 begin
@@ -2678,7 +2676,7 @@ select  top 1 @affected_orders_last = OrderCounter from @affected_orders order b
 while @affected_orders_count <= @affected_orders_last
 begin
 select @current_affected_order_id = OrderID from @affected_orders where OrderCounter = @affected_orders_count;
-update ProductOrders set EmployeeID = -1 where ID = @current_affected_order_id;
+update ProductOrders set EmployeeID = -1, DateModified = @currentdate, OrderReason = 'Data in the order was automatically changed by the system due to user data change' where ID = @current_affected_order_id;
 set @affected_orders_count = @affected_orders_count + 1;
 end
 end
@@ -2690,11 +2688,10 @@ select  top 1 @affected_orders_last = OrderCounter from @affected_orders order b
 while @affected_orders_count <= @affected_orders_last
 begin
 select @current_affected_order_id = OrderID from @affected_orders where OrderCounter = @affected_orders_count;
-update ProductOrders set ClientID = -1 where ID = @current_affected_order_id;
+update ProductOrders set ClientID = -1, DateModified = @currentdate, OrderReason = 'Data in the order was automatically changed by the system due to user data change' where ID = @current_affected_order_id;
 set @affected_orders_count = @affected_orders_count + 1;
 end
 end
-set @currentdate = getdate();
 set @log_message = 'An user was removed list with the id: ' + try_cast(@old_id as varchar);
 set @additional_information =  'Old User ID: ' + try_cast(@old_id as varchar) + '\n' +
 'Old User Name: ' + try_cast(@old_user_name as varchar) + '\n' + 'Old User Password: ' + try_cast(@old_user_password as varchar) + '\n' +
