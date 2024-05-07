@@ -1100,7 +1100,6 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <Property Name="UserDiagnose" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UserDateOfRegister" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="UserRole" Type="Int32" Nullable="false" />
-          <Property Name="PredictedAverageClientSpending" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="AverageClientSpending" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
@@ -1132,7 +1131,6 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <Property Name="UserDiagnose" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UserDateOfRegister" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="UserRole" Type="Int32" Nullable="false" />
-          <Property Name="PredictedAverageEmployeeIncome" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="AverageEmployeeIncome" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
