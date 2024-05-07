@@ -243,7 +243,7 @@ namespace XtremePharmacyManager
                                         if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                         {
                                             OverridePriceAsTotal = true;
-                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.UPDATE, ref ent, OverridePriceAsTotal, true));
+                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.UPDATE, ref ent, selectedOrder, OverridePriceAsTotal, true));
                                         }
                                         else
                                         {
