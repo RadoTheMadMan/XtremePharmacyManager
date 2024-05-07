@@ -598,7 +598,7 @@ namespace XtremePharmacyManager
         {
             DataGridViewRow row;
             int ID = -1;
-            Product currentOrder;
+            ProductOrder currentOrder;
             string target_report_file;
             bool IsInvoice = false;
             ReportDataSource current_source;
@@ -622,7 +622,7 @@ namespace XtremePharmacyManager
                         Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
                         //Contrary to the CRUD operations, report generating will be for all records no matter
                         //if they are dummy or not
-                        currentOrder = products.Where(x => x.ID == ID).FirstOrDefault();
+                        currentOrder = product_orders.Where(x => x.ID == ID).FirstOrDefault();
                         if (currentOrder != null)
                         {
                             if (IsInvoice)
