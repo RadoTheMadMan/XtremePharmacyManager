@@ -268,6 +268,26 @@ namespace XtremePharmacyManager
                                      base.TargetObject.UserEmail, base.TargetObject.UserAddress, base.TargetObject.UserProfilePic, base.TargetObject.UserBalance, base.TargetObject.UserDiagnose,
                                      base.TargetObject.UserRole);
                     entities.SaveChanges();
+                    //update the view on add, update or delete if it hasn't been updated(probably will not be found on add
+                    //or delete and yeah
+                    if (base.TargetObject.UserRole == 0 || base.TargetObject.UserRole == 1)
+                    {
+                        //retrieve the data and if it exists reload it from the database, if not, do nothing
+                        EmployeeView current_emp_view = entities.EmployeeViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (current_emp_view != null)
+                        {
+                            entities.Entry(current_emp_view).Reload();
+                        }
+                    }
+                    else if (base.TargetObject.UserRole == 2)
+                    {
+                        //retrieve the data and if it exists reload it from the database, if not, do nothing
+                        ClientView current_cl_view = entities.ClientViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (current_cl_view != null)
+                        {
+                            entities.Entry(current_cl_view).Reload();
+                        }
+                    }
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -311,7 +331,29 @@ namespace XtremePharmacyManager
                                      base.TargetObject.UserEmail, base.TargetObject.UserAddress, base.TargetObject.UserProfilePic, base.TargetObject.UserBalance, base.TargetObject.UserDiagnose,
                                      base.TargetObject.UserRole);
                     entities.SaveChanges();
+                    //reload the changed entry after saving changes
                     entities.Entry<User>(entities.Users.Where(x=>x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                    //reload its data on the view as well if it is existing
+                    //update the view on add, update or delete if it hasn't been updated(probably will not be found on add
+                    //or delete and yeah
+                    if (base.TargetObject.UserRole == 0 || base.TargetObject.UserRole == 1)
+                    {
+                        //retrieve the data and if it exists reload it from the database, if not, do nothing
+                        EmployeeView current_emp_view = entities.EmployeeViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (current_emp_view != null)
+                        {
+                            entities.Entry(current_emp_view).Reload();
+                        }
+                    }
+                    else if (base.TargetObject.UserRole == 2)
+                    {
+                        //retrieve the data and if it exists reload it from the database, if not, do nothing
+                        ClientView current_cl_view = entities.ClientViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (current_cl_view != null)
+                        {
+                            entities.Entry(current_cl_view).Reload();
+                        }
+                    }
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -353,6 +395,28 @@ namespace XtremePharmacyManager
                 {
                     entities.DeleteUserByID(base.TargetObject.ID);
                     entities.SaveChanges();
+                    //no need to reload nonexistent or just added entries but if the view still contains them
+                    //better reload them
+                    //update the view on add, update or delete if it hasn't been updated(probably will not be found on add
+                    //or delete and yeah
+                    if (base.TargetObject.UserRole == 0 || base.TargetObject.UserRole == 1)
+                    {
+                        //retrieve the data and if it exists reload it from the database, if not, do nothing
+                        EmployeeView current_emp_view = entities.EmployeeViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (current_emp_view != null)
+                        {
+                            entities.Entry(current_emp_view).Reload();
+                        }
+                    }
+                    else if (base.TargetObject.UserRole == 2)
+                    {
+                        //retrieve the data and if it exists reload it from the database, if not, do nothing
+                        ClientView current_cl_view = entities.ClientViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (current_cl_view != null)
+                        {
+                            entities.Entry(current_cl_view).Reload();
+                        }
+                    }
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
