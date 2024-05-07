@@ -25,5 +25,6 @@ namespace XtremePharmacyManager.DataEntities
         public string ProductStorageLocation { get; set; }
         public Nullable<decimal> AverageProductSale { get; set; }
         public Nullable<int> ProductImageCount { get; set; }
+        public int ID { get; set; }
     }
 }

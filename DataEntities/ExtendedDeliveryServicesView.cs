@@ -17,5 +17,6 @@ namespace XtremePharmacyManager.DataEntities
         public string ServiceName { get; set; }
         public decimal ServicePrice { get; set; }
         public Nullable<int> TimesThisServiceWasUsed { get; set; }
+        public int ID { get; set; }
     }
 }

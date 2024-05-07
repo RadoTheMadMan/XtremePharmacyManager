@@ -16,5 +16,6 @@ namespace XtremePharmacyManager.DataEntities
     {
         public string MethodName { get; set; }
         public Nullable<int> TimesThisMethodWasUsed { get; set; }
+        public int ID { get; set; }
     }
 }

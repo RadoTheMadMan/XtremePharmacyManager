@@ -123,6 +123,7 @@
 warning 6002: The table/view 'XTremePharmacyDB.dbo.ClientView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ClientView">
           <Key>
+            <PropertyRef Name="ID" />
             <PropertyRef Name="UserName" />
             <PropertyRef Name="UserPassword" />
             <PropertyRef Name="UserDisplayName" />
@@ -136,6 +137,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ClientView' does not have a p
             <PropertyRef Name="UserDateOfRegister" />
             <PropertyRef Name="UserRole" />
           </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="UserPassword" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="UserDisplayName" Type="varchar" MaxLength="100" Nullable="false" />
@@ -148,12 +150,13 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ClientView' does not have a p
           <Property Name="UserDiagnose" Type="varchar(max)" Nullable="false" />
           <Property Name="UserDateOfRegister" Type="date" Nullable="false" />
           <Property Name="UserRole" Type="int" Nullable="false" />
-          <Property Name="PredictedAverageClientSpending" Type="money" />
+          <Property Name="AverageClientSpending" Type="money" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'XTremePharmacyDB.dbo.EmployeeView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="EmployeeView">
           <Key>
+            <PropertyRef Name="ID" />
             <PropertyRef Name="UserName" />
             <PropertyRef Name="UserPassword" />
             <PropertyRef Name="UserDisplayName" />
@@ -167,6 +170,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.EmployeeView' does not have a
             <PropertyRef Name="UserDateOfRegister" />
             <PropertyRef Name="UserRole" />
           </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="UserPassword" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="UserDisplayName" Type="varchar" MaxLength="100" Nullable="false" />
@@ -179,14 +183,16 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.EmployeeView' does not have a
           <Property Name="UserDiagnose" Type="varchar(max)" Nullable="false" />
           <Property Name="UserDateOfRegister" Type="date" Nullable="false" />
           <Property Name="UserRole" Type="int" Nullable="false" />
-          <Property Name="PredictedAverageEmployeeIncome" Type="money" />
+          <Property Name="AverageEmployeeIncome" Type="money" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedBrandsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ExtendedBrandsView">
           <Key>
+            <PropertyRef Name="ID" />
             <PropertyRef Name="BrandName" />
           </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="BrandName" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="CountProductsFromBrand" Type="int" />
         </EntityType>
@@ -194,9 +200,11 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedBrandsView' does not 
 warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedDeliveryServicesView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ExtendedDeliveryServicesView">
           <Key>
+            <PropertyRef Name="ID" />
             <PropertyRef Name="ServiceName" />
             <PropertyRef Name="ServicePrice" />
           </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ServiceName" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="ServicePrice" Type="money" Nullable="false" />
           <Property Name="TimesThisServiceWasUsed" Type="int" />
@@ -206,6 +214,12 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedOrderDeliveriesView' 
         <EntityType Name="ExtendedOrderDeliveriesView">
           <Key>
             <PropertyRef Name="ID" />
+            <PropertyRef Name="CargoID" />
+            <PropertyRef Name="TotalPrice" />
+            <PropertyRef Name="DateAdded" />
+            <PropertyRef Name="DateModified" />
+            <PropertyRef Name="DeliveryStatus" />
+            <PropertyRef Name="DeliveryReason" />
             <PropertyRef Name="ProductName" />
             <PropertyRef Name="BrandName" />
             <PropertyRef Name="ProductDescription" />
@@ -215,14 +229,8 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedOrderDeliveriesView' 
             <PropertyRef Name="ServiceName" />
             <PropertyRef Name="DeliveryPrice" />
             <PropertyRef Name="MethodName" />
-            <PropertyRef Name="CargoID" />
-            <PropertyRef Name="TotalPrice" />
-            <PropertyRef Name="DateAdded" />
-            <PropertyRef Name="DateModified" />
-            <PropertyRef Name="DeliveryStatus" />
-            <PropertyRef Name="DeliveryReason" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="BrandName" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="ProductDescription" Type="varchar" MaxLength="200" Nullable="false" />
@@ -248,8 +256,10 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedOrderDeliveriesView' 
 warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedPaymentMethodsView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ExtendedPaymentMethodsView">
           <Key>
+            <PropertyRef Name="ID" />
             <PropertyRef Name="MethodName" />
           </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MethodName" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="TimesThisMethodWasUsed" Type="int" />
         </EntityType>
@@ -258,18 +268,18 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductOrdersView' do
         <EntityType Name="ExtendedProductOrdersView">
           <Key>
             <PropertyRef Name="ID" />
-            <PropertyRef Name="ProductName" />
-            <PropertyRef Name="BrandName" />
-            <PropertyRef Name="ProductDescription" />
-            <PropertyRef Name="ProductExpiryDate" />
             <PropertyRef Name="DesiredQuantity" />
             <PropertyRef Name="OrderPrice" />
             <PropertyRef Name="DateAdded" />
             <PropertyRef Name="DateModified" />
             <PropertyRef Name="OrderStatus" />
             <PropertyRef Name="OrderReason" />
+            <PropertyRef Name="ProductName" />
+            <PropertyRef Name="BrandName" />
+            <PropertyRef Name="ProductDescription" />
+            <PropertyRef Name="ProductExpiryDate" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="BrandName" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="ProductDescription" Type="varchar" MaxLength="200" Nullable="false" />
@@ -290,8 +300,8 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductOrdersView' do
 warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ExtendedProductView">
           <Key>
+            <PropertyRef Name="ID" />
             <PropertyRef Name="ProductName" />
-            <PropertyRef Name="BrandName" />
             <PropertyRef Name="ProductDescription" />
             <PropertyRef Name="ProductQuantity" />
             <PropertyRef Name="ProductPrice" />
@@ -299,7 +309,9 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <PropertyRef Name="ProductRegNum" />
             <PropertyRef Name="ProductPartNum" />
             <PropertyRef Name="ProductStorageLocation" />
+            <PropertyRef Name="BrandName" />
           </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProductName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="BrandName" Type="varchar" MaxLength="200" Nullable="false" />
           <Property Name="ProductDescription" Type="varchar" MaxLength="200" Nullable="false" />
@@ -776,6 +788,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClientView" EntityType="Self.ClientView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+    [ClientView].[ID] AS [ID], 
     [ClientView].[UserName] AS [UserName], 
     [ClientView].[UserPassword] AS [UserPassword], 
     [ClientView].[UserDisplayName] AS [UserDisplayName], 
@@ -788,11 +801,12 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
     [ClientView].[UserDiagnose] AS [UserDiagnose], 
     [ClientView].[UserDateOfRegister] AS [UserDateOfRegister], 
     [ClientView].[UserRole] AS [UserRole], 
-    [ClientView].[PredictedAverageClientSpending] AS [PredictedAverageClientSpending]
+    [ClientView].[AverageClientSpending] AS [AverageClientSpending]
     FROM [dbo].[ClientView] AS [ClientView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="EmployeeView" EntityType="Self.EmployeeView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+    [EmployeeView].[ID] AS [ID], 
     [EmployeeView].[UserName] AS [UserName], 
     [EmployeeView].[UserPassword] AS [UserPassword], 
     [EmployeeView].[UserDisplayName] AS [UserDisplayName], 
@@ -805,17 +819,19 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
     [EmployeeView].[UserDiagnose] AS [UserDiagnose], 
     [EmployeeView].[UserDateOfRegister] AS [UserDateOfRegister], 
     [EmployeeView].[UserRole] AS [UserRole], 
-    [EmployeeView].[PredictedAverageEmployeeIncome] AS [PredictedAverageEmployeeIncome]
+    [EmployeeView].[AverageEmployeeIncome] AS [AverageEmployeeIncome]
     FROM [dbo].[EmployeeView] AS [EmployeeView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ExtendedBrandsView" EntityType="Self.ExtendedBrandsView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+    [ExtendedBrandsView].[ID] AS [ID], 
     [ExtendedBrandsView].[BrandName] AS [BrandName], 
     [ExtendedBrandsView].[CountProductsFromBrand] AS [CountProductsFromBrand]
     FROM [dbo].[ExtendedBrandsView] AS [ExtendedBrandsView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="ExtendedDeliveryServicesView" EntityType="Self.ExtendedDeliveryServicesView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+    [ExtendedDeliveryServicesView].[ID] AS [ID], 
     [ExtendedDeliveryServicesView].[ServiceName] AS [ServiceName], 
     [ExtendedDeliveryServicesView].[ServicePrice] AS [ServicePrice], 
     [ExtendedDeliveryServicesView].[TimesThisServiceWasUsed] AS [TimesThisServiceWasUsed]
@@ -848,6 +864,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           </EntitySet>
           <EntitySet Name="ExtendedPaymentMethodsView" EntityType="Self.ExtendedPaymentMethodsView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+    [ExtendedPaymentMethodsView].[ID] AS [ID], 
     [ExtendedPaymentMethodsView].[MethodName] AS [MethodName], 
     [ExtendedPaymentMethodsView].[TimesThisMethodWasUsed] AS [TimesThisMethodWasUsed]
     FROM [dbo].[ExtendedPaymentMethodsView] AS [ExtendedPaymentMethodsView]</DefiningQuery>
@@ -874,6 +891,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           </EntitySet>
           <EntitySet Name="ExtendedProductView" EntityType="Self.ExtendedProductView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+    [ExtendedProductView].[ID] AS [ID], 
     [ExtendedProductView].[ProductName] AS [ProductName], 
     [ExtendedProductView].[BrandName] AS [BrandName], 
     [ExtendedProductView].[ProductDescription] AS [ProductDescription], 
@@ -1068,6 +1086,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <PropertyRef Name="UserDiagnose" />
             <PropertyRef Name="UserDateOfRegister" />
             <PropertyRef Name="UserRole" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UserPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -1082,6 +1101,8 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <Property Name="UserDateOfRegister" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="UserRole" Type="Int32" Nullable="false" />
           <Property Name="PredictedAverageClientSpending" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="AverageClientSpending" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="EmployeeView">
           <Key>
@@ -1097,6 +1118,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <PropertyRef Name="UserDiagnose" />
             <PropertyRef Name="UserDateOfRegister" />
             <PropertyRef Name="UserRole" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="UserPassword" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
@@ -1111,22 +1133,28 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <Property Name="UserDateOfRegister" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="UserRole" Type="Int32" Nullable="false" />
           <Property Name="PredictedAverageEmployeeIncome" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AverageEmployeeIncome" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="ExtendedBrandsView">
           <Key>
             <PropertyRef Name="BrandName" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="BrandName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CountProductsFromBrand" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="ExtendedDeliveryServicesView">
           <Key>
             <PropertyRef Name="ServiceName" />
             <PropertyRef Name="ServicePrice" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="ServiceName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ServicePrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
           <Property Name="TimesThisServiceWasUsed" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="ExtendedOrderDeliveriesView">
           <Key>
@@ -1172,9 +1200,11 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
         <EntityType Name="ExtendedPaymentMethodsView">
           <Key>
             <PropertyRef Name="MethodName" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="MethodName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="TimesThisMethodWasUsed" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="ExtendedProductOrdersView">
           <Key>
@@ -1218,6 +1248,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
             <PropertyRef Name="ProductRegNum" />
             <PropertyRef Name="ProductPartNum" />
             <PropertyRef Name="ProductStorageLocation" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="ProductName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="BrandName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
@@ -1230,6 +1261,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <Property Name="ProductStorageLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="AverageProductSale" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="ProductImageCount" Type="Int32" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="FK__OrderDeli__Deliv__0D0FEE32">
           <End Role="DeliveryServices" Type="Self.DeliveryService" Multiplicity="0..1" />
@@ -1953,7 +1985,8 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <EntitySetMapping Name="ClientViews">
             <EntityTypeMapping TypeName="XTremePharmacyModel.ClientView">
               <MappingFragment StoreEntitySet="ClientView">
-                <ScalarProperty Name="PredictedAverageClientSpending" ColumnName="PredictedAverageClientSpending" />
+                <ScalarProperty Name="AverageClientSpending" ColumnName="AverageClientSpending" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
                 <ScalarProperty Name="UserDisplayName" ColumnName="UserDisplayName" />
@@ -1972,7 +2005,8 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <EntitySetMapping Name="EmployeeViews">
             <EntityTypeMapping TypeName="XTremePharmacyModel.EmployeeView">
               <MappingFragment StoreEntitySet="EmployeeView">
-                <ScalarProperty Name="PredictedAverageEmployeeIncome" ColumnName="PredictedAverageEmployeeIncome" />
+                <ScalarProperty Name="AverageEmployeeIncome" ColumnName="AverageEmployeeIncome" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
                 <ScalarProperty Name="UserDisplayName" ColumnName="UserDisplayName" />
@@ -1991,6 +2025,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <EntitySetMapping Name="ExtendedBrandsViews">
             <EntityTypeMapping TypeName="XTremePharmacyModel.ExtendedBrandsView">
               <MappingFragment StoreEntitySet="ExtendedBrandsView">
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="BrandName" ColumnName="BrandName" />
                 <ScalarProperty Name="CountProductsFromBrand" ColumnName="CountProductsFromBrand" />
               </MappingFragment>
@@ -1999,6 +2034,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <EntitySetMapping Name="ExtendedDeliveryServicesViews">
             <EntityTypeMapping TypeName="XTremePharmacyModel.ExtendedDeliveryServicesView">
               <MappingFragment StoreEntitySet="ExtendedDeliveryServicesView">
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
                 <ScalarProperty Name="ServicePrice" ColumnName="ServicePrice" />
                 <ScalarProperty Name="TimesThisServiceWasUsed" ColumnName="TimesThisServiceWasUsed" />
@@ -2035,6 +2071,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <EntitySetMapping Name="ExtendedPaymentMethodsViews">
             <EntityTypeMapping TypeName="XTremePharmacyModel.ExtendedPaymentMethodsView">
               <MappingFragment StoreEntitySet="ExtendedPaymentMethodsView">
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MethodName" ColumnName="MethodName" />
                 <ScalarProperty Name="TimesThisMethodWasUsed" ColumnName="TimesThisMethodWasUsed" />
               </MappingFragment>
@@ -2065,6 +2102,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedProductView' does not
           <EntitySetMapping Name="ExtendedProductViews">
             <EntityTypeMapping TypeName="XTremePharmacyModel.ExtendedProductView">
               <MappingFragment StoreEntitySet="ExtendedProductView">
+                <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="BrandName" ColumnName="BrandName" />
                 <ScalarProperty Name="ProductDescription" ColumnName="ProductDescription" />

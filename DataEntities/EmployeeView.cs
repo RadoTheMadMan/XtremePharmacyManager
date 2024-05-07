@@ -27,5 +27,7 @@ namespace XtremePharmacyManager.DataEntities
         public System.DateTime UserDateOfRegister { get; set; }
         public int UserRole { get; set; }
         public Nullable<decimal> PredictedAverageEmployeeIncome { get; set; }
+        public int ID { get; set; }
+        public Nullable<decimal> AverageEmployeeIncome { get; set; }
     }
 }

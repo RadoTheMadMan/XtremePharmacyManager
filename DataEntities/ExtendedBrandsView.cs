@@ -16,5 +16,6 @@ namespace XtremePharmacyManager.DataEntities
     {
         public string BrandName { get; set; }
         public Nullable<int> CountProductsFromBrand { get; set; }
+        public int ID { get; set; }
     }
 }
