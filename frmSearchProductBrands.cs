@@ -109,6 +109,12 @@ namespace XtremePharmacyManager
                                     {
                                         ent.UpdateBrandByID(selectedBrand.ID,selectedBrand.BrandName);
                                         ent.SaveChanges();
+                                        //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                                        ExtendedBrandsView prb_view = ent.ExtendedBrandsViews.Where(x => x.ID ==  selectedBrand.ID).FirstOrDefault();
+                                        if(prb_view != null)
+                                        {
+                                            ent.Entry(prb_view).Reload();
+                                        }
                                         RefreshProductBrands();
                                     }
                                     else // or add it as a bulk operation
@@ -132,6 +138,12 @@ namespace XtremePharmacyManager
                                     {
                                         ent.AddBrand(selectedBrand.BrandName);
                                         ent.SaveChanges();
+                                        //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                                        ExtendedBrandsView prb_view = ent.ExtendedBrandsViews.Where(x => x.ID == selectedBrand.ID).FirstOrDefault();
+                                        if (prb_view != null)
+                                        {
+                                            ent.Entry(prb_view).Reload();
+                                        }
                                         RefreshProductBrands();
                                     }
                                 }
@@ -155,6 +167,12 @@ namespace XtremePharmacyManager
                                 {
                                     ent.AddBrand(selectedBrand.BrandName);
                                     ent.SaveChanges();
+                                    //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                                    ExtendedBrandsView prb_view = ent.ExtendedBrandsViews.Where(x => x.ID == selectedBrand.ID).FirstOrDefault();
+                                    if (prb_view != null)
+                                    {
+                                        ent.Entry(prb_view).Reload();
+                                    }
                                     RefreshProductBrands();
                                 }
                             }
@@ -179,6 +197,12 @@ namespace XtremePharmacyManager
                         {
                             ent.AddBrand(selectedBrand.BrandName);
                             ent.SaveChanges();
+                            //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                            ExtendedBrandsView prb_view = ent.ExtendedBrandsViews.Where(x => x.ID == selectedBrand.ID).FirstOrDefault();
+                            if (prb_view != null)
+                            {
+                                ent.Entry(prb_view).Reload();
+                            }
                             RefreshProductBrands();
                         }
                     }
@@ -228,6 +252,12 @@ namespace XtremePharmacyManager
                                     {
                                         ent.DeleteBrandByID(selectedBrand.ID);
                                         ent.SaveChanges();
+                                        //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                                        ExtendedBrandsView prb_view = ent.ExtendedBrandsViews.Where(x => x.ID == selectedBrand.ID).FirstOrDefault();
+                                        if (prb_view != null)
+                                        {
+                                            ent.Entry(prb_view).Reload();
+                                        }
                                         RefreshProductBrands();
                                     }
                                 }

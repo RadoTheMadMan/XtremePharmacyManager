@@ -102,7 +102,7 @@ namespace XtremePharmacyManager
                             selectedService = delivery_services.Where(x => x.ID == ServiceID).FirstOrDefault();
                             if (selectedService != null)
                             {
-                                //Show the editor window to edit the selected user
+                                //Show the editor window to edit the selected service
                                 //on dialog result yes update it
                                 DialogResult res = new frmEditDeliveryService(ref selectedService).ShowDialog();
                                 if (res == DialogResult.OK)
@@ -111,6 +111,13 @@ namespace XtremePharmacyManager
                                     {
                                         ent.UpdateDeliveryServiceByID(selectedService.ID,selectedService.ServiceName,selectedService.ServicePrice);
                                         ent.SaveChanges();
+                                        //in whatever this operation is that affects something from the table find the ID of that in the view of the database
+                                        //and sync it with the model in case the database doesn't sync it automatically with the model
+                                        ExtendedDeliveryServicesView ds_view = ent.ExtendedDeliveryServicesViews.Where(x => x.ID == selectedService.ID).FirstOrDefault();
+                                        if(ds_view != null)
+                                        {
+                                            ent.Entry(ds_view).Reload();
+                                        }
                                         RefreshDeliveryServices();
                                     }
                                 }
@@ -134,6 +141,13 @@ namespace XtremePharmacyManager
                                     {
                                         ent.AddDeliveryService(selectedService.ServiceName,selectedService.ServicePrice);
                                         ent.SaveChanges();
+                                        //in whatever this operation is that affects something from the table find the ID of that in the view of the database
+                                        //and sync it with the model in case the database doesn't sync it automatically with the model
+                                        ExtendedDeliveryServicesView ds_view = ent.ExtendedDeliveryServicesViews.Where(x => x.ID == selectedService.ID).FirstOrDefault();
+                                        if (ds_view != null)
+                                        {
+                                            ent.Entry(ds_view).Reload();
+                                        }
                                         RefreshDeliveryServices();
                                     }
                                 }
@@ -157,6 +171,13 @@ namespace XtremePharmacyManager
                                 {
                                     ent.AddDeliveryService(selectedService.ServiceName, selectedService.ServicePrice);
                                     ent.SaveChanges();
+                                    //in whatever this operation is that affects something from the table find the ID of that in the view of the database
+                                    //and sync it with the model in case the database doesn't sync it automatically with the model
+                                    ExtendedDeliveryServicesView ds_view = ent.ExtendedDeliveryServicesViews.Where(x => x.ID == selectedService.ID).FirstOrDefault();
+                                    if (ds_view != null)
+                                    {
+                                        ent.Entry(ds_view).Reload();
+                                    }
                                     RefreshDeliveryServices();
                                 }
                             }
@@ -181,6 +202,13 @@ namespace XtremePharmacyManager
                         {
                             ent.AddDeliveryService(selectedService.ServiceName, selectedService.ServicePrice);
                             ent.SaveChanges();
+                            //in whatever this operation is that affects something from the table find the ID of that in the view of the database
+                            //and sync it with the model in case the database doesn't sync it automatically with the model
+                            ExtendedDeliveryServicesView ds_view = ent.ExtendedDeliveryServicesViews.Where(x => x.ID == selectedService.ID).FirstOrDefault();
+                            if (ds_view != null)
+                            {
+                                ent.Entry(ds_view).Reload();
+                            }
                             RefreshDeliveryServices();
                         }
                     }
@@ -220,7 +248,7 @@ namespace XtremePharmacyManager
                             selectedService = delivery_services.Where(x => x.ID == ServiceID).FirstOrDefault();
                             if (selectedService != null)
                             {
-                                //Show the editor window to edit the selected user
+                                //Show the editor window to edit the selected service
                                 //on dialog result yes update it
                                 DialogResult res = MessageBox.Show("Are you sure you want to delete this record?\nThis operation is irreversible and can cause " +
                                 "troubles in the database relations.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -230,6 +258,13 @@ namespace XtremePharmacyManager
                                     {
                                         ent.DeleteDeliveryServiceByID(selectedService.ID);
                                         ent.SaveChanges();
+                                        //in whatever this operation is that affects something from the table find the ID of that in the view of the database
+                                        //and sync it with the model in case the database doesn't sync it automatically with the model
+                                        ExtendedDeliveryServicesView ds_view = ent.ExtendedDeliveryServicesViews.Where(x => x.ID == selectedService.ID).FirstOrDefault();
+                                        if (ds_view != null)
+                                        {
+                                            ent.Entry(ds_view).Reload();
+                                        }
                                         RefreshDeliveryServices();
                                     }
                                 }

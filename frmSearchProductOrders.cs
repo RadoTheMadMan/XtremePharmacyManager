@@ -520,7 +520,7 @@ namespace XtremePharmacyManager
                 if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
                 {
                     Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out OrderID);
-                    if (products != null)
+                    if (OrderID >= 0 && products != null)
                     {
                         target_order = product_orders.Where(x => x.ID == OrderID).FirstOrDefault();
                         if (target_order != null)
@@ -529,7 +529,7 @@ namespace XtremePharmacyManager
                             target_product = products.Where(x=>x.ID == target_order.ProductID).FirstOrDefault();
                             if (target_product != null && cbSelectProduct.Items.Contains(target_product))
                             {
-                                cbSelectProduct.SelectedValue = target_order.ProductID;
+                                cbSelectProduct.SelectedValue = target_product.ID;
                             }
                             else
                             {
@@ -539,7 +539,7 @@ namespace XtremePharmacyManager
                             target_employee = employees.Where(x=>x.ID == target_order.EmployeeID).FirstOrDefault();
                             if (target_employee != null && cbSelectEmployee.Items.Contains(target_employee))
                             {
-                                cbSelectEmployee.SelectedValue = target_order.EmployeeID;
+                                cbSelectEmployee.SelectedValue = target_employee.ID;
                             }
                             else
                             {
@@ -549,7 +549,7 @@ namespace XtremePharmacyManager
                             target_client = clients.Where(x=>x.ID == target_order.ClientID).FirstOrDefault();
                             if (target_client != null && cbSelectClient.Items.Contains(target_client))
                             {
-                                cbSelectClient.SelectedValue = target_order.ClientID;
+                                cbSelectClient.SelectedValue = target_client.ID;
                             }
                             else
                             {

@@ -107,6 +107,12 @@ namespace XtremePharmacyManager
                                     {
                                         ent.UpdatePaymentMethodByID(selectedMethod.ID,selectedMethod.MethodName);
                                         ent.SaveChanges();
+                                        //if you find a data from the table entry the operation was performed on in the views reload the view in the model
+                                        ExtendedPaymentMethodsView pm_view = ent.ExtendedPaymentMethodsViews.Where(x => x.ID == selectedMethod.ID).FirstOrDefault();
+                                        if(pm_view != null)
+                                        {
+                                            ent.Entry(pm_view).Reload();
+                                        }
                                         RefreshPaymentMethods();
                                     }
                                 }
@@ -130,6 +136,12 @@ namespace XtremePharmacyManager
                                     {
                                         ent.AddPaymentMethod(selectedMethod.MethodName);
                                         ent.SaveChanges();
+                                        //if you find a data from the table entry the operation was performed on in the views reload the view in the model
+                                        ExtendedPaymentMethodsView pm_view = ent.ExtendedPaymentMethodsViews.Where(x => x.ID == selectedMethod.ID).FirstOrDefault();
+                                        if (pm_view != null)
+                                        {
+                                            ent.Entry(pm_view).Reload();
+                                        }
                                         RefreshPaymentMethods();
                                     }
                                 }
@@ -153,6 +165,12 @@ namespace XtremePharmacyManager
                                 {
                                     ent.AddPaymentMethod(selectedMethod.MethodName);
                                     ent.SaveChanges();
+                                    //if you find a data from the table entry the operation was performed on in the views reload the view in the model
+                                    ExtendedPaymentMethodsView pm_view = ent.ExtendedPaymentMethodsViews.Where(x => x.ID == selectedMethod.ID).FirstOrDefault();
+                                    if (pm_view != null)
+                                    {
+                                        ent.Entry(pm_view).Reload();
+                                    }
                                     RefreshPaymentMethods();
                                 }
                             }
@@ -177,6 +195,12 @@ namespace XtremePharmacyManager
                         {
                             ent.AddPaymentMethod(selectedMethod.MethodName);
                             ent.SaveChanges();
+                            //if you find a data from the table entry the operation was performed on in the views reload the view in the model
+                            ExtendedPaymentMethodsView pm_view = ent.ExtendedPaymentMethodsViews.Where(x => x.ID == selectedMethod.ID).FirstOrDefault();
+                            if (pm_view != null)
+                            {
+                                ent.Entry(pm_view).Reload();
+                            }
                             RefreshPaymentMethods();
                         }
                     }
@@ -226,6 +250,12 @@ namespace XtremePharmacyManager
                                     {
                                         ent.DeletePaymentMethodByID(selectedMethod.ID);
                                         ent.SaveChanges();
+                                        //if you find a data from the table entry the operation was performed on in the views reload the view in the model
+                                        ExtendedPaymentMethodsView pm_view = ent.ExtendedPaymentMethodsViews.Where(x => x.ID == selectedMethod.ID).FirstOrDefault();
+                                        if (pm_view != null)
+                                        {
+                                            ent.Entry(pm_view).Reload();
+                                        }
                                         RefreshPaymentMethods();
                                     }
                                 }

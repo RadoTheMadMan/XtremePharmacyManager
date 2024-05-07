@@ -477,6 +477,12 @@ namespace XtremePharmacyManager
                 {
                     entities.AddBrand(base.TargetObject.BrandName);
                     entities.SaveChanges();
+                    //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                    ExtendedBrandsView prb_view = entities.ExtendedBrandsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                    if (prb_view != null)
+                    {
+                        entities.Entry(prb_view).Reload();
+                    }
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -519,6 +525,12 @@ namespace XtremePharmacyManager
                     entities.UpdateBrandByID(base.TargetObject.ID, base.TargetObject.BrandName);
                     entities.SaveChanges();
                     entities.Entry<ProductBrand>(entities.ProductBrands.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                    //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                    ExtendedBrandsView prb_view = entities.ExtendedBrandsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                    if (prb_view != null)
+                    {
+                        entities.Entry(prb_view).Reload();
+                    }
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -560,6 +572,12 @@ namespace XtremePharmacyManager
                 {
                     entities.DeleteBrandByID(base.TargetObject.ID);
                     entities.SaveChanges();
+                    //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                    ExtendedBrandsView prb_view = entities.ExtendedBrandsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                    if (prb_view != null)
+                    {
+                        entities.Entry(prb_view).Reload();
+                    }
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -620,6 +638,12 @@ namespace XtremePharmacyManager
                 {
                     entities.AddPaymentMethod(base.TargetObject.MethodName);
                     entities.SaveChanges();
+                    //if you find a data from the table entry the operation was performed on in the views reload the view in the model
+                    ExtendedPaymentMethodsView pm_view = entities.ExtendedPaymentMethodsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                    if (pm_view != null)
+                    {
+                        entities.Entry(pm_view).Reload();
+                    }
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -662,6 +686,12 @@ namespace XtremePharmacyManager
                     entities.UpdatePaymentMethodByID(base.TargetObject.ID, base.TargetObject.MethodName);
                     entities.SaveChanges();
                     entities.Entry<PaymentMethod>(entities.PaymentMethods.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                    //if you find a data from the table entry the operation was performed on in the views reload the view in the model
+                    ExtendedPaymentMethodsView pm_view = entities.ExtendedPaymentMethodsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                    if (pm_view != null)
+                    {
+                        entities.Entry(pm_view).Reload();
+                    }
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -704,6 +734,12 @@ namespace XtremePharmacyManager
                 {
                     entities.DeletePaymentMethodByID(base.TargetObject.ID);
                     entities.SaveChanges();
+                    //if you find a data from the table entry the operation was performed on in the views reload the view in the model
+                    ExtendedPaymentMethodsView pm_view = entities.ExtendedPaymentMethodsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                    if (pm_view != null)
+                    {
+                        entities.Entry(pm_view).Reload();
+                    }
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -764,6 +800,13 @@ namespace XtremePharmacyManager
                 {
                     entities.AddDeliveryService(base.TargetObject.ServiceName, base.TargetObject.ServicePrice);
                     entities.SaveChanges();
+                    //in whatever this operation is that affects something from the table find the ID of that in the view of the database
+                    //and sync it with the model in case the database doesn't sync it automatically with the model
+                    ExtendedDeliveryServicesView ds_view = entities.ExtendedDeliveryServicesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                    if (ds_view != null)
+                    {
+                        entities.Entry(ds_view).Reload();
+                    }
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -806,6 +849,13 @@ namespace XtremePharmacyManager
                     entities.UpdateDeliveryServiceByID(base.TargetObject.ID, base.TargetObject.ServiceName, base.TargetObject.ServicePrice);
                     entities.SaveChanges();
                     entities.Entry<DeliveryService>(entities.DeliveryServices.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                    //in whatever this operation is that affects something from the table find the ID of that in the view of the database
+                    //and sync it with the model in case the database doesn't sync it automatically with the model
+                    ExtendedDeliveryServicesView ds_view = entities.ExtendedDeliveryServicesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                    if (ds_view != null)
+                    {
+                        entities.Entry(ds_view).Reload();
+                    }
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -847,6 +897,13 @@ namespace XtremePharmacyManager
                 {
                     entities.DeleteDeliveryServiceByID(base.TargetObject.ID);
                     entities.SaveChanges();
+                    //in whatever this operation is that affects something from the table find the ID of that in the view of the database
+                    //and sync it with the model in case the database doesn't sync it automatically with the model
+                    ExtendedDeliveryServicesView ds_view = entities.ExtendedDeliveryServicesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                    if (ds_view != null)
+                    {
+                        entities.Entry(ds_view).Reload();
+                    }
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -959,13 +1016,13 @@ namespace XtremePharmacyManager
                         base.TargetObject.ProductQuantity, base.TargetObject.ProductPrice, base.TargetObject.ProductExpiryDate,
                         base.TargetObject.ProductRegNum, base.TargetObject.ProductPartNum, base.TargetObject.ProductStorageLocation);
                     entities.SaveChanges();
+                    entities.Entry<Product>(entities.Products.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                     //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
                     ExtendedProductView pr_view = entities.ExtendedProductViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
                     if (pr_view != null)
                     {
                         entities.Entry(pr_view).Reload();
                     }
-                    entities.Entry<Product>(entities.Products.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1268,13 +1325,13 @@ namespace XtremePharmacyManager
                     entities.UpdateProductOrderByID(base.TargetObject.ID,base.TargetObject.ProductID, base.TargetObject.DesiredQuantity, base.TargetObject.OrderPrice,
                     base.TargetObject.ClientID, base.TargetObject.EmployeeID, base.TargetObject.OrderStatus, base.TargetObject.OrderReason);
                     entities.SaveChanges();
+                    entities.Entry<ProductOrder>(entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                     //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                     ExtendedProductOrdersView pro_view = entities.ExtendedProductOrdersViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
                     if (pro_view != null)
                     {
                         entities.Entry(pro_view).Reload();
                     }
-                    entities.Entry<ProductOrder>(entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1385,6 +1442,13 @@ namespace XtremePharmacyManager
                     entities.AddOrderDelivery(base.TargetObject.OrderID,base.TargetObject.DeliveryServiceID,base.TargetObject.PaymentMethodID,
                         base.TargetObject.CargoID,base.TargetObject.DeliveryReason);
                     entities.SaveChanges();
+                    //whenever you do an operation on something check if it exist in the database views and reload it in the model
+                    //if it exist in the views and/or the tables
+                    ExtendedOrderDeliveriesView od_view = entities.ExtendedOrderDeliveriesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                    if (od_view != null)
+                    {
+                        entities.Entry(od_view).Reload();
+                    }
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1428,6 +1492,13 @@ namespace XtremePharmacyManager
                         base.TargetObject.CargoID, base.TargetObject.DeliveryStatus , base.TargetObject.DeliveryReason);
                     entities.SaveChanges();
                     entities.Entry<OrderDelivery>(entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                    //whenever you do an operation on something check if it exist in the database views and reload it in the model
+                    //if it exist in the views and/or the tables
+                    ExtendedOrderDeliveriesView od_view = entities.ExtendedOrderDeliveriesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                    if (od_view != null)
+                    {
+                        entities.Entry(od_view).Reload();
+                    }
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1469,6 +1540,13 @@ namespace XtremePharmacyManager
                 {
                     entities.DeleteOrderDeliveryByID(base.TargetObject.ID);
                     entities.SaveChanges();
+                    //whenever you do an operation on something check if it exist in the database views and reload it in the model
+                    //if it exist in the views and/or the tables
+                    ExtendedOrderDeliveriesView od_view = entities.ExtendedOrderDeliveriesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                    if (od_view != null)
+                    {
+                        entities.Entry(od_view).Reload();
+                    }
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1588,7 +1666,7 @@ namespace XtremePharmacyManager
             deltaTime = endTime - startTime;
             operation_log += $"Operations finished. Time finished:{endTime.ToShortTimeString()}";
             bulk_operations.Clear();
-            result = $"Operations Results:\nCompleted Operations: {completed_operations} Failed Operations: {failed_operations} Execution Time: {deltaTime}";
+            result = $"Operations Results: Completed Operations: {completed_operations} Failed Operations: {failed_operations} Execution Time: {deltaTime}";
             BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
             ev_args.OperationsList = bulk_operations;
             ev_args.CompletedOperations = completed_operations;

@@ -275,7 +275,7 @@ namespace XtremePharmacyManager
                             selectedProduct= products.Where(x => x.ID == ProductID).FirstOrDefault();
                             if (selectedProduct != null)
                             {
-                                //Show the editor window to edit the selected user
+                                //Show the editor window to edit the selected brand
                                 //on dialog result yes update it
                                 DialogResult res = new frmEditProduct(ref selectedProduct, ref product_brands).ShowDialog();
                                 if (res == DialogResult.OK)
@@ -434,7 +434,7 @@ namespace XtremePharmacyManager
                             selectedProduct = products.Where(x => x.ID == ProductID).FirstOrDefault();
                             if (selectedProduct != null)
                             {
-                                //Show the editor window to edit the selected user
+                                //Show the editor window to delete the selected brand
                                 //on dialog result yes update it
                                 DialogResult res = MessageBox.Show("Are you sure you want to delete this record?\nThis operation is irreversible and can cause " +
                                 "troubles in the database relations.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -481,6 +481,7 @@ namespace XtremePharmacyManager
             DataGridViewRow row = target_view.Rows[e.RowIndex];
             int ProductID = -1;
             Product target_product;
+            ProductBrand target_brand;
             try
             {
                 if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
@@ -493,9 +494,15 @@ namespace XtremePharmacyManager
                         {
                             txtID.Text = target_product.ID.ToString();
                             txtReferencedID.Text = target_product.ID.ToString();
-                            if (cbSelectBrand.Items.Contains(target_product.BrandID))
+                            target_brand = product_brands.Where(x => x.ID == target_product.BrandID).FirstOrDefault();
+                            if (target_brand != null && cbSelectBrand.Items.Contains(target_brand))
                             {
-                                cbSelectBrand.SelectedValue = target_product.BrandID;
+                                cbSelectBrand.SelectedValue = target_brand.ID;
+                            }
+                            else
+                            {
+                                cbSelectBrand.DataSource = ent.ProductBrands.ToList();
+                                cbSelectBrand.SelectedValue = ent.ProductBrands.FirstOrDefault().ID;
                             }
                             txtProductName.Text = target_product.ProductName.ToString();
                             txtProductDescription.Text = target_product.ProductDescription.ToString();
@@ -540,9 +547,14 @@ namespace XtremePharmacyManager
                             if (target_product != null)
                             {
                                 target_brand = product_brands.Where(x => x.ID == target_product.BrandID).FirstOrDefault();
-                                if (target_brand != null)
+                                if (target_brand != null && product_brands.Contains(target_brand))
                                 {
                                     brandcell.Value = target_brand.ID;
+                                }
+                                else
+                                {
+                                    brandcolumn.DataSource = ent.ProductBrands.ToList();
+                                    brandcell.Value = ent.ProductBrands.FirstOrDefault().ID;
                                 }
                             }
                         }

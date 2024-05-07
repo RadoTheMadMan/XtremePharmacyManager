@@ -217,6 +217,13 @@ namespace XtremePharmacyManager
                                     {
                                         ent.UpdateOrderDeliveryByID(selectedDelivery.ID, selectedDelivery.OrderID,selectedDelivery.DeliveryServiceID,selectedDelivery.PaymentMethodID,selectedDelivery.CargoID,selectedDelivery.DeliveryStatus,selectedDelivery.DeliveryReason);
                                         ent.SaveChanges();
+                                        //whenever you do an operation on something check if it exist in the database views and reload it in the model
+                                        //if it exist in the views and/or the tables
+                                        ExtendedOrderDeliveriesView od_view = ent.ExtendedOrderDeliveriesViews.Where(x => x.ID == selectedDelivery.ID).FirstOrDefault();
+                                        if (od_view != null)
+                                        {
+                                            ent.Entry(od_view).Reload();
+                                        }
                                         RefreshDeliveryServices();
                                         RefreshPaymentMethods();
                                         RefreshProductOrders();
@@ -243,6 +250,13 @@ namespace XtremePharmacyManager
                                     {
                                         ent.AddOrderDelivery(selectedDelivery.OrderID,selectedDelivery.DeliveryServiceID,selectedDelivery.PaymentMethodID,selectedDelivery.CargoID,selectedDelivery.DeliveryReason);
                                         ent.SaveChanges();
+                                        //whenever you do an operation on something check if it exist in the database views and reload it in the model
+                                        //if it exist in the views and/or the tables
+                                        ExtendedOrderDeliveriesView od_view = ent.ExtendedOrderDeliveriesViews.Where(x => x.ID == selectedDelivery.ID).FirstOrDefault();
+                                        if (od_view != null)
+                                        {
+                                            ent.Entry(od_view).Reload();
+                                        }
                                         RefreshDeliveryServices();
                                         RefreshPaymentMethods();
                                         RefreshProductOrders();
@@ -270,6 +284,13 @@ namespace XtremePharmacyManager
                                 {
                                     ent.AddOrderDelivery(selectedDelivery.OrderID, selectedDelivery.DeliveryServiceID, selectedDelivery.PaymentMethodID, selectedDelivery.CargoID, selectedDelivery.DeliveryReason);
                                     ent.SaveChanges();
+                                    //whenever you do an operation on something check if it exist in the database views and reload it in the model
+                                    //if it exist in the views and/or the tables
+                                    ExtendedOrderDeliveriesView od_view = ent.ExtendedOrderDeliveriesViews.Where(x => x.ID == selectedDelivery.ID).FirstOrDefault();
+                                    if (od_view != null)
+                                    {
+                                        ent.Entry(od_view).Reload();
+                                    }
                                     RefreshDeliveryServices();
                                     RefreshPaymentMethods();
                                     RefreshProductOrders();
@@ -298,6 +319,13 @@ namespace XtremePharmacyManager
                         {
                             ent.AddOrderDelivery(selectedDelivery.OrderID, selectedDelivery.DeliveryServiceID, selectedDelivery.PaymentMethodID, selectedDelivery.CargoID, selectedDelivery.DeliveryReason);
                             ent.SaveChanges();
+                            //whenever you do an operation on something check if it exist in the database views and reload it in the model
+                            //if it exist in the views and/or the tables
+                            ExtendedOrderDeliveriesView od_view = ent.ExtendedOrderDeliveriesViews.Where(x => x.ID == selectedDelivery.ID).FirstOrDefault();
+                            if (od_view != null)
+                            {
+                                ent.Entry(od_view).Reload();
+                            }
                             RefreshDeliveryServices();
                             RefreshPaymentMethods();
                             RefreshProductOrders();
@@ -350,6 +378,13 @@ namespace XtremePharmacyManager
                                     {
                                         ent.DeleteOrderDeliveryByID(selectedDelivery.ID);
                                         ent.SaveChanges();
+                                        //whenever you do an operation on something check if it exist in the database views and reload it in the model
+                                        //if it exist in the views and/or the tables
+                                        ExtendedOrderDeliveriesView od_view = ent.ExtendedOrderDeliveriesViews.Where(x=>x.ID == selectedDelivery.ID).FirstOrDefault();
+                                        if(od_view != null)
+                                        {
+                                            ent.Entry(od_view).Reload();
+                                        }
                                         RefreshDeliveryServices();
                                         RefreshPaymentMethods();
                                         RefreshProductOrders();
@@ -382,6 +417,9 @@ namespace XtremePharmacyManager
             DataGridViewRow row = target_view.Rows[e.RowIndex];
             int DeliveryID = -1;
             OrderDelivery target_delivery;
+            ProductOrder target_order;
+            DeliveryService target_service;
+            PaymentMethod target_method;
             try
             {
                 if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
@@ -393,17 +431,35 @@ namespace XtremePharmacyManager
                         if (target_delivery != null)
                         {
                             txtID.Text = target_delivery.ID.ToString();
-                            if (cbSelectProductOrder.Items.Contains(product_orders.Where(x=>x.ID ==target_delivery.OrderID)))
+                            target_order = product_orders.Where(x => x.ID == target_delivery.OrderID).FirstOrDefault();
+                            if (target_order != null && cbSelectProductOrder.Items.Contains(target_order))
                             {
-                                cbSelectProductOrder.SelectedValue = target_delivery.OrderID;
+                                cbSelectProductOrder.SelectedValue = target_order.ID;
                             }
-                            if (cbSelectDeliveryService.Items.Contains(delivery_services.Where(x=>x.ID == target_delivery.DeliveryServiceID)))
+                            else
                             {
-                                cbSelectDeliveryService.SelectedValue = target_delivery.DeliveryServiceID;
+                                cbSelectProductOrder.DataSource = ent.ProductOrders.ToList();
+                                cbSelectProductOrder.SelectedValue = ent.ProductOrders.FirstOrDefault().ID;
                             }
-                            if (cbSelectPaymentMethod.Items.Contains(payment_methods.Where(x=>x.ID == target_delivery.PaymentMethodID)))
+                            target_service = delivery_services.Where(x => x.ID == target_delivery.DeliveryServiceID).FirstOrDefault();
+                            if (target_service != null && cbSelectDeliveryService.Items.Contains(target_service))
                             {
-                                cbSelectPaymentMethod.SelectedValue = target_delivery.PaymentMethodID;
+                                cbSelectDeliveryService.SelectedValue = target_service.ID;
+                            }
+                            else
+                            {
+                                cbSelectDeliveryService.DataSource = ent.DeliveryServices.ToList();
+                                cbSelectDeliveryService.SelectedValue= ent.DeliveryServices.FirstOrDefault().ID;
+                            }
+                            target_method = payment_methods.Where(x => x.ID == target_delivery.PaymentMethodID).FirstOrDefault();
+                            if (target_method != null && cbSelectPaymentMethod.Items.Contains(target_method))
+                            {
+                                cbSelectPaymentMethod.SelectedValue = target_method.ID;
+                            }
+                            else
+                            {
+                                cbSelectPaymentMethod.DataSource = ent.PaymentMethods.ToList();
+                                cbSelectPaymentMethod.SelectedValue= ent.PaymentMethods.FirstOrDefault().ID;
                             }
                             dtDateAddedFrom.Value = target_delivery.DateAdded;
                             dtDateModifiedFrom.Value = target_delivery.DateModified;
@@ -426,7 +482,7 @@ namespace XtremePharmacyManager
         {
             DataGridView target_view = (DataGridView)sender;
             DataGridViewComboBoxCell productordercell;
-            DataGridViewComboBoxColumn productorder;
+            DataGridViewComboBoxColumn productordercolumn;
             DataGridViewComboBoxCell deliveryservicecell;
             DataGridViewComboBoxColumn deliveryservicecolumn;
             DataGridViewComboBoxCell paymentmethodcell;
@@ -445,7 +501,7 @@ namespace XtremePharmacyManager
                     if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
                     {
                         productordercell = (DataGridViewComboBoxCell)row.Cells["ProductOrderIDColumn"];
-                        productorder = (DataGridViewComboBoxColumn)target_view.Columns["ProductOrderIDColumn"];
+                        productordercolumn = (DataGridViewComboBoxColumn)target_view.Columns["ProductOrderIDColumn"];
                         deliveryservicecell = (DataGridViewComboBoxCell)row.Cells["DeliveryServiceIDColumn"];
                         deliveryservicecolumn = (DataGridViewComboBoxColumn)target_view.Columns["DeliveryServiceIDColumn"];
                         paymentmethodcell = (DataGridViewComboBoxCell)row.Cells["PaymentMethodIDColumn"];
@@ -459,19 +515,34 @@ namespace XtremePharmacyManager
                             if (target_order_delivery != null)
                             {
                                 target_product_order = product_orders.Where(x => x.ID == target_order_delivery.OrderID).FirstOrDefault();
-                                if (target_product_order != null)
+                                if (target_product_order != null && productordercolumn.Items.Contains(target_product_order))
                                 {
                                     productordercell.Value = target_product_order.ID;
                                 }
+                                else
+                                {
+                                    productordercolumn.DataSource = ent.ProductOrders.ToList();
+                                    productordercell.Value = ent.ProductOrders.FirstOrDefault().ID;
+                                }
                                 target_delivery_service = delivery_services.Where(x => x.ID == target_order_delivery.DeliveryServiceID).FirstOrDefault();
-                                if (target_delivery_service != null)
+                                if (target_delivery_service != null && deliveryservicecolumn.Items.Contains(target_delivery_service))
                                 {
                                     deliveryservicecell.Value = target_delivery_service.ID;
                                 }
+                                else
+                                {
+                                    deliveryservicecolumn.DataSource = ent.DeliveryServices.ToList();
+                                    deliveryservicecell.Value = ent.DeliveryServices.FirstOrDefault().ID;
+                                }
                                 target_payment_method = payment_methods.Where(x => x.ID == target_order_delivery.PaymentMethodID).FirstOrDefault();
-                                if (target_payment_method != null)
+                                if (target_payment_method != null && paymentmethodcolumn.Items.Contains(target_payment_method))
                                 {
                                     paymentmethodcell.Value = target_payment_method.ID;
+                                }
+                                else
+                                {
+                                    paymentmethodcolumn.DataSource = ent.PaymentMethods.ToList();
+                                    paymentmethodcell.Value= ent.PaymentMethods.FirstOrDefault().ID;
                                 }
                                 statuscell.Value = statuscolumn.Items[target_order_delivery.DeliveryStatus]; //this is not good
                             }

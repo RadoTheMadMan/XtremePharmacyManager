@@ -30,24 +30,26 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.txtCargoID = new System.Windows.Forms.TextBox();
+            this.lblCargoID = new System.Windows.Forms.Label();
             this.cbStatus = new System.Windows.Forms.ComboBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.cbPaymentMethod = new System.Windows.Forms.ComboBox();
-            this.userBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblPaymentMethod = new System.Windows.Forms.Label();
             this.cbDeliveryService = new System.Windows.Forms.ComboBox();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblDeliveryService = new System.Windows.Forms.Label();
             this.txtReason = new System.Windows.Forms.TextBox();
             this.lblReason = new System.Windows.Forms.Label();
             this.cbOrder = new System.Windows.Forms.ComboBox();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblOrder = new System.Windows.Forms.Label();
             this.trbPrice = new System.Windows.Forms.TrackBar();
             this.lblShowPrice = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.cbSelectRecord = new System.Windows.Forms.ComboBox();
-            this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.orderDeliveryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblSelectRecord = new System.Windows.Forms.Label();
             this.txtOperationLogs = new System.Windows.Forms.RichTextBox();
             this.checkSilentOperation = new System.Windows.Forms.CheckBox();
@@ -63,35 +65,33 @@
             this.bulkProductOrderOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
+            this.userBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkProductOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkDeliveryServiceOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkPaymentMethodOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkProductBrandOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.orderDeliveryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.txtCargoID = new System.Windows.Forms.TextBox();
-            this.lblCargoID = new System.Windows.Forms.Label();
             this.pnlData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDeliveryBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkProductOrderOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkProductOrderOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkProductOperationBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkDeliveryServiceOperationBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkPaymentMethodOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkProductBrandOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderDeliveryBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
@@ -131,6 +131,27 @@
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(800, 779);
             this.pnlData.TabIndex = 0;
+            // 
+            // txtCargoID
+            // 
+            this.txtCargoID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtCargoID.Location = new System.Drawing.Point(195, 165);
+            this.txtCargoID.Name = "txtCargoID";
+            this.txtCargoID.Size = new System.Drawing.Size(240, 22);
+            this.txtCargoID.TabIndex = 75;
+            // 
+            // lblCargoID
+            // 
+            this.lblCargoID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCargoID.AutoSize = true;
+            this.lblCargoID.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCargoID.Location = new System.Drawing.Point(20, 169);
+            this.lblCargoID.Name = "lblCargoID";
+            this.lblCargoID.Size = new System.Drawing.Size(72, 16);
+            this.lblCargoID.TabIndex = 74;
+            this.lblCargoID.Text = "Cargo ID:";
             // 
             // cbStatus
             // 
@@ -179,9 +200,9 @@
             this.cbPaymentMethod.TabIndex = 70;
             this.cbPaymentMethod.ValueMember = "ID";
             // 
-            // userBindingSource1
+            // paymentMethodBindingSource
             // 
-            this.userBindingSource1.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
             // 
             // lblPaymentMethod
             // 
@@ -208,9 +229,9 @@
             this.cbDeliveryService.TabIndex = 68;
             this.cbDeliveryService.ValueMember = "ID";
             // 
-            // userBindingSource
+            // deliveryServiceBindingSource
             // 
-            this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            this.deliveryServiceBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.DeliveryService);
             // 
             // lblDeliveryService
             // 
@@ -259,9 +280,9 @@
             this.cbOrder.TabIndex = 55;
             this.cbOrder.ValueMember = "ID";
             // 
-            // productBindingSource
+            // productOrderBindingSource
             // 
-            this.productBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.Product);
+            this.productOrderBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductOrder);
             // 
             // lblOrder
             // 
@@ -326,9 +347,9 @@
             this.cbSelectRecord.ValueMember = "ID";
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
-            // productOrderBindingSource
+            // orderDeliveryBindingSource
             // 
-            this.productOrderBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductOrder);
+            this.orderDeliveryBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.OrderDelivery);
             // 
             // lblSelectRecord
             // 
@@ -511,6 +532,18 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
+            // userBindingSource1
+            // 
+            this.userBindingSource1.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            // 
+            // productBindingSource
+            // 
+            this.productBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.Product);
+            // 
             // productBrandBindingSource
             // 
             this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
@@ -519,17 +552,9 @@
             // 
             this.bulkProductOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkProductOperation);
             // 
-            // deliveryServiceBindingSource
-            // 
-            this.deliveryServiceBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.DeliveryService);
-            // 
             // bulkDeliveryServiceOperationBindingSource
             // 
             this.bulkDeliveryServiceOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkDeliveryServiceOperation);
-            // 
-            // paymentMethodBindingSource
-            // 
-            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
             // 
             // bulkPaymentMethodOperationBindingSource
             // 
@@ -547,31 +572,6 @@
             // 
             this.errBulkProvider.ContainerControl = this;
             // 
-            // orderDeliveryBindingSource
-            // 
-            this.orderDeliveryBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.OrderDelivery);
-            // 
-            // txtCargoID
-            // 
-            this.txtCargoID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtCargoID.Location = new System.Drawing.Point(195, 165);
-            this.txtCargoID.Name = "txtCargoID";
-            this.txtCargoID.Size = new System.Drawing.Size(240, 22);
-            this.txtCargoID.TabIndex = 75;
-            // 
-            // lblCargoID
-            // 
-            this.lblCargoID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCargoID.AutoSize = true;
-            this.lblCargoID.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCargoID.Location = new System.Drawing.Point(20, 169);
-            this.lblCargoID.Name = "lblCargoID";
-            this.lblCargoID.Size = new System.Drawing.Size(72, 16);
-            this.lblCargoID.TabIndex = 74;
-            this.lblCargoID.Text = "Cargo ID:";
-            // 
             // frmBulkOrderDeliveryOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -579,26 +579,26 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmBulkOrderDeliveryOperations";
-            this.Text = "Bulk Product Order Operations";
+            this.Text = "Bulk Order Delivery Operations";
             this.Load += new System.EventHandler(this.frmBulkOrderDeliveryOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.orderDeliveryBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkProductOrderOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkProductOrderOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkProductOperationBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkDeliveryServiceOperationBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkPaymentMethodOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkProductBrandOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.orderDeliveryBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
