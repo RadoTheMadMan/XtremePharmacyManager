@@ -228,6 +228,12 @@ namespace XtremePharmacyManager
                                             selectedOrder.OrderPrice, selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderStatus,
                                             selectedOrder.OrderReason);
                                         ent.SaveChanges();
+                                        //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
+                                        ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
+                                        if (pro_view != null)
+                                        {
+                                            ent.Entry(pro_view).Reload();
+                                        }
                                         RefreshEmployees();
                                         RefreshClients();
                                         RefreshProducts();
@@ -277,6 +283,12 @@ namespace XtremePharmacyManager
                                             selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                                         }
                                         ent.SaveChanges();
+                                        //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
+                                        ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
+                                        if (pro_view != null)
+                                        {
+                                            ent.Entry(pro_view).Reload();
+                                        }
                                         RefreshEmployees();
                                         RefreshClients();
                                         RefreshProducts();
@@ -327,6 +339,12 @@ namespace XtremePharmacyManager
                                         selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                                     }
                                     ent.SaveChanges();
+                                    //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
+                                    ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
+                                    if (pro_view != null)
+                                    {
+                                        ent.Entry(pro_view).Reload();
+                                    }
                                     RefreshEmployees();
                                     RefreshClients();
                                     RefreshProducts();
@@ -378,6 +396,12 @@ namespace XtremePharmacyManager
                                 selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                             }
                             ent.SaveChanges();
+                            //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
+                            ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
+                            if (pro_view != null)
+                            {
+                                ent.Entry(pro_view).Reload();
+                            }
                             RefreshEmployees();
                             RefreshClients();
                             RefreshProducts();
@@ -440,6 +464,12 @@ namespace XtremePharmacyManager
                                     {
                                         ent.DeleteProductOrderByID(selectedOrder.ID);
                                         ent.SaveChanges();
+                                        //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
+                                        ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x=> x.ID == selectedOrder.ID).FirstOrDefault();
+                                        if(pro_view != null)
+                                        {
+                                            ent.Entry(pro_view).Reload();
+                                        }
                                         RefreshEmployees();
                                         RefreshClients();
                                         RefreshProducts();
@@ -493,15 +523,15 @@ namespace XtremePharmacyManager
                         if (target_order != null)
                         {
                             txtID.Text = target_order.ID.ToString();
-                            if (cbSelectProduct.Items.Contains(products.Where(x => x.ID == target_order.ProductID)))
+                            if (cbSelectProduct.Items.Contains(products.Where(x => x.ID == target_order.ProductID).FirstOrDefault()))
                             {
                                 cbSelectProduct.SelectedValue = target_order.ProductID;
                             }
-                            if (cbSelectEmployee.Items.Contains(employees.Where(x => x.ID == target_order.EmployeeID)))
+                            if (cbSelectEmployee.Items.Contains(employees.Where(x => x.ID == target_order.EmployeeID).FirstOrDefault()))
                             {
                                 cbSelectEmployee.SelectedValue = target_order.EmployeeID;
                             }
-                            if (cbSelectClient.Items.Contains(clients.Where(x => x.ID == target_order.ClientID)))
+                            if (cbSelectClient.Items.Contains(clients.Where(x => x.ID == target_order.ClientID).FirstOrDefault()))
                             {
                                 cbSelectClient.SelectedValue = target_order.ClientID;
                             }
@@ -560,17 +590,17 @@ namespace XtremePharmacyManager
                             if (target_product_order != null)
                             {
                                 target_product = products.Where(x => x.ID == target_product_order.ProductID).FirstOrDefault();
-                                if (target_product != null)
+                                if (target_product != null && productcolumn.Items.Contains(target_product))
                                 {
                                     productcell.Value = target_product.ID;
                                 }
                                 target_employee = employees.Where(x => x.ID == target_product_order.EmployeeID).FirstOrDefault();
-                                if (target_employee != null)
+                                if (target_employee != null && employeecolumn.Items.Contains(target_employee))
                                 {
                                     employeecell.Value = target_employee.ID;
                                 }
                                 target_client = clients.Where(x => x.ID == target_product_order.ClientID).FirstOrDefault();
-                                if (target_client != null)
+                                if (target_client != null && clientcolumn.Items.Contains(target_client))
                                 {
                                     clientcell.Value = target_client.ID;
                                 }

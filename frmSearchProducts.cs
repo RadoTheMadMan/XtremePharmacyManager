@@ -287,6 +287,12 @@ namespace XtremePharmacyManager
                                             selectedProduct.ProductExpiryDate,selectedProduct.ProductRegNum,selectedProduct.ProductPartNum,
                                             selectedProduct.ProductStorageLocation);
                                         ent.SaveChanges();
+                                        //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
+                                        ExtendedProductView pr_view = ent.ExtendedProductViews.Where(x => x.ID == selectedProduct.ID).FirstOrDefault();
+                                        if (pr_view != null)
+                                        {
+                                            ent.Entry(pr_view).Reload();
+                                        }
                                         RefreshProductBrands();
                                         RefreshProducts();
                                         RefreshProductImages();
@@ -314,6 +320,12 @@ namespace XtremePharmacyManager
                                             selectedProduct.ProductQuantity, selectedProduct.ProductPrice, selectedProduct.ProductExpiryDate,
                                             selectedProduct.ProductRegNum, selectedProduct.ProductPartNum, selectedProduct.ProductStorageLocation);
                                         ent.SaveChanges();
+                                        //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
+                                        ExtendedProductView pr_view = ent.ExtendedProductViews.Where(x => x.ID == selectedProduct.ID).FirstOrDefault();
+                                        if (pr_view != null)
+                                        {
+                                            ent.Entry(pr_view).Reload();
+                                        }
                                         RefreshProductBrands();
                                         RefreshProducts();
                                         RefreshProductImages();
@@ -341,6 +353,12 @@ namespace XtremePharmacyManager
                                         selectedProduct.ProductQuantity, selectedProduct.ProductPrice, selectedProduct.ProductExpiryDate,
                                         selectedProduct.ProductRegNum, selectedProduct.ProductPartNum, selectedProduct.ProductStorageLocation);
                                     ent.SaveChanges();
+                                    //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
+                                    ExtendedProductView pr_view = ent.ExtendedProductViews.Where(x => x.ID == selectedProduct.ID).FirstOrDefault();
+                                    if (pr_view != null)
+                                    {
+                                        ent.Entry(pr_view).Reload();
+                                    }
                                     RefreshProductBrands();
                                     RefreshProducts();
                                     RefreshProductImages();
@@ -369,6 +387,12 @@ namespace XtremePharmacyManager
                                 selectedProduct.ProductQuantity, selectedProduct.ProductPrice, selectedProduct.ProductExpiryDate,
                                 selectedProduct.ProductRegNum, selectedProduct.ProductPartNum, selectedProduct.ProductStorageLocation);
                             ent.SaveChanges();
+                            //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
+                            ExtendedProductView pr_view = ent.ExtendedProductViews.Where(x => x.ID == selectedProduct.ID).FirstOrDefault();
+                            if (pr_view != null)
+                            {
+                                ent.Entry(pr_view).Reload();
+                            }
                             RefreshProductBrands();
                             RefreshProducts();
                             RefreshProductImages();
@@ -420,6 +444,12 @@ namespace XtremePharmacyManager
                                     {
                                         ent.DeleteProductByID(selectedProduct.ID);
                                         ent.SaveChanges();
+                                        //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
+                                        ExtendedProductView pr_view = ent.ExtendedProductViews.Where(x => x.ID == selectedProduct.ID).FirstOrDefault();
+                                        if (pr_view != null)
+                                        {
+                                            ent.Entry(pr_view).Reload();
+                                        }
                                         RefreshProductBrands();
                                         RefreshProducts();
                                         RefreshProductImages();
