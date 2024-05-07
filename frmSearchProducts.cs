@@ -841,7 +841,7 @@ namespace XtremePharmacyManager
                         if (currentProduct != null)
                         {
                             target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PRODUCT_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
-                            ExtendedProductView view = ent.ExtendedProductViews.Where(x => x.ProductName == currentProduct.ProductName).FirstOrDefault();
+                            ExtendedProductView view = ent.ExtendedProductViews.Where(x => x.ID == currentProduct.ID).FirstOrDefault();
                             if (view != null)
                             {
                                 DataTable dt = new DataTable();

@@ -386,8 +386,7 @@ namespace XtremePharmacyManager
                             if(currentUser.UserRole == 0 ||  currentUser.UserRole == 1) //if the user is employee or admin(considered an employee)
                             {
                                 target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.EMPLOYEE_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
-                                EmployeeView view = ent.EmployeeViews.Where(x=>x.UserName == currentUser.UserName &&
-                                x.UserPassword == currentUser.UserPassword).FirstOrDefault();
+                                EmployeeView view = ent.EmployeeViews.Where(x=>x.ID == currentUser.ID).FirstOrDefault();
                                 if (view != null)
                                 {
                                     DataTable dt = new DataTable();
@@ -403,7 +402,7 @@ namespace XtremePharmacyManager
                                     dt.Columns.Add(nameof(view.UserDiagnose));
                                     dt.Columns.Add(nameof(view.UserDateOfRegister));
                                     dt.Columns.Add(nameof(view.UserRole));
-                                    dt.Columns.Add(nameof(view.PredictedAverageEmployeeIncome));
+                                    dt.Columns.Add(nameof(view.AverageEmployeeIncome));
                                     dt.Rows.Add(new object[]{ view.UserName,
                                                               view.UserPassword,
                                                               view.UserDisplayName,
@@ -416,7 +415,7 @@ namespace XtremePharmacyManager
                                                               view.UserDiagnose,
                                                               view.UserDateOfRegister,
                                                               view.UserRole,
-                                                              view.PredictedAverageEmployeeIncome});
+                                                              view.AverageEmployeeIncome});
                                     foreach (EmployeeView em_view in ent.EmployeeViews)
                                     {
                                         if (em_view != view)
@@ -434,7 +433,7 @@ namespace XtremePharmacyManager
                                                               em_view.UserDiagnose,
                                                               em_view.UserDateOfRegister,
                                                               em_view.UserRole,
-                                                              em_view.PredictedAverageEmployeeIncome});
+                                                              em_view.AverageEmployeeIncome});
                                         }
                                     }
                                     current_source = new ReportDataSource("EmployeeReportData",dt);
@@ -453,8 +452,7 @@ namespace XtremePharmacyManager
                             else if(currentUser.UserRole == 2) //if the user is a client
                             {
                                 target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.CLIENT_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
-                                ClientView view = ent.ClientViews.Where(x => x.UserName == currentUser.UserName
-                               && x.UserPassword == currentUser.UserPassword).FirstOrDefault();
+                                ClientView view = ent.ClientViews.Where(x => x.ID == currentUser.ID).FirstOrDefault();
                                 if (view != null)
                                 {
                                     DataTable dt = new DataTable();
@@ -470,7 +468,7 @@ namespace XtremePharmacyManager
                                     dt.Columns.Add(nameof(view.UserDiagnose));
                                     dt.Columns.Add(nameof(view.UserDateOfRegister));
                                     dt.Columns.Add(nameof(view.UserRole));
-                                    dt.Columns.Add(nameof(view.PredictedAverageClientSpending));
+                                    dt.Columns.Add(nameof(view.AverageClientSpending));
                                     dt.Rows.Add(new object[]{ view.UserName,
                                                               view.UserPassword,
                                                               view.UserDisplayName,
@@ -483,7 +481,7 @@ namespace XtremePharmacyManager
                                                               view.UserDiagnose,
                                                               view.UserDateOfRegister,
                                                               view.UserRole,
-                                                              view.PredictedAverageClientSpending});
+                                                              view.AverageClientSpending});
                                     foreach(ClientView cl_view in ent.ClientViews)
                                     {
                                         if(cl_view != view)
@@ -501,7 +499,7 @@ namespace XtremePharmacyManager
                                                               cl_view.UserDiagnose,
                                                               cl_view.UserDateOfRegister,
                                                               cl_view.UserRole,
-                                                              cl_view.PredictedAverageClientSpending});
+                                                              cl_view.AverageClientSpending});
                                         }
                                     }
                                     current_source = new ReportDataSource("ClientReportData", dt);

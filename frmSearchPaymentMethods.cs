@@ -304,7 +304,7 @@ namespace XtremePharmacyManager
                         if (currentMethod != null)
                         {
                             target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PAYMENT_METHOD_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
-                            ExtendedPaymentMethodsView view = ent.ExtendedPaymentMethodsViews.Where(x => x.MethodName == currentMethod.MethodName).FirstOrDefault();
+                            ExtendedPaymentMethodsView view = ent.ExtendedPaymentMethodsViews.Where(x => x.ID == currentMethod.ID).FirstOrDefault();
                             if (view != null)
                             {
                                 DataTable dt = new DataTable();

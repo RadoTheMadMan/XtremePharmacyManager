@@ -310,7 +310,7 @@ namespace XtremePharmacyManager
                         if (currentService != null)
                         {
                             target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.DELIVERY_SERVICE_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
-                            ExtendedDeliveryServicesView view = ent.ExtendedDeliveryServicesViews.Where(x => x.ServiceName == currentService.ServiceName).FirstOrDefault();
+                            ExtendedDeliveryServicesView view = ent.ExtendedDeliveryServicesViews.Where(x => x.ID == currentService.ID).FirstOrDefault();
                             if (view != null)
                             {
                                 DataTable dt = new DataTable();

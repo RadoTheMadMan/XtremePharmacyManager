@@ -306,7 +306,7 @@ namespace XtremePharmacyManager
                         if (currentBrand != null)
                         {
                             target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PRODUCT_BRAND_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
-                            ExtendedBrandsView view = ent.ExtendedBrandsViews.Where(x => x.BrandName == currentBrand.BrandName).FirstOrDefault();
+                            ExtendedBrandsView view = ent.ExtendedBrandsViews.Where(x => x.ID == currentBrand.ID).FirstOrDefault();
                             if (view != null)
                             {
                                 DataTable dt = new DataTable();
