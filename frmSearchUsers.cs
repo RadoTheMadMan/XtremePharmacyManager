@@ -137,7 +137,28 @@ namespace XtremePharmacyManager
                                         ent.UpdateUserByID(selectedUser.ID, selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName,
                                             selectedUser.UserBirthDate, selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic,
                                             selectedUser.UserBalance, selectedUser.UserDiagnose, selectedUser.UserRole);
+                                        //Update the fucking views as well because they don't get automatically updated in the entity model on
+                                        //data change while in the database itself they get updated and created and deleted easily
+                                        //
                                         ent.SaveChanges();
+                                        if (selectedUser.UserRole == 0 || selectedUser.UserRole == 1)
+                                        {
+                                            //retrieve the data and if it exists reload it from the database, if not, do nothing
+                                            EmployeeView current_emp_view = ent.EmployeeViews.Where(x => x.ID == selectedUser.ID).FirstOrDefault();
+                                            if (current_emp_view != null)
+                                            {
+                                                ent.Entry(current_emp_view).Reload();
+                                            }
+                                        }
+                                        else if (selectedUser.UserRole == 2)
+                                        {
+                                            //retrieve the data and if it exists reload it from the database, if not, do nothing
+                                            ClientView current_cl_view = ent.ClientViews.Where(x => x.ID == selectedUser.ID).FirstOrDefault();
+                                            if (current_cl_view != null)
+                                            {
+                                                ent.Entry(current_cl_view).Reload();
+                                            }
+                                        }
                                         RefreshUsers();
                                     }
                                 }
@@ -164,6 +185,24 @@ namespace XtremePharmacyManager
                                             selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
                                             selectedUser.UserDiagnose, selectedUser.UserRole);
                                         ent.SaveChanges();
+                                        if (selectedUser.UserRole == 0 || selectedUser.UserRole == 1)
+                                        {
+                                            //retrieve the data and if it exists reload it from the database, if not, do nothing
+                                            EmployeeView current_emp_view = ent.EmployeeViews.Where(x => x.ID == selectedUser.ID).FirstOrDefault();
+                                            if (current_emp_view != null)
+                                            {
+                                                ent.Entry(current_emp_view).Reload();
+                                            }
+                                        }
+                                        else if (selectedUser.UserRole == 2)
+                                        {
+                                            //retrieve the data and if it exists reload it from the database, if not, do nothing
+                                            ClientView current_cl_view = ent.ClientViews.Where(x => x.ID == selectedUser.ID).FirstOrDefault();
+                                            if (current_cl_view != null)
+                                            {
+                                                ent.Entry(current_cl_view).Reload();
+                                            }
+                                        }
                                         RefreshUsers();
                                     }
                                 }
@@ -189,6 +228,24 @@ namespace XtremePharmacyManager
                                         selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
                                         selectedUser.UserDiagnose, selectedUser.UserRole);
                                     ent.SaveChanges();
+                                    if (selectedUser.UserRole == 0 || selectedUser.UserRole == 1)
+                                    {
+                                        //retrieve the data and if it exists reload it from the database, if not, do nothing
+                                        EmployeeView current_emp_view = ent.EmployeeViews.Where(x => x.ID == selectedUser.ID).FirstOrDefault();
+                                        if (current_emp_view != null)
+                                        {
+                                            ent.Entry(current_emp_view).Reload();
+                                        }
+                                    }
+                                    else if (selectedUser.UserRole == 2)
+                                    {
+                                        //retrieve the data and if it exists reload it from the database, if not, do nothing
+                                        ClientView current_cl_view = ent.ClientViews.Where(x => x.ID == selectedUser.ID).FirstOrDefault();
+                                        if (current_cl_view != null)
+                                        {
+                                            ent.Entry(current_cl_view).Reload();
+                                        }
+                                    }
                                     RefreshUsers();
                                 }
                             }
@@ -215,6 +272,24 @@ namespace XtremePharmacyManager
                                 selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
                                 selectedUser.UserDiagnose, selectedUser.UserRole);
                             ent.SaveChanges();
+                            if (selectedUser.UserRole == 0 || selectedUser.UserRole == 1)
+                            {
+                                //retrieve the data and if it exists reload it from the database, if not, do nothing
+                                EmployeeView current_emp_view = ent.EmployeeViews.Where(x => x.ID == selectedUser.ID).FirstOrDefault();
+                                if (current_emp_view != null)
+                                {
+                                    ent.Entry(current_emp_view).Reload();
+                                }
+                            }
+                            else if (selectedUser.UserRole == 2)
+                            {
+                                //retrieve the data and if it exists reload it from the database, if not, do nothing
+                                ClientView current_cl_view = ent.ClientViews.Where(x => x.ID == selectedUser.ID).FirstOrDefault();
+                                if (current_cl_view != null)
+                                {
+                                    ent.Entry(current_cl_view).Reload();
+                                }
+                            }
                             RefreshUsers();
                         }
                     }
@@ -264,6 +339,24 @@ namespace XtremePharmacyManager
                                     {
                                         ent.DeleteUserByID(selectedUser.ID);
                                         ent.SaveChanges();
+                                        if (selectedUser.UserRole == 0 || selectedUser.UserRole == 1)
+                                        {
+                                            //retrieve the data and if it exists reload it from the database, if not, do nothing
+                                            EmployeeView current_emp_view = ent.EmployeeViews.Where(x => x.ID == selectedUser.ID).FirstOrDefault();
+                                            if (current_emp_view != null)
+                                            {
+                                                ent.Entry(current_emp_view).Reload();
+                                            }
+                                        }
+                                        else if (selectedUser.UserRole == 2)
+                                        {
+                                            //retrieve the data and if it exists reload it from the database, if not, do nothing
+                                            ClientView current_cl_view = ent.ClientViews.Where(x => x.ID == selectedUser.ID).FirstOrDefault();
+                                            if (current_cl_view != null)
+                                            {
+                                                ent.Entry(current_cl_view).Reload();
+                                            }
+                                        }
                                         RefreshUsers();
                                     }
                                 }
