@@ -1530,7 +1530,7 @@ namespace XtremePharmacyManager
             startTime = DateTime.Now;
             if (bulk_operations != null && bulk_operations.Count > 0)
             {
-                operation_log = $"Operations started executing at: {startTime.ToShortTimeString()}";
+                operation_log = $"Operations started executing at: {startTime.ToShortTimeString()}\n";
                 foreach (BulkOperation<T> bulk_operation in bulk_operations)
                 {
                     bool result = await bulk_operation.Execute();

@@ -218,7 +218,10 @@ namespace XtremePharmacyManager
         {
             try
             {
-                selected_target = manager_entities.PaymentMethods.Where(x => x.ID == ((PaymentMethod)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
+                if (cbSelectRecord.SelectedItem != null)
+                {
+                    selected_target = manager_entities.PaymentMethods.Where(x => x.ID == ((PaymentMethod)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
+                }
                 if (selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;

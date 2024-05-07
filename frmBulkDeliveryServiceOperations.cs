@@ -225,7 +225,10 @@ namespace XtremePharmacyManager
         {
             try
             {
-                selected_target = manager_entities.DeliveryServices.Where(x => x.ID == ((DeliveryService)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
+                if (cbSelectRecord.SelectedItem != null)
+                {
+                    selected_target = manager_entities.DeliveryServices.Where(x => x.ID == ((DeliveryService)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
+                }
                 if (selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;

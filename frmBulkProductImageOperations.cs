@@ -241,7 +241,10 @@ namespace XtremePharmacyManager
             Bitmap selected_image;
             try
             {
-                selected_target = manager_entities.ProductImages.Where(x => x.ID == ((ProductImage)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
+                if (cbSelectRecord.SelectedItem != null)
+                {
+                    selected_target = manager_entities.ProductImages.Where(x => x.ID == ((ProductImage)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
+                }
                 if (selected_target != null)
                 {
                     ConvertBinaryToImage(selected_target.ImageData, out selected_image);

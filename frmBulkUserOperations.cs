@@ -299,7 +299,10 @@ namespace XtremePharmacyManager
         {
             try
             {
-                selected_target = manager_entities.Users.Where(x => x.ID == ((User)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
+                if (cbSelectRecord.SelectedItem != null)
+                {
+                    selected_target = manager_entities.Users.Where(x => x.ID == ((User)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
+                }
                 Bitmap currentpfp = new Bitmap(64, 64);
                 if (selected_target != null)
                 {
