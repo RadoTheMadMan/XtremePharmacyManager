@@ -1524,9 +1524,14 @@ namespace XtremePharmacyManager
 
         public async void ExecuteOperations()
         {
-            if(bulk_operations != null)
+            DateTime startTime;
+            DateTime endTime;
+            TimeSpan deltaTime;
+            startTime = DateTime.Now;
+            if (bulk_operations != null && bulk_operations.Count > 0)
             {
-                foreach(BulkOperation<T> bulk_operation in bulk_operations)
+                operation_log = $"Operations started executing at: {startTime.ToShortTimeString()}";
+                foreach (BulkOperation<T> bulk_operation in bulk_operations)
                 {
                     bool result = await bulk_operation.Execute();
                     operation_log += $"Executing operation: {bulk_operation.OperationName}\n";
@@ -1543,8 +1548,11 @@ namespace XtremePharmacyManager
                     }
                 }
             }
+            endTime = DateTime.Now;
+            deltaTime = endTime - startTime;
+            operation_log += $"Operations finished. Time finished:{endTime.ToShortTimeString()}";
             bulk_operations.Clear();
-            result = $"Operations Results:\nCompleted Operations: {completed_operations} Failed Operations: {failed_operations}";
+            result = $"Operations Results:\nCompleted Operations: {completed_operations} Failed Operations: {failed_operations} Execution Time: {deltaTime}";
             BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
             ev_args.OperationsList = bulk_operations;
             ev_args.CompletedOperations = completed_operations;
