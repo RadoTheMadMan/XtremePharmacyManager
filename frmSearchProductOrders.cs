@@ -217,7 +217,7 @@ namespace XtremePharmacyManager
                             selectedOrder = product_orders.Where(x => x.ID == OrderID && (x.OrderStatus != 7 || x.OrderStatus != 8 || x.OrderStatus != 9)).FirstOrDefault();
                             if (selectedOrder != null)
                             {
-                                //Show the editor window to edit the selected user
+                                //Show the editor window to edit the selected product order or whatever it is now
                                 //on dialog result yes update it
                                 DialogResult res = new frmEditProductOrder(ref selectedOrder, ref products, ref clients, ref employees).ShowDialog();
                                 if (res == DialogResult.OK)
@@ -454,7 +454,7 @@ namespace XtremePharmacyManager
                             selectedOrder = product_orders.Where(x => x.ID == OrderID).FirstOrDefault();
                             if (selectedOrder != null)
                             {
-                                //Show the editor window to edit the selected user
+                                //Show the editor window to delete the selected product order or whatever it is
                                 //on dialog result yes update it
                                 DialogResult res = MessageBox.Show("Are you sure you want to delete this record?\nThis operation is irreversible and can cause " +
                                 "troubles in the database relations.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -512,28 +512,49 @@ namespace XtremePharmacyManager
             DataGridViewRow row = target_view.Rows[e.RowIndex];
             int OrderID = -1;
             ProductOrder target_order;
+            Product target_product;
+            User target_employee;
+            User target_client;
             try
             {
                 if (row != null && row.Index >= 0 && row.Index <= target_view.RowCount)
                 {
                     Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out OrderID);
-                    if (OrderID >= 0 && products != null)
+                    if (products != null)
                     {
                         target_order = product_orders.Where(x => x.ID == OrderID).FirstOrDefault();
                         if (target_order != null)
                         {
                             txtID.Text = target_order.ID.ToString();
-                            if (cbSelectProduct.Items.Contains(products.Where(x => x.ID == target_order.ProductID).FirstOrDefault()))
+                            target_product = products.Where(x=>x.ID == target_order.ProductID).FirstOrDefault();
+                            if (target_product != null && cbSelectProduct.Items.Contains(target_product))
                             {
                                 cbSelectProduct.SelectedValue = target_order.ProductID;
                             }
-                            if (cbSelectEmployee.Items.Contains(employees.Where(x => x.ID == target_order.EmployeeID).FirstOrDefault()))
+                            else
+                            {
+                                cbSelectProduct.DataSource = ent.Products.ToList();
+                                cbSelectProduct.SelectedValue = ent.Products.FirstOrDefault().ID;
+                            }
+                            target_employee = employees.Where(x=>x.ID == target_order.EmployeeID).FirstOrDefault();
+                            if (target_employee != null && cbSelectEmployee.Items.Contains(target_employee))
                             {
                                 cbSelectEmployee.SelectedValue = target_order.EmployeeID;
                             }
-                            if (cbSelectClient.Items.Contains(clients.Where(x => x.ID == target_order.ClientID).FirstOrDefault()))
+                            else
+                            {
+                                cbSelectEmployee.DataSource = ent.Users.ToList();
+                                cbSelectEmployee.SelectedValue = ent.Users.FirstOrDefault().ID;
+                            }
+                            target_client = clients.Where(x=>x.ID == target_order.ClientID).FirstOrDefault();
+                            if (target_client != null && cbSelectClient.Items.Contains(target_client))
                             {
                                 cbSelectClient.SelectedValue = target_order.ClientID;
+                            }
+                            else
+                            {
+                                cbSelectClient.DataSource = ent.Users.ToList();
+                                cbSelectClient.SelectedValue =ent.Users.FirstOrDefault().ID;
                             }
                             dtDateAddedFrom.Value = target_order.DateAdded;
                             dtDateModifiedFrom.Value = target_order.DateModified;
@@ -594,17 +615,33 @@ namespace XtremePharmacyManager
                                 {
                                     productcell.Value = target_product.ID;
                                 }
+                                else
+                                {
+                                    productcolumn.DataSource = ent.Products.ToList();
+                                    productcell.Value = ent.Products.FirstOrDefault().ID;
+                                }
                                 target_employee = employees.Where(x => x.ID == target_product_order.EmployeeID).FirstOrDefault();
                                 if (target_employee != null && employeecolumn.Items.Contains(target_employee))
                                 {
                                     employeecell.Value = target_employee.ID;
+                                }
+                                else
+                                {
+                                    employeecolumn.DataSource = ent.Users.ToList();
+                                    employeecell.Value = ent.Users.FirstOrDefault().ID;
                                 }
                                 target_client = clients.Where(x => x.ID == target_product_order.ClientID).FirstOrDefault();
                                 if (target_client != null && clientcolumn.Items.Contains(target_client))
                                 {
                                     clientcell.Value = target_client.ID;
                                 }
-                                statuscell.Value = statuscolumn.Items[target_product_order.OrderStatus]; //this is not good
+                                else
+                                {
+                                    clientcolumn.DataSource = ent.Users.ToList();
+                                    clientcell.Value = ent.Users.FirstOrDefault().ID;
+                                }
+                                //if there is a fixed list of string don't put data property that is not string because it hurts
+                                statuscell.Value = statuscolumn.Items[target_product_order.OrderStatus]; 
                             }
                         }
                     }
