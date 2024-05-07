@@ -1126,7 +1126,7 @@ if @new_product_id is null
 begin
 set @new_product_id = @old_product_id;
 end
-if @new_desired_quantity is null or @new_desired_quantity < 0
+if @new_desired_quantity is null
 begin
 set @new_desired_quantity = @old_desired_quantity;
 end
@@ -2756,7 +2756,9 @@ go
 create or alter trigger ProductOrders_OnUpdate on ProductOrders for update
 as
 begin
+/* silencing it */
 set nocount on;
+/* old and new values are declared and selected into here */
 declare @old_id as int;
 declare @new_id as int;
 declare @old_product_id as int;
@@ -2777,9 +2779,13 @@ declare @old_order_status as int;
 declare @new_order_status as int;
 declare @old_order_reason as varchar(max);
 declare @new_order_reason as varchar(max);
+declare @log_title as varchar(max);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
 declare @current_date as date;
+declare @current_client_balance as money;
+declare @current_employee_balance as money;
+declare @current_product_quantity as money;
 select @old_id = ID from deleted;
 select @new_id = ID from inserted;
 select @old_product_id = ProductID from deleted;
@@ -2800,9 +2806,34 @@ select @old_order_status = OrderStatus from deleted;
 select @new_order_status = OrderStatus from inserted;
 select @old_order_reason = OrderReason from deleted;
 select @new_order_reason = OrderReason from inserted;
-set @log_message = 'A product order was updated with the id: ' + try_cast(@old_id as varchar) + '.\n
-Money and product quantities will be handled in the database depending on the status of the order.\n';
-/* now depends on the status and here is a cheatsheet for status:
+select @current_date = getdate();
+select 'A product order has been updated at: ' + try_cast(@current_date as varchar);
+select @log_message = 'A product order has been updated at: ' + try_cast(@current_date as varchar) + ' with ID: ' + try_cast(@old_id as varchar) + '. All product quantities and user balances will be deduced based on the status of the order.';
+select @log_title = '[XTremePharmacyDB] Product Order Updated';
+select @log_title as LogTitle;
+select @log_message as LogMessage;
+/* debugging purposes */
+select @old_id as OldOrderID;
+select @new_id as NewOrderID;
+select @old_product_id as OldProductID;
+select @new_product_id as NewProductID;
+select @old_desired_quantity as OldDesiredQuantity;
+select @new_desired_quantity as NewDesiredQuantity;
+select @old_order_price as OldOrderPrice;
+select @new_order_price as NewOrderPrice;
+select @old_client_id as OldClientID;
+select @new_client_id as NewClientID;
+select @old_employee_id as OldEmployeeID;
+select @new_employee_id as NewEmployeeID;
+select @old_date_added as OldDateAdded;
+select @new_date_added as NewDateAdded;
+select @old_date_modified as OldDateModified;
+select @new_date_modified as NewDateModified;
+select @old_order_status as OldOrderStatus;
+select @new_order_status as NewOrderStatus;
+select @old_order_reason as OldOrderReason;
+select @new_order_reason as NewOrderReason;
+/* Cheatsheet about the status numbers and what they mean
 0 - awaiting processing
 1 - prepaid
 2 - paid in the moment of delivery
@@ -2813,90 +2844,147 @@ Money and product quantities will be handled in the database depending on the st
 7 - cancelled order
 8 - returned order
 9 - completed
-That way let's make the order trigger control where the money go and where the stonk goes*/
-declare @current_client_balance as money;
-declare @final_client_balance as money;
-declare @current_employee_balance as money;
-declare @final_employee_balance as money;
-declare @current_product_quantity as int;
-declare @final_product_quantity as int;
-/* because otherwise the trigger fucking exceeds the nesting limit I will move the whole validation in the beginning
-fuck you if you make a mistake like mine and notlearn from it. I basically made some kind of monster here
-so the goal is to validate the product id, client id and employee id before checking the status and calculating everything*/
-if (@new_product_id >= 0 and @new_client_id >= 0 and @new_employee_id >= 0 and @old_order_status != 0 and @new_order_status != 0
-and @new_order_status != 6 and @old_order_status != 6 and @old_order_status!= 4 and @new_order_status!= 4
-and @old_order_status != 5 and @new_order_status != 5)
-begin
-if (@old_order_status != 1 and @old_order_status != 3 and @old_order_status != 2 and @old_order_status != 9)
-and (@new_order_status != 2 and @new_order_status != 7 and @new_order_status != 8 and @new_order_status != 9 and @new_order_status = 1 or @new_order_status = 3)
-begin
-print 'this is the prepaid/directly paid condition in the product order update trigger';
-select @current_client_balance = UserBalance from Users where ID = @new_client_id;
-set @final_client_balance = @current_client_balance - @new_order_price;
-update Users set UserBalance = @final_client_balance where ID = @new_client_id;
-end
-else if (@old_order_status != 0 and @old_order_status != 1  and @old_order_status != 3 and @old_order_status != 9 and @old_order_status != 2)
-and (@new_order_status != 7 or @new_order_status != 8 or @new_order_status != 9 and @new_order_status = 2)
-begin
-print 'this is the paid on delivery condition in the product order update trigger';
-select @current_client_balance = UserBalance from Users where ID = @new_client_id;
-set @final_client_balance = @current_client_balance - @new_order_price;
-update Users set UserBalance = @final_client_balance where ID = @new_client_id;
-select @current_employee_balance = UserBalance from Users where ID = @new_employee_id;
-set @final_employee_balance = @current_employee_balance + @new_order_price;
-update Users set UserBalance = @final_employee_balance where ID = @new_employee_id;
-end
-else if (@old_order_status = 1 or @old_order_status = 2 or @old_order_status = 3 and @old_order_status != 7 and @old_order_status!= 8 and @old_order_status != 9)
-and (@new_order_status = 7 or @new_order_status = 8 and @new_order_status != 9)
-begin
-print 'this is the cancelled/returned condition in the product order update trigger';
-select @current_client_balance = UserBalance from Users where ID = @new_client_id;
-set @final_client_balance = @current_client_balance + @new_order_price;
-update Users set UserBalance = @final_client_balance where ID = @new_client_id;
-select @current_employee_balance = UserBalance from Users where ID = @new_employee_id;
-set @final_employee_balance = @current_employee_balance - @new_order_price;
-update Users set UserBalance = @final_employee_balance where ID = @new_employee_id;
-end
-else if (@old_order_status = 0 or @old_order_status = 1 or @old_order_status = 3 or @old_order_status = 2 and @old_order_status != 7 and @old_order_status != 8 and @old_order_status != 9)
-and (@new_order_status != 7 and @new_order_status != 8 and @new_order_status  = 9)
-begin
-print 'this is the first finished condition in the product order update trigger and triggers when the product order was paid in any way but the order wasn''t marked finished ';
-select @current_product_quantity = ProductQuantity from Products where ID = @new_product_id;
-set @final_product_quantity = @current_product_quantity - @new_desired_quantity;
-update Products set ProductQuantity = @final_product_quantity where ID = @new_product_id;
-end
-else if (@old_order_status != 0 and @old_order_status != 1 and @old_order_status != 3 and @old_order_status != 2 and @old_order_status != 7 and @old_order_status != 8 and @old_order_status != 9)
-and (@new_order_status != 7 or @new_order_status != 8 or @new_order_status  = 9)
-begin
-print 'this is the second finished condition in the product order update trigger and triggers when the product order wasn''t paid in any way but the order was marked finished ';
-select @current_client_balance = UserBalance from Users where ID = @new_client_id;
-set @final_client_balance = @current_client_balance - @new_order_price;
-update Users set UserBalance = @final_client_balance where ID = @new_client_id;
-select @current_employee_balance = UserBalance from Users where ID = @new_employee_id;
-set @final_employee_balance = @current_employee_balance + @new_order_price;
-update Users set UserBalance = @final_employee_balance where ID = @new_employee_id;
-select @current_product_quantity = ProductQuantity from Products where ID = @new_product_id;
-set @final_product_quantity = @current_product_quantity - @new_desired_quantity;
-update Products set ProductQuantity = @final_product_quantity where ID = @new_product_id;
-end
-end
-set @additional_information = 'Old Order ID: ' + try_cast(@old_id as varchar) + '\n' + 'Old Product ID: ' + try_cast(@old_product_id as varchar) + '\n' +
-'Old Desired Quantity: ' + try_cast(@old_desired_quantity as varchar) + '\n' + 'Old Price: ' + try_cast(@old_order_price as varchar) + '\n' +
-'Old Client ID: ' + try_cast(@old_client_id as varchar) + '\n' + 'Old Employee ID: ' + try_cast(@old_employee_id as varchar) + '\n' + 
-'Old Date Added: ' + try_cast(@old_date_added as varchar) + '\n' + 'Old Date Modified: ' + try_cast(@old_date_modified as varchar) + '\n' +
-'Old Status ID: ' + try_cast(@old_order_status as varchar) + '\n' + 'Old Reason: ' + try_cast(@old_order_reason as varchar) + '\n' + 
-'New Order ID: ' + try_cast(@new_id as varchar) + '\n' + ' New Product ID: ' + try_cast(@new_product_id as varchar) + '\n' +
-'New Desired Quantity: ' + try_cast(@new_desired_quantity as varchar) + '\n' + 'New Price: ' + try_cast(@new_order_price as varchar) + '\n' +
-'New Client ID: ' + try_cast(@new_client_id as varchar) + '\n' + 'New Employee ID: ' + try_cast(@new_employee_id as varchar) + '\n' + 
-'New Date Added: ' + try_cast(@new_date_added as varchar) + '\n' + 'New Date Modified: ' + try_cast(@new_date_modified as varchar) + '\n' +
-'New Status ID: ' + try_cast(@new_order_status as varchar) + '\n' + 'New Reason: ' + try_cast(@new_order_reason as varchar) + '\n';
-set @current_date = getdate();
-exec AddLog @logdate = @current_date, 
-@logtitle='[XTremePharmacyDB] Product Order Updated', 
-@logmessage = @log_message,
-@additionalinformation = @additional_information;
+ They will be gravely needed*/
+ /* First is validation, we need to be sure everything is okay. The Product ID, the Client ID and the Employee ID should be valid and the client balance and
+ product quantity should be above 0. Only the new values are calculated here */
+ if(@new_product_id >= 0 and @new_client_id >= 0 and @new_employee_id >= 0)
+ begin
+ select @current_client_balance = UserBalance from Users where ID = @new_client_id and UserRole = 2;
+ select @current_employee_balance = UserBalance from Users where ID = @new_employee_id and (UserRole = 0 or UserRole = 1);
+ select @current_product_quantity = ProductQuantity from Products where ID = @new_product_id;
+ select 'Assigned product, client and employee are valid. Order processing can proceed';
+ select @current_client_balance as CurrentAssignedClientBalance;
+ select @current_employee_balance as CurrentAssignedEmployeeBalance;
+ select @current_product_quantity as CurrentAssignedProductQuantity;
+ /* next let's be sure that the quantity of the product is above zero and equal to the desired quantity and so is the client balance */
+ if(@current_client_balance > 0 and @current_client_balance >= @new_order_price and @current_product_quantity > 0 and @current_product_quantity >= @new_desired_quantity)
+ begin
+ select 'The product is available at stock and is enough for the order to proceed. The client also has enough balance to proceed.';
+ /* now the fucking conditions. The rule is: valid statuses are 1,2,3,7,8,9, invalid statuses are 0,4,5 and 6. Valid statuses exclude eachother most of the time
+ and include eachother in specific cases so if anything fucks up here the trigger should be rewritten */
+ if (@old_order_status != 1 and @old_order_status != 2 and @old_order_status != 3 and @old_order_status != 7 and @old_order_status != 8 and @old_order_status != 9) and
+ (@new_order_status != 0 and @new_order_status != 2 and @new_order_status != 3 and @new_order_status != 4 and @new_order_status != 5 and @new_order_status != 6 and @new_order_status != 7 and @new_order_status != 8 and @new_order_status != 9)
+ and @new_order_status = 1
+ begin
+ select 'This order has been paid prematurely. Needed calculations in the client balance will be deduced now but the employee balance and the product quantity will be deduced when it is marked as completed.';
+ set @current_client_balance = @current_client_balance - @new_order_price;
+ update Users set UserBalance = @current_client_balance where ID = @new_client_id and UserRole = 2;
+ update ProductOrders set OrderStatus = 6, DateModified = @current_date, OrderReason = 'This order was paid prematurely and now is awaiting additional input. When it is fully completed mark it as completed so the operations can be finished. This is set by the database system.' where ID = @new_id or ID = @old_id;
+ end
+  if (@old_order_status != 1 and @old_order_status != 2 and @old_order_status != 3 and @old_order_status != 7 and @old_order_status != 8 and @old_order_status != 9) and
+ (@new_order_status != 0 and @new_order_status != 1 and @new_order_status != 3 and @new_order_status != 4 and @new_order_status != 5 and @new_order_status != 6 and @new_order_status != 7 and @new_order_status != 8 and @new_order_status != 9)
+ and @new_order_status = 2
+ begin
+ select 'This order has been paid in the moment of delivery. Needed calculations in the client balance will be deduced now but the employee balance and the product quantity will be deduced when it is marked as completed.';
+ set @current_client_balance = @current_client_balance - @new_order_price;
+ update Users set UserBalance = @current_client_balance where ID = @new_client_id and UserRole = 2;
+ update ProductOrders set OrderStatus = 6, DateModified = @current_date, OrderReason = 'This order was paid in the moment of delivery and now is awaiting additional input. When it is fully completed mark it as completed so the operations can be finished. This is set by the database system.' where ID = @new_id or ID = @old_id;
+ end
+ if (@old_order_status != 1 and @old_order_status != 2 and @old_order_status != 3 and @old_order_status != 7 and @old_order_status != 8 and @old_order_status != 9) and
+ (@new_order_status != 0 and @new_order_status != 1 and @new_order_status != 2 and @new_order_status != 4 and @new_order_status != 5 and @new_order_status != 6 and @new_order_status != 7 and @new_order_status != 8 and @new_order_status != 9)
+ and @new_order_status = 3
+ begin
+ select 'This order has been paid directly and possibly completed although not marked as such. Needed calculations in the client balance will be deduced now but the product quantity and employee balance will be deduced once it is marked as completed.';
+ set @current_client_balance = @current_client_balance - @new_order_price;
+ update Users set UserBalance = @current_client_balance where ID = @new_client_id and UserRole = 2;
+ update ProductOrders set OrderStatus = 6, DateModified = @current_date, OrderReason = 'This order was paid directly and now is awaiting additional input. When it is fully completed mark it as completed so the operations can be finished. This is set by the database system.' where ID = @new_id or ID = @old_id;
+ end
+ if ((@old_order_status = 1 or @old_order_status = 2 or @old_order_status = 3 or @old_order_status = 4 or @old_order_status = 5 or @old_order_status = 6) and @old_order_status != 7 and @old_order_status != 8 and @old_order_status != 9) and
+ (@new_order_status != 0 and @new_order_status != 1 and @new_order_status != 2 and @new_order_status != 4 and @new_order_status != 5 and @new_order_status != 6 and @new_order_status != 8 and @new_order_status != 9)
+ and @new_order_status = 7
+ begin
+ select 'This order has been cancelled before it has been completed and the client balance will be deduced accordingly. Employee balance and product quantity won''t be affected because they are only deduced when the order was marked as completed.';
+ set @current_client_balance = @current_client_balance + @new_order_price;
+ update Users set UserBalance = @current_client_balance where ID = @new_client_id and UserRole = 2;
+ update ProductOrders set DateModified = @current_date, OrderReason = 'This order was cancelled and now the client balance will be deduced accordingly but the product quantity and employee balance won''t be affected as they are deduced only on completion of the order and restocking fees are not included in any condition. This is set by the database system.' where ID = @new_id or ID = @old_id;
+ end
+ if (@old_order_status = 9 and @old_order_status != 7 and @old_order_status != 8) and
+ (@new_order_status != 0 and @new_order_status != 1 and @new_order_status != 2 and @new_order_status != 4 and @new_order_status != 5 and @new_order_status != 6 and @new_order_status != 9 and @new_order_status != 8)
+ and @new_order_status = 7
+ begin
+ select 'This order has been cancelled after completion. The employee balance, client balance and product quantity will be deduced accordingly.';
+  set @current_client_balance = @current_client_balance + @new_order_price;
+ update Users set UserBalance = @current_client_balance where ID = @new_client_id and UserRole = 2;
+ set @current_employee_balance = @current_employee_balance - @new_order_price;
+ update Users set UserBalance = @current_employee_balance where ID = @new_employee_id and (UserRole = 0 or UserRole = 1);
+ set @current_product_quantity = @current_product_quantity + @new_desired_quantity;
+ update Products set ProductQuantity = @current_product_quantity where ID = @new_product_id;
+ update ProductOrders set DateModified = @current_date, OrderReason = 'This order was cancelled after it has been completed  and now the client balance, employee balance and product quantity will be deduced not including the restock fee. This is set by the database system.' where ID = @new_id or ID = @old_id;
+ end
+ if ((@old_order_status = 1 or @old_order_status = 2 or @old_order_status = 3 or @old_order_status = 4 or @old_order_status = 5 or @old_order_status = 6) and @old_order_status != 7 and @old_order_status != 8 and @old_order_status != 9) and
+ (@new_order_status != 0 and @new_order_status != 1 and @new_order_status != 2 and @new_order_status != 4 and @new_order_status != 5 and @new_order_status != 6 and @new_order_status != 7 and @new_order_status != 9)
+ and @new_order_status = 8
+ begin
+ select 'This order has been returned before it has been completed and the client balance will be deduced accordingly. Employee balance and product quantity won''t be affected because they are only deduced when the order was marked as completed.';
+ set @current_client_balance = @current_client_balance + @new_order_price;
+ update Users set UserBalance = @current_client_balance where ID = @new_client_id and UserRole = 2;
+ update ProductOrders set DateModified = @current_date, OrderReason = 'This order was returned and now the client balance will be deduced accordingly but the product quantity and employee balance won''t be affected as they are deduced only on completion of the order and restocking fees are not included in any condition. This is set by the database system.' where ID = @new_id or ID = @old_id;
+ end
+ if (@old_order_status = 9 and @old_order_status != 7 and @old_order_status != 8) and
+ (@new_order_status != 0 and @new_order_status != 1 and @new_order_status != 2 and @new_order_status != 4 and @new_order_status != 5 and @new_order_status != 6 and @new_order_status != 9 and @new_order_status != 7)
+ and @new_order_status = 8
+ begin
+ select 'This order has been returned after completion. The employee balance, client balance and product quantity will be deduced accordingly.';
+  set @current_client_balance = @current_client_balance + @new_order_price;
+ update Users set UserBalance = @current_client_balance where ID = @new_client_id and UserRole = 2;
+ set @current_employee_balance = @current_employee_balance - @new_order_price;
+ update Users set UserBalance = @current_employee_balance where ID = @new_employee_id and (UserRole = 0 or UserRole = 1);
+ set @current_product_quantity = @current_product_quantity + @new_desired_quantity;
+ update Products set ProductQuantity = @current_product_quantity where ID = @new_product_id;
+ update ProductOrders set DateModified = @current_date, OrderReason = 'This order was returned after it has been completed  and now the client balance, employee balance and product quantity will be deduced not including the restock fee. This is set by the database system.' where ID = @new_id or ID = @old_id;
+ end
+ if ((@old_order_status = 1 or @old_order_status = 2 or @old_order_status = 3 or @old_order_status = 4 or @old_order_status = 5 or @old_order_status = 6) and @old_order_status != 7 and @old_order_status != 8 and @old_order_status != 9) and
+ (@new_order_status != 0 and @new_order_status != 1 and @new_order_status != 2 and @new_order_status != 4 and @new_order_status != 5 and @new_order_status != 6 and @new_order_status != 7 and @new_order_status != 8)
+ and @new_order_status = 9
+ begin
+ select 'This order has been paid before and now has been marked as completed so no need to deduce the client balance, only the product quantity and the employee balance will be deduced accordingly.';
+ set @current_employee_balance = @current_employee_balance + @new_order_price;
+ update Users set UserBalance = @current_employee_balance where ID = @new_employee_id and (UserRole = 0 or UserRole = 1);
+ set @current_product_quantity = @current_product_quantity - @new_desired_quantity;
+ update Products set ProductQuantity = @current_product_quantity where ID = @new_product_id;
+ update ProductOrders set DateModified = @current_date, OrderReason = 'This order was completed some time after it has been paid and now the employee balance and product quantity will be deduced with no need to deduce the client balance because it has already been deduced. This is set by the database system.' where ID = @new_id or ID = @old_id;
+ end
+ if ((@old_order_status != 1 and @old_order_status != 2 and @old_order_status != 3 and @old_order_status != 4 and @old_order_status != 5 and @old_order_status != 6) and @old_order_status != 7 and @old_order_status != 8 and @old_order_status != 9) and
+ (@new_order_status != 0 and @new_order_status != 1 and @new_order_status != 2 and @new_order_status != 4 and @new_order_status != 5 and @new_order_status != 6 and @new_order_status != 7 and @new_order_status != 8)
+ and @new_order_status = 9
+ begin
+ select 'This order was marked as completed before it has been paid so the client balance, the product quantity and the employee balance will be deduced accordingly.';
+  set @current_client_balance = @current_client_balance - @new_order_price;
+ update Users set UserBalance = @current_client_balance where ID = @new_client_id and UserRole = 2;
+ set @current_employee_balance = @current_employee_balance + @new_order_price;
+ update Users set UserBalance = @current_employee_balance where ID = @new_employee_id and (UserRole = 0 or UserRole = 1);
+ set @current_product_quantity = @current_product_quantity - @new_desired_quantity;
+ update Products set ProductQuantity = @current_product_quantity where ID = @new_product_id;
+ update ProductOrders set DateModified = @current_date, OrderReason = 'This order was completed before it was paid and now the client balance, employee balance and product quantity will be deduced. This is set by the database system.' where ID = @new_id or ID = @old_id;
+ end
+ end
+ else
+ begin
+ begin try
+ declare @insufficient_funds_error as nvarchar(max) = 'Insufficient product quantity or client balance. Any changes in this order will be ineffective.';
+ begin transaction
+ raiseerror(select @insufficient_funds_error, 16,255);
+ commit;
+ end try
+ begin catch
+ end catch
+ end
+ end
+ set @additional_information = 'Old ID: ' + try_cast(@old_id as varchar) + '. New ID: ' + try_cast(@new_id as varchar)
+ + '. Old Product ID: ' + try_cast(@old_product_id as varchar) + '. New Product ID: ' + try_cast(@new_product_id as varchar) + '. Old Desired Quantity: ' +
+ try_cast(@old_desired_quantity as varchar) + '. New Desired Quantity: ' + try_cast(@new_desired_quantity as varchar) + '. Old Price: ' + try_cast(@old_order_price as varchar) +
+ '. New Price: ' + try_cast(@new_order_price as varchar) + '. Old Client ID: ' + try_cast(@old_client_id as varchar) + '. New Client ID: ' + try_cast(@new_client_id as varchar) +
+ '. Old Employee ID: ' + try_cast(@old_employee_id as varchar) + '. New Employee ID: ' + try_cast(@new_employee_id as varchar) + '. Old Date Added: ' + try_cast(@old_date_added as varchar) +
+ '. New Date Added: ' + try_cast(@new_date_added as varchar) + '. Old Date Modified: ' + try_cast(@old_date_modified as varchar) + '. New Date Modified: ' + try_cast(@new_date_modified as varchar) +
+ '. Old Status ID: ' + try_cast(@old_order_status as varchar) + '. New Status ID: ' + try_cast(@new_order_status as varchar) + '. Old Order Reason: ' + try_cast(@old_order_reason as varchar) +
+ '. New Order Reason: ' + try_cast(@new_order_reason as varchar) + '.';
+ exec AddLog @logdate = @current_date,
+			 @logtitle = @log_title,
+			 @logmessage = @log_message,
+			 @additionalinformation = @additional_information;
 end
 go
+
 
 go
 create or alter trigger ProductOrders_OnDelete on ProductOrders for delete
@@ -3010,6 +3098,7 @@ declare @new_delivery_reason as varchar(max);
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
 declare @current_date as date;
+declare @insufficient_funds as varchar(max) = 'Insufficient client funds, any changes to this delivery will be inneffective';
 select @old_id = ID from deleted;
 select @new_id = ID from inserted;
 select @old_order_id = OrderID from deleted;
@@ -3046,89 +3135,153 @@ set @log_message = 'An order delivery was updated with the id: ' + try_cast(@old
 8 - returned delivery
 9 - delivery completed
 */
+select @old_order_id as OldOrderID;
+select @new_order_id as NewOrderID;
+select @old_service_id as OldServiceID;
+select @new_service_id as NewServiceID;
+select @old_method_id as OldMethodID;
+select @new_method_id as NewMethodID;
+select @old_cargo_id as OldCargoID;
+select @new_cargo_id as NewCargoID;
 declare @current_delivery_price as money; /* current delivery price from the delivery service assigned to the delivery */
 declare @current_client_id as int; /* current client assigned to the order that is assigned to that delivery */
 declare @current_client_balance as money /* current client balance from the order that the delivery is assigned to */
 declare @final_client_balance as money /* final client balance after the delivery price is paid */
 /* forgot to say that it happens only if the order, delivery service and payment method are valid let's fix this */
-if(@new_order_id >= 0 and @new_service_id >= 0 and @new_method_id >= 0 and @new_delivery_status != 0 and @old_delivery_status != 0
-and @old_delivery_status != 4 and @new_delivery_status != 4 and @old_delivery_status!=5 and @new_delivery_status!=5 and 
-@old_delivery_status != 6 and @new_delivery_status != 6)
-begin
-if (@old_delivery_status != 1 and @old_delivery_status != 2) and (@old_delivery_status != 3 and
-@old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
-and ( @new_delivery_status = 1 or @new_delivery_status = 2 and @new_delivery_status != 3
-and @new_delivery_status != 7 and @new_delivery_status != 8 and @new_delivery_status != 9)
-begin
-print 'this is the prepaid/directly paid condition in the order delivery update trigger';
 select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
 select @current_client_id = ClientID from ProductOrders where ID = @new_order_id;
 select @current_client_balance = UserBalance from Users where ID = @current_client_id;
+if(@new_order_id >= 0 and @new_service_id >= 0 and @new_method_id >= 0 and @current_client_balance > 0 and @current_client_balance >= @current_delivery_price)
+begin
+select 'Data is valid and client balance is enough for the delivery to proceed.';
+select @old_order_id as OldOrderIDWhenConditionIsMet;
+select @new_order_id as NewOrderIDWhenConditionIsMet;
+select @old_service_id as OldServiceIDWhenConditionIsMet;
+select @new_service_id as NewServiceIDWhenConditionIsMet;
+select @old_method_id as OldMethodIDWhenConditionIsMet;
+select @new_method_id as NewMethodIDWhenConditionIsMet;
+select @old_cargo_id as OldCargoIDWhenConditionIsMet;
+select @new_cargo_id as NewCargoIDWhenConditionIsMet;
+if (@old_delivery_status != 1 and @old_delivery_status != 2) and (@old_delivery_status != 3 and
+@old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
+and ( @new_delivery_status = 1 and @new_delivery_status != 2 and @new_delivery_status != 3
+and @new_delivery_status != 0 and @new_delivery_status != 4 and @new_delivery_status!=5 and @new_delivery_status != 6
+and @new_delivery_status != 7 and @new_delivery_status != 8 and @new_delivery_status != 9)
+begin
+select 'this is the prepaid condition in the order delivery update trigger';
 set @final_client_balance = @current_client_balance - @current_delivery_price;
 update Users set UserBalance = @final_client_balance where ID = @current_client_id;
-update ProductOrders set OrderStatus = 2 where ID = @new_order_id;
+update ProductOrders set OrderStatus = 1, DateModified = @current_date where ID = @new_order_id;
+update OrderDeliveries set DeliveryStatus = 6, DateModified = @current_date, DeliveryReason = 'This delivery was prepaid and the order related to it was automatically set by the system to be prepaid. '+'
+This delivery is now set by the system as on the move and is awaiting additional input. If this delivery was completed please set it to completed and the order will be completed as well.' where ID = @old_id or ID = @new_id;
+end
+if (@old_delivery_status != 1 and @old_delivery_status != 2) and (@old_delivery_status != 3 and
+@old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
+and ( @new_delivery_status != 1 and @new_delivery_status = 2 and @new_delivery_status != 3
+and @new_delivery_status != 0 and @new_delivery_status != 4 and @new_delivery_status!=5 and @new_delivery_status != 6
+and @new_delivery_status != 7 and @new_delivery_status != 8 and @new_delivery_status != 9)
+begin
+select 'this is the directly paid condition in the order delivery update trigger';
+set @final_client_balance = @current_client_balance - @current_delivery_price;
+update Users set UserBalance = @final_client_balance where ID = @current_client_id;
+update ProductOrders set OrderStatus = 3, DateModified = @current_date where ID = @new_order_id;
+update OrderDeliveries set DeliveryStatus = 6, DateModified = @current_date, DeliveryReason = 'This delivery was directly paid and the order related to it was automatically set by the system to be directly paid. '+'
+This delivery is now set by the system as on the move and is awaiting additional input. If this delivery was completed please set it to completed and the order will be completed as well.' where ID = @old_id or ID = @new_id;
 end
 if (@old_delivery_status != 1 and @old_delivery_status != 2 and @old_delivery_status != 3 and
 @old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
 and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status = 3
+and @new_delivery_status != 0 and @new_delivery_status != 4 and @new_delivery_status!=5 and @new_delivery_status != 6
 and @new_delivery_status != 7 and @new_delivery_status != 8 and @new_delivery_status != 9)
-and ((@old_cargo_id is not null and @old_cargo_id != 'TSTCARGO123') or (@new_cargo_id is not null and @new_cargo_id != 'TSTCARGO123')) /* validate the cargo ID */
+and ((@old_cargo_id is not null and @old_cargo_id != 'TSTCARGO123' and @old_cargo_id != '') or (@new_cargo_id is not null and @new_cargo_id != 'TSTCARGO123' and @new_cargo_id != '')) /* validate the cargo ID */
 begin
-print 'this is the paid on delivery condition in the order delivery update trigger';
-select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
-select @current_client_id = ClientID from ProductOrders where ID = @new_order_id;
-select @current_client_balance = UserBalance from Users where ID = @current_client_id;
+select 'this is the paid on delivery condition in the order delivery update trigger';
 set @final_client_balance = @current_client_balance - @current_delivery_price;
 update Users set UserBalance = @final_client_balance where ID = @current_client_id;
-update ProductOrders set OrderStatus = 3 where ID = @new_order_id;
+update ProductOrders set OrderStatus = 2, DateModified = @current_date where ID = @new_order_id;
+update OrderDeliveries set DeliveryStatus = 6, DateModified = @current_date, DeliveryReason = 'This delivery was paid on delivery and the order related to it was automatically set by the system to be paid on delivery. '+'
+This delivery is now set by the system as on the move and is awaiting additional input. If this delivery was completed please set it to completed and the order will be completed as well.' where ID = @old_id or ID = @new_id;
 end
-if (@old_delivery_status = 1 or @old_delivery_status = 2 or @old_delivery_status = 3) and
+if (@old_delivery_status = 1 or @old_delivery_status = 2 or @old_delivery_status = 3 or @old_delivery_status = 4 or @old_delivery_status = 5 or @old_delivery_status = 6 ) and
 (@old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
 and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status != 3
+and @new_delivery_status != 0 and @new_delivery_status != 4 and @new_delivery_status!=5 and @new_delivery_status != 6
 and @new_delivery_status != 7 and @new_delivery_status != 8 and @new_delivery_status = 9)
 begin
-print 'this is the first completed condition in the order delivery update trigger where it was paid by any means but wasn''t marked as completed';
-update ProductOrders set OrderStatus = 9 where ID = @new_order_id;
+select 'this is the first completed condition in the order delivery update trigger where it was paid by any means but wasn''t marked as completed';
+update ProductOrders set OrderStatus = 9, DateModified = @current_date, OrderReason = 'This delivery is completed and so the order is completed. This is automatically set by the system.' where ID = @new_order_id;
+update OrderDeliveries set DateModified = @current_date, DeliveryReason = 'This delivery completed and the order related to it was automatically set by the system to be completed. ' where ID = @old_id or ID = @new_id;
 end
-if (@old_delivery_status != 1 and @old_delivery_status != 2 and @old_delivery_status != 3) and
+if (@old_delivery_status != 1 and @old_delivery_status != 2 and @old_delivery_status != 3 and @old_delivery_status != 4 and @old_delivery_status != 5 and @old_delivery_status != 6) and
 (@old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
 and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status != 3
+and @new_delivery_status != 0 and @new_delivery_status != 4 and @new_delivery_status!=5 and @new_delivery_status != 6
 and @new_delivery_status != 7 and @new_delivery_status != 8 and @new_delivery_status = 9)
 begin
-print 'this is the second completed condition in the order delivery update trigger where it wasn''t paid but was marked as completed';
-select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
-select @current_client_id = ClientID from ProductOrders where ID = @new_order_id;
-select @current_client_balance = UserBalance from Users where ID = @current_client_id;
+select 'this is the second completed condition in the order delivery update trigger where it wasn''t paid but was marked as completed';
 set @final_client_balance = @current_client_balance - @current_delivery_price;
 update Users set UserBalance = @final_client_balance where ID = @current_client_id;
-update ProductOrders set OrderStatus = 9 where ID = @new_order_id;
+update ProductOrders set OrderStatus = 9, DateModified = @current_date, OrderReason = 'This delivery is completed and so the order is completed. This is automatically set by the system.' where ID = @new_order_id;
+update OrderDeliveries set DateModified = @current_date, DeliveryReason = 'This delivery was completed and the order related to it was automatically set by the system to be completed. ' where ID = @old_id or ID = @new_id;
 end
-if (@old_delivery_status = 1 or @old_delivery_status = 2 or @old_delivery_status = 3) and
+if (@old_delivery_status = 1 or @old_delivery_status = 2 or @old_delivery_status = 3 or @old_delivery_status = 4 or @old_delivery_status = 5 or @old_delivery_status = 6 ) and
 (@old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
 and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status != 3
+and @new_delivery_status != 0 and @new_delivery_status != 4 and @new_delivery_status!=5 and @new_delivery_status != 6
 and @new_delivery_status = 7 and @new_delivery_status != 8 and @new_delivery_status != 9)
 begin
-print 'this is the cancelled condition in the order delivery update trigger';
-select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
-select @current_client_id = ClientID from ProductOrders where ID = @new_order_id;
-select @current_client_balance = UserBalance from Users where ID = @current_client_id;
-set @final_client_balance = @current_client_balance + @current_delivery_price;
+select 'this is the cancelled condition in the order delivery update trigger';
+set @final_client_balance = @current_client_balance - @current_delivery_price;
 update Users set UserBalance = @final_client_balance where ID = @current_client_id;
-update ProductOrders set OrderStatus = 7 where ID = @new_order_id;
+update ProductOrders set OrderStatus = 7, DateModified = @current_date, OrderReason = 'This delivery is cancelled and so the order is cancelled. This is automatically set by the system.' where ID = @new_order_id;
+update OrderDeliveries set DateModified = @current_date, DeliveryReason = 'This delivery was cancelled and the order related to it was automatically set by the system to be cancelled. ' where ID = @old_id or ID = @new_id;
 end
-if (@old_delivery_status = 1 or @old_delivery_status = 2 or @old_delivery_status != 3) and
+if @old_delivery_status = 9 and
+(@old_delivery_status != 7 and @old_delivery_status != 8) 
+and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status != 3
+and @new_delivery_status != 0 and @new_delivery_status != 4 and @new_delivery_status!=5 and @new_delivery_status != 6
+and @new_delivery_status = 7 and @new_delivery_status != 8 and @new_delivery_status != 9)
+begin
+select 'this is the cancelled after completion condition in the order delivery update trigger';
+set @final_client_balance = @current_client_balance - @current_delivery_price;
+update Users set UserBalance = @final_client_balance where ID = @current_client_id;
+update ProductOrders set OrderStatus = 7, DateModified = @current_date, OrderReason = 'This delivery is cancelled after it has been completed and so the order is cancelled. This is automatically set by the system.' where ID = @new_order_id;
+update OrderDeliveries set DateModified = @current_date, DeliveryReason = 'This delivery was cancelled and the order related to it was automatically set by the system to be cancelled. ' where ID = @old_id or ID = @new_id;
+end
+if (@old_delivery_status = 1 or @old_delivery_status = 2 or @old_delivery_status = 3 or @old_delivery_status = 4 or @old_delivery_status = 5 or @old_delivery_status = 6 ) and
 (@old_delivery_status != 7 and @old_delivery_status != 8 and @old_delivery_status != 9) 
 and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status != 3
+and @new_delivery_status != 0 and @new_delivery_status != 4 and @new_delivery_status!=5 and @new_delivery_status != 6
 and @new_delivery_status != 7 and @new_delivery_status = 8 and @new_delivery_status != 9)
 begin
-print 'this is the returned condition in the order delivery update trigger';
-select @current_delivery_price = ServicePrice from DeliveryServices where ID = @new_service_id;
-select @current_client_id = ClientID from ProductOrders where ID = @new_order_id;
-select @current_client_balance = UserBalance from Users where ID = @current_client_id;
-set @final_client_balance = @current_client_balance + @current_delivery_price;
+select 'this is the returned condition in the order delivery update trigger';
+set @final_client_balance = @current_client_balance - @current_delivery_price;
 update Users set UserBalance = @final_client_balance where ID = @current_client_id;
-update ProductOrders set OrderStatus = 8 where ID = @new_order_id;
+update ProductOrders set OrderStatus = 8, DateModified = @current_date, OrderReason = 'This delivery is returned and so the order is returned. This is automatically set by the system.' where ID = @new_order_id;
+update OrderDeliveries set DateModified = @current_date, DeliveryReason = 'This delivery was returned and the order related to it was automatically set by the system to be returned. ' where ID = @old_id or ID = @new_id;
 end
+if @old_delivery_status = 9 and
+(@old_delivery_status != 7 and @old_delivery_status != 8) 
+and ( @new_delivery_status != 1 and @new_delivery_status != 2 and @new_delivery_status != 3
+and @new_delivery_status != 0 and @new_delivery_status != 4 and @new_delivery_status!=5 and @new_delivery_status != 6
+and @new_delivery_status != 7 and @new_delivery_status = 8 and @new_delivery_status != 9)
+begin
+select 'this is the returned after completion condition in the order delivery update trigger';
+set @final_client_balance = @current_client_balance - @current_delivery_price;
+update Users set UserBalance = @final_client_balance where ID = @current_client_id;
+update ProductOrders set OrderStatus = 8, DateModified = @current_date, OrderReason = 'This delivery is returned after it has been completed and so the order is cancelled. This is automatically set by the system.' where ID = @new_order_id;
+update OrderDeliveries set DateModified = @current_date, DeliveryReason = 'This delivery was returned and the order related to it was automatically set by the system to be returned. ' where ID = @old_id or ID = @new_id;
+end
+end
+else
+begin
+begin try
+begin transaction
+raiseerror(select @insufficient_funds,16,255);
+commit
+end try
+begin catch
+end catch
 end
 set @additional_information = 'Old Delivery ID: ' + try_cast(@old_id as varchar) + '\n' + 'Old Order ID: ' + try_cast(@old_order_id as varchar) + '\n' +
 'Old Delivery Service ID: ' + try_cast(@old_service_id as varchar) + '\n' + 'Old Payment Method ID: ' + try_cast(@old_method_id as varchar) + '\n' +
@@ -3200,9 +3353,12 @@ go
  begin
  declare @success_message as varchar(max);
  declare @failed_message  as varchar(max);
+ declare @error_severity as int = 16;
+ declare @error_state as int = 255;
  declare @found_user_id as int;
  declare @logtitle as varchar(max);
  declare @logmessage as varchar(max);
+ declare @complete_error_log as nvarchar(max);
  declare @additionalloginformation as varchar(max);
  declare @current_date as date;
  set @current_date = getdate();
@@ -3223,11 +3379,20 @@ go
  end
  else /* on failure send the failure message and rollback the login, a.k.a. deny access */
  begin
- print @failed_message;
  set @logmessage = 'User ' + original_login() + 'has failed to login. Login attempt at: ' + try_cast(@current_date as varchar);
  set @additionalloginformation = 'Host Name: ' + HOST_NAME() + '\n';
+ set @complete_error_log = try_cast(@logmessage as nvarchar) + '\n' + try_cast(@additionalloginformation as nvarchar) + '\n' + try_cast(@failed_message as nvarchar);
  insert into XTremePharmacyDB.dbo.Logs(LogDate,LogTitle,LogMessage,AdditionalLogInformation) values (@current_date, @logtitle,@logmessage,@additionalloginformation);
+ begin try
+ begin transaction
+ raiseerror(select @complete_error_log, @error_severity, @error_state);
  rollback;
+ end try
+ begin catch
+ if @@TRANCOUNT > 0
+ rollback transaction;
+ throw @error_severity, @complete_error_log, @error_state;
+ end catch
  end
  end
  end
