@@ -236,16 +236,19 @@ namespace XtremePharmacyManager
                                 }
                                 else // or add it as a bulk operation
                                 {
+                                    bool OverridePriceAsTotal = false;
                                     if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
                                         //on user prompt add a silent operation by default
                                         if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                         {
-                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.UPDATE, ref ent, selectedOrder, true, true));
+                                            OverridePriceAsTotal = true;
+                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.UPDATE, ref ent, OverridePriceAsTotal, true));
                                         }
                                         else
                                         {
-                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.UPDATE, ref ent, selectedOrder, false, true));
+                                            OverridePriceAsTotal = false;
+                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.UPDATE, ref ent, selectedOrder, OverridePriceAsTotal, true));
                                         }
                                     }
                                 }
@@ -263,13 +266,15 @@ namespace XtremePharmacyManager
                                         res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                         if (res == DialogResult.Yes)
                                         {
+                                            OverridePriceAsTotal = true;
                                             ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
-                                            selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, true);
+                                            selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                                         }
                                         else
                                         {
+                                            OverridePriceAsTotal = false;
                                             ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
-                                            selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, false);
+                                            selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                                         }
                                         ent.SaveChanges();
                                         RefreshEmployees();
@@ -280,16 +285,19 @@ namespace XtremePharmacyManager
                                 }
                                 else // or add it as a bulk operation
                                 {
+                                    bool OverridePriceAsTotal = false;
                                     if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
                                         //on user prompt add a silent operation by default
                                         if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                         {
-                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, true, true));
+                                            OverridePriceAsTotal = true;
+                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, OverridePriceAsTotal, true));
                                         }
                                         else
                                         {
-                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, false, true));
+                                            OverridePriceAsTotal = false;
+                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, OverridePriceAsTotal, true));
                                         }
                                     }
                                 }
@@ -308,13 +316,15 @@ namespace XtremePharmacyManager
                                     res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                     if (res == DialogResult.Yes)
                                     {
+                                        OverridePriceAsTotal = true;
                                         ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
-                                        selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, true);
+                                        selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                                     }
                                     else
                                     {
+                                        OverridePriceAsTotal = false;
                                         ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
-                                        selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, false);
+                                        selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                                     }
                                     ent.SaveChanges();
                                     RefreshEmployees();
@@ -325,16 +335,19 @@ namespace XtremePharmacyManager
                             }
                             else // or add it as a bulk operation
                             {
+                                bool OverridePriceAsTotal = false;
                                 if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                 {
                                     //on user prompt add a silent operation by default
                                     if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
-                                        manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, true, true));
+                                        OverridePriceAsTotal = true;
+                                        manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, OverridePriceAsTotal, true));
                                     }
                                     else
                                     {
-                                        manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, false, true));
+                                        OverridePriceAsTotal = false;
+                                        manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, OverridePriceAsTotal, true));
                                     }
                                 }
                             }
@@ -354,13 +367,15 @@ namespace XtremePharmacyManager
                             res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (res == DialogResult.Yes)
                             {
+                                OverridePriceAsTotal = true;
                                 ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
-                                selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, true);
+                                selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                             }
                             else
                             {
+                                OverridePriceAsTotal = false;
                                 ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
-                                selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, false);
+                                selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                             }
                             ent.SaveChanges();
                             RefreshEmployees();
@@ -371,16 +386,19 @@ namespace XtremePharmacyManager
                     }
                     else // or add it as a bulk operation
                     {
+                        bool OverridePriceAsTotal = false;
                         if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             //on user prompt add a silent operation by default
                             if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
-                                manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, true, true));
+                                OverridePriceAsTotal = true;
+                                manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, OverridePriceAsTotal, true));
                             }
                             else
                             {
-                                manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, false, true));
+                                OverridePriceAsTotal = false;
+                                manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, OverridePriceAsTotal, true));
                             }
                         }
                     }
@@ -430,16 +448,19 @@ namespace XtremePharmacyManager
                                 }
                                 else // or add it as a bulk operation
                                 {
+                                    bool OverridePriceAsTotal = false;
                                     if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
                                         //on user prompt add a silent operation by default
                                         if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                         {
-                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.DELETE, ref ent, selectedOrder, true, true));
+                                            OverridePriceAsTotal = true;
+                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.DELETE, ref ent, selectedOrder, OverridePriceAsTotal, true));
                                         }
                                         else
                                         {
-                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.DELETE, ref ent, selectedOrder, false, true));
+                                            OverridePriceAsTotal = false;
+                                            manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.DELETE, ref ent, selectedOrder, OverridePriceAsTotal, true));
                                         }
                                     }
                                 }
