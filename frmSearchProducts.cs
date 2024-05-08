@@ -887,6 +887,7 @@ namespace XtremePharmacyManager
                             if (view != null)
                             {
                                 DataTable dt = new DataTable();
+                                dt.Columns.Add(nameof(view.ID));
                                 dt.Columns.Add(nameof(view.ProductName));
                                 dt.Columns.Add(nameof(view.BrandName));
                                 dt.Columns.Add(nameof(view.ProductDescription));
@@ -899,6 +900,7 @@ namespace XtremePharmacyManager
                                 dt.Columns.Add(nameof(view.AverageProductSale));
                                 dt.Columns.Add(nameof(view.ProductImageCount));
                                 dt.Rows.Add(new object[]{
+                                                          view.ID,
                                                           view.ProductName,
                                                           view.BrandName,
                                                           view.ProductDescription,
@@ -916,6 +918,7 @@ namespace XtremePharmacyManager
                                     if (pr_view != view)
                                     {
                                         dt.Rows.Add(new object[]{
+                                                             view.ID,
                                                              view.ProductName,
                                                              view.BrandName,
                                                              view.ProductDescription,

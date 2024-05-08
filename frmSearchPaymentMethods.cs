@@ -338,10 +338,14 @@ namespace XtremePharmacyManager
                             if (view != null)
                             {
                                 DataTable dt = new DataTable();
+                                dt.Columns.Add(nameof(view.ID));
                                 dt.Columns.Add(nameof(view.MethodName));
                                 dt.Columns.Add(nameof(view.TimesThisMethodWasUsed));
-                                dt.Rows.Add(new object[]{ view.MethodName,
-                                                          view.TimesThisMethodWasUsed});
+                                dt.Rows.Add(new object[]{ 
+                                                          view.ID,
+                                                          view.MethodName,
+                                                          view.TimesThisMethodWasUsed
+                                });
                                 foreach (ExtendedPaymentMethodsView pm_view in ent.ExtendedPaymentMethodsViews)
                                 {
                                     if (pm_view != view)

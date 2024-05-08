@@ -340,17 +340,23 @@ namespace XtremePharmacyManager
                             if (view != null)
                             {
                                 DataTable dt = new DataTable();
+                                dt.Columns.Add(nameof(view.ID));
                                 dt.Columns.Add(nameof(view.BrandName));
                                 dt.Columns.Add(nameof(view.CountProductsFromBrand));
-                                dt.Rows.Add(new object[]{ view.BrandName,
-                                                          view.CountProductsFromBrand});
+                                dt.Rows.Add(new object[]{ 
+                                                          view.ID,
+                                                          view.BrandName,
+                                                          view.CountProductsFromBrand
+                                });
                                 foreach (ExtendedBrandsView br_view in ent.ExtendedBrandsViews)
                                 {
                                     if (br_view != view)
                                     {
                                         dt.Rows.Add(new object[]{
+                                                              br_view.ID,
                                                               br_view.BrandName,
-                                                              br_view.CountProductsFromBrand});
+                                                              br_view.CountProductsFromBrand
+                                        });
                                     }
                                 }
                                 current_source = new ReportDataSource("ProductBrandReportData", dt);

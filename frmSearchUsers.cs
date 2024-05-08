@@ -483,6 +483,7 @@ namespace XtremePharmacyManager
                                 if (view != null)
                                 {
                                     DataTable dt = new DataTable();
+                                    dt.Columns.Add(nameof(view.ID));
                                     dt.Columns.Add(nameof(view.UserName));
                                     dt.Columns.Add(nameof(view.UserPassword));
                                     dt.Columns.Add(nameof(view.UserDisplayName));
@@ -496,7 +497,9 @@ namespace XtremePharmacyManager
                                     dt.Columns.Add(nameof(view.UserDateOfRegister));
                                     dt.Columns.Add(nameof(view.UserRole));
                                     dt.Columns.Add(nameof(view.AverageEmployeeIncome));
-                                    dt.Rows.Add(new object[]{ view.UserName,
+                                    dt.Rows.Add(new object[]{ 
+                                                              view.ID,
+                                                              view.UserName,
                                                               view.UserPassword,
                                                               view.UserDisplayName,
                                                               view.UserBirthDate,
@@ -514,6 +517,7 @@ namespace XtremePharmacyManager
                                         if (em_view != view)
                                         {
                                             dt.Rows.Add(new object[]{
+                                                              em_view.ID,
                                                               em_view.UserName,
                                                               em_view.UserPassword,
                                                               em_view.UserDisplayName,
@@ -526,7 +530,8 @@ namespace XtremePharmacyManager
                                                               em_view.UserDiagnose,
                                                               em_view.UserDateOfRegister,
                                                               em_view.UserRole,
-                                                              em_view.AverageEmployeeIncome});
+                                                              em_view.AverageEmployeeIncome
+                                            });
                                         }
                                     }
                                     current_source = new ReportDataSource("EmployeeReportData",dt);
@@ -549,6 +554,7 @@ namespace XtremePharmacyManager
                                 if (view != null)
                                 {
                                     DataTable dt = new DataTable();
+                                    dt.Columns.Add(nameof(view.ID));
                                     dt.Columns.Add(nameof(view.UserName));
                                     dt.Columns.Add(nameof(view.UserPassword));
                                     dt.Columns.Add(nameof(view.UserDisplayName));
@@ -562,7 +568,9 @@ namespace XtremePharmacyManager
                                     dt.Columns.Add(nameof(view.UserDateOfRegister));
                                     dt.Columns.Add(nameof(view.UserRole));
                                     dt.Columns.Add(nameof(view.AverageClientSpending));
-                                    dt.Rows.Add(new object[]{ view.UserName,
+                                    dt.Rows.Add(new object[]{ 
+                                                              view.ID,
+                                                              view.UserName,
                                                               view.UserPassword,
                                                               view.UserDisplayName,
                                                               view.UserBirthDate,
@@ -574,12 +582,14 @@ namespace XtremePharmacyManager
                                                               view.UserDiagnose,
                                                               view.UserDateOfRegister,
                                                               view.UserRole,
-                                                              view.AverageClientSpending});
+                                                              view.AverageClientSpending
+                                    });
                                     foreach(ClientView cl_view in ent.ClientViews)
                                     {
                                         if(cl_view != view)
                                         {
-                                            dt.Rows.Add(new object[]{ 
+                                            dt.Rows.Add(new object[]{
+                                                              cl_view.ID,
                                                               cl_view.UserName,
                                                               cl_view.UserPassword,
                                                               cl_view.UserDisplayName,
@@ -592,7 +602,8 @@ namespace XtremePharmacyManager
                                                               cl_view.UserDiagnose,
                                                               cl_view.UserDateOfRegister,
                                                               cl_view.UserRole,
-                                                              cl_view.AverageClientSpending});
+                                                              cl_view.AverageClientSpending
+                                            });
                                         }
                                     }
                                     current_source = new ReportDataSource("ClientReportData", dt);

@@ -349,20 +349,26 @@ namespace XtremePharmacyManager
                             if (view != null)
                             {
                                 DataTable dt = new DataTable();
+                                dt.Columns.Add(nameof(view.ID));
                                 dt.Columns.Add(nameof(view.ServiceName));
                                 dt.Columns.Add(nameof(view.ServicePrice));
                                 dt.Columns.Add(nameof(view.TimesThisServiceWasUsed));
-                                dt.Rows.Add(new object[]{ view.ServiceName,
+                                dt.Rows.Add(new object[]{ 
+                                                          view.ID,
+                                                          view.ServiceName,
                                                           view.ServicePrice,
-                                                          view.TimesThisServiceWasUsed});
+                                                          view.TimesThisServiceWasUsed
+                                });
                                 foreach (ExtendedDeliveryServicesView ds_view in ent.ExtendedDeliveryServicesViews)
                                 {
                                     if (ds_view != view)
                                     {
                                         dt.Rows.Add(new object[]{
+                                                              ds_view.ID,
                                                               ds_view.ServiceName,
                                                               ds_view.ServicePrice,
-                                                              ds_view.TimesThisServiceWasUsed});
+                                                              ds_view.TimesThisServiceWasUsed
+                                        });
                                     }
                                 }
                                 current_source = new ReportDataSource("DeliveryServiceReportData", dt);
