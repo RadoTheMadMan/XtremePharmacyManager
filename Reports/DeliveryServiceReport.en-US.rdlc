@@ -17,6 +17,10 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="ServiceName">
           <DataField>ServiceName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -427,8 +431,8 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>DeliveryServiceReportData</DataSetName>
-            <Top>1.12139in</Top>
-            <Height>2.59167in</Height>
+            <Top>1.42972in</Top>
+            <Height>2.28334in</Height>
             <Width>6.395in</Width>
             <Style>
               <Border>
@@ -440,8 +444,7 @@
             </Style>
           </Chart>
           <Line Name="Line3">
-            <Top>1.05194in</Top>
-            <Left>0.005in</Left>
+            <Top>1.36028in</Top>
             <Height>0in</Height>
             <Width>6.7in</Width>
             <ZIndex>1</ZIndex>
@@ -468,7 +471,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>0.09361in</Top>
+            <Top>0.41305in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>1.80833in</Width>
@@ -500,7 +503,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>0.7325in</Top>
+            <Top>1.05194in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>1.80833in</Width>
@@ -532,7 +535,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>0.41305in</Top>
+            <Top>0.73249in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>1.80833in</Width>
@@ -564,7 +567,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ServiceName</rd:DefaultName>
-            <Top>0.09361in</Top>
+            <Top>0.41305in</Top>
             <Left>1.98277in</Left>
             <Height>0.25in</Height>
             <Width>1.625in</Width>
@@ -596,7 +599,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TimesThisServiceWasUsed</rd:DefaultName>
-            <Top>0.7325in</Top>
+            <Top>1.05194in</Top>
             <Left>1.98277in</Left>
             <Height>0.25in</Height>
             <Width>1.625in</Width>
@@ -628,11 +631,75 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ServicePrice</rd:DefaultName>
-            <Top>0.41306in</Top>
+            <Top>0.7325in</Top>
             <Left>1.98277in</Left>
             <Height>0.25in</Height>
             <Width>1.625in</Width>
             <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox10">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>ID:</Value>
+                    <Style>
+                      <FontFamily>Arial Black</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox6</rd:DefaultName>
+            <Top>0.10749in</Top>
+            <Left>0.105in</Left>
+            <Height>0.25in</Height>
+            <Width>1.80833in</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="ID">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!ID.Value, "DeliveryServiceReportData")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ID</rd:DefaultName>
+            <Top>0.10749in</Top>
+            <Left>1.98277in</Left>
+            <Height>0.25in</Height>
+            <Width>1.625in</Width>
+            <ZIndex>9</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>

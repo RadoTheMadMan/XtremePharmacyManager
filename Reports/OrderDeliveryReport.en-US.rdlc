@@ -548,8 +548,8 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>OrderDeliveryReportData</DataSetName>
-            <Top>6.73444in</Top>
-            <Height>2.59167in</Height>
+            <Top>7.10944in</Top>
+            <Height>2.21667in</Height>
             <Width>6.395in</Width>
             <Style>
               <Border>
@@ -561,7 +561,7 @@
             </Style>
           </Chart>
           <Line Name="Line3">
-            <Top>6.66499in</Top>
+            <Top>7.03999in</Top>
             <Left>0.01in</Left>
             <Height>0in</Height>
             <Width>6.92833in</Width>
@@ -973,7 +973,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>5.38722in</Top>
+            <Top>5.76222in</Top>
             <Left>0.1in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -1005,7 +1005,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>5.70667in</Top>
+            <Top>6.08167in</Top>
             <Left>0.1in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -1037,7 +1037,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>6.02611in</Top>
+            <Top>6.40111in</Top>
             <Left>0.1in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -1069,7 +1069,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>StatusName</rd:DefaultName>
-            <Top>6.02611in</Top>
+            <Top>6.40111in</Top>
             <Left>2.74389in</Left>
             <Height>0.25in</Height>
             <Width>3.65111in</Width>
@@ -1101,7 +1101,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>6.34555in</Top>
+            <Top>6.72055in</Top>
             <Left>0.1in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -1197,7 +1197,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>4.73444in</Top>
+            <Top>5.10944in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -1229,7 +1229,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>5.05389in</Top>
+            <Top>5.42889in</Top>
             <Left>0.1in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -1251,7 +1251,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!ID.Value, "OrderDeliveryReportData")</Value>
+                    <Value>=First(Fields!ID.Value, "OrderDeliveryReportData")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1379,7 +1379,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!DesiredQuantity.Value, "OrderDeliveryReportData")</Value>
+                    <Value>=First(Fields!DesiredQuantity.Value, "OrderDeliveryReportData")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1411,7 +1411,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!OrderPrice.Value, "OrderDeliveryReportData")</Value>
+                    <Value>=First(Fields!OrderPrice.Value, "OrderDeliveryReportData")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1667,7 +1667,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!DeliveryPrice.Value, "OrderDeliveryReportData")</Value>
+                    <Value>=First(Fields!DeliveryPrice.Value, "OrderDeliveryReportData")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
@@ -1709,7 +1709,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>MethodName</rd:DefaultName>
-            <Top>4.73444in</Top>
+            <Top>5.10944in</Top>
             <Left>2.74389in</Left>
             <Height>0.25in</Height>
             <Width>3.66111in</Width>
@@ -1741,7 +1741,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>CargoID</rd:DefaultName>
-            <Top>5.05389in</Top>
+            <Top>5.42889in</Top>
             <Left>2.74389in</Left>
             <Height>0.25in</Height>
             <Width>3.66111in</Width>
@@ -1773,7 +1773,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DateAdded</rd:DefaultName>
-            <Top>5.38722in</Top>
+            <Top>5.76222in</Top>
             <Left>2.73889in</Left>
             <Height>0.25in</Height>
             <Width>3.66111in</Width>
@@ -1805,7 +1805,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DateModified</rd:DefaultName>
-            <Top>5.70667in</Top>
+            <Top>6.08167in</Top>
             <Left>2.74389in</Left>
             <Height>0.25in</Height>
             <Width>3.66111in</Width>
@@ -1837,11 +1837,75 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DeliveryReason</rd:DefaultName>
-            <Top>6.34555in</Top>
+            <Top>6.72055in</Top>
             <Left>2.74389in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
             <ZIndex>41</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox27">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Total Price:</Value>
+                    <Style>
+                      <FontFamily>Arial Black</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox6</rd:DefaultName>
+            <Top>4.74833in</Top>
+            <Left>0.105in</Left>
+            <Height>0.25in</Height>
+            <Width>2.56945in</Width>
+            <ZIndex>42</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="TotalPrice">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!TotalPrice.Value, "OrderDeliveryReportData")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>TotalPrice</rd:DefaultName>
+            <Top>4.74833in</Top>
+            <Left>2.74389in</Left>
+            <Height>0.25in</Height>
+            <Width>3.65111in</Width>
+            <ZIndex>43</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>

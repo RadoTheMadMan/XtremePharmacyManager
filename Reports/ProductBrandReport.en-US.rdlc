@@ -25,6 +25,10 @@
           <DataField>CountProductsFromBrand</DataField>
           <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>XtremePharmacyManager.DataEntities</rd:DataSetName>
@@ -423,9 +427,9 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>ProductBrandReportData</DataSetName>
-            <Top>0.85222in</Top>
+            <Top>1.17722in</Top>
             <Left>0.005in</Left>
-            <Height>2.59167in</Height>
+            <Height>2.26667in</Height>
             <Width>6.395in</Width>
             <Style>
               <Border>
@@ -437,10 +441,9 @@
             </Style>
           </Chart>
           <Line Name="Line3">
-            <Top>0.78278in</Top>
-            <Left>0.005in</Left>
+            <Top>1.10778in</Top>
             <Height>0in</Height>
-            <Width>6.6in</Width>
+            <Width>6.71333in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -465,7 +468,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>0.09361in</Top>
+            <Top>0.46889in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>1.80833in</Width>
@@ -497,7 +500,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>0.46333in</Top>
+            <Top>0.78833in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>1.80833in</Width>
@@ -529,7 +532,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>BrandName</rd:DefaultName>
-            <Top>0.09361in</Top>
+            <Top>0.46889in</Top>
             <Left>2.12167in</Left>
             <Height>0.25in</Height>
             <Width>1.95833in</Width>
@@ -561,7 +564,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>CountProductsFromBrand</rd:DefaultName>
-            <Top>0.46333in</Top>
+            <Top>0.78833in</Top>
             <Left>2.12167in</Left>
             <Height>0.25in</Height>
             <Width>1.95833in</Width>
@@ -576,11 +579,75 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox9">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>ID:</Value>
+                    <Style>
+                      <FontFamily>Arial Black</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox6</rd:DefaultName>
+            <Top>0.16333in</Top>
+            <Left>0.105in</Left>
+            <Height>0.25in</Height>
+            <Width>1.80833in</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="ID">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!ID.Value, "ProductBrandReportData")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ID</rd:DefaultName>
+            <Top>0.16333in</Top>
+            <Left>2.12167in</Left>
+            <Height>0.25in</Height>
+            <Width>1.95833in</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>3.5in</Height>
         <Style />
       </Body>
-      <Width>6.605in</Width>
+      <Width>6.71333in</Width>
       <Page>
         <PageHeader>
           <Height>1in</Height>
@@ -626,7 +693,7 @@
               <Top>0.91333in</Top>
               <Left>0.005in</Left>
               <Height>0in</Height>
-              <Width>6.6in</Width>
+              <Width>6.70833in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -785,7 +852,7 @@
             <Line Name="Line2">
               <Top>0.06944in</Top>
               <Height>0in</Height>
-              <Width>6.605in</Width>
+              <Width>6.71333in</Width>
               <Style>
                 <Border>
                   <Style>Solid</Style>
@@ -864,7 +931,7 @@
               <Top>0.94167in</Top>
               <Left>0.005in</Left>
               <Height>0in</Height>
-              <Width>6.6in</Width>
+              <Width>6.70833in</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>

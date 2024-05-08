@@ -25,6 +25,10 @@
           <DataField>BrandName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="ProductDescription">
           <DataField>ProductDescription</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -550,9 +554,9 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>ProductReportData</DataSetName>
-            <Top>3.74999in</Top>
+            <Top>4.04999in</Top>
             <Left>0.005in</Left>
-            <Height>2.59167in</Height>
+            <Height>2.29167in</Height>
             <Width>6.395in</Width>
             <Style>
               <Border>
@@ -564,7 +568,7 @@
             </Style>
           </Chart>
           <Line Name="Line3">
-            <Top>3.68055in</Top>
+            <Top>3.99443in</Top>
             <Left>0.01in</Left>
             <Height>0in</Height>
             <Width>6.92833in</Width>
@@ -592,7 +596,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>0.09361in</Top>
+            <Top>0.41305in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -624,7 +628,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>2.96861in</Top>
+            <Top>3.28805in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -656,7 +660,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>1.37139in</Top>
+            <Top>1.69083in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -688,7 +692,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>0.41305in</Top>
+            <Top>0.73249in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -720,7 +724,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>0.7325in</Top>
+            <Top>1.05194in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -752,7 +756,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>1.05194in</Top>
+            <Top>1.37138in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -784,7 +788,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>1.69083in</Top>
+            <Top>2.01027in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -816,7 +820,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>2.01028in</Top>
+            <Top>2.32972in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -848,7 +852,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>2.32972in</Top>
+            <Top>2.64916in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -880,7 +884,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>2.64917in</Top>
+            <Top>2.96861in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -912,7 +916,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>3.28805in</Top>
+            <Top>3.60749in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
@@ -944,7 +948,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ProductName</rd:DefaultName>
-            <Top>0.09361in</Top>
+            <Top>0.41305in</Top>
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
@@ -976,7 +980,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>BrandName</rd:DefaultName>
-            <Top>0.41305in</Top>
+            <Top>0.73249in</Top>
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
@@ -1008,7 +1012,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ProductDescription</rd:DefaultName>
-            <Top>0.7325in</Top>
+            <Top>1.05194in</Top>
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
@@ -1040,7 +1044,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ProductQuantity</rd:DefaultName>
-            <Top>1.05194in</Top>
+            <Top>1.37138in</Top>
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
@@ -1072,7 +1076,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ProductPrice</rd:DefaultName>
-            <Top>1.37139in</Top>
+            <Top>1.69083in</Top>
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
@@ -1104,7 +1108,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ProductExpiryDate</rd:DefaultName>
-            <Top>1.69083in</Top>
+            <Top>2.01027in</Top>
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
@@ -1136,7 +1140,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ProductRegNum</rd:DefaultName>
-            <Top>2.01028in</Top>
+            <Top>2.32972in</Top>
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
@@ -1168,7 +1172,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ProductPartNum</rd:DefaultName>
-            <Top>2.32972in</Top>
+            <Top>2.64916in</Top>
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
@@ -1200,7 +1204,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ProductStorageLocation</rd:DefaultName>
-            <Top>2.64917in</Top>
+            <Top>2.96861in</Top>
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
@@ -1232,7 +1236,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>AverageProductSale</rd:DefaultName>
-            <Top>2.96861in</Top>
+            <Top>3.28805in</Top>
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
@@ -1264,11 +1268,75 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ProductImageCount</rd:DefaultName>
-            <Top>3.28805in</Top>
+            <Top>3.60749in</Top>
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
             <ZIndex>23</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox18">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>ID:</Value>
+                    <Style>
+                      <FontFamily>Arial Black</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox6</rd:DefaultName>
+            <Top>0.10749in</Top>
+            <Left>0.105in</Left>
+            <Height>0.25in</Height>
+            <Width>2.56945in</Width>
+            <ZIndex>24</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="ID">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!ID.Value, "ProductReportData")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ID</rd:DefaultName>
+            <Top>0.10749in</Top>
+            <Left>3.07167in</Left>
+            <Height>0.25in</Height>
+            <Width>3.32833in</Width>
+            <ZIndex>25</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>

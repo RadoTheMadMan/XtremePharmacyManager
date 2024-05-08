@@ -790,7 +790,7 @@ namespace XtremePharmacyManager
                                                              view.DateModified,
                                                              view.OrderStatus,
                                                              view.OrderReason
-                                            });
+                                                });
                                             }
                                         }
                                     }

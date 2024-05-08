@@ -17,9 +17,13 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="PredictedAverageEmployeeIncome">
-          <DataField>PredictedAverageEmployeeIncome</DataField>
+        <Field Name="AverageEmployeeIncome">
+          <DataField>AverageEmployeeIncome</DataField>
           <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
+        </Field>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="UserAddress">
           <DataField>UserAddress</DataField>
@@ -803,36 +807,35 @@
                 <ChartMember>
                   <Group Name="Chart1_CategoryGroup">
                     <GroupExpressions>
-                      <GroupExpression>=Fields!PredictedAverageEmployeeIncome.Value</GroupExpression>
+                      <GroupExpression>=Fields!AverageEmployeeIncome.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!PredictedAverageEmployeeIncome.Value</Value>
+                      <Value>=Fields!AverageEmployeeIncome.Value</Value>
                     </SortExpression>
                   </SortExpressions>
-                  <Label>=Fields!PredictedAverageEmployeeIncome.Value</Label>
+                  <Label>=Fields!AverageEmployeeIncome.Value</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
             <ChartSeriesHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Label>Predicted Average Employee Income</Label>
+                  <Label>Average Employee Income</Label>
                 </ChartMember>
                 <ChartMember>
-                  <Label>Predicted Average Employee Income</Label>
+                  <Label>Average Employee Income</Label>
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
             <ChartData>
               <ChartSeriesCollection>
-                <ChartSeries Name="PredictedAverageEmployeeIncome">
-                  <Hidden>=Fields!PredictedAverageEmployeeIncome.IsMissing.Equals(false)</Hidden>
+                <ChartSeries Name="AverageEmployeeIncome">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=First(Fields!PredictedAverageEmployeeIncome.Value)</Y>
+                        <Y>=First(Fields!AverageEmployeeIncome.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -863,11 +866,11 @@
                     <MinMovingDistance>0pt</MinMovingDistance>
                   </ChartSmartLabel>
                 </ChartSeries>
-                <ChartSeries Name="PredictedAverageEmployeeIncome1">
+                <ChartSeries Name="AverageEmployeeIncome1">
                   <ChartDataPoints>
                     <ChartDataPoint>
                       <ChartDataPointValues>
-                        <Y>=Sum(Fields!PredictedAverageEmployeeIncome.Value)</Y>
+                        <Y>=Sum(Fields!AverageEmployeeIncome.Value)</Y>
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
@@ -1210,6 +1213,70 @@
               </Border>
             </Style>
           </Line>
+          <Textbox Name="ID">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!ID.Value, "EmployeeReportData")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ID</rd:DefaultName>
+            <Top>0.03833in</Top>
+            <Left>1.36611in</Left>
+            <Height>0.25in</Height>
+            <Width>1.75in</Width>
+            <ZIndex>25</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="UserName13">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>ID:</Value>
+                    <Style>
+                      <FontFamily>Arial Black</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>UserName</rd:DefaultName>
+            <Top>0.02778in</Top>
+            <Left>0.005in</Left>
+            <Height>0.25in</Height>
+            <Width>1.29167in</Width>
+            <ZIndex>26</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>5.39667in</Height>
         <Style />

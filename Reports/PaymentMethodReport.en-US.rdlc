@@ -17,6 +17,10 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
         <Field Name="MethodName">
           <DataField>MethodName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -423,9 +427,9 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>PaymentMethodReportData</DataSetName>
-            <Top>0.85222in</Top>
+            <Top>1.14389in</Top>
             <Left>0.005in</Left>
-            <Height>2.59167in</Height>
+            <Height>2.3in</Height>
             <Width>6.395in</Width>
             <Style>
               <Border>
@@ -437,8 +441,7 @@
             </Style>
           </Chart>
           <Line Name="Line3">
-            <Top>0.78278in</Top>
-            <Left>0.005in</Left>
+            <Top>1.07444in</Top>
             <Height>0in</Height>
             <Width>6.6in</Width>
             <ZIndex>1</ZIndex>
@@ -465,7 +468,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>0.09361in</Top>
+            <Top>0.38527in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>1.80833in</Width>
@@ -497,7 +500,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>0.46333in</Top>
+            <Top>0.75499in</Top>
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>1.80833in</Width>
@@ -529,7 +532,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>MethodName</rd:DefaultName>
-            <Top>0.09361in</Top>
+            <Top>0.38527in</Top>
             <Left>1.98277in</Left>
             <Height>0.25in</Height>
             <Width>1.81667in</Width>
@@ -561,11 +564,75 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>TimesThisMethodWasUsed</rd:DefaultName>
-            <Top>0.46334in</Top>
+            <Top>0.755in</Top>
             <Left>1.98277in</Left>
             <Height>0.25in</Height>
             <Width>1.81667in</Width>
             <ZIndex>5</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox9">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>ID:</Value>
+                    <Style>
+                      <FontFamily>Arial Black</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox6</rd:DefaultName>
+            <Top>0.05556in</Top>
+            <Left>0.105in</Left>
+            <Height>0.25in</Height>
+            <Width>1.80833in</Width>
+            <ZIndex>6</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="ID">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!ID.Value, "PaymentMethodReportData")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>ID</rd:DefaultName>
+            <Top>0.05556in</Top>
+            <Left>1.98277in</Left>
+            <Height>0.25in</Height>
+            <Width>1.81667in</Width>
+            <ZIndex>7</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
