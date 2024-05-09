@@ -97,120 +97,28 @@
             <ChartCategoryHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Group Name="SaleRateGroup">
-                    <GroupExpressions>
-                      <GroupExpression>=Fields!OrderStatus.Value</GroupExpression>
-                    </GroupExpressions>
-                    <Filters>
-                      <Filter>
-                        <FilterExpression>=Fields!OrderStatus.Value.Equals(9)</FilterExpression>
-                        <Operator>Equal</Operator>
-                        <FilterValues>
-                          <FilterValue DataType="Boolean">=Fields!OrderStatus.Value.Equals(9)</FilterValue>
-                        </FilterValues>
-                      </Filter>
-                    </Filters>
-                  </Group>
-                  <SortExpressions>
-                    <SortExpression>
-                      <Value>=Fields!OrderStatus.Value</Value>
-                    </SortExpression>
-                  </SortExpressions>
-                  <ChartMembers>
-                    <ChartMember>
-                      <Group Name="ReturnRateGroup">
-                        <GroupExpressions>
-                          <GroupExpression>=Fields!OrderStatus.Value</GroupExpression>
-                        </GroupExpressions>
-                        <Filters>
-                          <Filter>
-                            <FilterExpression>=(Fields!OrderStatus.Value.Equals(7) or Fields!OrderStatus.Value.Equals(8))</FilterExpression>
-                            <Operator>Equal</Operator>
-                            <FilterValues>
-                              <FilterValue>=(Fields!OrderStatus.Value.Equals(7) or Fields!OrderStatus.Value.Equals(8))</FilterValue>
-                            </FilterValues>
-                          </Filter>
-                        </Filters>
-                      </Group>
-                      <SortExpressions>
-                        <SortExpression>
-                          <Value>=Fields!OrderStatus.Value</Value>
-                        </SortExpression>
-                      </SortExpressions>
-                      <ChartMembers>
-                        <ChartMember>
-                          <Group Name="IdleOrStillProcessing">
-                            <GroupExpressions>
-                              <GroupExpression>=Fields!OrderStatus.Value</GroupExpression>
-                            </GroupExpressions>
-                            <Filters>
-                              <Filter>
-                                <FilterExpression>=(Not(Fields!OrderStatus.Value.Equals(7) or Fields!OrderStatus.Value.Equals(8) or Fields!OrderStatus.Value.Equals(9)))</FilterExpression>
-                                <Operator>Equal</Operator>
-                                <FilterValues>
-                                  <FilterValue DataType="Boolean">=(Not(Fields!OrderStatus.Value.Equals(7) or Fields!OrderStatus.Value.Equals(8) or Fields!OrderStatus.Value.Equals(9)))</FilterValue>
-                                </FilterValues>
-                              </Filter>
-                            </Filters>
-                          </Group>
-                          <SortExpressions>
-                            <SortExpression>
-                              <Value>=Fields!OrderStatus.Value</Value>
-                            </SortExpression>
-                          </SortExpressions>
-                          <Label>Idle/Still Processing</Label>
-                        </ChartMember>
-                      </ChartMembers>
-                      <Label>Cancelled/Returned</Label>
-                    </ChartMember>
-                  </ChartMembers>
-                  <Label>=Count(IIF(Fields!OrderStatus.Value.Equals(9),Count(Fields!ID.Value),0))</Label>
+                  <Label />
                 </ChartMember>
               </ChartMembers>
             </ChartCategoryHierarchy>
             <ChartSeriesHierarchy>
               <ChartMembers>
                 <ChartMember>
-                  <Label>Order Price</Label>
+                  <Label />
                 </ChartMember>
               </ChartMembers>
             </ChartSeriesHierarchy>
             <ChartData>
               <ChartSeriesCollection>
-                <ChartSeries Name="Income">
+                <ChartSeries Name="EmptySeriesName">
                   <ChartDataPoints>
                     <ChartDataPoint>
-                      <ChartDataPointValues>
-                        <Y>=Sum(IIf(Fields!OrderStatus.Value.Equals(9),CInt(Fields!OrderPrice.Value),0))</Y>
-                      </ChartDataPointValues>
-                      <ChartDataLabel>
-                        <Style />
-                      </ChartDataLabel>
-                      <Style />
-                      <ChartMarker>
-                        <Style />
-                      </ChartMarker>
-                      <DataElementOutput>Output</DataElementOutput>
+                      <ChartDataPointValues />
                     </ChartDataPoint>
                   </ChartDataPoints>
                   <Type>Shape</Type>
                   <Subtype>ExplodedPie</Subtype>
                   <Style />
-                  <ChartEmptyPoints>
-                    <Style />
-                    <ChartMarker>
-                      <Style />
-                    </ChartMarker>
-                    <ChartDataLabel>
-                      <Style />
-                    </ChartDataLabel>
-                  </ChartEmptyPoints>
-                  <ValueAxisName>Primary</ValueAxisName>
-                  <CategoryAxisName>Primary</CategoryAxisName>
-                  <ChartSmartLabel>
-                    <CalloutLineColor>Black</CalloutLineColor>
-                    <MinMovingDistance>0pt</MinMovingDistance>
-                  </ChartSmartLabel>
                 </ChartSeries>
               </ChartSeriesCollection>
             </ChartData>
@@ -469,7 +377,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Sales vs Return Rates for the Order</Caption>
+                <Caption>Sales vs Return Rates vs Unfinished Rates for the Order</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -1535,36 +1443,6 @@
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
             <ZIndex>33</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox26">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>="Income: " &amp; Sum(IIf(Fields!OrderStatus.Value.Equals(9),CInt(Fields!OrderPrice.Value),0))</Value>
-                    <Style />
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox26</rd:DefaultName>
-            <Top>5.38721in</Top>
-            <Left>2.74389in</Left>
-            <Height>0.25in</Height>
-            <Width>3.65611in</Width>
-            <ZIndex>34</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
