@@ -2,13 +2,14 @@
 /* This is the start of the XTremePharmacyDB. Here will be the whole code for the database */
 /* Use the Cyrilic_General_CI_AS collation for cyrilic letters
 uncomment this line to execute it if you want cyrilic letters
-create database XTremePharmacyDB collate Cyrillic_General_CI_AS;
+create database XTremePharmacyDB collate Cyrillic_General_CI_AS or 0x0419; according to the documentation of SQL Server about
+collation names and their sql server collation ids and windows collation ids
 */
 /* I checked in the internet for many thing here including the create database if not exists.
 So it checks if it is null and if it is creates it if it is not uses it*/
 if(DB_ID('XTremePharmacyDB') is null)
 begin
-create database XTremePharmacyDB collate Cyrilic_General_CI_AS;
+create database XTremePharmacyDB collate Cyrillic_General_CI_AS;
 end
 else
 begin
@@ -1641,7 +1642,28 @@ ProductOrders.DesiredQuantity, ProductOrders.OrderPrice,
 (select top 1 UserEmail from Users where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientEmail,
 (select top 1 UserAddress from Users where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientAddress,
 (select top 1 UserDisplayName from Users where ProductOrders.EmployeeID = Users.ID and (Users.UserRole = 0 or Users.UserRole = 1)) as EmployeeName,
-ProductOrders.DateAdded,ProductOrders.DateModified,ProductOrders.OrderStatus,ProductOrders.OrderReason
+ProductOrders.DateAdded,ProductOrders.DateModified,ProductOrders.OrderStatus,ProductOrders.OrderReason,
+(select sum(ProductOrders.OrderPrice) from ProductOrders where OrderStatus = 9) as IncomeWithoutDeliveryPrices,
+(select sum(ProductOrders.OrderPrice) from ProductOrders where OrderStatus = 7 or OrderStatus = 8) as LossWithoutDeliveryPrices,
+(select sum(ProductOrders.OrderPrice) from ProductOrders where OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9) as DueWithoutDeliveryPrices,
+(select sum(ProductOrders.OrderPrice) from ProductOrders) as TotalWithoutDeliveryPrices,
+(select sum(ProductOrders.DesiredQuantity) from ProductOrders where OrderStatus = 9) as SoldStock,
+(select sum(ProductOrders.DesiredQuantity) from ProductOrders where OrderStatus = 7 or OrderStatus = 8) as ReturnedStock,
+(select sum(ProductOrders.DesiredQuantity) from ProductOrders where OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9 ) as StockToBeInboundOrOutbound,
+(select sum(ProductOrders.DesiredQuantity) from ProductOrders) as TotalOrderedStock,
+(select count(ProductOrders.ID) from ProductOrders where OrderStatus = 9) as CompletedOrdersCount,
+(select count(ProductOrders.ID) from ProductOrders where OrderStatus = 7 or OrderStatus = 8) as CancelledOrReturnedOrdersCount,
+(select count(ProductOrders.ID) from ProductOrders where OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9) as IdleOrStillProcessingOrdersCount,
+(select count(ProductOrders.ID) from ProductOrders) as TotalOrdersCount,
+(select try_cast(((select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders where OrderStatus = 9))/(select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders)))) * 100) as decimal(18,2))) as SaleRatePercentByPrice,
+(select try_cast(((select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders where OrderStatus = 7 or OrderStatus = 8))/(select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders)))) * 100) as decimal(18,2))) as ReturnRatePercentByPrice,
+(select try_cast(((select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders where OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9))/(select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders)))) * 100) as decimal(18,2))) as DueRatePercentByPrice,
+(select try_cast(((select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders where OrderStatus = 9))/(select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders)))) * 100) as decimal(18,2))) as SaleRatePercentByDesiredQuantity,
+(select try_cast(((select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders where OrderStatus = 7 or OrderStatus = 8))/(select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders)))) * 100) as decimal(18,2))) as ReturnRatePercentByDesiredQuantity,
+(select try_cast(((select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders where OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9))/(select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders)))) * 100) as decimal(18,2))) as DueRatePercentByDesiredQuantity,
+(select try_cast(((select try_convert(decimal(18,2),(select count(ID) from ProductOrders where OrderStatus = 9))/(select try_convert(decimal(18,2),(select count(ID) from ProductOrders)))) * 100) as decimal(18,2))) as SaleRatePercentByCount,
+(select try_cast(((select try_convert(decimal(18,2),(select count(ID) from ProductOrders where OrderStatus = 7 or OrderStatus = 8))/(select try_convert(decimal(18,2),(select count(ID) from ProductOrders)))) * 100) as decimal(18,2))) as ReturnRatePercentByCount,
+(select try_cast(((select try_convert(decimal(18,2),(select count(ID) from ProductOrders where OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9))/(select try_convert(decimal(18,2),(select count(ID) from ProductOrders)))) * 100) as decimal(18,2))) as DueRatePercentByCount
 from ProductOrders;
 go
 

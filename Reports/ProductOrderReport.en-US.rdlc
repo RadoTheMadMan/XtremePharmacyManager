@@ -377,7 +377,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Sales vs Return Rates vs Unfinished Rates for the Order</Caption>
+                <Caption>Sales vs Return Rates vs Unfinished Rates for the Order(No Delivery Prices Considered!)</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
