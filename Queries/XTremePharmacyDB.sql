@@ -48,11 +48,24 @@ set identity_insert ProductBrands on;
 insert into ProductBrands(ID, BrandName) values(-1,'Default');
 set identity_insert ProductBrands off;
 select * from ProductBrands;
+
+/* Product Vendors, a table that defines the vendors of the product for easy selection */
+create table ProductVendors(
+ID int identity primary key not null,
+VendorName varchar(200) not null default 'Undefined'
+);
+/* add a dummy value to the vendors table so the products table can work */
+set identity_insert ProductVendors on;
+insert into ProductVendors(ID, VendorName) values(-1,'Default');
+set identity_insert ProductVendors off;
+select * from ProductVendors;
+
 /* Products table, this is a very concerning table to make and one mistake can lead to downfall*/
 create table Products(
 ID int identity primary key not null,
 ProductName varchar(100) not null default 'Undefined',
 BrandID int foreign key references ProductBrands(ID) on update cascade on delete set default default -1,
+VendorID int foreign key references ProductVendors(ID) on update cascade on delete set default default -1,
 ProductDescription varchar(200) not null default 'Add description',
 ProductQuantity int not null default 0,
 ProductPrice money not null default 0,
@@ -390,6 +403,7 @@ insert into ProductBrands(BrandName)
 values(@brandname);
 end
 go
+
 /* Get Brand stored procedure, if blank parameters are put it is supposed to return everything, if specific parameters
 are provided it will return by the parameter criterias  and if not all criterias are valid all brands will be returned instead*/
 go
@@ -409,7 +423,7 @@ select * from ProductBrands;
 end
 end
 go
-/* Update Brand by ID procedure, updates safely an user by ID and validates if the ID is not a dummy value */
+/* Update Brand by ID procedure, updates safely a brand by ID and validates if the ID is not a dummy value */
 /* by default IDs aren't to be edited via the stored procedures and this is for security reasons */
 /* also if the ID is dummy entry it won't be edited and if the parameters are null, blank or invalid the old parameters will be preserved */
 go
@@ -437,7 +451,8 @@ update ProductBrands set BrandName = @new_brand_name where ID = @id;
 end
 end
 go
-/* Delete Brand procedure, it will have almost the same manner as the Get User procedure but will delete stuff,
+
+/* Delete Brand procedure, it will have almost the same manner as the Get Brand procedure but will delete stuff,
 if all the values are invalid then it will delete everything, if all the values are valid it will delete anything
 that is coresponding to these parameters */
 go
@@ -476,6 +491,106 @@ end
 end
 go
 
+/* Add Vendor stored procedure, it will be for securely adding vendors to the vendors table */
+go
+create or alter procedure AddVendor(
+@vendorname varchar(200)
+)
+as
+begin
+insert into ProductVendors(VendorName)
+values(@vendorname);
+end
+go
+
+/* Get Vendor stored procedure, if blank parameters are put it is supposed to return everything, if specific parameters
+are provided it will return by the parameter criterias  and if not all criterias are valid all vendors will be returned instead*/
+go
+create or alter procedure GetVendor(
+@id int, 
+@vendorname varchar(200)
+)
+as
+begin
+if @id >= 0 and @vendorname != '' 
+begin
+select * from ProductVendors where ID = ID and VendorName like '%'+@vendorname+'%';
+end
+else
+begin
+select * from ProductVendors;
+end
+end
+go
+/* Update Vendor by ID procedure, updates safely a vendor by ID and validates if the ID is not a dummy value */
+/* by default IDs aren't to be edited via the stored procedures and this is for security reasons */
+/* also if the ID is dummy entry it won't be edited and if the parameters are null, blank or invalid the old parameters will be preserved */
+go
+create or alter procedure UpdateVendorByID(
+@id int, 
+@new_vendor_name varchar(200)
+)
+as
+begin
+/* first check get old entry values and check if the ID is the dummy, if it is the dummy value do nothing */
+/* select the current values from the table entry if it is found */
+declare @old_vendor_name as varchar(200);
+select @old_vendor_name = VendorName from ProductVendors where ID = @id;
+if @id < 0
+begin
+select 'Dummy entries shall not be edited!';
+end
+else
+begin
+if @new_vendor_name is null or @new_vendor_name = ''
+begin
+set @new_vendor_name = @old_vendor_name;
+end
+update ProductVendors set VendorName = @new_vendor_name where ID = @id;
+end
+end
+go
+
+/* Delete Vendor procedure, it will have almost the same manner as the Get Vendor procedure but will delete stuff,
+if all the values are invalid then it will delete everything, if all the values are valid it will delete anything
+that is coresponding to these parameters */
+go
+create or alter procedure DeleteVendor(
+@id int, 
+@vendorname varchar(200)
+)
+as
+begin
+if @id >= 0 and @vendorname != '' 
+begin
+delete from ProductVendors where ID = ID and VendorName like '%'+@vendorname+'%';
+end
+else
+begin
+delete from ProductVendors;
+end
+end
+go
+go
+/* Delete Vendor by ID, only for deleting by ID, will be mapped using Entity Model, if you want to delete specific brand or all brands 
+use DeleteVendor*/
+create or alter procedure DeleteVendorByID(
+@id int
+)
+as
+begin
+if @id >= 0
+begin
+delete from ProductVendors where ID=@id;
+end
+else
+begin
+select 'Dummy entries shall not be deleted!';
+end
+end
+go
+
+
 /* Add Payment Method stored procedure, it will be for securely adding payment methods to the payment methods table */
 go
 create or alter procedure AddPaymentMethod(
@@ -506,7 +621,7 @@ select * from PaymentMethods;
 end
 end
 go
-/* Update Payment Method by ID procedure, updates safely an user by ID and validates if the ID is not a dummy value */
+/* Update Payment Method by ID procedure, updates safely a payment method by ID and validates if the ID is not a dummy value */
 /* by default IDs aren't to be edited via the stored procedures and this is for security reasons */
 /* also if the ID is dummy entry it won't be edited and if the parameters are null, blank or invalid the old parameters will be preserved */
 go
@@ -605,7 +720,7 @@ select * from DeliveryServices;
 end
 end
 go
-/* Update Delivery Service by ID procedure, updates safely an user by ID and validates if the ID is not a dummy value */
+/* Update Delivery Service by ID procedure, updates safely an delivery service by ID and validates if the ID is not a dummy value */
 /* by default IDs aren't to be edited via the stored procedures and this is for security reasons */
 /* also if the ID is dummy entry it won't be edited and if the parameters are null, blank or invalid the old parameters will be preserved */
 go
@@ -1542,17 +1657,317 @@ go
 /* beginning of views */
 
 /* some useful views that can help us in the long run so we don't have to make thousands of procedures and make our life harder */
-/* employees and clients view, it will have sufficient data even fo generating reports from it . Remember: admins and employeers are employees
+/* employees and clients view, it will have sufficient data even for generating reports from it . Remember: admins and employees are employees
 because they work for your company after all
 */
+/* Updates on all the views: 1 more view because of 1 more added table and its related pocedures, triggers, relations and stuff
+and shitton of important stats for your company in your view so you can get everything right when you use the program.
+Also usage of subqueries and moderately tightening the views is really better than joining thousands of tables in any way
+and allows you to extend them to immense number of columns. Thank you internet resources and AI for giving me chance to learn this
+valuable lesson.
+*/
+
 go
 create or alter view EmployeeView as
-select distinct Users.ID, Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
-Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, 
-(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = Users.ID and ProductOrders.OrderStatus = 9 ) as AverageEmployeeIncome 
-from Users where UserRole = 0 or UserRole = 1
-group by Users.ID, Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
-Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole;
+select distinct ID, UserName, UserPassword, UserDisplayName, UserBirthDate, UserPhone, UserEmail, UserAddress,
+UserProfilePic, UserBalance, UserDiagnose, UserDateOfRegister, UserRole, 
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9) as AverageEmployeeIncome,
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as AverageEmployeeLoss,
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID) as EstimatedAverageEmployeeIncome,
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.OrderStatus = 9) as AverageIncomeOfAllEmployees,
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as AverageLossOfAllEmployees,
+(select AVG(ProductOrders.OrderPrice) from ProductOrders) as EstimatedAverageIncomeOfAllEmployees,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9) as TotalEmployeeIncome,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as TotalEmployeeLoss,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID) as EstimatedTotalEmployeeIncome,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders where  ProductOrders.OrderStatus = 9) as TotalIncomeOfAllEmployees,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as TotalLossOfAllEmployees,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders) as EstimatedTotalIncomeOfAllEmployees,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9) as AverageQuantitySold,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as AverageQuantityReturned,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID) as AverageQuantityAssigned,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.OrderStatus = 9) as AverageQuantitySoldByAllEmployees,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as AverageQuantityReturnedByAllEmployees,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders) as AverageQuantityAssignedToAllEmployees,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9) as TotalQuantitySold,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as TotalQuantityReturned,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID) as TotalQuantityAssigned,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.OrderStatus = 9) as TotalQuantitySoldByAllEmployees,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as TotalQuantityReturnedByAllEmployees,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders) as TotalQuantityAssignedToAllEmployees,
+(select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9) as ProductsSoldByThisEmployee,
+(select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as ProductsReturnedByThisEmployee,
+(select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.EmployeeID = u.ID) as ProductsAssignedToThisEmployee,
+(select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.OrderStatus = 9) as ProductsSoldByAllEmployees,
+(select COUNT(ProductOrders.ProductID) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as ProductsReturnedByAllEmployees,
+(select COUNT(ProductOrders.ProductID) from ProductOrders) as ProductsAssignedToAllEmployees,
+(select COUNT(ProductOrders.ClientID) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9) as ClientsThatThisEmployeeCompletedOrdersFor,
+(select COUNT(ProductOrders.ClientID) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as ClientsThatThisEmployeeReturnedOrdersFor,
+(select COUNT(ProductOrders.ClientID) from ProductOrders where ProductOrders.EmployeeID = u.ID) as ClientsAssignedToThisEmployee,
+(select COUNT(ProductOrders.ClientID) from ProductOrders where ProductOrders.OrderStatus = 9) as ClientsThatAllEmployeesCompletedOrdersFor,
+(select COUNT(ProductOrders.ClientID) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as ClientsThatAllEmployeesReturnedOrdersFor,
+(select COUNT(ProductOrders.ClientID) from ProductOrders) as ClientsAssignedToAllEmployees,
+(select SUM(UserBalance) from Users where (UserRole = 0 or UserRole = 1)) as TotalCompanyBalance,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID)))
+		* 100) 
+) as AverageEmployeeIncomeRateByItsAverageEstimatedIncome,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID)))
+		* 100) 
+) as AverageEmployeeLossRateByItsAverageEstimatedIncome,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as AverageEmployeeIncomeRateByGlobalAverageEstimatedIncome,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as AverageEmployeeLossRateByGlobalAverageEstimatedIncome,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as GlobalAverageEmployeeIncomeRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as GlobalAverageEmployeeLossRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as EstimatedAveragePaymentRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID)))
+		* 100) 
+) as AverageQuantitySaleRateByItsAverageAssignedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID)))
+		* 100) 
+) as AverageQuantityReturnRateByItsAverageAssignedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as AverageQuantitySaleRateByGlobalAverageAssignedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as AverageQuantityReturnRateByGlobalAverageAssignedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as GlobalAverageQuantitySellRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as GlobalAverageQuantityReturnRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as AverageQuantityAssignRate,
+
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID)))
+		* 100) 
+) as TotalEmployeeIncomeRateByItsTotalEstimatedIncome,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID)))
+		* 100) 
+) as TotalEmployeeLossRateByItsTotalEstimatedIncome,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as TotalEmployeeIncomeRateByTotalGlobalEstimatedIncome,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as TotalEmployeeLossRateByTotalGlobalEstimatedIncome,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as GlobalTotalEmployeeIncomeRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as GlobalTotalEmployeeLossRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as EstimatedTotalPaymentRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID)))
+		* 100) 
+) as TotalQuantitySaleRateByItsTotalAssignedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID)))
+		* 100) 
+) as TotalQuantityReturnRateByItsTotalAssignedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as TotalQuantitySaleRateByGlobalTotalAssignedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as TotalQuantityReturnRateByGlobalTotalAssignedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as GlobalTotalQuantitySellRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as GlobalTotalQuantityReturnRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.EmployeeID = u.ID)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as TotalQuantityAssignRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.EmployeeID = u.ID)))
+		* 100) 
+) as ProductOrderCompletionRateByItsAssignedProducts,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.EmployeeID = u.ID)))
+		* 100) 
+) as ProductOrderCancellationRateByItsAssignedProducts,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ProductID) from ProductOrders)))
+		* 100) 
+) as ProductOrderCompletionRateByGlobalAssignedProducts,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ProductID) from ProductOrders)))
+		* 100) 
+) as ProductOrderCancellationRateByGlobalAssignedProducts,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ProductID) from ProductOrders)))
+		* 100) 
+) as GlobalProductOrderCompletionRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ProductID) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ProductID) from ProductOrders)))
+		* 100) 
+) as GlobalProductOrderCancellationRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.EmployeeID = u.ID)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ProductID) from ProductOrders)))
+		* 100) 
+) as TotalProductAssignRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ClientID) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ClientID) from ProductOrders where ProductOrders.EmployeeID = u.ID)))
+		* 100) 
+) as ClientSatisfactionRateByItsAssignedClients,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ClientID) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ClientID) from ProductOrders where ProductOrders.EmployeeID = u.ID)))
+		* 100) 
+) as ClientDissatisfactionRateByItsAssignedClients,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ClientID) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ClientID) from ProductOrders)))
+		* 100) 
+) as ClientSatisfactionRateByGlobalAssignedClients,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ClientID) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ClientID) from ProductOrders)))
+		* 100) 
+) as ClientDissatisfactionRateByGlobalAssignedClients,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ClientID) from ProductOrders where ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ClientID) from ProductOrders)))
+		* 100) 
+) as GlobalClientSatisfactionRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ClientID) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ClientID) from ProductOrders)))
+		* 100) 
+) as GlobalClientDissatisfactionRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ClientID) from ProductOrders where ProductOrders.EmployeeID = u.ID)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ClientID) from ProductOrders)))
+		* 100) 
+) as TotalClientAssignRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select UserBalance from Users where Users.UserBalance = u.UserBalance)))/
+		(select try_convert(decimal(18,2),(select SUM(UserBalance) from Users where (UserRole = 0 or UserRole = 1))))
+		* 100) 
+) as EmployeeBalanceRate
+from Users u where UserRole = 0 or UserRole = 1;
 go
 /* first time creating views so I am gonna test this one and the next ones */
 select * from EmployeeView;
@@ -1560,14 +1975,305 @@ select * from Users;
 
 go
 create or alter view ClientView as
-select distinct Users.ID, Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
-Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, 
-(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = Users.ID and ProductOrders.OrderStatus = 9) as AverageClientSpending 
-from Users, ProductOrders where Users.UserRole = 2
-group by Users.ID,Users.UserName,Users.UserPassword,Users.UserDisplayName,Users.UserBirthDate,Users.UserPhone,Users.UserEmail,Users.UserAddress,
-Users.UserProfilePic,Users.UserBalance,Users.UserDiagnose,Users.UserDateOfRegister,Users.UserRole, ProductOrders.ID,ProductOrders.ProductID,
-ProductOrders.DesiredQuantity, ProductOrders.OrderPrice, ProductOrders.ClientID,ProductOrders.EmployeeID, ProductOrders.DateAdded,ProductOrders.DateModified, 
-ProductOrders.OrderStatus, ProductOrders.OrderReason;
+select distinct ID, UserName, UserPassword, UserDisplayName, UserBirthDate, UserPhone, UserEmail, UserAddress,
+UserProfilePic, UserBalance, UserDiagnose, UserDateOfRegister, UserRole, 
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9) as AverageClientSpending,
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as AverageClientRefund,
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID) as EstimatedAverageClientSpending,
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.OrderStatus = 9) as AverageSpendingOfAllClients ,
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as AverageRefundOfAllClients,
+(select AVG(ProductOrders.OrderPrice) from ProductOrders) as EstimatedAverageSpendingOfAllClients,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9) as TotalClientSpending,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as TotalClientRefund,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID) as EstimatedTotalClientSpending,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders where  ProductOrders.OrderStatus = 9) as TotalSpendingOfAllClients,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as TotalRefundOfAllClients,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders) as EstimatedTotalSpendingOfClients,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9) as AverageQuantityBought,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as AverageQuantityReturned,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID) as AverageQuantityOrdered,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.OrderStatus = 9) as AverageQuantityBoughtByAllClients,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as AverageQuantityReturnedByAllClients,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders) as AverageQuantityOrderedByAllClients,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9) as TotalQuantityBought,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as TotalQuantityReturned,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID) as TotalQuantityOrdered,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.OrderStatus = 9) as TotalQuantityBoughtByAllEmployees,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as TotalQuantityReturnedByAllEmployees,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders) as TotalQuantityOrderedByAllEmployees,
+(select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9) as ProductsBoughtByThisClient,
+(select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as ProductsReturnedByThisClient,
+(select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.ClientID = u.ID) as ProductsOrderedByThisClient,
+(select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.OrderStatus = 9) as ProductsBoughtByAllClients,
+(select COUNT(ProductOrders.ProductID) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as ProductsReturnedByAllClients,
+(select COUNT(ProductOrders.ProductID) from ProductOrders) as ProductsOrderedByAllClients,
+(select COUNT(ProductOrders.EmployeeID) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9) as EmployeesThatCompletedOrdersForThisClient,
+(select COUNT(ProductOrders.EmployeeID) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as EmployeesThatCancelledOrReturnedOrdersForThisClient,
+(select COUNT(ProductOrders.EmployeeID) from ProductOrders where ProductOrders.ClientID = u.ID) as EmployeesThatWereAssignedToThisClient,
+(select COUNT(ProductOrders.EmployeeID) from ProductOrders where ProductOrders.OrderStatus = 9) as EmployeesThatCompletedOrdersForAllCLients,
+(select COUNT(ProductOrders.EmployeeID) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as EmployeesThatReturnedOrdersForAllClients,
+(select COUNT(ProductOrders.EmployeeID) from ProductOrders) as EmployeesThatWereAssignedToAllClients,
+(select SUM(UserBalance) from Users where UserRole = 2) as TotalClientInvestment,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID)))
+		* 100) 
+) as AverageClientSpendingRateByItsAverageEstimatedSpending,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID)))
+		* 100) 
+) as AverageClientRefundRateByItsAverageEstimatedSpending,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as AverageClientSpendingRateByGlobalAverageEstimatedSpending,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as AverageClientRefundRateByGlobalAverageEstimatedSpending,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as GlobalAverageClientSpendingRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as GlobalAverageClientRefundRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as EstimatedAverageInvestmentRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID)))
+		* 100) 
+) as AverageQuantityBuyRateByItsAverageOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID)))
+		* 100) 
+) as AverageQuantityReturnRateByItsAverageOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as AverageQuantityBuyRateByGlobalAverageOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as AverageQuantityReturnRateByGlobalAverageOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as GlobalAverageQuantityBuyRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as GlobalAverageQuantityReturnRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as AverageQuantityOrderRate,
+
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID)))
+		* 100) 
+) as TotalClientSpendingRateByItsTotalEstimatedSpending,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID)))
+		* 100) 
+) as TotalClientRefundRateByItsTotalEstimatedSpending,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as TotalClientSpendingRateByTotalGlobalEstimatedSpending,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as TotalClientRefundRateByTotalGlobalEstimatedSpending,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as GlobalTotalClientSpendingRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as GlobalTotalClientRefundRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ClientID = u.ID)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders)))
+		* 100) 
+) as EstimatedTotalInvestmentRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID)))
+		* 100) 
+) as TotalQuantityBuyRateByItsTotalOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID)))
+		* 100) 
+) as TotalQuantityReturnRateByItsTotalOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as TotalQuantityBuyRateByGlobalTotalOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as TotalQuantityReturnRateByGlobalTotalOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as GlobalTotalQuantityBuyRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as GlobalTotalQuantityReturnRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ClientID = u.ID)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders)))
+		* 100) 
+) as TotalQuantityOrderRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.ClientID = u.ID)))
+		* 100) 
+) as ProductOrderCompletionRateByItsOrderedProducts,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.ClientID = u.ID)))
+		* 100) 
+) as ProductOrderCancellationRateByItsOrderedProducts,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ProductID) from ProductOrders)))
+		* 100) 
+) as ProductOrderCompletionRateByGlobalOrderedProducts,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ProductID) from ProductOrders)))
+		* 100) 
+) as ProductOrderCancellationRateByGlobalOrderedProducts,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ProductID) from ProductOrders)))
+		* 100) 
+) as GlobalProductOrderCompletionRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ProductID) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ProductID) from ProductOrders)))
+		* 100) 
+) as GlobalProductOrderCancellationRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.ProductID) from ProductOrders where ProductOrders.ClientID = u.ID)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.ProductID) from ProductOrders)))
+		* 100) 
+) as TotalProductOrderRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.EmployeeID) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.EmployeeID) from ProductOrders where ProductOrders.ClientID = u.ID)))
+		* 100) 
+) as ClientSatisfactionRateByEmployeesWhoProcessedTheirOrders,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.EmployeeID) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.EmployeeID) from ProductOrders where ProductOrders.ClientID = u.ID)))
+		* 100) 
+) as ClientDissatisfactionRateByEmployeesWhoProcessedTheirOrders,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.EmployeeID) from ProductOrders where ProductOrders.ClientID = u.ID and ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.EmployeeID) from ProductOrders)))
+		* 100) 
+) as ClientSatisfactionRateByGlobalProcessingCount,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.EmployeeID) from ProductOrders where ProductOrders.ClientID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.EmployeeID) from ProductOrders)))
+		* 100) 
+) as ClientDissatisfactionRateByGlobalProcessingCount,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.EmployeeID) from ProductOrders where ProductOrders.OrderStatus = 9)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.EmployeeID) from ProductOrders)))
+		* 100) 
+) as GlobalClientSatisfactionRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.EmployeeID) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8))))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.EmployeeID) from ProductOrders)))
+		* 100) 
+) as GlobalClientDissatisfactionRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductOrders.EmployeeID) from ProductOrders where ProductOrders.ClientID = u.ID)))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductOrders.EmployeeID) from ProductOrders)))
+		* 100) 
+) as TotalEmployeeProcessRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select UserBalance from Users where Users.UserBalance = u.UserBalance)))/
+		(select try_convert(decimal(18,2),(select SUM(UserBalance) from Users where UserRole = 2)))
+		* 100) 
+) as ClientBalanceRate
+from Users u where u.UserRole = 2;
 go
 
 /* doing the same with the client view, selecting both the original view so we can compare them :) */
@@ -1579,36 +2285,830 @@ in the database(images are directly uploaded to the database in a binary format)
 go
 create or alter view ExtendedProductView as
 select distinct ID, ProductName,
-(select top 1 ProductBrands.BrandName from ProductBrands where ProductBrands.ID = Products.BrandID) as BrandName,
+(select top 1 ProductBrands.BrandName from ProductBrands where ProductBrands.ID = p.BrandID) as BrandName,
+(select top 1 ProductVendors.VendorName from ProductVendors where ProductVendors.ID = p.VendorID) as VendorName,
 ProductDescription, ProductQuantity, ProductPrice,
 ProductExpiryDate, ProductRegNum, ProductPartNum, ProductStorageLocation, 
-(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = Products.ID and ProductOrders.OrderStatus = 9) as AverageProductSale, 
-(select Count(ProductImages.ID) from ProductImages where ProductImages.ProductID = Products.ID) as ProductImageCount
-from Products
-group by ID, ProductName, ProductDescription, ProductQuantity, ProductPrice,
-ProductExpiryDate, ProductRegNum, ProductPartNum, ProductStorageLocation,
-Products.ID,Products.BrandID
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9) as AverageProductOrderSale,
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as AverageProductOrderReturn,
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID) as AverageProductOrderCost,
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.OrderStatus = 9) as AverageOrderSaleOfAllProducts,
+(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8) as AverageOrderReturnOfAllProducts,
+(select AVG(ProductOrders.OrderPrice) from ProductOrders) as AverageOrderCostOfAllProducts,
+(select AVG(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where Products.ID = p.ID and ProductOrders.OrderStatus = 9) as AverageProductSale,
+(select AVG(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where Products.ID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as AverageProductReturn,
+(select AVG(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where Products.ID = p.ID) as AverageProductCost,
+(select AVG(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where ProductOrders.OrderStatus = 9) as AverageSaleOfAllProducts,
+(select AVG(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8) as AverageReturnOfAllProducts,
+(select AVG(Products.ProductPrice) from Products) as AverageCostOfAllProducts,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9) as AverageProductOutbound,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as AverageProductInbound,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID) as AverageOrderedQuantityOfThisProduct,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.OrderStatus = 9) as AverageOutboundOfAllProducts,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as AverageInboundOfAllProducts,
+(select AVG(ProductOrders.DesiredQuantity) from ProductOrders) as AverageOrderedQuantityOfAllProducts,
+(select Count(ProductOrders.ClientID) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9) as ProductAcceptCount,
+(select Count(ProductOrders.ClientID) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as ProductReturnCount,
+(select Count(ProductOrders.ClientID) from ProductOrders where ProductOrders.ProductID = p.ID) as ProductOrderCount,
+(select Count(ProductOrders.ClientID) from ProductOrders where ProductOrders.OrderStatus = 9) as AcceptCountOfAllProducts,
+(select Count(ProductOrders.ClientID) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as ReturnCountOfAllProducts,
+(select Count(ProductOrders.ClientID) from ProductOrders ) as OrderCountOfAllProducts,
+(select Count(ProductOrders.ProductID) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9) as TimesOfSaleOfThisProduct,
+(select Count(ProductOrders.ProductID) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as TimesOfReturnOfThisProduct,
+(select Count(ProductOrders.ProductID) from ProductOrders where ProductOrders.ProductID = p.ID) as TimesOfOrderOfProduct,
+(select Count(ProductOrders.ProductID) from ProductOrders where ProductOrders.OrderStatus = 9) as TimesOfSaleOfAllProducts,
+(select Count(ProductOrders.ProductID) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as TimesOfReturnOfAllProducts,
+(select Count(ProductOrders.ProductID) from ProductOrders ) as TimesOfOrderOfAllProducts,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9) as TotalProductOrderSale,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as TotalProductOrderReturn,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID) as TotalProductOrderCost,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.OrderStatus = 9) as TotalOrderSaleOfAllProducts,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8) as TotalOrderReturnOfAllProducts,
+(select SUM(ProductOrders.OrderPrice) from ProductOrders ) as TotalOrderCostOfAllProducts,
+(select SUM(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where Products.ID = p.ID and ProductOrders.OrderStatus = 9) as TotalProductSale,
+(select SUM(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where Products.ID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as TotalProductReturn,
+(select SUM(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where Products.ID = p.ID) as TotalProductCost,
+(select SUM(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where ProductOrders.OrderStatus = 9) as TotalSaleOfAllProducts,
+(select SUM(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8) as TotalReturnOfAllProducts,
+(select SUM(Products.ProductPrice) from Products) as TotalCostOfAllProducts,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9) as TotalProductOutbound,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as TotalProductInbound,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID ) as TotalProductOrderQuantity,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.OrderStatus = 9) as TotalOutboundOfAllProducts,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as TotalInboundOfAllProducts,
+(select SUM(ProductOrders.DesiredQuantity) from ProductOrders ) as TotalOrderQuantityOfAllProducts,
+(select Count(ProductImages.ID) from ProductImages where ProductImages.ProductID = p.ID) as ProductImageCount,
+(select Count(ProductImages.ID) from ProductImages) as ImageCountOfAllProducts,
+(select Sum(ProductQuantity) from Products) as TotalProductStorageQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID)))
+		) * 100)
+) as AverageProductOrderSaleRateByItsAverageOrderCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID)))
+		) * 100)
+) as AverageProductOrderReturnRateByItsAverageOrderCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders)))
+		) * 100)
+) as AverageProductOrderSaleRateByGlobalAverageOrderCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders)))
+		) * 100)
+) as AverageProductOrderReturnRateByGlobalAverageOrderCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.OrderStatus = 9 ))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders )))
+		) * 100)
+) as GlobalAverageProductOrderSaleRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8) ))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders )))
+		) * 100)
+) as GlobalAverageProductOrderReturnRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID ))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.OrderPrice) from ProductOrders )))
+		) * 100)
+) as AverageProductOrderCostRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where Products.ID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select AVG(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where  Products.ID = p.ID)))
+		) * 100)
+) as AverageProductSaleRateByItsAverageCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where Products.ID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select AVG(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where  Products.ID = p.ID)))
+		) * 100)
+) as AverageProductReturnRateByItsAverageCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where Products.ID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select AVG(Products.ProductPrice) from Products)))
+		) * 100)
+) as AverageProductSaleRateByGlobalAverageCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where Products.ID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select AVG(Products.ProductPrice) from Products)))
+		) * 100)
+) as AverageProductReturnRateByGlobalAverageCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select AVG(Products.ProductPrice) from Products)))
+		) * 100)
+) as GlobalAverageProductSaleRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select AVG(Products.ProductPrice) from Products)))
+		) * 100)
+) as GlobalAverageProductReturnRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where  Products.ID = p.ID))/
+		(select try_convert(decimal(18,2),(select AVG(Products.ProductPrice) from Products)))
+		) * 100)
+) as AverageProductCostRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID)))
+		) * 100)
+) as AverageProductOutboundRateByItsAverageOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID)))
+		) * 100)
+) as AverageProductInboundRateByItsAverageOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders)))
+		) * 100)
+) as AverageProductOutboundRateByGlobalAverageOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders)))
+		) * 100)
+) as AverageProductInboundRateByGlobalAverageOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders)))
+		) * 100)
+) as GlobalAverageProductOutboundRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders)))
+		) * 100)
+) as GlobalAverageProductInboundRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select AVG(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID ))/
+		(select try_convert(decimal(18,2),(select AVG(ProductOrders.DesiredQuantity) from ProductOrders )))
+		) * 100)
+) as AverageProductOrderQuantityRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID)))
+		) * 100)
+) as TotalProductOrderSaleRateByItsTotalOrderCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID)))
+		) * 100)
+) as TotalProductOrderReturnRateByItsTotalOrderCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders )))
+		) * 100)
+) as TotalProductOrderSaleRateByGlobalTotalOrderCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders )))
+		) * 100)
+) as TotalProductOrderReturnRateByGlobalTotalOrderCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders )))
+		) * 100)
+) as GlobalTotalProductOrderSaleRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders )))
+		) * 100)
+) as GlobalTotalProductOrderReturnRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.ProductID = p.ID ))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.OrderPrice) from ProductOrders )))
+		) * 100)
+) as TotalProductOrderCostRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where Products.ID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select SUM(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where  Products.ID = p.ID)))
+		) * 100)
+) as TotalProductSaleRateByItsTotalCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where Products.ID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select SUM(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where  Products.ID = p.ID)))
+		) * 100)
+) as TotalProductReturnRateByItsTotalCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where Products.ID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select SUM(Products.ProductPrice) from Products)))
+		) * 100)
+) as TotalProductSaleRateByGlobalTotalCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where Products.ID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select SUM(Products.ProductPrice) from Products)))
+		) * 100)
+) as TotalProductReturnRateByGlobalTotalCost,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select SUM(Products.ProductPrice) from Products)))
+		) * 100)
+) as GlobalTotalProductSaleRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select SUM(Products.ProductPrice) from Products)))
+		) * 100)
+) as GlobalTotalProductReturnRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(Products.ProductPrice) from Products inner join ProductOrders on ProductOrders.ProductID = p.ID where  Products.ID = p.ID ))/
+		(select try_convert(decimal(18,2),(select SUM(Products.ProductPrice) from Products)))
+		) * 100)
+) as TotalProductCostRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID)))
+		) * 100)
+) as TotalProductOutboundRateByItsTotalOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID)))
+		) * 100)
+) as TotalProductInboundRateByItsTotalOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders)))
+		) * 100)
+) as TotalProductOutboundRateByGlobalTotalOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders)))
+		) * 100)
+) as TotalProductInboundRateByGlobalTotalOrderedQuantity,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders)))
+		) * 100)
+) as GlobalTotalProductOutboundRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders)))
+		) * 100)
+) as GlobalTotalProductInboundRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select SUM(ProductOrders.DesiredQuantity) from ProductOrders where ProductOrders.ProductID = p.ID ))/
+		(select try_convert(decimal(18,2),(select SUM(ProductOrders.DesiredQuantity) from ProductOrders )))
+		) * 100)
+) as TotalProductQuantityRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select Count(ClientID) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select Count(ClientID) from ProductOrders where ProductOrders.ProductID = p.ID)))
+		) * 100)
+) as ProductAcceptRateByItsClientNumbers,
+(
+	select (
+		(select try_convert(decimal(18,2), (select Count(ClientID) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select Count(ClientID) from ProductOrders where ProductOrders.ProductID = p.ID)))
+		) * 100)
+) as ProductReturnRateByItsClientNumbers,
+(
+	select (
+		(select try_convert(decimal(18,2), (select Count(ClientID) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select Count(ClientID) from ProductOrders )))
+		) * 100)
+) as ProductSaleRateByGlobalClientNumbers,
+(
+	select (
+		(select try_convert(decimal(18,2), (select Count(ClientID) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select Count(ClientID) from ProductOrders )))
+		) * 100)
+) as ProductReturnRateByGlobalClientNumbers,
+(
+	select (
+		(select try_convert(decimal(18,2), (select Count(ClientID) from ProductOrders where ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select Count(ClientID) from ProductOrders )))
+		) * 100)
+) as GlobalProductSaleRateByClientNumbers,
+(
+	select (
+		(select try_convert(decimal(18,2), (select Count(ClientID) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select Count(ClientID) from ProductOrders )))
+		) * 100)
+) as GlobalProductReturnRateByClientNumbers,
+(
+	select (
+		(select try_convert(decimal(18,2), (select Count(ClientID) from ProductOrders where ProductOrders.ProductID = p.ID ))/
+		(select try_convert(decimal(18,2),(select Count(ClientID) from ProductOrders )))
+		) * 100)
+) as ProductOrderRateByClientNumbers,
+(
+	select (
+		(select try_convert(decimal(18,2), (select Count(ProductID) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select Count(ProductID) from ProductOrders where ProductOrders.ProductID = p.ID)))
+		) * 100)
+) as ProductSellTimesRateByItsOrderTimes,
+(
+	select (
+		(select try_convert(decimal(18,2), (select Count(ProductID) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select Count(ProductID) from ProductOrders where ProductOrders.ProductID = p.ID)))
+		) * 100)
+) as ProductReturnTimesRateByItsOrderTimes,
+(
+	select (
+		(select try_convert(decimal(18,2), (select Count(ProductID) from ProductOrders where ProductOrders.ProductID = p.ID and ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select Count(ProductID) from ProductOrders )))
+		) * 100)
+) as ProductSaleTimesRateByGlobalOrderTimes,
+(
+	select (
+		(select try_convert(decimal(18,2), (select Count(ProductID) from ProductOrders where ProductOrders.ProductID = p.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select Count(ProductID) from ProductOrders )))
+		) * 100)
+) as ProductReturnTimesRateByGlobalOrderTimes,
+(
+	select (
+		(select try_convert(decimal(18,2), (select Count(ProductID) from ProductOrders where ProductOrders.OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select Count(ProductID) from ProductOrders )))
+		) * 100)
+) as GlobalProductSaleTimesRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select Count(ProductID) from ProductOrders where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select Count(ProductID) from ProductOrders )))
+		) * 100)
+) as GlobalProductReturnTimesRateByClientNumbers,
+(
+	select (
+		(select try_convert(decimal(18,2), (select Count(ProductID) from ProductOrders where ProductOrders.ProductID = p.ID ))/
+		(select try_convert(decimal(18,2),(select Count(ProductID) from ProductOrders )))
+		) * 100)
+) as ProductOrderTimesRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select COUNT(ProductImages.ID) from ProductImages where ProductImages.ProductID = p.ID))/
+		(select try_convert(decimal(18,2),(select COUNT(ProductImages.ID) from ProductImages)))
+		) * 100)
+) as ProductImageCountRate,
+(
+	select (
+		(select try_convert(decimal(18,2), (select Products.ProductQuantity from Products where Products.ID = p.ID))/
+		(select try_convert(decimal(18,2),(select SUM(Products.ProductQuantity) from Products)))
+		) * 100)
+) as ProductStorageQuantityRate
+from Products p;
 go
 
 select * from ExtendedProductView;
 select * from Products;
 
-/* product brands extended view with added number of products of this brand */
+/* product brands extended view with added number of products of this brand and shittons of stats */
 go
 create or alter view ExtendedBrandsView as
 select distinct ID,BrandName, 
-(select Count(Products.ID) from Products where ProductBrands.ID = Products.BrandID) as CountProductsFromBrand from ProductBrands
-group by ID,BrandName;
+(select Count(Products.ID) from Products where pb.ID = Products.BrandID) as CountProductsFromBrand,
+(select Count(Products.ID) from Products ) as CountAllProducts,
+(select Count(ClientID) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID) as CountClientsWhoUseThisBrand,
+(select Count(ClientID) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID) as CountAllClients,
+(select Sum(Products.ProductQuantity) from Products where Products.BrandID = pb.ID) as StorageQuantityOfProductsFromThisBrand,
+(select Sum(Products.ProductQuantity) from Products) as StorageQuantityOfAllProducts,
+(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID) as EstimatedNumberOfSoldProductsFromThisBrand,
+(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID and ProductOrders.OrderStatus = 9) as NumberOfSoldProductsFromThisBrand,
+(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as NumberOfReturnedProductsFromThisBrand,
+(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID) as EstimatedNumberOfSoldProductsFromAllBrands,
+(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where ProductOrders.OrderStatus = 9) as NumberOfSoldProductsFromAllBrands,
+(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as NumberOfReturnedProductsFromAllBrands,
+(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID) as EstimatedSalesFromThisBrand,
+(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID and ProductOrders.OrderStatus = 9) as SalesFromThisBrand,
+(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as ReturnsFromThisBrand,
+(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID) as EstimatedSalesFromAllBrands,
+(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where ProductOrders.OrderStatus = 9) as SalesFromAllBrands,
+(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as ReturnsFromAllBrands,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID and ProductOrders.OrderStatus = 9))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID))))
+	* 100
+	)
+) as BrandSaleRateByItsEstimatedSale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID))))
+	 * 100
+	)
+) as BrandReturnRateByItsEstimatedSale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID and ProductOrders.OrderStatus = 9))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	* 100
+	)
+) as BrandSaleRateByGlobalEstimatedSale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	 * 100
+	)
+) as BrandReturnRateByGlobalEstimatedSale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where ProductOrders.OrderStatus = 9))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	* 100
+	)
+) as GlobalBrandSaleRate,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	 * 100
+	)
+) as GlobalBrandReturnRate,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID and ProductOrders.OrderStatus = 9))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID))))
+	* 100
+	)
+) as BrandSaleQuantityRateByItsEstimatedQuantitySale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID))))
+	 * 100
+	)
+) as BrandReturnQuantityRateByItsEstimatedQuantitySale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID and ProductOrders.OrderStatus = 9))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	* 100
+	)
+) as BrandSaleQuantityRateByGlobalEstimatedQuantitySale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	 * 100
+	)
+) as BrandReturnQuantityRateByGlobalEstimatedQuantitySale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where ProductOrders.OrderStatus = 9))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	* 100
+	)
+) as GlobalBrandSaleQuantityRate,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	 * 100
+	)
+) as GlobalBrandReturnQuantityRate,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Count(ClientID) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.BrandID = pb.ID)))/
+	(select try_convert(decimal(18,2),(select Count(ClientID) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID)))
+	 * 100
+	)
+) as BrandUseRateByClient,
+((
+		(select try_convert(decimal(18,2),(select Sum(Products.ProductQuantity) from Products where pb.ID = Products.BrandID)))/
+		(select try_convert(decimal(18,2),(select Sum(Products.ProductQuantity) from Products)))
+* 100)) as ProductStoragePercent,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Count(Products.ID) from Products where pb.ID = Products.BrandID)))/
+	(select try_convert(decimal(18,2),(select Count(Products.ID) from Products)))
+	 * 100
+	)
+) as BrandUseRateByProduct
+from ProductBrands pb;
 go
 
 select * from ExtendedBrandsView;
-select * from productBrands;
+select * from ProductBrands;
+
+/* product vendors extended view with added number of products of this vendor and shittons of stats as always */
+go
+create or alter view ExtendedVendorsView as
+select distinct ID,VendorName, 
+(select Count(Products.ID) from Products where pv.ID = Products.VendorID) as CountProductsReceivedFromThisVendor,
+(select Count(Products.ID) from Products ) as CountAllProducts,
+(select Count(ClientID) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID) as CountClientsWhoReceivedFromThisVendor,
+(select Count(ClientID) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID) as CountAllClients,
+(select Sum(Products.ProductQuantity) from Products where Products.VendorID = pv.ID) as StorageQuantityOfProductsFromThisVendor,
+(select Sum(Products.ProductQuantity) from Products) as StorageQuantityOfAllProducts,
+(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID) as EstimatedNumberOfSoldProductsFromThisVendor,
+(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID and ProductOrders.OrderStatus = 9) as NumberOfSoldProductsFromThisVendor,
+(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as NumberOfReturnedProductsFromThisVendor,
+(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID) as EstimatedNumberOfSoldProductsFromAllVendors,
+(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where ProductOrders.OrderStatus = 9) as NumberOfSoldProductsFromAllVendors,
+(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as NumberOfReturnedProductsFromAllBVendors,
+(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID) as EstimatedSalesFromThisVendor,
+(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID and ProductOrders.OrderStatus = 9) as SalesFromThisVendor,
+(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as ReturnsFromThisVendor,
+(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID) as EstimatedSalesFromAllVendors,
+(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where ProductOrders.OrderStatus = 9) as SalesFromAllVendors,
+(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as ReturnsFromAllVendors,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID and ProductOrders.OrderStatus = 9))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID))))
+	* 100
+	)
+) as VendorSaleRateByItsEstimatedSale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID))))
+	 * 100
+	)
+) as VendorReturnRateByItsEstimatedSale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID and ProductOrders.OrderStatus = 9))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	* 100
+	)
+) as VendorSaleRateByGlobalEstimatedSale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	 * 100
+	)
+) as VendorReturnRateByGlobalEstimatedSale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where ProductOrders.OrderStatus = 9))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	* 100
+	)
+) as GlobalVendorSaleRate,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.OrderPrice) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	 * 100
+	)
+) as GlobalVendorReturnRate,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID and ProductOrders.OrderStatus = 9))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID))))
+	* 100
+	)
+) as VendorSaleQuantityRateByItsEstimatedQuantitySale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID))))
+	 * 100
+	)
+) as VendorReturnQuantityRateByItsEstimatedQuantitySale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID and ProductOrders.OrderStatus = 9))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	* 100
+	)
+) as VendorSaleQuantityRateByGlobalEstimatedQuantitySale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	 * 100
+	)
+) as VendorReturnQuantityRateByGlobalEstimatedQuantitySale,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where ProductOrders.OrderStatus = 9))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	* 100
+	)
+) as GlobalVendorSaleQuantityRate,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)))/
+	(select try_convert(decimal(18,2),(select Sum(ProductOrders.DesiredQuantity) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID))))
+	 * 100
+	)
+) as GlobalVendorReturnQuantityRate,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Count(ClientID) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID where Products.VendorID = pv.ID)))/
+	(select try_convert(decimal(18,2),(select Count(ClientID) from ProductOrders inner join Products on Products.ID = ProductOrders.ProductID)))
+	 * 100
+	)
+) as VendorUseRateByClient,
+((
+		(select try_convert(decimal(18,2),(select Sum(Products.ProductQuantity) from Products where pv.ID = Products.VendorID)))/
+		(select try_convert(decimal(18,2),(select Sum(Products.ProductQuantity) from Products)))
+* 100)) as ProductStoragePercent,
+(select
+	(
+	(select try_convert(decimal(18,2),(select Count(Products.ID) from Products where pv.ID = Products.VendorID)))/
+	(select try_convert(decimal(18,2),(select Count(Products.ID) from Products)))
+	 * 100
+	)
+) as VendorUseRateByProduct
+from ProductVendors pv;
+go
+
+select * from ExtendedVendorsView;
+select * from ProductVendors;
 
 /* payment methods extended view with times the payment method was used in order deliveries(if it is used in order deliveries it is used in orders) */
 go
 create or alter view ExtendedPaymentMethodsView as
-select distinct ID, MethodName, (select count(OrderDeliveries.ID) from OrderDeliveries where PaymentMethods.ID = OrderDeliveries.PaymentMethodID ) as TimesThisMethodWasUsed
-from PaymentMethods group by ID,MethodName;
+select distinct ID, MethodName, (select count(OrderDeliveries.ID) from OrderDeliveries where pm.ID = OrderDeliveries.PaymentMethodID ) as TimesThisMethodWasUsed,
+(select Count(OrderDeliveries.ID) from OrderDeliveries) as TimesAllMethodsWereUsed, 
+(select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID) as EstimatedProductsOrderedUsingThisMethod,
+(select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and OrderDeliveries.DeliveryStatus = 9) as ProductsSoldUsingThisMethod,
+(select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as ProductsReturnedUsingThisMethod,
+(select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID ) as EstimatedProductsOrderedUsingAllMethods,
+(select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where OrderDeliveries.DeliveryStatus = 9) as ProductsSoldUsingAllMethods,
+(select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as ProductsReturnedUsingAllMethods,
+(select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where  pm.ID = OrderDeliveries.PaymentMethodID) as ClientsWhoUsedThisMethod,
+(select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where  pm.ID = OrderDeliveries.PaymentMethodID and OrderDeliveries.DeliveryStatus = 9) as ClientsWhoHadPaidProductsUsingThisMethod,
+(select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where  pm.ID = OrderDeliveries.PaymentMethodID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as ClientsWhoHadReturnedProductsUsingThisMethod,
+(select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID) as ClientsWhoUsedAllMethods,
+(select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where  OrderDeliveries.DeliveryStatus = 9) as ClientsWhoHadPaidProductsUsingAllMethods,
+(select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where  (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as ClientsWhoHadReturnedProductsUsingAllMethods,
+(select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID) as EstimatedProductQuantitySoldUsingThisMethod,
+(select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and OrderDeliveries.DeliveryStatus = 9) as ProductQuantitySoldUsingThisMethod,
+(select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as ProductQuantityReturnedUsingThisMethod,
+(select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID ) as EstimatedProductQuantitySoldUsingAllMethods,
+(select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where OrderDeliveries.DeliveryStatus = 9) as ProductQuantitySoldUsingAllMethods,
+(select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as ProductQuantityReturnedUsingAllMethods,
+(select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = pm.ID where PaymentMethods.ID = pm.ID) as EstimatedIncomeUsingThisMethod,
+(select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = pm.ID where PaymentMethods.ID = pm.ID and OrderDeliveries.DeliveryStatus = 9) as TotalIncomeUsingThisMethod,
+(select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = pm.ID where PaymentMethods.ID = pm.ID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as TotalLossUsingThisMethod,
+(select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = PaymentMethods.ID) as EstimatedIncomeUsingAllMethods,
+(select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = PaymentMethods.ID where OrderDeliveries.DeliveryStatus = 9) as TotalIncomeUsingAllMethods,
+(select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = PaymentMethods.ID where (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as TotalLossUsingAllMethods,
+(select
+	((select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID)))
+	 * 100)
+) as ProductSaleRateByItsEstimatedOrder,
+(select
+	((select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID)))
+	 * 100)
+) as ProductReturnRateByItsEstimatedOrder,
+(select
+	((select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as ProductSaleRateByGlobalOrder,
+(select
+	((select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as ProductReturnRateByGlobalOrder,
+(select
+	((select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as GlobalProductSaleRate,
+(select
+	((select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as GlobalProductReturnRate,
+(select
+	((select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID)))
+	 * 100)
+) as ClientPaymentUseRateByItsEstimatedUse,
+(select
+	((select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID)))
+	 * 100)
+) as ClientReturnUseRateByItsEstimatedUse,
+(select
+	((select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as ClientPaymentUseRateByGlobalEstimatedUse,
+(select
+	((select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as ClientReturnUseRateByGlobalEstimatedUse,
+(select
+	((select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where  OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as GlobalClientPaymentUseRate,
+(select
+	((select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as GlobalClientReturnUseRate,
+(select
+	((select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID)))
+	 * 100)
+) as ProductQuantitySaleRateByItsEstimatedUse,
+(select
+	((select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID)))
+	 * 100)
+) as ProductQuantityReturnRateByItsEstimatedUse,
+(select
+	((select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as ProductQuantitySaleRateByGlobalEstimatedUse,
+(select
+	((select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where pm.ID = OrderDeliveries.PaymentMethodID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as ProductQuantityReturnRateByGlobalEstimatedUse,
+(select
+	((select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as GlobalProductQuantitySaleRate,
+(select
+	((select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as GlobalProductQuantityReturnRate,
+(select
+	((select try_convert(decimal(18,2), (select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = pm.ID where PaymentMethods.ID = pm.ID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = pm.ID where PaymentMethods.ID = pm.ID)))
+	 * 100)
+) as IncomeRateByItsEstimatedIncome,
+(select
+	((select try_convert(decimal(18,2), (select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = pm.ID where PaymentMethods.ID = pm.ID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = pm.ID where PaymentMethods.ID = pm.ID)))
+	 * 100)
+) as LossRateByItsEstimatedIncome,
+(select
+	((select try_convert(decimal(18,2), (select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = pm.ID where PaymentMethods.ID = pm.ID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = pm.ID)))
+	 * 100)
+) as IncomeRateByGlobalEstimatedIncome,
+(select
+	((select try_convert(decimal(18,2), (select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = pm.ID where PaymentMethods.ID = pm.ID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = pm.ID)))
+	 * 100)
+) as LossRateByGlobalEstimatedIncome,
+(select
+	((select try_convert(decimal(18,2), (select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = pm.ID where OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = pm.ID)))
+	 * 100)
+) as GlobalIncomeRate,
+(select
+	((select try_convert(decimal(18,2), (select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = pm.ID where (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Sum(TotalPrice) from OrderDeliveries inner join PaymentMethods on OrderDeliveries.PaymentMethodID = pm.ID)))
+	 * 100)
+) as GlobalLossRate,
+(select
+	((select try_convert(decimal(18,2), (select Count(OrderDeliveries.ID) from OrderDeliveries where pm.ID = OrderDeliveries.PaymentMethodID)))/
+	 (select try_convert(decimal(18,2), (select Count(OrderDeliveries.ID) from OrderDeliveries)))
+	 * 100)
+) as ServiceUseRate
+from PaymentMethods pm;
 go
 
 select * from ExtendedPaymentMethodsView;
@@ -1617,9 +3117,159 @@ select * from PaymentMethods;
 /* delivery services extended view with times the service was used in the orders and deliveries(it is the same as the payment method) */
 go
 create or alter view ExtendedDeliveryServicesView as
-select distinct ID, ServiceName, ServicePrice, (
-select Count(OrderDeliveries.ID) from OrderDeliveries where DeliveryServices.ID = OrderDeliveries.DeliveryServiceID) as TimesThisServiceWasUsed from DeliveryServices
-group by ID, ServiceName,ServicePrice;
+select distinct ID,ServiceName, ServicePrice,
+(select Count(OrderDeliveries.ID) from OrderDeliveries where ds.ID = OrderDeliveries.DeliveryServiceID) as TimesThisServiceWasUsed, 
+(select Count(OrderDeliveries.ID) from OrderDeliveries) as TimesAllServicesWereUsed, 
+(select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID) as EstimatedProductsDeliveredByThisService,
+(select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and OrderDeliveries.DeliveryStatus = 9) as ProductsDeliveredByThisService,
+(select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as ProductsReturnedByThisService,
+(select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID ) as EstimatedProductsDeliveredByAllServices,
+(select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where OrderDeliveries.DeliveryStatus = 9) as ProductsDeliveredByAllServices,
+(select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as ProductsReturnedByAllServices,
+(select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where  ds.ID = OrderDeliveries.DeliveryServiceID) as ClientsWhoUsedThisService,
+(select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where  ds.ID = OrderDeliveries.DeliveryServiceID and OrderDeliveries.DeliveryStatus = 9) as ClientsWhoHadDeliveriesByThisService,
+(select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where  ds.ID = OrderDeliveries.DeliveryServiceID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as ClientsWhoHadReturnsByThisService,
+(select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID) as ClientsWhoUsedAllServices,
+(select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where  OrderDeliveries.DeliveryStatus = 9) as ClientsWhoHadDeliveriesByAllServices,
+(select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where  (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as ClientsWhoHadReturnsByAllServices,
+(select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID) as EstimatedProductQuantityDeliveredByThisService,
+(select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and OrderDeliveries.DeliveryStatus = 9) as ProductQuantityDeliveredByThisService,
+(select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as ProductQuantityReturnedByThisService,
+(select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID ) as EstimatedProductQuantityDeliveredByAllServices,
+(select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where OrderDeliveries.DeliveryStatus = 9) as ProductQuantityDeliveredByAllServices,
+(select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as ProductQuantityReturnedByAllServices,
+(select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = ds.ID where DeliveryServices.ID = ds.ID) as TotalIncomeOfThisService,
+(select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = ds.ID where DeliveryServices.ID = ds.ID and OrderDeliveries.DeliveryStatus = 9) as DeliveryIncomeOfThisService,
+(select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = ds.ID where DeliveryServices.ID = ds.ID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as ReturnIncomeOfThisService,
+(select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = DeliveryServices.ID) as TotalIncomeOfAllServices,
+(select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = DeliveryServices.ID where OrderDeliveries.DeliveryStatus = 9) as DeliveryIncomeOfAllServices,
+(select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = DeliveryServices.ID where (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8)) as ReturnIncomeOfAllServices,
+(select
+	((select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID)))
+	 * 100)
+) as ProductDeliveryRateByItsEstimatedDelivery,
+(select
+	((select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID)))
+	 * 100)
+) as ProductReturnRateByItsEstimatedDelivery,
+(select
+	((select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as ProductDeliveryRateByGlobalEstimatedDelivery,
+(select
+	((select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as ProductReturnRateByGlobalEstimatedDelivery,
+(select
+	((select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as GlobalProductDeliveryRate,
+(select
+	((select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Count(Products.ID) from Products inner join ProductOrders on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as GlobalProductReturnRate,
+(select
+	((select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID)))
+	 * 100)
+) as ClientDeliveryUseRateByItsEstimatedUse,
+(select
+	((select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID)))
+	 * 100)
+) as ClientReturnUseRateByItsEstimatedUse,
+(select
+	((select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as ClientDeliveryUseRateByGlobalEstimatedUse,
+(select
+	((select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as ClientReturnUseRateByGlobalEstimatedUse,
+(select
+	((select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where  OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as GlobalClientDeliveryUseRate,
+(select
+	((select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Count(Users.ID) from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as GlobalClientReturnUseRate,
+(select
+	((select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID)))
+	 * 100)
+) as ProductQuantityDeliveryRateByItsEstimatedDelivery,
+(select
+	((select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID)))
+	 * 100)
+) as ProductQuantityReturnRateByItsEstimatedDelivery,
+(select
+	((select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as ProductQuantityDeliveryRateByGlobalEstimatedDelivery,
+(select
+	((select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where ds.ID = OrderDeliveries.DeliveryServiceID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as ProductQuantityReturnRateByGlobalEstimatedDelivery,
+(select
+	((select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as GlobalProductQuantityDeliveryRate,
+(select
+	((select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID where (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Sum(DesiredQuantity) from ProductOrders inner join Products on ProductOrders.ProductID = Products.ID inner join OrderDeliveries on OrderDeliveries.OrderID = ProductOrders.ID)))
+	 * 100)
+) as GlobalProductQuantityReturnRate,
+(select
+	((select try_convert(decimal(18,2), (select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = ds.ID where DeliveryServices.ID = ds.ID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = ds.ID where DeliveryServices.ID = ds.ID)))
+	 * 100)
+) as ServiceDeliveryIncomeRateByItsTotalIncome,
+(select
+	((select try_convert(decimal(18,2), (select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = ds.ID where DeliveryServices.ID = ds.ID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = ds.ID where DeliveryServices.ID = ds.ID)))
+	 * 100)
+) as ServiceReturnIncomeRateByItsTotalIncome,
+(select
+	((select try_convert(decimal(18,2), (select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = ds.ID where DeliveryServices.ID = ds.ID and OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = ds.ID)))
+	 * 100)
+) as ServiceDeliveryIncomeRateByGlobalTotalIncome,
+(select
+	((select try_convert(decimal(18,2), (select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = ds.ID where DeliveryServices.ID = ds.ID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = ds.ID)))
+	 * 100)
+) as ServiceReturnIncomeRateByGlobalTotalIncome,
+(select
+	((select try_convert(decimal(18,2), (select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = ds.ID where OrderDeliveries.DeliveryStatus = 9)))/
+	 (select try_convert(decimal(18,2), (select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = ds.ID)))
+	 * 100)
+) as GlobalServiceDeliveryIncomeRate,
+(select
+	((select try_convert(decimal(18,2), (select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = ds.ID and (OrderDeliveries.DeliveryStatus = 7 or OrderDeliveries.DeliveryStatus = 8))))/
+	 (select try_convert(decimal(18,2), (select Sum(ServicePrice) from DeliveryServices inner join OrderDeliveries on OrderDeliveries.DeliveryServiceID = ds.ID)))
+	 * 100)
+) as GlobalServiceReturnIncomeRate,
+(select
+	((select try_convert(decimal(18,2), (select Count(OrderDeliveries.ID) from OrderDeliveries where ds.ID = OrderDeliveries.DeliveryServiceID)))/
+	 (select try_convert(decimal(18,2), (select Count(OrderDeliveries.ID) from OrderDeliveries)))
+	 * 100)
+) as ServiceUseRate
+from DeliveryServices ds;
 go
 
 select * from ExtendedDeliveryServicesView;
@@ -1631,18 +3281,19 @@ this case  */
 
 go
 create or alter view ExtendedProductOrdersView as
-select distinct ProductOrders.ID, 
-(select top 1 Products.ProductName from Products where Products.ID = ProductOrders.ProductID) as ProductName, 
-(select top 1 ProductBrands.BrandName from ProductBrands inner join Products on Products.BrandID = ProductBrands.ID where Products.ID = ProductOrders.ProductID and ProductBrands.ID = Products.BrandID) as BrandName, 
-(select top 1 Products.ProductDescription from Products where ProductOrders.ProductID = Products.ID) as ProductDescription, 
-(select top 1 Products.ProductExpiryDate from Products where ProductOrders.ProductID = Products.ID) as ProductExpiryDate,
-ProductOrders.DesiredQuantity, ProductOrders.OrderPrice,
-(select top 1 UserDisplayName from Users where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientName,
-(select top 1 UserPhone from Users where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientPhone,
-(select top 1 UserEmail from Users where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientEmail,
-(select top 1 UserAddress from Users where ProductOrders.ClientID = Users.ID and Users.UserRole = 2) as ClientAddress,
-(select top 1 UserDisplayName from Users where ProductOrders.EmployeeID = Users.ID and (Users.UserRole = 0 or Users.UserRole = 1)) as EmployeeName,
-ProductOrders.DateAdded,ProductOrders.DateModified,ProductOrders.OrderStatus,ProductOrders.OrderReason,
+select distinct po.ID, 
+(select top 1 Products.ProductName from Products where Products.ID = po.ProductID) as ProductName, 
+(select top 1 ProductBrands.BrandName from ProductBrands inner join Products on Products.BrandID = ProductBrands.ID where Products.ID = po.ProductID and ProductBrands.ID = Products.BrandID) as BrandName, 
+(select top 1 ProductVendors.VendorName from ProductVendors inner join Products on Products.VendorID = ProductVendors.ID where Products.ID = po.ProductID and ProductVendors.ID = Products.VendorID) as VendorName, 
+(select top 1 Products.ProductDescription from Products where po.ProductID = Products.ID) as ProductDescription, 
+(select top 1 Products.ProductExpiryDate from Products where po.ProductID = Products.ID) as ProductExpiryDate,
+po.DesiredQuantity, po.OrderPrice,
+(select top 1 UserDisplayName from Users where po.ClientID = Users.ID and Users.UserRole = 2) as ClientName,
+(select top 1 UserPhone from Users where po.ClientID = Users.ID and Users.UserRole = 2) as ClientPhone,
+(select top 1 UserEmail from Users where po.ClientID = Users.ID and Users.UserRole = 2) as ClientEmail,
+(select top 1 UserAddress from Users where po.ClientID = Users.ID and Users.UserRole = 2) as ClientAddress,
+(select top 1 UserDisplayName from Users where po.EmployeeID = Users.ID and (Users.UserRole = 0 or Users.UserRole = 1)) as EmployeeName,
+po.DateAdded,po.DateModified,po.OrderStatus,po.OrderReason,
 (select sum(ProductOrders.OrderPrice) from ProductOrders where OrderStatus = 9) as IncomeWithoutDeliveryPrices,
 (select sum(ProductOrders.OrderPrice) from ProductOrders where OrderStatus = 7 or OrderStatus = 8) as LossWithoutDeliveryPrices,
 (select sum(ProductOrders.OrderPrice) from ProductOrders where OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9) as DueWithoutDeliveryPrices,
@@ -1655,16 +3306,105 @@ ProductOrders.DateAdded,ProductOrders.DateModified,ProductOrders.OrderStatus,Pro
 (select count(ProductOrders.ID) from ProductOrders where OrderStatus = 7 or OrderStatus = 8) as CancelledOrReturnedOrdersCount,
 (select count(ProductOrders.ID) from ProductOrders where OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9) as IdleOrStillProcessingOrdersCount,
 (select count(ProductOrders.ID) from ProductOrders) as TotalOrdersCount,
-(select try_cast(((select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders where OrderStatus = 9))/(select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders)))) * 100) as decimal(18,2))) as SaleRatePercentByPrice,
-(select try_cast(((select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders where OrderStatus = 7 or OrderStatus = 8))/(select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders)))) * 100) as decimal(18,2))) as ReturnRatePercentByPrice,
-(select try_cast(((select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders where OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9))/(select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders)))) * 100) as decimal(18,2))) as DueRatePercentByPrice,
-(select try_cast(((select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders where OrderStatus = 9))/(select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders)))) * 100) as decimal(18,2))) as SaleRatePercentByDesiredQuantity,
-(select try_cast(((select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders where OrderStatus = 7 or OrderStatus = 8))/(select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders)))) * 100) as decimal(18,2))) as ReturnRatePercentByDesiredQuantity,
-(select try_cast(((select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders where OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9))/(select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders)))) * 100) as decimal(18,2))) as DueRatePercentByDesiredQuantity,
-(select try_cast(((select try_convert(decimal(18,2),(select count(ID) from ProductOrders where OrderStatus = 9))/(select try_convert(decimal(18,2),(select count(ID) from ProductOrders)))) * 100) as decimal(18,2))) as SaleRatePercentByCount,
-(select try_cast(((select try_convert(decimal(18,2),(select count(ID) from ProductOrders where OrderStatus = 7 or OrderStatus = 8))/(select try_convert(decimal(18,2),(select count(ID) from ProductOrders)))) * 100) as decimal(18,2))) as ReturnRatePercentByCount,
-(select try_cast(((select try_convert(decimal(18,2),(select count(ID) from ProductOrders where OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9))/(select try_convert(decimal(18,2),(select count(ID) from ProductOrders)))) * 100) as decimal(18,2))) as DueRatePercentByCount
-from ProductOrders;
+(select count(ProductID) from ProductOrders) as TotalProductsOrdered,
+(select count(ProductID) from ProductOrders where OrderStatus = 9) as TotalProductsSold,
+(select count(ProductID) from ProductOrders where (OrderStatus = 7 or OrderStatus = 8)) as TotalProductsReturned,
+(select count(ProductID) from ProductOrders where (OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9)) as TotalProductsToBeInboundOrOutbound,
+(select count(ClientID) from ProductOrders) as TotalClientsWhoMadeOrders,
+(select count(ClientID) from ProductOrders where OrderStatus = 9) as TotalClientsWithCompletedOrders,
+(select count(ClientID) from ProductOrders where (OrderStatus = 7 or OrderStatus = 8)) as TotalClientsWithCancelledOrReturnedOrders,
+(select count(ClientID) from ProductOrders where (OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9)) as TotalClientsWithWaitingOrders,
+(
+	select ((
+		 (select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders where OrderStatus = 9))/
+	     (select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders))))
+		 * 100))
+) as SaleRatePercentByPrice,
+(
+	select ((
+		(select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders where (OrderStatus = 7 or OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders))))
+		* 100))
+) as ReturnRatePercentByPrice,
+(
+	select ((
+		(select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders where (OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9)))/
+		(select try_convert(decimal(18,2),(select sum(ProductOrders.OrderPrice) from ProductOrders))))
+		* 100))
+) as DueRatePercentByPrice,
+(
+	select ((
+		(select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders where OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders)))) 
+		* 100))
+) as SaleRatePercentByDesiredQuantity,
+(
+	select ((
+		(select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders where (OrderStatus = 7 or OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders)))) 
+		* 100))
+) as ReturnRatePercentByDesiredQuantity,
+(
+	select ((
+		(select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders where (OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9)))/
+		(select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders)))) 
+		* 100))
+) as DueRatePercentByDesiredQuantity,
+(
+	select ((
+		(select try_convert(decimal(18,2),(select Count(ProductID) from ProductOrders where ProductOrders.ID = po.ID and OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select Count(ProductID) from ProductOrders)))) 
+		* 100))
+) as SaleRatePercentByProductCount,
+(
+	select ((
+		(select try_convert(decimal(18,2),(select count(ProductID) from ProductOrders where ProductOrders.ID = po.ID and (OrderStatus = 7 or OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select count(ProductID) from ProductOrders)))) 
+		* 100))									  
+) as ReturnRatePercentByProductCount,			  
+(												  
+	select ((									  
+		(select try_convert(decimal(18,2),(select count(ProductID) from ProductOrders where ProductOrders.ID = po.ID and (OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9)))/
+		(select try_convert(decimal(18,2),(select count(ProductID) from ProductOrders)))) 
+		* 100))
+) as DueRatePercentByProductCount,
+(
+	select ((
+		(select try_convert(decimal(18,2),(select Count(ClientID) from ProductOrders where ProductOrders.ID = po.ID and OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select Count(ClientID) from ProductOrders)))) 
+		* 100))											
+) as SaleRatePercentByClientCount,						
+(														
+	select ((											
+		(select try_convert(decimal(18,2),(select count(ClientID) from ProductOrders where ProductOrders.ID = po.ID and (OrderStatus = 7 or OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select count(ClientID) from ProductOrders)))) 
+		* 100))									  		
+) as ReturnRatePercentByClientCount,			  		
+(												  		
+	select ((									  		
+		(select try_convert(decimal(18,2),(select count(ClientID) from ProductOrders where ProductOrders.ID = po.ID and (OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9)))/
+		(select try_convert(decimal(18,2),(select count(ClientID) from ProductOrders)))) 
+		* 100))
+) as DueRatePercentByClientCount,
+(
+	select ((
+		(select try_convert(decimal(18,2),(select count(ID) from ProductOrders where ProductOrders.ID = po.ID and OrderStatus = 9))/
+		(select try_convert(decimal(18,2),(select count(ID) from ProductOrders)))) 
+		* 100))
+) as SaleRatePercentByCount,
+(
+	select ((
+		(select try_convert(decimal(18,2),(select count(ID) from ProductOrders where ProductOrders.ID = po.ID and (OrderStatus = 7 or OrderStatus = 8)))/
+		(select try_convert(decimal(18,2),(select count(ID) from ProductOrders)))) 
+		* 100))
+) as ReturnRatePercentByCount,
+(
+	select ((
+		(select try_convert(decimal(18,2),(select count(ID) from ProductOrders where ProductOrders.ID = po.ID and (OrderStatus != 7 and OrderStatus != 8 and OrderStatus != 9)))/
+		(select try_convert(decimal(18,2),(select count(ID) from ProductOrders)))) 
+		* 100))
+) as DueRatePercentByCount
+from ProductOrders po;
 go
 
 select * from ExtendedProductOrdersView;
@@ -1672,28 +3412,184 @@ select * from ProductOrders;
 
 go
 create or alter view ExtendedOrderDeliveriesView as
-select distinct OrderDeliveries.ID, 
+select distinct od.ID, 
 (select top 1 Products.ProductName from Products inner join ProductOrders on Products.ID = ProductOrders.ProductID 
-where OrderDeliveries.OrderID = ProductOrders.ID) as ProductName, 
+where od.OrderID = ProductOrders.ID) as ProductName, 
 (select top 1 ProductBrands.BrandName from ProductBrands inner join Products on Products.BrandID = ProductBrands.ID inner join ProductOrders on ProductOrders.ProductID = Products.ID
-where OrderDeliveries.OrderID = ProductOrders.ID and ProductOrders.ProductID = Products.ID and OrderDeliveries.OrderID = ProductOrders.ID) as BrandName,
+where od.OrderID = ProductOrders.ID and ProductOrders.ProductID = Products.ID and od.OrderID = ProductOrders.ID) as BrandName,
+(select top 1 ProductVendors.VendorName from ProductVendors inner join Products on Products.VendorID = ProductVendors.ID inner join ProductOrders on ProductOrders.ProductID = Products.ID
+where od.OrderID = ProductOrders.ID and ProductOrders.ProductID = Products.ID and od.OrderID = ProductOrders.ID) as VendorName,
 (select top 1 Products.ProductDescription from Products inner join ProductOrders on Products.ID = ProductOrders.ProductID 
-where OrderDeliveries.OrderID = ProductOrders.ID) as ProductDescription,
+where od.OrderID = ProductOrders.ID) as ProductDescription,
 (select top 1 Products.ProductExpiryDate from Products inner join ProductOrders on Products.ID = ProductOrders.ProductID 
-where OrderDeliveries.OrderID = ProductOrders.ID) as ProductExpiryDate,
-(select top 1 ProductOrders.DesiredQuantity from ProductOrders where OrderDeliveries.OrderID = ProductOrders.ID) as DesiredQuantity, 
-(select top 1 ProductOrders.OrderPrice from ProductOrders where OrderDeliveries.OrderID = ProductOrders.ID) as OrderPrice,
-(select top 1 UserDisplayName from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID and Users.UserRole = 2 where OrderDeliveries.OrderID = ProductOrders.ID) as ClientName,
-(select top 1 UserPhone from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID and Users.UserRole = 2 where OrderDeliveries.OrderID = ProductOrders.ID) as ClientPhone,
-(select top 1 UserEmail from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID and Users.UserRole = 2 where OrderDeliveries.OrderID = ProductOrders.ID) as ClientEmail,
-(select top 1 UserAddress from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID and Users.UserRole = 2 where OrderDeliveries.OrderID = ProductOrders.ID) as ClientAddress,
-(select top 1 UserDisplayName from Users inner join ProductOrders on ProductOrders.EmployeeID = Users.ID and (UserRole = 0 or UserRole = 1) where OrderDeliveries.OrderID = ProductOrders.ID ) as EmployeeName,
-(select top 1 DeliveryServices.ServiceName from DeliveryServices where OrderDeliveries.DeliveryServiceID = DeliveryServices.ID) as ServiceName,
-(select top 1 DeliveryServices.ServicePrice from DeliveryServices where OrderDeliveries.DeliveryServiceID = DeliveryServices.ID) as DeliveryPrice,
-(select top 1 PaymentMethods.MethodName from PaymentMethods where OrderDeliveries.PaymentMethodID = PaymentMethods.ID) as MethodName, 
-OrderDeliveries.CargoID, OrderDeliveries.TotalPrice, OrderDeliveries.DateAdded,OrderDeliveries.DateModified,
-OrderDeliveries.DeliveryStatus, OrderDeliveries.DeliveryReason
-from OrderDeliveries;
+where od.OrderID = ProductOrders.ID) as ProductExpiryDate,
+(select top 1 ProductOrders.DesiredQuantity from ProductOrders where od.OrderID = ProductOrders.ID) as DesiredQuantity, 
+(select top 1 ProductOrders.OrderPrice from ProductOrders where od.OrderID = ProductOrders.ID) as OrderPrice,
+(select top 1 UserDisplayName from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID and Users.UserRole = 2 where od.OrderID = ProductOrders.ID) as ClientName,
+(select top 1 UserPhone from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID and Users.UserRole = 2 where od.OrderID = ProductOrders.ID) as ClientPhone,
+(select top 1 UserEmail from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID and Users.UserRole = 2 where od.OrderID = ProductOrders.ID) as ClientEmail,
+(select top 1 UserAddress from Users inner join ProductOrders on ProductOrders.ClientID = Users.ID and Users.UserRole = 2 where od.OrderID = ProductOrders.ID) as ClientAddress,
+(select top 1 UserDisplayName from Users inner join ProductOrders on ProductOrders.EmployeeID = Users.ID and (UserRole = 0 or UserRole = 1) where od.OrderID = ProductOrders.ID ) as EmployeeName,
+(select top 1 DeliveryServices.ServiceName from DeliveryServices where od.DeliveryServiceID = DeliveryServices.ID) as ServiceName,
+(select top 1 DeliveryServices.ServicePrice from DeliveryServices where od.DeliveryServiceID = DeliveryServices.ID) as DeliveryPrice,
+(select top 1 PaymentMethods.MethodName from PaymentMethods where od.PaymentMethodID = PaymentMethods.ID) as MethodName, 
+od.CargoID, od.TotalPrice, od.DateAdded,od.DateModified,
+od.DeliveryStatus, od.DeliveryReason,
+(select sum(OrderDeliveries.TotalPrice) from OrderDeliveries where DeliveryStatus = 9) as TotalIncome,
+(select sum(OrderDeliveries.TotalPrice) from OrderDeliveries where DeliveryStatus = 7 or DeliveryStatus = 8) as TotalLoss,
+(select sum(OrderDeliveries.TotalPrice) from OrderDeliveries where DeliveryStatus != 7 and DeliveryStatus != 8 and DeliveryStatus != 9) as TotalDue,
+(select sum(OrderDeliveries.TotalPrice) from OrderDeliveries) as Total,
+(select sum(ProductOrders.DesiredQuantity) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where  OrderDeliveries.DeliveryStatus = 9) as DeliveredStock,
+(select sum(ProductOrders.DesiredQuantity) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where  DeliveryStatus = 7 or DeliveryStatus = 8) as ReturnedStock,
+(select sum(ProductOrders.DesiredQuantity) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where  DeliveryStatus != 7 and DeliveryStatus != 8 and DeliveryStatus != 9) as StockToBeInboundOrOutbound,
+(select sum(ProductOrders.DesiredQuantity) from ProductOrders) as TotalStock,
+(select count(ProductOrders.ProductID) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where  OrderDeliveries.DeliveryStatus = 9) as DeliveredProducts,
+(select count(ProductOrders.ProductID) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where  DeliveryStatus = 7 or DeliveryStatus = 8) as ReturnedProducts,
+(select count(ProductOrders.ProductID) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where  DeliveryStatus != 7 and DeliveryStatus != 8 and DeliveryStatus != 9) as ProductsToBeInboundOrOutbound,
+(select count(ProductOrders.ProductID) from ProductOrders) as TotalProducts,
+(select count(ProductOrders.ClientID) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where  OrderDeliveries.DeliveryStatus = 9) as ClientsWhoCompletedDelivery,
+(select count(ProductOrders.ClientID) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where  DeliveryStatus = 7 or DeliveryStatus = 8) as ClientsWhoReturnedDelivery,
+(select count(ProductOrders.ClientID) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where  DeliveryStatus != 7 and DeliveryStatus != 8 and DeliveryStatus != 9) as ClientsWhoWaitForDelivery,
+(select count(ProductOrders.ClientID) from ProductOrders) as ClientsWhoRequestedDelivery,
+(select count(DeliveryServiceID) from OrderDeliveries where DeliveryStatus = 9) as ServicesWithCompletedDeliveries,
+(select count(DeliveryServiceID) from OrderDeliveries where DeliveryStatus = 7 or DeliveryStatus = 8) as ServicesWithCancelledOrReturnedDeliveries,
+(select count(DeliveryServiceID) from OrderDeliveries where DeliveryStatus != 7 and DeliveryStatus != 8 and DeliveryStatus != 9) as ServicesWithIdleOrStillProcessingDeliveries,
+(select count(DeliveryServiceID) from OrderDeliveries) as TotalServicesUsedInTheDeliveries,
+(select count(PaymentMethodID) from OrderDeliveries where DeliveryStatus = 9) as MethodsUsedInCompletedDeliveries,
+(select count(PaymentMethodID) from OrderDeliveries where DeliveryStatus = 7 or DeliveryStatus = 8) as MethodsUsedInCancelledOrReturnedDeliveries,
+(select count(PaymentMethodID) from OrderDeliveries where DeliveryStatus != 7 and DeliveryStatus != 8 and DeliveryStatus != 9) as MethodsUsedInIdleOrStillProcessingDeliveries,
+(select count(PaymentMethodID) from OrderDeliveries) as TotalMethodsUsedInTheDeliveries,
+(select count(ID) from OrderDeliveries where DeliveryStatus = 9) as CompletedDeliveriesCount,
+(select count(ID) from OrderDeliveries where DeliveryStatus = 7 or DeliveryStatus = 8) as CancelledOrReturnedDeliveriesCount,
+(select count(ID) from OrderDeliveries where DeliveryStatus != 7 and DeliveryStatus != 8 and DeliveryStatus != 9) as IdleOrStillProcessingDeliveriesCount,
+(select count(ID) from OrderDeliveries) as TotalDeliveriesCount,
+(
+	select (
+		((select try_convert(decimal(18,2),(select sum(OrderDeliveries.TotalPrice) from OrderDeliveries where DeliveryStatus = 9))/
+		(select try_convert(decimal(18,2),(select sum(OrderDeliveries.TotalPrice) from OrderDeliveries)))) 
+		* 100))
+) as DeliverySaleRatePercentByPrice,
+(
+	select (
+		((select try_convert(decimal(18,2),(select sum(OrderDeliveries.TotalPrice) from OrderDeliveries where DeliveryStatus = 7 or DeliveryStatus = 8))/
+		(select try_convert(decimal(18,2),(select sum(OrderDeliveries.TotalPrice) from OrderDeliveries)))) 
+		* 100))
+) as DeliveryReturnRatePercentByPrice,
+(
+	select (
+		((select try_convert(decimal(18,2),(select sum(OrderDeliveries.TotalPrice) from OrderDeliveries where DeliveryStatus != 7 and DeliveryStatus != 8 and DeliveryStatus != 9))/
+		(select try_convert(decimal(18,2),(select sum(OrderDeliveries.TotalPrice) from OrderDeliveries)))) 
+		* 100))
+) as DeliveryDueRatePercentByPrice,
+(
+	select (
+		((select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where DeliveryStatus = 9))/
+		(select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders)))) 
+		* 100))
+) as DeliverySaleRatePercentByDesiredQuantity,
+(
+	select (
+		((select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where DeliveryStatus = 7 or DeliveryStatus = 8))/
+		(select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders)))) 
+		* 100))
+) as DeliveryReturnRatePercentByDesiredQuantity,
+(
+	select (
+		((select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where  DeliveryStatus != 7 and DeliveryStatus != 8 and DeliveryStatus != 9))/
+		(select try_convert(decimal(18,2),(select sum(ProductOrders.DesiredQuantity) from ProductOrders)))) 
+		* 100))
+) as DeliveryDueRatePercentByDesiredQuantity,
+(
+	select (
+		((select try_convert(decimal(18,2),(select count(ProductOrders.ProductID) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where OrderDeliveries.ID = od.ID and DeliveryStatus = 9))/
+		(select try_convert(decimal(18,2),(select count(ProductOrders.ProductID) from ProductOrders)))) 
+		* 100))
+) as DeliveryCompletionRatePercentByProductCount,
+(
+	select (
+		((select try_convert(decimal(18,2),(select count(ProductOrders.ProductID) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where OrderDeliveries.ID = od.ID and (DeliveryStatus = 7 or DeliveryStatus = 8)))/
+		(select try_convert(decimal(18,2),(select count(ProductOrders.ProductID) from ProductOrders)))) 
+		* 100))
+) as DeliveryReturnRatePercentByProductCount,
+(
+	select (
+		((select try_convert(decimal(18,2),(select count(ProductOrders.ProductID) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where OrderDeliveries.ID = od.ID and (DeliveryStatus != 7 and DeliveryStatus != 8 and DeliveryStatus != 9)))/
+		(select try_convert(decimal(18,2),(select count(ProductOrders.ProductID) from ProductOrders)))) 
+		* 100))
+) as DeliveryDueRatePercentByProductCount,
+(
+	select (
+		((select try_convert(decimal(18,2),(select count(ProductOrders.ClientID) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where OrderDeliveries.ID = od.ID and DeliveryStatus = 9))/
+		(select try_convert(decimal(18,2),(select count(ProductOrders.ClientID) from ProductOrders)))) 
+		* 100))
+) as DeliveryCompletionRatePercentByClientCount,
+(
+	select (
+		((select try_convert(decimal(18,2),(select count(ProductOrders.ClientID) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where OrderDeliveries.ID = od.ID and (DeliveryStatus = 7 or DeliveryStatus = 8)))/
+		(select try_convert(decimal(18,2),(select count(ProductOrders.ClientID) from ProductOrders)))) 
+		* 100))
+) as DeliveryReturnRatePercentByClientCount,
+(
+	select (
+		((select try_convert(decimal(18,2),(select count(ProductOrders.ClientID) from ProductOrders inner join OrderDeliveries on ProductOrders.ID = OrderDeliveries.OrderID where OrderDeliveries.ID = od.ID and (DeliveryStatus != 7 and DeliveryStatus != 8 and DeliveryStatus != 9)))/
+		(select try_convert(decimal(18,2),(select count(ProductOrders.ClientID) from ProductOrders)))) 
+		* 100))
+) as DeliveryDueRatePercentByClientCount,
+(
+	select (
+		((select try_convert(decimal(18,2),(select count(DeliveryServiceID) from OrderDeliveries where OrderDeliveries.ID = od.ID and DeliveryStatus = 9))/
+		(select try_convert(decimal(18,2),(select count(DeliveryServiceID) from OrderDeliveries)))) 
+		* 100))
+) as DeliverySaleRatePercentByServiceCount,
+(
+	select (
+		((select try_convert(decimal(18,2),(select count(DeliveryServiceID) from OrderDeliveries where OrderDeliveries.ID = od.ID and (DeliveryStatus = 7 or DeliveryStatus = 8)))/
+		(select try_convert(decimal(18,2),(select count(DeliveryServiceID) from OrderDeliveries)))) 
+		* 100))
+) as DeliveryReturnRatePercentByServiceCount,
+(
+	select (
+		((select try_convert(decimal(18,2),(select count(DeliveryServiceID) from OrderDeliveries where OrderDeliveries.ID = od.ID and (DeliveryStatus != 7 and DeliveryStatus != 8 and DeliveryStatus != 9)))/
+		(select try_convert(decimal(18,2),(select count(DeliveryServiceID) from OrderDeliveries))))
+		* 100))
+) as DeliveryDueRatePercentByServiceCount,
+(
+	select (
+		((select try_convert(decimal(18,2),(select count(PaymentMethodID) from OrderDeliveries where OrderDeliveries.ID = od.ID and DeliveryStatus = 9))/
+		(select try_convert(decimal(18,2),(select count(PaymentMethodID) from OrderDeliveries)))) 
+		* 100))
+) as DeliverySaleRatePercentByMethodCount,
+(
+	select (
+		((select try_convert(decimal(18,2),(select count(PaymentMethodID) from OrderDeliveries where OrderDeliveries.ID = od.ID and (DeliveryStatus = 7 or DeliveryStatus = 8)))/
+		(select try_convert(decimal(18,2),(select count(PaymentMethodID) from OrderDeliveries)))) 
+		* 100))
+) as DeliveryReturnRatePercentByMethodCount,
+(
+	select (
+		((select try_convert(decimal(18,2),(select count(PaymentMethodID) from OrderDeliveries where OrderDeliveries.ID = od.ID and (DeliveryStatus != 7 and DeliveryStatus != 8 and DeliveryStatus != 9)))/
+		(select try_convert(decimal(18,2),(select count(PaymentMethodID) from OrderDeliveries))))
+		* 100))
+) as DeliveryDueRatePercentByMethodCount,
+(
+	select (
+		((select try_convert(decimal(18,2),(select count(ID) from OrderDeliveries where OrderDeliveries.ID = od.ID and DeliveryStatus = 9))/
+		(select try_convert(decimal(18,2),(select count(ID) from OrderDeliveries)))) 
+		* 100))
+) as DeliverySaleRatePercentByCount,
+(
+	select (
+		((select try_convert(decimal(18,2),(select count(ID) from OrderDeliveries where OrderDeliveries.ID = od.ID and (DeliveryStatus = 7 or DeliveryStatus = 8)))/
+		(select try_convert(decimal(18,2),(select count(ID) from OrderDeliveries)))) 
+		* 100))
+) as DeliveryReturnRatePercentByCount,
+(
+	select (
+		((select try_convert(decimal(18,2),(select count(ID) from OrderDeliveries where OrderDeliveries.ID = od.ID and (DeliveryStatus != 7 and DeliveryStatus != 8 and DeliveryStatus != 9)))/
+		(select try_convert(decimal(18,2),(select count(ID) from OrderDeliveries))))
+		* 100))
+) as DeliveryDueRatePercentByCount
+from OrderDeliveries od;
 go
 
 select * from ExtendedOrderDeliveriesView;
@@ -1808,6 +3704,80 @@ exec AddLog @logdate = @current_date,
 @additionalinformation = @additional_information;
 end
 go
+
+/*next is the product vendors, it was added later to the tables and triggers and stored procedures and its triggers
+are similar to those of the brands, just standart log operations */
+go
+create or alter trigger ProductVendors_OnAdd on ProductVendors for insert
+as
+begin
+set nocount on;
+declare @new_id as int;
+declare @new_vendor_name as varchar(200);
+declare @log_message as varchar(max);
+declare @additional_information as varchar(max);
+declare @current_date as date;
+select @new_id = ID from inserted;
+select @new_vendor_name = VendorName from inserted;
+set @log_message = 'A new vendor was added to the list with the id: ' + try_cast(@new_id as varchar);
+set @additional_information = 'Vendor ID: ' + try_cast(@new_id as varchar) + '\n' + 'Vendor Name: ' + try_cast(@new_vendor_name as varchar) + '\n';
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
+@logtitle='[XTremePharmacyDB] Product Vendor Added', 
+@logmessage = @log_message,
+@additionalinformation = @additional_information;
+end
+go
+
+go
+create or alter trigger ProductVendors_OnUpdate on ProductVendors for update
+as
+begin
+set nocount on;
+declare @old_id as int;
+declare @new_id as int;
+declare @old_vendor_name as varchar(200);
+declare @new_vendor_name as varchar(200);
+declare @log_message as varchar(max);
+declare @additional_information as varchar(max);
+declare @current_date as date;
+select @old_id = ID from deleted;
+select @new_id = ID from inserted;
+select @old_vendor_name = VendorName from deleted;
+select @new_vendor_name = VendorName from inserted;
+set @log_message = 'A product vendor was updated with the id: ' + try_cast(@old_id as varchar);
+set @additional_information = 'Old Vendor ID: ' + try_cast(@old_id as varchar) + '\n' + ' Old Vendor Name: ' + try_cast(@old_vendor_name as varchar) + '\n'
++ 'New Vendor ID: ' + try_cast(@new_id as varchar) + '\n' + 'New Vendor Name: ' + try_cast(@new_vendor_name as varchar) + '\n' ;
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
+@logtitle='[XTremePharmacyDB] Product Vendor Updated', 
+@logmessage = @log_message,
+@additionalinformation = @additional_information;
+end
+go
+
+go
+create or alter trigger ProductVendors_OnDelete on ProductVendors for delete
+as
+begin
+set nocount on;
+declare @old_id as int;
+declare @old_vendor_name as varchar(200);
+declare @log_message as varchar(max);
+declare @additional_information as varchar(max);
+declare @current_date as date;
+select @old_id = ID from deleted;
+select @old_vendor_name = VendorName from deleted;
+set @log_message = 'A product brand was removed list with the id: ' + try_cast(@old_id as varchar);
+set @additional_information = 'Old Vendor ID: ' + try_cast(@old_id as varchar) + '\n' + ' Old Vendor Name: ' + try_cast(@old_vendor_name as varchar) + '\n';
+set @current_date = getdate();
+exec AddLog @logdate = @current_date, 
+@logtitle='[XTremePharmacyDB] Product Vendor Removed', 
+@logmessage = @log_message,
+@additionalinformation = @additional_information;
+end
+go
+
 /* next is the payment methods, standart triggers that add logs to the logs list */
 go
 create or alter trigger PaymentMethods_OnAdd on PaymentMethods for insert
@@ -2022,6 +3992,7 @@ set nocount on;
 declare @new_id as int;
 declare @new_product_name as varchar(100);
 declare @new_brand_id as int;
+declare @new_vendor_id as int;
 declare @new_product_description as varchar(200);
 declare @new_product_quantity as int;
 declare @new_product_price as money;
@@ -2035,6 +4006,7 @@ declare @current_date as date;
 select @new_id = ID from inserted;
 select @new_product_name = ProductName from inserted;
 select @new_brand_id = BrandID from inserted;
+select @new_vendor_id = VendorID from inserted;
 select @new_product_description = ProductDescription from inserted;
 select @new_product_quantity = ProductQuantity from inserted;
 select @new_product_price = ProductPrice from inserted;
@@ -2045,7 +4017,7 @@ select @new_product_location = ProductStorageLocation from inserted;
 set @current_date = getdate();
 set @log_message = 'A product was added to the list with the id: ' + try_cast(@new_id as varchar);
 set @additional_information = 'Product ID: ' + try_cast(@new_id as varchar) + '\n' + 'Product Name: ' + try_cast(@new_product_name as varchar) + '\n'
-+ 'Brand ID: ' + try_cast(@new_brand_id as varchar) + '\n' + 'Product Description: ' + try_cast(@new_product_description as varchar) + '\n' +
++ 'Brand ID: ' + try_cast(@new_brand_id as varchar) + '\n' + 'Vendor ID: ' + try_cast(@new_vendor_id as varchar) + '\n' + 'Product Description: ' + try_cast(@new_product_description as varchar) + '\n' +
 'Product Quantity: ' + try_cast(@new_product_quantity as varchar) + '\n' + 'Product Price: ' + try_cast(@new_product_price as varchar) + '\n' + 
 'Product Expiry Date: ' + try_cast(@new_product_expiry_date as varchar) + '\n' + 'Product Reg. Number: ' + try_cast(@new_product_reg_num as varchar) + '\n' + 
 'Product Part. Number: ' + try_cast(@new_product_part_num as varchar) + '\n' + 'Product Storage Location: ' + try_cast(@new_product_location as varchar) + '\n';
@@ -2067,6 +4039,8 @@ declare @old_product_name as varchar(100);
 declare @new_product_name as varchar(100);
 declare @old_brand_id as int;
 declare @new_brand_id as int;
+declare @old_vendor_id as int;
+declare @new_vendor_id as int;
 declare @old_product_description as varchar(200);
 declare @new_product_description as varchar(200);
 declare @old_product_quantity as int;
@@ -2090,6 +4064,8 @@ select @old_product_name = ProductName from deleted;
 select @new_product_name = ProductName from inserted;
 select @old_brand_id = BrandID from deleted;
 select @new_brand_id = BrandID from inserted;
+select @old_vendor_id = VendorID from deleted;
+select @new_vendor_id = VendorID from inserted;
 select @old_product_description = ProductDescription from deleted;
 select @new_product_description = ProductDescription from inserted;
 select @old_product_quantity = ProductQuantity from deleted;
@@ -2136,12 +4112,12 @@ end
 end
 /* then make the log messages and add the logs */
 set @additional_information =   'Old Product ID: ' + try_cast(@old_id as varchar) + '\n' + 'Old Product Name: ' + try_cast(@old_product_name as varchar) + '\n'
-+ 'Old Brand ID: ' + try_cast(@old_brand_id as varchar) + '\n' + 'Old Product Description: ' + try_cast(@old_product_description as varchar) + '\n' +
++ 'Old Brand ID: ' + try_cast(@old_brand_id as varchar) + '\n' + 'Old Vendor ID: ' + try_cast(@old_vendor_id as varchar) + '\n' + 'Old Product Description: ' + try_cast(@old_product_description as varchar) + '\n' +
 'Old Product Quantity: ' + try_cast(@old_product_quantity as varchar) + '\n' + 'Old Product Price: ' + try_cast(@old_product_price as varchar) + '\n' + 
 'Old Product Expiry Date: ' + try_cast(@old_product_expiry_date as varchar) + '\n' + 'Old Product Reg. Number: ' + try_cast(@old_product_reg_num as varchar) + '\n' + 
 'Old Product Part. Number: ' + try_cast(@old_product_part_num as varchar) + '\n' + 'Old Product Storage Location: ' + try_cast(@old_product_location as varchar) + '\n' + 
 'New Product ID: ' + try_cast(@new_id as varchar) + '\n' + 'New Product Name: ' + try_cast(@new_product_name as varchar) + '\n'
-+ 'New Brand ID: ' + try_cast(@new_brand_id as varchar) + '\n' + 'New Product Description: ' + try_cast(@new_product_description as varchar) + '\n' +
++ 'New Brand ID: ' + try_cast(@new_brand_id as varchar) + '\n' + 'New Vendor ID: ' + try_cast(@new_vendor_id as varchar) + '\n' + 'New Product Description: ' + try_cast(@new_product_description as varchar) + '\n' +
 'New Product Quantity: ' + try_cast(@new_product_quantity as varchar) + '\n' + 'New Product Price: ' + try_cast(@new_product_price as varchar) + '\n' + 
 'New Product Expiry Date: ' + try_cast(@new_product_expiry_date as varchar) + '\n' + 'New Product Reg. Number: ' + try_cast(@new_product_reg_num as varchar) + '\n' + 
 'New Product Part. Number: ' + try_cast(@new_product_part_num as varchar) + '\n' + 'New Product Storage Location: ' + try_cast(@new_product_location as varchar) + '\n' ;
@@ -2160,6 +4136,7 @@ set nocount on;
 declare @old_id as int;
 declare @old_product_name as varchar(100);
 declare @old_brand_id as int;
+declare @old_vendor_id as int;
 declare @old_product_description as varchar(200);
 declare @old_product_quantity as int;
 declare @old_product_price as money;
@@ -2173,6 +4150,7 @@ declare @current_date as date;
 select @old_id = ID from deleted;
 select @old_product_name = ProductName from deleted;
 select @old_brand_id = BrandID from deleted;
+select @old_vendor_id = VendorID from deleted;
 select @old_product_description = ProductDescription from deleted;
 select @old_product_quantity = ProductQuantity from deleted;
 select @old_product_price = ProductPrice from deleted;
@@ -2205,7 +4183,7 @@ update ProductOrders set OrderPrice = @new_order_price, DateModified = @current_
 set @affected_orders_count = @affected_orders_count + 1; /* this counts upwards otherwise the loop will be stuck */
 end
 set @additional_information =  'Product ID: ' + try_cast(@old_id as varchar) + '\n' + 'Product Name: ' + try_cast(@old_product_name as varchar) + '\n'
-+ 'Brand ID: ' + try_cast(@old_brand_id as varchar) + '\n' + 'Product Description: ' + try_cast(@old_product_description as varchar) + '\n' +
++ 'Brand ID: ' + try_cast(@old_brand_id as varchar) + '\n' + 'Vendor ID: ' + try_cast(@old_vendor_id as varchar) + '\n' + 'Product Description: ' + try_cast(@old_product_description as varchar) + '\n' +
 'Product Quantity: ' + try_cast(@old_product_quantity as varchar) + '\n' + 'Product Price: ' + try_cast(@old_product_price as varchar) + '\n' + 
 'Product Expiry Date: ' + try_cast(@old_product_expiry_date as varchar) + '\n' + 'Product Reg. Number: ' + try_cast(@old_product_reg_num as varchar) + '\n' + 
 'Product Part. Number: ' + try_cast(@old_product_part_num as varchar) + '\n' + 'Product Storage Location: ' + try_cast(@old_product_location as varchar) + '\n';
@@ -3377,9 +5355,13 @@ go
  declare @failed_message  as varchar(max);
  declare @error_severity as int = 16;
  declare @error_state as int = 255;
- declare @found_user_id as int;
+ declare @username as varchar(max);
+ declare @password as varchar(max);
+ declare @is_blacklisted_phrase as bit = 0;
+ declare @found_user_id as int = -1;
  declare @logtitle as varchar(max);
  declare @logmessage as varchar(max);
+ declare @blacklisted_phrase_error_message as nvarchar(max) = 'Blacklisted phrase was found in either of the login data and the login was denied.\n ';
  declare @complete_error_log as nvarchar(max);
  declare @additionalloginformation as varchar(max);
  declare @current_date as date;
@@ -3388,22 +5370,44 @@ go
  set @success_message ='Welcome, ' + original_login() + '.';
  set @failed_message = 'Sorry, ' + original_login() + ' you aren''t allowed to access the database.\nPossible unauthorised login so access denied.\n
  Please ask an existing user to register you.';
- print original_login();
- set @found_user_id = -1;
- select @found_user_id = ID from XTremePharmacyDB.dbo.Users where UserName = original_login();
+ set @username = ORIGINAL_LOGIN();
+ print @username;
+ if @is_blacklisted_phrase is not null and @is_blacklisted_phrase = 0
+ begin
+ select @found_user_id = ID from XTremePharmacyDB.dbo.Users where UserName = @username
  /* let's check what the found user id returns, if it is above 0 the user is valid and not a dummy so we authorise access */
  if @found_user_id >0 /* on success give a message with an ID */
  begin
  print @success_message;
  set @logmessage = 'User ' + original_login() + 'has logged in successfully. Logged in at: ' + try_cast(@current_date as varchar);
- set @additionalloginformation = 'Host Name: ' + HOST_NAME() + '\n';
+ set @additionalloginformation = 'Host Name: ' + HOST_NAME() + '\n' + 'User Name: ' + original_login() + '\n';
  insert into XTremePharmacyDB.dbo.Logs(LogDate,LogTitle,LogMessage,AdditionalLogInformation) values (@current_date, @logtitle,@logmessage,@additionalloginformation);
  end
  else /* on failure send the failure message and rollback the login, a.k.a. deny access */
  begin
  set @logmessage = 'User ' + original_login() + 'has failed to login. Login attempt at: ' + try_cast(@current_date as varchar);
- set @additionalloginformation = 'Host Name: ' + HOST_NAME() + '\n';
+ set @additionalloginformation = 'Host Name: ' + HOST_NAME() + '\n' + 'User Name: ' + original_login() + '\n';
  set @complete_error_log = try_cast(@logmessage as nvarchar) + '\n' + try_cast(@additionalloginformation as nvarchar) + '\n' + try_cast(@failed_message as nvarchar);
+ insert into XTremePharmacyDB.dbo.Logs(LogDate,LogTitle,LogMessage,AdditionalLogInformation) values (@current_date, @logtitle,@logmessage,@additionalloginformation);
+ begin try
+ begin transaction
+ raiseerror(select @complete_error_log, @error_severity, @error_state);
+ rollback;
+ end try
+ begin catch
+ if @@TRANCOUNT > 0
+ rollback transaction;
+ throw @error_severity, @complete_error_log, @error_state;
+ end catch
+ end
+ end
+ else
+ begin
+ set @logmessage = @blacklisted_phrase_error_message + ' Login attempt at: ' + try_cast(@current_date as varchar);
+ set @additionalloginformation = 'Host Name: ' + HOST_NAME() + '\n' + 'User Name: ' + original_login() + '\n';
+ set @complete_error_log = try_cast(@logmessage as nvarchar) + '\n' + try_cast(@additionalloginformation as nvarchar) + '\n' + try_cast(@failed_message as nvarchar);
+ set @error_severity = 20;
+ set @error_state = 100;
  insert into XTremePharmacyDB.dbo.Logs(LogDate,LogTitle,LogMessage,AdditionalLogInformation) values (@current_date, @logtitle,@logmessage,@additionalloginformation);
  begin try
  begin transaction
@@ -3432,5 +5436,9 @@ disable trigger XPDB_OnLogon on all server;
 end
 go
 
+
+
 select * from Logs;
 select * from Users;
+select * from ProductVendors;
+select * from Products;
