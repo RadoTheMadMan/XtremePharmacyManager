@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -704,40 +705,19 @@ namespace XtremePharmacyManager
                             if (view != null)
                             {
                                 DataTable dt = new DataTable();
-                                dt.Columns.Add(nameof(view.ID));
-                                dt.Columns.Add(nameof(view.ProductName));
-                                dt.Columns.Add(nameof(view.BrandName));
-                                dt.Columns.Add(nameof(view.ProductDescription));
-                                dt.Columns.Add(nameof(view.DesiredQuantity));
-                                dt.Columns.Add(nameof(view.OrderPrice));
-                                dt.Columns.Add(nameof(view.ProductExpiryDate));
-                                dt.Columns.Add(nameof(view.ClientName));
-                                dt.Columns.Add(nameof(view.ClientPhone));
-                                dt.Columns.Add(nameof(view.ClientEmail));
-                                dt.Columns.Add(nameof(view.ClientAddress));
-                                dt.Columns.Add(nameof(view.EmployeeName));
-                                dt.Columns.Add(nameof(view.DateAdded));
-                                dt.Columns.Add(nameof(view.DateModified));
-                                dt.Columns.Add(nameof(view.OrderStatus));
-                                dt.Columns.Add(nameof(view.OrderReason));
-                                dt.Rows.Add(new object[]{
-                                                          view.ID,
-                                                          view.ProductName,
-                                                          view.BrandName,
-                                                          view.ProductDescription,
-                                                          view.DesiredQuantity,
-                                                          view.OrderPrice,
-                                                          view.ProductExpiryDate,
-                                                          view.ClientName,
-                                                          view.ClientPhone,
-                                                          view.ClientEmail,
-                                                          view.ClientAddress,
-                                                          view.EmployeeName,
-                                                          view.DateAdded,
-                                                          view.DateModified,
-                                                          view.OrderStatus,
-                                                          view.OrderReason
-                                });
+                                object[] values = new object[typeof(ExtendedProductOrdersView).GetProperties().Length];
+                                int propindex = 0; //track the property index
+                                //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
+                                //imported them yet
+                                foreach(var prop in typeof(ExtendedProductOrdersView).GetProperties())
+                                {
+                                    dt.Columns.Add(prop.Name, prop.PropertyType);
+                                    values[propindex] = prop.GetValue(view);
+                                    propindex++; //indrease the property index after adding the property name
+                                    //in for and foreach loops everything starts from 0 as always
+                                }
+                                propindex = 0; //reset the index
+                                dt.Rows.Add(values); //add the values
                                 foreach (ExtendedProductOrdersView po_view in ent.ExtendedProductOrdersViews)
                                 {
                                     if (po_view != view)
