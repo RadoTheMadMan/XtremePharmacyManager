@@ -140,12 +140,14 @@ namespace XtremePharmacyManager
                     {
                         userssearchform = new frmSearchUsers(ref entities, ref logger, ref bulkUserOperationManager);
                         userssearchform.MdiParent = this;
+                        userssearchform.Dock = DockStyle.Fill;
                         userssearchform.FormClosed += Usersearchform_FormClosed;
                         userssearchform.Show();
                     }
                     else
                     {
                         userssearchform.WindowState = FormWindowState.Normal;
+                        userssearchform.Dock = DockStyle.Fill;
                         userssearchform.Activate();
                     }
                 }
