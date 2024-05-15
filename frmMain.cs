@@ -176,12 +176,14 @@ namespace XtremePharmacyManager
                     {
                         deliveryservicessearchform = new frmSearchDeliveryServices(ref entities, ref logger, ref bulkDeliveryServiceOperationManager);
                         deliveryservicessearchform.MdiParent = this;
+                        deliveryservicessearchform.Dock = DockStyle.Fill;
                         deliveryservicessearchform.FormClosed += Deliveryservicessearchform_FormClosed;
                         deliveryservicessearchform.Show();
                     }
                     else
                     {
                         deliveryservicessearchform.WindowState = FormWindowState.Normal;
+                        deliveryservicessearchform.Dock = DockStyle.Fill;
                         deliveryservicessearchform.Activate();
                     }
                 }
@@ -207,12 +209,14 @@ namespace XtremePharmacyManager
                     {   
                         paymentmethodssearchform = new frmSearchPaymentMethods(ref entities, ref logger, ref bulkPaymentMethodOperationManager);
                         paymentmethodssearchform.MdiParent = this;
+                        paymentmethodssearchform.Dock = DockStyle.Fill;
                         paymentmethodssearchform.FormClosed += Paymentmethodssearchform_FormClosed;
                         paymentmethodssearchform.Show();
                     }   
                     else
                     {  
                         paymentmethodssearchform.WindowState = FormWindowState.Normal;
+                        paymentmethodssearchform.Dock = DockStyle.Fill;
                         paymentmethodssearchform.Activate();
                     }
                 }
@@ -238,12 +242,14 @@ namespace XtremePharmacyManager
                     {   
                         productbrandssearchform = new frmSearchProductBrands(ref entities, ref logger, ref bulkProductBrandOperationManager);
                         productbrandssearchform.MdiParent = this;
+                        productbrandssearchform.Dock = DockStyle.Fill;
                         productbrandssearchform.FormClosed += Productbrandssearchform_FormClosed;
                         productbrandssearchform.Show();
                     }    
                     else 
                     {    
                         productbrandssearchform.WindowState = FormWindowState.Normal;
+                        productbrandssearchform.Dock = DockStyle.Fill;
                         productbrandssearchform.Activate();
                     }
                 }
@@ -269,12 +275,14 @@ namespace XtremePharmacyManager
                     {
                         productssearchform = new frmSearchProducts(ref entities, ref logger, ref bulkProductOperationManager, ref bulkProductImageOperationManager);
                         productssearchform.MdiParent = this;
+                        productssearchform.Dock = DockStyle.Fill;
                         productssearchform.FormClosed += Productssearchform_FormClosed;
                         productssearchform.Show();
                     }
                     else
                     {
                         productssearchform.WindowState = FormWindowState.Normal;
+                        productssearchform.Dock = DockStyle.Fill;
                         productssearchform.Activate();
                     }
                 }
@@ -300,12 +308,14 @@ namespace XtremePharmacyManager
                     {
                         orderssearchform = new frmSearchProductOrders(ref entities, ref logger, ref bulkProductOrderOperationManager);
                         orderssearchform.MdiParent = this;
+                        orderssearchform.Dock = DockStyle.Fill;
                         orderssearchform.FormClosed += Orderssearchform_FormClosed;
                         orderssearchform.Show();
                     }
                     else
                     {
                         orderssearchform.WindowState = FormWindowState.Normal;
+                        orderssearchform.Dock = DockStyle.Fill;
                         orderssearchform.Activate();
                     }
                 }
@@ -331,12 +341,14 @@ namespace XtremePharmacyManager
                     {
                         orderdeliveriessearchform = new frmSearchOrderDeliveries(ref entities, ref logger, ref bulkOrderDeliveryOperationManager);
                         orderdeliveriessearchform.MdiParent = this;
+                        orderdeliveriessearchform.Dock = DockStyle.Fill;
                         orderdeliveriessearchform.FormClosed += Orderdeliveriessearchform_FormClosed;
                         orderdeliveriessearchform.Show();
                     }
                     else
                     {
                         orderdeliveriessearchform.WindowState = FormWindowState.Normal;
+                        orderdeliveriessearchform.Dock = DockStyle.Fill;
                         orderdeliveriessearchform.Activate();
                     }
                 }
@@ -362,12 +374,14 @@ namespace XtremePharmacyManager
                     {
                         logsform = new frmLogs(ref logger);
                         logsform.MdiParent = this;
+                        logsform.Dock = DockStyle.Fill;
                         logsform.FormClosed += Logsform_FormClosed;
                         logsform.Show();
                     }
                     else
                     {
                         logsform.WindowState = FormWindowState.Normal;
+                        logsform.Dock = DockStyle.Fill;
                         logsform.Activate();
                     }
                 }
@@ -393,12 +407,14 @@ namespace XtremePharmacyManager
                     {
                         imgbinform = new frmImageBinConverter();
                         imgbinform.MdiParent = this;
+                        imgbinform.Dock = DockStyle.Fill;
                         imgbinform.FormClosed += Imgbinform_FormClosed;
                         imgbinform.Show();
                     }
                     else
                     {
                         imgbinform.WindowState = FormWindowState.Normal;
+                        imgbinform.Dock = DockStyle.Fill;
                         imgbinform.Activate();
                     }
                 }
@@ -456,6 +472,38 @@ namespace XtremePharmacyManager
                     if (imgbinform != null)
                     {
                         imgbinform.Close();
+                    }
+                    if(bulkUserOperationsform != null)
+                    {
+                        bulkUserOperationsform.Close();
+                    }
+                    if(bulkProductBrandOperationsform != null)
+                    {
+                        bulkProductBrandOperationsform.Close();
+                    }
+                    if(bulkPaymentMethodOperationsform != null)
+                    {
+                        bulkPaymentMethodOperationsform.Close();
+                    }
+                    if(bulkDeliveryServiceOperationsform != null)
+                    {
+                        bulkDeliveryServiceOperationsform.Close();
+                    }
+                    if(bulkProductOperationsform != null)
+                    {
+                        bulkProductOperationsform.Close();
+                    }
+                    if(bulkProductImageOperationsform != null)
+                    {
+                        bulkProductImageOperationsform.Close();
+                    }
+                    if(bulkProductOrderOperationsform!= null)
+                    {
+                        bulkProductOrderOperationsform.Close();
+                    }
+                    if(bulkOrderDeliveryOperationsform != null)
+                    {
+                        bulkOrderDeliveryOperationsform.Close();
                     }
                     Application.Exit();
                 }
