@@ -81,7 +81,6 @@
             // 
             // pnlData
             // 
-            this.pnlData.AutoSize = true;
             this.pnlData.Controls.Add(this.cbSelectRecord);
             this.pnlData.Controls.Add(this.lblSelectRecord);
             this.pnlData.Controls.Add(this.txtOperationLogs);
@@ -123,7 +122,7 @@
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlData.Location = new System.Drawing.Point(0, 0);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(800, 726);
+            this.pnlData.Size = new System.Drawing.Size(800, 718);
             this.pnlData.TabIndex = 0;
             // 
             // cbSelectRecord
@@ -161,9 +160,9 @@
             this.txtOperationLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOperationLogs.Location = new System.Drawing.Point(22, 492);
+            this.txtOperationLogs.Location = new System.Drawing.Point(23, 441);
             this.txtOperationLogs.Name = "txtOperationLogs";
-            this.txtOperationLogs.Size = new System.Drawing.Size(766, 122);
+            this.txtOperationLogs.Size = new System.Drawing.Size(766, 161);
             this.txtOperationLogs.TabIndex = 46;
             this.txtOperationLogs.Text = "";
             // 
@@ -197,7 +196,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOperationResults.AutoSize = true;
             this.lblOperationResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationResults.Location = new System.Drawing.Point(20, 453);
+            this.lblOperationResults.Location = new System.Drawing.Point(20, 415);
             this.lblOperationResults.Name = "lblOperationResults";
             this.lblOperationResults.Size = new System.Drawing.Size(139, 16);
             this.lblOperationResults.TabIndex = 43;
@@ -214,7 +213,7 @@
             "UPDATE",
             "DELETE",
             "CUSTOM(Only for operations with custom action overrides)"});
-            this.cbOperationType.Location = new System.Drawing.Point(555, 415);
+            this.cbOperationType.Location = new System.Drawing.Point(555, 411);
             this.cbOperationType.Name = "cbOperationType";
             this.cbOperationType.Size = new System.Drawing.Size(229, 24);
             this.cbOperationType.TabIndex = 42;
@@ -226,7 +225,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOperationType.AutoSize = true;
             this.lblOperationType.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationType.Location = new System.Drawing.Point(412, 419);
+            this.lblOperationType.Location = new System.Drawing.Point(412, 415);
             this.lblOperationType.Name = "lblOperationType";
             this.lblOperationType.Size = new System.Drawing.Size(119, 16);
             this.lblOperationType.TabIndex = 41;
@@ -237,7 +236,7 @@
             this.btnAddOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAddOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOperation.Location = new System.Drawing.Point(152, 620);
+            this.btnAddOperation.Location = new System.Drawing.Point(144, 608);
             this.btnAddOperation.Name = "btnAddOperation";
             this.btnAddOperation.Size = new System.Drawing.Size(211, 47);
             this.btnAddOperation.TabIndex = 40;
@@ -250,7 +249,7 @@
             this.btnRemoveOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnRemoveOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveOperation.Location = new System.Drawing.Point(369, 620);
+            this.btnRemoveOperation.Location = new System.Drawing.Point(361, 608);
             this.btnRemoveOperation.Name = "btnRemoveOperation";
             this.btnRemoveOperation.Size = new System.Drawing.Size(211, 47);
             this.btnRemoveOperation.TabIndex = 39;
@@ -263,7 +262,7 @@
             this.btnApplyChangesToCurrentTarget.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnApplyChangesToCurrentTarget.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApplyChangesToCurrentTarget.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(369, 673);
+            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(361, 661);
             this.btnApplyChangesToCurrentTarget.Name = "btnApplyChangesToCurrentTarget";
             this.btnApplyChangesToCurrentTarget.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToCurrentTarget.TabIndex = 38;
@@ -276,7 +275,7 @@
             this.btnExecuteOperations.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnExecuteOperations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExecuteOperations.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExecuteOperations.Location = new System.Drawing.Point(586, 620);
+            this.btnExecuteOperations.Location = new System.Drawing.Point(578, 608);
             this.btnExecuteOperations.Name = "btnExecuteOperations";
             this.btnExecuteOperations.Size = new System.Drawing.Size(211, 47);
             this.btnExecuteOperations.TabIndex = 37;
@@ -289,7 +288,7 @@
             this.btnApplyChangesToAllTargets.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnApplyChangesToAllTargets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApplyChangesToAllTargets.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(586, 673);
+            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(578, 661);
             this.btnApplyChangesToAllTargets.Name = "btnApplyChangesToAllTargets";
             this.btnApplyChangesToAllTargets.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToAllTargets.TabIndex = 36;
@@ -308,7 +307,7 @@
             this.lstBulkOperations.ItemHeight = 16;
             this.lstBulkOperations.Location = new System.Drawing.Point(22, 302);
             this.lstBulkOperations.Name = "lstBulkOperations";
-            this.lstBulkOperations.Size = new System.Drawing.Size(766, 100);
+            this.lstBulkOperations.Size = new System.Drawing.Size(766, 84);
             this.lstBulkOperations.TabIndex = 35;
             this.lstBulkOperations.ValueMember = "TargetObject";
             this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);
@@ -324,7 +323,7 @@
             this.pbUserProfilePic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbUserProfilePic.Location = new System.Drawing.Point(660, 191);
             this.pbUserProfilePic.Name = "pbUserProfilePic";
-            this.pbUserProfilePic.Size = new System.Drawing.Size(124, 96);
+            this.pbUserProfilePic.Size = new System.Drawing.Size(124, 90);
             this.pbUserProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbUserProfilePic.TabIndex = 34;
             this.pbUserProfilePic.TabStop = false;
@@ -364,7 +363,7 @@
             this.txtDiagnose.Location = new System.Drawing.Point(475, 75);
             this.txtDiagnose.Multiline = true;
             this.txtDiagnose.Name = "txtDiagnose";
-            this.txtDiagnose.Size = new System.Drawing.Size(313, 75);
+            this.txtDiagnose.Size = new System.Drawing.Size(313, 67);
             this.txtDiagnose.TabIndex = 23;
             // 
             // lblDiagnose
@@ -383,10 +382,10 @@
             // 
             this.trbBalance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.trbBalance.Location = new System.Drawing.Point(475, 48);
+            this.trbBalance.Location = new System.Drawing.Point(484, 17);
             this.trbBalance.Maximum = 5000;
             this.trbBalance.Name = "trbBalance";
-            this.trbBalance.Size = new System.Drawing.Size(259, 56);
+            this.trbBalance.Size = new System.Drawing.Size(259, 48);
             this.trbBalance.TabIndex = 21;
             this.trbBalance.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
@@ -397,7 +396,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblShowBalance.AutoSize = true;
             this.lblShowBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowBalance.Location = new System.Drawing.Point(749, 51);
+            this.lblShowBalance.Location = new System.Drawing.Point(758, 20);
             this.lblShowBalance.Name = "lblShowBalance";
             this.lblShowBalance.Size = new System.Drawing.Size(35, 16);
             this.lblShowBalance.TabIndex = 20;
@@ -409,7 +408,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBalance.AutoSize = true;
             this.lblBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBalance.Location = new System.Drawing.Point(398, 47);
+            this.lblBalance.Location = new System.Drawing.Point(407, 16);
             this.lblBalance.Name = "lblBalance";
             this.lblBalance.Size = new System.Drawing.Size(68, 16);
             this.lblBalance.TabIndex = 19;
@@ -422,7 +421,7 @@
             this.txtAddress.Location = new System.Drawing.Point(137, 244);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(258, 43);
+            this.txtAddress.Size = new System.Drawing.Size(258, 35);
             this.txtAddress.TabIndex = 18;
             // 
             // lblAddress
@@ -591,7 +590,7 @@
             // frmBulkUserOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 738);
+            this.ClientSize = new System.Drawing.Size(800, 721);
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmBulkUserOperations";
@@ -605,7 +604,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.checkOverridePriceAsTotalOnAdd = new System.Windows.Forms.CheckBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.cbStatus = new System.Windows.Forms.ComboBox();
             this.cbEmployee = new System.Windows.Forms.ComboBox();
@@ -75,7 +76,6 @@
             this.bulkProductBrandOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.checkOverridePriceAsTotalOnAdd = new System.Windows.Forms.CheckBox();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -132,8 +132,21 @@
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlData.Location = new System.Drawing.Point(0, 0);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(800, 779);
+            this.pnlData.Size = new System.Drawing.Size(800, 718);
             this.pnlData.TabIndex = 0;
+            // 
+            // checkOverridePriceAsTotalOnAdd
+            // 
+            this.checkOverridePriceAsTotalOnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.checkOverridePriceAsTotalOnAdd.AutoSize = true;
+            this.checkOverridePriceAsTotalOnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkOverridePriceAsTotalOnAdd.Location = new System.Drawing.Point(404, 251);
+            this.checkOverridePriceAsTotalOnAdd.Name = "checkOverridePriceAsTotalOnAdd";
+            this.checkOverridePriceAsTotalOnAdd.Size = new System.Drawing.Size(250, 20);
+            this.checkOverridePriceAsTotalOnAdd.TabIndex = 74;
+            this.checkOverridePriceAsTotalOnAdd.Text = "Override Price As Total On Add:";
+            this.checkOverridePriceAsTotalOnAdd.UseVisualStyleBackColor = true;
             // 
             // lblStatus
             // 
@@ -234,7 +247,7 @@
             this.txtReason.Location = new System.Drawing.Point(169, 197);
             this.txtReason.Multiline = true;
             this.txtReason.Name = "txtReason";
-            this.txtReason.Size = new System.Drawing.Size(227, 74);
+            this.txtReason.Size = new System.Drawing.Size(227, 13);
             this.txtReason.TabIndex = 62;
             // 
             // lblReason
@@ -257,7 +270,7 @@
             this.trbQuantity.Location = new System.Drawing.Point(534, 25);
             this.trbQuantity.Maximum = 5000;
             this.trbQuantity.Name = "trbQuantity";
-            this.trbQuantity.Size = new System.Drawing.Size(214, 41);
+            this.trbQuantity.Size = new System.Drawing.Size(214, 0);
             this.trbQuantity.TabIndex = 58;
             this.trbQuantity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbQuantity.Scroll += new System.EventHandler(this.trbQuantity_Scroll);
@@ -323,7 +336,7 @@
             this.trbPrice.Location = new System.Drawing.Point(534, 77);
             this.trbPrice.Maximum = 5000;
             this.trbPrice.Name = "trbPrice";
-            this.trbPrice.Size = new System.Drawing.Size(214, 52);
+            this.trbPrice.Size = new System.Drawing.Size(214, 0);
             this.trbPrice.TabIndex = 51;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
@@ -389,7 +402,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOperationLogs.Location = new System.Drawing.Point(22, 490);
             this.txtOperationLogs.Name = "txtOperationLogs";
-            this.txtOperationLogs.Size = new System.Drawing.Size(766, 171);
+            this.txtOperationLogs.Size = new System.Drawing.Size(766, 110);
             this.txtOperationLogs.TabIndex = 46;
             this.txtOperationLogs.Text = "";
             // 
@@ -450,7 +463,7 @@
             this.btnAddOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAddOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOperation.Location = new System.Drawing.Point(139, 669);
+            this.btnAddOperation.Location = new System.Drawing.Point(139, 606);
             this.btnAddOperation.Name = "btnAddOperation";
             this.btnAddOperation.Size = new System.Drawing.Size(211, 47);
             this.btnAddOperation.TabIndex = 40;
@@ -463,7 +476,7 @@
             this.btnRemoveOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnRemoveOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveOperation.Location = new System.Drawing.Point(356, 669);
+            this.btnRemoveOperation.Location = new System.Drawing.Point(356, 606);
             this.btnRemoveOperation.Name = "btnRemoveOperation";
             this.btnRemoveOperation.Size = new System.Drawing.Size(211, 47);
             this.btnRemoveOperation.TabIndex = 39;
@@ -476,7 +489,7 @@
             this.btnApplyChangesToCurrentTarget.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnApplyChangesToCurrentTarget.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApplyChangesToCurrentTarget.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(356, 722);
+            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(356, 659);
             this.btnApplyChangesToCurrentTarget.Name = "btnApplyChangesToCurrentTarget";
             this.btnApplyChangesToCurrentTarget.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToCurrentTarget.TabIndex = 38;
@@ -489,7 +502,7 @@
             this.btnExecuteOperations.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnExecuteOperations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExecuteOperations.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExecuteOperations.Location = new System.Drawing.Point(573, 667);
+            this.btnExecuteOperations.Location = new System.Drawing.Point(573, 606);
             this.btnExecuteOperations.Name = "btnExecuteOperations";
             this.btnExecuteOperations.Size = new System.Drawing.Size(211, 47);
             this.btnExecuteOperations.TabIndex = 37;
@@ -502,7 +515,7 @@
             this.btnApplyChangesToAllTargets.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnApplyChangesToAllTargets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApplyChangesToAllTargets.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(573, 722);
+            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(573, 659);
             this.btnApplyChangesToAllTargets.Name = "btnApplyChangesToAllTargets";
             this.btnApplyChangesToAllTargets.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToAllTargets.TabIndex = 36;
@@ -521,7 +534,7 @@
             this.lstBulkOperations.ItemHeight = 16;
             this.lstBulkOperations.Location = new System.Drawing.Point(22, 277);
             this.lstBulkOperations.Name = "lstBulkOperations";
-            this.lstBulkOperations.Size = new System.Drawing.Size(766, 164);
+            this.lstBulkOperations.Size = new System.Drawing.Size(766, 100);
             this.lstBulkOperations.TabIndex = 35;
             this.lstBulkOperations.ValueMember = "TargetObject";
             this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);
@@ -587,23 +600,10 @@
             // 
             this.errBulkProvider.ContainerControl = this;
             // 
-            // checkOverridePriceAsTotalOnAdd
-            // 
-            this.checkOverridePriceAsTotalOnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkOverridePriceAsTotalOnAdd.AutoSize = true;
-            this.checkOverridePriceAsTotalOnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkOverridePriceAsTotalOnAdd.Location = new System.Drawing.Point(404, 251);
-            this.checkOverridePriceAsTotalOnAdd.Name = "checkOverridePriceAsTotalOnAdd";
-            this.checkOverridePriceAsTotalOnAdd.Size = new System.Drawing.Size(250, 20);
-            this.checkOverridePriceAsTotalOnAdd.TabIndex = 74;
-            this.checkOverridePriceAsTotalOnAdd.Text = "Override Price As Total On Add:";
-            this.checkOverridePriceAsTotalOnAdd.UseVisualStyleBackColor = true;
-            // 
             // frmBulkProductOrderOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 781);
+            this.ClientSize = new System.Drawing.Size(800, 721);
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmBulkProductOrderOperations";
