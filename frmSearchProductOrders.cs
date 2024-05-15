@@ -704,12 +704,13 @@ namespace XtremePharmacyManager
                             ExtendedProductOrdersView view = ent.ExtendedProductOrdersViews.Where(x => x.ID == currentOrder.ID).FirstOrDefault();
                             if (view != null)
                             {
+                                Type view_type = view.GetType();
                                 DataTable dt = new DataTable();
-                                Object[] values = new Object[typeof(ExtendedProductOrdersView).GetProperties().Length];
+                                Object[] values = new Object[view_type.GetProperties().Length];
                                 int propindex = 0; //track the property index
                                 //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
                                 //imported them yet
-                                foreach(var prop in typeof(ExtendedProductOrdersView).GetProperties())
+                                foreach(var prop in view_type.GetProperties())
                                 {
                                     dt.Columns.Add(prop.Name);
                                     values[propindex] = prop.GetValue(view, null);
@@ -730,7 +731,7 @@ namespace XtremePharmacyManager
                                         {
                                             if (po_view.DateAdded == view.DateAdded && po_view.ClientName == view.ClientName)
                                             {
-                                                foreach (var prop in typeof(ExtendedProductOrdersView).GetProperties())
+                                                foreach (var prop in view_type.GetProperties())
                                                 {
                                                     values[propindex] = prop.GetValue(po_view, null);
                                                     propindex++; //indrease the property index after adding the property name
