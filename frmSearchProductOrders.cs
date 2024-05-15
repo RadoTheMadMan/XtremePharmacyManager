@@ -705,14 +705,14 @@ namespace XtremePharmacyManager
                             if (view != null)
                             {
                                 DataTable dt = new DataTable();
-                                object[] values = new object[typeof(ExtendedProductOrdersView).GetProperties().Length];
+                                Object[] values = new Object[typeof(ExtendedProductOrdersView).GetProperties().Length];
                                 int propindex = 0; //track the property index
                                 //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
                                 //imported them yet
                                 foreach(var prop in typeof(ExtendedProductOrdersView).GetProperties())
                                 {
-                                    dt.Columns.Add(prop.Name, prop.PropertyType);
-                                    values[propindex] = prop.GetValue(view);
+                                    dt.Columns.Add(prop.Name);
+                                    values[propindex] = prop.GetValue(view, null);
                                     propindex++; //indrease the property index after adding the property name
                                     //in for and foreach loops everything starts from 0 as always
                                 }
@@ -720,61 +720,32 @@ namespace XtremePharmacyManager
                                 dt.Rows.Add(values); //add the values
                                 foreach (ExtendedProductOrdersView po_view in ent.ExtendedProductOrdersViews)
                                 {
+                                    //as stats are added in the view there is no need for most of them to be calculated
+                                    //because the database calculates them for us there is no need for all of the entries
+                                    //to be imported to the report unless there is an invoice situation like here
+                                    Array.Clear(values,0, values.Length); //so clear the values first
                                     if (po_view != view)
                                     {
-                                        if (!IsInvoice)
+                                        if (IsInvoice)
                                         {
-                                            //If there is a regular order add every other order as well so the target
-                                            //order can be compared to the rest
-                                            dt.Rows.Add(new object[]{
-                                                             view.ID,
-                                                             view.ProductName,
-                                                             view.BrandName,
-                                                             view.ProductDescription,
-                                                             view.DesiredQuantity,
-                                                             view.OrderPrice,
-                                                             view.ProductExpiryDate,
-                                                             view.ClientName,
-                                                             view.ClientPhone,
-                                                             view.ClientEmail,
-                                                             view.ClientAddress,
-                                                             view.EmployeeName,
-                                                             view.DateAdded,
-                                                             view.DateModified,
-                                                             view.OrderStatus,
-                                                             view.OrderReason
-                                            });
-                                        }
-                                        else
-                                        {
-                                            //Here only orders who are related by client name and date added to the
-                                            //target order shall be added because if a client made an order for more
-                                            //than one product there will be multiple orders with the same client ID
-                                            //and same date of adding to the database thus grouping them as one
                                             if (po_view.DateAdded == view.DateAdded && po_view.ClientName == view.ClientName)
                                             {
-                                                dt.Rows.Add(new object[]{
-                                                             view.ID,
-                                                             view.ProductName,
-                                                             view.BrandName,
-                                                             view.ProductDescription,
-                                                             view.DesiredQuantity,
-                                                             view.OrderPrice,
-                                                             view.ProductExpiryDate,
-                                                             view.ClientName,
-                                                             view.ClientPhone,
-                                                             view.ClientEmail,
-                                                             view.ClientAddress,
-                                                             view.EmployeeName,
-                                                             view.DateAdded,
-                                                             view.DateModified,
-                                                             view.OrderStatus,
-                                                             view.OrderReason
-                                                });
+                                                foreach (var prop in typeof(ExtendedProductOrdersView).GetProperties())
+                                                {
+                                                    values[propindex] = prop.GetValue(po_view, null);
+                                                    propindex++; //indrease the property index after adding the property name
+                                                    //in for and foreach loops everything starts from 0 as always
+                                                }
+                                                dt.Rows.Add(values); //add the values
+                                                propindex = 0; //reset the property index to be back to zero
                                             }
                                         }
                                     }
                                 }
+                                //reset the property index to be zero again
+                                propindex = 0;
+                                //then clear the values to ensure memory is not wasted
+                                Array.Clear(values,0, values.Length);
                                 current_source = new ReportDataSource("ProductOrderReportData", dt);
                                 current_params = new ReportParameterCollection();
                                 current_params.Add(new ReportParameter("StatusName", cbSelectOrderStatus.Items[view.OrderStatus].ToString()));
