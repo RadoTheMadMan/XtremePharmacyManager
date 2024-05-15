@@ -482,66 +482,45 @@ namespace XtremePharmacyManager
                                 EmployeeView view = ent.EmployeeViews.Where(x=>x.ID == currentUser.ID).FirstOrDefault();
                                 if (view != null)
                                 {
+                                    Type view_type = view.GetType();
                                     DataTable dt = new DataTable();
-                                    dt.Columns.Add(nameof(view.ID));
-                                    dt.Columns.Add(nameof(view.UserName));
-                                    dt.Columns.Add(nameof(view.UserPassword));
-                                    dt.Columns.Add(nameof(view.UserDisplayName));
-                                    dt.Columns.Add(nameof(view.UserBirthDate));
-                                    dt.Columns.Add(nameof(view.UserPhone));
-                                    dt.Columns.Add(nameof(view.UserEmail));
-                                    dt.Columns.Add(nameof(view.UserAddress));
-                                    dt.Columns.Add(nameof(view.UserProfilePic));
-                                    dt.Columns.Add(nameof(view.UserBalance));
-                                    dt.Columns.Add(nameof(view.UserDiagnose));
-                                    dt.Columns.Add(nameof(view.UserDateOfRegister));
-                                    dt.Columns.Add(nameof(view.UserRole));
-                                    dt.Columns.Add(nameof(view.AverageEmployeeIncome));
-                                    dt.Rows.Add(new object[]{ 
-                                                              view.ID,
-                                                              view.UserName,
-                                                              view.UserPassword,
-                                                              view.UserDisplayName,
-                                                              view.UserBirthDate,
-                                                              view.UserPhone,
-                                                              view.UserEmail,
-                                                              view.UserAddress,
-                                                              Convert.ToBase64String(view.UserProfilePic),
-                                                              view.UserBalance,
-                                                              view.UserDiagnose,
-                                                              view.UserDateOfRegister,
-                                                              view.UserRole,
-                                                              view.AverageEmployeeIncome});
-                                    foreach (EmployeeView em_view in ent.EmployeeViews)
+                                    Object[] values = new Object[view_type.GetProperties().Length];
+                                    int propindex = 0; //track the property index
+                                    //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
+                                    //imported them yet
+                                    foreach (var prop in view_type.GetProperties())
                                     {
-                                        if (em_view != view)
+                                        dt.Columns.Add(prop.Name);
+                                        //for users there will be a special treatment in terms of the profile picture
+                                        //it will be a base64 string containing the image data
+                                        if ((prop != null && prop.GetValue(view, null) != null) && (prop.GetValue(view, null).GetType() == typeof(byte[]) || prop.GetValue(view, null).GetType() == typeof(Byte[])))
                                         {
-                                            dt.Rows.Add(new object[]{
-                                                              em_view.ID,
-                                                              em_view.UserName,
-                                                              em_view.UserPassword,
-                                                              em_view.UserDisplayName,
-                                                              em_view.UserBirthDate,
-                                                              em_view.UserPhone,
-                                                              em_view.UserEmail,
-                                                              em_view.UserAddress,
-                                                              Convert.ToBase64String(em_view.UserProfilePic),
-                                                              em_view.UserBalance,
-                                                              em_view.UserDiagnose,
-                                                              em_view.UserDateOfRegister,
-                                                              em_view.UserRole,
-                                                              em_view.AverageEmployeeIncome
-                                            });
+                                            byte[] value = (byte[])prop.GetValue(view, null);
+                                            string Base64ImageData = Convert.ToBase64String(value);
+                                            values[propindex] = Base64ImageData;
                                         }
+                                        else
+                                        {
+                                            values[propindex] = prop.GetValue(view, null);
+                                        }
+                                        propindex++; //indrease the property index after adding the property name
+                                                     //in for and foreach loops everything starts from 0 as always
                                     }
-                                    current_source = new ReportDataSource("EmployeeReportData",dt);
+                                    propindex = 0; //reset the index
+                                    dt.Rows.Add(values); //add the values
+
+                                    //reset the property index to be zero again
+                                    propindex = 0;
+                                    //then clear the values to ensure memory is not wasted
+                                    Array.Clear(values, 0, values.Length);
+                                    current_source = new ReportDataSource("EmployeeReportData", dt);
                                     current_params = new ReportParameterCollection();
                                     Bitmap bmp;
                                     ConvertBinaryToImage(view.UserProfilePic, out bmp);
                                     ImageFormat bmp_format = bmp.RawFormat;
                                     ImageCodecInfo bmp_codec_info = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == bmp.RawFormat.Guid);
                                     string bmp_mime_type = bmp_codec_info.MimeType;
-                                    current_params.Add(new ReportParameter("Encoding",bmp_mime_type));
+                                    current_params.Add(new ReportParameter("Encoding", bmp_mime_type));
                                     current_params.Add(new ReportParameter("RoleName", cbRole.Items[view.UserRole].ToString()));
                                     current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
                                     new frmReports(target_report_file, ref current_source, ref current_params).Show();
@@ -553,59 +532,37 @@ namespace XtremePharmacyManager
                                 ClientView view = ent.ClientViews.Where(x => x.ID == currentUser.ID).FirstOrDefault();
                                 if (view != null)
                                 {
+                                    Type view_type = view.GetType();
                                     DataTable dt = new DataTable();
-                                    dt.Columns.Add(nameof(view.ID));
-                                    dt.Columns.Add(nameof(view.UserName));
-                                    dt.Columns.Add(nameof(view.UserPassword));
-                                    dt.Columns.Add(nameof(view.UserDisplayName));
-                                    dt.Columns.Add(nameof(view.UserBirthDate));
-                                    dt.Columns.Add(nameof(view.UserPhone));
-                                    dt.Columns.Add(nameof(view.UserEmail));
-                                    dt.Columns.Add(nameof(view.UserAddress));
-                                    dt.Columns.Add(nameof(view.UserProfilePic));
-                                    dt.Columns.Add(nameof(view.UserBalance));
-                                    dt.Columns.Add(nameof(view.UserDiagnose));
-                                    dt.Columns.Add(nameof(view.UserDateOfRegister));
-                                    dt.Columns.Add(nameof(view.UserRole));
-                                    dt.Columns.Add(nameof(view.AverageClientSpending));
-                                    dt.Rows.Add(new object[]{ 
-                                                              view.ID,
-                                                              view.UserName,
-                                                              view.UserPassword,
-                                                              view.UserDisplayName,
-                                                              view.UserBirthDate,
-                                                              view.UserPhone,
-                                                              view.UserEmail,
-                                                              view.UserAddress,
-                                                              Convert.ToBase64String(view.UserProfilePic),
-                                                              view.UserBalance,
-                                                              view.UserDiagnose,
-                                                              view.UserDateOfRegister,
-                                                              view.UserRole,
-                                                              view.AverageClientSpending
-                                    });
-                                    foreach(ClientView cl_view in ent.ClientViews)
+                                    Object[] values = new Object[view_type.GetProperties().Length];
+                                    int propindex = 0; //track the property index
+                                    //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
+                                    //imported them yet
+                                    foreach (var prop in view_type.GetProperties())
                                     {
-                                        if(cl_view != view)
+                                        dt.Columns.Add(prop.Name);
+                                        //for users there will be a special treatment in terms of the profile picture
+                                        //it will be a base64 string containing the image data
+                                        if ((prop != null && prop.GetValue(view, null) != null) && (prop.GetValue(view, null).GetType() == typeof(byte[]) || prop.GetValue(view, null).GetType() == typeof(Byte[])))
                                         {
-                                            dt.Rows.Add(new object[]{
-                                                              cl_view.ID,
-                                                              cl_view.UserName,
-                                                              cl_view.UserPassword,
-                                                              cl_view.UserDisplayName,
-                                                              cl_view.UserBirthDate,
-                                                              cl_view.UserPhone,
-                                                              cl_view.UserEmail,
-                                                              cl_view.UserAddress,
-                                                              Convert.ToBase64String(cl_view.UserProfilePic),
-                                                              cl_view.UserBalance,
-                                                              cl_view.UserDiagnose,
-                                                              cl_view.UserDateOfRegister,
-                                                              cl_view.UserRole,
-                                                              cl_view.AverageClientSpending
-                                            });
+                                            byte[] value = (byte[])prop.GetValue(view, null);
+                                            string Base64ImageData = Convert.ToBase64String(value);
+                                            values[propindex] = Base64ImageData;
                                         }
+                                        else
+                                        {
+                                            values[propindex] = prop.GetValue(view, null);
+                                        }
+                                        propindex++; //indrease the property index after adding the property name
+                                                     //in for and foreach loops everything starts from 0 as always
                                     }
+                                    propindex = 0; //reset the index
+                                    dt.Rows.Add(values); //add the values
+                                    
+                                    //reset the property index to be zero again
+                                    propindex = 0;
+                                    //then clear the values to ensure memory is not wasted
+                                    Array.Clear(values, 0, values.Length);
                                     current_source = new ReportDataSource("ClientReportData", dt);
                                     current_params = new ReportParameterCollection();
                                     Bitmap bmp;
