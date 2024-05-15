@@ -571,12 +571,14 @@ namespace XtremePharmacyManager
                     {
                         bulkUserOperationsform = new frmBulkUserOperations(ref bulkUserOperationManager);
                         bulkUserOperationsform.MdiParent = this;
+                        bulkProductImageOperationsform.Dock = DockStyle.Fill;
                         bulkUserOperationsform.FormClosed += bulkUserOperationsform_FormClosed;
                         bulkUserOperationsform.Show();
                     }
                     else
                     {
                         bulkUserOperationsform.WindowState = FormWindowState.Normal;
+                        bulkProductImageOperationsform.Dock = DockStyle.Fill;
                         bulkUserOperationsform.Activate();
                     }
                 }
@@ -602,12 +604,14 @@ namespace XtremePharmacyManager
                     {
                         bulkProductBrandOperationsform = new frmBulkProductBrandOperations(ref bulkProductBrandOperationManager);
                         bulkProductBrandOperationsform.MdiParent = this;
+                        bulkProductImageOperationsform.Dock = DockStyle.Fill;
                         bulkProductBrandOperationsform.FormClosed += bulkProductBrandOperationsform_FormClosed;
                         bulkProductBrandOperationsform.Show();
                     }
                     else
                     {
                         bulkProductBrandOperationsform.WindowState = FormWindowState.Normal;
+                        bulkProductImageOperationsform.Dock = DockStyle.Fill;
                         bulkProductBrandOperationsform.Activate();
                     }
                 }
@@ -633,12 +637,14 @@ namespace XtremePharmacyManager
                     {
                         bulkPaymentMethodOperationsform = new frmBulkPaymentMethodOperations(ref bulkPaymentMethodOperationManager);
                         bulkPaymentMethodOperationsform.MdiParent = this;
+                        bulkProductImageOperationsform.Dock = DockStyle.Fill;
                         bulkPaymentMethodOperationsform.FormClosed += bulkPaymentMethodOperationsform_FormClosed;
                         bulkPaymentMethodOperationsform.Show();
                     }
                     else
                     {
                         bulkPaymentMethodOperationsform.WindowState = FormWindowState.Normal;
+                        bulkProductImageOperationsform.Dock = DockStyle.Fill;
                         bulkPaymentMethodOperationsform.Activate();
                     }
                 }
@@ -664,12 +670,14 @@ namespace XtremePharmacyManager
                     {
                         bulkDeliveryServiceOperationsform = new frmBulkDeliveryServiceOperations(ref bulkDeliveryServiceOperationManager);
                         bulkDeliveryServiceOperationsform.MdiParent = this;
+                        bulkDeliveryServiceOperationsform.Dock = DockStyle.Fill;
                         bulkDeliveryServiceOperationsform.FormClosed += bulkDeliveryServiceOperationsform_FormClosed;
                         bulkDeliveryServiceOperationsform.Show();
                     }
                     else
                     {
                         bulkDeliveryServiceOperationsform.WindowState = FormWindowState.Normal;
+                        bulkDeliveryServiceOperationsform.Dock = DockStyle.Fill;
                         bulkDeliveryServiceOperationsform.Activate();
                     }
                 }
@@ -695,12 +703,14 @@ namespace XtremePharmacyManager
                     {
                         bulkProductOperationsform = new frmBulkProductOperations(ref bulkProductOperationManager);
                         bulkProductOperationsform.MdiParent = this;
+                        bulkProductImageOperationsform.Dock = DockStyle.Fill;
                         bulkProductOperationsform.FormClosed += bulkProductOperationsform_FormClosed;
                         bulkProductOperationsform.Show();
                     }
                     else
                     {
                         bulkProductOperationsform.WindowState = FormWindowState.Normal;
+                        bulkProductImageOperationsform.Dock = DockStyle.Fill;
                         bulkProductOperationsform.Activate();
                     }
                 }
@@ -726,12 +736,14 @@ namespace XtremePharmacyManager
                     {
                         bulkProductImageOperationsform = new frmBulkProductImageOperations(ref bulkProductImageOperationManager);
                         bulkProductImageOperationsform.MdiParent = this;
+                        bulkProductImageOperationsform.Dock = DockStyle.Fill;
                         bulkProductImageOperationsform.FormClosed += bulkProductImageOperationsform_FormClosed;
                         bulkProductImageOperationsform.Show();
                     }
                     else
                     {
                         bulkProductImageOperationsform.WindowState = FormWindowState.Normal;
+                        bulkProductImageOperationsform.Dock = DockStyle.Fill;
                         bulkProductImageOperationsform.Activate();
                     }
                 }
@@ -757,12 +769,14 @@ namespace XtremePharmacyManager
                     {
                         bulkProductOrderOperationsform = new frmBulkProductOrderOperations(ref bulkProductOrderOperationManager);
                         bulkProductOrderOperationsform.MdiParent = this;
+                        bulkProductOrderOperationsform.Dock = DockStyle.Fill;
                         bulkProductOrderOperationsform.FormClosed += bulkProductOrderOperationsform_FormClosed;
                         bulkProductOrderOperationsform.Show();
                     }
                     else
                     {
                         bulkProductOrderOperationsform.WindowState = FormWindowState.Normal;
+                        bulkProductOrderOperationsform.Dock = DockStyle.Fill;
                         bulkProductOrderOperationsform.Activate();
                     }
                 }
@@ -788,12 +802,14 @@ namespace XtremePharmacyManager
                     {
                         bulkOrderDeliveryOperationsform = new frmBulkOrderDeliveryOperations(ref bulkOrderDeliveryOperationManager);
                         bulkOrderDeliveryOperationsform.MdiParent = this;
+                        bulkOrderDeliveryOperationsform.Dock = DockStyle.Fill;
                         bulkOrderDeliveryOperationsform.FormClosed += bulkOrderDeliveryOperationsform_FormClosed;
                         bulkOrderDeliveryOperationsform.Show();
                     }
                     else
                     {
                         bulkOrderDeliveryOperationsform.WindowState = FormWindowState.Normal;
+                        bulkOrderDeliveryOperationsform.Dock = DockStyle.Fill;
                         bulkOrderDeliveryOperationsform.Activate();
                     }
                 }
