@@ -886,53 +886,23 @@ namespace XtremePharmacyManager
                             ExtendedProductView view = ent.ExtendedProductViews.Where(x => x.ID == currentProduct.ID).FirstOrDefault();
                             if (view != null)
                             {
+                                Type view_type = view.GetType();
                                 DataTable dt = new DataTable();
-                                dt.Columns.Add(nameof(view.ID));
-                                dt.Columns.Add(nameof(view.ProductName));
-                                dt.Columns.Add(nameof(view.BrandName));
-                                dt.Columns.Add(nameof(view.ProductDescription));
-                                dt.Columns.Add(nameof(view.ProductQuantity));
-                                dt.Columns.Add(nameof(view.ProductPrice));
-                                dt.Columns.Add(nameof(view.ProductExpiryDate));
-                                dt.Columns.Add(nameof(view.ProductRegNum));
-                                dt.Columns.Add(nameof(view.ProductPartNum));
-                                dt.Columns.Add(nameof(view.ProductStorageLocation));
-                                dt.Columns.Add(nameof(view.AverageProductSale));
-                                dt.Columns.Add(nameof(view.ProductImageCount));
-                                dt.Rows.Add(new object[]{
-                                                          view.ID,
-                                                          view.ProductName,
-                                                          view.BrandName,
-                                                          view.ProductDescription,
-                                                          view.ProductQuantity,
-                                                          view.ProductPrice,
-                                                          view.ProductExpiryDate,
-                                                          view.ProductRegNum,
-                                                          view.ProductPartNum,
-                                                          view.ProductStorageLocation,
-                                                          view.AverageProductSale,
-                                                          view.ProductImageCount
-                                });
-                                foreach (ExtendedProductView pr_view in ent.ExtendedProductViews)
+                                Object[] values = new Object[view_type.GetProperties().Length];
+                                int propindex = 0; //track the property index
+                                //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
+                                //imported them yet
+                                foreach (var prop in view_type.GetProperties())
                                 {
-                                    if (pr_view != view)
-                                    {
-                                        dt.Rows.Add(new object[]{
-                                                             view.ID,
-                                                             view.ProductName,
-                                                             view.BrandName,
-                                                             view.ProductDescription,
-                                                             view.ProductQuantity,
-                                                             view.ProductPrice,
-                                                             view.ProductExpiryDate,
-                                                             view.ProductRegNum,
-                                                             view.ProductPartNum,
-                                                             view.ProductStorageLocation,
-                                                             view.AverageProductSale,
-                                                             view.ProductImageCount
-                                        });
-                                    }
+                                    dt.Columns.Add(prop.Name);
+                                    values[propindex] = prop.GetValue(view, null);
+                                    propindex++; //indrease the property index after adding the property name
+                                    //in for and foreach loops everything starts from 0 as always
                                 }
+                                propindex = 0; //reset the index
+                                dt.Rows.Add(values); //add the values
+                                //then clear the values to ensure memory is not wasted
+                                Array.Clear(values, 0, values.Length);
                                 current_source = new ReportDataSource("ProductReportData", dt);
                                 current_params = new ReportParameterCollection();
                                 current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));

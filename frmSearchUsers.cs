@@ -508,9 +508,6 @@ namespace XtremePharmacyManager
                                     }
                                     propindex = 0; //reset the index
                                     dt.Rows.Add(values); //add the values
-
-                                    //reset the property index to be zero again
-                                    propindex = 0;
                                     //then clear the values to ensure memory is not wasted
                                     Array.Clear(values, 0, values.Length);
                                     current_source = new ReportDataSource("EmployeeReportData", dt);
@@ -558,9 +555,6 @@ namespace XtremePharmacyManager
                                     }
                                     propindex = 0; //reset the index
                                     dt.Rows.Add(values); //add the values
-                                    
-                                    //reset the property index to be zero again
-                                    propindex = 0;
                                     //then clear the values to ensure memory is not wasted
                                     Array.Clear(values, 0, values.Length);
                                     current_source = new ReportDataSource("ClientReportData", dt);

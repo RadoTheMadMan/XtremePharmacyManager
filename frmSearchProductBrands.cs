@@ -339,26 +339,23 @@ namespace XtremePharmacyManager
                             ExtendedBrandsView view = ent.ExtendedBrandsViews.Where(x => x.ID == currentBrand.ID).FirstOrDefault();
                             if (view != null)
                             {
+                                Type view_type = view.GetType();
                                 DataTable dt = new DataTable();
-                                dt.Columns.Add(nameof(view.ID));
-                                dt.Columns.Add(nameof(view.BrandName));
-                                dt.Columns.Add(nameof(view.CountProductsFromBrand));
-                                dt.Rows.Add(new object[]{ 
-                                                          view.ID,
-                                                          view.BrandName,
-                                                          view.CountProductsFromBrand
-                                });
-                                foreach (ExtendedBrandsView br_view in ent.ExtendedBrandsViews)
+                                Object[] values = new Object[view_type.GetProperties().Length];
+                                int propindex = 0; //track the property index
+                                //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
+                                //imported them yet
+                                foreach (var prop in view_type.GetProperties())
                                 {
-                                    if (br_view != view)
-                                    {
-                                        dt.Rows.Add(new object[]{
-                                                              br_view.ID,
-                                                              br_view.BrandName,
-                                                              br_view.CountProductsFromBrand
-                                        });
-                                    }
+                                    dt.Columns.Add(prop.Name);
+                                    values[propindex] = prop.GetValue(view, null);
+                                    propindex++; //indrease the property index after adding the property name
+                                    //in for and foreach loops everything starts from 0 as always
                                 }
+                                propindex = 0; //reset the index
+                                dt.Rows.Add(values); //add the values
+                                //then clear the values to ensure memory is not wasted
+                                Array.Clear(values, 0, values.Length);
                                 current_source = new ReportDataSource("ProductBrandReportData", dt);
                                 current_params = new ReportParameterCollection();
                                 current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));

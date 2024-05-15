@@ -348,29 +348,23 @@ namespace XtremePharmacyManager
                             ExtendedDeliveryServicesView view = ent.ExtendedDeliveryServicesViews.Where(x => x.ID == currentService.ID).FirstOrDefault();
                             if (view != null)
                             {
+                                Type view_type = view.GetType();
                                 DataTable dt = new DataTable();
-                                dt.Columns.Add(nameof(view.ID));
-                                dt.Columns.Add(nameof(view.ServiceName));
-                                dt.Columns.Add(nameof(view.ServicePrice));
-                                dt.Columns.Add(nameof(view.TimesThisServiceWasUsed));
-                                dt.Rows.Add(new object[]{ 
-                                                          view.ID,
-                                                          view.ServiceName,
-                                                          view.ServicePrice,
-                                                          view.TimesThisServiceWasUsed
-                                });
-                                foreach (ExtendedDeliveryServicesView ds_view in ent.ExtendedDeliveryServicesViews)
+                                Object[] values = new Object[view_type.GetProperties().Length];
+                                int propindex = 0; //track the property index
+                                //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
+                                //imported them yet
+                                foreach (var prop in view_type.GetProperties())
                                 {
-                                    if (ds_view != view)
-                                    {
-                                        dt.Rows.Add(new object[]{
-                                                              ds_view.ID,
-                                                              ds_view.ServiceName,
-                                                              ds_view.ServicePrice,
-                                                              ds_view.TimesThisServiceWasUsed
-                                        });
-                                    }
+                                    dt.Columns.Add(prop.Name);
+                                    values[propindex] = prop.GetValue(view, null);
+                                    propindex++; //indrease the property index after adding the property name
+                                    //in for and foreach loops everything starts from 0 as always
                                 }
+                                propindex = 0; //reset the index
+                                dt.Rows.Add(values); //add the values
+                                //then clear the values to ensure memory is not wasted
+                                Array.Clear(values, 0, values.Length);
                                 current_source = new ReportDataSource("DeliveryServiceReportData", dt);
                                 current_params = new ReportParameterCollection();
                                 current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
