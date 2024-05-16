@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
@@ -562,6 +564,107 @@ namespace XtremePharmacyManager
             RefreshPaymentMethods();
             RefreshProductOrders();
             RefreshOrderDeliveries();
+        }
+
+        private void btnGenerateReport_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow row;
+            int ID = -1;
+            OrderDelivery currentDelivery;
+            string target_report_file;
+            bool IsInvoice = false;
+            ReportDataSource current_source;
+            ReportParameterCollection current_params;
+            try
+            {
+                if (MessageBox.Show("Do you want to generate invoice for this order delivery?", "Report Generation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                    == DialogResult.Yes)
+                {
+                    IsInvoice = true;
+                }
+                else
+                {
+                    IsInvoice = false;
+                }
+                if (dgvOrderDeliveries.SelectedRows.Count > 0)
+                {
+                    row = dgvOrderDeliveries.SelectedRows[0];
+                    if (row != null && product_orders != null)
+                    {
+                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
+                        //Contrary to the CRUD operations, report generating will be for all records no matter
+                        //if they are dummy or not
+                        currentDelivery = order_deliveries.Where(x => x.ID == ID).FirstOrDefault();
+                        if (currentDelivery != null)
+                        {
+                            if (IsInvoice)
+                            {
+                                target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.ORDER_DELIVERY_INVOICE_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+                            }                                                                                
+                            else                                                                             
+                            {                                                                                
+                                target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.ORDER_DELIVERY_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+                            }
+                            ExtendedOrderDeliveriesView view = ent.ExtendedOrderDeliveriesViews.Where(x => x.ID == currentDelivery.ID).FirstOrDefault();
+                            if (view != null)
+                            {
+                                Type view_type = view.GetType();
+                                DataTable dt = new DataTable();
+                                Object[] values = new Object[view_type.GetProperties().Length];
+                                int propindex = 0; //track the property index
+                                //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
+                                //imported them yet
+                                foreach (var prop in view_type.GetProperties())
+                                {
+                                    dt.Columns.Add(prop.Name);
+                                    values[propindex] = prop.GetValue(view, null);
+                                    propindex++; //indrease the property index after adding the property name
+                                    //in for and foreach loops everything starts from 0 as always
+                                }
+                                propindex = 0; //reset the index
+                                dt.Rows.Add(values); //add the values
+                                foreach (ExtendedOrderDeliveriesView od_view in ent.ExtendedOrderDeliveriesViews)
+                                {
+                                    //as stats are added in the view there is no need for most of them to be calculated
+                                    //because the database calculates them for us there is no need for all of the entries
+                                    //to be imported to the report unless there is an invoice situation like here
+                                    Array.Clear(values, 0, values.Length); //so clear the values first
+                                    if (od_view != view)
+                                    {
+                                        if (IsInvoice)
+                                        {
+                                            if (od_view.DateAdded == view.DateAdded && od_view.ClientName == view.ClientName)
+                                            {
+                                                foreach (var prop in view_type.GetProperties())
+                                                {
+                                                    values[propindex] = prop.GetValue(od_view, null);
+                                                    propindex++; //indrease the property index after adding the property name
+                                                    //in for and foreach loops everything starts from 0 as always
+                                                }
+                                                dt.Rows.Add(values); //add the values
+                                                propindex = 0; //reset the property index to be back to zero
+                                            }
+                                        }
+                                    }
+                                }
+                                //reset the property index to be zero again
+                                propindex = 0;
+                                //then clear the values to ensure memory is not wasted
+                                Array.Clear(values, 0, values.Length);
+                                current_source = new ReportDataSource("OrderDeliveryReportData", dt);
+                                current_params = new ReportParameterCollection();
+                                current_params.Add(new ReportParameter("StatusName", cbSelectDeliveryStatus.Items[view.DeliveryStatus].ToString()));
+                                current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
+                                new frmReports(target_report_file, ref current_source, ref current_params).Show();
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

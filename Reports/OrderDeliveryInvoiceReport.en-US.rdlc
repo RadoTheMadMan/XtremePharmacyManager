@@ -791,7 +791,7 @@
             <Top>0.905in</Top>
             <Left>0.105in</Left>
             <Height>0.5in</Height>
-            <Width>11.02334in</Width>
+            <Width>11.02335in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -806,7 +806,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Sum(Fields!ID.Value, "OrderDeliveryReportData")</Value>
+                    <Value>=First(Fields!ID.Value, "OrderDeliveryReportData")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
