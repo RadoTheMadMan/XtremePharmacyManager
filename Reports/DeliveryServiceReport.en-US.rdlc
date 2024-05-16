@@ -621,7 +621,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>=Format(First(Fields!ServicePrice.Value, "DeliveryServiceReportData"),"0.0")</Value>
+                    <Value>=First(Fields!ServicePrice.Value,"DeliveryServiceReportData")</Value>
                     <Style>
                       <FontWeight>Bold</FontWeight>
                     </Style>
