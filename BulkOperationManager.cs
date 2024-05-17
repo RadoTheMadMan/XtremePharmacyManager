@@ -612,6 +612,167 @@ namespace XtremePharmacyManager
 
     }
 
+    public class BulkProductVendorOperation : BulkOperation<ProductVendor>
+    {
+        static Entities entities;
+
+        public BulkProductVendorOperation(BulkOperationType type, ref Entities ent, ProductVendor target_vendor, bool is_silent) : base(type, target_vendor, is_silent)
+        {
+            entities = ent;
+            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+        }
+
+        public override void UpdateName()
+        {
+            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+        }
+
+        protected override async Task<bool> createTask()
+        {
+            bool result = false;
+            try
+            {
+                result = true;
+                base.SuccessMessage = "Product Vendor has been added.";
+                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                {
+                    entities.AddVendor(base.TargetObject.VendorName);
+                    entities.SaveChanges();
+                    //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                    ExtendedVendorsView prv_view = entities.ExtendedVendorsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                    if (prv_view != null)
+                    {
+                        entities.Entry(prv_view).Reload();
+                    }
+                }
+                Debug.WriteLineIf(result, base.SuccessMessage);
+            }
+            catch (Exception ex)
+            {
+                if (!base.IsSilent)
+                {
+                    await Task.Run(() =>
+                    {
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (ex.InnerException != null)
+                        {
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    });
+                }
+                base.ErrorMessage = ex.Message + "\n";
+                base.ErrorCode = ex.HResult;
+                base.StackTrace = ex.StackTrace + "\n";
+                if (ex.InnerException != null)
+                {
+                    base.InnerErrorCode = ex.InnerException.HResult;
+                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.StackTrace += ex.InnerException.StackTrace + "\n";
+                }
+                result = false;
+            }
+            return result;
+        }
+
+        protected override async Task<bool> updateTask()
+        {
+            bool result = false;
+            try
+            {
+                result = true;
+                base.SuccessMessage = "Product Vendor has been updated.";
+                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                {
+                    entities.UpdateVendorByID(base.TargetObject.ID, base.TargetObject.VendorName);
+                    entities.SaveChanges();
+                    entities.Entry<ProductVendor>(entities.ProductVendors.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                    //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                    ExtendedVendorsView prv_view = entities.ExtendedVendorsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                    if (prv_view != null)
+                    {
+                        entities.Entry(prv_view).Reload();
+                    }
+                }
+                Debug.WriteLineIf(result, base.SuccessMessage);
+            }
+            catch (Exception ex)
+            {
+                if (!base.IsSilent)
+                {
+                    await Task.Run(() =>
+                    {
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (ex.InnerException != null)
+                        {
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    });
+                }
+                base.ErrorMessage = ex.Message + "\n";
+                base.ErrorCode = ex.HResult;
+                base.StackTrace = ex.StackTrace + "\n";
+                if (ex.InnerException != null)
+                {
+                    base.InnerErrorCode = ex.InnerException.HResult;
+                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.StackTrace += ex.InnerException.StackTrace + "\n";
+                }
+                result = false;
+            }
+            return result;
+        }
+
+        protected override async Task<bool> deleteTask()
+        {
+            bool result = false;
+            try
+            {
+                result = true;
+                base.SuccessMessage = "Product Vendor has been deleted.";
+                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                {
+                    entities.DeleteVendorByID(base.TargetObject.ID);
+                    entities.SaveChanges();
+                    //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                    ExtendedVendorsView prv_view = entities.ExtendedVendorsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                    if (prv_view != null)
+                    {
+                        entities.Entry(prv_view).Reload();
+                    }
+                }
+                Debug.WriteLineIf(result, base.SuccessMessage);
+            }
+            catch (Exception ex)
+            {
+                if (!base.IsSilent)
+                {
+                    await Task.Run(() =>
+                    {
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (ex.InnerException != null)
+                        {
+                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    });
+                }
+                base.ErrorMessage = ex.Message + "\n";
+                base.ErrorCode = ex.HResult;
+                base.StackTrace = ex.StackTrace + "\n";
+                if (ex.InnerException != null)
+                {
+                    base.InnerErrorCode = ex.InnerException.HResult;
+                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.StackTrace += ex.InnerException.StackTrace + "\n";
+                }
+                result = false;
+            }
+            return result;
+        }
+
+        //No custom task by default, if you want custom tasks inherit from this class
+
+    }
+
     public class BulkPaymentMethodOperation : BulkOperation<PaymentMethod>
     {
         static Entities entities;
