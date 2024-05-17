@@ -171,7 +171,7 @@ namespace XtremePharmacyManager
                 RefreshProductOrders();
                 RefreshDeliveryServices();
                 RefreshPaymentMethods();
-                order_deliveries = ent.GetOrderDelivery(DeliveryID,OrderID,DeliveryServiceID,PaymentMethodID,CargoID,new decimal(),new DateTime(),new DateTime(), new DateTime(), new DateTime(),0,"").ToList();
+                order_deliveries = ent.GetOrderDelivery(DeliveryID,OrderID,DeliveryServiceID,PaymentMethodID,CargoID,TotalPrice,DateAddedFrom,DateAddedTo, DateModifiedFrom, DateModifiedTo,DeliveryStatus,DeliveryReason).ToList();
                 dgvOrderDeliveries.DataSource = order_deliveries;
             }
             else
