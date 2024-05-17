@@ -338,7 +338,7 @@ namespace XtremePharmacyManager
                         if (currentVendor != null)
                         {
                             target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PRODUCT_VENDOR_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
-                            ExtendedBrandsView view = ent.ExtendedBrandsViews.Where(x => x.ID == currentVendor.ID).FirstOrDefault();
+                            ExtendedVendorsView view = ent.ExtendedVendorsViews.Where(x => x.ID == currentVendor.ID).FirstOrDefault();
                             if (view != null)
                             {
                                 Type view_type = view.GetType();
