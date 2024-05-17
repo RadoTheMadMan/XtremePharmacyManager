@@ -241,6 +241,12 @@
     <Compile Include="frmEditOrderDelivery.Designer.cs">
       <DependentUpon>frmEditOrderDelivery.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmEditProductVendor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmEditProductVendor.Designer.cs">
+      <DependentUpon>frmEditProductVendor.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmEditProductOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -394,6 +400,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEditOrderDelivery.resx">
       <DependentUpon>frmEditOrderDelivery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmEditProductVendor.resx">
+      <DependentUpon>frmEditProductVendor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmEditProductOrder.resx">
       <DependentUpon>frmEditProductOrder.cs</DependentUpon>

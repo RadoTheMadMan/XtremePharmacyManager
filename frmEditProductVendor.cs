@@ -12,10 +12,10 @@ using XtremePharmacyManager.DataEntities;
 using static XtremePharmacyManager.ImageBinConverter;
 namespace XtremePharmacyManager
 {
-    public partial class frmEditProductBrand : Form
+    public partial class frmEditProductVendor : Form
     {
-        ProductBrand target;
-        public frmEditProductBrand(ref ProductBrand target)
+        ProductVendor target;
+        public frmEditProductVendor(ref ProductVendor target)
         {
             InitializeComponent();
             this.target = target;
@@ -34,18 +34,18 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void txtBrandName_TextChanged(object sender, EventArgs e)
+        private void txtVendorName_TextChanged(object sender, EventArgs e)
         {
             if(target!=null)
             {
-                target.BrandName = txtBrandName.Text;
+                target.VendorName = txtVendorName.Text;
             }
         }
 
-        private void frmEditProductBrand_Load(object sender, EventArgs e)
+        private void frmEditProductVendor_Load(object sender, EventArgs e)
         {
             this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
-            this.txtBrandName.Text = (!String.IsNullOrEmpty(target.BrandName)) ? target.BrandName.ToString() : string.Empty;
+            this.txtVendorName.Text = (!String.IsNullOrEmpty(target.VendorName)) ? target.VendorName.ToString() : string.Empty;
         }
     }
 }

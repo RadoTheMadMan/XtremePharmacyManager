@@ -1,6 +1,6 @@
 ﻿namespace XtremePharmacyManager
 {
-    partial class frmEditProductBrand
+    partial class frmEditProductVendor
     {
         /// <summary>
         /// Required designer variable.
@@ -32,8 +32,8 @@
             this.pnlData = new System.Windows.Forms.Panel();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.txtBrandName = new System.Windows.Forms.TextBox();
-            this.lblBrandName = new System.Windows.Forms.Label();
+            this.txtVendorName = new System.Windows.Forms.TextBox();
+            this.lblVendorName = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -46,8 +46,8 @@
             this.pnlData.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlData.Controls.Add(this.btnOK);
             this.pnlData.Controls.Add(this.btnCancel);
-            this.pnlData.Controls.Add(this.txtBrandName);
-            this.pnlData.Controls.Add(this.lblBrandName);
+            this.pnlData.Controls.Add(this.txtVendorName);
+            this.pnlData.Controls.Add(this.lblVendorName);
             this.pnlData.Controls.Add(this.txtID);
             this.pnlData.Controls.Add(this.lblID);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
@@ -80,27 +80,27 @@
             this.btnCancel.Text = "CANCEL";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // txtBrandName
+            // txtVendorName
             // 
-            this.txtBrandName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtVendorName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtBrandName.Location = new System.Drawing.Point(136, 42);
-            this.txtBrandName.Name = "txtBrandName";
-            this.txtBrandName.Size = new System.Drawing.Size(205, 22);
-            this.txtBrandName.TabIndex = 4;
-            this.txtBrandName.TextChanged += new System.EventHandler(this.txtBrandName_TextChanged);
+            this.txtVendorName.Location = new System.Drawing.Point(136, 42);
+            this.txtVendorName.Name = "txtVendorName";
+            this.txtVendorName.Size = new System.Drawing.Size(205, 22);
+            this.txtVendorName.TabIndex = 4;
+            this.txtVendorName.TextChanged += new System.EventHandler(this.txtVendorName_TextChanged);
             // 
-            // lblBrandName
+            // lblVendorName
             // 
-            this.lblBrandName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblVendorName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblBrandName.AutoSize = true;
-            this.lblBrandName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBrandName.Location = new System.Drawing.Point(19, 45);
-            this.lblBrandName.Name = "lblBrandName";
-            this.lblBrandName.Size = new System.Drawing.Size(97, 16);
-            this.lblBrandName.TabIndex = 3;
-            this.lblBrandName.Text = "Brand Name:";
+            this.lblVendorName.AutoSize = true;
+            this.lblVendorName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVendorName.Location = new System.Drawing.Point(19, 45);
+            this.lblVendorName.Name = "lblVendorName";
+            this.lblVendorName.Size = new System.Drawing.Size(106, 16);
+            this.lblVendorName.TabIndex = 3;
+            this.lblVendorName.Text = "Vendor Name:";
             // 
             // txtID
             // 
@@ -125,7 +125,7 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
-            // frmEditProductBrand
+            // frmEditProductVendor
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -133,9 +133,9 @@
             this.ClientSize = new System.Drawing.Size(548, 150);
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
-            this.Name = "frmEditProductBrand";
-            this.Text = "Product Brand Editor. Add or Update Product Brand";
-            this.Load += new System.EventHandler(this.frmEditProductBrand_Load);
+            this.Name = "frmEditProductVendor";
+            this.Text = "Product Vendor Editor. Add or Update Product Vendor";
+            this.Load += new System.EventHandler(this.frmEditProductVendor_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
@@ -148,8 +148,8 @@
         private System.Windows.Forms.Panel pnlData;
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.TextBox txtID;
-        private System.Windows.Forms.TextBox txtBrandName;
-        private System.Windows.Forms.Label lblBrandName;
+        private System.Windows.Forms.TextBox txtVendorName;
+        private System.Windows.Forms.Label lblVendorName;
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
