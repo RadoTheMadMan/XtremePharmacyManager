@@ -1124,7 +1124,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Product has been added.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.AddProduct(base.TargetObject.ProductName,base.TargetObject.BrandID, base.TargetObject.ProductDescription,
+                    entities.AddProduct(base.TargetObject.ProductName,base.TargetObject.BrandID, base.TargetObject.VendorID, base.TargetObject.ProductDescription,
                         base.TargetObject.ProductQuantity, base.TargetObject.ProductPrice, base.TargetObject.ProductExpiryDate,
                         base.TargetObject.ProductRegNum, base.TargetObject.ProductPartNum, base.TargetObject.ProductStorageLocation);
                     entities.SaveChanges();
@@ -1173,7 +1173,7 @@ namespace XtremePharmacyManager
                 base.SuccessMessage = "Product has been updated.";
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
-                    entities.UpdateProductByID(base.TargetObject.ID,base.TargetObject.ProductName, base.TargetObject.BrandID, base.TargetObject.ProductDescription,
+                    entities.UpdateProductByID(base.TargetObject.ID,base.TargetObject.ProductName, base.TargetObject.BrandID, base.TargetObject.VendorID, base.TargetObject.ProductDescription,
                         base.TargetObject.ProductQuantity, base.TargetObject.ProductPrice, base.TargetObject.ProductExpiryDate,
                         base.TargetObject.ProductRegNum, base.TargetObject.ProductPartNum, base.TargetObject.ProductStorageLocation);
                     entities.SaveChanges();

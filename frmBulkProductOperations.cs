@@ -37,6 +37,7 @@ namespace XtremePharmacyManager
                 lstBulkOperations.DataSource = e.OperationsList;
                 cbSelectRecord.DataSource = manager_entities.Products.ToList();
                 cbBrand.DataSource = manager_entities.ProductBrands.ToList();
+                cbVendor.DataSource = manager_entities.ProductVendors.ToList();
                 lblOperationResults.Text = e.Result;
                 txtOperationLogs.Text = e.OperationLog;
             }
@@ -54,6 +55,7 @@ namespace XtremePharmacyManager
                 lstBulkOperations.DataSource = e.OperationsList;
                 cbSelectRecord.DataSource = manager_entities.Products.ToList();
                 cbBrand.DataSource = manager_entities.ProductBrands.ToList();
+                cbVendor.DataSource = manager_entities.ProductVendors.ToList();
                 lblOperationResults.Text = "Operation Results: ";
                 txtOperationLogs.Text = "";
             }
@@ -72,6 +74,7 @@ namespace XtremePharmacyManager
             lstBulkOperations.DataSource = manager.BulkOperations;
             cbSelectRecord.DataSource = manager_entities.Products.ToList();
             cbBrand.DataSource = manager_entities.ProductBrands.ToList();
+            cbVendor.DataSource = manager_entities.ProductVendors.ToList();
             try
             {
                 if (selected_operation != null && selected_target != null)
@@ -89,6 +92,7 @@ namespace XtremePharmacyManager
                     this.lblShowQuantity.Text = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                     cbBrand.SelectedValue = selected_target.BrandID;
+                    cbVendor.SelectedValue = selected_target.VendorID;
                     cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                 }
@@ -119,6 +123,7 @@ namespace XtremePharmacyManager
                 {
                     selected_target.ProductName = txtProductName.Text;
                     selected_target.BrandID = Int32.Parse(cbBrand.SelectedValue.ToString());
+                    selected_target.VendorID = Int32.Parse(cbVendor.SelectedValue.ToString());
                     selected_target.ProductDescription = txtProductDescription.Text;
                     selected_target.ProductQuantity = trbQuantity.Value;
                     selected_target.ProductPrice = trbPrice.Value;
@@ -167,6 +172,7 @@ namespace XtremePharmacyManager
                     this.lblShowQuantity.Text = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                     cbBrand.SelectedValue = selected_target.BrandID;
+                    cbVendor.SelectedValue = selected_target.VendorID;
                     cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                 }
@@ -190,6 +196,7 @@ namespace XtremePharmacyManager
                     ID = Int32.Parse(txtID.Text),
                     ProductName = txtProductName.Text,
                     BrandID = Int32.Parse(cbBrand.SelectedValue.ToString()),
+                    VendorID = Int32.Parse(cbVendor.SelectedValue.ToString()),
                     ProductDescription = txtProductDescription.Text,
                     ProductQuantity = trbQuantity.Value,
                     ProductPrice = trbPrice.Value,
@@ -231,6 +238,7 @@ namespace XtremePharmacyManager
                 {
                     selected_target.ProductName = txtProductName.Text;
                     selected_target.BrandID = Int32.Parse(cbBrand.SelectedValue.ToString());
+                    selected_target.VendorID = Int32.Parse(cbVendor.SelectedValue.ToString());
                     selected_target.ProductDescription = txtProductDescription.Text;
                     selected_target.ProductQuantity = trbQuantity.Value;
                     selected_target.ProductPrice = trbPrice.Value;
@@ -284,6 +292,7 @@ namespace XtremePharmacyManager
                     this.lblShowQuantity.Text = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                     cbBrand.SelectedValue = selected_target.BrandID;
+                    cbVendor.SelectedValue = selected_target.VendorID;
                 }
             }
             catch (Exception ex)

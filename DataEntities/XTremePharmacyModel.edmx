@@ -993,6 +993,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedVendorsView' does not
         <Function Name="AddProduct" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="productname" Type="varchar" Mode="In" />
           <Parameter Name="brandid" Type="int" Mode="In" />
+          <Parameter Name="vendorid" Type="int" Mode="In" />
           <Parameter Name="description" Type="varchar" Mode="In" />
           <Parameter Name="quantity" Type="int" Mode="In" />
           <Parameter Name="price" Type="money" Mode="In" />
@@ -1085,6 +1086,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedVendorsView' does not
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="productname" Type="varchar" Mode="In" />
           <Parameter Name="brandid" Type="int" Mode="In" />
+          <Parameter Name="vendorid" Type="int" Mode="In" />
           <Parameter Name="description" Type="varchar" Mode="In" />
           <Parameter Name="quantity" Type="int" Mode="In" />
           <Parameter Name="price" Type="money" Mode="In" />
@@ -1188,6 +1190,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedVendorsView' does not
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="productname" Type="varchar" Mode="In" />
           <Parameter Name="brandid" Type="int" Mode="In" />
+          <Parameter Name="vendorid" Type="int" Mode="In" />
           <Parameter Name="description" Type="varchar" Mode="In" />
           <Parameter Name="quantity" Type="int" Mode="In" />
           <Parameter Name="price" Type="money" Mode="In" />
@@ -1298,6 +1301,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedVendorsView' does not
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="new_product_name" Type="varchar" Mode="In" />
           <Parameter Name="new_brand_id" Type="int" Mode="In" />
+          <Parameter Name="new_vendor_id" Type="int" Mode="In" />
           <Parameter Name="new_description" Type="varchar" Mode="In" />
           <Parameter Name="new_quantity" Type="int" Mode="In" />
           <Parameter Name="new_price" Type="money" Mode="In" />
@@ -3013,6 +3017,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedVendorsView' does not
           <FunctionImport Name="AddProduct">
             <Parameter Name="productname" Mode="In" Type="String" />
             <Parameter Name="brandid" Mode="In" Type="Int32" />
+            <Parameter Name="vendorid" Mode="In" Type="Int32" />
             <Parameter Name="description" Mode="In" Type="String" />
             <Parameter Name="quantity" Mode="In" Type="Int32" />
             <Parameter Name="price" Mode="In" Type="Decimal" />
@@ -3102,6 +3107,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedVendorsView' does not
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="productname" Mode="In" Type="String" />
             <Parameter Name="brandid" Mode="In" Type="Int32" />
+            <Parameter Name="vendorid" Mode="In" Type="Int32" />
             <Parameter Name="description" Mode="In" Type="String" />
             <Parameter Name="quantity" Mode="In" Type="Int32" />
             <Parameter Name="price" Mode="In" Type="Decimal" />
@@ -3197,6 +3203,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedVendorsView' does not
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="productname" Mode="In" Type="String" />
             <Parameter Name="brandid" Mode="In" Type="Int32" />
+            <Parameter Name="vendorid" Mode="In" Type="Int32" />
             <Parameter Name="description" Mode="In" Type="String" />
             <Parameter Name="quantity" Mode="In" Type="Int32" />
             <Parameter Name="price" Mode="In" Type="Decimal" />
@@ -3303,6 +3310,7 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedVendorsView' does not
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="new_product_name" Mode="In" Type="String" />
             <Parameter Name="new_brand_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_vendor_id" Mode="In" Type="Int32" />
             <Parameter Name="new_description" Mode="In" Type="String" />
             <Parameter Name="new_quantity" Mode="In" Type="Int32" />
             <Parameter Name="new_price" Mode="In" Type="Decimal" />
@@ -3348,14 +3356,14 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedVendorsView' does not
             <End Role="Product" EntitySet="Products" />
           </AssociationSet>
           <FunctionImport Name="AddVendor">
-            <Parameter Name="vendorname" Mode="In" Type="String" />
+          <Parameter Name="vendorname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DeleteVendor">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="vendorname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DeleteVendorByID">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GetVendor" EntitySet="ProductVendors" ReturnType="Collection(XTremePharmacyModel.ProductVendor)">
             <Parameter Name="id" Mode="In" Type="Int32" />

@@ -16,11 +16,13 @@ namespace XtremePharmacyManager
     {
         Product target;
         static List<ProductBrand> brands;
-        public frmEditProduct(ref Product target, ref List<ProductBrand> ref_brands)
+        static List<ProductVendor> vendors;
+        public frmEditProduct(ref Product target, ref List<ProductBrand> ref_brands, ref List<ProductVendor> ref_vendors)
         {
             InitializeComponent();
             this.target = target;
             brands = ref_brands;
+            vendors = ref_vendors;
         }
 
         
@@ -131,6 +133,14 @@ namespace XtremePharmacyManager
             lblShowQuantity.Text = (target.ProductQuantity >= 0) ? target.ProductQuantity.ToString() : string.Empty;
             trbPrice.Value = (target.ProductPrice >= 0) ? Convert.ToInt32(target.ProductPrice) : 0;
             lblShowPrice.Text = (target.ProductPrice >= 0) ? target.ProductPrice.ToString() : string.Empty;
+        }
+
+        private void cbSelectVendor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (target != null)
+            {
+                target.VendorID = Int32.Parse(cbSelectVendor.SelectedValue.ToString());
+            }
         }
     }
 }

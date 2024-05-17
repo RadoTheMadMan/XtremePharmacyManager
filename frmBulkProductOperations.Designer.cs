@@ -77,6 +77,9 @@
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.cbVendor = new System.Windows.Forms.ComboBox();
+            this.lblVendor = new System.Windows.Forms.Label();
+            this.productVendorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
@@ -91,10 +94,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
             // 
+            this.pnlData.Controls.Add(this.cbVendor);
+            this.pnlData.Controls.Add(this.lblVendor);
             this.pnlData.Controls.Add(this.lblProductNotice);
             this.pnlData.Controls.Add(this.txtStorageLocation);
             this.pnlData.Controls.Add(this.lblStorageLocation);
@@ -156,9 +162,9 @@
             // 
             this.txtStorageLocation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtStorageLocation.Location = new System.Drawing.Point(670, 96);
+            this.txtStorageLocation.Location = new System.Drawing.Point(672, 96);
             this.txtStorageLocation.Name = "txtStorageLocation";
-            this.txtStorageLocation.Size = new System.Drawing.Size(223, 22);
+            this.txtStorageLocation.Size = new System.Drawing.Size(221, 22);
             this.txtStorageLocation.TabIndex = 66;
             // 
             // lblStorageLocation
@@ -179,7 +185,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtPartNum.Location = new System.Drawing.Point(672, 68);
             this.txtPartNum.Name = "txtPartNum";
-            this.txtPartNum.Size = new System.Drawing.Size(220, 22);
+            this.txtPartNum.Size = new System.Drawing.Size(222, 22);
             this.txtPartNum.TabIndex = 64;
             // 
             // lblPartNum
@@ -219,9 +225,9 @@
             // 
             this.dtExpiryDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.dtExpiryDate.Location = new System.Drawing.Point(235, 137);
+            this.dtExpiryDate.Location = new System.Drawing.Point(673, 127);
             this.dtExpiryDate.Name = "dtExpiryDate";
-            this.dtExpiryDate.Size = new System.Drawing.Size(220, 22);
+            this.dtExpiryDate.Size = new System.Drawing.Size(221, 22);
             this.dtExpiryDate.TabIndex = 60;
             // 
             // lblExpiryDate
@@ -230,7 +236,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lblExpiryDate.AutoSize = true;
             this.lblExpiryDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpiryDate.Location = new System.Drawing.Point(22, 137);
+            this.lblExpiryDate.Location = new System.Drawing.Point(462, 127);
             this.lblExpiryDate.Name = "lblExpiryDate";
             this.lblExpiryDate.Size = new System.Drawing.Size(148, 16);
             this.lblExpiryDate.TabIndex = 59;
@@ -280,9 +286,9 @@
             this.cbBrand.DataSource = this.productBrandBindingSource;
             this.cbBrand.DisplayMember = "BrandName";
             this.cbBrand.FormattingEnabled = true;
-            this.cbBrand.Location = new System.Drawing.Point(234, 77);
+            this.cbBrand.Location = new System.Drawing.Point(232, 73);
             this.cbBrand.Name = "cbBrand";
-            this.cbBrand.Size = new System.Drawing.Size(221, 24);
+            this.cbBrand.Size = new System.Drawing.Size(223, 24);
             this.cbBrand.TabIndex = 55;
             this.cbBrand.ValueMember = "ID";
             // 
@@ -296,7 +302,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lblBrand.AutoSize = true;
             this.lblBrand.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBrand.Location = new System.Drawing.Point(20, 81);
+            this.lblBrand.Location = new System.Drawing.Point(20, 77);
             this.lblBrand.Name = "lblBrand";
             this.lblBrand.Size = new System.Drawing.Size(100, 16);
             this.lblBrand.TabIndex = 54;
@@ -306,9 +312,9 @@
             // 
             this.txtProductDescription.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtProductDescription.Location = new System.Drawing.Point(674, 13);
+            this.txtProductDescription.Location = new System.Drawing.Point(672, 13);
             this.txtProductDescription.Name = "txtProductDescription";
-            this.txtProductDescription.Size = new System.Drawing.Size(220, 22);
+            this.txtProductDescription.Size = new System.Drawing.Size(222, 22);
             this.txtProductDescription.TabIndex = 53;
             // 
             // lblProductDescription
@@ -542,9 +548,9 @@
             // 
             this.txtProductName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtProductName.Location = new System.Drawing.Point(235, 106);
+            this.txtProductName.Location = new System.Drawing.Point(232, 127);
             this.txtProductName.Name = "txtProductName";
-            this.txtProductName.Size = new System.Drawing.Size(221, 22);
+            this.txtProductName.Size = new System.Drawing.Size(223, 22);
             this.txtProductName.TabIndex = 4;
             // 
             // lblProductName
@@ -553,7 +559,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lblProductName.AutoSize = true;
             this.lblProductName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductName.Location = new System.Drawing.Point(22, 109);
+            this.lblProductName.Location = new System.Drawing.Point(22, 130);
             this.lblProductName.Name = "lblProductName";
             this.lblProductName.Size = new System.Drawing.Size(109, 16);
             this.lblProductName.TabIndex = 3;
@@ -612,6 +618,35 @@
             // 
             this.errBulkProvider.ContainerControl = this;
             // 
+            // cbVendor
+            // 
+            this.cbVendor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbVendor.DataSource = this.productVendorBindingSource;
+            this.cbVendor.DisplayMember = "VendorName";
+            this.cbVendor.FormattingEnabled = true;
+            this.cbVendor.Location = new System.Drawing.Point(232, 99);
+            this.cbVendor.Name = "cbVendor";
+            this.cbVendor.Size = new System.Drawing.Size(223, 24);
+            this.cbVendor.TabIndex = 69;
+            this.cbVendor.ValueMember = "ID";
+            // 
+            // lblVendor
+            // 
+            this.lblVendor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblVendor.AutoSize = true;
+            this.lblVendor.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVendor.Location = new System.Drawing.Point(22, 102);
+            this.lblVendor.Name = "lblVendor";
+            this.lblVendor.Size = new System.Drawing.Size(109, 16);
+            this.lblVendor.TabIndex = 68;
+            this.lblVendor.Text = "Select Vendor:";
+            // 
+            // productVendorBindingSource
+            // 
+            this.productVendorBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductVendor);
+            // 
             // frmBulkProductOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -636,6 +671,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -690,5 +726,8 @@
         private System.Windows.Forms.TextBox txtStorageLocation;
         private System.Windows.Forms.Label lblStorageLocation;
         private System.Windows.Forms.Label lblProductNotice;
+        private System.Windows.Forms.ComboBox cbVendor;
+        private System.Windows.Forms.Label lblVendor;
+        private System.Windows.Forms.BindingSource productVendorBindingSource;
     }
 }

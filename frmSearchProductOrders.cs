@@ -48,7 +48,7 @@ namespace XtremePharmacyManager
                 //Never try to execute any function if it is not online
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
-                    products = ent.GetProduct(-1, "", -1, "", 0, new decimal(), new DateTime(), new DateTime(), "", "", "").ToList();
+                    products = ent.GetProduct(-1, "", -1, -1, "", 0, new decimal(), new DateTime(), new DateTime(), "", "", "").ToList();
                     cbSelectProduct.DataSource = products;
                     ProductIDColumn.DataSource = products;
                 }
