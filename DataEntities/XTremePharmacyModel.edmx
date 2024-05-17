@@ -3354,14 +3354,14 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedVendorsView' does not
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="vendorname" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="DeleteVendorByID" ReturnType="Collection(String)">
+          <FunctionImport Name="DeleteVendorByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="GetVendor" ReturnType="Collection(XTremePharmacyModel.GetVendor_Result)">
+          <FunctionImport Name="GetVendor" EntitySet="ProductVendors" ReturnType="Collection(XTremePharmacyModel.ProductVendor)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="vendorname" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="UpdateVendorByID" ReturnType="Collection(String)">
+          <FunctionImport Name="UpdateVendorByID">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="new_vendor_name" Mode="In" Type="String" />
           </FunctionImport>
@@ -4399,12 +4399,6 @@ warning 6002: The table/view 'XTremePharmacyDB.dbo.ExtendedVendorsView' does not
           <FunctionImportMapping FunctionImportName="DeleteVendor" FunctionName="XTremePharmacyModel.Store.DeleteVendor" />
           <FunctionImportMapping FunctionImportName="DeleteVendorByID" FunctionName="XTremePharmacyModel.Store.DeleteVendorByID" />
           <FunctionImportMapping FunctionImportName="GetVendor" FunctionName="XTremePharmacyModel.Store.GetVendor">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="XTremePharmacyModel.GetVendor_Result">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="UpdateVendorByID" FunctionName="XTremePharmacyModel.Store.UpdateVendorByID" />
         </EntityContainerMapping>

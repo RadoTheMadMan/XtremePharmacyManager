@@ -14,48 +14,17 @@ namespace XtremePharmacyManager.DataEntities
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
     using System.Linq;
-    using System.Data.Entity.Core.EntityClient;
-
+    
     public partial class Entities : DbContext
     {
         public Entities()
             : base("name=Entities")
         {
         }
-
-        public Entities(EntityConnectionStringBuilder esb) :base(esb.ConnectionString)
-        {
-
-        }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //Let's make the model builder again sync with the actual values in the database
-            //tables
-            modelBuilder.Entity<User>().ToTable("Users");
-            modelBuilder.Entity<ProductBrand>().ToTable("ProductBrands");
-            modelBuilder.Entity<ProductVendor>().ToTable("ProductVendors");
-            modelBuilder.Entity<PaymentMethod>().ToTable("PaymentMethods");
-            modelBuilder.Entity<DeliveryService>().ToTable("DeliveryServices");
-            modelBuilder.Entity<Product>().ToTable("Products");
-            modelBuilder.Entity<ProductImage>().ToTable("ProductImages");
-            modelBuilder.Entity<ProductOrder>().ToTable("ProductOrders");
-            modelBuilder.Entity<OrderDelivery>().ToTable("OrderDeliveries");
-            modelBuilder.Entity<Log>().ToTable("Logs");
-            //views
-            //weirdly enough there are no toview function in this entity model version
-            //so I am using ToTable function. If this crashes I will remove the views from the equation
-            modelBuilder.Entity<ClientView>().ToTable("ClientView");
-            modelBuilder.Entity<EmployeeView>().ToTable("EmployeeView");
-            modelBuilder.Entity<ExtendedBrandsView>().ToTable("ExtendedBrandsView");
-            modelBuilder.Entity<ExtendedVendorsView>().ToTable("ExtendedVendorsView");
-            modelBuilder.Entity<ExtendedDeliveryServicesView>().ToTable("ExtendedDeliveryServicesView");
-            modelBuilder.Entity<ExtendedPaymentMethodsView>().ToTable("ExtendedPaymentMethodsView");
-            modelBuilder.Entity<ExtendedProductView>().ToTable("ExtendedProductView");
-            modelBuilder.Entity<ExtendedProductOrdersView>().ToTable("ExtendedProductOrdersView");
-            modelBuilder.Entity<ExtendedOrderDeliveriesView>().ToTable("ExtendedOrderDeliveriesView");
-            //and add the parent constructor at last
-            base.OnModelCreating(modelBuilder);
+            throw new UnintentionalCodeFirstException();
         }
     
         public virtual DbSet<DeliveryService> DeliveryServices { get; set; }
@@ -1690,6 +1659,19 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("vendorname", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductVendor>("GetVendor", idParameter, vendornameParameter);
+        }
+    
+        public virtual ObjectResult<ProductVendor> GetVendor(Nullable<int> id, string vendorname, MergeOption mergeOption)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var vendornameParameter = vendorname != null ?
+                new ObjectParameter("vendorname", vendorname) :
+                new ObjectParameter("vendorname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductVendor>("GetVendor", mergeOption, idParameter, vendornameParameter);
         }
     
         public virtual int UpdateVendorByID(Nullable<int> id, string new_vendor_name)
