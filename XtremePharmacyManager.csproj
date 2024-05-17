@@ -307,6 +307,12 @@
     <Compile Include="frmReports.Designer.cs">
       <DependentUpon>frmReports.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSearchProductVendors.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSearchProductVendors.Designer.cs">
+      <DependentUpon>frmSearchProductVendors.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSearchProductBrands.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -422,6 +428,9 @@
     <EmbeddedResource Include="frmReports.resx">
       <DependentUpon>frmReports.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSearchProductVendors.resx">
+      <DependentUpon>frmSearchProductVendors.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSearchProductBrands.resx">
       <DependentUpon>frmSearchProductBrands.cs</DependentUpon>
     </EmbeddedResource>
@@ -524,6 +533,7 @@
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ProductBrand.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ProductImage.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ProductOrder.datasource" />
+    <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ProductVendor.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.User.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.Properties.Settings.datasource" />

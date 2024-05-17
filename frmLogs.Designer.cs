@@ -29,11 +29,6 @@
         private void InitializeComponent()
         {
             this.lstLogs = new System.Windows.Forms.ListView();
-            this.LogIDColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LogDateColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LogTitleColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LogMessageColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.AdditionalInformationColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.dtLogDateTo = new System.Windows.Forms.DateTimePicker();
@@ -49,6 +44,11 @@
             this.txtAdditionalInformation = new System.Windows.Forms.TextBox();
             this.lblAdditionalInformation = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.LogIDColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LogDateColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LogTitleColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LogMessageColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.AdditionalInformationColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstLogs
@@ -71,30 +71,6 @@
             this.lstLogs.UseCompatibleStateImageBehavior = false;
             this.lstLogs.View = System.Windows.Forms.View.Details;
             this.lstLogs.SelectedIndexChanged += new System.EventHandler(this.lstLogs_SelectedIndexChanged);
-            // 
-            // LogIDColumn
-            // 
-            this.LogIDColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogID;
-            // 
-            // LogDateColumn
-            // 
-            this.LogDateColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogDate;
-            this.LogDateColumn.Width = 99;
-            // 
-            // LogTitleColumn
-            // 
-            this.LogTitleColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogTitle;
-            this.LogTitleColumn.Width = 97;
-            // 
-            // LogMessageColumn
-            // 
-            this.LogMessageColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogMessage;
-            this.LogMessageColumn.Width = 120;
-            // 
-            // AdditionalInformationColumn
-            // 
-            this.AdditionalInformationColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.AdditionalLogInformation;
-            this.AdditionalInformationColumn.Width = 532;
             // 
             // txtID
             // 
@@ -231,8 +207,7 @@
             // 
             // txtAdditionalInformation
             // 
-            this.txtAdditionalInformation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtAdditionalInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtAdditionalInformation.Location = new System.Drawing.Point(560, 9);
             this.txtAdditionalInformation.Multiline = true;
             this.txtAdditionalInformation.Name = "txtAdditionalInformation";
@@ -245,11 +220,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAdditionalInformation.AutoSize = true;
             this.lblAdditionalInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdditionalInformation.Location = new System.Drawing.Point(427, 15);
+            this.lblAdditionalInformation.Location = new System.Drawing.Point(393, 15);
             this.lblAdditionalInformation.Name = "lblAdditionalInformation";
-            this.lblAdditionalInformation.Size = new System.Drawing.Size(127, 16);
+            this.lblAdditionalInformation.Size = new System.Drawing.Size(161, 16);
             this.lblAdditionalInformation.TabIndex = 33;
-            this.lblAdditionalInformation.Text = "Delivery Reason:";
+            this.lblAdditionalInformation.Text = "Additional Information:";
             // 
             // btnSearch
             // 
@@ -262,6 +237,30 @@
             this.btnSearch.Text = "SEARCH";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // LogIDColumn
+            // 
+            this.LogIDColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogID;
+            // 
+            // LogDateColumn
+            // 
+            this.LogDateColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogDate;
+            this.LogDateColumn.Width = 99;
+            // 
+            // LogTitleColumn
+            // 
+            this.LogTitleColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogTitle;
+            this.LogTitleColumn.Width = 97;
+            // 
+            // LogMessageColumn
+            // 
+            this.LogMessageColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogMessage;
+            this.LogMessageColumn.Width = 120;
+            // 
+            // AdditionalInformationColumn
+            // 
+            this.AdditionalInformationColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.AdditionalLogInformation;
+            this.AdditionalInformationColumn.Width = 532;
             // 
             // frmLogs
             // 
