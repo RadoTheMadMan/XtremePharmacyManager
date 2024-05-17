@@ -38,6 +38,7 @@ namespace XtremePharmacyManager
         static frmSearchDeliveryServices deliveryservicessearchform;
         static frmSearchPaymentMethods paymentmethodssearchform;
         static frmSearchProductBrands productbrandssearchform;
+        static frmSearchProductVendors productvendorssearchform;
         static frmSearchProducts productssearchform;
         static frmSearchProductOrders orderssearchform;
         static frmSearchOrderDeliveries orderdeliveriessearchform;
@@ -45,6 +46,7 @@ namespace XtremePharmacyManager
         static frmImageBinConverter imgbinform;
         static frmBulkUserOperations bulkUserOperationsform;
         static frmBulkProductBrandOperations bulkProductBrandOperationsform;
+        static frmBulkProductVendorOperations bulkProductVendorOperationsform;
         static frmBulkPaymentMethodOperations bulkPaymentMethodOperationsform;
         static frmBulkDeliveryServiceOperations bulkDeliveryServiceOperationsform;
         static frmBulkProductOperations bulkProductOperationsform;
@@ -457,6 +459,10 @@ namespace XtremePharmacyManager
                     {
                         productbrandssearchform.Close();
                     }
+                    if (productvendorssearchform != null)
+                    {
+                        productvendorssearchform.Close();
+                    }
                     if (productssearchform != null)
                     {
                         productssearchform.Close();
@@ -538,7 +544,11 @@ namespace XtremePharmacyManager
                 {
                     productbrandssearchform = null;
                 }
-                if(productssearchform!= null);
+                if (productvendorssearchform != null)
+                {
+                    productvendorssearchform = null;
+                }
+                if (productssearchform!= null);
                 {
                     productssearchform = null;
                 }
@@ -879,6 +889,72 @@ namespace XtremePharmacyManager
         private void bulkOrderDeliveryOperationsform_FormClosed(object sender, FormClosedEventArgs e)
         {
             bulkOrderDeliveryOperationsform = null;
+        }
+
+        private void tsmenuProductVendors_Click(object sender, EventArgs e)
+        {
+            if (entities.Database.Connection.State == ConnectionState.Open)
+            {
+                try
+                {
+                    if (productvendorssearchform == null)
+                    {
+                        productvendorssearchform = new frmSearchProductVendors(ref entities, ref logger, ref bulkProductVendorOperationManager);
+                        productvendorssearchform.MdiParent = this;
+                        productvendorssearchform.Dock = DockStyle.Fill;
+                        productvendorssearchform.FormClosed += Productvendorssearchform_FormClosed;
+                        productvendorssearchform.Show();
+                    }
+                    else
+                    {
+                        productvendorssearchform.WindowState = FormWindowState.Normal;
+                        productvendorssearchform.Dock = DockStyle.Fill;
+                        productvendorssearchform.Activate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void Productvendorssearchform_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            productvendorssearchform = null;
+        }
+
+        private void tsmenuBulkProductVendorOperations_Click(object sender, EventArgs e)
+        {
+            if (entities.Database.Connection.State == ConnectionState.Open)
+            {
+                try
+                {
+                    if (bulkProductVendorOperationsform == null)
+                    {
+                        bulkProductVendorOperationsform = new frmBulkProductVendorOperations(ref bulkProductVendorOperationManager);
+                        bulkProductVendorOperationsform.MdiParent = this;
+                        bulkProductVendorOperationsform.Dock = DockStyle.Fill;
+                        bulkProductVendorOperationsform.FormClosed += bulkProductVendorOperationsform_FormClosed;
+                        bulkProductVendorOperationsform.Show();
+                    }
+                    else
+                    {
+                        bulkProductVendorOperationsform.WindowState = FormWindowState.Normal;
+                        bulkProductVendorOperationsform.Dock = DockStyle.Fill;
+                        bulkProductVendorOperationsform.Activate();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void bulkProductVendorOperationsform_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            bulkProductVendorOperationsform = null;
         }
     }
 }
