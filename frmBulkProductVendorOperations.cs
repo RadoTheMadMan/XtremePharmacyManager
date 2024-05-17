@@ -64,11 +64,11 @@ namespace XtremePharmacyManager
 
 
 
-        private void frmBulkProductBrandOperations_Load(object sender, EventArgs e)
+        private void frmBulkProductVendorOperations_Load(object sender, EventArgs e)
         {
             Bitmap currentpfp = new Bitmap(64, 64);
             lstBulkOperations.DataSource = manager.BulkOperations;
-            cbSelectRecord.DataSource = manager_entities.ProductBrands.ToList();
+            cbSelectRecord.DataSource = manager_entities.ProductVendors.ToList();
             try
             {
                 if (selected_operation != null && selected_target != null)

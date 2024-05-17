@@ -333,7 +333,7 @@
             this.MaximizeBox = false;
             this.Name = "frmBulkProductVendorOperations";
             this.Text = "Bulk Product Vendor Operations";
-            this.Load += new System.EventHandler(this.frmBulkProductBrandOperations_Load);
+            this.Load += new System.EventHandler(this.frmBulkProductVendorOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).EndInit();
