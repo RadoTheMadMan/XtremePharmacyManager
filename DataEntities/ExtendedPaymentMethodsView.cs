@@ -17,5 +17,55 @@ namespace XtremePharmacyManager.DataEntities
         public string MethodName { get; set; }
         public Nullable<int> TimesThisMethodWasUsed { get; set; }
         public int ID { get; set; }
+        public Nullable<int> TimesAllMethodsWereUsed { get; set; }
+        public Nullable<int> EstimatedProductsOrderedUsingThisMethod { get; set; }
+        public Nullable<int> ProductsSoldUsingThisMethod { get; set; }
+        public Nullable<int> ProductsReturnedUsingThisMethod { get; set; }
+        public Nullable<int> EstimatedProductsOrderedUsingAllMethods { get; set; }
+        public Nullable<int> ProductsSoldUsingAllMethods { get; set; }
+        public Nullable<int> ProductsReturnedUsingAllMethods { get; set; }
+        public Nullable<int> ClientsWhoUsedThisMethod { get; set; }
+        public Nullable<int> ClientsWhoHadPaidProductsUsingThisMethod { get; set; }
+        public Nullable<int> ClientsWhoHadReturnedProductsUsingThisMethod { get; set; }
+        public Nullable<int> ClientsWhoUsedAllMethods { get; set; }
+        public Nullable<int> ClientsWhoHadPaidProductsUsingAllMethods { get; set; }
+        public Nullable<int> ClientsWhoHadReturnedProductsUsingAllMethods { get; set; }
+        public Nullable<int> EstimatedProductQuantitySoldUsingThisMethod { get; set; }
+        public Nullable<int> ProductQuantitySoldUsingThisMethod { get; set; }
+        public Nullable<int> ProductQuantityReturnedUsingThisMethod { get; set; }
+        public Nullable<int> EstimatedProductQuantitySoldUsingAllMethods { get; set; }
+        public Nullable<int> ProductQuantitySoldUsingAllMethods { get; set; }
+        public Nullable<int> ProductQuantityReturnedUsingAllMethods { get; set; }
+        public Nullable<decimal> EstimatedIncomeUsingThisMethod { get; set; }
+        public Nullable<decimal> TotalIncomeUsingThisMethod { get; set; }
+        public Nullable<decimal> TotalLossUsingThisMethod { get; set; }
+        public Nullable<decimal> EstimatedIncomeUsingAllMethods { get; set; }
+        public Nullable<decimal> TotalIncomeUsingAllMethods { get; set; }
+        public Nullable<decimal> TotalLossUsingAllMethods { get; set; }
+        public Nullable<decimal> ProductSaleRateByItsEstimatedOrder { get; set; }
+        public Nullable<decimal> ProductReturnRateByItsEstimatedOrder { get; set; }
+        public Nullable<decimal> ProductSaleRateByGlobalOrder { get; set; }
+        public Nullable<decimal> ProductReturnRateByGlobalOrder { get; set; }
+        public Nullable<decimal> GlobalProductSaleRate { get; set; }
+        public Nullable<decimal> GlobalProductReturnRate { get; set; }
+        public Nullable<decimal> ClientPaymentUseRateByItsEstimatedUse { get; set; }
+        public Nullable<decimal> ClientReturnUseRateByItsEstimatedUse { get; set; }
+        public Nullable<decimal> ClientPaymentUseRateByGlobalEstimatedUse { get; set; }
+        public Nullable<decimal> ClientReturnUseRateByGlobalEstimatedUse { get; set; }
+        public Nullable<decimal> GlobalClientPaymentUseRate { get; set; }
+        public Nullable<decimal> GlobalClientReturnUseRate { get; set; }
+        public Nullable<decimal> ProductQuantitySaleRateByItsEstimatedUse { get; set; }
+        public Nullable<decimal> ProductQuantityReturnRateByItsEstimatedUse { get; set; }
+        public Nullable<decimal> ProductQuantitySaleRateByGlobalEstimatedUse { get; set; }
+        public Nullable<decimal> ProductQuantityReturnRateByGlobalEstimatedUse { get; set; }
+        public Nullable<decimal> GlobalProductQuantitySaleRate { get; set; }
+        public Nullable<decimal> GlobalProductQuantityReturnRate { get; set; }
+        public Nullable<decimal> IncomeRateByItsEstimatedIncome { get; set; }
+        public Nullable<decimal> LossRateByItsEstimatedIncome { get; set; }
+        public Nullable<decimal> IncomeRateByGlobalEstimatedIncome { get; set; }
+        public Nullable<decimal> LossRateByGlobalEstimatedIncome { get; set; }
+        public Nullable<decimal> GlobalIncomeRate { get; set; }
+        public Nullable<decimal> GlobalLossRate { get; set; }
+        public Nullable<decimal> ServiceUseRate { get; set; }
     }
 }

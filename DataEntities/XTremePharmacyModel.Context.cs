@@ -23,19 +23,18 @@ namespace XtremePharmacyManager.DataEntities
         {
         }
 
-        public Entities(EntityConnectionStringBuilder esb) : base(esb.ConnectionString)
+        public Entities(EntityConnectionStringBuilder esb) :base(esb.ConnectionString)
         {
 
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //I researched this just a minute ago and it is not nessecary because it probably calls itself or not defined in the base
-            base.OnModelCreating(modelBuilder);
             //Let's make the model builder again sync with the actual values in the database
             //tables
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<ProductBrand>().ToTable("ProductBrands");
+            modelBuilder.Entity<ProductVendor>().ToTable("ProductVendors");
             modelBuilder.Entity<PaymentMethod>().ToTable("PaymentMethods");
             modelBuilder.Entity<DeliveryService>().ToTable("DeliveryServices");
             modelBuilder.Entity<Product>().ToTable("Products");
@@ -49,11 +48,14 @@ namespace XtremePharmacyManager.DataEntities
             modelBuilder.Entity<ClientView>().ToTable("ClientView");
             modelBuilder.Entity<EmployeeView>().ToTable("EmployeeView");
             modelBuilder.Entity<ExtendedBrandsView>().ToTable("ExtendedBrandsView");
+            modelBuilder.Entity<ExtendedVendorsView>().ToTable("ExtendedVendorsView");
             modelBuilder.Entity<ExtendedDeliveryServicesView>().ToTable("ExtendedDeliveryServicesView");
             modelBuilder.Entity<ExtendedPaymentMethodsView>().ToTable("ExtendedPaymentMethodsView");
             modelBuilder.Entity<ExtendedProductView>().ToTable("ExtendedProductView");
             modelBuilder.Entity<ExtendedProductOrdersView>().ToTable("ExtendedProductOrdersView");
             modelBuilder.Entity<ExtendedOrderDeliveriesView>().ToTable("ExtendedOrderDeliveriesView");
+            //and add the parent constructor at last
+            base.OnModelCreating(modelBuilder);
         }
     
         public virtual DbSet<DeliveryService> DeliveryServices { get; set; }
@@ -74,6 +76,8 @@ namespace XtremePharmacyManager.DataEntities
         public virtual DbSet<ExtendedPaymentMethodsView> ExtendedPaymentMethodsViews { get; set; }
         public virtual DbSet<ExtendedProductOrdersView> ExtendedProductOrdersViews { get; set; }
         public virtual DbSet<ExtendedProductView> ExtendedProductViews { get; set; }
+        public virtual DbSet<ProductVendor> ProductVendors { get; set; }
+        public virtual DbSet<ExtendedVendorsView> ExtendedVendorsViews { get; set; }
     
         public virtual int AddBrand(string brandname)
         {
@@ -1642,6 +1646,63 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("new_role", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateUserByID", idParameter, new_user_nameParameter, new_passwordParameter, new_display_nameParameter, new_birth_dateParameter, new_phoneParameter, new_emailParameter, new_addressParameter, new_profile_picParameter, new_balanceParameter, new_diagnoseParameter, new_roleParameter);
+        }
+    
+        public virtual int AddVendor(string vendorname)
+        {
+            var vendornameParameter = vendorname != null ?
+                new ObjectParameter("vendorname", vendorname) :
+                new ObjectParameter("vendorname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("AddVendor", vendornameParameter);
+        }
+    
+        public virtual int DeleteVendor(Nullable<int> id, string vendorname)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var vendornameParameter = vendorname != null ?
+                new ObjectParameter("vendorname", vendorname) :
+                new ObjectParameter("vendorname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteVendor", idParameter, vendornameParameter);
+        }
+    
+        public virtual int DeleteVendorByID(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteVendorByID", idParameter);
+        }
+    
+        public virtual ObjectResult<ProductVendor> GetVendor(Nullable<int> id, string vendorname)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var vendornameParameter = vendorname != null ?
+                new ObjectParameter("vendorname", vendorname) :
+                new ObjectParameter("vendorname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ProductVendor>("GetVendor", idParameter, vendornameParameter);
+        }
+    
+        public virtual int UpdateVendorByID(Nullable<int> id, string new_vendor_name)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            var new_vendor_nameParameter = new_vendor_name != null ?
+                new ObjectParameter("new_vendor_name", new_vendor_name) :
+                new ObjectParameter("new_vendor_name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateVendorByID", idParameter, new_vendor_nameParameter);
         }
     }
 }

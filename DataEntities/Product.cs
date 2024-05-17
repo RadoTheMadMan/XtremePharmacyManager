@@ -31,11 +31,13 @@ namespace XtremePharmacyManager.DataEntities
         public string ProductRegNum { get; set; }
         public string ProductPartNum { get; set; }
         public string ProductStorageLocation { get; set; }
+        public Nullable<int> VendorID { get; set; }
     
         public virtual ProductBrand ProductBrand { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductImage> ProductImages { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductOrder> ProductOrders { get; set; }
+        public virtual ProductVendor ProductVendor { get; set; }
     }
 }

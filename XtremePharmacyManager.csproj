@@ -109,6 +109,9 @@
     <Compile Include="DataEntities\ExtendedProductView.cs">
       <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataEntities\ExtendedVendorsView.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataEntities\GetBrand_Result.cs">
       <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
     </Compile>
@@ -136,6 +139,9 @@
     <Compile Include="DataEntities\GetUser_Result.cs">
       <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataEntities\GetVendor_Result.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataEntities\Log.cs">
       <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
     </Compile>
@@ -155,6 +161,9 @@
       <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataEntities\ProductOrder.cs">
+      <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataEntities\ProductVendor.cs">
       <DependentUpon>XTremePharmacyModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataEntities\sp_helpdiagramdefinition_Result.cs">

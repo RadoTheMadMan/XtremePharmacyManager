@@ -30,5 +30,41 @@ namespace XtremePharmacyManager.DataEntities
         public System.DateTime DateModified { get; set; }
         public int OrderStatus { get; set; }
         public string OrderReason { get; set; }
+        public string VendorName { get; set; }
+        public Nullable<decimal> IncomeWithoutDeliveryPrices { get; set; }
+        public Nullable<decimal> LossWithoutDeliveryPrices { get; set; }
+        public Nullable<decimal> DueWithoutDeliveryPrices { get; set; }
+        public Nullable<decimal> TotalWithoutDeliveryPrices { get; set; }
+        public Nullable<int> SoldStock { get; set; }
+        public Nullable<int> ReturnedStock { get; set; }
+        public Nullable<int> StockToBeInboundOrOutbound { get; set; }
+        public Nullable<int> TotalOrderedStock { get; set; }
+        public Nullable<int> CompletedOrdersCount { get; set; }
+        public Nullable<int> CancelledOrReturnedOrdersCount { get; set; }
+        public Nullable<int> IdleOrStillProcessingOrdersCount { get; set; }
+        public Nullable<int> TotalOrdersCount { get; set; }
+        public Nullable<int> TotalProductsOrdered { get; set; }
+        public Nullable<int> TotalProductsSold { get; set; }
+        public Nullable<int> TotalProductsReturned { get; set; }
+        public Nullable<int> TotalProductsToBeInboundOrOutbound { get; set; }
+        public Nullable<int> TotalClientsWhoMadeOrders { get; set; }
+        public Nullable<int> TotalClientsWithCompletedOrders { get; set; }
+        public Nullable<int> TotalClientsWithCancelledOrReturnedOrders { get; set; }
+        public Nullable<int> TotalClientsWithWaitingOrders { get; set; }
+        public Nullable<decimal> SaleRatePercentByPrice { get; set; }
+        public Nullable<decimal> ReturnRatePercentByPrice { get; set; }
+        public Nullable<decimal> DueRatePercentByPrice { get; set; }
+        public Nullable<decimal> SaleRatePercentByDesiredQuantity { get; set; }
+        public Nullable<decimal> ReturnRatePercentByDesiredQuantity { get; set; }
+        public Nullable<decimal> DueRatePercentByDesiredQuantity { get; set; }
+        public Nullable<decimal> SaleRatePercentByProductCount { get; set; }
+        public Nullable<decimal> ReturnRatePercentByProductCount { get; set; }
+        public Nullable<decimal> DueRatePercentByProductCount { get; set; }
+        public Nullable<decimal> SaleRatePercentByClientCount { get; set; }
+        public Nullable<decimal> ReturnRatePercentByClientCount { get; set; }
+        public Nullable<decimal> DueRatePercentByClientCount { get; set; }
+        public Nullable<decimal> SaleRatePercentByCount { get; set; }
+        public Nullable<decimal> ReturnRatePercentByCount { get; set; }
+        public Nullable<decimal> DueRatePercentByCount { get; set; }
     }
 }

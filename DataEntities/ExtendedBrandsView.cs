@@ -17,5 +17,37 @@ namespace XtremePharmacyManager.DataEntities
         public string BrandName { get; set; }
         public Nullable<int> CountProductsFromBrand { get; set; }
         public int ID { get; set; }
+        public Nullable<int> CountAllProducts { get; set; }
+        public Nullable<int> CountClientsWhoUseThisBrand { get; set; }
+        public Nullable<int> CountAllClients { get; set; }
+        public Nullable<int> StorageQuantityOfProductsFromThisBrand { get; set; }
+        public Nullable<int> StorageQuantityOfAllProducts { get; set; }
+        public Nullable<int> EstimatedNumberOfSoldProductsFromThisBrand { get; set; }
+        public Nullable<int> NumberOfSoldProductsFromThisBrand { get; set; }
+        public Nullable<int> NumberOfReturnedProductsFromThisBrand { get; set; }
+        public Nullable<int> EstimatedNumberOfSoldProductsFromAllBrands { get; set; }
+        public Nullable<int> NumberOfSoldProductsFromAllBrands { get; set; }
+        public Nullable<int> NumberOfReturnedProductsFromAllBrands { get; set; }
+        public Nullable<decimal> EstimatedSalesFromThisBrand { get; set; }
+        public Nullable<decimal> SalesFromThisBrand { get; set; }
+        public Nullable<decimal> ReturnsFromThisBrand { get; set; }
+        public Nullable<decimal> EstimatedSalesFromAllBrands { get; set; }
+        public Nullable<decimal> SalesFromAllBrands { get; set; }
+        public Nullable<decimal> ReturnsFromAllBrands { get; set; }
+        public Nullable<decimal> BrandSaleRateByItsEstimatedSale { get; set; }
+        public Nullable<decimal> BrandReturnRateByItsEstimatedSale { get; set; }
+        public Nullable<decimal> BrandSaleRateByGlobalEstimatedSale { get; set; }
+        public Nullable<decimal> BrandReturnRateByGlobalEstimatedSale { get; set; }
+        public Nullable<decimal> GlobalBrandSaleRate { get; set; }
+        public Nullable<decimal> GlobalBrandReturnRate { get; set; }
+        public Nullable<decimal> BrandSaleQuantityRateByItsEstimatedQuantitySale { get; set; }
+        public Nullable<decimal> BrandReturnQuantityRateByItsEstimatedQuantitySale { get; set; }
+        public Nullable<decimal> BrandSaleQuantityRateByGlobalEstimatedQuantitySale { get; set; }
+        public Nullable<decimal> BrandReturnQuantityRateByGlobalEstimatedQuantitySale { get; set; }
+        public Nullable<decimal> GlobalBrandSaleQuantityRate { get; set; }
+        public Nullable<decimal> GlobalBrandReturnQuantityRate { get; set; }
+        public Nullable<decimal> BrandUseRateByClient { get; set; }
+        public Nullable<decimal> ProductStoragePercent { get; set; }
+        public Nullable<decimal> BrandUseRateByProduct { get; set; }
     }
 }

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3415051bcc6d4bb89570efa70832e8b3" Name="Diagram1">
+      <Diagram DiagramId="3415051bcc6d4bb89570efa70832e8b3" Name="Diagram1" ZoomLevel="100">
         <EntityTypeShape EntityType="XTremePharmacyModel.DeliveryService" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
         <EntityTypeShape EntityType="XTremePharmacyModel.Log" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="XTremePharmacyModel.OrderDelivery" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
@@ -17,12 +17,12 @@
         <EntityTypeShape EntityType="XTremePharmacyModel.User" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="XTremePharmacyModel.ClientView" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="XTremePharmacyModel.EmployeeView" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedBrandsView" Width="1.5" PointX="7.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedBrandsView" Width="1.5" PointX="9.75" PointY="12.625" IsExpanded="true" />
         <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedDeliveryServicesView" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedOrderDeliveriesView" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedPaymentMethodsView" Width="1.5" PointX="9.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedOrderDeliveriesView" Width="1.5" PointX="15.875" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedPaymentMethodsView" Width="1.5" PointX="11.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedProductOrdersView" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedProductView" Width="1.5" PointX="11.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedProductView" Width="1.5" PointX="13.875" PointY="5.125" IsExpanded="true" />
         <AssociationConnector Association="XTremePharmacyModel.FK__OrderDeli__Deliv__0D0FEE32" ManuallyRouted="false" />
         <AssociationConnector Association="XTremePharmacyModel.FK__OrderDeli__Order__0B27A5C0" ManuallyRouted="false" />
         <AssociationConnector Association="XTremePharmacyModel.FK__OrderDeli__Payme__0EF836A4" ManuallyRouted="false" />
@@ -31,6 +31,9 @@
         <AssociationConnector Association="XTremePharmacyModel.FK__ProductOr__Clien__019E3B86" ManuallyRouted="false" />
         <AssociationConnector Association="XTremePharmacyModel.FK__ProductOr__Emplo__038683F8" ManuallyRouted="false" />
         <AssociationConnector Association="XTremePharmacyModel.FK__ProductOr__Produ__7DCDAAA2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="XTremePharmacyModel.ProductVendor" Width="1.5" PointX="14.75" PointY="0.875" />
+        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedVendorsView" Width="1.5" PointX="0.75" PointY="16.75" />
+        <AssociationConnector Association="XTremePharmacyModel.FK_Products_ProductVendors" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
