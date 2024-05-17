@@ -26,6 +26,7 @@ namespace XtremePharmacyManager
         static Logger logger;
         static BulkOperationManager<User> bulkUserOperationManager;
         static BulkOperationManager<ProductBrand> bulkProductBrandOperationManager;
+        static BulkOperationManager<ProductVendor> bulkProductVendorOperationManager;
         static BulkOperationManager<PaymentMethod> bulkPaymentMethodOperationManager;
         static BulkOperationManager<DeliveryService> bulkDeliveryServiceOperationManager;
         static BulkOperationManager<Product> bulkProductOperationManager;
@@ -111,6 +112,7 @@ namespace XtremePharmacyManager
         {
             bulkUserOperationManager = new BulkOperationManager<User>(ref entities);
             bulkProductBrandOperationManager = new BulkOperationManager<ProductBrand>(ref entities);
+            bulkProductVendorOperationManager = new BulkOperationManager<ProductVendor> (ref entities);
             bulkPaymentMethodOperationManager = new BulkOperationManager<PaymentMethod>(ref entities);
             bulkDeliveryServiceOperationManager = new BulkOperationManager<DeliveryService>(ref entities);
             bulkProductOperationManager = new BulkOperationManager<Product>(ref entities);
@@ -568,7 +570,11 @@ namespace XtremePharmacyManager
                 {
                     bulkProductBrandOperationManager = null;
                 }
-                if(bulkPaymentMethodOperationManager != null)
+                if (bulkProductVendorOperationManager != null)
+                {
+                    bulkProductVendorOperationManager = null;
+                }
+                if (bulkPaymentMethodOperationManager != null)
                 {
                     bulkPaymentMethodOperationManager = null;
                 }
