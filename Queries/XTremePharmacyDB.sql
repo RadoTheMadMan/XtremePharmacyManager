@@ -800,6 +800,7 @@ go
 create or alter procedure AddProduct(
 @productname varchar(100),
 @brandid int,
+@vendorid int,
 @description varchar(200),
 @quantity int,
 @price money,
@@ -810,8 +811,8 @@ create or alter procedure AddProduct(
 )
 as
 begin
-insert into Products(ProductName,BrandID,ProductDescription,ProductQuantity,ProductPrice,ProductExpiryDate,ProductRegNum,ProductPartNum,ProductStorageLocation)
-values(@productname,@brandid,@description,@quantity,@price,@expirydate,@regnum,@partnum,@storagelocation);
+insert into Products(ProductName,BrandID,VendorID,ProductDescription,ProductQuantity,ProductPrice,ProductExpiryDate,ProductRegNum,ProductPartNum,ProductStorageLocation)
+values(@productname,@brandid,@vendorid,@description,@quantity,@price,@expirydate,@regnum,@partnum,@storagelocation);
 end
 go
 /* Get Product stored procedure, if blank parameters are put it is supposed to return everything, if specific parameters
@@ -821,6 +822,7 @@ create or alter procedure GetProduct(
 @id int,
 @productname varchar(100),
 @brandid int,
+@vendorid int,
 @description varchar(200),
 @quantity int,
 @price money,
@@ -832,11 +834,11 @@ create or alter procedure GetProduct(
 )
 as
 begin
-if @id >= 0 and @productname != '' and @brandid >= 0 and @description != '' 
+if @id >= 0 and @productname != '' and @brandid >= 0 and @vendorid >= 0 and @description != '' 
 and @quantity >= 0 and @price >= 0 and @expirydatefrom != '' and @expirydateto != '' and @regnum != ''
 and @partnum != '' and @storagelocation != ''
 begin
-select * from Products where ID = ID and ProductName like '%'+@productname+'%' and BrandID = @brandid  and ProductDescription like '%' + @description + '%'
+select * from Products where ID = ID and ProductName like '%'+@productname+'%' and BrandID = @brandid and VendorID = @vendorid  and ProductDescription like '%' + @description + '%'
 and (ProductQuantity >= @quantity or ProductQuantity <= @quantity) and (ProductPrice >= @price or ProductPrice <= @price) 
 and ProductExpiryDate between @expirydatefrom and @expirydateto and ProductRegNum like '%' + @regnum + '%' and ProductPartNum like '%' + @partnum + '%'
 and ProductStorageLocation like '%' + @storagelocation + '%';
@@ -855,6 +857,7 @@ create or alter procedure UpdateProductByID(
 @id int,
 @new_product_name varchar(100),
 @new_brand_id int,
+@new_vendor_id int,
 @new_description varchar(200),
 @new_quantity int,
 @new_price money,
@@ -871,6 +874,8 @@ declare @old_product_name varchar(100);
 select @old_product_name = ProductName from Products where ID = @id;
 declare @old_brand_id int;
 select @old_brand_id = BrandID from Products where ID = @id;
+declare @old_vendor_id int;
+select @old_vendor_id = VendorID from Products where ID = @id;
 declare @old_description varchar(200);
 select @old_description = ProductDescription from Products where ID = @id;
 declare @old_quantity int;
@@ -898,6 +903,10 @@ end
 if @new_brand_id is null
 begin
 set @new_brand_id = @old_brand_id;
+end
+if @new_vendor_id is null
+begin
+set @new_vendor_id = @old_vendor_id;
 end
 if @new_description is null or @new_description = ''
 begin
@@ -927,7 +936,7 @@ if @new_storage_location is null or @new_storage_location = ''
 begin
 set @new_storage_location = @old_storage_location;
 end
-update Products set ProductName = @new_product_name, BrandID = @new_brand_id, ProductDescription = @new_description, ProductQuantity = @new_quantity,
+update Products set ProductName = @new_product_name, BrandID = @new_brand_id, VendorID = @new_vendor_id,ProductDescription = @new_description, ProductQuantity = @new_quantity,
 ProductPrice = @new_price, ProductExpiryDate = @new_expiry_date, ProductRegNum = @new_reg_num, ProductPartNum = @new_part_num, ProductStorageLocation = @new_storage_location
 where ID = @id;
 end
@@ -941,6 +950,7 @@ create or alter procedure DeleteProduct(
 @id int,
 @productname varchar(100),
 @brandid int,
+@vendorid int,
 @description varchar(200),
 @quantity int,
 @price money,
@@ -952,11 +962,11 @@ create or alter procedure DeleteProduct(
 )
 as
 begin
-if @id >= 0 and @productname != '' and @brandid >= 0 and @description != '' 
+if @id >= 0 and @productname != '' and @brandid >= 0 and @vendorid >= 0 and @description != '' 
 and @quantity >= 0 and @price >= 0 and @expirydatefrom != '' and @expirydateto != '' and @regnum != ''
 and @partnum != '' and @storagelocation != ''
 begin
-delete from Products where ID = ID and ProductName like '%'+@productname+'%' and BrandID = @brandid  and ProductDescription like '%' + @description + '%'
+delete from Products where ID = ID and ProductName like '%'+@productname+'%' and BrandID = @brandid and VendorID = @vendorid and ProductDescription like '%' + @description + '%'
 and (ProductQuantity >= @quantity or ProductQuantity <= @quantity) and (ProductPrice >= @price or ProductPrice <= @price) 
 and ProductExpiryDate between @expirydatefrom and @expirydateto and ProductRegNum like '%' + @regnum + '%' and ProductPartNum like '%' + @partnum + '%'
 and ProductStorageLocation like '%' + @storagelocation + '%';
