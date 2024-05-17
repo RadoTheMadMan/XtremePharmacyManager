@@ -38,7 +38,7 @@
             this.btnAddOrEdit = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.txtVendorName = new System.Windows.Forms.TextBox();
-            this.lblBrandName = new System.Windows.Forms.Label();
+            this.lblVendorName = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.dgvProductVendors = new System.Windows.Forms.DataGridView();
@@ -70,7 +70,7 @@
             this.pnlData.Controls.Add(this.btnAddOrEdit);
             this.pnlData.Controls.Add(this.btnSearch);
             this.pnlData.Controls.Add(this.txtVendorName);
-            this.pnlData.Controls.Add(this.lblBrandName);
+            this.pnlData.Controls.Add(this.lblVendorName);
             this.pnlData.Controls.Add(this.txtID);
             this.pnlData.Controls.Add(this.lblID);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
@@ -166,15 +166,15 @@
             // 
             // lblBrandName
             // 
-            this.lblBrandName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblVendorName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblBrandName.AutoSize = true;
-            this.lblBrandName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBrandName.Location = new System.Drawing.Point(19, 45);
-            this.lblBrandName.Name = "lblBrandName";
-            this.lblBrandName.Size = new System.Drawing.Size(106, 16);
-            this.lblBrandName.TabIndex = 3;
-            this.lblBrandName.Text = "Vendor Name:";
+            this.lblVendorName.AutoSize = true;
+            this.lblVendorName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVendorName.Location = new System.Drawing.Point(19, 45);
+            this.lblVendorName.Name = "lblVendorName";
+            this.lblVendorName.Size = new System.Drawing.Size(106, 16);
+            this.lblVendorName.TabIndex = 3;
+            this.lblVendorName.Text = "Vendor Name:";
             // 
             // txtID
             // 
@@ -305,7 +305,7 @@
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtVendorName;
-        private System.Windows.Forms.Label lblBrandName;
+        private System.Windows.Forms.Label lblVendorName;
         private System.Windows.Forms.DataGridView dgvProductVendors;
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.Button btnSearch;

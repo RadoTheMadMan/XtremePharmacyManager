@@ -32,6 +32,7 @@ namespace XtremePharmacyManager
         public static string EMPLOYEE_REPORT_NAME = "";
         public static string CLIENT_REPORT_NAME = "";
         public static string PRODUCT_BRAND_REPORT_NAME = "";
+        public static string PRODUCT_VENDOR_REPORT_NAME = "";
         public static string PAYMENT_METHOD_REPORT_NAME = "";
         public static string DELIVERY_SERVICE_REPORT_NAME = "";
         public static string PRODUCT_REPORT_NAME = "";
@@ -85,6 +86,7 @@ namespace XtremePharmacyManager
             EMPLOYEE_REPORT_NAME = ConfigurationManager.AppSettings["emp_report_name"];
             CLIENT_REPORT_NAME = ConfigurationManager.AppSettings["cl_report_name"];
             PRODUCT_BRAND_REPORT_NAME = ConfigurationManager.AppSettings["pb_report_name"];
+            PRODUCT_VENDOR_REPORT_NAME = ConfigurationManager.AppSettings["pv_report_name"];
             PAYMENT_METHOD_REPORT_NAME = ConfigurationManager.AppSettings["pm_report_name"];
             DELIVERY_SERVICE_REPORT_NAME = ConfigurationManager.AppSettings["ds_report_name"];
             PRODUCT_REPORT_NAME = ConfigurationManager.AppSettings["p_report_name"];
