@@ -125,6 +125,10 @@ namespace XtremePharmacyManager
             {
                 this.cbSelectBrand.SelectedValue = target.BrandID;
             }
+            if(vendors.Where(x=>x.ID == target.VendorID).FirstOrDefault() != null)
+            {
+                this.cbSelectVendor.SelectedValue = target.VendorID;
+            }
             this.txtProductDescription.Text = (!String.IsNullOrEmpty(target.ProductDescription)) ? target.ProductDescription.ToString() : string.Empty;
             this.dtExpiryDate.Value = (target.ProductExpiryDate != null && target.ProductExpiryDate > DateTime.MinValue && target.ProductExpiryDate < DateTime.MaxValue) ? target.ProductExpiryDate : DateTime.Now;
             this.txtRegistrationNumber.Text = (!String.IsNullOrEmpty(target.ProductRegNum)) ? target.ProductRegNum.ToString() : string.Empty;
