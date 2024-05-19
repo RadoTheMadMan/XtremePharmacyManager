@@ -120,6 +120,7 @@ namespace XtremePharmacyManager
             this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
             this.txtProductName.Text = (!String.IsNullOrEmpty(target.ProductName)) ? target.ProductName.ToString() : string.Empty;
             this.cbSelectBrand.DataSource = brands;
+            this.cbSelectVendor.DataSource = vendors;
             if (brands.Where(x => x.ID == target.BrandID).FirstOrDefault() != null)
             {
                 this.cbSelectBrand.SelectedValue = target.BrandID;
