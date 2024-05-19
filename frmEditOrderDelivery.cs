@@ -73,5 +73,26 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (target != null)
+                {
+                    target.ID = Int32.Parse(txtID.Text);
+                    target.OrderID = Int32.Parse(cbSelectProductOrders.SelectedValue.ToString());
+                    target.DeliveryServiceID = Int32.Parse(cbSelectDeliveryService.SelectedValue.ToString());
+                    target.PaymentMethodID = Int32.Parse(cbSelectPaymentMethod.SelectedValue.ToString());
+                    target.CargoID = txtCargoID.Text;
+                    target.DeliveryStatus = cbSelectDeliveryStatus.SelectedIndex;
+                    target.DeliveryReason = txtDeliveryReason.Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

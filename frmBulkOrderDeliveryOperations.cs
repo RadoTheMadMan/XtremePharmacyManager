@@ -256,9 +256,14 @@ namespace XtremePharmacyManager
         {
             try
             {
-                if (cbSelectRecord.SelectedItem != null)
+                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject))
                 {
-                    selected_target = manager_entities.OrderDeliveries.Where(x => x.ID == ((OrderDelivery)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
+                    selected_target = selected_operation.TargetObject;
+                }
+                else
+                {
+                    OrderDelivery selected_record = (OrderDelivery)cbSelectRecord.SelectedItem;
+                    selected_target = manager_entities.OrderDeliveries.Where(x => x.ID == selected_record.ID).FirstOrDefault();
                 }
                 if (selected_target != null)
                 {

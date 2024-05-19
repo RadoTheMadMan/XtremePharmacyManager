@@ -101,5 +101,33 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            byte[] imageBytes;
+            try
+            {
+                if (target != null)
+                {
+                    target.ID = Int32.Parse(txtID.Text);
+                    target.UserName = txtUsername.Text;
+                    target.UserPassword = txtPassword.Text;
+                    target.UserDisplayName = txtDisplayName.Text;
+                    target.UserBirthDate = dtBirthDate.Value;
+                    target.UserPhone = txtPhone.Text;
+                    target.UserEmail = txtEmail.Text;
+                    target.UserAddress = txtAddress.Text;
+                    ConvertImageToBinary((Bitmap)pbUserProfilePic.Image, out imageBytes);
+                    target.UserProfilePic = imageBytes;
+                    target.UserBalance = trbBalance.Value;
+                    target.UserDiagnose = txtDiagnose.Text;
+                    target.UserRole = cbRole.SelectedIndex;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

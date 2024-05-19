@@ -299,11 +299,16 @@ namespace XtremePharmacyManager
         {
             try
             {
-                if (cbSelectRecord.SelectedItem != null)
-                {
-                    selected_target = manager_entities.Users.Where(x => x.ID == ((User)cbSelectRecord.SelectedItem).ID).FirstOrDefault();
-                }
                 Bitmap currentpfp = new Bitmap(64, 64);
+                if(selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject))
+                {
+                    selected_target = selected_operation.TargetObject;
+                }
+                else
+                {
+                    User selected_record = (User)cbSelectRecord.SelectedItem;
+                    selected_target = manager_entities.Users.Where(x=>x.ID == selected_record.ID).FirstOrDefault();  
+                }
                 if (selected_target != null)
                 {
                     if (selected_target.UserProfilePic != null) { ConvertBinaryToImage(selected_target.UserProfilePic, out currentpfp); }
