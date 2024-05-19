@@ -74,6 +74,7 @@
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // btnCancel
             // 
@@ -131,7 +132,6 @@
             this.txtServiceName.Name = "txtServiceName";
             this.txtServiceName.Size = new System.Drawing.Size(205, 22);
             this.txtServiceName.TabIndex = 4;
-            this.txtServiceName.TextChanged += new System.EventHandler(this.txtServiceName_TextChanged);
             // 
             // lblUsername
             // 
@@ -154,7 +154,6 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(205, 22);
             this.txtID.TabIndex = 2;
-            this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
             // lblID
             // 

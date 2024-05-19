@@ -30,64 +30,6 @@ namespace XtremePharmacyManager
 
 
 
-
-        private void txtID_TextChanged(object sender, EventArgs e)
-        {
-            if(target !=null)
-            {
-                target.ID = Int32.Parse(txtID.Text);
-            }
-        }
-
-        private void cbSelectProductOrders_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (target != null)
-            {
-                target.OrderID = Int32.Parse(cbSelectProductOrders.SelectedValue.ToString());
-            }
-        }
-
-        private void cbSelectDeliveryService_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (target != null)
-            {
-                target.DeliveryServiceID = Int32.Parse(cbSelectDeliveryService.SelectedValue.ToString());
-            }
-        }
-
-        private void cbSelectPaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (target != null)
-            {
-                target.PaymentMethodID = Int32.Parse(cbSelectPaymentMethod.SelectedValue.ToString());
-            }
-        }
-
-        private void cbSelectDeliveryStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(target != null)
-            {
-                target.DeliveryStatus = cbSelectDeliveryStatus.SelectedIndex;
-            }
-        }
-
-
-        private void txtDeliveryReason_TextChanged(object sender, EventArgs e)
-        {
-            if(target !=null)
-            {
-                target.DeliveryReason = txtDeliveryReason.Text;
-            }
-        }
-
-        private void txtCargoID_TextChanged(object sender, EventArgs e)
-        {
-            if (target != null)
-            {
-                target.CargoID = txtCargoID.Text;
-            }
-        }
-
         private void frmEditOrderDelivery_Load(object sender, EventArgs e)
         {
             this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
@@ -111,6 +53,25 @@ namespace XtremePharmacyManager
             txtCargoID.Text = target.CargoID;
         }
 
-
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (target != null)
+                {
+                    target.ID = Int32.Parse(txtID.Text);
+                    target.OrderID = Int32.Parse(cbSelectProductOrders.SelectedValue.ToString());
+                    target.DeliveryServiceID = Int32.Parse(cbSelectDeliveryService.SelectedValue.ToString());
+                    target.PaymentMethodID = Int32.Parse(cbSelectPaymentMethod.SelectedValue.ToString());
+                    target.CargoID = txtCargoID.Text;
+                    target.DeliveryStatus = cbSelectDeliveryStatus.SelectedIndex;
+                    target.DeliveryReason = txtDeliveryReason.Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

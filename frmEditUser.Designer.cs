@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.lblUserNotice = new System.Windows.Forms.Label();
             this.pbUserProfilePic = new System.Windows.Forms.PictureBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -57,7 +58,6 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lblUserNotice = new System.Windows.Forms.Label();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).BeginInit();
@@ -100,6 +100,19 @@
             this.pnlData.Size = new System.Drawing.Size(800, 301);
             this.pnlData.TabIndex = 0;
             // 
+            // lblUserNotice
+            // 
+            this.lblUserNotice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUserNotice.AutoSize = true;
+            this.lblUserNotice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserNotice.ForeColor = System.Drawing.Color.Firebrick;
+            this.lblUserNotice.Location = new System.Drawing.Point(398, 160);
+            this.lblUserNotice.Name = "lblUserNotice";
+            this.lblUserNotice.Size = new System.Drawing.Size(179, 48);
+            this.lblUserNotice.TabIndex = 42;
+            this.lblUserNotice.Text = "IMPORTANT NOTICE:\r\nUsername and password\r\nshould be unique\r\n";
+            // 
             // pbUserProfilePic
             // 
             this.pbUserProfilePic.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -122,6 +135,7 @@
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // btnCancel
             // 
@@ -149,7 +163,6 @@
             this.cbRole.Size = new System.Drawing.Size(229, 24);
             this.cbRole.TabIndex = 29;
             this.cbRole.Text = "Employee";
-            this.cbRole.SelectedIndexChanged += new System.EventHandler(this.cbRole_SelectedIndexChanged);
             // 
             // lblRole
             // 
@@ -172,7 +185,6 @@
             this.txtDiagnose.Name = "txtDiagnose";
             this.txtDiagnose.Size = new System.Drawing.Size(313, 56);
             this.txtDiagnose.TabIndex = 23;
-            this.txtDiagnose.TextChanged += new System.EventHandler(this.txtDiagnose_TextChanged);
             // 
             // lblDiagnose
             // 
@@ -231,7 +243,6 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(258, 56);
             this.txtAddress.TabIndex = 18;
-            this.txtAddress.TextChanged += new System.EventHandler(this.txtAddress_TextChanged);
             // 
             // lblAddress
             // 
@@ -253,7 +264,6 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(258, 22);
             this.txtEmail.TabIndex = 16;
-            this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
             // 
             // lblEmail
             // 
@@ -275,7 +285,6 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(258, 22);
             this.txtPhone.TabIndex = 14;
-            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
             // 
             // lblPhone
             // 
@@ -297,7 +306,6 @@
             this.dtBirthDate.Name = "dtBirthDate";
             this.dtBirthDate.Size = new System.Drawing.Size(257, 22);
             this.dtBirthDate.TabIndex = 10;
-            this.dtBirthDate.ValueChanged += new System.EventHandler(this.dtBirthDate_ValueChanged);
             // 
             // lblBirthDateFrom
             // 
@@ -319,7 +327,6 @@
             this.txtDisplayName.Name = "txtDisplayName";
             this.txtDisplayName.Size = new System.Drawing.Size(258, 22);
             this.txtDisplayName.TabIndex = 8;
-            this.txtDisplayName.TextChanged += new System.EventHandler(this.txtDisplayName_TextChanged);
             // 
             // lblDisplayName
             // 
@@ -341,7 +348,6 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(258, 22);
             this.txtPassword.TabIndex = 6;
-            this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
             // 
             // lblPassword
             // 
@@ -363,7 +369,6 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(258, 22);
             this.txtUsername.TabIndex = 4;
-            this.txtUsername.TextChanged += new System.EventHandler(this.txtUsername_TextChanged);
             // 
             // lblUsername
             // 
@@ -386,7 +391,6 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(258, 22);
             this.txtID.TabIndex = 2;
-            this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
             // lblID
             // 
@@ -403,19 +407,6 @@
             // userBindingSource
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
-            // 
-            // lblUserNotice
-            // 
-            this.lblUserNotice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblUserNotice.AutoSize = true;
-            this.lblUserNotice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUserNotice.ForeColor = System.Drawing.Color.Firebrick;
-            this.lblUserNotice.Location = new System.Drawing.Point(398, 160);
-            this.lblUserNotice.Name = "lblUserNotice";
-            this.lblUserNotice.Size = new System.Drawing.Size(179, 48);
-            this.lblUserNotice.TabIndex = 42;
-            this.lblUserNotice.Text = "IMPORTANT NOTICE:\r\nUsername and password\r\nshould be unique\r\n";
             // 
             // frmEditUser
             // 

@@ -21,31 +21,27 @@ namespace XtremePharmacyManager
             this.target = target;
         }
 
-        
-        
-       
-
-
-        private void txtID_TextChanged(object sender, EventArgs e)
-        {
-            if(target !=null)
-            {
-                target.ID = Int32.Parse(txtID.Text);
-            }
-        }
-
-        private void txtBrandName_TextChanged(object sender, EventArgs e)
-        {
-            if(target!=null)
-            {
-                target.BrandName = txtBrandName.Text;
-            }
-        }
 
         private void frmEditProductBrand_Load(object sender, EventArgs e)
         {
             this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
             this.txtBrandName.Text = (!String.IsNullOrEmpty(target.BrandName)) ? target.BrandName.ToString() : string.Empty;
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (target != null)
+                {
+                    target.ID = Int32.Parse(txtID.Text);
+                    target.BrandName = txtBrandName.Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -37,7 +37,7 @@
             this.lblOrderStatus = new System.Windows.Forms.Label();
             this.cbSelectDeliveryStatus = new System.Windows.Forms.ComboBox();
             this.cbSelectPaymentMethod = new System.Windows.Forms.ComboBox();
-            this.userBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblPaymentMethod = new System.Windows.Forms.Label();
             this.cbSelectDeliveryService = new System.Windows.Forms.ComboBox();
             this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -49,18 +49,18 @@
             this.lblSelectProductOrder = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
+            this.userBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
@@ -107,7 +107,6 @@
             this.txtCargoID.Name = "txtCargoID";
             this.txtCargoID.Size = new System.Drawing.Size(201, 22);
             this.txtCargoID.TabIndex = 55;
-            this.txtCargoID.TextChanged += new System.EventHandler(this.txtCargoID_TextChanged);
             // 
             // txtDeliveryReason
             // 
@@ -118,7 +117,6 @@
             this.txtDeliveryReason.Name = "txtDeliveryReason";
             this.txtDeliveryReason.Size = new System.Drawing.Size(230, 86);
             this.txtDeliveryReason.TabIndex = 54;
-            this.txtDeliveryReason.TextChanged += new System.EventHandler(this.txtDeliveryReason_TextChanged);
             // 
             // lblDeliveryReason
             // 
@@ -165,7 +163,6 @@
             this.cbSelectDeliveryStatus.Size = new System.Drawing.Size(201, 24);
             this.cbSelectDeliveryStatus.TabIndex = 51;
             this.cbSelectDeliveryStatus.Text = "pending delivery";
-            this.cbSelectDeliveryStatus.SelectedIndexChanged += new System.EventHandler(this.cbSelectDeliveryStatus_SelectedIndexChanged);
             // 
             // cbSelectPaymentMethod
             // 
@@ -177,11 +174,10 @@
             this.cbSelectPaymentMethod.Size = new System.Drawing.Size(201, 24);
             this.cbSelectPaymentMethod.TabIndex = 48;
             this.cbSelectPaymentMethod.ValueMember = "ID";
-            this.cbSelectPaymentMethod.SelectedIndexChanged += new System.EventHandler(this.cbSelectPaymentMethod_SelectedIndexChanged);
             // 
-            // userBindingSource1
+            // paymentMethodBindingSource
             // 
-            this.userBindingSource1.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
             // 
             // lblPaymentMethod
             // 
@@ -205,7 +201,6 @@
             this.cbSelectDeliveryService.Size = new System.Drawing.Size(201, 24);
             this.cbSelectDeliveryService.TabIndex = 46;
             this.cbSelectDeliveryService.ValueMember = "ID";
-            this.cbSelectDeliveryService.SelectedIndexChanged += new System.EventHandler(this.cbSelectDeliveryService_SelectedIndexChanged);
             // 
             // deliveryServiceBindingSource
             // 
@@ -233,7 +228,6 @@
             this.cbSelectProductOrders.Size = new System.Drawing.Size(201, 24);
             this.cbSelectProductOrders.TabIndex = 36;
             this.cbSelectProductOrders.ValueMember = "ID";
-            this.cbSelectProductOrders.SelectedIndexChanged += new System.EventHandler(this.cbSelectProductOrders_SelectedIndexChanged);
             // 
             // productOrderBindingSource
             // 
@@ -250,6 +244,7 @@
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // btnCancel
             // 
@@ -284,7 +279,6 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(200, 22);
             this.txtID.TabIndex = 2;
-            this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
             // lblID
             // 
@@ -298,6 +292,10 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
+            // userBindingSource1
+            // 
+            this.userBindingSource1.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            // 
             // userBindingSource
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
@@ -309,10 +307,6 @@
             // productBrandBindingSource
             // 
             this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
-            // 
-            // paymentMethodBindingSource
-            // 
-            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
             // 
             // frmEditOrderDelivery
             // 
@@ -327,13 +321,13 @@
             this.Load += new System.EventHandler(this.frmEditOrderDelivery_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

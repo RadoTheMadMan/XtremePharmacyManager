@@ -32,88 +32,15 @@ namespace XtremePharmacyManager
         private void trbPrice_Scroll(object sender, EventArgs e)
         {
             lblShowPrice.Text = trbPrice.Value.ToString();
-            if (target != null)
-            {
-                target.ProductPrice = trbPrice.Value;
-            }
         }
 
         private void trbQuantity_Scroll(object sender, EventArgs e)
         {
             lblShowQuantity.Text = trbQuantity.Value.ToString();
-            if (target != null)
-            {
-                target.ProductQuantity = trbQuantity.Value;
-            }
         }
 
 
 
-
-        private void txtID_TextChanged(object sender, EventArgs e)
-        {
-            if(target !=null)
-            {
-                target.ID = Int32.Parse(txtID.Text);
-            }
-        }
-
-        private void cbSelectBrand_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (target != null)
-            {
-                target.BrandID = Int32.Parse(cbSelectBrand.SelectedValue.ToString());
-            }
-        }
-
-        private void txtProductName_TextChanged(object sender, EventArgs e)
-        {
-            if(target!=null)
-            {
-                target.ProductName = txtProductName.Text;
-            }
-        }
-
-
-        private void txtProductDescription_TextChanged(object sender, EventArgs e)
-        {
-            if(target != null)
-            {
-                target.ProductDescription = txtProductDescription.Text;
-            }
-        }
-
-        private void dtExpiryDate_ValueChanged(object sender, EventArgs e)
-        {
-            if(target != null)
-            {
-                target.ProductExpiryDate = dtExpiryDate.Value;
-            }
-        }
-
-        private void txtRegistrationNumber_TextChanged(object sender, EventArgs e)
-        {
-            if(target != null)
-            {
-                target.ProductRegNum = txtRegistrationNumber.Text;
-            }
-        }
-
-        private void txtPartitudeNumber_TextChanged(object sender, EventArgs e)
-        {
-            if(target != null)
-            {
-                target.ProductPartNum = txtPartitudeNumber.Text; 
-            }    
-        }
-
-        private void txtStorageLocation_TextChanged(object sender, EventArgs e)
-        {
-            if(target != null)
-            {
-                target.ProductStorageLocation = txtStorageLocation.Text;
-            }
-        }
 
         private void frmEditProduct_Load(object sender, EventArgs e)
         {
@@ -140,11 +67,30 @@ namespace XtremePharmacyManager
             lblShowPrice.Text = (target.ProductPrice >= 0) ? target.ProductPrice.ToString() : string.Empty;
         }
 
-        private void cbSelectVendor_SelectedIndexChanged(object sender, EventArgs e)
+
+
+        private void btnOK_Click(object sender, EventArgs e)
         {
-            if (target != null)
+            try
             {
-                target.VendorID = Int32.Parse(cbSelectVendor.SelectedValue.ToString());
+                if (target != null)
+                {
+                    target.ID = Int32.Parse(txtID.Text);
+                    target.BrandID = Int32.Parse(cbSelectBrand.SelectedValue.ToString());
+                    target.VendorID = Int32.Parse(cbSelectVendor.SelectedValue.ToString());
+                    target.ProductName = txtProductName.Text;
+                    target.ProductDescription = txtProductDescription.Text;
+                    target.ProductQuantity = trbQuantity.Value;
+                    target.ProductPrice = trbPrice.Value;
+                    target.ProductExpiryDate = dtExpiryDate.Value;
+                    target.ProductRegNum = txtRegistrationNumber.Text;
+                    target.ProductPartNum = txtPartitudeNumber.Text;
+                    target.ProductStorageLocation = txtStorageLocation.Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

@@ -28,10 +28,6 @@ namespace XtremePharmacyManager
         private void trbBalance_Scroll(object sender, EventArgs e)
         {
             lblShowBalance.Text = trbBalance.Value.ToString();
-            if (target != null)
-            {
-                target.UserBalance = trbBalance.Value;
-            }
         }
 
         private void pbUserProfilePic_Click(object sender, EventArgs e)
@@ -46,91 +42,8 @@ namespace XtremePharmacyManager
                 if(ofd.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(ofd.FileName))
                 {
                     Bitmap selectedImage = new Bitmap(ofd.FileName);
-                    byte[] imageBytes;
-                    ConvertImageToBinary(selectedImage, out imageBytes);
                     current.Image = new Bitmap(selectedImage);
-                    target.UserProfilePic = imageBytes;
                 }
-            }
-        }
-
-        private void cbRole_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(target != null)
-            {
-                target.UserRole = cbRole.SelectedIndex;
-            }
-        }
-
-        private void txtDiagnose_TextChanged(object sender, EventArgs e)
-        {
-            if (target != null)
-            {
-                target.UserDiagnose = txtDiagnose.Text;
-            }
-        }
-
-        private void txtID_TextChanged(object sender, EventArgs e)
-        {
-            if(target !=null)
-            {
-                target.ID = Int32.Parse(txtID.Text);
-            }
-        }
-
-        private void txtUsername_TextChanged(object sender, EventArgs e)
-        {
-            if(target!=null)
-            {
-                target.UserName = txtUsername.Text;
-            }
-        }
-
-        private void txtPassword_TextChanged(object sender, EventArgs e)
-        {
-            if(target!= null)
-            {
-                target.UserPassword = txtPassword.Text;
-            }
-        }
-
-        private void txtDisplayName_TextChanged(object sender, EventArgs e)
-        {
-            if(target != null)
-            {
-                target.UserDisplayName = txtDisplayName.Text;
-            }
-        }
-
-        private void dtBirthDate_ValueChanged(object sender, EventArgs e)
-        {
-            if(target != null)
-            {
-                target.UserBirthDate = dtBirthDate.Value;
-            }
-        }
-
-        private void txtPhone_TextChanged(object sender, EventArgs e)
-        {
-            if(target != null)
-            {
-                target.UserPhone = txtPhone.Text;
-            }
-        }
-
-        private void txtEmail_TextChanged(object sender, EventArgs e)
-        {
-            if(target != null)
-            {
-                target.UserEmail = txtEmail.Text; 
-            }    
-        }
-
-        private void txtAddress_TextChanged(object sender, EventArgs e)
-        {
-            if(target != null)
-            {
-                target.UserAddress = txtAddress.Text;
             }
         }
 
@@ -154,6 +67,34 @@ namespace XtremePharmacyManager
                 txtDiagnose.Text = (!String.IsNullOrEmpty(target.UserDiagnose)) ? target.UserDiagnose : string.Empty;
                 cbRole.SelectedIndex = (target.UserRole >= 0 && target.UserRole <= 2) ? target.UserRole : 1;
                 pbUserProfilePic.Image = (target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            byte[] imageBytes;
+            try
+            {
+                if (target != null)
+                {
+                    target.ID = Int32.Parse(txtID.Text);
+                    target.UserName = txtUsername.Text;
+                    target.UserPassword = txtPassword.Text;
+                    target.UserDisplayName = txtDisplayName.Text;
+                    target.UserBirthDate = dtBirthDate.Value;
+                    target.UserPhone = txtPhone.Text;
+                    target.UserEmail = txtEmail.Text;
+                    target.UserAddress = txtAddress.Text;
+                    ConvertImageToBinary((Bitmap)pbUserProfilePic.Image, out imageBytes);
+                    target.UserProfilePic = imageBytes;
+                    target.UserBalance = trbBalance.Value;
+                    target.UserDiagnose = txtDiagnose.Text;
+                    target.UserRole = cbRole.SelectedIndex;
+                }
             }
             catch (Exception ex)
             {

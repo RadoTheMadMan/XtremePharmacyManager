@@ -30,68 +30,13 @@ namespace XtremePharmacyManager
         private void trbPriceOverride_Scroll(object sender, EventArgs e)
         {
             lblShowPriceOverride.Text = trbPriceOverride.Value.ToString();
-            if (target != null)
-            {
-                target.OrderPrice = trbPriceOverride.Value;
-            }
         }
 
         private void trbDesiredQuantity_Scroll(object sender, EventArgs e)
         {
             lblShowDesiredQuantity.Text = trbDesiredQuantity.Value.ToString();
-            if (target != null)
-            {
-                target.DesiredQuantity = trbDesiredQuantity.Value;
-            }
         }
 
-        private void txtID_TextChanged(object sender, EventArgs e)
-        {
-            if(target !=null)
-            {
-                target.ID = Int32.Parse(txtID.Text);
-            }
-        }
-
-        private void cbSelectProduct_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (target != null)
-            {
-                target.ProductID = Int32.Parse(cbSelectProduct.SelectedValue.ToString());
-            }
-        }
-
-        private void cbSelectClient_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (target != null)
-            {
-                target.ClientID = Int32.Parse(cbSelectClient.SelectedValue.ToString());
-            }
-        }
-
-        private void cbSelectEmployee_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (target != null)
-            {
-                target.EmployeeID = Int32.Parse(cbSelectEmployee.SelectedValue.ToString());
-            }
-        }
-
-        private void cbSelectOrderStatus_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(target != null)
-            {
-                target.OrderStatus = cbSelectOrderStatus.SelectedIndex;
-            }
-        }
-
-        private void txtOrderReason_TextChanged(object sender, EventArgs e)
-        {
-            if(target !=null)
-            {
-                target.OrderReason = txtOrderReason.Text;
-            }
-        }
 
         private void frmEditProductOrder_Load(object sender, EventArgs e)
         {
@@ -117,6 +62,28 @@ namespace XtremePharmacyManager
             lblShowPriceOverride.Text = (target.OrderPrice >= 0) ? target.OrderPrice.ToString() : string.Empty;
             cbSelectOrderStatus.SelectedValue = cbSelectOrderStatus.Items[target.OrderStatus];
             txtOrderReason.Text = target.OrderReason;
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (target != null)
+                {
+                    target.ID = Int32.Parse(txtID.Text);
+                    target.ProductID = Int32.Parse(cbSelectProduct.SelectedValue.ToString());
+                    target.DesiredQuantity = trbDesiredQuantity.Value;
+                    target.OrderPrice = trbPriceOverride.Value;
+                    target.ClientID = Int32.Parse(cbSelectClient.SelectedValue.ToString());
+                    target.EmployeeID = Int32.Parse(cbSelectEmployee.SelectedValue.ToString());
+                    target.OrderStatus = cbSelectOrderStatus.SelectedIndex;
+                    target.OrderReason = txtOrderReason.Text;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

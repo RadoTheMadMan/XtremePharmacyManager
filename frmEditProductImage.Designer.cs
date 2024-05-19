@@ -87,7 +87,6 @@
             this.cbSelectProduct.Size = new System.Drawing.Size(219, 24);
             this.cbSelectProduct.TabIndex = 36;
             this.cbSelectProduct.ValueMember = "ID";
-            this.cbSelectProduct.SelectedIndexChanged += new System.EventHandler(this.cbSelectProduct_SelectedIndexChanged);
             // 
             // productBindingSource
             // 
@@ -104,6 +103,7 @@
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // btnCancel
             // 
@@ -137,7 +137,6 @@
             this.txtImageName.Name = "txtImageName";
             this.txtImageName.Size = new System.Drawing.Size(220, 22);
             this.txtImageName.TabIndex = 4;
-            this.txtImageName.TextChanged += new System.EventHandler(this.txtImageName_TextChanged);
             // 
             // lblImageName
             // 
@@ -160,7 +159,6 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(220, 22);
             this.txtID.TabIndex = 2;
-            this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
             // lblID
             // 

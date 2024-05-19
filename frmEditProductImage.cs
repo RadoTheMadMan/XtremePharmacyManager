@@ -23,30 +23,6 @@ namespace XtremePharmacyManager
             products = ref_products;
         }
 
-        private void txtID_TextChanged(object sender, EventArgs e)
-        {
-            if(target !=null)
-            {
-                target.ID = Int32.Parse(txtID.Text);
-            }
-        }
-
-        private void cbSelectProduct_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (target != null)
-            {
-                target.ProductID = Int32.Parse(cbSelectProduct.SelectedValue.ToString());
-            }
-        }
-
-        private void txtImageName_TextChanged(object sender, EventArgs e)
-        {
-            if(target!=null)
-            {
-                target.ImageName = txtImageName.Text;
-            }
-        }
-
         private void pbProductImageData_Click(object sender, EventArgs e)
         {
             PictureBox current = (PictureBox)sender;
@@ -59,10 +35,7 @@ namespace XtremePharmacyManager
                 if (ofd.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(ofd.FileName))
                 {
                     Bitmap selectedImage = new Bitmap(ofd.FileName);
-                    byte[] imageBytes;
-                    ConvertImageToBinary(selectedImage, out imageBytes);
                     current.Image = new Bitmap(selectedImage);
-                    target.ImageData = imageBytes;
                 }
             }
         }
@@ -76,6 +49,26 @@ namespace XtremePharmacyManager
             Bitmap extractedbitmap;
             ConvertBinaryToImage(target.ImageData, out extractedbitmap);
             pbProductImageData.Image = (extractedbitmap != null) ? extractedbitmap : new Bitmap(64, 64);
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            byte[] imageBytes;
+            try
+            {
+                if (target != null)
+                {
+                    target.ID = Int32.Parse(txtID.Text);
+                    target.ImageName = txtImageName.Text;
+                    target.ProductID = Int32.Parse(cbSelectProduct.SelectedValue.ToString());
+                    ConvertImageToBinary((Bitmap)pbProductImageData.Image, out imageBytes);
+                    target.ImageData = imageBytes;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.cbSelectVendor = new System.Windows.Forms.ComboBox();
+            this.productVendorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblProductVendor = new System.Windows.Forms.Label();
             this.trbQuantity = new System.Windows.Forms.TrackBar();
             this.lblShowQuantity = new System.Windows.Forms.Label();
             this.lblQuantity = new System.Windows.Forms.Label();
@@ -57,15 +60,12 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cbSelectVendor = new System.Windows.Forms.ComboBox();
-            this.lblProductVendor = new System.Windows.Forms.Label();
-            this.productVendorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
@@ -103,6 +103,33 @@
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(800, 301);
             this.pnlData.TabIndex = 0;
+            // 
+            // cbSelectVendor
+            // 
+            this.cbSelectVendor.DataSource = this.productVendorBindingSource;
+            this.cbSelectVendor.DisplayMember = "VendorName";
+            this.cbSelectVendor.FormattingEnabled = true;
+            this.cbSelectVendor.Location = new System.Drawing.Point(176, 99);
+            this.cbSelectVendor.Name = "cbSelectVendor";
+            this.cbSelectVendor.Size = new System.Drawing.Size(219, 24);
+            this.cbSelectVendor.TabIndex = 46;
+            this.cbSelectVendor.ValueMember = "ID";
+            // 
+            // productVendorBindingSource
+            // 
+            this.productVendorBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductVendor);
+            // 
+            // lblProductVendor
+            // 
+            this.lblProductVendor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblProductVendor.AutoSize = true;
+            this.lblProductVendor.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProductVendor.Location = new System.Drawing.Point(20, 102);
+            this.lblProductVendor.Name = "lblProductVendor";
+            this.lblProductVendor.Size = new System.Drawing.Size(118, 16);
+            this.lblProductVendor.TabIndex = 45;
+            this.lblProductVendor.Text = "Product Vendor:";
             // 
             // trbQuantity
             // 
@@ -164,7 +191,6 @@
             this.cbSelectBrand.Size = new System.Drawing.Size(219, 24);
             this.cbSelectBrand.TabIndex = 36;
             this.cbSelectBrand.ValueMember = "ID";
-            this.cbSelectBrand.SelectedIndexChanged += new System.EventHandler(this.cbSelectBrand_SelectedIndexChanged);
             // 
             // productBrandBindingSource
             // 
@@ -181,6 +207,7 @@
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // btnCancel
             // 
@@ -238,7 +265,6 @@
             this.txtStorageLocation.Name = "txtStorageLocation";
             this.txtStorageLocation.Size = new System.Drawing.Size(220, 22);
             this.txtStorageLocation.TabIndex = 18;
-            this.txtStorageLocation.TextChanged += new System.EventHandler(this.txtStorageLocation_TextChanged);
             // 
             // lblStorageLocation
             // 
@@ -260,7 +286,6 @@
             this.txtPartitudeNumber.Name = "txtPartitudeNumber";
             this.txtPartitudeNumber.Size = new System.Drawing.Size(220, 22);
             this.txtPartitudeNumber.TabIndex = 16;
-            this.txtPartitudeNumber.TextChanged += new System.EventHandler(this.txtPartitudeNumber_TextChanged);
             // 
             // lblPartitudeNumber
             // 
@@ -282,7 +307,6 @@
             this.txtRegistrationNumber.Name = "txtRegistrationNumber";
             this.txtRegistrationNumber.Size = new System.Drawing.Size(220, 22);
             this.txtRegistrationNumber.TabIndex = 14;
-            this.txtRegistrationNumber.TextChanged += new System.EventHandler(this.txtRegistrationNumber_TextChanged);
             // 
             // lblRegistrationNumber
             // 
@@ -304,7 +328,6 @@
             this.dtExpiryDate.Name = "dtExpiryDate";
             this.dtExpiryDate.Size = new System.Drawing.Size(219, 22);
             this.dtExpiryDate.TabIndex = 10;
-            this.dtExpiryDate.ValueChanged += new System.EventHandler(this.dtExpiryDate_ValueChanged);
             // 
             // lblExpiryDate
             // 
@@ -326,7 +349,6 @@
             this.txtProductDescription.Name = "txtProductDescription";
             this.txtProductDescription.Size = new System.Drawing.Size(220, 22);
             this.txtProductDescription.TabIndex = 8;
-            this.txtProductDescription.TextChanged += new System.EventHandler(this.txtProductDescription_TextChanged);
             // 
             // lblProductDescription
             // 
@@ -360,7 +382,6 @@
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(220, 22);
             this.txtProductName.TabIndex = 4;
-            this.txtProductName.TextChanged += new System.EventHandler(this.txtProductName_TextChanged);
             // 
             // lblProductName
             // 
@@ -383,7 +404,6 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(220, 22);
             this.txtID.TabIndex = 2;
-            this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
             // lblID
             // 
@@ -401,34 +421,6 @@
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
             // 
-            // cbSelectVendor
-            // 
-            this.cbSelectVendor.DataSource = this.productVendorBindingSource;
-            this.cbSelectVendor.DisplayMember = "VendorName";
-            this.cbSelectVendor.FormattingEnabled = true;
-            this.cbSelectVendor.Location = new System.Drawing.Point(176, 99);
-            this.cbSelectVendor.Name = "cbSelectVendor";
-            this.cbSelectVendor.Size = new System.Drawing.Size(219, 24);
-            this.cbSelectVendor.TabIndex = 46;
-            this.cbSelectVendor.ValueMember = "ID";
-            this.cbSelectVendor.SelectedIndexChanged += new System.EventHandler(this.cbSelectVendor_SelectedIndexChanged);
-            // 
-            // lblProductVendor
-            // 
-            this.lblProductVendor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblProductVendor.AutoSize = true;
-            this.lblProductVendor.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProductVendor.Location = new System.Drawing.Point(20, 102);
-            this.lblProductVendor.Name = "lblProductVendor";
-            this.lblProductVendor.Size = new System.Drawing.Size(118, 16);
-            this.lblProductVendor.TabIndex = 45;
-            this.lblProductVendor.Text = "Product Vendor:";
-            // 
-            // productVendorBindingSource
-            // 
-            this.productVendorBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductVendor);
-            // 
             // frmEditProduct
             // 
             this.AcceptButton = this.btnOK;
@@ -442,11 +434,11 @@
             this.Load += new System.EventHandler(this.frmEditProduct_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

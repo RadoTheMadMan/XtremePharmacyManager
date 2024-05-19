@@ -101,8 +101,6 @@
             this.txtOrderReason.Name = "txtOrderReason";
             this.txtOrderReason.Size = new System.Drawing.Size(230, 77);
             this.txtOrderReason.TabIndex = 54;
-            this.txtOrderReason.TextChanged += new System.EventHandler(this.txtOrderReason_TextChanged);
-            // 
             // lblOrderReason
             // 
             this.lblOrderReason.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -148,7 +146,6 @@
             this.cbSelectOrderStatus.Size = new System.Drawing.Size(219, 24);
             this.cbSelectOrderStatus.TabIndex = 51;
             this.cbSelectOrderStatus.Text = "Awaiting processing";
-            this.cbSelectOrderStatus.SelectedIndexChanged += new System.EventHandler(this.cbSelectOrderStatus_SelectedIndexChanged);
             // 
             // cbSelectEmployee
             // 
@@ -160,7 +157,6 @@
             this.cbSelectEmployee.Size = new System.Drawing.Size(219, 24);
             this.cbSelectEmployee.TabIndex = 48;
             this.cbSelectEmployee.ValueMember = "ID";
-            this.cbSelectEmployee.SelectedIndexChanged += new System.EventHandler(this.cbSelectEmployee_SelectedIndexChanged);
             // 
             // userBindingSource1
             // 
@@ -188,7 +184,6 @@
             this.cbSelectClient.Size = new System.Drawing.Size(219, 24);
             this.cbSelectClient.TabIndex = 46;
             this.cbSelectClient.ValueMember = "ID";
-            this.cbSelectClient.SelectedIndexChanged += new System.EventHandler(this.cbSelectClient_SelectedIndexChanged);
             // 
             // userBindingSource
             // 
@@ -252,7 +247,6 @@
             this.cbSelectProduct.Size = new System.Drawing.Size(219, 24);
             this.cbSelectProduct.TabIndex = 36;
             this.cbSelectProduct.ValueMember = "ID";
-            this.cbSelectProduct.SelectedIndexChanged += new System.EventHandler(this.cbSelectProduct_SelectedIndexChanged);
             // 
             // productBindingSource
             // 
@@ -269,6 +263,7 @@
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
             this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
             // btnCancel
             // 
@@ -339,7 +334,6 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(220, 22);
             this.txtID.TabIndex = 2;
-            this.txtID.TextChanged += new System.EventHandler(this.txtID_TextChanged);
             // 
             // lblID
             // 

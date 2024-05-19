@@ -21,34 +21,11 @@ namespace XtremePharmacyManager
             this.target = target;
         }
 
-        
-        
-       
-
         private void trbPrice_Scroll(object sender, EventArgs e)
         {
             lblShowPrice.Text = trbPrice.Value.ToString();
-            if (target != null)
-            {
-                target.ServicePrice = trbPrice.Value;
-            }
         }
 
-        private void txtID_TextChanged(object sender, EventArgs e)
-        {
-            if(target !=null)
-            {
-                target.ID = Int32.Parse(txtID.Text);
-            }
-        }
-
-        private void txtServiceName_TextChanged(object sender, EventArgs e)
-        {
-            if(target!=null)
-            {
-                target.ServiceName = txtServiceName.Text;
-            }
-        }
 
         private void frmEditDeliveryService_Load(object sender, EventArgs e)
         {
@@ -56,6 +33,23 @@ namespace XtremePharmacyManager
             this.txtServiceName.Text = (!String.IsNullOrEmpty(target.ServiceName)) ? target.ServiceName.ToString() : string.Empty;
             trbPrice.Value = (target.ServicePrice >= 0) ? Convert.ToInt32(target.ServicePrice) : 0;
             lblShowPrice.Text = (target.ServicePrice >= 0) ? target.ServicePrice.ToString() : string.Empty;
+        }
+
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (target != null)
+                {
+                    target.ID = Int32.Parse(txtID.Text);
+                    target.ServiceName = txtServiceName.Text;
+                    target.ServicePrice = trbPrice.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
