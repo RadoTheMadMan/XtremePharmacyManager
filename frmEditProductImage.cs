@@ -42,13 +42,20 @@ namespace XtremePharmacyManager
 
         private void frmEditProductImage_Load(object sender, EventArgs e)
         {
-            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
-            this.txtImageName.Text = (!String.IsNullOrEmpty(target.ImageName)) ? target.ImageName.ToString() : string.Empty;
-            this.cbSelectProduct.DataSource = products;
-            this.cbSelectProduct.SelectedValue = target.ProductID;
-            Bitmap extractedbitmap;
-            ConvertBinaryToImage(target.ImageData, out extractedbitmap);
-            pbProductImageData.Image = (extractedbitmap != null) ? extractedbitmap : new Bitmap(64, 64);
+            try
+            {
+                this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
+                this.txtImageName.Text = (!String.IsNullOrEmpty(target.ImageName)) ? target.ImageName.ToString() : string.Empty;
+                this.cbSelectProduct.DataSource = products;
+                this.cbSelectProduct.SelectedValue = target.ProductID;
+                Bitmap extractedbitmap;
+                ConvertBinaryToImage(target.ImageData, out extractedbitmap);
+                pbProductImageData.Image = (extractedbitmap != null) ? extractedbitmap : new Bitmap(64, 64);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)

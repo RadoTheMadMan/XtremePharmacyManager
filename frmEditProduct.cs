@@ -44,27 +44,34 @@ namespace XtremePharmacyManager
 
         private void frmEditProduct_Load(object sender, EventArgs e)
         {
-            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
-            this.txtProductName.Text = (!String.IsNullOrEmpty(target.ProductName)) ? target.ProductName.ToString() : string.Empty;
-            this.cbSelectBrand.DataSource = brands;
-            this.cbSelectVendor.DataSource = vendors;
-            if (brands.Where(x => x.ID == target.BrandID).FirstOrDefault() != null)
+            try
             {
-                this.cbSelectBrand.SelectedValue = target.BrandID;
+                this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
+                this.txtProductName.Text = (!String.IsNullOrEmpty(target.ProductName)) ? target.ProductName.ToString() : string.Empty;
+                this.cbSelectBrand.DataSource = brands;
+                this.cbSelectVendor.DataSource = vendors;
+                if (brands.Where(x => x.ID == target.BrandID).FirstOrDefault() != null)
+                {
+                    this.cbSelectBrand.SelectedValue = target.BrandID;
+                }
+                if (vendors.Where(x => x.ID == target.VendorID).FirstOrDefault() != null)
+                {
+                    this.cbSelectVendor.SelectedValue = target.VendorID;
+                }
+                this.txtProductDescription.Text = (!String.IsNullOrEmpty(target.ProductDescription)) ? target.ProductDescription.ToString() : string.Empty;
+                this.dtExpiryDate.Value = (target.ProductExpiryDate != null && target.ProductExpiryDate > DateTime.MinValue && target.ProductExpiryDate < DateTime.MaxValue) ? target.ProductExpiryDate : DateTime.Now;
+                this.txtRegistrationNumber.Text = (!String.IsNullOrEmpty(target.ProductRegNum)) ? target.ProductRegNum.ToString() : string.Empty;
+                this.txtPartitudeNumber.Text = (!String.IsNullOrEmpty(target.ProductPartNum)) ? target.ProductPartNum.ToString() : string.Empty;
+                this.txtStorageLocation.Text = (!String.IsNullOrEmpty(target.ProductStorageLocation)) ? target.ProductStorageLocation.ToString() : string.Empty;
+                trbQuantity.Value = (target.ProductQuantity >= 0) ? target.ProductQuantity : 0;
+                lblShowQuantity.Text = (target.ProductQuantity >= 0) ? target.ProductQuantity.ToString() : string.Empty;
+                trbPrice.Value = (target.ProductPrice >= 0) ? Convert.ToInt32(target.ProductPrice) : 0;
+                lblShowPrice.Text = (target.ProductPrice >= 0) ? target.ProductPrice.ToString() : string.Empty;
             }
-            if(vendors.Where(x=>x.ID == target.VendorID).FirstOrDefault() != null)
+            catch (Exception ex)
             {
-                this.cbSelectVendor.SelectedValue = target.VendorID;
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            this.txtProductDescription.Text = (!String.IsNullOrEmpty(target.ProductDescription)) ? target.ProductDescription.ToString() : string.Empty;
-            this.dtExpiryDate.Value = (target.ProductExpiryDate != null && target.ProductExpiryDate > DateTime.MinValue && target.ProductExpiryDate < DateTime.MaxValue) ? target.ProductExpiryDate : DateTime.Now;
-            this.txtRegistrationNumber.Text = (!String.IsNullOrEmpty(target.ProductRegNum)) ? target.ProductRegNum.ToString() : string.Empty;
-            this.txtPartitudeNumber.Text = (!String.IsNullOrEmpty(target.ProductPartNum)) ? target.ProductPartNum.ToString() : string.Empty;
-            this.txtStorageLocation.Text = (!String.IsNullOrEmpty(target.ProductStorageLocation)) ? target.ProductStorageLocation.ToString() : string.Empty;
-            trbQuantity.Value = (target.ProductQuantity >= 0) ? target.ProductQuantity : 0;
-            lblShowQuantity.Text = (target.ProductQuantity >= 0) ? target.ProductQuantity.ToString() : string.Empty;
-            trbPrice.Value = (target.ProductPrice >= 0) ? Convert.ToInt32(target.ProductPrice) : 0;
-            lblShowPrice.Text = (target.ProductPrice >= 0) ? target.ProductPrice.ToString() : string.Empty;
         }
 
 

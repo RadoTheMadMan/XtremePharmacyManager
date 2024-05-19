@@ -40,28 +40,35 @@ namespace XtremePharmacyManager
 
         private void frmEditProductOrder_Load(object sender, EventArgs e)
         {
-            this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
-            this.cbSelectProduct.DataSource = products;
-            this.cbSelectClient.DataSource = clients;
-            this.cbSelectEmployee.DataSource = employees;
-            if (products.Where(x=>x.ID == target.ProductID).FirstOrDefault() != null)
+            try
             {
-                this.cbSelectProduct.SelectedValue = target.ProductID;
+                this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
+                this.cbSelectProduct.DataSource = products;
+                this.cbSelectClient.DataSource = clients;
+                this.cbSelectEmployee.DataSource = employees;
+                if (products.Where(x => x.ID == target.ProductID).FirstOrDefault() != null)
+                {
+                    this.cbSelectProduct.SelectedValue = target.ProductID;
+                }
+                if (clients.Where(x => x.ID == target.ClientID).FirstOrDefault() != null)
+                {
+                    this.cbSelectClient.SelectedValue = target.ClientID;
+                }
+                if (employees.Where(x => x.ID == target.EmployeeID).FirstOrDefault() != null)
+                {
+                    this.cbSelectEmployee.SelectedValue = target.EmployeeID;
+                }
+                trbDesiredQuantity.Value = (target.DesiredQuantity >= 0) ? target.DesiredQuantity : 0;
+                lblShowDesiredQuantity.Text = (target.DesiredQuantity >= 0) ? target.DesiredQuantity.ToString() : string.Empty;
+                trbPriceOverride.Value = (target.OrderPrice >= 0) ? Convert.ToInt32(target.OrderPrice) : 0;
+                lblShowPriceOverride.Text = (target.OrderPrice >= 0) ? target.OrderPrice.ToString() : string.Empty;
+                cbSelectOrderStatus.SelectedValue = cbSelectOrderStatus.Items[target.OrderStatus];
+                txtOrderReason.Text = target.OrderReason;
             }
-            if (clients.Where(x => x.ID == target.ClientID).FirstOrDefault() != null)
+            catch (Exception ex)
             {
-                this.cbSelectClient.SelectedValue = target.ClientID;
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            if (employees.Where(x => x.ID == target.EmployeeID).FirstOrDefault() != null)
-            {
-                this.cbSelectEmployee.SelectedValue = target.EmployeeID;
-            }
-            trbDesiredQuantity.Value = (target.DesiredQuantity >= 0) ? target.DesiredQuantity : 0;
-            lblShowDesiredQuantity.Text = (target.DesiredQuantity >= 0) ? target.DesiredQuantity.ToString() : string.Empty;
-            trbPriceOverride.Value = (target.OrderPrice >= 0) ? Convert.ToInt32(target.OrderPrice) : 0;
-            lblShowPriceOverride.Text = (target.OrderPrice >= 0) ? target.OrderPrice.ToString() : string.Empty;
-            cbSelectOrderStatus.SelectedValue = cbSelectOrderStatus.Items[target.OrderStatus];
-            txtOrderReason.Text = target.OrderReason;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
