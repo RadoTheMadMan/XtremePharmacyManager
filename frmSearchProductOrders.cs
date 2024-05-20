@@ -228,7 +228,10 @@ namespace XtremePharmacyManager
                                         ent.UpdateProductOrderByID(selectedOrder.ID, selectedOrder.ProductID, selectedOrder.DesiredQuantity,
                                             selectedOrder.OrderPrice, selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderStatus,
                                             selectedOrder.OrderReason);
-                                        ent.SaveChanges();
+                                        if (ent.Entry(selectedOrder).State == System.Data.Entity.EntityState.Modified)
+                                        {
+                                            ent.SaveChanges();
+                                        }
                                         //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                                         ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
                                         if (pro_view != null)
@@ -283,7 +286,10 @@ namespace XtremePharmacyManager
                                             ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                             selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                                         }
-                                        ent.SaveChanges();
+                                        if (ent.Entry(selectedOrder).State == System.Data.Entity.EntityState.Modified)
+                                        {
+                                            ent.SaveChanges();
+                                        }
                                         //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                                         ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
                                         if (pro_view != null)
@@ -339,7 +345,10 @@ namespace XtremePharmacyManager
                                         ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                         selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                                     }
-                                    ent.SaveChanges();
+                                    if (ent.Entry(selectedOrder).State == System.Data.Entity.EntityState.Modified)
+                                    {
+                                        ent.SaveChanges();
+                                    }
                                     //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                                     ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
                                     if (pro_view != null)
@@ -396,7 +405,10 @@ namespace XtremePharmacyManager
                                 ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                 selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                             }
-                            ent.SaveChanges();
+                            if (ent.Entry(selectedOrder).State == System.Data.Entity.EntityState.Modified)
+                            {
+                                ent.SaveChanges();
+                            }
                             //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                             ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
                             if (pro_view != null)
