@@ -228,9 +228,9 @@ namespace XtremePharmacyManager
                                         ent.UpdateProductOrderByID(selectedOrder.ID, selectedOrder.ProductID, selectedOrder.DesiredQuantity,
                                             selectedOrder.OrderPrice, selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderStatus,
                                             selectedOrder.OrderReason);
-                                        if (ent.Entry(selectedOrder).State == System.Data.Entity.EntityState.Modified)
+                                        if (ent.Entry(selectedOrder) != null)
                                         {
-                                            ent.SaveChanges();
+                                            ent.Entry(selectedOrder).Reload();
                                         }
                                         //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                                         ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
@@ -286,9 +286,9 @@ namespace XtremePharmacyManager
                                             ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                             selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                                         }
-                                        if (ent.Entry(selectedOrder).State == System.Data.Entity.EntityState.Modified)
+                                        if (ent.Entry(selectedOrder) != null)
                                         {
-                                            ent.SaveChanges();
+                                            ent.Entry(selectedOrder).Reload();
                                         }
                                         //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                                         ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
@@ -345,9 +345,9 @@ namespace XtremePharmacyManager
                                         ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                         selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                                     }
-                                    if (ent.Entry(selectedOrder).State == System.Data.Entity.EntityState.Modified)
+                                    if (ent.Entry(selectedOrder) != null)
                                     {
-                                        ent.SaveChanges();
+                                        ent.Entry(selectedOrder).Reload();
                                     }
                                     //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                                     ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
@@ -405,9 +405,9 @@ namespace XtremePharmacyManager
                                 ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                 selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                             }
-                            if (ent.Entry(selectedOrder).State == System.Data.Entity.EntityState.Modified)
+                            if (ent.Entry(selectedOrder) != null)
                             {
-                                ent.SaveChanges();
+                                ent.Entry(selectedOrder).Reload();
                             }
                             //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                             ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
@@ -476,7 +476,10 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteProductOrderByID(selectedOrder.ID);
-                                        ent.SaveChanges();
+                                        if (ent.Entry(selectedOrder) != null)
+                                        {
+                                            ent.Entry(selectedOrder).Reload();
+                                        }
                                         //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                                         ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x=> x.ID == selectedOrder.ID).FirstOrDefault();
                                         if(pro_view != null)
