@@ -267,9 +267,9 @@ namespace XtremePharmacyManager
                     entities.AddUser(base.TargetObject.UserName, base.TargetObject.UserPassword, base.TargetObject.UserDisplayName, base.TargetObject.UserBirthDate, base.TargetObject.UserPhone,
                                      base.TargetObject.UserEmail, base.TargetObject.UserAddress, base.TargetObject.UserProfilePic, base.TargetObject.UserBalance, base.TargetObject.UserDiagnose,
                                      base.TargetObject.UserRole);
-                    if (entities.Entry(base.TargetObject) != null && entities.Entry(base.TargetObject).State != System.Data.Entity.EntityState.Detached)
+                    if (entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
                     {
-                        entities.Entry(base.TargetObject).Reload();
+                        entities.Entry(entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                     }
                     //update the view on add, update or delete if it hasn't been updated(probably will not be found on add
                     //or delete and yeah
@@ -333,9 +333,9 @@ namespace XtremePharmacyManager
                     entities.UpdateUserByID(base.TargetObject.ID, base.TargetObject.UserName, base.TargetObject.UserPassword, base.TargetObject.UserDisplayName, base.TargetObject.UserBirthDate, base.TargetObject.UserPhone,
                                      base.TargetObject.UserEmail, base.TargetObject.UserAddress, base.TargetObject.UserProfilePic, base.TargetObject.UserBalance, base.TargetObject.UserDiagnose,
                                      base.TargetObject.UserRole);
-                    if (entities.Entry(base.TargetObject) != null && entities.Entry(base.TargetObject).State != System.Data.Entity.EntityState.Detached)
+                    if (entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
                     {
-                        entities.Entry(base.TargetObject).Reload();
+                        entities.Entry(entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                     }
                     //reload its data on the view as well if it is existing
                     //update the view on add, update or delete if it hasn't been updated(probably will not be found on add
@@ -398,9 +398,9 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.DeleteUserByID(base.TargetObject.ID);
-                    if (entities.Entry(base.TargetObject) != null && entities.Entry(base.TargetObject).State != System.Data.Entity.EntityState.Detached)
+                    if (entities.Users.Where(x=>x.ID == TargetObject.ID).FirstOrDefault() != null)
                     {
-                        entities.Entry(base.TargetObject).Reload();
+                        entities.Entry(entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                     }
                     //no need to reload nonexistent or just added entries but if the view still contains them
                     //better reload them

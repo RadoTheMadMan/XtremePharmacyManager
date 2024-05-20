@@ -45,10 +45,16 @@ namespace XtremePharmacyManager
         {
             try
             {
+               
                 //Never try to execute any function if it is not online
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     products = ent.GetProduct(-1, "", -1, -1, "", 0, new decimal(), new DateTime(), new DateTime(), "", "", "").ToList();
+                    foreach(var product in products)
+                    {
+                        //reload every entry in the entity model associated with the retrieved entries
+                        ent.Entry(ent.Products.Where(x => x.ID == product.ID).FirstOrDefault()).Reload();
+                    }
                     cbSelectProduct.DataSource = products;
                     ProductIDColumn.DataSource = products;
                 }
@@ -67,6 +73,10 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     product_orders = ent.GetProductOrder(-1, -1, 0, new decimal(), -1, -1, new DateTime(), new DateTime(), new DateTime(), new DateTime(), 0, "").ToList();
+                    foreach (var product_order in product_orders)
+                    {
+                        ent.Entry(ent.ProductOrders.Where(x => x.ID == product_order.ID).FirstOrDefault()).Reload();
+                    }
                     dgvProductOrders.DataSource = product_orders;
                 }
             }
@@ -84,6 +94,10 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     employees = ent.Users.Where(x => x.UserRole == 0 || x.UserRole == 1).ToList();
+                    foreach (var user in employees)
+                    {
+                        ent.Entry(ent.Users.Where(x=>x.ID == user.ID).FirstOrDefault()).Reload();
+                    }
                     cbSelectEmployee.DataSource = employees;
                     EmployeeIDColumn.DataSource = employees;
                 }
@@ -102,6 +116,10 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     clients = ent.Users.Where(x => x.UserRole == 2).ToList();
+                    foreach (var user in employees)
+                    {
+                        ent.Entry(ent.Users.Where(x => x.ID == user.ID).FirstOrDefault()).Reload();
+                    }
                     cbSelectClient.DataSource = clients;
                     ClientIDColumn.DataSource = clients;
                 }

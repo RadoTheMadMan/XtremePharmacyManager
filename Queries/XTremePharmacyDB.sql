@@ -1694,7 +1694,9 @@ valuable lesson.
 go
 create or alter view EmployeeView as
 select distinct ID, UserName, UserPassword, UserDisplayName, UserBirthDate, UserPhone, UserEmail, UserAddress,
-UserProfilePic, UserBalance, UserDiagnose, UserDateOfRegister, UserRole, 
+UserProfilePic,
+(select top 1 UserBalance from Users where Users.ID = u.ID) as UserBalance,
+UserDiagnose, UserDateOfRegister, UserRole, 
 (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID and ProductOrders.OrderStatus = 9) as AverageEmployeeIncome,
 (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID and (ProductOrders.OrderStatus = 7 or ProductOrders.OrderStatus = 8)) as AverageEmployeeLoss,
 (select AVG(ProductOrders.OrderPrice) from ProductOrders where ProductOrders.EmployeeID = u.ID) as EstimatedAverageEmployeeIncome,
