@@ -1281,7 +1281,7 @@ declare @new_order_price as money;
 declare @new_overidden_order_price as money;
 declare @new_product_price as money;
 select @new_product_price = ProductPrice from Products where ID = @new_product_id;
-select 'Calculating the price';
+select 'Product Price is retrieved';
 select @new_product_price as NewProductPrice;
 set @new_order_price = @new_product_price * @new_desired_quantity;
 select 'New Order Price is calculated';
