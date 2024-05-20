@@ -100,7 +100,7 @@ namespace XtremePharmacyManager
                             selectedBrand = product_brands.Where(x => x.ID == BrandID).FirstOrDefault();
                             if (selectedBrand != null)
                             {
-                                //Show the editor window to edit the selected user
+                                //Show the editor window to edit the selected brand
                                 //on dialog result yes update it
                                 DialogResult res = new frmEditProductBrand(ref selectedBrand).ShowDialog();
                                 if (res == DialogResult.OK)
@@ -117,13 +117,13 @@ namespace XtremePharmacyManager
                                         }
                                         RefreshProductBrands();
                                     }
-                                    else // or add it as a bulk operation
+                                }
+                                else // or add it as a bulk operation
+                                {
+                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
-                                        if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                                        {
-                                            //on user prompt add a silent operation by default
-                                            manager.AddOperation(new BulkProductBrandOperation(BulkOperationType.UPDATE, ref ent, selectedBrand, true));
-                                        }
+                                        //on user prompt add a silent operation by default
+                                        manager.AddOperation(new BulkProductBrandOperation(BulkOperationType.UPDATE, ref ent, selectedBrand, true));
                                     }
                                 }
                             }
