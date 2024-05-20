@@ -1436,7 +1436,10 @@ namespace XtremePharmacyManager
                 {
                     entities.AddProductOrder(base.TargetObject.ProductID, base.TargetObject.DesiredQuantity, base.TargetObject.OrderPrice,
                     base.TargetObject.ClientID, base.TargetObject.EmployeeID, base.TargetObject.OrderReason, add_total_price_override_on_create);
-                    entities.SaveChanges();
+                    if (entities.Entry(base.TargetObject) != null && entities.Entry(base.TargetObject).State != System.Data.Entity.EntityState.Detached)
+                    {
+                        entities.Entry(base.TargetObject).Reload();
+                    }
                     //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                     ExtendedProductOrdersView pro_view = entities.ExtendedProductOrdersViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
                     if (pro_view != null)
@@ -1485,8 +1488,10 @@ namespace XtremePharmacyManager
                 {
                     entities.UpdateProductOrderByID(base.TargetObject.ID,base.TargetObject.ProductID, base.TargetObject.DesiredQuantity, base.TargetObject.OrderPrice,
                     base.TargetObject.ClientID, base.TargetObject.EmployeeID, base.TargetObject.OrderStatus, base.TargetObject.OrderReason);
-                    entities.SaveChanges();
-                    entities.Entry<ProductOrder>(entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                    if (entities.Entry(base.TargetObject) != null && entities.Entry(base.TargetObject).State != System.Data.Entity.EntityState.Detached)
+                    {
+                        entities.Entry(base.TargetObject).Reload();
+                    }
                     //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                     ExtendedProductOrdersView pro_view = entities.ExtendedProductOrdersViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
                     if (pro_view != null)
@@ -1534,7 +1539,10 @@ namespace XtremePharmacyManager
                 if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     entities.DeleteProductOrderByID(base.TargetObject.ID);
-                    entities.SaveChanges();
+                    if (entities.Entry(base.TargetObject) != null && entities.Entry(base.TargetObject).State != System.Data.Entity.EntityState.Detached)
+                    {
+                        entities.Entry(base.TargetObject).Reload();
+                    }
                     //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                     ExtendedProductOrdersView pro_view = entities.ExtendedProductOrdersViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
                     if (pro_view != null)

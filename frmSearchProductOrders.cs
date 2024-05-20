@@ -228,7 +228,7 @@ namespace XtremePharmacyManager
                                         ent.UpdateProductOrderByID(selectedOrder.ID, selectedOrder.ProductID, selectedOrder.DesiredQuantity,
                                             selectedOrder.OrderPrice, selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderStatus,
                                             selectedOrder.OrderReason);
-                                        if (ent.Entry(selectedOrder) != null)
+                                        if (ent.Entry(selectedOrder) != null && ent.Entry(selectedOrder).State != System.Data.Entity.EntityState.Detached)
                                         {
                                             ent.Entry(selectedOrder).Reload();
                                         }
@@ -286,7 +286,7 @@ namespace XtremePharmacyManager
                                             ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                             selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                                         }
-                                        if (ent.Entry(selectedOrder) != null)
+                                        if (ent.Entry(selectedOrder) != null && ent.Entry(selectedOrder).State != System.Data.Entity.EntityState.Detached)
                                         {
                                             ent.Entry(selectedOrder).Reload();
                                         }
@@ -345,7 +345,7 @@ namespace XtremePharmacyManager
                                         ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                         selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                                     }
-                                    if (ent.Entry(selectedOrder) != null)
+                                    if (ent.Entry(selectedOrder) != null && ent.Entry(selectedOrder).State != System.Data.Entity.EntityState.Detached)
                                     {
                                         ent.Entry(selectedOrder).Reload();
                                     }
@@ -405,7 +405,7 @@ namespace XtremePharmacyManager
                                 ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                 selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                             }
-                            if (ent.Entry(selectedOrder) != null)
+                            if (ent.Entry(selectedOrder) != null && ent.Entry(selectedOrder).State != System.Data.Entity.EntityState.Detached)
                             {
                                 ent.Entry(selectedOrder).Reload();
                             }
@@ -476,7 +476,7 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteProductOrderByID(selectedOrder.ID);
-                                        if (ent.Entry(selectedOrder) != null)
+                                        if (ent.Entry(selectedOrder) != null && ent.Entry(selectedOrder).State != System.Data.Entity.EntityState.Detached)
                                         {
                                             ent.Entry(selectedOrder).Reload();
                                         }
