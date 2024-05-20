@@ -1281,23 +1281,37 @@ declare @new_order_price as money;
 declare @new_overidden_order_price as money;
 declare @new_product_price as money;
 select @new_product_price = ProductPrice from Products where ID = @new_product_id;
+select 'Calculating the price';
+select @new_product_price as NewProductPrice;
 set @new_order_price = @new_product_price * @new_desired_quantity;
+select 'New Order Price is calculated';
+select @new_order_price as NewOrderPriceCalculated;
 set @new_overidden_order_price = @new_price_override * @new_desired_quantity;
+select 'New Order Price Override by the user is calculated';
+select @new_overidden_order_price as NewOrderPriceByUserOverride;
 /* after calculating the new total price without the price override and the total price with the override we can determine the final price */
 if @new_price_override >= @new_product_price and @new_overidden_order_price < @new_order_price and @new_price_override < @new_order_price
 begin
+select 'State when the price calculated with the override is above the product price but not below the new order price and the price override is less than the calculated price';
+select 'The order price is as calculated by the price of the product because the overriden order price is less than the precalculated order price';
 set @final_price = @new_order_price;
 end
 else if @new_price_override >= @new_product_price and @new_overidden_order_price >= @new_order_price and @new_price_override < @new_order_price
 begin
+select 'State when the price calculated with the override is above the product price and the precalculated order price';
+select 'The price calculated with the override is set instead of the price of the original product and is calculated by the quantity';
 set @final_price = @new_overidden_order_price;
 end
 else if @new_price_override > @new_order_price
 begin
+select 'State when the price override is surely above the precalculated order price with no exception';
+select 'The other price calculations are discarded, the price override is set by as final and not calculated by the desired quantity';
 set @final_price = @new_price_override;
 end
 else
 begin
+select 'State when none of the above states is valid';
+select 'The precalculated product price is set as final and period.';
 set @final_price = @new_order_price;
 end
 /* and then update */
