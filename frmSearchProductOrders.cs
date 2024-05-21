@@ -38,7 +38,17 @@ namespace XtremePharmacyManager
             ent = entity;
             logger = extlogger;
             manager = ordermanager;
+            manager.BulkOperationsExecuted += ProductOrders_BulkOperationExecuted;
             InitializeComponent();
+        }
+
+        private void ProductOrders_BulkOperationExecuted(object sender, BulkOperationEventArgs<ProductOrder> e)
+        {
+            RefreshProducts();
+            RefreshEmployees();
+            RefreshClients();
+            RefreshProductOrders();
+            logger.RefreshLogs();
         }
 
         private void RefreshProducts()
@@ -246,10 +256,6 @@ namespace XtremePharmacyManager
                                         ent.UpdateProductOrderByID(selectedOrder.ID, selectedOrder.ProductID, selectedOrder.DesiredQuantity,
                                             selectedOrder.OrderPrice, selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderStatus,
                                             selectedOrder.OrderReason);
-                                        if (ent.Entry(selectedOrder) != null && ent.Entry(selectedOrder).State != System.Data.Entity.EntityState.Detached)
-                                        {
-                                            ent.Entry(selectedOrder).Reload();
-                                        }
                                         //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                                         ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
                                         if (pro_view != null)
@@ -303,10 +309,6 @@ namespace XtremePharmacyManager
                                             OverridePriceAsTotal = false;
                                             ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                             selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
-                                        }
-                                        if (ent.Entry(selectedOrder) != null && ent.Entry(selectedOrder).State != System.Data.Entity.EntityState.Detached)
-                                        {
-                                            ent.Entry(selectedOrder).Reload();
                                         }
                                         //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                                         ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
@@ -362,10 +364,6 @@ namespace XtremePharmacyManager
                                         OverridePriceAsTotal = false;
                                         ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                         selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
-                                    }
-                                    if (ent.Entry(selectedOrder) != null && ent.Entry(selectedOrder).State != System.Data.Entity.EntityState.Detached)
-                                    {
-                                        ent.Entry(selectedOrder).Reload();
                                     }
                                     //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                                     ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
@@ -423,11 +421,7 @@ namespace XtremePharmacyManager
                                 ent.AddProductOrder(selectedOrder.ProductID, selectedOrder.DesiredQuantity, selectedOrder.OrderPrice,
                                 selectedOrder.ClientID, selectedOrder.EmployeeID, selectedOrder.OrderReason, OverridePriceAsTotal);
                             }
-                            if (ent.Entry(selectedOrder) != null && ent.Entry(selectedOrder).State != System.Data.Entity.EntityState.Detached)
-                            {
-                                ent.Entry(selectedOrder).Reload();
-                            }
-                            //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
+                           //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                             ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x => x.ID == selectedOrder.ID).FirstOrDefault();
                             if (pro_view != null)
                             {
@@ -463,6 +457,11 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshProducts();
+                RefreshEmployees();
+                RefreshClients();
+                RefreshProductOrders();
+                logger.RefreshLogs();
             }
         }
 
@@ -494,10 +493,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteProductOrderByID(selectedOrder.ID);
-                                        if (ent.Entry(selectedOrder) != null && ent.Entry(selectedOrder).State != System.Data.Entity.EntityState.Detached)
-                                        {
-                                            ent.Entry(selectedOrder).Reload();
-                                        }
                                         //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
                                         ExtendedProductOrdersView pro_view = ent.ExtendedProductOrdersViews.Where(x=> x.ID == selectedOrder.ID).FirstOrDefault();
                                         if(pro_view != null)
@@ -537,6 +532,11 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshProducts();
+                RefreshEmployees();
+                RefreshClients();
+                RefreshProductOrders();
+                logger.RefreshLogs();
             }
         }
 

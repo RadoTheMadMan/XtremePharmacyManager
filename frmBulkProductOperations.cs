@@ -391,6 +391,8 @@ namespace XtremePharmacyManager
                 {
                     Product selected_record = (Product)cbSelectRecord.SelectedItem;
                     this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
+                    cbBrand.SelectedValue = selected_record.BrandID;
+                    cbVendor.SelectedValue = selected_record.VendorID;
                     this.txtProductName.Text = (!String.IsNullOrEmpty(selected_record.ProductName)) ? selected_record.ProductName.ToString() : string.Empty;
                     this.txtProductDescription.Text = (!String.IsNullOrEmpty(selected_record.ProductDescription)) ? selected_record.ProductDescription.ToString() : string.Empty;
                     this.txtRegNum.Text = (!String.IsNullOrEmpty(selected_record.ProductRegNum)) ? selected_record.ProductRegNum.ToString() : string.Empty;
@@ -406,7 +408,8 @@ namespace XtremePharmacyManager
                 else if (selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
+                    cbBrand.SelectedValue = selected_target.BrandID;
+                    cbVendor.SelectedValue = selected_target.VendorID;
                     this.txtProductName.Text = (!String.IsNullOrEmpty(selected_target.ProductName)) ? selected_target.ProductName.ToString() : string.Empty;
                     this.txtProductDescription.Text = (!String.IsNullOrEmpty(selected_target.ProductDescription)) ? selected_target.ProductDescription.ToString() : string.Empty;
                     this.txtRegNum.Text = (!String.IsNullOrEmpty(selected_target.ProductRegNum)) ? selected_target.ProductRegNum.ToString() : string.Empty;
@@ -423,6 +426,8 @@ namespace XtremePharmacyManager
                 {
                     Product selected_record = (Product)cbSelectRecord.SelectedItem;
                     this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
+                    cbBrand.SelectedValue = selected_record.BrandID;
+                    cbVendor.SelectedValue = selected_record.VendorID;
                     this.txtProductName.Text = (!String.IsNullOrEmpty(selected_record.ProductName)) ? selected_record.ProductName.ToString() : string.Empty;
                     this.txtProductDescription.Text = (!String.IsNullOrEmpty(selected_record.ProductDescription)) ? selected_record.ProductDescription.ToString() : string.Empty;
                     this.txtRegNum.Text = (!String.IsNullOrEmpty(selected_record.ProductRegNum)) ? selected_record.ProductRegNum.ToString() : string.Empty;

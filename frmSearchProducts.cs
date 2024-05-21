@@ -34,8 +34,28 @@ namespace XtremePharmacyManager
             ent = entity;
             logger = extlogger;
             product_manager = productmanager;
+            product_manager.BulkOperationsExecuted += Products_BulkOperationExecuted;
             image_manager = imagemanager;
+            image_manager.BulkOperationsExecuted += ProductImages_BulkOperationExecuted;
             InitializeComponent();
+        }
+
+        private void ProductImages_BulkOperationExecuted(object sender, BulkOperationEventArgs<ProductImage> e)
+        {
+            RefreshProductBrands();
+            RefreshProductVendors();
+            RefreshProducts();
+            RefreshProductImages();
+            logger.RefreshLogs();
+        }
+
+        private void Products_BulkOperationExecuted(object sender, BulkOperationEventArgs<Product> e)
+        {
+            RefreshProductBrands();
+            RefreshProductVendors();
+            RefreshProducts();
+            RefreshProductImages();
+            logger.RefreshLogs();
         }
 
         private void RefreshProducts()

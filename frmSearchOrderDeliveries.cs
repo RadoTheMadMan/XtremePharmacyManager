@@ -37,7 +37,17 @@ namespace XtremePharmacyManager
             ent = entity;
             logger = extlogger;
             manager = deliverymanager;
+            manager.BulkOperationsExecuted += OrderDeliveries_BulkOperationExecuted;
             InitializeComponent();
+        }
+
+        private void OrderDeliveries_BulkOperationExecuted(object sender, BulkOperationEventArgs<OrderDelivery> e)
+        {
+            RefreshProductOrders();
+            RefreshPaymentMethods();
+            RefreshDeliveryServices();
+            RefreshOrderDeliveries();
+            logger.RefreshLogs();
         }
 
         private void RefreshProductOrders()
@@ -48,6 +58,10 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     product_orders = ent.GetProductOrder(-1,-1,0, new decimal(),-1,-1,new DateTime(),new DateTime(),new DateTime(),new DateTime(),0,"").ToList();
+                    foreach(var entry in product_orders)
+                    {
+                        ent.Entry(ent.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                    }
                     cbSelectProductOrder.DataSource = product_orders;
                     ProductOrderIDColumn.DataSource = product_orders;
                 }
@@ -66,6 +80,10 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     order_deliveries = ent.GetOrderDelivery(-1,-1,-1,-1,"",new decimal(),new DateTime(), new DateTime(), new DateTime(), new DateTime(),0,"").ToList();
+                    foreach(var entry in order_deliveries)
+                    {
+                        ent.Entry(ent.OrderDeliveries.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                    }
                     dgvOrderDeliveries.DataSource = order_deliveries;
                 }
             }
@@ -83,6 +101,10 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     delivery_services = ent.GetDeliveryService(-1,"",new decimal()).ToList();
+                    foreach(var entry in delivery_services)
+                    {
+                        ent.Entry(ent.DeliveryServices.Where(x=>x.ID == entry.ID).FirstOrDefault()).Reload();
+                    }
                     cbSelectDeliveryService.DataSource = delivery_services;
                     DeliveryServiceIDColumn.DataSource = delivery_services;
                 }
@@ -101,6 +123,10 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     payment_methods = ent.GetPaymentMethod(-1,"").ToList();
+                    foreach (var entry in payment_methods)
+                    {
+                        ent.Entry(ent.PaymentMethods.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                    }
                     cbSelectPaymentMethod.DataSource = payment_methods;
                     PaymentMethodIDColumn.DataSource = payment_methods;
                 }
@@ -218,7 +244,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.UpdateOrderDeliveryByID(selectedDelivery.ID, selectedDelivery.OrderID,selectedDelivery.DeliveryServiceID,selectedDelivery.PaymentMethodID,selectedDelivery.CargoID,selectedDelivery.DeliveryStatus,selectedDelivery.DeliveryReason);
-                                        ent.SaveChanges();
                                         //whenever you do an operation on something check if it exist in the database views and reload it in the model
                                         //if it exist in the views and/or the tables
                                         ExtendedOrderDeliveriesView od_view = ent.ExtendedOrderDeliveriesViews.Where(x => x.ID == selectedDelivery.ID).FirstOrDefault();
@@ -251,7 +276,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.AddOrderDelivery(selectedDelivery.OrderID,selectedDelivery.DeliveryServiceID,selectedDelivery.PaymentMethodID,selectedDelivery.CargoID,selectedDelivery.DeliveryReason);
-                                        ent.SaveChanges();
                                         //whenever you do an operation on something check if it exist in the database views and reload it in the model
                                         //if it exist in the views and/or the tables
                                         ExtendedOrderDeliveriesView od_view = ent.ExtendedOrderDeliveriesViews.Where(x => x.ID == selectedDelivery.ID).FirstOrDefault();
@@ -285,7 +309,6 @@ namespace XtremePharmacyManager
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
                                     ent.AddOrderDelivery(selectedDelivery.OrderID, selectedDelivery.DeliveryServiceID, selectedDelivery.PaymentMethodID, selectedDelivery.CargoID, selectedDelivery.DeliveryReason);
-                                    ent.SaveChanges();
                                     //whenever you do an operation on something check if it exist in the database views and reload it in the model
                                     //if it exist in the views and/or the tables
                                     ExtendedOrderDeliveriesView od_view = ent.ExtendedOrderDeliveriesViews.Where(x => x.ID == selectedDelivery.ID).FirstOrDefault();
@@ -320,7 +343,6 @@ namespace XtremePharmacyManager
                         if (ent.Database.Connection.State == ConnectionState.Open)
                         {
                             ent.AddOrderDelivery(selectedDelivery.OrderID, selectedDelivery.DeliveryServiceID, selectedDelivery.PaymentMethodID, selectedDelivery.CargoID, selectedDelivery.DeliveryReason);
-                            ent.SaveChanges();
                             //whenever you do an operation on something check if it exist in the database views and reload it in the model
                             //if it exist in the views and/or the tables
                             ExtendedOrderDeliveriesView od_view = ent.ExtendedOrderDeliveriesViews.Where(x => x.ID == selectedDelivery.ID).FirstOrDefault();
@@ -348,6 +370,11 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshProductOrders();
+                RefreshPaymentMethods();
+                RefreshDeliveryServices();
+                RefreshOrderDeliveries();
+                logger.RefreshLogs();
             }
         }
 
@@ -379,7 +406,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteOrderDeliveryByID(selectedDelivery.ID);
-                                        ent.SaveChanges();
                                         //whenever you do an operation on something check if it exist in the database views and reload it in the model
                                         //if it exist in the views and/or the tables
                                         ExtendedOrderDeliveriesView od_view = ent.ExtendedOrderDeliveriesViews.Where(x=>x.ID == selectedDelivery.ID).FirstOrDefault();
@@ -410,6 +436,11 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshProductOrders();
+                RefreshPaymentMethods();
+                RefreshDeliveryServices();
+                RefreshOrderDeliveries();
+                logger.RefreshLogs();
             }
         }
 

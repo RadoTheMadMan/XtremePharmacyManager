@@ -16,6 +16,8 @@ namespace XtremePharmacyManager
     {
         static BulkOperationManager<ProductImage> manager;
         BulkOperation<ProductImage> selected_operation;
+        static List<ProductImage> entries;
+        static List<Product> product_entries;
         ProductImage selected_target;
         static Entities manager_entities;
         public frmBulkProductImageOperations(ref BulkOperationManager<ProductImage> operation_manager)
@@ -35,14 +37,36 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.ProductImages.ToList();
-                cbProduct.DataSource = manager_entities.Products.ToList();
+                entries = manager_entities.ProductImages.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductImages.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
+                product_entries = manager_entities.Products.ToList();
+                foreach (var entry in product_entries)
+                {
+                    manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbProduct.DataSource = product_entries;
                 lblOperationResults.Text = e.Result;
                 txtOperationLogs.Text = e.OperationLog;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.ProductImages.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductImages.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
+                product_entries = manager_entities.Products.ToList();
+                foreach (var entry in product_entries)
+                {
+                    manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbProduct.DataSource = product_entries;
             }
         }
 
@@ -52,14 +76,36 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.ProductImages.ToList();
-                cbProduct.DataSource = manager_entities.Products.ToList();
+                entries = manager_entities.ProductImages.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductImages.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
+                product_entries = manager_entities.Products.ToList();
+                foreach (var entry in product_entries)
+                {
+                    manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbProduct.DataSource = product_entries;
                 lblOperationResults.Text = "Operation Results: ";
                 txtOperationLogs.Text = "";
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.ProductImages.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductImages.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
+                product_entries = manager_entities.Products.ToList();
+                foreach (var entry in product_entries)
+                {
+                    manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbProduct.DataSource = product_entries;
             }
         }
 
@@ -70,8 +116,18 @@ namespace XtremePharmacyManager
         {
             Bitmap current_image = new Bitmap(64, 64);
             lstBulkOperations.DataSource = manager.BulkOperations;
-            cbSelectRecord.DataSource = manager_entities.ProductImages.ToList();
-            cbProduct.DataSource = manager_entities.Products.ToList();
+            entries = manager_entities.ProductImages.ToList();
+            foreach (var entry in entries)
+            {
+                manager_entities.Entry(manager_entities.ProductImages.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+            }
+            cbSelectRecord.DataSource = entries;
+            product_entries = manager_entities.Products.ToList();
+            foreach (var entry in product_entries)
+            {
+                manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+            }
+            cbProduct.DataSource = product_entries;
             try
             {
                 if (selected_operation != null && selected_target != null)
@@ -89,6 +145,18 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.ProductImages.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductImages.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
+                product_entries = manager_entities.Products.ToList();
+                foreach (var entry in product_entries)
+                {
+                    manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbProduct.DataSource = product_entries;
             }
         }
 
@@ -241,23 +309,48 @@ namespace XtremePharmacyManager
             Bitmap selected_image;
             try
             {
-                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject))
+                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && ((ProductImage)cbSelectRecord.SelectedItem) == selected_operation.TargetObject)
                 {
                     selected_target = selected_operation.TargetObject;
                 }
                 else
                 {
                     ProductImage selected_record = (ProductImage)cbSelectRecord.SelectedItem;
-                    selected_target = manager_entities.ProductImages.Where(x => x.ID == selected_record.ID).FirstOrDefault();
+                    if (selected_record != null && manager_entities.ProductImages.Where(x => x.ID == selected_record.ID).Any())
+                    {
+                        selected_target = manager_entities.ProductImages.Where(x => x.ID == selected_record.ID).FirstOrDefault();
+                    }
                 }
-                if (selected_target != null)
+                if (cbSelectRecord.SelectedItem != null && selected_target == null)
                 {
+                    ProductImage selected_record = (ProductImage)cbSelectRecord.SelectedItem;
+                    ConvertBinaryToImage(selected_record.ImageData, out selected_image);
+                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
+                    cbProduct.SelectedValue = selected_record.ProductID;
+                    this.txtImageName.Text = (!String.IsNullOrEmpty(selected_record.ImageName)) ? selected_record.ImageName.ToString() : string.Empty;
+                    this.pbProductImageData.Image = selected_image;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
+                }
+                else if (selected_target != null)
+                {
+                    this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
+                    this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     ConvertBinaryToImage(selected_target.ImageData, out selected_image);
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
+                    cbProduct.SelectedValue = selected_target.ProductID;
                     this.txtImageName.Text = (!String.IsNullOrEmpty(selected_target.ImageName)) ? selected_target.ImageName.ToString() : string.Empty;
                     this.pbProductImageData.Image = selected_image;
                     cbSelectRecord.SelectedValue = selected_target.ID;
-                    cbProduct.SelectedValue = selected_target.ProductID;
+                }
+                else
+                {
+                    ProductImage selected_record = (ProductImage)cbSelectRecord.SelectedItem;
+                    ConvertBinaryToImage(selected_record.ImageData, out selected_image);
+                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
+                    cbProduct.SelectedValue = selected_record.ProductID;
+                    this.txtImageName.Text = (!String.IsNullOrEmpty(selected_record.ImageName)) ? selected_record.ImageName.ToString() : string.Empty;
+                    this.pbProductImageData.Image = selected_image;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
                 }
             }
             catch (Exception ex)

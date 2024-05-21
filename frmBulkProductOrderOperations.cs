@@ -16,6 +16,10 @@ namespace XtremePharmacyManager
     {
         static BulkOperationManager<ProductOrder> manager;
         BulkOperation<ProductOrder> selected_operation;
+        static List<ProductOrder> entries;
+        static List<Product> product_entries;
+        static List<User> employee_entries;
+        static List<User> client_entries;
         ProductOrder selected_target;
         static Entities manager_entities;
         public frmBulkProductOrderOperations(ref BulkOperationManager<ProductOrder> operation_manager)
@@ -35,16 +39,60 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.ProductOrders.ToList();
-                cbProduct.DataSource = manager_entities.Products.ToList();
-                cbEmployee.DataSource = manager_entities.Users.Where(x=>x.UserRole == 0 || x.UserRole == 1).ToList();
-                cbClient.DataSource = manager_entities.Users.Where(x=>x.UserRole == 2).ToList();
+                entries = manager_entities.ProductOrders.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
+                product_entries = manager_entities.Products.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbProduct.DataSource = product_entries;
+                employee_entries = manager_entities.Users.Where(x=>x.UserRole == 0 || x.UserRole == 1).ToList();
+                foreach (var entry in employee_entries)
+                {
+                    manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbEmployee.DataSource = employee_entries;
+                client_entries = manager_entities.Users.Where(x=>x.UserRole == 2).ToList();
+                foreach (var entry in client_entries)
+                {
+                    manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbClient.DataSource = client_entries;
                 lblOperationResults.Text = e.Result;
                 txtOperationLogs.Text = e.OperationLog;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.ProductOrders.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
+                product_entries = manager_entities.Products.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbProduct.DataSource = product_entries;
+                employee_entries = manager_entities.Users.Where(x => x.UserRole == 0 || x.UserRole == 1).ToList();
+                foreach (var entry in employee_entries)
+                {
+                    manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbEmployee.DataSource = employee_entries;
+                client_entries = manager_entities.Users.Where(x => x.UserRole == 2).ToList();
+                foreach (var entry in client_entries)
+                {
+                    manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbClient.DataSource = client_entries;
             }
         }
 
@@ -54,16 +102,60 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.ProductOrders.ToList();
-                cbProduct.DataSource = manager_entities.Products.ToList();
-                cbEmployee.DataSource = manager_entities.Users.Where(x => x.UserRole == 0 || x.UserRole == 1).ToList();
-                cbClient.DataSource = manager_entities.Users.Where(x => x.UserRole == 2).ToList();
+                entries = manager_entities.ProductOrders.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
+                product_entries = manager_entities.Products.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbProduct.DataSource = product_entries;
+                employee_entries = manager_entities.Users.Where(x => x.UserRole == 0 || x.UserRole == 1).ToList();
+                foreach (var entry in employee_entries)
+                {
+                    manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbEmployee.DataSource = employee_entries;
+                client_entries = manager_entities.Users.Where(x => x.UserRole == 2).ToList();
+                foreach (var entry in client_entries)
+                {
+                    manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbClient.DataSource = client_entries;
                 lblOperationResults.Text = "Operation Results: ";
                 txtOperationLogs.Text = "";
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.ProductOrders.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
+                product_entries = manager_entities.Products.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbProduct.DataSource = product_entries;
+                employee_entries = manager_entities.Users.Where(x => x.UserRole == 0 || x.UserRole == 1).ToList();
+                foreach (var entry in employee_entries)
+                {
+                    manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbEmployee.DataSource = employee_entries;
+                client_entries = manager_entities.Users.Where(x => x.UserRole == 2).ToList();
+                foreach (var entry in client_entries)
+                {
+                    manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbClient.DataSource = client_entries;
             }
         }
 
@@ -74,10 +166,30 @@ namespace XtremePharmacyManager
         {
             Bitmap currentpfp = new Bitmap(64, 64);
             lstBulkOperations.DataSource = manager.BulkOperations;
-            cbSelectRecord.DataSource = manager_entities.ProductOrders.ToList();
-            cbProduct.DataSource = manager_entities.Products.ToList();
-            cbEmployee.DataSource = manager_entities.Users.Where(x => x.UserRole == 0 || x.UserRole == 1).ToList();
-            cbClient.DataSource = manager_entities.Users.Where(x => x.UserRole == 2).ToList();
+            entries = manager_entities.ProductOrders.ToList();
+            foreach (var entry in entries)
+            {
+                manager_entities.Entry(manager_entities.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+            }
+            cbSelectRecord.DataSource = entries;
+            product_entries = manager_entities.Products.ToList();
+            foreach (var entry in entries)
+            {
+                manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+            }
+            cbProduct.DataSource = product_entries;
+            employee_entries = manager_entities.Users.Where(x => x.UserRole == 0 || x.UserRole == 1).ToList();
+            foreach (var entry in employee_entries)
+            {
+                manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+            }
+            cbEmployee.DataSource = employee_entries;
+            client_entries = manager_entities.Users.Where(x => x.UserRole == 2).ToList();
+            foreach (var entry in client_entries)
+            {
+                manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+            }
+            cbClient.DataSource = client_entries;
             try
             {
                 if (selected_operation != null && selected_target != null)
@@ -100,6 +212,30 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.ProductOrders.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
+                product_entries = manager_entities.Products.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbProduct.DataSource = product_entries;
+                employee_entries = manager_entities.Users.Where(x => x.UserRole == 0 || x.UserRole == 1).ToList();
+                foreach (var entry in employee_entries)
+                {
+                    manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbEmployee.DataSource = employee_entries;
+                client_entries = manager_entities.Users.Where(x => x.UserRole == 2).ToList();
+                foreach (var entry in client_entries)
+                {
+                    manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbClient.DataSource = client_entries;
             }
         }
 
@@ -261,16 +397,35 @@ namespace XtremePharmacyManager
         {
             try
             {
-                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject))
+                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && ((ProductOrder)cbSelectRecord.SelectedItem) == selected_operation.TargetObject)
                 {
                     selected_target = selected_operation.TargetObject;
                 }
                 else
                 {
                     ProductOrder selected_record = (ProductOrder)cbSelectRecord.SelectedItem;
-                    selected_target = manager_entities.ProductOrders.Where(x => x.ID == selected_record.ID).FirstOrDefault();
+                    if (selected_record != null && manager_entities.ProductOrders.Where(x => x.ID == selected_record.ID).Any())
+                    {
+                        selected_target = manager_entities.ProductOrders.Where(x => x.ID == selected_record.ID).FirstOrDefault();
+                    }
                 }
-                if (selected_target != null)
+                if (cbSelectRecord.SelectedItem != null && selected_target == null)
+                {
+                    ProductOrder selected_record = (ProductOrder)cbSelectRecord.SelectedItem;
+                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
+                    this.txtReason.Text = (!String.IsNullOrEmpty(selected_record.OrderReason)) ? selected_record.OrderReason.ToString() : string.Empty;
+                    this.trbPrice.Value = (selected_record.OrderPrice >= 0) ? Convert.ToInt32(selected_record.OrderPrice) : 0;
+                    this.trbQuantity.Value = (selected_record.DesiredQuantity >= 0) ? selected_record.DesiredQuantity : 0;
+                    this.lblShowPrice.Text = (selected_record.OrderPrice >= 0) ? selected_record.OrderPrice.ToString() : string.Empty;
+                    this.lblShowQuantity.Text = (selected_record.DesiredQuantity >= 0) ? selected_record.DesiredQuantity.ToString() : string.Empty;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
+                    cbProduct.SelectedValue = selected_record.ProductID;
+                    cbClient.SelectedValue = selected_record.ClientID;
+                    cbEmployee.SelectedValue = selected_record.EmployeeID;
+                    cbStatus.SelectedIndex = selected_record.OrderStatus;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
+                }
+                else if (selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtReason.Text = (!String.IsNullOrEmpty(selected_target.OrderReason)) ? selected_target.OrderReason.ToString() : string.Empty;
@@ -283,6 +438,23 @@ namespace XtremePharmacyManager
                     cbClient.SelectedValue = selected_target.ClientID;
                     cbEmployee.SelectedValue = selected_target.EmployeeID;
                     cbStatus.SelectedIndex = selected_target.OrderStatus;
+                    cbSelectRecord.SelectedValue = selected_target.ID;
+                }
+                else
+                {
+                    ProductOrder selected_record = (ProductOrder)cbSelectRecord.SelectedItem;
+                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
+                    this.txtReason.Text = (!String.IsNullOrEmpty(selected_record.OrderReason)) ? selected_record.OrderReason.ToString() : string.Empty;
+                    this.trbPrice.Value = (selected_record.OrderPrice >= 0) ? Convert.ToInt32(selected_record.OrderPrice) : 0;
+                    this.trbQuantity.Value = (selected_record.DesiredQuantity >= 0) ? selected_record.DesiredQuantity : 0;
+                    this.lblShowPrice.Text = (selected_record.OrderPrice >= 0) ? selected_record.OrderPrice.ToString() : string.Empty;
+                    this.lblShowQuantity.Text = (selected_record.DesiredQuantity >= 0) ? selected_record.DesiredQuantity.ToString() : string.Empty;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
+                    cbProduct.SelectedValue = selected_record.ProductID;
+                    cbClient.SelectedValue = selected_record.ClientID;
+                    cbEmployee.SelectedValue = selected_record.EmployeeID;
+                    cbStatus.SelectedIndex = selected_record.OrderStatus;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
                 }
             }
             catch (Exception ex)

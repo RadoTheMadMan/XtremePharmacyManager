@@ -16,6 +16,10 @@ namespace XtremePharmacyManager
     {
         static BulkOperationManager<OrderDelivery> manager;
         BulkOperation<OrderDelivery> selected_operation;
+        static List<OrderDelivery> entries;
+        static List<ProductOrder> order_entries;
+        static List<PaymentMethod> method_entries;
+        static List<DeliveryService> service_entries;
         OrderDelivery selected_target;
         static Entities manager_entities;
         public frmBulkOrderDeliveryOperations(ref BulkOperationManager<OrderDelivery> operation_manager)
@@ -35,16 +39,60 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.OrderDeliveries.ToList();
-                cbOrder.DataSource = manager_entities.ProductOrders.ToList();
-                cbPaymentMethod.DataSource = manager_entities.PaymentMethods.ToList();
-                cbDeliveryService.DataSource = manager_entities.DeliveryServices.ToList();
+                entries = manager_entities.OrderDeliveries.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.OrderDeliveries.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
+                order_entries = manager_entities.ProductOrders.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbOrder.DataSource = order_entries;
+                method_entries = manager_entities.PaymentMethods.ToList();
+                foreach (var entry in method_entries)
+                {
+                    manager_entities.Entry(manager_entities.PaymentMethods.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbPaymentMethod.DataSource = method_entries;
+                service_entries = manager_entities.DeliveryServices.ToList();
+                foreach (var entry in service_entries)
+                {
+                    manager_entities.Entry(manager_entities.DeliveryServices.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbDeliveryService.DataSource = service_entries;
                 lblOperationResults.Text = e.Result;
                 txtOperationLogs.Text = e.OperationLog;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.OrderDeliveries.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.OrderDeliveries.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
+                order_entries = manager_entities.ProductOrders.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbOrder.DataSource = order_entries;
+                method_entries = manager_entities.PaymentMethods.ToList();
+                foreach (var entry in method_entries)
+                {
+                    manager_entities.Entry(manager_entities.PaymentMethods.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbPaymentMethod.DataSource = method_entries;
+                service_entries = manager_entities.DeliveryServices.ToList();
+                foreach (var entry in service_entries)
+                {
+                    manager_entities.Entry(manager_entities.DeliveryServices.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbDeliveryService.DataSource = service_entries;
             }
         }
 
@@ -54,16 +102,60 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.OrderDeliveries.ToList();
-                cbOrder.DataSource = manager_entities.ProductOrders.ToList();
-                cbPaymentMethod.DataSource = manager_entities.PaymentMethods.ToList();
-                cbDeliveryService.DataSource = manager_entities.DeliveryServices.ToList();
+                entries = manager_entities.OrderDeliveries.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.OrderDeliveries.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
+                order_entries = manager_entities.ProductOrders.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbOrder.DataSource = order_entries;
+                method_entries = manager_entities.PaymentMethods.ToList();
+                foreach (var entry in method_entries)
+                {
+                    manager_entities.Entry(manager_entities.PaymentMethods.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbPaymentMethod.DataSource = method_entries;
+                service_entries = manager_entities.DeliveryServices.ToList();
+                foreach (var entry in service_entries)
+                {
+                    manager_entities.Entry(manager_entities.DeliveryServices.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbDeliveryService.DataSource = service_entries;
                 lblOperationResults.Text = "Operation Results: ";
                 txtOperationLogs.Text = "";
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.OrderDeliveries.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.OrderDeliveries.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
+                order_entries = manager_entities.ProductOrders.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbOrder.DataSource = order_entries;
+                method_entries = manager_entities.PaymentMethods.ToList();
+                foreach (var entry in method_entries)
+                {
+                    manager_entities.Entry(manager_entities.PaymentMethods.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbPaymentMethod.DataSource = method_entries;
+                service_entries = manager_entities.DeliveryServices.ToList();
+                foreach (var entry in service_entries)
+                {
+                    manager_entities.Entry(manager_entities.DeliveryServices.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbDeliveryService.DataSource = service_entries;
             }
         }
 
@@ -74,10 +166,30 @@ namespace XtremePharmacyManager
         {
             Bitmap currentpfp = new Bitmap(64, 64);
             lstBulkOperations.DataSource = manager.BulkOperations;
-            cbSelectRecord.DataSource = manager_entities.OrderDeliveries.ToList();
-            cbOrder.DataSource = manager_entities.ProductOrders.ToList();
-            cbPaymentMethod.DataSource = manager_entities.PaymentMethods.ToList();
-            cbDeliveryService.DataSource = manager_entities.DeliveryServices.ToList();
+            entries = manager_entities.OrderDeliveries.ToList();
+            foreach (var entry in entries)
+            {
+                manager_entities.Entry(manager_entities.OrderDeliveries.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+            }
+            cbSelectRecord.DataSource = entries;
+            order_entries = manager_entities.ProductOrders.ToList();
+            foreach (var entry in entries)
+            {
+                manager_entities.Entry(manager_entities.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+            }
+            cbOrder.DataSource = order_entries;
+            method_entries = manager_entities.PaymentMethods.ToList();
+            foreach (var entry in method_entries)
+            {
+                manager_entities.Entry(manager_entities.PaymentMethods.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+            }
+            cbPaymentMethod.DataSource = method_entries;
+            service_entries = manager_entities.DeliveryServices.ToList();
+            foreach (var entry in service_entries)
+            {
+                manager_entities.Entry(manager_entities.DeliveryServices.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+            }
+            cbDeliveryService.DataSource = service_entries;
             try
             {
                 if (selected_operation != null && selected_target != null)
@@ -99,6 +211,30 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.OrderDeliveries.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.OrderDeliveries.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
+                order_entries = manager_entities.ProductOrders.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbOrder.DataSource = order_entries;
+                method_entries = manager_entities.PaymentMethods.ToList();
+                foreach (var entry in method_entries)
+                {
+                    manager_entities.Entry(manager_entities.PaymentMethods.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbPaymentMethod.DataSource = method_entries;
+                service_entries = manager_entities.DeliveryServices.ToList();
+                foreach (var entry in service_entries)
+                {
+                    manager_entities.Entry(manager_entities.DeliveryServices.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbDeliveryService.DataSource = service_entries;
             }
         }
 
@@ -256,16 +392,34 @@ namespace XtremePharmacyManager
         {
             try
             {
-                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject))
+                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && ((OrderDelivery)cbSelectRecord.SelectedItem) == selected_operation.TargetObject)
                 {
                     selected_target = selected_operation.TargetObject;
                 }
                 else
                 {
                     OrderDelivery selected_record = (OrderDelivery)cbSelectRecord.SelectedItem;
-                    selected_target = manager_entities.OrderDeliveries.Where(x => x.ID == selected_record.ID).FirstOrDefault();
+                    if (selected_record != null && manager_entities.OrderDeliveries.Where(x => x.ID == selected_record.ID).Any())
+                    {
+                        selected_target = manager_entities.OrderDeliveries.Where(x => x.ID == selected_record.ID).FirstOrDefault();
+                    }
                 }
-                if (selected_target != null)
+                if (cbSelectRecord.SelectedItem != null && selected_target == null)
+                {
+                    OrderDelivery selected_record = (OrderDelivery)cbSelectRecord.SelectedItem;
+                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
+                    this.txtReason.Text = (!String.IsNullOrEmpty(selected_record.DeliveryReason)) ? selected_record.DeliveryReason.ToString() : string.Empty;
+                    this.txtCargoID.Text = (!String.IsNullOrEmpty(selected_record.CargoID)) ? selected_record.CargoID.ToString() : string.Empty;
+                    this.trbPrice.Value = (selected_record.TotalPrice >= 0) ? Convert.ToInt32(selected_record.TotalPrice) : 0;
+                    this.lblShowPrice.Text = (selected_record.TotalPrice >= 0) ? selected_record.TotalPrice.ToString() : string.Empty;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
+                    cbOrder.SelectedValue = selected_record.OrderID;
+                    cbDeliveryService.SelectedValue = selected_record.DeliveryServiceID;
+                    cbPaymentMethod.SelectedValue = selected_record.PaymentMethodID;
+                    cbStatus.SelectedIndex = selected_record.DeliveryStatus;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
+                }
+                else if (selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtReason.Text = (!String.IsNullOrEmpty(selected_target.DeliveryReason)) ? selected_target.DeliveryReason.ToString() : string.Empty;
@@ -277,6 +431,22 @@ namespace XtremePharmacyManager
                     cbDeliveryService.SelectedValue = selected_target.DeliveryServiceID;
                     cbPaymentMethod.SelectedValue = selected_target.PaymentMethodID;
                     cbStatus.SelectedIndex = selected_target.DeliveryStatus;
+                    cbSelectRecord.SelectedValue = selected_target.ID;
+                }
+                else
+                {
+                    OrderDelivery selected_record = (OrderDelivery)cbSelectRecord.SelectedItem;
+                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
+                    this.txtReason.Text = (!String.IsNullOrEmpty(selected_record.DeliveryReason)) ? selected_record.DeliveryReason.ToString() : string.Empty;
+                    this.txtCargoID.Text = (!String.IsNullOrEmpty(selected_record.CargoID)) ? selected_record.CargoID.ToString() : string.Empty;
+                    this.trbPrice.Value = (selected_record.TotalPrice >= 0) ? Convert.ToInt32(selected_record.TotalPrice) : 0;
+                    this.lblShowPrice.Text = (selected_record.TotalPrice >= 0) ? selected_record.TotalPrice.ToString() : string.Empty;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
+                    cbOrder.SelectedValue = selected_record.OrderID;
+                    cbDeliveryService.SelectedValue = selected_record.DeliveryServiceID;
+                    cbPaymentMethod.SelectedValue = selected_record.PaymentMethodID;
+                    cbStatus.SelectedIndex = selected_record.DeliveryStatus;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
                 }
             }
             catch (Exception ex)
