@@ -31,7 +31,14 @@ namespace XtremePharmacyManager
             ent = entity;
             logger = extlogger;
             manager = bulkusermanager;
+            manager.BulkOperationsExecuted += Users_OnBulkOperationExecuted;
             InitializeComponent();
+        }
+
+        private void Users_OnBulkOperationExecuted(object sender, BulkOperationEventArgs<User> e)
+        {
+            RefreshUsers();
+            logger.RefreshLogs();
         }
 
         private void RefreshUsers()
@@ -42,6 +49,11 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     users = ent.GetUser(-1, "", "", "", DateTime.Now, DateTime.Now, "", "", "", new decimal(), "", DateTime.Now, DateTime.Now, 0).ToList();
+                    foreach(var user in users)
+                    {
+                        //Always get updated data from the database on each refresh before setting the data source
+                        ent.Entry(ent.Users.Where(x => x.ID == user.ID).FirstOrDefault()).Reload();
+                    }
                     dgvUsers.DataSource = users;
                 }
             }
@@ -139,8 +151,7 @@ namespace XtremePharmacyManager
                                             selectedUser.UserBalance, selectedUser.UserDiagnose, selectedUser.UserRole);
                                         //Update the fucking views as well because they don't get automatically updated in the entity model on
                                         //data change while in the database itself they get updated and created and deleted easily
-                                        //
-                                        ent.SaveChanges();
+                                        
                                         if (selectedUser.UserRole == 0 || selectedUser.UserRole == 1)
                                         {
                                             //retrieve the data and if it exists reload it from the database, if not, do nothing
@@ -184,7 +195,6 @@ namespace XtremePharmacyManager
                                         ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
                                             selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
                                             selectedUser.UserDiagnose, selectedUser.UserRole);
-                                        ent.SaveChanges();
                                         if (selectedUser.UserRole == 0 || selectedUser.UserRole == 1)
                                         {
                                             //retrieve the data and if it exists reload it from the database, if not, do nothing
@@ -227,7 +237,6 @@ namespace XtremePharmacyManager
                                     ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
                                         selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
                                         selectedUser.UserDiagnose, selectedUser.UserRole);
-                                    ent.SaveChanges();
                                     if (selectedUser.UserRole == 0 || selectedUser.UserRole == 1)
                                     {
                                         //retrieve the data and if it exists reload it from the database, if not, do nothing
@@ -271,7 +280,6 @@ namespace XtremePharmacyManager
                             ent.AddUser(selectedUser.UserName, selectedUser.UserPassword, selectedUser.UserDisplayName, selectedUser.UserBirthDate,
                                 selectedUser.UserPhone, selectedUser.UserEmail, selectedUser.UserAddress, selectedUser.UserProfilePic, selectedUser.UserBalance,
                                 selectedUser.UserDiagnose, selectedUser.UserRole);
-                            ent.SaveChanges();
                             if (selectedUser.UserRole == 0 || selectedUser.UserRole == 1)
                             {
                                 //retrieve the data and if it exists reload it from the database, if not, do nothing
@@ -307,6 +315,8 @@ namespace XtremePharmacyManager
             catch(Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshUsers();
+                logger.RefreshLogs();
             }
         }
 
@@ -338,7 +348,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteUserByID(selectedUser.ID);
-                                        ent.SaveChanges();
                                         if (selectedUser.UserRole == 0 || selectedUser.UserRole == 1)
                                         {
                                             //retrieve the data and if it exists reload it from the database, if not, do nothing
@@ -377,6 +386,8 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshUsers();
+                logger.RefreshLogs();
             }
         }
 
@@ -577,6 +588,8 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshUsers();
+                logger.RefreshLogs();
             }
         }
     }

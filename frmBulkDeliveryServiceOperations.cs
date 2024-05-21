@@ -16,6 +16,7 @@ namespace XtremePharmacyManager
     {
         static BulkOperationManager<DeliveryService> manager;
         BulkOperation<DeliveryService> selected_operation;
+        static List<DeliveryService> entries;
         DeliveryService selected_target;
         static Entities manager_entities;
         public frmBulkDeliveryServiceOperations(ref BulkOperationManager<DeliveryService> operation_manager)
@@ -35,13 +36,24 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.DeliveryServices.ToList();
+                entries = manager_entities.DeliveryServices.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.DeliveryServices.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
                 lblOperationResults.Text = e.Result;
                 txtOperationLogs.Text = e.OperationLog;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.DeliveryServices.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.DeliveryServices.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
             }
         }
 
@@ -51,13 +63,24 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.DeliveryServices.ToList();
+                entries = manager_entities.DeliveryServices.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.DeliveryServices.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
                 lblOperationResults.Text = "Operation Results: ";
                 txtOperationLogs.Text = "";
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.DeliveryServices.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.DeliveryServices.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
             }
         }
 
@@ -68,7 +91,12 @@ namespace XtremePharmacyManager
         {
             Bitmap currentpfp = new Bitmap(64, 64);
             lstBulkOperations.DataSource = manager.BulkOperations;
-            cbSelectRecord.DataSource = manager_entities.DeliveryServices.ToList();
+            entries = manager_entities.DeliveryServices.ToList();
+            foreach (var entry in entries)
+            {
+                manager_entities.Entry(manager_entities.DeliveryServices.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+            }
+            cbSelectRecord.DataSource = entries;
             try
             {
                 if (selected_operation != null && selected_target != null)
@@ -85,6 +113,12 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.DeliveryServices.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.DeliveryServices.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
             }
         }
 
@@ -225,22 +259,43 @@ namespace XtremePharmacyManager
         {
             try
             {
-                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject))
+                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && ((DeliveryService)cbSelectRecord.SelectedItem) == selected_operation.TargetObject)
                 {
                     selected_target = selected_operation.TargetObject;
                 }
                 else
                 {
                     DeliveryService selected_record = (DeliveryService)cbSelectRecord.SelectedItem;
-                    selected_target = manager_entities.DeliveryServices.Where(x => x.ID == selected_record.ID).FirstOrDefault();
+                    if (selected_record != null && manager_entities.DeliveryServices.Where(x => x.ID == selected_record.ID).Any())
+                    {
+                        selected_target = manager_entities.DeliveryServices.Where(x => x.ID == selected_record.ID).FirstOrDefault();
+                    }
                 }
-                if (selected_target != null)
+                if (cbSelectRecord.SelectedItem != null && selected_target == null)
+                {
+                    DeliveryService selected_record = (DeliveryService)cbSelectRecord.SelectedItem;
+                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
+                    this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_record.ServiceName)) ? selected_record.ServiceName.ToString() : string.Empty;
+                    this.trbPrice.Value = (selected_record.ServicePrice >= 0) ? Convert.ToInt32(selected_record.ServicePrice) : 0;
+                    this.lblShowPrice.Text = (selected_record.ServicePrice >= 0) ? selected_record.ServicePrice.ToString() : string.Empty;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
+                }
+                else if (selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_target.ServiceName)) ? selected_target.ServiceName.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice) : 0;
                     this.lblShowPrice.Text = (selected_target.ServicePrice >= 0) ? selected_target.ServicePrice.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
+                }
+                else
+                {
+                    DeliveryService selected_record = (DeliveryService)cbSelectRecord.SelectedItem;
+                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
+                    this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_record.ServiceName)) ? selected_record.ServiceName.ToString() : string.Empty;
+                    this.trbPrice.Value = (selected_record.ServicePrice >= 0) ? Convert.ToInt32(selected_record.ServicePrice) : 0;
+                    this.lblShowPrice.Text = (selected_record.ServicePrice >= 0) ? selected_record.ServicePrice.ToString() : string.Empty;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
                 }
             }
             catch (Exception ex)

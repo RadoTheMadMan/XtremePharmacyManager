@@ -17,6 +17,7 @@ namespace XtremePharmacyManager
         static BulkOperationManager<User> manager;
         BulkOperation<User> selected_operation;
         User selected_target;
+        static List<User> entries;
         static Entities manager_entities;
         public frmBulkUserOperations(ref BulkOperationManager<User> operation_manager)
         {
@@ -35,15 +36,26 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.Users.ToList();
+                entries = manager_entities.Users.ToList();
+                foreach(var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.Users.Where(x=>x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
                 lblOperationResults.Text = e.Result;
                 txtOperationLogs.Text = e.OperationLog;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
             }
         }
+
 
         private void OnBulkOperationListChanged(object sender, BulkOperationEventArgs<User> e)
         {
@@ -51,13 +63,23 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.Users.ToList();
+                entries = manager_entities.Users.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
                 lblOperationResults.Text = "Operation Results: ";
                 txtOperationLogs.Text = "";
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
             }
         }
 
@@ -68,7 +90,12 @@ namespace XtremePharmacyManager
         {
             Bitmap currentpfp = new Bitmap(64, 64);
             lstBulkOperations.DataSource = manager.BulkOperations;
-            cbSelectRecord.DataSource = manager_entities.Users.ToList();
+            entries = manager_entities.Users.ToList();
+            foreach (var entry in entries)
+            {
+                manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+            }
+            cbSelectRecord.DataSource = entries;
             try
             {
                 if (selected_operation != null && selected_target != null)
@@ -95,6 +122,12 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.Users.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.Users.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
             }
         }
 
@@ -300,16 +333,38 @@ namespace XtremePharmacyManager
             try
             {
                 Bitmap currentpfp = new Bitmap(64, 64);
-                if(selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject))
+                if(selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && ((User)cbSelectRecord.SelectedItem) == selected_operation.TargetObject)
                 {
                     selected_target = selected_operation.TargetObject;
                 }
                 else
                 {
                     User selected_record = (User)cbSelectRecord.SelectedItem;
-                    selected_target = manager_entities.Users.Where(x=>x.ID == selected_record.ID).FirstOrDefault();  
+                    if (selected_record != null && manager_entities.Users.Where(x => x.ID == selected_record.ID).Any())
+                    {
+                        selected_target = manager_entities.Users.Where(x => x.ID == selected_record.ID).FirstOrDefault();
+                    }
                 }
-                if (selected_target != null)
+                if (cbSelectRecord.SelectedItem  != null && selected_target == null)
+                {
+                    User selected_record = (User)cbSelectRecord.SelectedItem;
+                    if (selected_record.UserProfilePic != null) { ConvertBinaryToImage(selected_record.UserProfilePic, out currentpfp); }
+                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
+                    this.txtUsername.Text = (!String.IsNullOrEmpty(selected_record.UserName)) ? selected_record.UserName.ToString() : string.Empty;
+                    this.txtPassword.Text = (!String.IsNullOrEmpty(selected_record.UserPassword)) ? selected_record.UserPassword.ToString() : string.Empty;
+                    this.txtDisplayName.Text = (!String.IsNullOrEmpty(selected_record.UserDisplayName)) ? selected_record.UserDisplayName.ToString() : string.Empty;
+                    this.dtBirthDate.Value = (selected_record.UserBirthDate != null && selected_record.UserBirthDate > DateTime.MinValue && selected_record.UserBirthDate < DateTime.MaxValue) ? selected_record.UserBirthDate : DateTime.Now;
+                    this.txtPhone.Text = (!String.IsNullOrEmpty(selected_record.UserPhone)) ? selected_record.UserPhone.ToString() : string.Empty;
+                    this.txtEmail.Text = (!String.IsNullOrEmpty(selected_record.UserEmail)) ? selected_record.UserEmail.ToString() : string.Empty;
+                    this.txtAddress.Text = (!String.IsNullOrEmpty(selected_record.UserAddress)) ? selected_record.UserAddress.ToString() : string.Empty;
+                    trbBalance.Value = (selected_record.UserBalance >= 0) ? Convert.ToInt32(selected_record.UserBalance) : 0;
+                    lblShowBalance.Text = (selected_record.UserBalance >= 0) ? selected_record.UserBalance.ToString() : string.Empty;
+                    txtDiagnose.Text = (!String.IsNullOrEmpty(selected_record.UserDiagnose)) ? selected_record.UserDiagnose : string.Empty;
+                    cbRole.SelectedIndex = (selected_record.UserRole >= 0 && selected_record.UserRole <= 2) ? selected_record.UserRole : 1;
+                    pbUserProfilePic.Image = (selected_record.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
+                    cbSelectRecord.SelectedValue = selected_record.ID;
+                }
+                else if (selected_target != null)
                 {
                     if (selected_target.UserProfilePic != null) { ConvertBinaryToImage(selected_target.UserProfilePic, out currentpfp); }
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
@@ -326,6 +381,25 @@ namespace XtremePharmacyManager
                     cbRole.SelectedIndex = (selected_target.UserRole >= 0 && selected_target.UserRole <= 2) ? selected_target.UserRole : 1;
                     pbUserProfilePic.Image = (selected_target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
                     cbSelectRecord.SelectedValue = selected_target.ID;
+                }
+                else
+                {
+                    User selected_record = (User)cbSelectRecord.SelectedItem;
+                    if (selected_record.UserProfilePic != null) { ConvertBinaryToImage(selected_record.UserProfilePic, out currentpfp); }
+                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
+                    this.txtUsername.Text = (!String.IsNullOrEmpty(selected_record.UserName)) ? selected_record.UserName.ToString() : string.Empty;
+                    this.txtPassword.Text = (!String.IsNullOrEmpty(selected_record.UserPassword)) ? selected_record.UserPassword.ToString() : string.Empty;
+                    this.txtDisplayName.Text = (!String.IsNullOrEmpty(selected_record.UserDisplayName)) ? selected_record.UserDisplayName.ToString() : string.Empty;
+                    this.dtBirthDate.Value = (selected_record.UserBirthDate != null && selected_record.UserBirthDate > DateTime.MinValue && selected_record.UserBirthDate < DateTime.MaxValue) ? selected_record.UserBirthDate : DateTime.Now;
+                    this.txtPhone.Text = (!String.IsNullOrEmpty(selected_record.UserPhone)) ? selected_record.UserPhone.ToString() : string.Empty;
+                    this.txtEmail.Text = (!String.IsNullOrEmpty(selected_record.UserEmail)) ? selected_record.UserEmail.ToString() : string.Empty;
+                    this.txtAddress.Text = (!String.IsNullOrEmpty(selected_record.UserAddress)) ? selected_record.UserAddress.ToString() : string.Empty;
+                    trbBalance.Value = (selected_record.UserBalance >= 0) ? Convert.ToInt32(selected_record.UserBalance) : 0;
+                    lblShowBalance.Text = (selected_record.UserBalance >= 0) ? selected_record.UserBalance.ToString() : string.Empty;
+                    txtDiagnose.Text = (!String.IsNullOrEmpty(selected_record.UserDiagnose)) ? selected_record.UserDiagnose : string.Empty;
+                    cbRole.SelectedIndex = (selected_record.UserRole >= 0 && selected_record.UserRole <= 2) ? selected_record.UserRole : 1;
+                    pbUserProfilePic.Image = (selected_record.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
+                    cbSelectRecord.SelectedValue = selected_record.ID;
                 }
             }
             catch (Exception ex)

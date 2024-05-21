@@ -17,6 +17,7 @@ namespace XtremePharmacyManager
         static BulkOperationManager<ProductBrand> manager;
         BulkOperation<ProductBrand> selected_operation;
         ProductBrand selected_target;
+        static List<ProductBrand> entries;
         static Entities manager_entities;
         public frmBulkProductBrandOperations(ref BulkOperationManager<ProductBrand> operation_manager)
         {
@@ -35,13 +36,24 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.ProductBrands.ToList();
+                entries = manager_entities.ProductBrands.ToList();
+                foreach(var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductBrands.Where(x=>x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
                 lblOperationResults.Text = e.Result;
                 txtOperationLogs.Text = e.OperationLog;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.ProductBrands.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductBrands.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
             }
         }
 
@@ -51,13 +63,24 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.ProductBrands.ToList();
+                entries = manager_entities.ProductBrands.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductBrands.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
                 lblOperationResults.Text = "Operation Results: ";
                 txtOperationLogs.Text = "";
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.ProductBrands.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductBrands.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
             }
         }
 
@@ -68,7 +91,12 @@ namespace XtremePharmacyManager
         {
             Bitmap currentpfp = new Bitmap(64, 64);
             lstBulkOperations.DataSource = manager.BulkOperations;
-            cbSelectRecord.DataSource = manager_entities.ProductBrands.ToList();
+            entries = manager_entities.ProductBrands.ToList();
+            foreach (var entry in entries)
+            {
+                manager_entities.Entry(manager_entities.ProductBrands.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+            }
+            cbSelectRecord.DataSource = entries;
             try
             {
                 if (selected_operation != null && selected_target != null)
@@ -83,6 +111,12 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.ProductBrands.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductBrands.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
             }
         }
 
@@ -158,9 +192,9 @@ namespace XtremePharmacyManager
                 {
                     ID = Int32.Parse(txtID.Text),
                     BrandName = txtBrandName.Text
-                }, IsSilent)) ;
+                }, IsSilent));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -216,28 +250,44 @@ namespace XtremePharmacyManager
 
         private void cbSelectRecord_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
-            {
-                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject))
+            try {
+                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && ((ProductBrand)cbSelectRecord.SelectedItem) == selected_operation.TargetObject)
                 {
                     selected_target = selected_operation.TargetObject;
                 }
                 else
                 {
                     ProductBrand selected_record = (ProductBrand)cbSelectRecord.SelectedItem;
-                    selected_target = manager_entities.ProductBrands.Where(x => x.ID == selected_record.ID).FirstOrDefault();
+                    if (selected_record != null && manager_entities.ProductBrands.Where(x => x.ID == selected_record.ID).Any())
+                    {
+                        selected_target = manager_entities.ProductBrands.Where(x => x.ID == selected_record.ID).FirstOrDefault();
+                    }
                 }
-                if (selected_target != null)
+                if (cbSelectRecord.SelectedItem != null && selected_target == null)
+                {
+                    ProductBrand selected_record = (ProductBrand)cbSelectRecord.SelectedItem;
+                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
+                    this.txtBrandName.Text = (!String.IsNullOrEmpty(selected_record.BrandName)) ? selected_record.BrandName.ToString() : string.Empty;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
+                }
+                else if (selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtBrandName.Text = (!String.IsNullOrEmpty(selected_target.BrandName)) ? selected_target.BrandName.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
+                }
+                else
+                {
+                    ProductBrand selected_record = (ProductBrand)cbSelectRecord.SelectedItem;
+                    this.txtID.Text = (selected_record.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
+                    this.txtBrandName.Text = (!String.IsNullOrEmpty(selected_record.BrandName)) ? selected_record.BrandName.ToString() : string.Empty;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
+}
     }
 }

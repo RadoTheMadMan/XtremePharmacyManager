@@ -25,7 +25,14 @@ namespace XtremePharmacyManager
             ent = entity;
             logger = extlogger;
             manager = servicemanager;
+            manager.BulkOperationsExecuted += DeliveryServices_OnBulkOperationExecuted;
             InitializeComponent();
+        }
+
+        private void DeliveryServices_OnBulkOperationExecuted(object sender, BulkOperationEventArgs<DeliveryService> e)
+        {
+            RefreshDeliveryServices();
+            logger.RefreshLogs();
         }
 
         private void RefreshDeliveryServices()
@@ -36,6 +43,10 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     delivery_services = ent.GetDeliveryService(-1, "", Convert.ToDecimal(0)).ToList();
+                    foreach(var entry in delivery_services)
+                    {
+                        ent.Entry(ent.DeliveryServices.Where(x=>x.ID == entry.ID).FirstOrDefault()).Reload();
+                    }
                     dgvDeliveryServices.DataSource = delivery_services;
                 }
             }
@@ -110,7 +121,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.UpdateDeliveryServiceByID(selectedService.ID,selectedService.ServiceName,selectedService.ServicePrice);
-                                        ent.SaveChanges();
                                         //in whatever this operation is that affects something from the table find the ID of that in the view of the database
                                         //and sync it with the model in case the database doesn't sync it automatically with the model
                                         ExtendedDeliveryServicesView ds_view = ent.ExtendedDeliveryServicesViews.Where(x => x.ID == selectedService.ID).FirstOrDefault();
@@ -140,7 +150,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.AddDeliveryService(selectedService.ServiceName,selectedService.ServicePrice);
-                                        ent.SaveChanges();
                                         //in whatever this operation is that affects something from the table find the ID of that in the view of the database
                                         //and sync it with the model in case the database doesn't sync it automatically with the model
                                         ExtendedDeliveryServicesView ds_view = ent.ExtendedDeliveryServicesViews.Where(x => x.ID == selectedService.ID).FirstOrDefault();
@@ -170,7 +179,6 @@ namespace XtremePharmacyManager
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
                                     ent.AddDeliveryService(selectedService.ServiceName, selectedService.ServicePrice);
-                                    ent.SaveChanges();
                                     //in whatever this operation is that affects something from the table find the ID of that in the view of the database
                                     //and sync it with the model in case the database doesn't sync it automatically with the model
                                     ExtendedDeliveryServicesView ds_view = ent.ExtendedDeliveryServicesViews.Where(x => x.ID == selectedService.ID).FirstOrDefault();
@@ -201,7 +209,6 @@ namespace XtremePharmacyManager
                         if (ent.Database.Connection.State == ConnectionState.Open)
                         {
                             ent.AddDeliveryService(selectedService.ServiceName, selectedService.ServicePrice);
-                            ent.SaveChanges();
                             //in whatever this operation is that affects something from the table find the ID of that in the view of the database
                             //and sync it with the model in case the database doesn't sync it automatically with the model
                             ExtendedDeliveryServicesView ds_view = ent.ExtendedDeliveryServicesViews.Where(x => x.ID == selectedService.ID).FirstOrDefault();
@@ -226,6 +233,8 @@ namespace XtremePharmacyManager
             catch(Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshDeliveryServices();
+                logger.RefreshLogs();
             }
         }
 
@@ -257,7 +266,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteDeliveryServiceByID(selectedService.ID);
-                                        ent.SaveChanges();
                                         //in whatever this operation is that affects something from the table find the ID of that in the view of the database
                                         //and sync it with the model in case the database doesn't sync it automatically with the model
                                         ExtendedDeliveryServicesView ds_view = ent.ExtendedDeliveryServicesViews.Where(x => x.ID == selectedService.ID).FirstOrDefault();
@@ -285,6 +293,8 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshDeliveryServices();
+                logger.RefreshLogs();
             }
         }
 

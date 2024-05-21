@@ -25,7 +25,14 @@ namespace XtremePharmacyManager
             ent = entity;
             logger = extlogger;
             manager = methodmanager;
+            manager.BulkOperationsExecuted += PaymentMethods_OnBulkOperationExecuted;
             InitializeComponent();
+        }
+
+        private void PaymentMethods_OnBulkOperationExecuted(object sender, BulkOperationEventArgs<PaymentMethod> e)
+        {
+            RefreshPaymentMethods();
+            logger.RefreshLogs();
         }
 
         private void RefreshPaymentMethods()
@@ -36,6 +43,10 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     payment_methods = ent.GetPaymentMethod(-1, "").ToList();
+                    foreach(var entry in payment_methods) 
+                    {
+                        ent.Entry(ent.PaymentMethods.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();                    
+                    }
                     dgvPaymentMethods.DataSource = payment_methods;
                 }
             }
@@ -106,7 +117,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.UpdatePaymentMethodByID(selectedMethod.ID,selectedMethod.MethodName);
-                                        ent.SaveChanges();
                                         //if you find a data from the table entry the operation was performed on in the views reload the view in the model
                                         ExtendedPaymentMethodsView pm_view = ent.ExtendedPaymentMethodsViews.Where(x => x.ID == selectedMethod.ID).FirstOrDefault();
                                         if(pm_view != null)
@@ -135,7 +145,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.AddPaymentMethod(selectedMethod.MethodName);
-                                        ent.SaveChanges();
                                         //if you find a data from the table entry the operation was performed on in the views reload the view in the model
                                         ExtendedPaymentMethodsView pm_view = ent.ExtendedPaymentMethodsViews.Where(x => x.ID == selectedMethod.ID).FirstOrDefault();
                                         if (pm_view != null)
@@ -164,7 +173,6 @@ namespace XtremePharmacyManager
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
                                     ent.AddPaymentMethod(selectedMethod.MethodName);
-                                    ent.SaveChanges();
                                     //if you find a data from the table entry the operation was performed on in the views reload the view in the model
                                     ExtendedPaymentMethodsView pm_view = ent.ExtendedPaymentMethodsViews.Where(x => x.ID == selectedMethod.ID).FirstOrDefault();
                                     if (pm_view != null)
@@ -194,7 +202,6 @@ namespace XtremePharmacyManager
                         if (ent.Database.Connection.State == ConnectionState.Open)
                         {
                             ent.AddPaymentMethod(selectedMethod.MethodName);
-                            ent.SaveChanges();
                             //if you find a data from the table entry the operation was performed on in the views reload the view in the model
                             ExtendedPaymentMethodsView pm_view = ent.ExtendedPaymentMethodsViews.Where(x => x.ID == selectedMethod.ID).FirstOrDefault();
                             if (pm_view != null)
@@ -218,6 +225,8 @@ namespace XtremePharmacyManager
             catch(Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshPaymentMethods();
+                logger.RefreshLogs();
             }
         }
 
@@ -249,7 +258,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeletePaymentMethodByID(selectedMethod.ID);
-                                        ent.SaveChanges();
                                         //if you find a data from the table entry the operation was performed on in the views reload the view in the model
                                         ExtendedPaymentMethodsView pm_view = ent.ExtendedPaymentMethodsViews.Where(x => x.ID == selectedMethod.ID).FirstOrDefault();
                                         if (pm_view != null)
@@ -276,6 +284,8 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshPaymentMethods();
+                logger.RefreshLogs();
             }
         }
 

@@ -117,12 +117,19 @@ namespace XtremePharmacyManager
         [STAThread]
         static void Main()
         {
-            resources = new GLOBAL_RESOURCES();
-            GLOBAL_RESOURCES.RefreshSettings();
-            GLOBAL_RESOURCES.UpdateCurrentCultureResources();
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            try
+            {
+                resources = new GLOBAL_RESOURCES();
+                GLOBAL_RESOURCES.RefreshSettings();
+                GLOBAL_RESOURCES.UpdateCurrentCultureResources();
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new frmMain());
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

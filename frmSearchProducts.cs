@@ -46,6 +46,10 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     products = ent.GetProduct(-1,"",-1,-1,"",0,new decimal(),new DateTime(),new DateTime(),"","","").ToList();
+                    foreach( var entry in products)
+                    {
+                        ent.Entry(ent.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                    }
                     dgvProducts.DataSource = products;
                 }
             }
@@ -63,6 +67,10 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     product_brands = ent.GetBrand(-1, "").ToList();
+                    foreach(var entry in product_brands)
+                    {
+                        ent.Entry(ent.ProductBrands.Where(x=>x.ID == entry.ID).FirstOrDefault()).Reload();
+                    }
                     cbSelectBrand.DataSource = product_brands;
                     BrandIDColumn.DataSource = product_brands;
                 }
@@ -81,6 +89,10 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     product_vendors = ent.GetVendor(-1, "").ToList();
+                    foreach(var entry in  product_vendors)
+                    {
+                        ent.Entry(ent.ProductVendors.Where(x=>x.ID == entry.ID).FirstOrDefault()).Reload();
+                    }
                     cbSelectVendor.DataSource = product_vendors;
                     VendorIDColumn.DataSource = product_vendors;
                 }
@@ -99,6 +111,10 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     product_images = ent.GetProductImage(-1,-1,"").ToList();
+                    foreach(var entry in product_images)
+                    {
+                        ent.Entry(ent.ProductImages.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                    }
                     lstProductImages.Items.Clear();
                     lstProductImages.Items.Clear();
                     imgListProductImages.Images.Clear();
@@ -311,7 +327,6 @@ namespace XtremePharmacyManager
                                             selectedProduct.ProductDescription,selectedProduct.ProductQuantity,selectedProduct.ProductPrice,
                                             selectedProduct.ProductExpiryDate,selectedProduct.ProductRegNum,selectedProduct.ProductPartNum,
                                             selectedProduct.ProductStorageLocation);
-                                        ent.SaveChanges();
                                         //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
                                         ExtendedProductView pr_view = ent.ExtendedProductViews.Where(x => x.ID == selectedProduct.ID).FirstOrDefault();
                                         if (pr_view != null)
@@ -345,7 +360,6 @@ namespace XtremePharmacyManager
                                         ent.AddProduct(selectedProduct.ProductName, selectedProduct.BrandID,selectedProduct.VendorID, selectedProduct.ProductDescription,
                                             selectedProduct.ProductQuantity, selectedProduct.ProductPrice, selectedProduct.ProductExpiryDate,
                                             selectedProduct.ProductRegNum, selectedProduct.ProductPartNum, selectedProduct.ProductStorageLocation);
-                                        ent.SaveChanges();
                                         //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
                                         ExtendedProductView pr_view = ent.ExtendedProductViews.Where(x => x.ID == selectedProduct.ID).FirstOrDefault();
                                         if (pr_view != null)
@@ -379,7 +393,6 @@ namespace XtremePharmacyManager
                                     ent.AddProduct(selectedProduct.ProductName, selectedProduct.BrandID, selectedProduct.VendorID, selectedProduct.ProductDescription,
                                         selectedProduct.ProductQuantity, selectedProduct.ProductPrice, selectedProduct.ProductExpiryDate,
                                         selectedProduct.ProductRegNum, selectedProduct.ProductPartNum, selectedProduct.ProductStorageLocation);
-                                    ent.SaveChanges();
                                     //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
                                     ExtendedProductView pr_view = ent.ExtendedProductViews.Where(x => x.ID == selectedProduct.ID).FirstOrDefault();
                                     if (pr_view != null)
@@ -414,7 +427,6 @@ namespace XtremePharmacyManager
                             ent.AddProduct(selectedProduct.ProductName, selectedProduct.BrandID, selectedProduct.VendorID, selectedProduct.ProductDescription,
                                 selectedProduct.ProductQuantity, selectedProduct.ProductPrice, selectedProduct.ProductExpiryDate,
                                 selectedProduct.ProductRegNum, selectedProduct.ProductPartNum, selectedProduct.ProductStorageLocation);
-                            ent.SaveChanges();
                             //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
                             ExtendedProductView pr_view = ent.ExtendedProductViews.Where(x => x.ID == selectedProduct.ID).FirstOrDefault();
                             if (pr_view != null)
@@ -441,6 +453,11 @@ namespace XtremePharmacyManager
             catch(Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshProductBrands();
+                RefreshProductVendors();
+                RefreshProducts();
+                RefreshProductImages();
+                logger.RefreshLogs();
             }
         }
 
@@ -472,7 +489,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteProductByID(selectedProduct.ID);
-                                        ent.SaveChanges();
                                         //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
                                         ExtendedProductView pr_view = ent.ExtendedProductViews.Where(x => x.ID == selectedProduct.ID).FirstOrDefault();
                                         if (pr_view != null)
@@ -502,6 +518,11 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshProductBrands();
+                RefreshProductVendors();
+                RefreshProducts();
+                RefreshProductImages();
+                logger.RefreshLogs();
             }
         }
 
@@ -766,7 +787,6 @@ namespace XtremePharmacyManager
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
                                     ent.DeleteProductImageByID(selectedImage.ID);
-                                    ent.SaveChanges();
                                     RefreshProductBrands();
                                     RefreshProductVendors();
                                     RefreshProducts();
@@ -790,6 +810,11 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshProductBrands();
+                RefreshProductVendors();
+                RefreshProducts();
+                RefreshProductImages();
+                logger.RefreshLogs();
             }
         }
 
@@ -817,7 +842,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.UpdateProductImageByID(selectedImage.ID,selectedImage.ProductID,selectedImage.ImageName,selectedImage.ImageData);
-                                        ent.SaveChanges();
                                         RefreshProductBrands();
                                         RefreshProductVendors();
                                         RefreshProducts();
@@ -842,7 +866,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.AddProductImage(selectedImage.ProductID, selectedImage.ImageName, selectedImage.ImageData);
-                                        ent.SaveChanges();
                                         RefreshProductBrands();
                                         RefreshProductVendors();
                                         RefreshProducts();
@@ -868,7 +891,6 @@ namespace XtremePharmacyManager
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
                                     ent.AddProductImage(selectedImage.ProductID, selectedImage.ImageName, selectedImage.ImageData);
-                                    ent.SaveChanges();
                                     RefreshProductBrands();
                                     RefreshProductVendors();
                                     RefreshProducts();
@@ -895,7 +917,6 @@ namespace XtremePharmacyManager
                         if (ent.Database.Connection.State == ConnectionState.Open)
                         {
                             ent.AddProductImage(selectedImage.ProductID, selectedImage.ImageName, selectedImage.ImageData);
-                            ent.SaveChanges();
                             RefreshProductBrands();
                             RefreshProductVendors();
                             RefreshProducts();
@@ -916,6 +937,11 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshProductBrands();
+                RefreshProductVendors();
+                RefreshProducts();
+                RefreshProductImages();
+                logger.RefreshLogs();
             }
         }
 

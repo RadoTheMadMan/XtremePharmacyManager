@@ -27,7 +27,14 @@ namespace XtremePharmacyManager
             ent = entity;
             logger = extlogger;
             manager = bulkbrandmanager;
+            manager.BulkOperationsExecuted = ProductBrands_OnBulkOperationExecuted;
             InitializeComponent();
+        }
+
+        private void ProductBrands_OnBulkOperationExecuted(object sender, BulkOperationEventArgs<ProductBrand> e)
+        {
+            RefreshProductBrands();
+            logger.RefreshLogs();
         }
 
         private void RefreshProductBrands()
@@ -38,6 +45,10 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     product_brands = ent.GetBrand(-1, "").ToList();
+                    foreach(var entry in  product_brands)
+                    {
+                        ent.Entry(ent.ProductBrands.Where(x=>x.ID == entry.ID).FirstOrDefault()).Reload();
+                    }
                     dgvProductBrands.DataSource = product_brands;
                 }
             }
@@ -108,7 +119,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.UpdateBrandByID(selectedBrand.ID,selectedBrand.BrandName);
-                                        ent.SaveChanges();
                                         //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
                                         ExtendedBrandsView prb_view = ent.ExtendedBrandsViews.Where(x => x.ID ==  selectedBrand.ID).FirstOrDefault();
                                         if(prb_view != null)
@@ -137,7 +147,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.AddBrand(selectedBrand.BrandName);
-                                        ent.SaveChanges();
                                         //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
                                         ExtendedBrandsView prb_view = ent.ExtendedBrandsViews.Where(x => x.ID == selectedBrand.ID).FirstOrDefault();
                                         if (prb_view != null)
@@ -166,7 +175,6 @@ namespace XtremePharmacyManager
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
                                     ent.AddBrand(selectedBrand.BrandName);
-                                    ent.SaveChanges();
                                     //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
                                     ExtendedBrandsView prb_view = ent.ExtendedBrandsViews.Where(x => x.ID == selectedBrand.ID).FirstOrDefault();
                                     if (prb_view != null)
@@ -196,7 +204,6 @@ namespace XtremePharmacyManager
                         if (ent.Database.Connection.State == ConnectionState.Open)
                         {
                             ent.AddBrand(selectedBrand.BrandName);
-                            ent.SaveChanges();
                             //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
                             ExtendedBrandsView prb_view = ent.ExtendedBrandsViews.Where(x => x.ID == selectedBrand.ID).FirstOrDefault();
                             if (prb_view != null)
@@ -220,6 +227,8 @@ namespace XtremePharmacyManager
             catch(Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshProductBrands();
+                logger.RefreshLogs();
             }
         }
 
@@ -251,7 +260,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteBrandByID(selectedBrand.ID);
-                                        ent.SaveChanges();
                                         //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
                                         ExtendedBrandsView prb_view = ent.ExtendedBrandsViews.Where(x => x.ID == selectedBrand.ID).FirstOrDefault();
                                         if (prb_view != null)
@@ -278,6 +286,8 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshProductBrands();
+                logger.RefreshLogs();
             }
         }
 

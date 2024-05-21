@@ -16,6 +16,7 @@ namespace XtremePharmacyManager
     {
         static BulkOperationManager<ProductVendor> manager;
         BulkOperation<ProductVendor> selected_operation;
+        static List<ProductVendor> entries;
         ProductVendor selected_target;
         static Entities manager_entities;
         public frmBulkProductVendorOperations(ref BulkOperationManager<ProductVendor> operation_manager)
@@ -35,13 +36,24 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.ProductVendors.ToList();
+                entries = manager_entities.ProductVendors.ToList();
+                foreach(var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductVendors.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
                 lblOperationResults.Text = e.Result;
                 txtOperationLogs.Text = e.OperationLog;
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.ProductVendors.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductVendors.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
             }
         }
 
@@ -51,13 +63,24 @@ namespace XtremePharmacyManager
             {
                 lstBulkOperations.DataSource = null;
                 lstBulkOperations.DataSource = e.OperationsList;
-                cbSelectRecord.DataSource = manager_entities.ProductVendors.ToList();
+                entries = manager_entities.ProductVendors.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductVendors.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
                 lblOperationResults.Text = "Operation Results: ";
                 txtOperationLogs.Text = "";
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.ProductVendors.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductVendors.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
             }
         }
 
@@ -68,7 +91,12 @@ namespace XtremePharmacyManager
         {
             Bitmap currentpfp = new Bitmap(64, 64);
             lstBulkOperations.DataSource = manager.BulkOperations;
-            cbSelectRecord.DataSource = manager_entities.ProductVendors.ToList();
+            entries = manager_entities.ProductVendors.ToList();
+            foreach (var entry in entries)
+            {
+                manager_entities.Entry(manager_entities.ProductVendors.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+            }
+            cbSelectRecord.DataSource = entries;
             try
             {
                 if (selected_operation != null && selected_target != null)
@@ -83,6 +111,12 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                entries = manager_entities.ProductVendors.ToList();
+                foreach (var entry in entries)
+                {
+                    manager_entities.Entry(manager_entities.ProductVendors.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                }
+                cbSelectRecord.DataSource = entries;
             }
         }
 
@@ -218,20 +252,37 @@ namespace XtremePharmacyManager
         {
             try
             {
-                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject))
+                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && ((ProductVendor)cbSelectRecord.SelectedItem) == selected_operation.TargetObject)
                 {
                     selected_target = selected_operation.TargetObject;
                 }
                 else
                 {
                     ProductVendor selected_record = (ProductVendor)cbSelectRecord.SelectedItem;
-                    selected_target = manager_entities.ProductVendors.Where(x => x.ID == selected_record.ID).FirstOrDefault();
+                    if (selected_record != null && manager_entities.ProductVendors.Where(x => x.ID == selected_record.ID).Any())
+                    {
+                        selected_target = manager_entities.ProductVendors.Where(x => x.ID == selected_record.ID).FirstOrDefault();
+                    }
                 }
-                if (selected_target != null)
+                if (cbSelectRecord.SelectedItem != null && selected_target == null)
+                {
+                    ProductVendor selected_record = (ProductVendor)cbSelectRecord.SelectedItem;
+                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
+                    this.txtVendorName.Text = (!String.IsNullOrEmpty(selected_record.VendorName)) ? selected_record.VendorName.ToString() : string.Empty;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
+                }
+                else if (selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtVendorName.Text = (!String.IsNullOrEmpty(selected_target.VendorName)) ? selected_target.VendorName.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
+                }
+                else
+                {
+                    ProductVendor selected_record = (ProductVendor)cbSelectRecord.SelectedItem;
+                    this.txtID.Text = (selected_record.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
+                    this.txtVendorName.Text = (!String.IsNullOrEmpty(selected_record.VendorName)) ? selected_record.VendorName.ToString() : string.Empty;
+                    cbSelectRecord.SelectedValue = selected_record.ID;
                 }
             }
             catch (Exception ex)

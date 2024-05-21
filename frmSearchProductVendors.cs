@@ -27,7 +27,14 @@ namespace XtremePharmacyManager
             ent = entity;
             logger = extlogger;
             manager = bulkvendormanager;
+            manager.BulkOperationsExecuted += ProductVendors_OnBulkOperationExecuted;
             InitializeComponent();
+        }
+
+        private void ProductVendors_OnBulkOperationExecuted(object sender, BulkOperationEventArgs<ProductVendor> e)
+        {
+            RefreshProductVendors();
+            logger.RefreshLogs();
         }
 
         private void RefreshProductVendors()
@@ -38,6 +45,10 @@ namespace XtremePharmacyManager
                 if (ent.Database.Connection.State == ConnectionState.Open)
                 {
                     product_vendors = ent.GetVendor(-1, "").ToList();
+                    foreach(var entry in product_vendors)
+                    {
+                        ent.Entry(ent.ProductVendors.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                    }
                     dgvProductVendors.DataSource = product_vendors;
                 }
             }
@@ -108,7 +119,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.UpdateVendorByID(selectedVendor.ID,selectedVendor.VendorName);
-                                        ent.SaveChanges();
                                         //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
                                         ExtendedVendorsView prv_view = ent.ExtendedVendorsViews.Where(x => x.ID ==  selectedVendor.ID).FirstOrDefault();
                                         if(prv_view != null)
@@ -137,7 +147,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.AddVendor(selectedVendor.VendorName);
-                                        ent.SaveChanges();
                                         //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
                                         ExtendedVendorsView prv_view = ent.ExtendedVendorsViews.Where(x => x.ID == selectedVendor.ID).FirstOrDefault();
                                         if (prv_view != null)
@@ -167,7 +176,6 @@ namespace XtremePharmacyManager
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
                                     ent.AddVendor(selectedVendor.VendorName);
-                                    ent.SaveChanges();
                                     //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
                                     ExtendedVendorsView prv_view = ent.ExtendedVendorsViews.Where(x => x.ID == selectedVendor.ID).FirstOrDefault();
                                     if (prv_view != null)
@@ -198,7 +206,6 @@ namespace XtremePharmacyManager
                         if (ent.Database.Connection.State == ConnectionState.Open)
                         {
                             ent.AddVendor(selectedVendor.VendorName);
-                            ent.SaveChanges();
                             //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
                             ExtendedVendorsView prv_view = ent.ExtendedVendorsViews.Where(x => x.ID == selectedVendor.ID).FirstOrDefault();
                             if (prv_view != null)
@@ -222,6 +229,8 @@ namespace XtremePharmacyManager
             catch(Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshProductVendors();
+                logger.RefreshLogs();
             }
         }
 
@@ -253,7 +262,6 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         ent.DeleteVendorByID(selectedVendor.ID);
-                                        ent.SaveChanges();
                                         //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
                                         ExtendedVendorsView prv_view = ent.ExtendedVendorsViews.Where(x => x.ID == selectedVendor.ID).FirstOrDefault();
                                         if (prv_view != null)
@@ -280,6 +288,8 @@ namespace XtremePharmacyManager
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                RefreshProductVendors();
+                logger.RefreshLogs();
             }
         }
 
@@ -311,7 +321,7 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void frmSearchProductBrands_Load(object sender, EventArgs e)
+        private void frmSearchProductVendors_Load(object sender, EventArgs e)
         {
             RefreshProductVendors();
         }
@@ -372,5 +382,7 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 }

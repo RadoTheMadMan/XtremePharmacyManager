@@ -51,6 +51,10 @@ namespace XtremePharmacyManager
                 if (entities.Database.Connection.State == System.Data.ConnectionState.Open)
                 {
                     logs = entities.GetLog(-1, new DateTime(), new DateTime(), "", "", "").ToList();
+                    foreach(var entry in logs)
+                    {
+                        entities.Entry(entities.Logs.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
+                    }
                     lastUpdate = DateTime.Now;
                     this.InvokeRefreshEvent();
                 }
