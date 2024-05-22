@@ -31,12 +31,12 @@ namespace XtremePharmacyManager
 
         private void trbPrice_Scroll(object sender, EventArgs e)
         {
-            lblShowPrice.Text = trbPrice.Value.ToString();
+            txtPrice.Text = trbPrice.Value.ToString();
         }
 
         private void trbQuantity_Scroll(object sender, EventArgs e)
         {
-            lblShowQuantity.Text = trbQuantity.Value.ToString();
+            txtQuantity.Text = trbQuantity.Value.ToString();
         }
 
 
@@ -64,9 +64,9 @@ namespace XtremePharmacyManager
                 this.txtPartitudeNumber.Text = (!String.IsNullOrEmpty(target.ProductPartNum)) ? target.ProductPartNum.ToString() : string.Empty;
                 this.txtStorageLocation.Text = (!String.IsNullOrEmpty(target.ProductStorageLocation)) ? target.ProductStorageLocation.ToString() : string.Empty;
                 trbQuantity.Value = (target.ProductQuantity >= 0) ? target.ProductQuantity : 0;
-                lblShowQuantity.Text = (target.ProductQuantity >= 0) ? target.ProductQuantity.ToString() : string.Empty;
+                txtQuantity.Text = (target.ProductQuantity >= 0) ? target.ProductQuantity.ToString() : string.Empty;
                 trbPrice.Value = (target.ProductPrice >= 0) ? Convert.ToInt32(target.ProductPrice) : 0;
-                lblShowPrice.Text = (target.ProductPrice >= 0) ? target.ProductPrice.ToString() : string.Empty;
+                txtPrice.Text = (target.ProductPrice >= 0) ? target.ProductPrice.ToString() : string.Empty;
             }
             catch (Exception ex)
             {
@@ -124,6 +124,28 @@ namespace XtremePharmacyManager
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txtQuantity_TextChanged(object sender, EventArgs e)
+        {
+            int value = 0;
+            Int32.TryParse(((TextBox)sender).Text, out value);
+            if (value >= trbQuantity.Maximum)
+            {
+                trbQuantity.Maximum = value;
+            }
+            trbQuantity.Value = value;
+        }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+            int value = 0;
+            Int32.TryParse(((TextBox)sender).Text, out value);
+            if (value >= trbPrice.Maximum)
+            {
+                trbPrice.Maximum = value;
+            }
+            trbPrice.Value = value;
         }
     }
 }

@@ -33,13 +33,13 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.trbPrice = new System.Windows.Forms.TrackBar();
-            this.lblShowPrice = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.txtServiceName = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -48,10 +48,10 @@
             // pnlData
             // 
             this.pnlData.AutoSize = true;
+            this.pnlData.Controls.Add(this.txtPrice);
             this.pnlData.Controls.Add(this.btnOK);
             this.pnlData.Controls.Add(this.btnCancel);
             this.pnlData.Controls.Add(this.trbPrice);
-            this.pnlData.Controls.Add(this.lblShowPrice);
             this.pnlData.Controls.Add(this.lblPrice);
             this.pnlData.Controls.Add(this.txtServiceName);
             this.pnlData.Controls.Add(this.lblUsername);
@@ -100,18 +100,6 @@
             this.trbPrice.TabIndex = 21;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
-            // 
-            // lblShowPrice
-            // 
-            this.lblShowPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblShowPrice.AutoSize = true;
-            this.lblShowPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowPrice.Location = new System.Drawing.Point(356, 76);
-            this.lblShowPrice.Name = "lblShowPrice";
-            this.lblShowPrice.Size = new System.Drawing.Size(35, 16);
-            this.lblShowPrice.TabIndex = 20;
-            this.lblShowPrice.Text = "0.00";
             // 
             // lblPrice
             // 
@@ -168,6 +156,16 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
+            // txtPrice
+            // 
+            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtPrice.Location = new System.Drawing.Point(348, 76);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(76, 22);
+            this.txtPrice.TabIndex = 34;
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
+            // 
             // frmEditDeliveryService
             // 
             this.AcceptButton = this.btnOK;
@@ -196,10 +194,10 @@
         private System.Windows.Forms.TextBox txtServiceName;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblPrice;
-        private System.Windows.Forms.Label lblShowPrice;
         private System.Windows.Forms.TrackBar trbPrice;
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.TextBox txtPrice;
     }
 }

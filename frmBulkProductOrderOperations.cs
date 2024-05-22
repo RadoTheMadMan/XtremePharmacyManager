@@ -198,8 +198,8 @@ namespace XtremePharmacyManager
                     this.txtReason.Text = (!String.IsNullOrEmpty(selected_target.OrderReason)) ? selected_target.OrderReason.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.OrderPrice >= 0) ? Convert.ToInt32(selected_target.OrderPrice) : 0;
                     this.trbQuantity.Value = (selected_target.DesiredQuantity >= 0) ? selected_target.DesiredQuantity : 0;
-                    this.lblShowPrice.Text = (selected_target.OrderPrice >= 0) ? selected_target.OrderPrice.ToString() : string.Empty;
-                    this.lblShowQuantity.Text = (selected_target.DesiredQuantity >= 0) ? selected_target.DesiredQuantity.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_target.OrderPrice >= 0) ? selected_target.OrderPrice.ToString() : string.Empty;
+                    this.txtQuantity.Text = (selected_target.DesiredQuantity >= 0) ? selected_target.DesiredQuantity.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                     cbProduct.SelectedValue = selected_target.ProductID;
                     cbClient.SelectedValue = selected_target.ClientID;
@@ -296,8 +296,8 @@ namespace XtremePharmacyManager
                     this.txtReason.Text = (!String.IsNullOrEmpty(selected_target.OrderReason)) ? selected_target.OrderReason.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.OrderPrice >= 0) ? Convert.ToInt32(selected_target.OrderPrice) : 0;
                     this.trbQuantity.Value = (selected_target.DesiredQuantity >= 0) ? selected_target.DesiredQuantity : 0;
-                    this.lblShowPrice.Text = (selected_target.OrderPrice >= 0) ? selected_target.OrderPrice.ToString() : string.Empty;
-                    this.lblShowQuantity.Text = (selected_target.DesiredQuantity >= 0) ? selected_target.DesiredQuantity.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_target.OrderPrice >= 0) ? selected_target.OrderPrice.ToString() : string.Empty;
+                    this.txtQuantity.Text = (selected_target.DesiredQuantity >= 0) ? selected_target.DesiredQuantity.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                     cbProduct.SelectedValue = selected_target.ProductID;
                     cbClient.SelectedValue = selected_target.ClientID;
@@ -416,8 +416,8 @@ namespace XtremePharmacyManager
                     this.txtReason.Text = (!String.IsNullOrEmpty(selected_record.OrderReason)) ? selected_record.OrderReason.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_record.OrderPrice >= 0) ? Convert.ToInt32(selected_record.OrderPrice) : 0;
                     this.trbQuantity.Value = (selected_record.DesiredQuantity >= 0) ? selected_record.DesiredQuantity : 0;
-                    this.lblShowPrice.Text = (selected_record.OrderPrice >= 0) ? selected_record.OrderPrice.ToString() : string.Empty;
-                    this.lblShowQuantity.Text = (selected_record.DesiredQuantity >= 0) ? selected_record.DesiredQuantity.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_record.OrderPrice >= 0) ? selected_record.OrderPrice.ToString() : string.Empty;
+                    this.txtQuantity.Text = (selected_record.DesiredQuantity >= 0) ? selected_record.DesiredQuantity.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_record.ID;
                     cbProduct.SelectedValue = selected_record.ProductID;
                     cbClient.SelectedValue = selected_record.ClientID;
@@ -431,8 +431,8 @@ namespace XtremePharmacyManager
                     this.txtReason.Text = (!String.IsNullOrEmpty(selected_target.OrderReason)) ? selected_target.OrderReason.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.OrderPrice >= 0) ? Convert.ToInt32(selected_target.OrderPrice) : 0;
                     this.trbQuantity.Value = (selected_target.DesiredQuantity >= 0) ? selected_target.DesiredQuantity : 0;
-                    this.lblShowPrice.Text = (selected_target.OrderPrice >= 0) ? selected_target.OrderPrice.ToString() : string.Empty;
-                    this.lblShowQuantity.Text = (selected_target.DesiredQuantity >= 0) ? selected_target.DesiredQuantity.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_target.OrderPrice >= 0) ? selected_target.OrderPrice.ToString() : string.Empty;
+                    this.txtQuantity.Text = (selected_target.DesiredQuantity >= 0) ? selected_target.DesiredQuantity.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                     cbProduct.SelectedValue = selected_target.ProductID;
                     cbClient.SelectedValue = selected_target.ClientID;
@@ -447,8 +447,8 @@ namespace XtremePharmacyManager
                     this.txtReason.Text = (!String.IsNullOrEmpty(selected_record.OrderReason)) ? selected_record.OrderReason.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_record.OrderPrice >= 0) ? Convert.ToInt32(selected_record.OrderPrice) : 0;
                     this.trbQuantity.Value = (selected_record.DesiredQuantity >= 0) ? selected_record.DesiredQuantity : 0;
-                    this.lblShowPrice.Text = (selected_record.OrderPrice >= 0) ? selected_record.OrderPrice.ToString() : string.Empty;
-                    this.lblShowQuantity.Text = (selected_record.DesiredQuantity >= 0) ? selected_record.DesiredQuantity.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_record.OrderPrice >= 0) ? selected_record.OrderPrice.ToString() : string.Empty;
+                    this.txtQuantity.Text = (selected_record.DesiredQuantity >= 0) ? selected_record.DesiredQuantity.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_record.ID;
                     cbProduct.SelectedValue = selected_record.ProductID;
                     cbClient.SelectedValue = selected_record.ClientID;
@@ -465,12 +465,34 @@ namespace XtremePharmacyManager
 
         private void trbPrice_Scroll(object sender, EventArgs e)
         {
-            lblShowPrice.Text = ((TrackBar)sender).Value.ToString();
+            txtPrice.Text = ((TrackBar)sender).Value.ToString();
         }
 
         private void trbQuantity_Scroll(object sender, EventArgs e)
         {
-            lblShowQuantity.Text = ((TrackBar)sender).Value.ToString();
+            txtQuantity.Text = ((TrackBar)sender).Value.ToString();
+        }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+            int value = 0;
+            Int32.TryParse(((TextBox)sender).Text, out value);
+            if (value >= trbPrice.Maximum)
+            {
+                trbPrice.Maximum = value;
+            }
+            trbPrice.Value = value;
+        }
+
+        private void txtQuantity_TextChanged(object sender, EventArgs e)
+        {
+            int value = 0;
+            Int32.TryParse(((TextBox)sender).Text, out value);
+            if (value >= trbPrice.Maximum)
+            {
+                trbQuantity.Maximum = value;
+            }
+            trbQuantity.Value = value;
         }
     }
 }

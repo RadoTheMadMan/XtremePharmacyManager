@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.trbPrice = new System.Windows.Forms.TrackBar();
-            this.lblShowPrice = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.cbSelectRecord = new System.Windows.Forms.ComboBox();
             this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -74,8 +74,8 @@
             // 
             // pnlData
             // 
+            this.pnlData.Controls.Add(this.txtPrice);
             this.pnlData.Controls.Add(this.trbPrice);
-            this.pnlData.Controls.Add(this.lblShowPrice);
             this.pnlData.Controls.Add(this.lblPrice);
             this.pnlData.Controls.Add(this.cbSelectRecord);
             this.pnlData.Controls.Add(this.lblSelectRecord);
@@ -100,6 +100,16 @@
             this.pnlData.Size = new System.Drawing.Size(800, 549);
             this.pnlData.TabIndex = 0;
             // 
+            // txtPrice
+            // 
+            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPrice.Location = new System.Drawing.Point(755, 21);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(34, 22);
+            this.txtPrice.TabIndex = 52;
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
+            // 
             // trbPrice
             // 
             this.trbPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -111,18 +121,6 @@
             this.trbPrice.TabIndex = 51;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
-            // 
-            // lblShowPrice
-            // 
-            this.lblShowPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblShowPrice.AutoSize = true;
-            this.lblShowPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowPrice.Location = new System.Drawing.Point(763, 24);
-            this.lblShowPrice.Name = "lblShowPrice";
-            this.lblShowPrice.Size = new System.Drawing.Size(35, 16);
-            this.lblShowPrice.TabIndex = 50;
-            this.lblShowPrice.Text = "0.00";
             // 
             // lblPrice
             // 
@@ -179,9 +177,11 @@
             // 
             // checkSilentOperation
             // 
+            this.checkSilentOperation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.checkSilentOperation.AutoSize = true;
             this.checkSilentOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkSilentOperation.Location = new System.Drawing.Point(255, 223);
+            this.checkSilentOperation.Location = new System.Drawing.Point(255, 273);
             this.checkSilentOperation.Name = "checkSilentOperation";
             this.checkSilentOperation.Size = new System.Drawing.Size(140, 20);
             this.checkSilentOperation.TabIndex = 44;
@@ -191,10 +191,10 @@
             // lblOperationResults
             // 
             this.lblOperationResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblOperationResults.AutoSize = true;
             this.lblOperationResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationResults.Location = new System.Drawing.Point(20, 261);
+            this.lblOperationResults.Location = new System.Drawing.Point(20, 277);
             this.lblOperationResults.Name = "lblOperationResults";
             this.lblOperationResults.Size = new System.Drawing.Size(139, 16);
             this.lblOperationResults.TabIndex = 43;
@@ -211,7 +211,7 @@
             "UPDATE",
             "DELETE",
             "CUSTOM(Only for operations with custom action overrides)"});
-            this.cbOperationType.Location = new System.Drawing.Point(555, 223);
+            this.cbOperationType.Location = new System.Drawing.Point(555, 270);
             this.cbOperationType.Name = "cbOperationType";
             this.cbOperationType.Size = new System.Drawing.Size(229, 24);
             this.cbOperationType.TabIndex = 42;
@@ -223,7 +223,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOperationType.AutoSize = true;
             this.lblOperationType.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationType.Location = new System.Drawing.Point(412, 227);
+            this.lblOperationType.Location = new System.Drawing.Point(412, 274);
             this.lblOperationType.Name = "lblOperationType";
             this.lblOperationType.Size = new System.Drawing.Size(119, 16);
             this.lblOperationType.TabIndex = 41;
@@ -439,7 +439,7 @@
         private System.Windows.Forms.BindingSource bulkDeliveryServiceOperationBindingSource;
         private System.Windows.Forms.BindingSource deliveryServiceBindingSource;
         private System.Windows.Forms.TrackBar trbPrice;
-        private System.Windows.Forms.Label lblShowPrice;
         private System.Windows.Forms.Label lblPrice;
+        private System.Windows.Forms.TextBox txtPrice;
     }
 }

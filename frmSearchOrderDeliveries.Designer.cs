@@ -35,37 +35,15 @@ namespace XtremePharmacyManager
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSearchOrderDeliveries));
             this.dgvOrderDeliveries = new System.Windows.Forms.DataGridView();
-            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductOrderIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.TotalPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeliveryServiceIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.PaymentMethodIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.CargoIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeliveryDateAddedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeliveryDateModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DeliveryStatusColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.DeliveryReasonColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deliveryServiceIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paymentMethodIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.totalPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateAddedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateModifiedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deliveryStatusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deliveryReasonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cargoIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.deliveryServiceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productOrderDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.paymentMethodDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderDeliveryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.imgListProductImages = new System.Windows.Forms.ImageList(this.components);
             this.pnlData = new System.Windows.Forms.Panel();
+            this.txtTotalPrice = new System.Windows.Forms.TextBox();
             this.btnGenerateReport = new System.Windows.Forms.Button();
             this.txtCargoID = new System.Windows.Forms.TextBox();
             this.lblCargoID = new System.Windows.Forms.Label();
@@ -86,7 +64,6 @@ namespace XtremePharmacyManager
             this.cbSearchMode = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.trbTotalPrice = new System.Windows.Forms.TrackBar();
-            this.lblShowTotalPrice = new System.Windows.Forms.Label();
             this.lblTotalPrice = new System.Windows.Forms.Label();
             this.txtDeliveryReason = new System.Windows.Forms.TextBox();
             this.lblDeliveryReason = new System.Windows.Forms.Label();
@@ -100,6 +77,16 @@ namespace XtremePharmacyManager
             this.lblID = new System.Windows.Forms.Label();
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productImageBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductOrderIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.TotalPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeliveryServiceIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.PaymentMethodIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.CargoIDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeliveryDateAddedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeliveryDateModifiedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DeliveryStatusColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.DeliveryReasonColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDeliveries)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
@@ -130,20 +117,7 @@ namespace XtremePharmacyManager
             this.DeliveryDateAddedColumn,
             this.DeliveryDateModifiedColumn,
             this.DeliveryStatusColumn,
-            this.DeliveryReasonColumn,
-            this.iDDataGridViewTextBoxColumn,
-            this.orderIDDataGridViewTextBoxColumn,
-            this.deliveryServiceIDDataGridViewTextBoxColumn,
-            this.paymentMethodIDDataGridViewTextBoxColumn,
-            this.totalPriceDataGridViewTextBoxColumn,
-            this.dateAddedDataGridViewTextBoxColumn,
-            this.dateModifiedDataGridViewTextBoxColumn,
-            this.deliveryStatusDataGridViewTextBoxColumn,
-            this.deliveryReasonDataGridViewTextBoxColumn,
-            this.cargoIDDataGridViewTextBoxColumn,
-            this.deliveryServiceDataGridViewTextBoxColumn,
-            this.productOrderDataGridViewTextBoxColumn,
-            this.paymentMethodDataGridViewTextBoxColumn});
+            this.DeliveryReasonColumn});
             this.dgvOrderDeliveries.DataSource = this.orderDeliveryBindingSource;
             this.dgvOrderDeliveries.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvOrderDeliveries.Location = new System.Drawing.Point(0, 563);
@@ -165,253 +139,17 @@ namespace XtremePharmacyManager
             this.dgvOrderDeliveries.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderDeliveries_CellClick);
             this.dgvOrderDeliveries.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvOrderDeliveries_RowsAdded);
             // 
-            // IDColumn
-            // 
-            this.IDColumn.DataPropertyName = "ID";
-            this.IDColumn.HeaderText = "ID";
-            this.IDColumn.MinimumWidth = 6;
-            this.IDColumn.Name = "IDColumn";
-            this.IDColumn.ReadOnly = true;
-            this.IDColumn.Width = 125;
-            // 
-            // ProductOrderIDColumn
-            // 
-            this.ProductOrderIDColumn.DataPropertyName = "OrderID";
-            this.ProductOrderIDColumn.DataSource = this.productOrderBindingSource;
-            this.ProductOrderIDColumn.DisplayMember = "ID";
-            this.ProductOrderIDColumn.HeaderText = "Product Order ID";
-            this.ProductOrderIDColumn.MinimumWidth = 6;
-            this.ProductOrderIDColumn.Name = "ProductOrderIDColumn";
-            this.ProductOrderIDColumn.ReadOnly = true;
-            this.ProductOrderIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProductOrderIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ProductOrderIDColumn.ValueMember = "ID";
-            this.ProductOrderIDColumn.Width = 125;
-            // 
             // productOrderBindingSource
             // 
             this.productOrderBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductOrder);
-            // 
-            // TotalPriceColumn
-            // 
-            this.TotalPriceColumn.DataPropertyName = "TotalPrice";
-            this.TotalPriceColumn.HeaderText = "Total Price";
-            this.TotalPriceColumn.MinimumWidth = 6;
-            this.TotalPriceColumn.Name = "TotalPriceColumn";
-            this.TotalPriceColumn.ReadOnly = true;
-            this.TotalPriceColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.TotalPriceColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.TotalPriceColumn.Width = 125;
-            // 
-            // DeliveryServiceIDColumn
-            // 
-            this.DeliveryServiceIDColumn.DataPropertyName = "DeliveryServiceID";
-            this.DeliveryServiceIDColumn.DataSource = this.deliveryServiceBindingSource;
-            this.DeliveryServiceIDColumn.DisplayMember = "ServiceName";
-            this.DeliveryServiceIDColumn.HeaderText = "Delivery Service";
-            this.DeliveryServiceIDColumn.MinimumWidth = 6;
-            this.DeliveryServiceIDColumn.Name = "DeliveryServiceIDColumn";
-            this.DeliveryServiceIDColumn.ReadOnly = true;
-            this.DeliveryServiceIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DeliveryServiceIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.DeliveryServiceIDColumn.ValueMember = "ID";
-            this.DeliveryServiceIDColumn.Width = 125;
             // 
             // deliveryServiceBindingSource
             // 
             this.deliveryServiceBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.DeliveryService);
             // 
-            // PaymentMethodIDColumn
-            // 
-            this.PaymentMethodIDColumn.DataPropertyName = "ClientID";
-            this.PaymentMethodIDColumn.DataSource = this.paymentMethodBindingSource;
-            this.PaymentMethodIDColumn.DisplayMember = "MethodName";
-            this.PaymentMethodIDColumn.HeaderText = "Payment Method";
-            this.PaymentMethodIDColumn.MinimumWidth = 6;
-            this.PaymentMethodIDColumn.Name = "PaymentMethodIDColumn";
-            this.PaymentMethodIDColumn.ReadOnly = true;
-            this.PaymentMethodIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.PaymentMethodIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.PaymentMethodIDColumn.ValueMember = "ID";
-            this.PaymentMethodIDColumn.Width = 200;
-            // 
             // paymentMethodBindingSource
             // 
             this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
-            // 
-            // CargoIDColumn
-            // 
-            this.CargoIDColumn.DataPropertyName = "CargoID";
-            this.CargoIDColumn.HeaderText = "Cargo ID";
-            this.CargoIDColumn.MinimumWidth = 6;
-            this.CargoIDColumn.Name = "CargoIDColumn";
-            this.CargoIDColumn.ReadOnly = true;
-            this.CargoIDColumn.Width = 125;
-            // 
-            // DeliveryDateAddedColumn
-            // 
-            this.DeliveryDateAddedColumn.DataPropertyName = "DateAdded";
-            this.DeliveryDateAddedColumn.HeaderText = "Date Added";
-            this.DeliveryDateAddedColumn.MinimumWidth = 6;
-            this.DeliveryDateAddedColumn.Name = "DeliveryDateAddedColumn";
-            this.DeliveryDateAddedColumn.ReadOnly = true;
-            this.DeliveryDateAddedColumn.Width = 125;
-            // 
-            // DeliveryDateModifiedColumn
-            // 
-            this.DeliveryDateModifiedColumn.DataPropertyName = "DateModified";
-            this.DeliveryDateModifiedColumn.HeaderText = "Date Modified";
-            this.DeliveryDateModifiedColumn.MinimumWidth = 6;
-            this.DeliveryDateModifiedColumn.Name = "DeliveryDateModifiedColumn";
-            this.DeliveryDateModifiedColumn.ReadOnly = true;
-            this.DeliveryDateModifiedColumn.Width = 200;
-            // 
-            // DeliveryStatusColumn
-            // 
-            this.DeliveryStatusColumn.HeaderText = "Delivery Status";
-            this.DeliveryStatusColumn.Items.AddRange(new object[] {
-            "pending delivery",
-            "prepaid",
-            "directly paid",
-            "paid on delivery",
-            "generating invoice",
-            "generating report",
-            "on the move",
-            "cancelled delivery",
-            "returned delivery",
-            "delivery completed"});
-            this.DeliveryStatusColumn.MinimumWidth = 6;
-            this.DeliveryStatusColumn.Name = "DeliveryStatusColumn";
-            this.DeliveryStatusColumn.ReadOnly = true;
-            this.DeliveryStatusColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DeliveryStatusColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.DeliveryStatusColumn.Width = 200;
-            // 
-            // DeliveryReasonColumn
-            // 
-            this.DeliveryReasonColumn.DataPropertyName = "DeliveryReason";
-            this.DeliveryReasonColumn.HeaderText = "Delivery Reason";
-            this.DeliveryReasonColumn.MinimumWidth = 6;
-            this.DeliveryReasonColumn.Name = "DeliveryReasonColumn";
-            this.DeliveryReasonColumn.ReadOnly = true;
-            this.DeliveryReasonColumn.Width = 200;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // orderIDDataGridViewTextBoxColumn
-            // 
-            this.orderIDDataGridViewTextBoxColumn.DataPropertyName = "OrderID";
-            this.orderIDDataGridViewTextBoxColumn.HeaderText = "OrderID";
-            this.orderIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.orderIDDataGridViewTextBoxColumn.Name = "orderIDDataGridViewTextBoxColumn";
-            this.orderIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.orderIDDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // deliveryServiceIDDataGridViewTextBoxColumn
-            // 
-            this.deliveryServiceIDDataGridViewTextBoxColumn.DataPropertyName = "DeliveryServiceID";
-            this.deliveryServiceIDDataGridViewTextBoxColumn.HeaderText = "DeliveryServiceID";
-            this.deliveryServiceIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.deliveryServiceIDDataGridViewTextBoxColumn.Name = "deliveryServiceIDDataGridViewTextBoxColumn";
-            this.deliveryServiceIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.deliveryServiceIDDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // paymentMethodIDDataGridViewTextBoxColumn
-            // 
-            this.paymentMethodIDDataGridViewTextBoxColumn.DataPropertyName = "PaymentMethodID";
-            this.paymentMethodIDDataGridViewTextBoxColumn.HeaderText = "PaymentMethodID";
-            this.paymentMethodIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.paymentMethodIDDataGridViewTextBoxColumn.Name = "paymentMethodIDDataGridViewTextBoxColumn";
-            this.paymentMethodIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.paymentMethodIDDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // totalPriceDataGridViewTextBoxColumn
-            // 
-            this.totalPriceDataGridViewTextBoxColumn.DataPropertyName = "TotalPrice";
-            this.totalPriceDataGridViewTextBoxColumn.HeaderText = "TotalPrice";
-            this.totalPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.totalPriceDataGridViewTextBoxColumn.Name = "totalPriceDataGridViewTextBoxColumn";
-            this.totalPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.totalPriceDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // dateAddedDataGridViewTextBoxColumn
-            // 
-            this.dateAddedDataGridViewTextBoxColumn.DataPropertyName = "DateAdded";
-            this.dateAddedDataGridViewTextBoxColumn.HeaderText = "DateAdded";
-            this.dateAddedDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.dateAddedDataGridViewTextBoxColumn.Name = "dateAddedDataGridViewTextBoxColumn";
-            this.dateAddedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dateAddedDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // dateModifiedDataGridViewTextBoxColumn
-            // 
-            this.dateModifiedDataGridViewTextBoxColumn.DataPropertyName = "DateModified";
-            this.dateModifiedDataGridViewTextBoxColumn.HeaderText = "DateModified";
-            this.dateModifiedDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.dateModifiedDataGridViewTextBoxColumn.Name = "dateModifiedDataGridViewTextBoxColumn";
-            this.dateModifiedDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dateModifiedDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // deliveryStatusDataGridViewTextBoxColumn
-            // 
-            this.deliveryStatusDataGridViewTextBoxColumn.DataPropertyName = "DeliveryStatus";
-            this.deliveryStatusDataGridViewTextBoxColumn.HeaderText = "DeliveryStatus";
-            this.deliveryStatusDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.deliveryStatusDataGridViewTextBoxColumn.Name = "deliveryStatusDataGridViewTextBoxColumn";
-            this.deliveryStatusDataGridViewTextBoxColumn.ReadOnly = true;
-            this.deliveryStatusDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // deliveryReasonDataGridViewTextBoxColumn
-            // 
-            this.deliveryReasonDataGridViewTextBoxColumn.DataPropertyName = "DeliveryReason";
-            this.deliveryReasonDataGridViewTextBoxColumn.HeaderText = "DeliveryReason";
-            this.deliveryReasonDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.deliveryReasonDataGridViewTextBoxColumn.Name = "deliveryReasonDataGridViewTextBoxColumn";
-            this.deliveryReasonDataGridViewTextBoxColumn.ReadOnly = true;
-            this.deliveryReasonDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // cargoIDDataGridViewTextBoxColumn
-            // 
-            this.cargoIDDataGridViewTextBoxColumn.DataPropertyName = "CargoID";
-            this.cargoIDDataGridViewTextBoxColumn.HeaderText = "CargoID";
-            this.cargoIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.cargoIDDataGridViewTextBoxColumn.Name = "cargoIDDataGridViewTextBoxColumn";
-            this.cargoIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.cargoIDDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // deliveryServiceDataGridViewTextBoxColumn
-            // 
-            this.deliveryServiceDataGridViewTextBoxColumn.DataPropertyName = "DeliveryService";
-            this.deliveryServiceDataGridViewTextBoxColumn.HeaderText = "DeliveryService";
-            this.deliveryServiceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.deliveryServiceDataGridViewTextBoxColumn.Name = "deliveryServiceDataGridViewTextBoxColumn";
-            this.deliveryServiceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.deliveryServiceDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productOrderDataGridViewTextBoxColumn
-            // 
-            this.productOrderDataGridViewTextBoxColumn.DataPropertyName = "ProductOrder";
-            this.productOrderDataGridViewTextBoxColumn.HeaderText = "ProductOrder";
-            this.productOrderDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productOrderDataGridViewTextBoxColumn.Name = "productOrderDataGridViewTextBoxColumn";
-            this.productOrderDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productOrderDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // paymentMethodDataGridViewTextBoxColumn
-            // 
-            this.paymentMethodDataGridViewTextBoxColumn.DataPropertyName = "PaymentMethod";
-            this.paymentMethodDataGridViewTextBoxColumn.HeaderText = "PaymentMethod";
-            this.paymentMethodDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.paymentMethodDataGridViewTextBoxColumn.Name = "paymentMethodDataGridViewTextBoxColumn";
-            this.paymentMethodDataGridViewTextBoxColumn.ReadOnly = true;
-            this.paymentMethodDataGridViewTextBoxColumn.Width = 125;
             // 
             // orderDeliveryBindingSource
             // 
@@ -433,6 +171,7 @@ namespace XtremePharmacyManager
             // 
             // pnlData
             // 
+            this.pnlData.Controls.Add(this.txtTotalPrice);
             this.pnlData.Controls.Add(this.btnGenerateReport);
             this.pnlData.Controls.Add(this.txtCargoID);
             this.pnlData.Controls.Add(this.lblCargoID);
@@ -453,7 +192,6 @@ namespace XtremePharmacyManager
             this.pnlData.Controls.Add(this.cbSearchMode);
             this.pnlData.Controls.Add(this.btnSearch);
             this.pnlData.Controls.Add(this.trbTotalPrice);
-            this.pnlData.Controls.Add(this.lblShowTotalPrice);
             this.pnlData.Controls.Add(this.lblTotalPrice);
             this.pnlData.Controls.Add(this.txtDeliveryReason);
             this.pnlData.Controls.Add(this.lblDeliveryReason);
@@ -470,6 +208,16 @@ namespace XtremePharmacyManager
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(820, 563);
             this.pnlData.TabIndex = 0;
+            // 
+            // txtTotalPrice
+            // 
+            this.txtTotalPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtTotalPrice.Location = new System.Drawing.Point(374, 233);
+            this.txtTotalPrice.Name = "txtTotalPrice";
+            this.txtTotalPrice.Size = new System.Drawing.Size(60, 22);
+            this.txtTotalPrice.TabIndex = 54;
+            this.txtTotalPrice.TextChanged += new System.EventHandler(this.txtTotalPrice_TextChanged);
             // 
             // btnGenerateReport
             // 
@@ -715,19 +463,6 @@ namespace XtremePharmacyManager
             this.trbTotalPrice.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbTotalPrice.Scroll += new System.EventHandler(this.trbTotalPrice_Scroll);
             // 
-            // lblShowTotalPrice
-            // 
-            this.lblShowTotalPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblShowTotalPrice.AutoSize = true;
-            this.lblShowTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowTotalPrice.Location = new System.Drawing.Point(374, 233);
-            this.lblShowTotalPrice.MaximumSize = new System.Drawing.Size(0, 50);
-            this.lblShowTotalPrice.Name = "lblShowTotalPrice";
-            this.lblShowTotalPrice.Size = new System.Drawing.Size(35, 16);
-            this.lblShowTotalPrice.TabIndex = 20;
-            this.lblShowTotalPrice.Text = "0.00";
-            // 
             // lblTotalPrice
             // 
             this.lblTotalPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -858,6 +593,125 @@ namespace XtremePharmacyManager
             // 
             this.productImageBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductImage);
             // 
+            // IDColumn
+            // 
+            this.IDColumn.DataPropertyName = "ID";
+            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.MinimumWidth = 6;
+            this.IDColumn.Name = "IDColumn";
+            this.IDColumn.ReadOnly = true;
+            this.IDColumn.Width = 125;
+            // 
+            // ProductOrderIDColumn
+            // 
+            this.ProductOrderIDColumn.DataPropertyName = "OrderID";
+            this.ProductOrderIDColumn.DataSource = this.productOrderBindingSource;
+            this.ProductOrderIDColumn.DisplayMember = "ID";
+            this.ProductOrderIDColumn.HeaderText = "Product Order ID";
+            this.ProductOrderIDColumn.MinimumWidth = 6;
+            this.ProductOrderIDColumn.Name = "ProductOrderIDColumn";
+            this.ProductOrderIDColumn.ReadOnly = true;
+            this.ProductOrderIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductOrderIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ProductOrderIDColumn.ValueMember = "ID";
+            this.ProductOrderIDColumn.Width = 125;
+            // 
+            // TotalPriceColumn
+            // 
+            this.TotalPriceColumn.DataPropertyName = "TotalPrice";
+            this.TotalPriceColumn.HeaderText = "Total Price";
+            this.TotalPriceColumn.MinimumWidth = 6;
+            this.TotalPriceColumn.Name = "TotalPriceColumn";
+            this.TotalPriceColumn.ReadOnly = true;
+            this.TotalPriceColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.TotalPriceColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TotalPriceColumn.Width = 125;
+            // 
+            // DeliveryServiceIDColumn
+            // 
+            this.DeliveryServiceIDColumn.DataPropertyName = "DeliveryServiceID";
+            this.DeliveryServiceIDColumn.DataSource = this.deliveryServiceBindingSource;
+            this.DeliveryServiceIDColumn.DisplayMember = "ServiceName";
+            this.DeliveryServiceIDColumn.HeaderText = "Delivery Service";
+            this.DeliveryServiceIDColumn.MinimumWidth = 6;
+            this.DeliveryServiceIDColumn.Name = "DeliveryServiceIDColumn";
+            this.DeliveryServiceIDColumn.ReadOnly = true;
+            this.DeliveryServiceIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DeliveryServiceIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.DeliveryServiceIDColumn.ValueMember = "ID";
+            this.DeliveryServiceIDColumn.Width = 125;
+            // 
+            // PaymentMethodIDColumn
+            // 
+            this.PaymentMethodIDColumn.DataPropertyName = "ClientID";
+            this.PaymentMethodIDColumn.DataSource = this.paymentMethodBindingSource;
+            this.PaymentMethodIDColumn.DisplayMember = "MethodName";
+            this.PaymentMethodIDColumn.HeaderText = "Payment Method";
+            this.PaymentMethodIDColumn.MinimumWidth = 6;
+            this.PaymentMethodIDColumn.Name = "PaymentMethodIDColumn";
+            this.PaymentMethodIDColumn.ReadOnly = true;
+            this.PaymentMethodIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.PaymentMethodIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.PaymentMethodIDColumn.ValueMember = "ID";
+            this.PaymentMethodIDColumn.Width = 200;
+            // 
+            // CargoIDColumn
+            // 
+            this.CargoIDColumn.DataPropertyName = "CargoID";
+            this.CargoIDColumn.HeaderText = "Cargo ID";
+            this.CargoIDColumn.MinimumWidth = 6;
+            this.CargoIDColumn.Name = "CargoIDColumn";
+            this.CargoIDColumn.ReadOnly = true;
+            this.CargoIDColumn.Width = 125;
+            // 
+            // DeliveryDateAddedColumn
+            // 
+            this.DeliveryDateAddedColumn.DataPropertyName = "DateAdded";
+            this.DeliveryDateAddedColumn.HeaderText = "Date Added";
+            this.DeliveryDateAddedColumn.MinimumWidth = 6;
+            this.DeliveryDateAddedColumn.Name = "DeliveryDateAddedColumn";
+            this.DeliveryDateAddedColumn.ReadOnly = true;
+            this.DeliveryDateAddedColumn.Width = 125;
+            // 
+            // DeliveryDateModifiedColumn
+            // 
+            this.DeliveryDateModifiedColumn.DataPropertyName = "DateModified";
+            this.DeliveryDateModifiedColumn.HeaderText = "Date Modified";
+            this.DeliveryDateModifiedColumn.MinimumWidth = 6;
+            this.DeliveryDateModifiedColumn.Name = "DeliveryDateModifiedColumn";
+            this.DeliveryDateModifiedColumn.ReadOnly = true;
+            this.DeliveryDateModifiedColumn.Width = 200;
+            // 
+            // DeliveryStatusColumn
+            // 
+            this.DeliveryStatusColumn.HeaderText = "Delivery Status";
+            this.DeliveryStatusColumn.Items.AddRange(new object[] {
+            "pending delivery",
+            "prepaid",
+            "directly paid",
+            "paid on delivery",
+            "generating invoice",
+            "generating report",
+            "on the move",
+            "cancelled delivery",
+            "returned delivery",
+            "delivery completed"});
+            this.DeliveryStatusColumn.MinimumWidth = 6;
+            this.DeliveryStatusColumn.Name = "DeliveryStatusColumn";
+            this.DeliveryStatusColumn.ReadOnly = true;
+            this.DeliveryStatusColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.DeliveryStatusColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.DeliveryStatusColumn.Width = 200;
+            // 
+            // DeliveryReasonColumn
+            // 
+            this.DeliveryReasonColumn.DataPropertyName = "DeliveryReason";
+            this.DeliveryReasonColumn.HeaderText = "Delivery Reason";
+            this.DeliveryReasonColumn.MinimumWidth = 6;
+            this.DeliveryReasonColumn.Name = "DeliveryReasonColumn";
+            this.DeliveryReasonColumn.ReadOnly = true;
+            this.DeliveryReasonColumn.Width = 200;
+            // 
             // frmSearchOrderDeliveries
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -926,10 +780,11 @@ namespace XtremePharmacyManager
         private BindingSource orderDeliveryBindingSource;
         private BindingSource deliveryServiceBindingSource;
         private BindingSource paymentMethodBindingSource;
-        private Label lblShowTotalPrice;
         private Label lblTotalPrice;
         private TextBox txtCargoID;
         private Label lblCargoID;
+        private Button btnGenerateReport;
+        private TextBox txtTotalPrice;
         private DataGridViewTextBoxColumn IDColumn;
         private DataGridViewComboBoxColumn ProductOrderIDColumn;
         private DataGridViewTextBoxColumn TotalPriceColumn;
@@ -940,19 +795,5 @@ namespace XtremePharmacyManager
         private DataGridViewTextBoxColumn DeliveryDateModifiedColumn;
         private DataGridViewComboBoxColumn DeliveryStatusColumn;
         private DataGridViewTextBoxColumn DeliveryReasonColumn;
-        private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn orderIDDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn deliveryServiceIDDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn paymentMethodIDDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn totalPriceDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dateAddedDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn dateModifiedDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn deliveryStatusDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn deliveryReasonDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn cargoIDDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn deliveryServiceDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productOrderDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn paymentMethodDataGridViewTextBoxColumn;
-        private Button btnGenerateReport;
     }
 }

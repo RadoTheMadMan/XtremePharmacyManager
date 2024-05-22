@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.btnGenerateReport = new System.Windows.Forms.Button();
             this.lblSearchMode = new System.Windows.Forms.Label();
             this.cbSearchMode = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -41,21 +42,17 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.dgvProductBrands = new System.Windows.Forms.DataGridView();
-            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrandNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.brandNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnGenerateReport = new System.Windows.Forms.Button();
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrandNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductBrands)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -77,6 +74,18 @@
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(483, 290);
             this.pnlData.TabIndex = 0;
+            // 
+            // btnGenerateReport
+            // 
+            this.btnGenerateReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerateReport.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerateReport.Location = new System.Drawing.Point(296, 228);
+            this.btnGenerateReport.Name = "btnGenerateReport";
+            this.btnGenerateReport.Size = new System.Drawing.Size(175, 47);
+            this.btnGenerateReport.TabIndex = 45;
+            this.btnGenerateReport.Text = "GENERATE REPORT";
+            this.btnGenerateReport.UseVisualStyleBackColor = true;
+            this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
             // lblSearchMode
             // 
@@ -194,10 +203,7 @@
             this.dgvProductBrands.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductBrands.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDColumn,
-            this.BrandNameColumn,
-            this.iDDataGridViewTextBoxColumn,
-            this.brandNameDataGridViewTextBoxColumn,
-            this.productsDataGridViewTextBoxColumn});
+            this.BrandNameColumn});
             this.dgvProductBrands.DataSource = this.productBrandBindingSource;
             this.dgvProductBrands.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProductBrands.Location = new System.Drawing.Point(0, 290);
@@ -218,6 +224,14 @@
             this.dgvProductBrands.TabIndex = 1;
             this.dgvProductBrands.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductBrands_CellClick);
             // 
+            // productBrandBindingSource
+            // 
+            this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
+            // 
+            // paymentMethodBindingSource
+            // 
+            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
+            // 
             // IDColumn
             // 
             this.IDColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -236,50 +250,6 @@
             this.BrandNameColumn.Name = "BrandNameColumn";
             this.BrandNameColumn.ReadOnly = true;
             // 
-            // productBrandBindingSource
-            // 
-            this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
-            // 
-            // paymentMethodBindingSource
-            // 
-            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // brandNameDataGridViewTextBoxColumn
-            // 
-            this.brandNameDataGridViewTextBoxColumn.DataPropertyName = "BrandName";
-            this.brandNameDataGridViewTextBoxColumn.HeaderText = "BrandName";
-            this.brandNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.brandNameDataGridViewTextBoxColumn.Name = "brandNameDataGridViewTextBoxColumn";
-            this.brandNameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // productsDataGridViewTextBoxColumn
-            // 
-            this.productsDataGridViewTextBoxColumn.DataPropertyName = "Products";
-            this.productsDataGridViewTextBoxColumn.HeaderText = "Products";
-            this.productsDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productsDataGridViewTextBoxColumn.Name = "productsDataGridViewTextBoxColumn";
-            this.productsDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // btnGenerateReport
-            // 
-            this.btnGenerateReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerateReport.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerateReport.Location = new System.Drawing.Point(296, 228);
-            this.btnGenerateReport.Name = "btnGenerateReport";
-            this.btnGenerateReport.Size = new System.Drawing.Size(175, 47);
-            this.btnGenerateReport.TabIndex = 45;
-            this.btnGenerateReport.Text = "GENERATE REPORT";
-            this.btnGenerateReport.UseVisualStyleBackColor = true;
-            this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
-            // 
             // frmSearchProductBrands
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -293,9 +263,9 @@
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductBrands)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -321,11 +291,8 @@
         private System.Windows.Forms.ComboBox cbSearchMode;
         private System.Windows.Forms.BindingSource paymentMethodBindingSource;
         private System.Windows.Forms.BindingSource productBrandBindingSource;
+        private System.Windows.Forms.Button btnGenerateReport;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrandNameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn brandNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productsDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button btnGenerateReport;
     }
 }

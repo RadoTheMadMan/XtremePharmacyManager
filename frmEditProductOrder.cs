@@ -29,12 +29,12 @@ namespace XtremePharmacyManager
 
         private void trbPriceOverride_Scroll(object sender, EventArgs e)
         {
-            lblShowPriceOverride.Text = trbPriceOverride.Value.ToString();
+            txtPriceOverride.Text = trbPriceOverride.Value.ToString();
         }
 
         private void trbDesiredQuantity_Scroll(object sender, EventArgs e)
         {
-            lblShowDesiredQuantity.Text = trbDesiredQuantity.Value.ToString();
+            txtDesiredQuantity.Text = trbDesiredQuantity.Value.ToString();
         }
 
 
@@ -59,9 +59,9 @@ namespace XtremePharmacyManager
                     this.cbSelectEmployee.SelectedValue = target.EmployeeID;
                 }
                 trbDesiredQuantity.Value = (target.DesiredQuantity >= 0) ? target.DesiredQuantity : 0;
-                lblShowDesiredQuantity.Text = (target.DesiredQuantity >= 0) ? target.DesiredQuantity.ToString() : string.Empty;
+                txtDesiredQuantity.Text = (target.DesiredQuantity >= 0) ? target.DesiredQuantity.ToString() : string.Empty;
                 trbPriceOverride.Value = (target.OrderPrice >= 0) ? Convert.ToInt32(target.OrderPrice) : 0;
-                lblShowPriceOverride.Text = (target.OrderPrice >= 0) ? target.OrderPrice.ToString() : string.Empty;
+                txtPriceOverride.Text = (target.OrderPrice >= 0) ? target.OrderPrice.ToString() : string.Empty;
                 cbSelectOrderStatus.SelectedValue = cbSelectOrderStatus.Items[target.OrderStatus];
                 txtOrderReason.Text = target.OrderReason;
             }
@@ -113,6 +113,28 @@ namespace XtremePharmacyManager
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txtDesiredQuantity_TextChanged(object sender, EventArgs e)
+        {
+            int value = 0;
+            Int32.TryParse(((TextBox)sender).Text, out value);
+            if (value >= trbDesiredQuantity.Maximum)
+            {
+                trbDesiredQuantity.Maximum = value;
+            }
+            trbDesiredQuantity.Value = value;
+        }
+
+        private void txtPriceOverride_TextChanged(object sender, EventArgs e)
+        {
+            int value = 0;
+            Int32.TryParse(((TextBox)sender).Text, out value);
+            if (value >= trbPriceOverride.Maximum)
+            {
+                trbPriceOverride.Maximum = value;
+            }
+            trbPriceOverride.Value = value;
         }
     }
 }

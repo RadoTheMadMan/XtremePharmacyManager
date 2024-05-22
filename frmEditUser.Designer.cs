@@ -39,7 +39,6 @@
             this.txtDiagnose = new System.Windows.Forms.TextBox();
             this.lblDiagnose = new System.Windows.Forms.Label();
             this.trbBalance = new System.Windows.Forms.TrackBar();
-            this.lblShowBalance = new System.Windows.Forms.Label();
             this.lblBalance = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.lblAddress = new System.Windows.Forms.Label();
@@ -58,6 +57,7 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtBalance = new System.Windows.Forms.TextBox();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).BeginInit();
@@ -67,6 +67,7 @@
             // pnlData
             // 
             this.pnlData.AutoSize = true;
+            this.pnlData.Controls.Add(this.txtBalance);
             this.pnlData.Controls.Add(this.lblUserNotice);
             this.pnlData.Controls.Add(this.pbUserProfilePic);
             this.pnlData.Controls.Add(this.btnOK);
@@ -76,7 +77,6 @@
             this.pnlData.Controls.Add(this.txtDiagnose);
             this.pnlData.Controls.Add(this.lblDiagnose);
             this.pnlData.Controls.Add(this.trbBalance);
-            this.pnlData.Controls.Add(this.lblShowBalance);
             this.pnlData.Controls.Add(this.lblBalance);
             this.pnlData.Controls.Add(this.txtAddress);
             this.pnlData.Controls.Add(this.lblAddress);
@@ -210,18 +210,6 @@
             this.trbBalance.TabIndex = 21;
             this.trbBalance.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
-            // 
-            // lblShowBalance
-            // 
-            this.lblShowBalance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblShowBalance.AutoSize = true;
-            this.lblShowBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowBalance.Location = new System.Drawing.Point(749, 21);
-            this.lblShowBalance.Name = "lblShowBalance";
-            this.lblShowBalance.Size = new System.Drawing.Size(35, 16);
-            this.lblShowBalance.TabIndex = 20;
-            this.lblShowBalance.Text = "0.00";
             // 
             // lblBalance
             // 
@@ -409,6 +397,16 @@
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
             // 
+            // txtBalance
+            // 
+            this.txtBalance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBalance.Location = new System.Drawing.Point(741, 18);
+            this.txtBalance.Name = "txtBalance";
+            this.txtBalance.Size = new System.Drawing.Size(55, 22);
+            this.txtBalance.TabIndex = 43;
+            this.txtBalance.TextChanged += new System.EventHandler(this.txtBalance_TextChanged);
+            // 
             // frmEditUser
             // 
             this.AcceptButton = this.btnOK;
@@ -450,7 +448,6 @@
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.Label lblBalance;
-        private System.Windows.Forms.Label lblShowBalance;
         private System.Windows.Forms.TrackBar trbBalance;
         private System.Windows.Forms.TextBox txtDiagnose;
         private System.Windows.Forms.Label lblDiagnose;
@@ -461,5 +458,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.PictureBox pbUserProfilePic;
         private System.Windows.Forms.Label lblUserNotice;
+        private System.Windows.Forms.TextBox txtBalance;
     }
 }

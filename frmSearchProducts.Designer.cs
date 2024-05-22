@@ -39,10 +39,14 @@ namespace XtremePharmacyManager
             this.ImageNameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.imgListProductImages = new System.Windows.Forms.ImageList(this.components);
             this.pnlData = new System.Windows.Forms.Panel();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
+            this.cbSelectVendor = new System.Windows.Forms.ComboBox();
+            this.productVendorBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lblVendor = new System.Windows.Forms.Label();
             this.btnGenerateReport = new System.Windows.Forms.Button();
             this.lblProductNotice = new System.Windows.Forms.Label();
             this.trbQuantity = new System.Windows.Forms.TrackBar();
-            this.lblShowQuantity = new System.Windows.Forms.Label();
             this.lblQuantity = new System.Windows.Forms.Label();
             this.cbSelectBrand = new System.Windows.Forms.ComboBox();
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -52,7 +56,6 @@ namespace XtremePharmacyManager
             this.cbSearchMode = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.trbPrice = new System.Windows.Forms.TrackBar();
-            this.lblShowPrice = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.txtProductStorageLocation = new System.Windows.Forms.TextBox();
             this.lblStorageLocation = new System.Windows.Forms.Label();
@@ -88,9 +91,6 @@ namespace XtremePharmacyManager
             this.txtImageName = new System.Windows.Forms.TextBox();
             this.btnAddEditProductImage = new System.Windows.Forms.Button();
             this.productImageBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cbSelectVendor = new System.Windows.Forms.ComboBox();
-            this.lblVendor = new System.Windows.Forms.Label();
-            this.productVendorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BrandIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.VendorIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
@@ -102,20 +102,8 @@ namespace XtremePharmacyManager
             this.ProductRegistrationNumColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductPartitudeNumColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductSLocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.brandIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productDescriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productQuantityDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productExpiryDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productRegNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productPartNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productStorageLocationDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productBrandDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productImagesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productOrdersDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
@@ -125,7 +113,6 @@ namespace XtremePharmacyManager
             this.pnlImageData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSelectedProductImage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // lstProductImages
@@ -172,12 +159,13 @@ namespace XtremePharmacyManager
             // 
             // pnlData
             // 
+            this.pnlData.Controls.Add(this.txtPrice);
+            this.pnlData.Controls.Add(this.txtQuantity);
             this.pnlData.Controls.Add(this.cbSelectVendor);
             this.pnlData.Controls.Add(this.lblVendor);
             this.pnlData.Controls.Add(this.btnGenerateReport);
             this.pnlData.Controls.Add(this.lblProductNotice);
             this.pnlData.Controls.Add(this.trbQuantity);
-            this.pnlData.Controls.Add(this.lblShowQuantity);
             this.pnlData.Controls.Add(this.lblQuantity);
             this.pnlData.Controls.Add(this.cbSelectBrand);
             this.pnlData.Controls.Add(this.btnDelete);
@@ -186,7 +174,6 @@ namespace XtremePharmacyManager
             this.pnlData.Controls.Add(this.cbSearchMode);
             this.pnlData.Controls.Add(this.btnSearch);
             this.pnlData.Controls.Add(this.trbPrice);
-            this.pnlData.Controls.Add(this.lblShowPrice);
             this.pnlData.Controls.Add(this.lblPrice);
             this.pnlData.Controls.Add(this.txtProductStorageLocation);
             this.pnlData.Controls.Add(this.lblStorageLocation);
@@ -210,6 +197,53 @@ namespace XtremePharmacyManager
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(1220, 655);
             this.pnlData.TabIndex = 0;
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtPrice.Location = new System.Drawing.Point(383, 274);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(49, 22);
+            this.txtPrice.TabIndex = 52;
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
+            // 
+            // txtQuantity
+            // 
+            this.txtQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtQuantity.Location = new System.Drawing.Point(383, 218);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(49, 22);
+            this.txtQuantity.TabIndex = 51;
+            this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
+            // 
+            // cbSelectVendor
+            // 
+            this.cbSelectVendor.DataSource = this.productVendorBindingSource;
+            this.cbSelectVendor.DisplayMember = "VendorName";
+            this.cbSelectVendor.FormattingEnabled = true;
+            this.cbSelectVendor.Location = new System.Drawing.Point(569, 15);
+            this.cbSelectVendor.Name = "cbSelectVendor";
+            this.cbSelectVendor.Size = new System.Drawing.Size(232, 24);
+            this.cbSelectVendor.TabIndex = 50;
+            this.cbSelectVendor.ValueMember = "ID";
+            // 
+            // productVendorBindingSource
+            // 
+            this.productVendorBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductVendor);
+            // 
+            // lblVendor
+            // 
+            this.lblVendor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblVendor.AutoSize = true;
+            this.lblVendor.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVendor.Location = new System.Drawing.Point(410, 20);
+            this.lblVendor.Name = "lblVendor";
+            this.lblVendor.Size = new System.Drawing.Size(61, 16);
+            this.lblVendor.TabIndex = 49;
+            this.lblVendor.Text = "Vendor:";
             // 
             // btnGenerateReport
             // 
@@ -249,19 +283,6 @@ namespace XtremePharmacyManager
             this.trbQuantity.TabIndex = 38;
             this.trbQuantity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbQuantity.Scroll += new System.EventHandler(this.trbQuantity_Scroll);
-            // 
-            // lblShowQuantity
-            // 
-            this.lblShowQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblShowQuantity.AutoSize = true;
-            this.lblShowQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowQuantity.Location = new System.Drawing.Point(380, 218);
-            this.lblShowQuantity.MaximumSize = new System.Drawing.Size(0, 50);
-            this.lblShowQuantity.Name = "lblShowQuantity";
-            this.lblShowQuantity.Size = new System.Drawing.Size(35, 16);
-            this.lblShowQuantity.TabIndex = 37;
-            this.lblShowQuantity.Text = "0.00";
             // 
             // lblQuantity
             // 
@@ -367,19 +388,6 @@ namespace XtremePharmacyManager
             this.trbPrice.TabIndex = 21;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
-            // 
-            // lblShowPrice
-            // 
-            this.lblShowPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblShowPrice.AutoSize = true;
-            this.lblShowPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowPrice.Location = new System.Drawing.Point(380, 274);
-            this.lblShowPrice.MaximumSize = new System.Drawing.Size(0, 50);
-            this.lblShowPrice.Name = "lblShowPrice";
-            this.lblShowPrice.Size = new System.Drawing.Size(35, 16);
-            this.lblShowPrice.TabIndex = 20;
-            this.lblShowPrice.Text = "0.00";
             // 
             // lblPrice
             // 
@@ -595,20 +603,7 @@ namespace XtremePharmacyManager
             this.ProductExpiryDateColumn,
             this.ProductRegistrationNumColumn,
             this.ProductPartitudeNumColumn,
-            this.ProductSLocationColumn,
-            this.iDDataGridViewTextBoxColumn,
-            this.productNameDataGridViewTextBoxColumn,
-            this.brandIDDataGridViewTextBoxColumn,
-            this.productDescriptionDataGridViewTextBoxColumn,
-            this.productQuantityDataGridViewTextBoxColumn,
-            this.productPriceDataGridViewTextBoxColumn,
-            this.productExpiryDateDataGridViewTextBoxColumn,
-            this.productRegNumDataGridViewTextBoxColumn,
-            this.productPartNumDataGridViewTextBoxColumn,
-            this.productStorageLocationDataGridViewTextBoxColumn,
-            this.productBrandDataGridViewTextBoxColumn,
-            this.productImagesDataGridViewTextBoxColumn,
-            this.productOrdersDataGridViewTextBoxColumn});
+            this.ProductSLocationColumn});
             this.dgvProducts.DataSource = this.productBindingSource;
             this.dgvProducts.Location = new System.Drawing.Point(0, 376);
             this.dgvProducts.MultiSelect = false;
@@ -798,33 +793,6 @@ namespace XtremePharmacyManager
             // 
             this.productImageBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductImage);
             // 
-            // cbSelectVendor
-            // 
-            this.cbSelectVendor.DataSource = this.productVendorBindingSource;
-            this.cbSelectVendor.DisplayMember = "VendorName";
-            this.cbSelectVendor.FormattingEnabled = true;
-            this.cbSelectVendor.Location = new System.Drawing.Point(569, 15);
-            this.cbSelectVendor.Name = "cbSelectVendor";
-            this.cbSelectVendor.Size = new System.Drawing.Size(232, 24);
-            this.cbSelectVendor.TabIndex = 50;
-            this.cbSelectVendor.ValueMember = "ID";
-            // 
-            // lblVendor
-            // 
-            this.lblVendor.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblVendor.AutoSize = true;
-            this.lblVendor.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVendor.Location = new System.Drawing.Point(410, 20);
-            this.lblVendor.Name = "lblVendor";
-            this.lblVendor.Size = new System.Drawing.Size(61, 16);
-            this.lblVendor.TabIndex = 49;
-            this.lblVendor.Text = "Vendor:";
-            // 
-            // productVendorBindingSource
-            // 
-            this.productVendorBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductVendor);
-            // 
             // IDColumn
             // 
             this.IDColumn.DataPropertyName = "ID";
@@ -936,123 +904,6 @@ namespace XtremePharmacyManager
             this.ProductSLocationColumn.ReadOnly = true;
             this.ProductSLocationColumn.Width = 200;
             // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productNameDataGridViewTextBoxColumn
-            // 
-            this.productNameDataGridViewTextBoxColumn.DataPropertyName = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.HeaderText = "ProductName";
-            this.productNameDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productNameDataGridViewTextBoxColumn.Name = "productNameDataGridViewTextBoxColumn";
-            this.productNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productNameDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // brandIDDataGridViewTextBoxColumn
-            // 
-            this.brandIDDataGridViewTextBoxColumn.DataPropertyName = "BrandID";
-            this.brandIDDataGridViewTextBoxColumn.HeaderText = "BrandID";
-            this.brandIDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.brandIDDataGridViewTextBoxColumn.Name = "brandIDDataGridViewTextBoxColumn";
-            this.brandIDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.brandIDDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productDescriptionDataGridViewTextBoxColumn
-            // 
-            this.productDescriptionDataGridViewTextBoxColumn.DataPropertyName = "ProductDescription";
-            this.productDescriptionDataGridViewTextBoxColumn.HeaderText = "ProductDescription";
-            this.productDescriptionDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productDescriptionDataGridViewTextBoxColumn.Name = "productDescriptionDataGridViewTextBoxColumn";
-            this.productDescriptionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productDescriptionDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productQuantityDataGridViewTextBoxColumn
-            // 
-            this.productQuantityDataGridViewTextBoxColumn.DataPropertyName = "ProductQuantity";
-            this.productQuantityDataGridViewTextBoxColumn.HeaderText = "ProductQuantity";
-            this.productQuantityDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productQuantityDataGridViewTextBoxColumn.Name = "productQuantityDataGridViewTextBoxColumn";
-            this.productQuantityDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productQuantityDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productPriceDataGridViewTextBoxColumn
-            // 
-            this.productPriceDataGridViewTextBoxColumn.DataPropertyName = "ProductPrice";
-            this.productPriceDataGridViewTextBoxColumn.HeaderText = "ProductPrice";
-            this.productPriceDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productPriceDataGridViewTextBoxColumn.Name = "productPriceDataGridViewTextBoxColumn";
-            this.productPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productPriceDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productExpiryDateDataGridViewTextBoxColumn
-            // 
-            this.productExpiryDateDataGridViewTextBoxColumn.DataPropertyName = "ProductExpiryDate";
-            this.productExpiryDateDataGridViewTextBoxColumn.HeaderText = "ProductExpiryDate";
-            this.productExpiryDateDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productExpiryDateDataGridViewTextBoxColumn.Name = "productExpiryDateDataGridViewTextBoxColumn";
-            this.productExpiryDateDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productExpiryDateDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productRegNumDataGridViewTextBoxColumn
-            // 
-            this.productRegNumDataGridViewTextBoxColumn.DataPropertyName = "ProductRegNum";
-            this.productRegNumDataGridViewTextBoxColumn.HeaderText = "ProductRegNum";
-            this.productRegNumDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productRegNumDataGridViewTextBoxColumn.Name = "productRegNumDataGridViewTextBoxColumn";
-            this.productRegNumDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productRegNumDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productPartNumDataGridViewTextBoxColumn
-            // 
-            this.productPartNumDataGridViewTextBoxColumn.DataPropertyName = "ProductPartNum";
-            this.productPartNumDataGridViewTextBoxColumn.HeaderText = "ProductPartNum";
-            this.productPartNumDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productPartNumDataGridViewTextBoxColumn.Name = "productPartNumDataGridViewTextBoxColumn";
-            this.productPartNumDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productPartNumDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productStorageLocationDataGridViewTextBoxColumn
-            // 
-            this.productStorageLocationDataGridViewTextBoxColumn.DataPropertyName = "ProductStorageLocation";
-            this.productStorageLocationDataGridViewTextBoxColumn.HeaderText = "ProductStorageLocation";
-            this.productStorageLocationDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productStorageLocationDataGridViewTextBoxColumn.Name = "productStorageLocationDataGridViewTextBoxColumn";
-            this.productStorageLocationDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productStorageLocationDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productBrandDataGridViewTextBoxColumn
-            // 
-            this.productBrandDataGridViewTextBoxColumn.DataPropertyName = "ProductBrand";
-            this.productBrandDataGridViewTextBoxColumn.HeaderText = "ProductBrand";
-            this.productBrandDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productBrandDataGridViewTextBoxColumn.Name = "productBrandDataGridViewTextBoxColumn";
-            this.productBrandDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productBrandDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productImagesDataGridViewTextBoxColumn
-            // 
-            this.productImagesDataGridViewTextBoxColumn.DataPropertyName = "ProductImages";
-            this.productImagesDataGridViewTextBoxColumn.HeaderText = "ProductImages";
-            this.productImagesDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productImagesDataGridViewTextBoxColumn.Name = "productImagesDataGridViewTextBoxColumn";
-            this.productImagesDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productImagesDataGridViewTextBoxColumn.Width = 125;
-            // 
-            // productOrdersDataGridViewTextBoxColumn
-            // 
-            this.productOrdersDataGridViewTextBoxColumn.DataPropertyName = "ProductOrders";
-            this.productOrdersDataGridViewTextBoxColumn.HeaderText = "ProductOrders";
-            this.productOrdersDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productOrdersDataGridViewTextBoxColumn.Name = "productOrdersDataGridViewTextBoxColumn";
-            this.productOrdersDataGridViewTextBoxColumn.ReadOnly = true;
-            this.productOrdersDataGridViewTextBoxColumn.Width = 125;
-            // 
             // frmSearchProducts
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -1066,6 +917,7 @@ namespace XtremePharmacyManager
             this.Load += new System.EventHandler(this.frmSearchProducts_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).EndInit();
@@ -1076,7 +928,6 @@ namespace XtremePharmacyManager
             this.pnlImageData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbSelectedProductImage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1102,7 +953,6 @@ namespace XtremePharmacyManager
         private System.Windows.Forms.DateTimePicker dtExpiryDateTo;
         private System.Windows.Forms.Label lblExpiryDateTo;
         private System.Windows.Forms.Label lblPrice;
-        private System.Windows.Forms.Label lblShowPrice;
         private System.Windows.Forms.TrackBar trbPrice;
         private System.Windows.Forms.DataGridView dgvProducts;
         private System.Windows.Forms.BindingSource userBindingSource;
@@ -1117,7 +967,6 @@ namespace XtremePharmacyManager
         private BindingSource productBindingSource;
         private TextBox txtProductRegNum;
         private TrackBar trbQuantity;
-        private Label lblShowQuantity;
         private Label lblQuantity;
         private ColumnHeader ImageNameColumn;
         private Label lblImages;
@@ -1143,6 +992,8 @@ namespace XtremePharmacyManager
         private ComboBox cbSelectVendor;
         private BindingSource productVendorBindingSource;
         private Label lblVendor;
+        private TextBox txtPrice;
+        private TextBox txtQuantity;
         private DataGridViewTextBoxColumn IDColumn;
         private DataGridViewComboBoxColumn BrandIDColumn;
         private DataGridViewComboBoxColumn VendorIDColumn;
@@ -1154,18 +1005,5 @@ namespace XtremePharmacyManager
         private DataGridViewTextBoxColumn ProductRegistrationNumColumn;
         private DataGridViewTextBoxColumn ProductPartitudeNumColumn;
         private DataGridViewTextBoxColumn ProductSLocationColumn;
-        private DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productNameDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn brandIDDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productDescriptionDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productQuantityDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productPriceDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productExpiryDateDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productRegNumDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productPartNumDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productStorageLocationDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productBrandDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productImagesDataGridViewTextBoxColumn;
-        private DataGridViewTextBoxColumn productOrdersDataGridViewTextBoxColumn;
     }
 }

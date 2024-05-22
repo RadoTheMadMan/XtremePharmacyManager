@@ -109,7 +109,7 @@ namespace XtremePharmacyManager
                 }
                 cbSelectRecord.DataSource = entries;
                 order_entries = manager_entities.ProductOrders.ToList();
-                foreach (var entry in entries)
+                foreach (var entry in order_entries)
                 {
                     manager_entities.Entry(manager_entities.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
                 }
@@ -173,7 +173,7 @@ namespace XtremePharmacyManager
             }
             cbSelectRecord.DataSource = entries;
             order_entries = manager_entities.ProductOrders.ToList();
-            foreach (var entry in entries)
+            foreach (var entry in order_entries)
             {
                 manager_entities.Entry(manager_entities.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
             }
@@ -198,7 +198,7 @@ namespace XtremePharmacyManager
                     this.txtReason.Text = (!String.IsNullOrEmpty(selected_target.DeliveryReason)) ? selected_target.DeliveryReason.ToString() : string.Empty;
                     this.txtCargoID.Text = (!String.IsNullOrEmpty(selected_target.CargoID)) ? selected_target.CargoID.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.TotalPrice >= 0) ? Convert.ToInt32(selected_target.TotalPrice) : 0;
-                    this.lblShowPrice.Text = (selected_target.TotalPrice >= 0) ? selected_target.TotalPrice.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_target.TotalPrice >= 0) ? selected_target.TotalPrice.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                     cbOrder.SelectedValue = selected_target.OrderID;
                     cbDeliveryService.SelectedValue = selected_target.DeliveryServiceID;
@@ -294,7 +294,7 @@ namespace XtremePharmacyManager
                     this.txtReason.Text = (!String.IsNullOrEmpty(selected_target.DeliveryReason)) ? selected_target.DeliveryReason.ToString() : string.Empty;
                     this.txtCargoID.Text = (!String.IsNullOrEmpty(selected_target.CargoID)) ? selected_target.CargoID.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.TotalPrice >= 0) ? Convert.ToInt32(selected_target.TotalPrice) : 0;
-                    this.lblShowPrice.Text = (selected_target.TotalPrice >= 0) ? selected_target.TotalPrice.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_target.TotalPrice >= 0) ? selected_target.TotalPrice.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                     cbOrder.SelectedValue = selected_target.OrderID;
                     cbDeliveryService.SelectedValue = selected_target.DeliveryServiceID;
@@ -411,7 +411,7 @@ namespace XtremePharmacyManager
                     this.txtReason.Text = (!String.IsNullOrEmpty(selected_record.DeliveryReason)) ? selected_record.DeliveryReason.ToString() : string.Empty;
                     this.txtCargoID.Text = (!String.IsNullOrEmpty(selected_record.CargoID)) ? selected_record.CargoID.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_record.TotalPrice >= 0) ? Convert.ToInt32(selected_record.TotalPrice) : 0;
-                    this.lblShowPrice.Text = (selected_record.TotalPrice >= 0) ? selected_record.TotalPrice.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_record.TotalPrice >= 0) ? selected_record.TotalPrice.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_record.ID;
                     cbOrder.SelectedValue = selected_record.OrderID;
                     cbDeliveryService.SelectedValue = selected_record.DeliveryServiceID;
@@ -425,7 +425,7 @@ namespace XtremePharmacyManager
                     this.txtReason.Text = (!String.IsNullOrEmpty(selected_target.DeliveryReason)) ? selected_target.DeliveryReason.ToString() : string.Empty;
                     this.txtCargoID.Text = (!String.IsNullOrEmpty(selected_target.CargoID)) ? selected_target.CargoID.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.TotalPrice >= 0) ? Convert.ToInt32(selected_target.TotalPrice) : 0;
-                    this.lblShowPrice.Text = (selected_target.TotalPrice >= 0) ? selected_target.TotalPrice.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_target.TotalPrice >= 0) ? selected_target.TotalPrice.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                     cbOrder.SelectedValue = selected_target.OrderID;
                     cbDeliveryService.SelectedValue = selected_target.DeliveryServiceID;
@@ -440,7 +440,7 @@ namespace XtremePharmacyManager
                     this.txtReason.Text = (!String.IsNullOrEmpty(selected_record.DeliveryReason)) ? selected_record.DeliveryReason.ToString() : string.Empty;
                     this.txtCargoID.Text = (!String.IsNullOrEmpty(selected_record.CargoID)) ? selected_record.CargoID.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_record.TotalPrice >= 0) ? Convert.ToInt32(selected_record.TotalPrice) : 0;
-                    this.lblShowPrice.Text = (selected_record.TotalPrice >= 0) ? selected_record.TotalPrice.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_record.TotalPrice >= 0) ? selected_record.TotalPrice.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_record.ID;
                     cbOrder.SelectedValue = selected_record.OrderID;
                     cbDeliveryService.SelectedValue = selected_record.DeliveryServiceID;
@@ -457,8 +457,18 @@ namespace XtremePharmacyManager
 
         private void trbPrice_Scroll(object sender, EventArgs e)
         {
-            lblShowPrice.Text = ((TrackBar)sender).Value.ToString();
+            txtPrice.Text = ((TrackBar)sender).Value.ToString();
         }
 
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+            int value = 0;
+            Int32.TryParse(((TextBox)sender).Text, out value);
+            if (value >= trbPrice.Maximum)
+            {
+                trbPrice.Maximum = value;
+            }
+            trbPrice.Value = value;
+        }
     }
 }

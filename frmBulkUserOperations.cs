@@ -110,7 +110,7 @@ namespace XtremePharmacyManager
                     this.txtEmail.Text = (!String.IsNullOrEmpty(selected_target.UserEmail)) ? selected_target.UserEmail.ToString() : string.Empty;
                     this.txtAddress.Text = (!String.IsNullOrEmpty(selected_target.UserAddress)) ? selected_target.UserAddress.ToString() : string.Empty;
                     trbBalance.Value = (selected_target.UserBalance >= 0) ? Convert.ToInt32(selected_target.UserBalance) : 0;
-                    lblShowBalance.Text = (selected_target.UserBalance >= 0) ? selected_target.UserBalance.ToString() : string.Empty;
+                    txtBalance.Text = (selected_target.UserBalance >= 0) ? selected_target.UserBalance.ToString() : string.Empty;
                     txtDiagnose.Text = (!String.IsNullOrEmpty(selected_target.UserDiagnose)) ? selected_target.UserDiagnose : string.Empty;
                     cbRole.SelectedIndex = (selected_target.UserRole >= 0 && selected_target.UserRole <= 2) ? selected_target.UserRole : 1;
                     pbUserProfilePic.Image = (selected_target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
@@ -203,7 +203,7 @@ namespace XtremePharmacyManager
                     this.txtEmail.Text = (!String.IsNullOrEmpty(selected_target.UserEmail)) ? selected_target.UserEmail.ToString() : string.Empty;
                     this.txtAddress.Text = (!String.IsNullOrEmpty(selected_target.UserAddress)) ? selected_target.UserAddress.ToString() : string.Empty;
                     trbBalance.Value = (selected_target.UserBalance >= 0) ? Convert.ToInt32(selected_target.UserBalance) : 0;
-                    lblShowBalance.Text = (selected_target.UserBalance >= 0) ? selected_target.UserBalance.ToString() : string.Empty;
+                    txtBalance.Text = (selected_target.UserBalance >= 0) ? selected_target.UserBalance.ToString() : string.Empty;
                     txtDiagnose.Text = (!String.IsNullOrEmpty(selected_target.UserDiagnose)) ? selected_target.UserDiagnose : string.Empty;
                     cbRole.SelectedIndex = (selected_target.UserRole >= 0 && selected_target.UserRole <= 2) ? selected_target.UserRole : 1;
                     pbUserProfilePic.Image = (selected_target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
@@ -325,7 +325,7 @@ namespace XtremePharmacyManager
 
         private void trbBalance_Scroll(object sender, EventArgs e)
         {
-            lblShowBalance.Text = ((TrackBar)sender).Value.ToString();
+            txtBalance.Text = ((TrackBar)sender).Value.ToString();
         }
 
         private void cbSelectRecord_SelectedIndexChanged(object sender, EventArgs e)
@@ -358,7 +358,7 @@ namespace XtremePharmacyManager
                     this.txtEmail.Text = (!String.IsNullOrEmpty(selected_record.UserEmail)) ? selected_record.UserEmail.ToString() : string.Empty;
                     this.txtAddress.Text = (!String.IsNullOrEmpty(selected_record.UserAddress)) ? selected_record.UserAddress.ToString() : string.Empty;
                     trbBalance.Value = (selected_record.UserBalance >= 0) ? Convert.ToInt32(selected_record.UserBalance) : 0;
-                    lblShowBalance.Text = (selected_record.UserBalance >= 0) ? selected_record.UserBalance.ToString() : string.Empty;
+                    txtBalance.Text = (selected_record.UserBalance >= 0) ? selected_record.UserBalance.ToString() : string.Empty;
                     txtDiagnose.Text = (!String.IsNullOrEmpty(selected_record.UserDiagnose)) ? selected_record.UserDiagnose : string.Empty;
                     cbRole.SelectedIndex = (selected_record.UserRole >= 0 && selected_record.UserRole <= 2) ? selected_record.UserRole : 1;
                     pbUserProfilePic.Image = (selected_record.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
@@ -376,7 +376,7 @@ namespace XtremePharmacyManager
                     this.txtEmail.Text = (!String.IsNullOrEmpty(selected_target.UserEmail)) ? selected_target.UserEmail.ToString() : string.Empty;
                     this.txtAddress.Text = (!String.IsNullOrEmpty(selected_target.UserAddress)) ? selected_target.UserAddress.ToString() : string.Empty;
                     trbBalance.Value = (selected_target.UserBalance >= 0) ? Convert.ToInt32(selected_target.UserBalance) : 0;
-                    lblShowBalance.Text = (selected_target.UserBalance >= 0) ? selected_target.UserBalance.ToString() : string.Empty;
+                    txtBalance.Text = (selected_target.UserBalance >= 0) ? selected_target.UserBalance.ToString() : string.Empty;
                     txtDiagnose.Text = (!String.IsNullOrEmpty(selected_target.UserDiagnose)) ? selected_target.UserDiagnose : string.Empty;
                     cbRole.SelectedIndex = (selected_target.UserRole >= 0 && selected_target.UserRole <= 2) ? selected_target.UserRole : 1;
                     pbUserProfilePic.Image = (selected_target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
@@ -395,7 +395,7 @@ namespace XtremePharmacyManager
                     this.txtEmail.Text = (!String.IsNullOrEmpty(selected_record.UserEmail)) ? selected_record.UserEmail.ToString() : string.Empty;
                     this.txtAddress.Text = (!String.IsNullOrEmpty(selected_record.UserAddress)) ? selected_record.UserAddress.ToString() : string.Empty;
                     trbBalance.Value = (selected_record.UserBalance >= 0) ? Convert.ToInt32(selected_record.UserBalance) : 0;
-                    lblShowBalance.Text = (selected_record.UserBalance >= 0) ? selected_record.UserBalance.ToString() : string.Empty;
+                    txtBalance.Text = (selected_record.UserBalance >= 0) ? selected_record.UserBalance.ToString() : string.Empty;
                     txtDiagnose.Text = (!String.IsNullOrEmpty(selected_record.UserDiagnose)) ? selected_record.UserDiagnose : string.Empty;
                     cbRole.SelectedIndex = (selected_record.UserRole >= 0 && selected_record.UserRole <= 2) ? selected_record.UserRole : 1;
                     pbUserProfilePic.Image = (selected_record.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
@@ -406,6 +406,22 @@ namespace XtremePharmacyManager
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void lblShowBalance_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBalance_TextChanged(object sender, EventArgs e)
+        {
+            int value = 0;
+            Int32.TryParse(((TextBox)sender).Text, out value);
+            if (value >= trbBalance.Maximum)
+            {
+                trbBalance.Maximum = value;
+            }
+            trbBalance.Value = value;
         }
     }
 }

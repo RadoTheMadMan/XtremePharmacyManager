@@ -42,15 +42,13 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.dgvProductVendors = new System.Windows.Forms.DataGridView();
-            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.VendorNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.productsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.productVendorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.VendorNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductVendors)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).BeginInit();
@@ -207,9 +205,7 @@
             this.dgvProductVendors.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvProductVendors.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDColumn,
-            this.VendorNameColumn,
-            this.iDDataGridViewTextBoxColumn,
-            this.productsDataGridViewTextBoxColumn});
+            this.VendorNameColumn});
             this.dgvProductVendors.DataSource = this.productVendorBindingSource;
             this.dgvProductVendors.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProductVendors.Location = new System.Drawing.Point(0, 290);
@@ -230,6 +226,18 @@
             this.dgvProductVendors.TabIndex = 1;
             this.dgvProductVendors.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductVendors_CellClick);
             // 
+            // productVendorBindingSource
+            // 
+            this.productVendorBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductVendor);
+            // 
+            // productBrandBindingSource
+            // 
+            this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
+            // 
+            // paymentMethodBindingSource
+            // 
+            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
+            // 
             // IDColumn
             // 
             this.IDColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -243,38 +251,10 @@
             // 
             this.VendorNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.VendorNameColumn.DataPropertyName = "VendorName";
-            this.VendorNameColumn.HeaderText = "Brand Name";
+            this.VendorNameColumn.HeaderText = "Vendor Name";
             this.VendorNameColumn.MinimumWidth = 6;
             this.VendorNameColumn.Name = "VendorNameColumn";
             this.VendorNameColumn.ReadOnly = true;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // productsDataGridViewTextBoxColumn
-            // 
-            this.productsDataGridViewTextBoxColumn.DataPropertyName = "Products";
-            this.productsDataGridViewTextBoxColumn.HeaderText = "Products";
-            this.productsDataGridViewTextBoxColumn.MinimumWidth = 6;
-            this.productsDataGridViewTextBoxColumn.Name = "productsDataGridViewTextBoxColumn";
-            this.productsDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // productVendorBindingSource
-            // 
-            this.productVendorBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductVendor);
-            // 
-            // productBrandBindingSource
-            // 
-            this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
-            // 
-            // paymentMethodBindingSource
-            // 
-            this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
             // 
             // frmSearchProductVendors
             // 
@@ -322,7 +302,5 @@
         private System.Windows.Forms.BindingSource productVendorBindingSource;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn VendorNameColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn productsDataGridViewTextBoxColumn;
     }
 }

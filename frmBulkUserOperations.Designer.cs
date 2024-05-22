@@ -52,7 +52,6 @@
             this.txtDiagnose = new System.Windows.Forms.TextBox();
             this.lblDiagnose = new System.Windows.Forms.Label();
             this.trbBalance = new System.Windows.Forms.TrackBar();
-            this.lblShowBalance = new System.Windows.Forms.Label();
             this.lblBalance = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
             this.lblAddress = new System.Windows.Forms.Label();
@@ -71,6 +70,7 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtBalance = new System.Windows.Forms.TextBox();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
@@ -81,6 +81,7 @@
             // 
             // pnlData
             // 
+            this.pnlData.Controls.Add(this.txtBalance);
             this.pnlData.Controls.Add(this.cbSelectRecord);
             this.pnlData.Controls.Add(this.lblSelectRecord);
             this.pnlData.Controls.Add(this.txtOperationLogs);
@@ -101,7 +102,6 @@
             this.pnlData.Controls.Add(this.txtDiagnose);
             this.pnlData.Controls.Add(this.lblDiagnose);
             this.pnlData.Controls.Add(this.trbBalance);
-            this.pnlData.Controls.Add(this.lblShowBalance);
             this.pnlData.Controls.Add(this.lblBalance);
             this.pnlData.Controls.Add(this.txtAddress);
             this.pnlData.Controls.Add(this.lblAddress);
@@ -385,22 +385,10 @@
             this.trbBalance.Location = new System.Drawing.Point(484, 17);
             this.trbBalance.Maximum = 5000;
             this.trbBalance.Name = "trbBalance";
-            this.trbBalance.Size = new System.Drawing.Size(259, 48);
+            this.trbBalance.Size = new System.Drawing.Size(259, 56);
             this.trbBalance.TabIndex = 21;
             this.trbBalance.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
-            // 
-            // lblShowBalance
-            // 
-            this.lblShowBalance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblShowBalance.AutoSize = true;
-            this.lblShowBalance.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowBalance.Location = new System.Drawing.Point(758, 20);
-            this.lblShowBalance.Name = "lblShowBalance";
-            this.lblShowBalance.Size = new System.Drawing.Size(35, 16);
-            this.lblShowBalance.TabIndex = 20;
-            this.lblShowBalance.Text = "0.00";
             // 
             // lblBalance
             // 
@@ -587,6 +575,14 @@
             // 
             this.errBulkProvider.ContainerControl = this;
             // 
+            // txtBalance
+            // 
+            this.txtBalance.Location = new System.Drawing.Point(750, 20);
+            this.txtBalance.Name = "txtBalance";
+            this.txtBalance.Size = new System.Drawing.Size(39, 22);
+            this.txtBalance.TabIndex = 49;
+            this.txtBalance.TextChanged += new System.EventHandler(this.txtBalance_TextChanged);
+            // 
             // frmBulkUserOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -627,7 +623,6 @@
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.Label lblBalance;
-        private System.Windows.Forms.Label lblShowBalance;
         private System.Windows.Forms.TrackBar trbBalance;
         private System.Windows.Forms.TextBox txtDiagnose;
         private System.Windows.Forms.Label lblDiagnose;
@@ -651,5 +646,6 @@
         private System.Windows.Forms.RichTextBox txtOperationLogs;
         private System.Windows.Forms.ComboBox cbSelectRecord;
         private System.Windows.Forms.Label lblSelectRecord;
+        private System.Windows.Forms.TextBox txtBalance;
     }
 }

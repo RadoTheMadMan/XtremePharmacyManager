@@ -117,7 +117,11 @@ namespace XtremePharmacyManager
 
         private void trbBalance_Scroll(object sender, EventArgs e)
         {
-            lblShowBalance.Text = trbBalance.Value.ToString();
+            if(((TrackBar)sender).Value > ((TrackBar)sender).Maximum)
+            {
+                ((TrackBar)sender).Value = ((TrackBar)sender).Maximum;
+            }
+            txtBalance.Text = trbBalance.Value.ToString();
         }
 
         private void btnAddOrEdit_Click(object sender, EventArgs e)
@@ -416,7 +420,7 @@ namespace XtremePharmacyManager
                             txtEmail.Text = target_user.UserEmail.ToString();
                             txtAddress.Text = target_user.UserAddress.ToString();
                             trbBalance.Value = Convert.ToInt32(target_user.UserBalance);
-                            lblShowBalance.Text = target_user.UserBalance.ToString();
+                            txtBalance.Text = target_user.UserBalance.ToString();
                             txtDiagnose.Text = target_user.UserDiagnose.ToString();
                             dtRegisterDateFrom.Value = target_user.UserDateOfRegister;
                             cbRole.SelectedIndex = target_user.UserRole;
@@ -591,6 +595,17 @@ namespace XtremePharmacyManager
                 RefreshUsers();
                 logger.RefreshLogs();
             }
+        }
+
+        private void txtBalance_TextChanged(object sender, EventArgs e)
+        {
+            int value = 0;
+            Int32.TryParse(((TextBox)sender).Text, out value);
+            if(value >= trbBalance.Maximum)
+            {
+                trbBalance.Maximum = value;
+            }
+            trbBalance.Value = value;
         }
     }
 }

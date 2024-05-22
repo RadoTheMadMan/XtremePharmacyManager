@@ -318,7 +318,7 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmEditOrderDelivery";
-            this.Text = "Product Order Editor. Add or Edit Product Orders";
+            this.Text = "Order Delivery Editor. Add or Edit Order Deliveries";
             this.Load += new System.EventHandler(this.frmEditOrderDelivery_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

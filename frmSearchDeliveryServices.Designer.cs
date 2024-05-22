@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.btnGenerateReport = new System.Windows.Forms.Button();
             this.lblSearchMode = new System.Windows.Forms.Label();
             this.cbSearchMode = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAddOrEdit = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.trbPrice = new System.Windows.Forms.TrackBar();
-            this.lblShowPrice = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.txtServiceName = new System.Windows.Forms.TextBox();
             this.lblServiceName = new System.Windows.Forms.Label();
@@ -49,7 +49,7 @@
             this.ServicePriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnGenerateReport = new System.Windows.Forms.Button();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDeliveryServices)).BeginInit();
@@ -60,6 +60,7 @@
             // pnlData
             // 
             this.pnlData.AutoSize = true;
+            this.pnlData.Controls.Add(this.txtPrice);
             this.pnlData.Controls.Add(this.btnGenerateReport);
             this.pnlData.Controls.Add(this.lblSearchMode);
             this.pnlData.Controls.Add(this.cbSearchMode);
@@ -67,7 +68,6 @@
             this.pnlData.Controls.Add(this.btnAddOrEdit);
             this.pnlData.Controls.Add(this.btnSearch);
             this.pnlData.Controls.Add(this.trbPrice);
-            this.pnlData.Controls.Add(this.lblShowPrice);
             this.pnlData.Controls.Add(this.lblPrice);
             this.pnlData.Controls.Add(this.txtServiceName);
             this.pnlData.Controls.Add(this.lblServiceName);
@@ -78,6 +78,18 @@
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(475, 290);
             this.pnlData.TabIndex = 0;
+            // 
+            // btnGenerateReport
+            // 
+            this.btnGenerateReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerateReport.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerateReport.Location = new System.Drawing.Point(293, 237);
+            this.btnGenerateReport.Name = "btnGenerateReport";
+            this.btnGenerateReport.Size = new System.Drawing.Size(175, 47);
+            this.btnGenerateReport.TabIndex = 47;
+            this.btnGenerateReport.Text = "GENERATE REPORT";
+            this.btnGenerateReport.UseVisualStyleBackColor = true;
+            this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
             // lblSearchMode
             // 
@@ -155,18 +167,6 @@
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
             // 
-            // lblShowPrice
-            // 
-            this.lblShowPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblShowPrice.AutoSize = true;
-            this.lblShowPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowPrice.Location = new System.Drawing.Point(371, 76);
-            this.lblShowPrice.Name = "lblShowPrice";
-            this.lblShowPrice.Size = new System.Drawing.Size(35, 16);
-            this.lblShowPrice.TabIndex = 20;
-            this.lblShowPrice.Text = "0.00";
-            // 
             // lblPrice
             // 
             this.lblPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -239,14 +239,14 @@
             this.dgvDeliveryServices.MultiSelect = false;
             this.dgvDeliveryServices.Name = "dgvDeliveryServices";
             this.dgvDeliveryServices.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDeliveryServices.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDeliveryServices.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDeliveryServices.RowHeadersWidth = 51;
             this.dgvDeliveryServices.RowTemplate.Height = 24;
             this.dgvDeliveryServices.Size = new System.Drawing.Size(475, 160);
@@ -280,17 +280,15 @@
             this.ServicePriceColumn.Name = "ServicePriceColumn";
             this.ServicePriceColumn.ReadOnly = true;
             // 
-            // btnGenerateReport
+            // txtPrice
             // 
-            this.btnGenerateReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerateReport.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerateReport.Location = new System.Drawing.Point(293, 237);
-            this.btnGenerateReport.Name = "btnGenerateReport";
-            this.btnGenerateReport.Size = new System.Drawing.Size(175, 47);
-            this.btnGenerateReport.TabIndex = 47;
-            this.btnGenerateReport.Text = "GENERATE REPORT";
-            this.btnGenerateReport.UseVisualStyleBackColor = true;
-            this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
+            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtPrice.Location = new System.Drawing.Point(363, 82);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(100, 22);
+            this.txtPrice.TabIndex = 48;
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // frmSearchDeliveryServices
             // 
@@ -321,7 +319,6 @@
         private System.Windows.Forms.TextBox txtServiceName;
         private System.Windows.Forms.Label lblServiceName;
         private System.Windows.Forms.Label lblPrice;
-        private System.Windows.Forms.Label lblShowPrice;
         private System.Windows.Forms.TrackBar trbPrice;
         private System.Windows.Forms.DataGridView dgvDeliveryServices;
         private System.Windows.Forms.BindingSource userBindingSource;
@@ -339,5 +336,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ServiceNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ServicePriceColumn;
         private System.Windows.Forms.Button btnGenerateReport;
+        private System.Windows.Forms.TextBox txtPrice;
     }
 }

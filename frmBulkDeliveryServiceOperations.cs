@@ -104,7 +104,7 @@ namespace XtremePharmacyManager
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_target.ServiceName)) ? selected_target.ServiceName.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice) : 0;
-                    this.lblShowPrice.Text = (selected_target.ServicePrice >= 0) ? selected_target.ServicePrice.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_target.ServicePrice >= 0) ? selected_target.ServicePrice.ToString() : string.Empty;
                     cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                     cbSelectRecord.SelectedValue = selected_target.ID;
@@ -173,7 +173,7 @@ namespace XtremePharmacyManager
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_target.ServiceName)) ? selected_target.ServiceName.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice) : 0;
-                    this.lblShowPrice.Text = (selected_target.ServicePrice >= 0) ? selected_target.ServicePrice.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_target.ServicePrice >= 0) ? selected_target.ServicePrice.ToString() : string.Empty;
                     cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                     cbSelectRecord.SelectedValue = selected_target.ID;
@@ -277,7 +277,7 @@ namespace XtremePharmacyManager
                     this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
                     this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_record.ServiceName)) ? selected_record.ServiceName.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_record.ServicePrice >= 0) ? Convert.ToInt32(selected_record.ServicePrice) : 0;
-                    this.lblShowPrice.Text = (selected_record.ServicePrice >= 0) ? selected_record.ServicePrice.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_record.ServicePrice >= 0) ? selected_record.ServicePrice.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_record.ID;
                 }
                 else if (selected_target != null)
@@ -285,7 +285,7 @@ namespace XtremePharmacyManager
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_target.ServiceName)) ? selected_target.ServiceName.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice) : 0;
-                    this.lblShowPrice.Text = (selected_target.ServicePrice >= 0) ? selected_target.ServicePrice.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_target.ServicePrice >= 0) ? selected_target.ServicePrice.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                 }
                 else
@@ -294,7 +294,7 @@ namespace XtremePharmacyManager
                     this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
                     this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_record.ServiceName)) ? selected_record.ServiceName.ToString() : string.Empty;
                     this.trbPrice.Value = (selected_record.ServicePrice >= 0) ? Convert.ToInt32(selected_record.ServicePrice) : 0;
-                    this.lblShowPrice.Text = (selected_record.ServicePrice >= 0) ? selected_record.ServicePrice.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_record.ServicePrice >= 0) ? selected_record.ServicePrice.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_record.ID;
                 }
             }
@@ -306,7 +306,18 @@ namespace XtremePharmacyManager
 
         private void trbPrice_Scroll(object sender, EventArgs e)
         {
-            lblShowPrice.Text = ((TrackBar)sender).Value.ToString();
+            txtPrice.Text = ((TrackBar)sender).Value.ToString();
+        }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+            int value = 0;
+            Int32.TryParse(((TextBox)sender).Text, out value);
+            if (value >= trbPrice.Maximum)
+            {
+                trbPrice.Maximum = value;
+            }
+            trbPrice.Value = value;
         }
     }
 }

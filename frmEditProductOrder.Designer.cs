@@ -41,19 +41,19 @@
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblClient = new System.Windows.Forms.Label();
             this.trbDesiredQuantity = new System.Windows.Forms.TrackBar();
-            this.lblShowDesiredQuantity = new System.Windows.Forms.Label();
             this.lblDesiredQuantity = new System.Windows.Forms.Label();
             this.cbSelectProduct = new System.Windows.Forms.ComboBox();
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.trbPriceOverride = new System.Windows.Forms.TrackBar();
-            this.lblShowPriceOverride = new System.Windows.Forms.Label();
             this.lblPriceOverride = new System.Windows.Forms.Label();
             this.lblSelectProduct = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtDesiredQuantity = new System.Windows.Forms.TextBox();
+            this.txtPriceOverride = new System.Windows.Forms.TextBox();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -66,6 +66,8 @@
             // pnlData
             // 
             this.pnlData.AutoSize = true;
+            this.pnlData.Controls.Add(this.txtPriceOverride);
+            this.pnlData.Controls.Add(this.txtDesiredQuantity);
             this.pnlData.Controls.Add(this.txtOrderReason);
             this.pnlData.Controls.Add(this.lblOrderReason);
             this.pnlData.Controls.Add(this.lblOrderStatus);
@@ -75,13 +77,11 @@
             this.pnlData.Controls.Add(this.cbSelectClient);
             this.pnlData.Controls.Add(this.lblClient);
             this.pnlData.Controls.Add(this.trbDesiredQuantity);
-            this.pnlData.Controls.Add(this.lblShowDesiredQuantity);
             this.pnlData.Controls.Add(this.lblDesiredQuantity);
             this.pnlData.Controls.Add(this.cbSelectProduct);
             this.pnlData.Controls.Add(this.btnOK);
             this.pnlData.Controls.Add(this.btnCancel);
             this.pnlData.Controls.Add(this.trbPriceOverride);
-            this.pnlData.Controls.Add(this.lblShowPriceOverride);
             this.pnlData.Controls.Add(this.lblPriceOverride);
             this.pnlData.Controls.Add(this.lblSelectProduct);
             this.pnlData.Controls.Add(this.txtID);
@@ -214,18 +214,6 @@
             this.trbDesiredQuantity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbDesiredQuantity.Scroll += new System.EventHandler(this.trbDesiredQuantity_Scroll);
             // 
-            // lblShowDesiredQuantity
-            // 
-            this.lblShowDesiredQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblShowDesiredQuantity.AutoSize = true;
-            this.lblShowDesiredQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowDesiredQuantity.Location = new System.Drawing.Point(747, 30);
-            this.lblShowDesiredQuantity.Name = "lblShowDesiredQuantity";
-            this.lblShowDesiredQuantity.Size = new System.Drawing.Size(35, 16);
-            this.lblShowDesiredQuantity.TabIndex = 43;
-            this.lblShowDesiredQuantity.Text = "0.00";
-            // 
             // lblDesiredQuantity
             // 
             this.lblDesiredQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -291,18 +279,6 @@
             this.trbPriceOverride.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbPriceOverride.Scroll += new System.EventHandler(this.trbPriceOverride_Scroll);
             // 
-            // lblShowPriceOverride
-            // 
-            this.lblShowPriceOverride.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblShowPriceOverride.AutoSize = true;
-            this.lblShowPriceOverride.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowPriceOverride.Location = new System.Drawing.Point(747, 92);
-            this.lblShowPriceOverride.Name = "lblShowPriceOverride";
-            this.lblShowPriceOverride.Size = new System.Drawing.Size(35, 16);
-            this.lblShowPriceOverride.TabIndex = 20;
-            this.lblShowPriceOverride.Text = "0.00";
-            // 
             // lblPriceOverride
             // 
             this.lblPriceOverride.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -353,6 +329,26 @@
             // 
             this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
             // 
+            // txtDesiredQuantity
+            // 
+            this.txtDesiredQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDesiredQuantity.Location = new System.Drawing.Point(738, 27);
+            this.txtDesiredQuantity.Name = "txtDesiredQuantity";
+            this.txtDesiredQuantity.Size = new System.Drawing.Size(50, 22);
+            this.txtDesiredQuantity.TabIndex = 55;
+            this.txtDesiredQuantity.TextChanged += new System.EventHandler(this.txtDesiredQuantity_TextChanged);
+            // 
+            // txtPriceOverride
+            // 
+            this.txtPriceOverride.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPriceOverride.Location = new System.Drawing.Point(738, 90);
+            this.txtPriceOverride.Name = "txtPriceOverride";
+            this.txtPriceOverride.Size = new System.Drawing.Size(50, 22);
+            this.txtPriceOverride.TabIndex = 56;
+            this.txtPriceOverride.TextChanged += new System.EventHandler(this.txtPriceOverride_TextChanged);
+            // 
             // frmEditProductOrder
             // 
             this.AcceptButton = this.btnOK;
@@ -384,7 +380,6 @@
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label lblSelectProduct;
         private System.Windows.Forms.Label lblPriceOverride;
-        private System.Windows.Forms.Label lblShowPriceOverride;
         private System.Windows.Forms.TrackBar trbPriceOverride;
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.Button btnCancel;
@@ -392,7 +387,6 @@
         private System.Windows.Forms.ComboBox cbSelectProduct;
         private System.Windows.Forms.BindingSource productBrandBindingSource;
         private System.Windows.Forms.TrackBar trbDesiredQuantity;
-        private System.Windows.Forms.Label lblShowDesiredQuantity;
         private System.Windows.Forms.Label lblDesiredQuantity;
         private System.Windows.Forms.BindingSource userBindingSource1;
         private System.Windows.Forms.BindingSource productBindingSource;
@@ -404,5 +398,7 @@
         private System.Windows.Forms.ComboBox cbSelectOrderStatus;
         private System.Windows.Forms.TextBox txtOrderReason;
         private System.Windows.Forms.Label lblOrderReason;
+        private System.Windows.Forms.TextBox txtDesiredQuantity;
+        private System.Windows.Forms.TextBox txtPriceOverride;
     }
 }

@@ -27,7 +27,7 @@ namespace XtremePharmacyManager
 
         private void trbBalance_Scroll(object sender, EventArgs e)
         {
-            lblShowBalance.Text = trbBalance.Value.ToString();
+            txtBalance.Text = trbBalance.Value.ToString();
         }
 
         private void pbUserProfilePic_Click(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace XtremePharmacyManager
                 this.txtEmail.Text = (!String.IsNullOrEmpty(target.UserEmail)) ? target.UserEmail.ToString() : string.Empty;
                 this.txtAddress.Text = (!String.IsNullOrEmpty(target.UserAddress)) ? target.UserAddress.ToString() : string.Empty;
                 trbBalance.Value = (target.UserBalance >= 0) ? Convert.ToInt32(target.UserBalance) : 0;
-                lblShowBalance.Text = (target.UserBalance >= 0) ? target.UserBalance.ToString() : string.Empty;
+                txtBalance.Text = (target.UserBalance >= 0) ? target.UserBalance.ToString() : string.Empty;
                 txtDiagnose.Text = (!String.IsNullOrEmpty(target.UserDiagnose)) ? target.UserDiagnose : string.Empty;
                 cbRole.SelectedIndex = (target.UserRole >= 0 && target.UserRole <= 2) ? target.UserRole : 1;
                 pbUserProfilePic.Image = (target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
@@ -128,6 +128,17 @@ namespace XtremePharmacyManager
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txtBalance_TextChanged(object sender, EventArgs e)
+        {
+            int value = 0;
+            Int32.TryParse(((TextBox)sender).Text, out value);
+            if (value >= trbBalance.Maximum)
+            {
+                trbBalance.Maximum = value;
+            }
+            trbBalance.Value = value;
         }
     }
 }

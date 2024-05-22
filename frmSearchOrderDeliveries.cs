@@ -212,7 +212,7 @@ namespace XtremePharmacyManager
 
         private void trbTotalPrice_Scroll(object sender, EventArgs e)
         {
-            lblShowTotalPrice.Text = trbTotalPrice.Value.ToString();
+            txtTotalPrice.Text = trbTotalPrice.Value.ToString();
         }
 
 
@@ -499,7 +499,7 @@ namespace XtremePharmacyManager
                             txtCargoID.Text = target_delivery.CargoID;
                             txtDeliveryReason.Text = target_delivery.DeliveryReason.ToString();
                             trbTotalPrice.Value = Convert.ToInt32(target_delivery.TotalPrice);
-                            lblShowTotalPrice.Text = target_delivery.TotalPrice.ToString();
+                            txtTotalPrice.Text = target_delivery.TotalPrice.ToString();
                             cbSelectDeliveryStatus.SelectedIndex = target_delivery.DeliveryStatus;
                         }
                     }
@@ -698,6 +698,15 @@ namespace XtremePharmacyManager
             }
         }
 
-        
+        private void txtTotalPrice_TextChanged(object sender, EventArgs e)
+        {
+            int value = 0;
+            Int32.TryParse(((TextBox)sender).Text, out value);
+            if (value >= trbTotalPrice.Maximum)
+            {
+                trbTotalPrice.Maximum = value;
+            }
+            trbTotalPrice.Value = value;
+        }
     }
 }

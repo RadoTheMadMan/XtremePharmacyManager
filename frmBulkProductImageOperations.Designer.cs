@@ -30,8 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.pbProductImageData = new System.Windows.Forms.PictureBox();
             this.cbProduct = new System.Windows.Forms.ComboBox();
-            this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblProduct = new System.Windows.Forms.Label();
             this.cbSelectRecord = new System.Windows.Forms.ComboBox();
             this.productImageBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -47,12 +48,13 @@
             this.btnExecuteOperations = new System.Windows.Forms.Button();
             this.btnApplyChangesToAllTargets = new System.Windows.Forms.Button();
             this.lstBulkOperations = new System.Windows.Forms.ListBox();
-            this.bulkProductOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bulkProductImageOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtImageName = new System.Windows.Forms.TextBox();
             this.lblImageName = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
-            this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bulkProductOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkDeliveryServiceOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -61,13 +63,13 @@
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.pbProductImageData = new System.Windows.Forms.PictureBox();
-            this.bulkProductImageOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlData.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkProductOperationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProductImageData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkProductImageOperationBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkProductOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkDeliveryServiceOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
@@ -76,8 +78,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbProductImageData)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkProductImageOperationBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
@@ -108,6 +108,17 @@
             this.pnlData.Size = new System.Drawing.Size(800, 638);
             this.pnlData.TabIndex = 0;
             // 
+            // pbProductImageData
+            // 
+            this.pbProductImageData.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbProductImageData.Location = new System.Drawing.Point(639, 16);
+            this.pbProductImageData.Name = "pbProductImageData";
+            this.pbProductImageData.Size = new System.Drawing.Size(151, 113);
+            this.pbProductImageData.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbProductImageData.TabIndex = 56;
+            this.pbProductImageData.TabStop = false;
+            this.pbProductImageData.Click += new System.EventHandler(this.pbProductImageData_Click);
+            // 
             // cbProduct
             // 
             this.cbProduct.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -121,9 +132,9 @@
             this.cbProduct.TabIndex = 55;
             this.cbProduct.ValueMember = "ID";
             // 
-            // productBrandBindingSource
+            // productBindingSource
             // 
-            this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
+            this.productBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.Product);
             // 
             // lblProduct
             // 
@@ -180,9 +191,11 @@
             // 
             // checkSilentOperation
             // 
+            this.checkSilentOperation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.checkSilentOperation.AutoSize = true;
             this.checkSilentOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkSilentOperation.Location = new System.Drawing.Point(261, 310);
+            this.checkSilentOperation.Location = new System.Drawing.Point(261, 313);
             this.checkSilentOperation.Name = "checkSilentOperation";
             this.checkSilentOperation.Size = new System.Drawing.Size(140, 20);
             this.checkSilentOperation.TabIndex = 44;
@@ -192,10 +205,10 @@
             // lblOperationResults
             // 
             this.lblOperationResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblOperationResults.AutoSize = true;
             this.lblOperationResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationResults.Location = new System.Drawing.Point(26, 321);
+            this.lblOperationResults.Location = new System.Drawing.Point(26, 316);
             this.lblOperationResults.Name = "lblOperationResults";
             this.lblOperationResults.Size = new System.Drawing.Size(139, 16);
             this.lblOperationResults.TabIndex = 43;
@@ -311,9 +324,9 @@
             this.lstBulkOperations.ValueMember = "TargetObject";
             this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);
             // 
-            // bulkProductOperationBindingSource
+            // bulkProductImageOperationBindingSource
             // 
-            this.bulkProductOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkProductOperation);
+            this.bulkProductImageOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkProductImageOperation);
             // 
             // txtImageName
             // 
@@ -357,9 +370,13 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
-            // productBindingSource
+            // productBrandBindingSource
             // 
-            this.productBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.Product);
+            this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
+            // 
+            // bulkProductOperationBindingSource
+            // 
+            this.bulkProductOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkProductOperation);
             // 
             // deliveryServiceBindingSource
             // 
@@ -393,21 +410,6 @@
             // 
             this.errBulkProvider.ContainerControl = this;
             // 
-            // pbProductImageData
-            // 
-            this.pbProductImageData.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.pbProductImageData.Location = new System.Drawing.Point(639, 16);
-            this.pbProductImageData.Name = "pbProductImageData";
-            this.pbProductImageData.Size = new System.Drawing.Size(151, 113);
-            this.pbProductImageData.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbProductImageData.TabIndex = 56;
-            this.pbProductImageData.TabStop = false;
-            this.pbProductImageData.Click += new System.EventHandler(this.pbProductImageData_Click);
-            // 
-            // bulkProductImageOperationBindingSource
-            // 
-            this.bulkProductImageOperationBindingSource.DataSource = typeof(XtremePharmacyManager.BulkProductImageOperation);
-            // 
             // frmBulkProductImageOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -419,10 +421,12 @@
             this.Load += new System.EventHandler(this.frmBulkProductImageOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkProductOperationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProductImageData)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productImageBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkProductImageOperationBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bulkProductOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkDeliveryServiceOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).EndInit();
@@ -431,8 +435,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errBulkProvider)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbProductImageData)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bulkProductImageOperationBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }

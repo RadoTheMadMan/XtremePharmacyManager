@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
             this.checkOverridePriceAsTotalOnAdd = new System.Windows.Forms.CheckBox();
             this.lblStatus = new System.Windows.Forms.Label();
             this.cbStatus = new System.Windows.Forms.ComboBox();
@@ -42,13 +44,11 @@
             this.txtReason = new System.Windows.Forms.TextBox();
             this.lblReason = new System.Windows.Forms.Label();
             this.trbQuantity = new System.Windows.Forms.TrackBar();
-            this.lblShowQuantity = new System.Windows.Forms.Label();
             this.lblQuantity = new System.Windows.Forms.Label();
             this.cbProduct = new System.Windows.Forms.ComboBox();
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblProduct = new System.Windows.Forms.Label();
             this.trbPrice = new System.Windows.Forms.TrackBar();
-            this.lblShowPrice = new System.Windows.Forms.Label();
             this.lblPrice = new System.Windows.Forms.Label();
             this.cbSelectRecord = new System.Windows.Forms.ComboBox();
             this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -97,6 +97,8 @@
             // 
             // pnlData
             // 
+            this.pnlData.Controls.Add(this.txtPrice);
+            this.pnlData.Controls.Add(this.txtQuantity);
             this.pnlData.Controls.Add(this.checkOverridePriceAsTotalOnAdd);
             this.pnlData.Controls.Add(this.lblStatus);
             this.pnlData.Controls.Add(this.cbStatus);
@@ -107,12 +109,10 @@
             this.pnlData.Controls.Add(this.txtReason);
             this.pnlData.Controls.Add(this.lblReason);
             this.pnlData.Controls.Add(this.trbQuantity);
-            this.pnlData.Controls.Add(this.lblShowQuantity);
             this.pnlData.Controls.Add(this.lblQuantity);
             this.pnlData.Controls.Add(this.cbProduct);
             this.pnlData.Controls.Add(this.lblProduct);
             this.pnlData.Controls.Add(this.trbPrice);
-            this.pnlData.Controls.Add(this.lblShowPrice);
             this.pnlData.Controls.Add(this.lblPrice);
             this.pnlData.Controls.Add(this.cbSelectRecord);
             this.pnlData.Controls.Add(this.lblSelectRecord);
@@ -134,6 +134,26 @@
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(800, 718);
             this.pnlData.TabIndex = 0;
+            // 
+            // txtPrice
+            // 
+            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPrice.Location = new System.Drawing.Point(755, 78);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(33, 22);
+            this.txtPrice.TabIndex = 76;
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
+            // 
+            // txtQuantity
+            // 
+            this.txtQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtQuantity.Location = new System.Drawing.Point(755, 25);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(33, 22);
+            this.txtQuantity.TabIndex = 75;
+            this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             // 
             // checkOverridePriceAsTotalOnAdd
             // 
@@ -247,7 +267,7 @@
             this.txtReason.Location = new System.Drawing.Point(169, 197);
             this.txtReason.Multiline = true;
             this.txtReason.Name = "txtReason";
-            this.txtReason.Size = new System.Drawing.Size(227, 13);
+            this.txtReason.Size = new System.Drawing.Size(227, 74);
             this.txtReason.TabIndex = 62;
             // 
             // lblReason
@@ -270,22 +290,10 @@
             this.trbQuantity.Location = new System.Drawing.Point(534, 25);
             this.trbQuantity.Maximum = 5000;
             this.trbQuantity.Name = "trbQuantity";
-            this.trbQuantity.Size = new System.Drawing.Size(214, 0);
+            this.trbQuantity.Size = new System.Drawing.Size(214, 39);
             this.trbQuantity.TabIndex = 58;
             this.trbQuantity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbQuantity.Scroll += new System.EventHandler(this.trbQuantity_Scroll);
-            // 
-            // lblShowQuantity
-            // 
-            this.lblShowQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblShowQuantity.AutoSize = true;
-            this.lblShowQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowQuantity.Location = new System.Drawing.Point(763, 28);
-            this.lblShowQuantity.Name = "lblShowQuantity";
-            this.lblShowQuantity.Size = new System.Drawing.Size(35, 16);
-            this.lblShowQuantity.TabIndex = 57;
-            this.lblShowQuantity.Text = "0.00";
             // 
             // lblQuantity
             // 
@@ -336,22 +344,10 @@
             this.trbPrice.Location = new System.Drawing.Point(534, 77);
             this.trbPrice.Maximum = 5000;
             this.trbPrice.Name = "trbPrice";
-            this.trbPrice.Size = new System.Drawing.Size(214, 0);
+            this.trbPrice.Size = new System.Drawing.Size(214, 49);
             this.trbPrice.TabIndex = 51;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
-            // 
-            // lblShowPrice
-            // 
-            this.lblShowPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblShowPrice.AutoSize = true;
-            this.lblShowPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowPrice.Location = new System.Drawing.Point(762, 86);
-            this.lblShowPrice.Name = "lblShowPrice";
-            this.lblShowPrice.Size = new System.Drawing.Size(35, 16);
-            this.lblShowPrice.TabIndex = 50;
-            this.lblShowPrice.Text = "0.00";
             // 
             // lblPrice
             // 
@@ -408,9 +404,11 @@
             // 
             // checkSilentOperation
             // 
+            this.checkSilentOperation.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.checkSilentOperation.AutoSize = true;
             this.checkSilentOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkSilentOperation.Location = new System.Drawing.Point(255, 447);
+            this.checkSilentOperation.Location = new System.Drawing.Point(255, 449);
             this.checkSilentOperation.Name = "checkSilentOperation";
             this.checkSilentOperation.Size = new System.Drawing.Size(140, 20);
             this.checkSilentOperation.TabIndex = 44;
@@ -420,7 +418,7 @@
             // lblOperationResults
             // 
             this.lblOperationResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblOperationResults.AutoSize = true;
             this.lblOperationResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOperationResults.Location = new System.Drawing.Point(20, 471);
@@ -659,14 +657,12 @@
         private System.Windows.Forms.BindingSource bulkDeliveryServiceOperationBindingSource;
         private System.Windows.Forms.BindingSource deliveryServiceBindingSource;
         private System.Windows.Forms.TrackBar trbPrice;
-        private System.Windows.Forms.Label lblShowPrice;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.BindingSource productBindingSource;
         private System.Windows.Forms.BindingSource bulkProductOperationBindingSource;
         private System.Windows.Forms.ComboBox cbProduct;
         private System.Windows.Forms.Label lblProduct;
         private System.Windows.Forms.TrackBar trbQuantity;
-        private System.Windows.Forms.Label lblShowQuantity;
         private System.Windows.Forms.Label lblQuantity;
         private System.Windows.Forms.TextBox txtReason;
         private System.Windows.Forms.Label lblReason;
@@ -680,5 +676,7 @@
         private System.Windows.Forms.ComboBox cbStatus;
         private System.Windows.Forms.BindingSource bulkProductOrderOperationBindingSource;
         private System.Windows.Forms.CheckBox checkOverridePriceAsTotalOnAdd;
+        private System.Windows.Forms.TextBox txtQuantity;
+        private System.Windows.Forms.TextBox txtPrice;
     }
 }

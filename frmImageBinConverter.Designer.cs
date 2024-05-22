@@ -97,8 +97,6 @@
             // 
             // pbLoadedImage
             // 
-            this.pbLoadedImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.pbLoadedImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbLoadedImage.Location = new System.Drawing.Point(15, 77);
             this.pbLoadedImage.Name = "pbLoadedImage";

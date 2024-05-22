@@ -23,7 +23,7 @@ namespace XtremePharmacyManager
 
         private void trbPrice_Scroll(object sender, EventArgs e)
         {
-            lblShowPrice.Text = trbPrice.Value.ToString();
+            txtPrice.Text = trbPrice.Value.ToString();
         }
 
 
@@ -34,7 +34,7 @@ namespace XtremePharmacyManager
                 this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
                 this.txtServiceName.Text = (!String.IsNullOrEmpty(target.ServiceName)) ? target.ServiceName.ToString() : string.Empty;
                 trbPrice.Value = (target.ServicePrice >= 0) ? Convert.ToInt32(target.ServicePrice) : 0;
-                lblShowPrice.Text = (target.ServicePrice >= 0) ? target.ServicePrice.ToString() : string.Empty;
+                txtPrice.Text = (target.ServicePrice >= 0) ? target.ServicePrice.ToString() : string.Empty;
             }
             catch (Exception ex)
             {
@@ -74,6 +74,17 @@ namespace XtremePharmacyManager
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void txtPrice_TextChanged(object sender, EventArgs e)
+        {
+            int value = 0;
+            Int32.TryParse(((TextBox)sender).Text, out value);
+            if (value >= trbPrice.Maximum)
+            {
+                trbPrice.Maximum = value;
+            }
+            trbPrice.Value = value;
         }
     }
 }

@@ -46,7 +46,7 @@ namespace XtremePharmacyManager
                 {
                     this.cbSelectDeliveryService.SelectedValue = target.DeliveryServiceID;
                 }
-                if (delivery_services.Where(x => x.ID == target.PaymentMethodID).FirstOrDefault() != null)
+                if (payment_methods.Where(x => x.ID == target.PaymentMethodID).FirstOrDefault() != null)
                 {
                     this.cbSelectPaymentMethod.SelectedValue = target.PaymentMethodID;
                 }
