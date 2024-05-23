@@ -127,6 +127,8 @@ namespace XtremePharmacyManager
             try
             {
                 manager.ExecuteOperations();
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -145,12 +147,14 @@ namespace XtremePharmacyManager
                 }
                 if (selected_operation != null)
                 {
-                    selected_operation.TargetObject = selected_target;
+                    selected_operation.UpdateTargetObject(selected_target);
                     selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
                     selected_operation.IsSilent = checkSilentOperation.Checked;
                     selected_operation.UpdateName();
                     manager.UpdateAllOperations(selected_operation);
                 }
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -238,12 +242,14 @@ namespace XtremePharmacyManager
                     int operation_index = manager.BulkOperations.IndexOf(selected_operation);
                     BulkOperationType current_type = (BulkOperationType)cbOperationType.SelectedIndex;
                     bool IsSilent = checkSilentOperation.Checked;
-                    selected_operation.TargetObject = selected_target;
+                    selected_operation.UpdateTargetObject(selected_target);
                     selected_operation.OperationType = current_type;
                     selected_operation.IsSilent = IsSilent;
                     selected_operation.UpdateName();
                     manager.UpdateOperation(selected_operation);
                 }
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -257,43 +263,15 @@ namespace XtremePharmacyManager
 
         private void cbSelectRecord_SelectedIndexChanged(object sender, EventArgs e)
         {
-            DeliveryService selected_record = (DeliveryService)cbSelectRecord.SelectedItem;
+            DeliveryService selected_record = (DeliveryService)((ComboBox)sender).SelectedItem;
             try
             {
-                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && selected_record == selected_operation.TargetObject)
-                {
-                    selected_target = selected_operation.TargetObject;
-                }
-                else
-                {
-                    if (selected_record != null && manager_entities.DeliveryServices.Where(x => x.ID == selected_record.ID).Any())
-                    {
-                        selected_target = manager_entities.DeliveryServices.Where(x => x.ID == selected_record.ID).FirstOrDefault();
-                    }
-                }
-                if (cbSelectRecord.SelectedItem != null && selected_target == null)
-                { 
-                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
-                    this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_record.ServiceName)) ? selected_record.ServiceName.ToString() : string.Empty;
-                    this.txtPrice.Text = (selected_record.ServicePrice >= 0) ? Convert.ToInt32(selected_record.ServicePrice).ToString() : string.Empty;
-                    this.trbPrice.Value = (selected_record.ServicePrice >= 0) ? Convert.ToInt32(selected_record.ServicePrice) : 0;
-                    cbSelectRecord.SelectedValue = selected_record.ID;
-                }
-                else if (selected_target != null)
-                {
-                    this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_target.ServiceName)) ? selected_target.ServiceName.ToString() : string.Empty;
-                    this.txtPrice.Text = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice).ToString() : string.Empty;
-                    this.trbPrice.Value = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice) : 0;
-                    cbSelectRecord.SelectedValue = selected_target.ID;
-                }
-                else
+                if(selected_record != null)
                 {
                     this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
                     this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_record.ServiceName)) ? selected_record.ServiceName.ToString() : string.Empty;
                     this.txtPrice.Text = (selected_record.ServicePrice >= 0) ? Convert.ToInt32(selected_record.ServicePrice).ToString() : string.Empty;
                     this.trbPrice.Value = (selected_record.ServicePrice >= 0) ? Convert.ToInt32(selected_record.ServicePrice) : 0;
-                    cbSelectRecord.SelectedValue = selected_record.ID;
                 }
             }
             catch (Exception ex)

@@ -6,9 +6,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,7 +29,12 @@ namespace XtremePharmacyManager
         CUSTOM = 4
     }
 
-    public class BulkOperation<T>//This is the class to derive all bulk operations from and its tasks will be overriden
+    public interface BulkOperationTargetUpdater<T>
+    {
+        void UpdateTargetObject(T obj);
+    }
+
+    public class BulkOperation<T> :BulkOperationTargetUpdater<T>//This is the class to derive all bulk operations from and its tasks will be overriden
     {
         BulkOperationType type;
         T target_object;
@@ -40,7 +47,7 @@ namespace XtremePharmacyManager
         bool is_silent = true;
 
 
-        public T TargetObject { get { return target_object; } set { target_object = value; }  }
+        public T TargetObject { get { return target_object; } }
         public BulkOperationType OperationType { get { return type; } set { type = value; } }
         public string OperationName { get { return operation_name; } set { operation_name = value; } }
         public string SuccessMessage { get { return success_message; } set { success_message = value; } }
@@ -237,6 +244,22 @@ namespace XtremePharmacyManager
             return result;
         }
 
+        public void UpdateTargetObject(T obj)
+        {
+            Type objectType = TargetObject.GetType();
+            Type otherobjbasetype = obj.GetType().GetTypeInfo().BaseType;
+            if (objectType == otherobjbasetype || objectType == obj.GetType())
+            {
+                foreach (var property in objectType.GetProperties())
+                {
+                    var current_target_value = property.GetValue(target_object, null);
+                    var current_other_object_value = property.GetValue(obj, null);
+                    MessageBox.Show($"Current Target object's value: {current_target_value}\nOther Target Object's value: {current_other_object_value}\n");
+                    property.SetValue(TargetObject, current_other_object_value, null);
+                    MessageBox.Show($"Updated Target object's value: {current_target_value}\nOther Target Object's value: {current_other_object_value}\n");
+                }
+            }
+        }
     }
 
     public class BulkUserOperation : BulkOperation<User>
@@ -1144,7 +1167,6 @@ namespace XtremePharmacyManager
 
         public BulkProductOperation(BulkOperationType type, ref Entities ent, Product target_product, bool is_silent) : base(type, target_product, is_silent)
         {
-            base.TargetObject = base.TargetObject;
             entities = ent;
             base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
         }

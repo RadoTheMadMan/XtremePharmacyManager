@@ -142,7 +142,7 @@ namespace XtremePharmacyManager
                 }
                 if (selected_operation != null)
                 {
-                    selected_operation.TargetObject = selected_target;
+                    selected_operation.UpdateTargetObject(selected_target);
                     selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
                     selected_operation.IsSilent = checkSilentOperation.Checked;
                     selected_operation.UpdateName();
@@ -231,7 +231,7 @@ namespace XtremePharmacyManager
                     int operation_index = manager.BulkOperations.IndexOf(selected_operation);
                     BulkOperationType current_type = (BulkOperationType)cbOperationType.SelectedIndex;
                     bool IsSilent = checkSilentOperation.Checked;
-                    selected_operation.TargetObject = selected_target;
+                    selected_operation.UpdateTargetObject(selected_target);
                     selected_operation.OperationType = current_type;
                     selected_operation.IsSilent = IsSilent;
                     selected_operation.UpdateName();

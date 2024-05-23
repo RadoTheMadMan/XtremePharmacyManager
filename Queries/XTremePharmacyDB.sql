@@ -2207,7 +2207,7 @@ end
 end
 set @additional_information = 'Old Service ID: ' + try_cast(@old_id as varchar) + '\n' + ' Old Service Name: ' + try_cast(@old_service_name as varchar) + '\n'
 + 'Old Service Price: ' + try_cast(@old_service_price as varchar) + '\n'+
-+ 'New Method ID: ' + try_cast(@new_id as varchar) + '\n' + 'New Method Name: ' + try_cast(@new_service_name as varchar) + '\n' +
++ 'New Service ID: ' + try_cast(@new_id as varchar) + '\n' + 'New Service Name: ' + try_cast(@new_service_name as varchar) + '\n' +
 'New Service Price: ' + try_cast(@new_service_price as varchar);
 exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Delivery Service Updated', 
