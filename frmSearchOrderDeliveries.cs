@@ -498,8 +498,8 @@ namespace XtremePharmacyManager
                             dtDateModifiedFrom.Value = target_delivery.DateModified;
                             txtCargoID.Text = target_delivery.CargoID;
                             txtDeliveryReason.Text = target_delivery.DeliveryReason.ToString();
+                            txtTotalPrice.Text = Convert.ToInt32(target_delivery.TotalPrice).ToString();
                             trbTotalPrice.Value = Convert.ToInt32(target_delivery.TotalPrice);
-                            txtTotalPrice.Text = target_delivery.TotalPrice.ToString();
                             cbSelectDeliveryStatus.SelectedIndex = target_delivery.DeliveryStatus;
                         }
                     }

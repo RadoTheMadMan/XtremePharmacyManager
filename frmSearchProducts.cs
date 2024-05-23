@@ -592,10 +592,10 @@ namespace XtremePharmacyManager
                             txtProductRegNum.Text = target_product.ProductRegNum.ToString();
                             txtProductPartNum.Text = target_product.ProductPartNum.ToString();
                             txtProductStorageLocation.Text = target_product.ProductStorageLocation.ToString();
-                            trbQuantity.Value = target_product.ProductQuantity;
                             txtQuantity.Text = target_product.ProductQuantity.ToString();
+                            trbQuantity.Value = target_product.ProductQuantity;
+                            txtPrice.Text = Convert.ToInt32(target_product.ProductPrice).ToString();
                             trbPrice.Value = Convert.ToInt32(target_product.ProductPrice);
-                            txtPrice.Text = target_product.ProductPrice.ToString();
                         }
                     }
                 }

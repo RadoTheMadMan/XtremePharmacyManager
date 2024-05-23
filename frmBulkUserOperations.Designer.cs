@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.txtBalance = new System.Windows.Forms.TextBox();
             this.cbSelectRecord = new System.Windows.Forms.ComboBox();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblSelectRecord = new System.Windows.Forms.Label();
@@ -70,7 +71,6 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
-            this.txtBalance = new System.Windows.Forms.TextBox();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
@@ -124,6 +124,16 @@
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(800, 718);
             this.pnlData.TabIndex = 0;
+            // 
+            // txtBalance
+            // 
+            this.txtBalance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBalance.Location = new System.Drawing.Point(750, 20);
+            this.txtBalance.Name = "txtBalance";
+            this.txtBalance.Size = new System.Drawing.Size(39, 22);
+            this.txtBalance.TabIndex = 49;
+            this.txtBalance.TextChanged += new System.EventHandler(this.txtBalance_TextChanged);
             // 
             // cbSelectRecord
             // 
@@ -574,14 +584,6 @@
             // errBulkProvider
             // 
             this.errBulkProvider.ContainerControl = this;
-            // 
-            // txtBalance
-            // 
-            this.txtBalance.Location = new System.Drawing.Point(750, 20);
-            this.txtBalance.Name = "txtBalance";
-            this.txtBalance.Size = new System.Drawing.Size(39, 22);
-            this.txtBalance.TabIndex = 49;
-            this.txtBalance.TextChanged += new System.EventHandler(this.txtBalance_TextChanged);
             // 
             // frmBulkUserOperations
             // 

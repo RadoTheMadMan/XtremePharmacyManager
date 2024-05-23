@@ -62,8 +62,8 @@ namespace XtremePharmacyManager
                 this.txtPhone.Text = (!String.IsNullOrEmpty(target.UserPhone)) ? target.UserPhone.ToString() : string.Empty;
                 this.txtEmail.Text = (!String.IsNullOrEmpty(target.UserEmail)) ? target.UserEmail.ToString() : string.Empty;
                 this.txtAddress.Text = (!String.IsNullOrEmpty(target.UserAddress)) ? target.UserAddress.ToString() : string.Empty;
+                txtBalance.Text = (target.UserBalance >= 0) ? Convert.ToInt32(target.UserBalance).ToString() : string.Empty;
                 trbBalance.Value = (target.UserBalance >= 0) ? Convert.ToInt32(target.UserBalance) : 0;
-                txtBalance.Text = (target.UserBalance >= 0) ? target.UserBalance.ToString() : string.Empty;
                 txtDiagnose.Text = (!String.IsNullOrEmpty(target.UserDiagnose)) ? target.UserDiagnose : string.Empty;
                 cbRole.SelectedIndex = (target.UserRole >= 0 && target.UserRole <= 2) ? target.UserRole : 1;
                 pbUserProfilePic.Image = (target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);

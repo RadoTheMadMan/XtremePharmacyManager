@@ -58,10 +58,10 @@ namespace XtremePharmacyManager
                 {
                     this.cbSelectEmployee.SelectedValue = target.EmployeeID;
                 }
-                trbDesiredQuantity.Value = (target.DesiredQuantity >= 0) ? target.DesiredQuantity : 0;
                 txtDesiredQuantity.Text = (target.DesiredQuantity >= 0) ? target.DesiredQuantity.ToString() : string.Empty;
+                trbDesiredQuantity.Value = (target.DesiredQuantity >= 0) ? target.DesiredQuantity : 0;
+                txtPriceOverride.Text = (target.OrderPrice >= 0) ? Convert.ToInt32(target.OrderPrice).ToString() : string.Empty;
                 trbPriceOverride.Value = (target.OrderPrice >= 0) ? Convert.ToInt32(target.OrderPrice) : 0;
-                txtPriceOverride.Text = (target.OrderPrice >= 0) ? target.OrderPrice.ToString() : string.Empty;
                 cbSelectOrderStatus.SelectedValue = cbSelectOrderStatus.Items[target.OrderStatus];
                 txtOrderReason.Text = target.OrderReason;
             }

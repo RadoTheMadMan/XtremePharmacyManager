@@ -419,8 +419,8 @@ namespace XtremePharmacyManager
                             txtPhone.Text = target_user.UserPhone.ToString();
                             txtEmail.Text = target_user.UserEmail.ToString();
                             txtAddress.Text = target_user.UserAddress.ToString();
+                            txtBalance.Text = Convert.ToInt32(target_user.UserBalance).ToString();
                             trbBalance.Value = Convert.ToInt32(target_user.UserBalance);
-                            txtBalance.Text = target_user.UserBalance.ToString();
                             txtDiagnose.Text = target_user.UserDiagnose.ToString();
                             dtRegisterDateFrom.Value = target_user.UserDateOfRegister;
                             cbRole.SelectedIndex = target_user.UserRole;

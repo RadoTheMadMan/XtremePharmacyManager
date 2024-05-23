@@ -170,10 +170,10 @@ namespace XtremePharmacyManager
                     this.txtPartNum.Text = (!String.IsNullOrEmpty(selected_target.ProductPartNum)) ? selected_target.ProductPartNum.ToString() : string.Empty;
                     this.txtStorageLocation.Text = (!String.IsNullOrEmpty(selected_target.ProductStorageLocation)) ? selected_target.ProductStorageLocation.ToString() : string.Empty;
                     dtExpiryDate.Value = (selected_target.ProductExpiryDate >= DateTime.MinValue && selected_target.ProductExpiryDate <= DateTime.MaxValue) ? selected_target.ProductExpiryDate : DateTime.Now;
+                    this.txtPrice.Text = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_target.ProductPrice).ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_target.ProductPrice) : 0;
-                    this.trbQuantity.Value = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity : 0;
-                    this.txtPrice.Text = (selected_target.ProductPrice >= 0) ? selected_target.ProductPrice.ToString() : string.Empty;
                     this.txtQuantity.Text = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity.ToString() : string.Empty;
+                    this.trbQuantity.Value = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity : 0;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                     cbBrand.SelectedValue = selected_target.BrandID;
                     cbVendor.SelectedValue = selected_target.VendorID;
@@ -268,10 +268,10 @@ namespace XtremePharmacyManager
                     this.txtPartNum.Text = (!String.IsNullOrEmpty(selected_target.ProductPartNum)) ? selected_target.ProductPartNum.ToString() : string.Empty;
                     this.txtStorageLocation.Text = (!String.IsNullOrEmpty(selected_target.ProductStorageLocation)) ? selected_target.ProductStorageLocation.ToString() : string.Empty;
                     dtExpiryDate.Value = (selected_target.ProductExpiryDate >= DateTime.MinValue && selected_target.ProductExpiryDate <= DateTime.MaxValue) ? selected_target.ProductExpiryDate : DateTime.Now;
+                    this.txtPrice.Text = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_target.ProductPrice).ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_target.ProductPrice) : 0;
-                    this.trbQuantity.Value = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity : 0;
-                    this.txtPrice.Text = (selected_target.ProductPrice >= 0) ? selected_target.ProductPrice.ToString() : string.Empty;
                     this.txtQuantity.Text = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity.ToString() : string.Empty;
+                    this.trbQuantity.Value = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity : 0;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                     cbBrand.SelectedValue = selected_target.BrandID;
                     cbVendor.SelectedValue = selected_target.VendorID;
@@ -399,28 +399,28 @@ namespace XtremePharmacyManager
                     this.txtPartNum.Text = (!String.IsNullOrEmpty(selected_record.ProductPartNum)) ? selected_record.ProductPartNum.ToString() : string.Empty;
                     this.txtStorageLocation.Text = (!String.IsNullOrEmpty(selected_record.ProductStorageLocation)) ? selected_record.ProductStorageLocation.ToString() : string.Empty;
                     dtExpiryDate.Value = (selected_record.ProductExpiryDate >= DateTime.MinValue && selected_record.ProductExpiryDate <= DateTime.MaxValue) ? selected_record.ProductExpiryDate : DateTime.Now;
-                    this.trbPrice.Value = (selected_record.ProductPrice >= 0) ? Convert.ToInt32(selected_record.ProductPrice) : 0;
-                    this.trbQuantity.Value = (selected_record.ProductQuantity >= 0) ? selected_record.ProductQuantity : 0;
-                    this.txtPrice.Text = (selected_record.ProductPrice >= 0) ? selected_record.ProductPrice.ToString() : string.Empty;
-                    this.txtQuantity.Text = (selected_record.ProductQuantity >= 0) ? selected_record.ProductQuantity.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_record.ProductPrice).ToString() : string.Empty;
+                    this.trbPrice.Value = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_record.ProductPrice) : 0;
+                    this.txtQuantity.Text = (selected_target.ProductQuantity >= 0) ? selected_record.ProductQuantity.ToString() : string.Empty;
+                    this.trbQuantity.Value = (selected_target.ProductQuantity >= 0) ? selected_record.ProductQuantity : 0;
                     cbSelectRecord.SelectedValue = selected_record.ID;
                 }
                 else if (selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    cbBrand.SelectedValue = selected_target.BrandID;
-                    cbVendor.SelectedValue = selected_target.VendorID;
                     this.txtProductName.Text = (!String.IsNullOrEmpty(selected_target.ProductName)) ? selected_target.ProductName.ToString() : string.Empty;
                     this.txtProductDescription.Text = (!String.IsNullOrEmpty(selected_target.ProductDescription)) ? selected_target.ProductDescription.ToString() : string.Empty;
                     this.txtRegNum.Text = (!String.IsNullOrEmpty(selected_target.ProductRegNum)) ? selected_target.ProductRegNum.ToString() : string.Empty;
                     this.txtPartNum.Text = (!String.IsNullOrEmpty(selected_target.ProductPartNum)) ? selected_target.ProductPartNum.ToString() : string.Empty;
                     this.txtStorageLocation.Text = (!String.IsNullOrEmpty(selected_target.ProductStorageLocation)) ? selected_target.ProductStorageLocation.ToString() : string.Empty;
                     dtExpiryDate.Value = (selected_target.ProductExpiryDate >= DateTime.MinValue && selected_target.ProductExpiryDate <= DateTime.MaxValue) ? selected_target.ProductExpiryDate : DateTime.Now;
+                    this.txtPrice.Text = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_target.ProductPrice).ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_target.ProductPrice) : 0;
-                    this.trbQuantity.Value = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity : 0;
-                    this.txtPrice.Text = (selected_target.ProductPrice >= 0) ? selected_target.ProductPrice.ToString() : string.Empty;
                     this.txtQuantity.Text = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity.ToString() : string.Empty;
+                    this.trbQuantity.Value = (selected_target.ProductQuantity >= 0) ? selected_target.ProductQuantity : 0;
                     cbSelectRecord.SelectedValue = selected_target.ID;
+                    cbBrand.SelectedValue = selected_target.BrandID;
+                    cbVendor.SelectedValue = selected_target.VendorID;
                 }
                 else
                 {
@@ -434,10 +434,10 @@ namespace XtremePharmacyManager
                     this.txtPartNum.Text = (!String.IsNullOrEmpty(selected_record.ProductPartNum)) ? selected_record.ProductPartNum.ToString() : string.Empty;
                     this.txtStorageLocation.Text = (!String.IsNullOrEmpty(selected_record.ProductStorageLocation)) ? selected_record.ProductStorageLocation.ToString() : string.Empty;
                     dtExpiryDate.Value = (selected_record.ProductExpiryDate >= DateTime.MinValue && selected_record.ProductExpiryDate <= DateTime.MaxValue) ? selected_record.ProductExpiryDate : DateTime.Now;
-                    this.trbPrice.Value = (selected_record.ProductPrice >= 0) ? Convert.ToInt32(selected_record.ProductPrice) : 0;
-                    this.trbQuantity.Value = (selected_record.ProductQuantity >= 0) ? selected_record.ProductQuantity : 0;
-                    this.txtPrice.Text = (selected_record.ProductPrice >= 0) ? selected_record.ProductPrice.ToString() : string.Empty;
-                    this.txtQuantity.Text = (selected_record.ProductQuantity >= 0) ? selected_record.ProductQuantity.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_record.ProductPrice).ToString() : string.Empty;
+                    this.trbPrice.Value = (selected_target.ProductPrice >= 0) ? Convert.ToInt32(selected_record.ProductPrice) : 0;
+                    this.txtQuantity.Text = (selected_target.ProductQuantity >= 0) ? selected_record.ProductQuantity.ToString() : string.Empty;
+                    this.trbQuantity.Value = (selected_target.ProductQuantity >= 0) ? selected_record.ProductQuantity : 0;
                     cbSelectRecord.SelectedValue = selected_record.ID;
                 }
             }

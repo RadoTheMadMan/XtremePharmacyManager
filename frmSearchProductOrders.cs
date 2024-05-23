@@ -593,10 +593,10 @@ namespace XtremePharmacyManager
                             dtDateAddedFrom.Value = target_order.DateAdded;
                             dtDateModifiedFrom.Value = target_order.DateModified;
                             txtOrderReason.Text = target_order.OrderReason.ToString();
-                            trbDesiredQuantity.Value = target_order.DesiredQuantity;
                             txtDesiredQuantity.Text = target_order.DesiredQuantity.ToString();
+                            trbDesiredQuantity.Value = target_order.DesiredQuantity;
+                            txtPriceOverride.Text = Convert.ToInt32(target_order.OrderPrice).ToString();
                             trbPriceOverride.Value = Convert.ToInt32(target_order.OrderPrice);
-                            txtPriceOverride.Text = target_order.OrderPrice.ToString();
                             cbSelectOrderStatus.SelectedIndex = target_order.OrderStatus;
                         }
                     }

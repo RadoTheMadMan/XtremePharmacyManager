@@ -63,10 +63,10 @@ namespace XtremePharmacyManager
                 this.txtRegistrationNumber.Text = (!String.IsNullOrEmpty(target.ProductRegNum)) ? target.ProductRegNum.ToString() : string.Empty;
                 this.txtPartitudeNumber.Text = (!String.IsNullOrEmpty(target.ProductPartNum)) ? target.ProductPartNum.ToString() : string.Empty;
                 this.txtStorageLocation.Text = (!String.IsNullOrEmpty(target.ProductStorageLocation)) ? target.ProductStorageLocation.ToString() : string.Empty;
-                trbQuantity.Value = (target.ProductQuantity >= 0) ? target.ProductQuantity : 0;
                 txtQuantity.Text = (target.ProductQuantity >= 0) ? target.ProductQuantity.ToString() : string.Empty;
+                trbQuantity.Value = (target.ProductQuantity >= 0) ? target.ProductQuantity : 0;
+                txtPrice.Text = (target.ProductPrice >= 0) ? Convert.ToInt32(target.ProductPrice).ToString() : string.Empty;
                 trbPrice.Value = (target.ProductPrice >= 0) ? Convert.ToInt32(target.ProductPrice) : 0;
-                txtPrice.Text = (target.ProductPrice >= 0) ? target.ProductPrice.ToString() : string.Empty;
             }
             catch (Exception ex)
             {

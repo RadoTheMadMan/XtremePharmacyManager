@@ -33,8 +33,8 @@ namespace XtremePharmacyManager
             {
                 this.txtID.Text = (target.ID >= 0) ? target.ID.ToString() : string.Empty;
                 this.txtServiceName.Text = (!String.IsNullOrEmpty(target.ServiceName)) ? target.ServiceName.ToString() : string.Empty;
+                txtPrice.Text = (target.ServicePrice >= 0) ? Convert.ToInt32(target.ServicePrice).ToString() : string.Empty;
                 trbPrice.Value = (target.ServicePrice >= 0) ? Convert.ToInt32(target.ServicePrice) : 0;
-                txtPrice.Text = (target.ServicePrice >= 0) ? target.ServicePrice.ToString() : string.Empty;
             }
             catch (Exception ex)
             {

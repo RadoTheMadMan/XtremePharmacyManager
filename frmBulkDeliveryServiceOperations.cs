@@ -103,8 +103,8 @@ namespace XtremePharmacyManager
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_target.ServiceName)) ? selected_target.ServiceName.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice).ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice) : 0;
-                    this.txtPrice.Text = (selected_target.ServicePrice >= 0) ? selected_target.ServicePrice.ToString() : string.Empty;
                     cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                     cbSelectRecord.SelectedValue = selected_target.ID;
@@ -172,8 +172,8 @@ namespace XtremePharmacyManager
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_target.ServiceName)) ? selected_target.ServiceName.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice).ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice) : 0;
-                    this.txtPrice.Text = (selected_target.ServicePrice >= 0) ? selected_target.ServicePrice.ToString() : string.Empty;
                     cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                     cbSelectRecord.SelectedValue = selected_target.ID;
@@ -257,44 +257,42 @@ namespace XtremePharmacyManager
 
         private void cbSelectRecord_SelectedIndexChanged(object sender, EventArgs e)
         {
+            DeliveryService selected_record = (DeliveryService)cbSelectRecord.SelectedItem;
             try
             {
-                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && ((DeliveryService)cbSelectRecord.SelectedItem) == selected_operation.TargetObject)
+                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && selected_record == selected_operation.TargetObject)
                 {
                     selected_target = selected_operation.TargetObject;
                 }
                 else
                 {
-                    DeliveryService selected_record = (DeliveryService)cbSelectRecord.SelectedItem;
                     if (selected_record != null && manager_entities.DeliveryServices.Where(x => x.ID == selected_record.ID).Any())
                     {
                         selected_target = manager_entities.DeliveryServices.Where(x => x.ID == selected_record.ID).FirstOrDefault();
                     }
                 }
                 if (cbSelectRecord.SelectedItem != null && selected_target == null)
-                {
-                    DeliveryService selected_record = (DeliveryService)cbSelectRecord.SelectedItem;
+                { 
                     this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
                     this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_record.ServiceName)) ? selected_record.ServiceName.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_record.ServicePrice >= 0) ? Convert.ToInt32(selected_record.ServicePrice).ToString() : string.Empty;
                     this.trbPrice.Value = (selected_record.ServicePrice >= 0) ? Convert.ToInt32(selected_record.ServicePrice) : 0;
-                    this.txtPrice.Text = (selected_record.ServicePrice >= 0) ? selected_record.ServicePrice.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_record.ID;
                 }
                 else if (selected_target != null)
                 {
                     this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_target.ServiceName)) ? selected_target.ServiceName.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice).ToString() : string.Empty;
                     this.trbPrice.Value = (selected_target.ServicePrice >= 0) ? Convert.ToInt32(selected_target.ServicePrice) : 0;
-                    this.txtPrice.Text = (selected_target.ServicePrice >= 0) ? selected_target.ServicePrice.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                 }
                 else
                 {
-                    DeliveryService selected_record = (DeliveryService)cbSelectRecord.SelectedItem;
                     this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
                     this.txtServiceName.Text = (!String.IsNullOrEmpty(selected_record.ServiceName)) ? selected_record.ServiceName.ToString() : string.Empty;
+                    this.txtPrice.Text = (selected_record.ServicePrice >= 0) ? Convert.ToInt32(selected_record.ServicePrice).ToString() : string.Empty;
                     this.trbPrice.Value = (selected_record.ServicePrice >= 0) ? Convert.ToInt32(selected_record.ServicePrice) : 0;
-                    this.txtPrice.Text = (selected_record.ServicePrice >= 0) ? selected_record.ServicePrice.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_record.ID;
                 }
             }

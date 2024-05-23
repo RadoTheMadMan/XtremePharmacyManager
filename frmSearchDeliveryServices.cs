@@ -315,9 +315,9 @@ namespace XtremePharmacyManager
                         if(targetService != null)
                         {
                             txtID.Text = targetService.ID.ToString();
-                            txtServiceName.Text = targetService.ServiceName.ToString();;
+                            txtServiceName.Text = targetService.ServiceName.ToString();
+                            txtPrice.Text = Convert.ToInt32(targetService.ServicePrice).ToString();
                             trbPrice.Value = Convert.ToInt32(targetService.ServicePrice);
-                            txtPrice.Text = targetService.ServicePrice.ToString();
                         }
                     }
                 }
