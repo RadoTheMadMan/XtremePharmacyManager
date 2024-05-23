@@ -2,63 +2,59 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="XtremePharmacyManagerDataEntities">
+    <DataSource Name="XTremePharmacyDBDataSet">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>491f7a2f-8faa-45e2-be77-16302b36a484</rd:DataSourceID>
+      <rd:DataSourceID>14aff748-1f48-4fa7-898d-154ceae2c46a</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="ProductReportData">
       <Query>
-        <DataSourceName>XtremePharmacyManagerDataEntities</DataSourceName>
+        <DataSourceName>XTremePharmacyDBDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
-        <Field Name="AverageProductSale">
-          <DataField>AverageProductSale</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Decimal, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
-        </Field>
-        <Field Name="BrandName">
-          <DataField>BrandName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="ID">
           <DataField>ID</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="ProductDescription">
-          <DataField>ProductDescription</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ProductExpiryDate">
-          <DataField>ProductExpiryDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="ProductImageCount">
-          <DataField>ProductImageCount</DataField>
-          <rd:TypeName>System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]</rd:TypeName>
         </Field>
         <Field Name="ProductName">
           <DataField>ProductName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ProductPartNum">
-          <DataField>ProductPartNum</DataField>
+        <Field Name="BrandName">
+          <DataField>BrandName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ProductPrice">
-          <DataField>ProductPrice</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
+        <Field Name="VendorName">
+          <DataField>VendorName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProductDescription">
+          <DataField>ProductDescription</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ProductQuantity">
           <DataField>ProductQuantity</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
+        <Field Name="ProductPrice">
+          <DataField>ProductPrice</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ProductExpiryDate">
+          <DataField>ProductExpiryDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="ProductRegNum">
           <DataField>ProductRegNum</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProductPartNum">
+          <DataField>ProductPartNum</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="ProductStorageLocation">
@@ -67,9 +63,12 @@
         </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>XtremePharmacyManager.DataEntities</rd:DataSetName>
+        <rd:DataSetName>XTremePharmacyDBDataSet</rd:DataSetName>
+        <rd:SchemaPath>D:\XTremePharmacyManager\XtremePharmacyManager\XTremePharmacyDBDataSet.xsd</rd:SchemaPath>
         <rd:TableName>ExtendedProductView</rd:TableName>
-        <rd:ObjectDataSourceType>XtremePharmacyManager.DataEntities.ExtendedProductView, XtremePharmacyManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>ExtendedProductViewTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -77,502 +76,11 @@
     <ReportSection>
       <Body>
         <ReportItems>
-          <Chart Name="Chart1">
-            <ChartCategoryHierarchy>
-              <ChartMembers>
-                <ChartMember>
-                  <Group Name="Chart1_CategoryGroup">
-                    <GroupExpressions>
-                      <GroupExpression>=Fields!AverageProductSale.Value</GroupExpression>
-                    </GroupExpressions>
-                  </Group>
-                  <SortExpressions>
-                    <SortExpression>
-                      <Value>=Fields!AverageProductSale.Value</Value>
-                    </SortExpression>
-                  </SortExpressions>
-                  <ChartMembers>
-                    <ChartMember>
-                      <Group Name="Chart1_CategoryGroup1">
-                        <GroupExpressions>
-                          <GroupExpression>=Fields!ProductImageCount.Value</GroupExpression>
-                        </GroupExpressions>
-                      </Group>
-                      <SortExpressions>
-                        <SortExpression>
-                          <Value>=Fields!ProductImageCount.Value</Value>
-                        </SortExpression>
-                      </SortExpressions>
-                      <Label>=Fields!ProductImageCount.Value</Label>
-                    </ChartMember>
-                  </ChartMembers>
-                  <Label>=Fields!AverageProductSale.Value</Label>
-                </ChartMember>
-              </ChartMembers>
-            </ChartCategoryHierarchy>
-            <ChartSeriesHierarchy>
-              <ChartMembers>
-                <ChartMember>
-                  <Label>Average Product Sale</Label>
-                </ChartMember>
-                <ChartMember>
-                  <Label>Average Product Sale</Label>
-                </ChartMember>
-                <ChartMember>
-                  <Label>Product Image Count</Label>
-                </ChartMember>
-                <ChartMember>
-                  <Label>Product Image Count</Label>
-                </ChartMember>
-              </ChartMembers>
-            </ChartSeriesHierarchy>
-            <ChartData>
-              <ChartSeriesCollection>
-                <ChartSeries Name="AverageProductSale">
-                  <ChartDataPoints>
-                    <ChartDataPoint>
-                      <ChartDataPointValues>
-                        <Y>=First(Fields!AverageProductSale.Value)</Y>
-                      </ChartDataPointValues>
-                      <ChartDataLabel>
-                        <Style />
-                      </ChartDataLabel>
-                      <Style />
-                      <ChartMarker>
-                        <Style />
-                      </ChartMarker>
-                      <DataElementOutput>Output</DataElementOutput>
-                    </ChartDataPoint>
-                  </ChartDataPoints>
-                  <Type>Shape</Type>
-                  <Subtype>ExplodedPie</Subtype>
-                  <Style />
-                  <ChartEmptyPoints>
-                    <Style />
-                    <ChartMarker>
-                      <Style />
-                    </ChartMarker>
-                    <ChartDataLabel>
-                      <Style />
-                    </ChartDataLabel>
-                  </ChartEmptyPoints>
-                  <ValueAxisName>Primary</ValueAxisName>
-                  <CategoryAxisName>Primary</CategoryAxisName>
-                  <ChartSmartLabel>
-                    <CalloutLineColor>Black</CalloutLineColor>
-                    <MinMovingDistance>0pt</MinMovingDistance>
-                  </ChartSmartLabel>
-                </ChartSeries>
-                <ChartSeries Name="AverageProductSale1">
-                  <ChartDataPoints>
-                    <ChartDataPoint>
-                      <ChartDataPointValues>
-                        <Y>=Sum(Fields!AverageProductSale.Value)</Y>
-                      </ChartDataPointValues>
-                      <ChartDataLabel>
-                        <Style />
-                      </ChartDataLabel>
-                      <Style />
-                      <ChartMarker>
-                        <Style />
-                      </ChartMarker>
-                      <DataElementOutput>Output</DataElementOutput>
-                    </ChartDataPoint>
-                  </ChartDataPoints>
-                  <Type>Shape</Type>
-                  <Subtype>ExplodedPie</Subtype>
-                  <Style />
-                  <ChartEmptyPoints>
-                    <Style />
-                    <ChartMarker>
-                      <Style />
-                    </ChartMarker>
-                    <ChartDataLabel>
-                      <Style />
-                    </ChartDataLabel>
-                  </ChartEmptyPoints>
-                  <ValueAxisName>Primary</ValueAxisName>
-                  <CategoryAxisName>Primary</CategoryAxisName>
-                  <ChartSmartLabel>
-                    <CalloutLineColor>Black</CalloutLineColor>
-                    <MinMovingDistance>0pt</MinMovingDistance>
-                  </ChartSmartLabel>
-                </ChartSeries>
-                <ChartSeries Name="ProductImageCount">
-                  <ChartDataPoints>
-                    <ChartDataPoint>
-                      <ChartDataPointValues>
-                        <Y>=First(Fields!ProductImageCount.Value)</Y>
-                      </ChartDataPointValues>
-                      <ChartDataLabel>
-                        <Style />
-                      </ChartDataLabel>
-                      <Style />
-                      <ChartMarker>
-                        <Style />
-                      </ChartMarker>
-                      <DataElementOutput>Output</DataElementOutput>
-                    </ChartDataPoint>
-                  </ChartDataPoints>
-                  <Type>Shape</Type>
-                  <Subtype>ExplodedPie</Subtype>
-                  <Style />
-                  <ChartEmptyPoints>
-                    <Style />
-                    <ChartMarker>
-                      <Style />
-                    </ChartMarker>
-                    <ChartDataLabel>
-                      <Style />
-                    </ChartDataLabel>
-                  </ChartEmptyPoints>
-                  <ValueAxisName>Primary</ValueAxisName>
-                  <CategoryAxisName>Primary</CategoryAxisName>
-                  <ChartSmartLabel>
-                    <CalloutLineColor>Black</CalloutLineColor>
-                    <MinMovingDistance>0pt</MinMovingDistance>
-                  </ChartSmartLabel>
-                </ChartSeries>
-                <ChartSeries Name="ProductImageCount1">
-                  <ChartDataPoints>
-                    <ChartDataPoint>
-                      <ChartDataPointValues>
-                        <Y>=Sum(Fields!ProductImageCount.Value)</Y>
-                      </ChartDataPointValues>
-                      <ChartDataLabel>
-                        <Style />
-                      </ChartDataLabel>
-                      <Style />
-                      <ChartMarker>
-                        <Style />
-                      </ChartMarker>
-                      <DataElementOutput>Output</DataElementOutput>
-                    </ChartDataPoint>
-                  </ChartDataPoints>
-                  <Type>Shape</Type>
-                  <Subtype>ExplodedPie</Subtype>
-                  <Style />
-                  <ChartEmptyPoints>
-                    <Style />
-                    <ChartMarker>
-                      <Style />
-                    </ChartMarker>
-                    <ChartDataLabel>
-                      <Style />
-                    </ChartDataLabel>
-                  </ChartEmptyPoints>
-                  <ValueAxisName>Primary</ValueAxisName>
-                  <CategoryAxisName>Primary</CategoryAxisName>
-                  <ChartSmartLabel>
-                    <CalloutLineColor>Black</CalloutLineColor>
-                    <MinMovingDistance>0pt</MinMovingDistance>
-                  </ChartSmartLabel>
-                </ChartSeries>
-              </ChartSeriesCollection>
-            </ChartData>
-            <ChartAreas>
-              <ChartArea Name="Default">
-                <ChartCategoryAxes>
-                  <ChartAxis Name="Primary">
-                    <Style>
-                      <Border>
-                        <Color>Gainsboro</Color>
-                        <Style>None</Style>
-                      </Border>
-                      <FontSize>8pt</FontSize>
-                      <Color>#5c5c5c</Color>
-                    </Style>
-                    <ChartAxisTitle>
-                      <Caption />
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                        <Color>#5c5c5c</Color>
-                      </Style>
-                    </ChartAxisTitle>
-                    <ChartMajorGridLines>
-                      <Enabled>False</Enabled>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                    </ChartMajorGridLines>
-                    <ChartMinorGridLines>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>Dotted</Style>
-                        </Border>
-                      </Style>
-                    </ChartMinorGridLines>
-                    <ChartMajorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>None</Style>
-                        </Border>
-                      </Style>
-                    </ChartMajorTickMarks>
-                    <ChartMinorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                      <Length>0.5</Length>
-                    </ChartMinorTickMarks>
-                    <CrossAt>NaN</CrossAt>
-                    <Minimum>NaN</Minimum>
-                    <Maximum>NaN</Maximum>
-                    <ChartAxisScaleBreak>
-                      <Style />
-                    </ChartAxisScaleBreak>
-                  </ChartAxis>
-                  <ChartAxis Name="Secondary">
-                    <Style>
-                      <Border>
-                        <Color>Gainsboro</Color>
-                        <Style>None</Style>
-                      </Border>
-                      <FontSize>8pt</FontSize>
-                      <Color>#5c5c5c</Color>
-                    </Style>
-                    <ChartAxisTitle>
-                      <Caption />
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                        <Color>#5c5c5c</Color>
-                      </Style>
-                    </ChartAxisTitle>
-                    <ChartMajorGridLines>
-                      <Enabled>False</Enabled>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                    </ChartMajorGridLines>
-                    <ChartMinorGridLines>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>Dotted</Style>
-                        </Border>
-                      </Style>
-                    </ChartMinorGridLines>
-                    <ChartMajorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>None</Style>
-                        </Border>
-                      </Style>
-                    </ChartMajorTickMarks>
-                    <ChartMinorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                      <Length>0.5</Length>
-                    </ChartMinorTickMarks>
-                    <CrossAt>NaN</CrossAt>
-                    <Location>Opposite</Location>
-                    <Minimum>NaN</Minimum>
-                    <Maximum>NaN</Maximum>
-                    <ChartAxisScaleBreak>
-                      <Style />
-                    </ChartAxisScaleBreak>
-                  </ChartAxis>
-                </ChartCategoryAxes>
-                <ChartValueAxes>
-                  <ChartAxis Name="Primary">
-                    <Style>
-                      <Border>
-                        <Color>Gainsboro</Color>
-                        <Style>None</Style>
-                      </Border>
-                      <FontSize>8pt</FontSize>
-                      <Color>#5c5c5c</Color>
-                    </Style>
-                    <ChartAxisTitle>
-                      <Caption />
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                        <Color>#5c5c5c</Color>
-                      </Style>
-                    </ChartAxisTitle>
-                    <ChartMajorGridLines>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                    </ChartMajorGridLines>
-                    <ChartMinorGridLines>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>Dotted</Style>
-                        </Border>
-                      </Style>
-                    </ChartMinorGridLines>
-                    <ChartMajorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>None</Style>
-                        </Border>
-                      </Style>
-                    </ChartMajorTickMarks>
-                    <ChartMinorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                      <Length>0.5</Length>
-                    </ChartMinorTickMarks>
-                    <CrossAt>NaN</CrossAt>
-                    <Minimum>NaN</Minimum>
-                    <Maximum>NaN</Maximum>
-                    <ChartAxisScaleBreak>
-                      <Style />
-                    </ChartAxisScaleBreak>
-                  </ChartAxis>
-                  <ChartAxis Name="Secondary">
-                    <Style>
-                      <Border>
-                        <Color>Gainsboro</Color>
-                        <Style>None</Style>
-                      </Border>
-                      <FontSize>8pt</FontSize>
-                      <Color>#5c5c5c</Color>
-                    </Style>
-                    <ChartAxisTitle>
-                      <Caption />
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                        <Color>#5c5c5c</Color>
-                      </Style>
-                    </ChartAxisTitle>
-                    <ChartMajorGridLines>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                    </ChartMajorGridLines>
-                    <ChartMinorGridLines>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>Dotted</Style>
-                        </Border>
-                      </Style>
-                    </ChartMinorGridLines>
-                    <ChartMajorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>None</Style>
-                        </Border>
-                      </Style>
-                    </ChartMajorTickMarks>
-                    <ChartMinorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                      <Length>0.5</Length>
-                    </ChartMinorTickMarks>
-                    <CrossAt>NaN</CrossAt>
-                    <Location>Opposite</Location>
-                    <Minimum>NaN</Minimum>
-                    <Maximum>NaN</Maximum>
-                    <ChartAxisScaleBreak>
-                      <Style />
-                    </ChartAxisScaleBreak>
-                  </ChartAxis>
-                </ChartValueAxes>
-                <ChartThreeDProperties>
-                  <Enabled>true</Enabled>
-                </ChartThreeDProperties>
-                <Style>
-                  <BackgroundColor>#00ffffff</BackgroundColor>
-                  <BackgroundGradientType>None</BackgroundGradientType>
-                </Style>
-              </ChartArea>
-            </ChartAreas>
-            <ChartLegends>
-              <ChartLegend Name="Default">
-                <Style>
-                  <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontSize>8pt</FontSize>
-                </Style>
-                <ChartLegendTitle>
-                  <Caption />
-                  <Style>
-                    <FontSize>8pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </ChartLegendTitle>
-                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
-                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
-              </ChartLegend>
-            </ChartLegends>
-            <ChartTitles>
-              <ChartTitle Name="Default">
-                <Caption>Average Sale and Image Count for the Product</Caption>
-                <Style>
-                  <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontSize>9pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextAlign>Left</TextAlign>
-                  <VerticalAlign>Top</VerticalAlign>
-                </Style>
-                <Position>TopLeft</Position>
-              </ChartTitle>
-            </ChartTitles>
-            <Palette>Pacific</Palette>
-            <ChartBorderSkin>
-              <Style>
-                <BackgroundColor>Gray</BackgroundColor>
-                <BackgroundGradientType>None</BackgroundGradientType>
-                <Color>White</Color>
-              </Style>
-            </ChartBorderSkin>
-            <ChartNoDataMessage Name="NoDataMessage">
-              <Caption>No Data Available</Caption>
-              <Style>
-                <BackgroundGradientType>None</BackgroundGradientType>
-                <FontWeight>Bold</FontWeight>
-                <TextAlign>General</TextAlign>
-                <VerticalAlign>Top</VerticalAlign>
-              </Style>
-            </ChartNoDataMessage>
-            <DataSetName>ProductReportData</DataSetName>
-            <Top>4.04999in</Top>
-            <Left>0.005in</Left>
-            <Height>2.29167in</Height>
-            <Width>6.395in</Width>
-            <Style>
-              <Border>
-                <Color>LightGrey</Color>
-                <Style>None</Style>
-              </Border>
-              <BackgroundColor>White</BackgroundColor>
-              <BackgroundGradientType>None</BackgroundGradientType>
-            </Style>
-          </Chart>
           <Line Name="Line3">
-            <Top>3.99443in</Top>
+            <Top>3.28805in</Top>
             <Left>0.01in</Left>
             <Height>0in</Height>
             <Width>6.92833in</Width>
-            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -600,39 +108,7 @@
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>2</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox8">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Average Sale:</Value>
-                    <Style>
-                      <FontFamily>Arial Black</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>3.28805in</Top>
-            <Left>0.105in</Left>
-            <Height>0.25in</Height>
-            <Width>2.56945in</Width>
-            <ZIndex>3</ZIndex>
+            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -664,7 +140,7 @@
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>4</ZIndex>
+            <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -696,7 +172,7 @@
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>5</ZIndex>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -728,7 +204,7 @@
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>6</ZIndex>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -760,7 +236,7 @@
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>7</ZIndex>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -792,7 +268,7 @@
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>8</ZIndex>
+            <ZIndex>6</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -824,7 +300,7 @@
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>9</ZIndex>
+            <ZIndex>7</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -856,7 +332,7 @@
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>10</ZIndex>
+            <ZIndex>8</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -888,39 +364,7 @@
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>11</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="Textbox17">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>Number of Images:</Value>
-                    <Style>
-                      <FontFamily>Arial Black</FontFamily>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>3.60749in</Top>
-            <Left>0.105in</Left>
-            <Height>0.25in</Height>
-            <Width>2.56945in</Width>
-            <ZIndex>12</ZIndex>
+            <ZIndex>9</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -952,7 +396,7 @@
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
-            <ZIndex>13</ZIndex>
+            <ZIndex>10</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -984,7 +428,7 @@
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
-            <ZIndex>14</ZIndex>
+            <ZIndex>11</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1016,7 +460,7 @@
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
-            <ZIndex>15</ZIndex>
+            <ZIndex>12</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1048,7 +492,7 @@
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
-            <ZIndex>16</ZIndex>
+            <ZIndex>13</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1080,7 +524,7 @@
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
-            <ZIndex>17</ZIndex>
+            <ZIndex>14</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1112,7 +556,7 @@
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
-            <ZIndex>18</ZIndex>
+            <ZIndex>15</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1144,7 +588,7 @@
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
-            <ZIndex>19</ZIndex>
+            <ZIndex>16</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1176,7 +620,7 @@
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
-            <ZIndex>20</ZIndex>
+            <ZIndex>17</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1208,71 +652,7 @@
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
-            <ZIndex>21</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="AverageProductSale">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=Format(First(Fields!AverageProductSale.Value, "ProductReportData"),"0.0")</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>AverageProductSale</rd:DefaultName>
-            <Top>3.28805in</Top>
-            <Left>3.07167in</Left>
-            <Height>0.25in</Height>
-            <Width>3.32833in</Width>
-            <ZIndex>22</ZIndex>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-              <PaddingLeft>2pt</PaddingLeft>
-              <PaddingRight>2pt</PaddingRight>
-              <PaddingTop>2pt</PaddingTop>
-              <PaddingBottom>2pt</PaddingBottom>
-            </Style>
-          </Textbox>
-          <Textbox Name="ProductImageCount">
-            <CanGrow>true</CanGrow>
-            <KeepTogether>true</KeepTogether>
-            <Paragraphs>
-              <Paragraph>
-                <TextRuns>
-                  <TextRun>
-                    <Value>=First(Fields!ProductImageCount.Value, "ProductReportData")</Value>
-                    <Style>
-                      <FontWeight>Bold</FontWeight>
-                    </Style>
-                  </TextRun>
-                </TextRuns>
-                <Style />
-              </Paragraph>
-            </Paragraphs>
-            <rd:DefaultName>ProductImageCount</rd:DefaultName>
-            <Top>3.60749in</Top>
-            <Left>3.07167in</Left>
-            <Height>0.25in</Height>
-            <Width>3.32833in</Width>
-            <ZIndex>23</ZIndex>
+            <ZIndex>18</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1304,7 +684,7 @@
             <Left>0.105in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>24</ZIndex>
+            <ZIndex>19</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1336,7 +716,7 @@
             <Left>3.07167in</Left>
             <Height>0.25in</Height>
             <Width>3.32833in</Width>
-            <ZIndex>25</ZIndex>
+            <ZIndex>20</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1348,7 +728,7 @@
             </Style>
           </Textbox>
         </ReportItems>
-        <Height>6.36944in</Height>
+        <Height>3.28805in</Height>
         <Style />
       </Body>
       <Width>6.93833in</Width>

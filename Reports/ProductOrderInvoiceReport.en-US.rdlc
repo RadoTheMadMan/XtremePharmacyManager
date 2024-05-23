@@ -2,32 +2,52 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="XtremePharmacyManagerDataEntities">
+    <DataSource Name="XTremePharmacyDBDataSet">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>78043bca-f96e-473b-8e51-dad090185d15</rd:DataSourceID>
+      <rd:DataSourceID>5a71be7d-53cb-4d5c-a5cb-ba4eed815b6c</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="ProductOrderReportData">
       <Query>
-        <DataSourceName>XtremePharmacyManagerDataEntities</DataSourceName>
+        <DataSourceName>XTremePharmacyDBDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ProductName">
+          <DataField>ProductName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="BrandName">
           <DataField>BrandName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ClientAddress">
-          <DataField>ClientAddress</DataField>
+        <Field Name="VendorName">
+          <DataField>VendorName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ClientEmail">
-          <DataField>ClientEmail</DataField>
+        <Field Name="ProductDescription">
+          <DataField>ProductDescription</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProductExpiryDate">
+          <DataField>ProductExpiryDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DesiredQuantity">
+          <DataField>DesiredQuantity</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OrderPrice">
+          <DataField>OrderPrice</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="ClientName">
           <DataField>ClientName</DataField>
@@ -35,6 +55,18 @@
         </Field>
         <Field Name="ClientPhone">
           <DataField>ClientPhone</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ClientEmail">
+          <DataField>ClientEmail</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ClientAddress">
+          <DataField>ClientAddress</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EmployeeName">
+          <DataField>EmployeeName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="DateAdded">
@@ -45,47 +77,22 @@
           <DataField>DateModified</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="DesiredQuantity">
-          <DataField>DesiredQuantity</DataField>
+        <Field Name="OrderStatus">
+          <DataField>OrderStatus</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="EmployeeName">
-          <DataField>EmployeeName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ID">
-          <DataField>ID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="OrderPrice">
-          <DataField>OrderPrice</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="OrderReason">
           <DataField>OrderReason</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="OrderStatus">
-          <DataField>OrderStatus</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="ProductDescription">
-          <DataField>ProductDescription</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ProductExpiryDate">
-          <DataField>ProductExpiryDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="ProductName">
-          <DataField>ProductName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>XtremePharmacyManager.DataEntities</rd:DataSetName>
+        <rd:DataSetName>XTremePharmacyDBDataSet</rd:DataSetName>
+        <rd:SchemaPath>D:\XTremePharmacyManager\XtremePharmacyManager\XTremePharmacyDBDataSet.xsd</rd:SchemaPath>
         <rd:TableName>ExtendedProductOrdersView</rd:TableName>
-        <rd:ObjectDataSourceType>XtremePharmacyManager.DataEntities.ExtendedProductOrdersView, XtremePharmacyManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>ExtendedProductOrdersViewTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -144,7 +151,7 @@
             <Top>0.29in</Top>
             <Left>2.74389in</Left>
             <Height>0.25in</Height>
-            <Width>5.55611in</Width>
+            <Width>6.67278in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -163,6 +170,12 @@
                   <Width>1.45445in</Width>
                 </TablixColumn>
                 <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
                   <Width>1.25667in</Width>
                 </TablixColumn>
                 <TablixColumn>
@@ -172,10 +185,10 @@
                   <Width>1.29167in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.475in</Width>
+                  <Width>1.29388in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>2.01888in</Width>
+                  <Width>1.23555in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -201,6 +214,70 @@
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox6</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Brand</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox9">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Vendor</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox9</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -413,6 +490,70 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
+                        <Textbox Name="BrandName">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!BrandName.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>BrandName</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="VendorName">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!VendorName.Value</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>VendorName</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
                         <Textbox Name="DesiredQuantity">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
@@ -583,6 +724,8 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -599,7 +742,7 @@
             <Top>0.905in</Top>
             <Left>0.105in</Left>
             <Height>0.5in</Height>
-            <Width>8.395in</Width>
+            <Width>9.43055in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -611,7 +754,7 @@
         <Height>5in</Height>
         <Style />
       </Body>
-      <Width>8.71667in</Width>
+      <Width>9.53555in</Width>
       <Page>
         <PageHeader>
           <Height>1in</Height>
@@ -642,7 +785,7 @@
               <Top>0.11889in</Top>
               <Left>2.63834in</Left>
               <Height>0.25in</Height>
-              <Width>4.74166in</Width>
+              <Width>5.86666in</Width>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -657,7 +800,7 @@
               <Top>0.91333in</Top>
               <Left>0.005in</Left>
               <Height>0in</Height>
-              <Width>8.71167in</Width>
+              <Width>9.53055in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -750,7 +893,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.59389in</Top>
-              <Left>7.40833in</Left>
+              <Left>8.525in</Left>
               <Height>0.25in</Height>
               <Width>0.89167in</Width>
               <ZIndex>4</ZIndex>
@@ -779,7 +922,7 @@
             <Line Name="Line2">
               <Top>0.06944in</Top>
               <Height>0in</Height>
-              <Width>8.71667in</Width>
+              <Width>9.53555in</Width>
               <Style>
                 <Border>
                   <Style>Solid</Style>
@@ -807,7 +950,7 @@
               <Top>0.58056in</Top>
               <Left>0.105in</Left>
               <Height>0.225in</Height>
-              <Width>8.395in</Width>
+              <Width>9.31167in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -823,7 +966,7 @@
               <Top>0.94167in</Top>
               <Left>0.005in</Left>
               <Height>0in</Height>
-              <Width>8.71167in</Width>
+              <Width>9.53055in</Width>
               <ZIndex>2</ZIndex>
               <Style>
                 <Border>

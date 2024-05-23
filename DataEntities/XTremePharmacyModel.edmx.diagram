@@ -16,13 +16,13 @@
         <EntityTypeShape EntityType="XTremePharmacyModel.sysdiagram" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="XTremePharmacyModel.User" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="XTremePharmacyModel.ClientView" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="XTremePharmacyModel.EmployeeView" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedBrandsView" Width="1.5" PointX="9.75" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="XTremePharmacyModel.EmployeeView" Width="1.5" PointX="9.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedBrandsView" Width="1.5" PointX="11.125" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedDeliveryServicesView" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedOrderDeliveriesView" Width="1.5" PointX="15.875" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedPaymentMethodsView" Width="1.5" PointX="11.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedOrderDeliveriesView" Width="1.5" PointX="16.5" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedPaymentMethodsView" Width="1.5" PointX="12.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedProductOrdersView" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedProductView" Width="1.5" PointX="13.875" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedProductView" Width="1.5" PointX="14.5" PointY="5.125" IsExpanded="true" />
         <AssociationConnector Association="XTremePharmacyModel.FK__OrderDeli__Deliv__0D0FEE32" ManuallyRouted="false" />
         <AssociationConnector Association="XTremePharmacyModel.FK__OrderDeli__Order__0B27A5C0" ManuallyRouted="false" />
         <AssociationConnector Association="XTremePharmacyModel.FK__OrderDeli__Payme__0EF836A4" ManuallyRouted="false" />
@@ -32,7 +32,7 @@
         <AssociationConnector Association="XTremePharmacyModel.FK__ProductOr__Emplo__038683F8" ManuallyRouted="false" />
         <AssociationConnector Association="XTremePharmacyModel.FK__ProductOr__Produ__7DCDAAA2" ManuallyRouted="false" />
         <EntityTypeShape EntityType="XTremePharmacyModel.ProductVendor" Width="1.5" PointX="14.75" PointY="0.875" />
-        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedVendorsView" Width="1.5" PointX="0.75" PointY="16.75" />
+        <EntityTypeShape EntityType="XTremePharmacyModel.ExtendedVendorsView" Width="1.5" PointX="11.125" PointY="5.25" />
         <AssociationConnector Association="XTremePharmacyModel.FK_Products_ProductVendors" />
       </Diagram>
     </edmx:Diagrams>

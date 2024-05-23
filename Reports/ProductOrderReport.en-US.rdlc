@@ -2,32 +2,52 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="XtremePharmacyManagerDataEntities">
+    <DataSource Name="XTremePharmacyDBDataSet">
       <ConnectionProperties>
         <DataProvider>System.Data.DataSet</DataProvider>
         <ConnectString>/* Local Connection */</ConnectString>
       </ConnectionProperties>
-      <rd:DataSourceID>78043bca-f96e-473b-8e51-dad090185d15</rd:DataSourceID>
+      <rd:DataSourceID>bd830a34-1413-4bab-8557-f0f55cfa82fd</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="ProductOrderReportData">
       <Query>
-        <DataSourceName>XtremePharmacyManagerDataEntities</DataSourceName>
+        <DataSourceName>XTremePharmacyDBDataSet</DataSourceName>
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
+        <Field Name="ID">
+          <DataField>ID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ProductName">
+          <DataField>ProductName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
         <Field Name="BrandName">
           <DataField>BrandName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ClientAddress">
-          <DataField>ClientAddress</DataField>
+        <Field Name="VendorName">
+          <DataField>VendorName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="ClientEmail">
-          <DataField>ClientEmail</DataField>
+        <Field Name="ProductDescription">
+          <DataField>ProductDescription</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProductExpiryDate">
+          <DataField>ProductExpiryDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="DesiredQuantity">
+          <DataField>DesiredQuantity</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OrderPrice">
+          <DataField>OrderPrice</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="ClientName">
           <DataField>ClientName</DataField>
@@ -35,6 +55,18 @@
         </Field>
         <Field Name="ClientPhone">
           <DataField>ClientPhone</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ClientEmail">
+          <DataField>ClientEmail</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ClientAddress">
+          <DataField>ClientAddress</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="EmployeeName">
+          <DataField>EmployeeName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="DateAdded">
@@ -45,47 +77,22 @@
           <DataField>DateModified</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
-        <Field Name="DesiredQuantity">
-          <DataField>DesiredQuantity</DataField>
+        <Field Name="OrderStatus">
+          <DataField>OrderStatus</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="EmployeeName">
-          <DataField>EmployeeName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ID">
-          <DataField>ID</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="OrderPrice">
-          <DataField>OrderPrice</DataField>
-          <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="OrderReason">
           <DataField>OrderReason</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="OrderStatus">
-          <DataField>OrderStatus</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
-        <Field Name="ProductDescription">
-          <DataField>ProductDescription</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
-        <Field Name="ProductExpiryDate">
-          <DataField>ProductExpiryDate</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="ProductName">
-          <DataField>ProductName</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
       </Fields>
       <rd:DataSetInfo>
-        <rd:DataSetName>XtremePharmacyManager.DataEntities</rd:DataSetName>
+        <rd:DataSetName>XTremePharmacyDBDataSet</rd:DataSetName>
+        <rd:SchemaPath>D:\XTremePharmacyManager\XtremePharmacyManager\XTremePharmacyDBDataSet.xsd</rd:SchemaPath>
         <rd:TableName>ExtendedProductOrdersView</rd:TableName>
-        <rd:ObjectDataSourceType>XtremePharmacyManager.DataEntities.ExtendedProductOrdersView, XtremePharmacyManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</rd:ObjectDataSourceType>
+        <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
+        <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>
+        <rd:TableAdapterName>ExtendedProductOrdersViewTableAdapter</rd:TableAdapterName>
       </rd:DataSetInfo>
     </DataSet>
   </DataSets>
@@ -93,336 +100,11 @@
     <ReportSection>
       <Body>
         <ReportItems>
-          <Chart Name="Chart1">
-            <ChartCategoryHierarchy>
-              <ChartMembers>
-                <ChartMember>
-                  <Label />
-                </ChartMember>
-              </ChartMembers>
-            </ChartCategoryHierarchy>
-            <ChartSeriesHierarchy>
-              <ChartMembers>
-                <ChartMember>
-                  <Label />
-                </ChartMember>
-              </ChartMembers>
-            </ChartSeriesHierarchy>
-            <ChartData>
-              <ChartSeriesCollection>
-                <ChartSeries Name="EmptySeriesName">
-                  <ChartDataPoints>
-                    <ChartDataPoint>
-                      <ChartDataPointValues />
-                    </ChartDataPoint>
-                  </ChartDataPoints>
-                  <Type>Shape</Type>
-                  <Subtype>ExplodedPie</Subtype>
-                  <Style />
-                </ChartSeries>
-              </ChartSeriesCollection>
-            </ChartData>
-            <ChartAreas>
-              <ChartArea Name="Default">
-                <ChartCategoryAxes>
-                  <ChartAxis Name="Primary">
-                    <Style>
-                      <Border>
-                        <Color>Gainsboro</Color>
-                        <Style>None</Style>
-                      </Border>
-                      <FontSize>8pt</FontSize>
-                      <Color>#5c5c5c</Color>
-                    </Style>
-                    <ChartAxisTitle>
-                      <Caption />
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                        <Color>#5c5c5c</Color>
-                      </Style>
-                    </ChartAxisTitle>
-                    <ChartMajorGridLines>
-                      <Enabled>False</Enabled>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                    </ChartMajorGridLines>
-                    <ChartMinorGridLines>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>Dotted</Style>
-                        </Border>
-                      </Style>
-                    </ChartMinorGridLines>
-                    <ChartMajorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>None</Style>
-                        </Border>
-                      </Style>
-                    </ChartMajorTickMarks>
-                    <ChartMinorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                      <Length>0.5</Length>
-                    </ChartMinorTickMarks>
-                    <CrossAt>NaN</CrossAt>
-                    <Minimum>NaN</Minimum>
-                    <Maximum>NaN</Maximum>
-                    <ChartAxisScaleBreak>
-                      <Style />
-                    </ChartAxisScaleBreak>
-                  </ChartAxis>
-                  <ChartAxis Name="Secondary">
-                    <Style>
-                      <Border>
-                        <Color>Gainsboro</Color>
-                        <Style>None</Style>
-                      </Border>
-                      <FontSize>8pt</FontSize>
-                      <Color>#5c5c5c</Color>
-                    </Style>
-                    <ChartAxisTitle>
-                      <Caption />
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                        <Color>#5c5c5c</Color>
-                      </Style>
-                    </ChartAxisTitle>
-                    <ChartMajorGridLines>
-                      <Enabled>False</Enabled>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                    </ChartMajorGridLines>
-                    <ChartMinorGridLines>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>Dotted</Style>
-                        </Border>
-                      </Style>
-                    </ChartMinorGridLines>
-                    <ChartMajorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>None</Style>
-                        </Border>
-                      </Style>
-                    </ChartMajorTickMarks>
-                    <ChartMinorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                      <Length>0.5</Length>
-                    </ChartMinorTickMarks>
-                    <CrossAt>NaN</CrossAt>
-                    <Location>Opposite</Location>
-                    <Minimum>NaN</Minimum>
-                    <Maximum>NaN</Maximum>
-                    <ChartAxisScaleBreak>
-                      <Style />
-                    </ChartAxisScaleBreak>
-                  </ChartAxis>
-                </ChartCategoryAxes>
-                <ChartValueAxes>
-                  <ChartAxis Name="Primary">
-                    <Style>
-                      <Border>
-                        <Color>Gainsboro</Color>
-                        <Style>None</Style>
-                      </Border>
-                      <FontSize>8pt</FontSize>
-                      <Color>#5c5c5c</Color>
-                    </Style>
-                    <ChartAxisTitle>
-                      <Caption />
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                        <Color>#5c5c5c</Color>
-                      </Style>
-                    </ChartAxisTitle>
-                    <ChartMajorGridLines>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                    </ChartMajorGridLines>
-                    <ChartMinorGridLines>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>Dotted</Style>
-                        </Border>
-                      </Style>
-                    </ChartMinorGridLines>
-                    <ChartMajorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>None</Style>
-                        </Border>
-                      </Style>
-                    </ChartMajorTickMarks>
-                    <ChartMinorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                      <Length>0.5</Length>
-                    </ChartMinorTickMarks>
-                    <CrossAt>NaN</CrossAt>
-                    <Minimum>NaN</Minimum>
-                    <Maximum>NaN</Maximum>
-                    <ChartAxisScaleBreak>
-                      <Style />
-                    </ChartAxisScaleBreak>
-                  </ChartAxis>
-                  <ChartAxis Name="Secondary">
-                    <Style>
-                      <Border>
-                        <Color>Gainsboro</Color>
-                        <Style>None</Style>
-                      </Border>
-                      <FontSize>8pt</FontSize>
-                      <Color>#5c5c5c</Color>
-                    </Style>
-                    <ChartAxisTitle>
-                      <Caption />
-                      <Style>
-                        <FontSize>9pt</FontSize>
-                        <Color>#5c5c5c</Color>
-                      </Style>
-                    </ChartAxisTitle>
-                    <ChartMajorGridLines>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                    </ChartMajorGridLines>
-                    <ChartMinorGridLines>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>Dotted</Style>
-                        </Border>
-                      </Style>
-                    </ChartMinorGridLines>
-                    <ChartMajorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                          <Style>None</Style>
-                        </Border>
-                      </Style>
-                    </ChartMajorTickMarks>
-                    <ChartMinorTickMarks>
-                      <Style>
-                        <Border>
-                          <Color>Gainsboro</Color>
-                        </Border>
-                      </Style>
-                      <Length>0.5</Length>
-                    </ChartMinorTickMarks>
-                    <CrossAt>NaN</CrossAt>
-                    <Location>Opposite</Location>
-                    <Minimum>NaN</Minimum>
-                    <Maximum>NaN</Maximum>
-                    <ChartAxisScaleBreak>
-                      <Style />
-                    </ChartAxisScaleBreak>
-                  </ChartAxis>
-                </ChartValueAxes>
-                <ChartThreeDProperties>
-                  <Enabled>true</Enabled>
-                </ChartThreeDProperties>
-                <Style>
-                  <BackgroundColor>#00ffffff</BackgroundColor>
-                  <BackgroundGradientType>None</BackgroundGradientType>
-                </Style>
-              </ChartArea>
-            </ChartAreas>
-            <ChartLegends>
-              <ChartLegend Name="Default">
-                <Style>
-                  <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontSize>8pt</FontSize>
-                </Style>
-                <ChartLegendTitle>
-                  <Caption />
-                  <Style>
-                    <FontSize>8pt</FontSize>
-                    <FontWeight>Bold</FontWeight>
-                    <TextAlign>Center</TextAlign>
-                  </Style>
-                </ChartLegendTitle>
-                <HeaderSeparatorColor>Black</HeaderSeparatorColor>
-                <ColumnSeparatorColor>Black</ColumnSeparatorColor>
-              </ChartLegend>
-            </ChartLegends>
-            <ChartTitles>
-              <ChartTitle Name="Default">
-                <Caption>Sales vs Return Rates vs Unfinished Rates for the Order(No Delivery Prices Considered!)</Caption>
-                <Style>
-                  <BackgroundGradientType>None</BackgroundGradientType>
-                  <FontSize>9pt</FontSize>
-                  <FontWeight>Bold</FontWeight>
-                  <TextAlign>Left</TextAlign>
-                  <VerticalAlign>Top</VerticalAlign>
-                </Style>
-                <Position>TopLeft</Position>
-              </ChartTitle>
-            </ChartTitles>
-            <Palette>Pacific</Palette>
-            <ChartBorderSkin>
-              <Style>
-                <BackgroundColor>Gray</BackgroundColor>
-                <BackgroundGradientType>None</BackgroundGradientType>
-                <Color>White</Color>
-              </Style>
-            </ChartBorderSkin>
-            <ChartNoDataMessage Name="NoDataMessage">
-              <Caption>No Data Available</Caption>
-              <Style>
-                <BackgroundGradientType>None</BackgroundGradientType>
-                <FontWeight>Bold</FontWeight>
-                <TextAlign>General</TextAlign>
-                <VerticalAlign>Top</VerticalAlign>
-              </Style>
-            </ChartNoDataMessage>
-            <DataSetName>ProductOrderReportData</DataSetName>
-            <Top>5.83889in</Top>
-            <Height>2.59167in</Height>
-            <Width>6.395in</Width>
-            <Style>
-              <Border>
-                <Color>LightGrey</Color>
-                <Style>None</Style>
-              </Border>
-              <BackgroundColor>White</BackgroundColor>
-              <BackgroundGradientType>None</BackgroundGradientType>
-            </Style>
-          </Chart>
           <Line Name="Line3">
-            <Top>5.76944in</Top>
+            <Top>5.6511in</Top>
+            <Left>0.10888in</Left>
             <Height>0in</Height>
             <Width>6.92833in</Width>
-            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>Solid</Style>
@@ -447,10 +129,10 @@
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
             <Top>0.59556in</Top>
-            <Left>0.105in</Left>
+            <Left>0.10888in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>2</ZIndex>
+            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -478,11 +160,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>3.47056in</Top>
-            <Left>0.105in</Left>
+            <Top>3.74833in</Top>
+            <Left>0.10888in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>3</ZIndex>
+            <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -510,11 +192,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>1.87334in</Top>
-            <Left>0.105in</Left>
+            <Top>2.165in</Top>
+            <Left>0.10888in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>4</ZIndex>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -543,10 +225,10 @@
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
             <Top>0.915in</Top>
-            <Left>0.105in</Left>
+            <Left>0.10888in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>5</ZIndex>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -574,11 +256,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>1.23445in</Top>
-            <Left>0.105in</Left>
+            <Top>1.52611in</Top>
+            <Left>0.10888in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>6</ZIndex>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -606,11 +288,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>1.55389in</Top>
-            <Left>0.105in</Left>
+            <Top>1.84555in</Top>
+            <Left>0.10888in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>7</ZIndex>
+            <ZIndex>6</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -638,11 +320,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>2.19278in</Top>
-            <Left>0.105in</Left>
+            <Top>2.47055in</Top>
+            <Left>0.12277in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>8</ZIndex>
+            <ZIndex>7</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -670,11 +352,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>2.51223in</Top>
-            <Left>0.105in</Left>
+            <Top>2.79in</Top>
+            <Left>0.12277in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>9</ZIndex>
+            <ZIndex>8</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -702,11 +384,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>2.83167in</Top>
-            <Left>0.105in</Left>
+            <Top>3.10944in</Top>
+            <Left>0.12277in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>10</ZIndex>
+            <ZIndex>9</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -734,11 +416,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>3.15112in</Top>
-            <Left>0.105in</Left>
+            <Top>3.42889in</Top>
+            <Left>0.12277in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>11</ZIndex>
+            <ZIndex>10</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -766,11 +448,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>3.79in</Top>
-            <Left>0.105in</Left>
+            <Top>4.06777in</Top>
+            <Left>0.10888in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>12</ZIndex>
+            <ZIndex>11</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -799,10 +481,10 @@
             </Paragraphs>
             <rd:DefaultName>ProductName</rd:DefaultName>
             <Top>0.59556in</Top>
-            <Left>2.74389in</Left>
+            <Left>2.74777in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
-            <ZIndex>13</ZIndex>
+            <ZIndex>12</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -831,10 +513,10 @@
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
             <Top>0.29in</Top>
-            <Left>0.105in</Left>
+            <Left>0.10888in</Left>
             <Height>0.25in</Height>
             <Width>2.56945in</Width>
-            <ZIndex>14</ZIndex>
+            <ZIndex>13</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -863,10 +545,10 @@
             </Paragraphs>
             <rd:DefaultName>ID</rd:DefaultName>
             <Top>0.29in</Top>
-            <Left>2.74389in</Left>
+            <Left>2.74777in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
-            <ZIndex>15</ZIndex>
+            <ZIndex>14</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -895,10 +577,10 @@
             </Paragraphs>
             <rd:DefaultName>BrandName</rd:DefaultName>
             <Top>0.915in</Top>
-            <Left>2.74389in</Left>
+            <Left>2.74777in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
-            <ZIndex>16</ZIndex>
+            <ZIndex>15</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -926,11 +608,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ProductDescription</rd:DefaultName>
-            <Top>1.23445in</Top>
-            <Left>2.74389in</Left>
+            <Top>1.52611in</Top>
+            <Left>2.74777in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
-            <ZIndex>17</ZIndex>
+            <ZIndex>16</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -958,11 +640,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DesiredQuantity</rd:DefaultName>
-            <Top>1.55389in</Top>
-            <Left>2.74389in</Left>
+            <Top>1.84555in</Top>
+            <Left>2.74777in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
-            <ZIndex>18</ZIndex>
+            <ZIndex>17</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -990,11 +672,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>OrderPrice</rd:DefaultName>
-            <Top>1.87334in</Top>
-            <Left>2.74389in</Left>
+            <Top>2.165in</Top>
+            <Left>2.73389in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
-            <ZIndex>19</ZIndex>
+            <ZIndex>18</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1022,11 +704,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ProductExpiryDate</rd:DefaultName>
-            <Top>2.19278in</Top>
-            <Left>2.74389in</Left>
+            <Top>2.48444in</Top>
+            <Left>2.73389in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
-            <ZIndex>20</ZIndex>
+            <ZIndex>19</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1054,11 +736,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ClientName</rd:DefaultName>
-            <Top>2.51223in</Top>
-            <Left>2.74389in</Left>
+            <Top>2.79in</Top>
+            <Left>2.76166in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
-            <ZIndex>21</ZIndex>
+            <ZIndex>20</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1086,11 +768,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ClientPhone</rd:DefaultName>
-            <Top>2.83167in</Top>
-            <Left>2.74389in</Left>
+            <Top>3.10944in</Top>
+            <Left>2.76166in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
-            <ZIndex>22</ZIndex>
+            <ZIndex>21</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1118,11 +800,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ClientEmail</rd:DefaultName>
-            <Top>3.15112in</Top>
-            <Left>2.74389in</Left>
+            <Top>3.42889in</Top>
+            <Left>2.74777in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
-            <ZIndex>23</ZIndex>
+            <ZIndex>22</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1150,11 +832,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>ClientAddress</rd:DefaultName>
-            <Top>3.47056in</Top>
-            <Left>2.74389in</Left>
+            <Top>3.74833in</Top>
+            <Left>2.74777in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
-            <ZIndex>24</ZIndex>
+            <ZIndex>23</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1182,11 +864,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>EmployeeName</rd:DefaultName>
-            <Top>3.79in</Top>
-            <Left>2.74389in</Left>
+            <Top>4.05388in</Top>
+            <Left>2.73389in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
-            <ZIndex>25</ZIndex>
+            <ZIndex>24</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1214,11 +896,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>4.10944in</Top>
-            <Left>0.105in</Left>
+            <Top>4.37332in</Top>
+            <Left>0.095in</Left>
             <Height>0.25in</Height>
-            <Width>2.56945in</Width>
-            <ZIndex>26</ZIndex>
+            <Width>2.58333in</Width>
+            <ZIndex>25</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1246,11 +928,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DateAdded</rd:DefaultName>
-            <Top>4.10944in</Top>
-            <Left>2.74389in</Left>
+            <Top>4.37332in</Top>
+            <Left>2.73389in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
-            <ZIndex>27</ZIndex>
+            <ZIndex>26</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1278,11 +960,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>4.42889in</Top>
-            <Left>0.105in</Left>
+            <Top>4.69277in</Top>
+            <Left>0.17611in</Left>
             <Height>0.25in</Height>
-            <Width>2.56945in</Width>
-            <ZIndex>28</ZIndex>
+            <Width>2.51611in</Width>
+            <ZIndex>27</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1310,11 +992,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>DateModified</rd:DefaultName>
-            <Top>4.42889in</Top>
-            <Left>2.74389in</Left>
+            <Top>4.69277in</Top>
+            <Left>2.73389in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
-            <ZIndex>29</ZIndex>
+            <ZIndex>28</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1342,11 +1024,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>4.74833in</Top>
-            <Left>0.105in</Left>
+            <Top>5.01221in</Top>
+            <Left>0.17611in</Left>
             <Height>0.25in</Height>
-            <Width>2.56945in</Width>
-            <ZIndex>30</ZIndex>
+            <Width>2.51611in</Width>
+            <ZIndex>29</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1374,11 +1056,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>StatusName</rd:DefaultName>
-            <Top>4.74833in</Top>
-            <Left>2.74389in</Left>
+            <Top>5.01221in</Top>
+            <Left>2.76166in</Left>
             <Height>0.25in</Height>
-            <Width>3.65611in</Width>
-            <ZIndex>31</ZIndex>
+            <Width>3.64222in</Width>
+            <ZIndex>30</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1406,11 +1088,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox6</rd:DefaultName>
-            <Top>5.06777in</Top>
-            <Left>0.105in</Left>
+            <Top>5.33165in</Top>
+            <Left>0.17611in</Left>
             <Height>0.25in</Height>
-            <Width>2.56945in</Width>
-            <ZIndex>32</ZIndex>
+            <Width>2.51611in</Width>
+            <ZIndex>31</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1438,10 +1120,42 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>OrderReason</rd:DefaultName>
-            <Top>5.06777in</Top>
-            <Left>2.74389in</Left>
+            <Top>5.33165in</Top>
+            <Left>2.76166in</Left>
             <Height>0.25in</Height>
             <Width>3.65611in</Width>
+            <ZIndex>32</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox23">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Vendor:</Value>
+                    <Style>
+                      <FontFamily>Arial Black</FontFamily>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox6</rd:DefaultName>
+            <Top>1.23444in</Top>
+            <Left>0.10888in</Left>
+            <Height>0.25in</Height>
+            <Width>2.56945in</Width>
             <ZIndex>33</ZIndex>
             <Style>
               <Border>
@@ -1453,11 +1167,43 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="BrandName2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!VendorName.Value, "ProductOrderReportData")</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>BrandName</rd:DefaultName>
+            <Top>1.23444in</Top>
+            <Left>2.74777in</Left>
+            <Height>0.25in</Height>
+            <Width>3.65611in</Width>
+            <ZIndex>34</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>8.5in</Height>
+        <Height>5.98721in</Height>
         <Style />
       </Body>
-      <Width>6.93833in</Width>
+      <Width>7.03721in</Width>
       <Page>
         <PageHeader>
           <Height>1in</Height>
@@ -1486,7 +1232,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.11889in</Top>
-              <Left>2.27167in</Left>
+              <Left>2.27555in</Left>
               <Height>0.25in</Height>
               <Width>2.55833in</Width>
               <Style>
@@ -1501,9 +1247,9 @@
             </Textbox>
             <Line Name="Line1">
               <Top>0.91333in</Top>
-              <Left>0.005in</Left>
+              <Left>0.00888in</Left>
               <Height>0in</Height>
-              <Width>6.93333in</Width>
+              <Width>7.02833in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -1532,7 +1278,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox2</rd:DefaultName>
               <Top>0.59389in</Top>
-              <Left>0.105in</Left>
+              <Left>0.10888in</Left>
               <Height>0.25in</Height>
               <Width>0.91667in</Width>
               <ZIndex>2</ZIndex>
@@ -1569,7 +1315,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
               <Top>0.36889in</Top>
-              <Left>2.27167in</Left>
+              <Left>2.27555in</Left>
               <Height>0.18333in</Height>
               <Width>2.55833in</Width>
               <ZIndex>3</ZIndex>
@@ -1601,7 +1347,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.58in</Top>
-              <Left>1.04945in</Left>
+              <Left>1.05333in</Left>
               <Height>0.25in</Height>
               <Width>1.625in</Width>
               <ZIndex>4</ZIndex>
@@ -1633,7 +1379,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox4</rd:DefaultName>
               <Top>0.59389in</Top>
-              <Left>5.50833in</Left>
+              <Left>5.51221in</Left>
               <Height>0.25in</Height>
               <Width>0.89167in</Width>
               <ZIndex>5</ZIndex>
@@ -1661,8 +1407,9 @@
           <ReportItems>
             <Line Name="Line2">
               <Top>0.06944in</Top>
+              <Left>0.00388in</Left>
               <Height>0in</Height>
-              <Width>6.93833in</Width>
+              <Width>7.03333in</Width>
               <Style>
                 <Border>
                   <Style>Solid</Style>
@@ -1690,7 +1437,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox7</rd:DefaultName>
               <Top>0.2in</Top>
-              <Left>0.105in</Left>
+              <Left>0.10888in</Left>
               <Height>0.325in</Height>
               <Width>6.295in</Width>
               <ZIndex>1</ZIndex>
@@ -1723,7 +1470,7 @@
                 </Paragraph>
               </Paragraphs>
               <Top>0.58056in</Top>
-              <Left>0.105in</Left>
+              <Left>0.10888in</Left>
               <Height>0.225in</Height>
               <Width>6.295in</Width>
               <ZIndex>2</ZIndex>
@@ -1739,9 +1486,9 @@
             </Textbox>
             <Line Name="Line4">
               <Top>0.94167in</Top>
-              <Left>0.005in</Left>
+              <Left>0.00888in</Left>
               <Height>0in</Height>
-              <Width>6.93333in</Width>
+              <Width>7.02833in</Width>
               <ZIndex>3</ZIndex>
               <Style>
                 <Border>

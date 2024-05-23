@@ -23,9 +23,9 @@ namespace XtremePharmacyManager.DataEntities
         {
         }
 
-        public Entities(EntityConnectionStringBuilder esb)
-           : base(esb.ConnectionString)
+        public Entities(EntityConnectionStringBuilder esb) : base(esb.ConnectionString)
         {
+
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

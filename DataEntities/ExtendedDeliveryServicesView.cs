@@ -16,57 +16,6 @@ namespace XtremePharmacyManager.DataEntities
     {
         public string ServiceName { get; set; }
         public decimal ServicePrice { get; set; }
-        public Nullable<int> TimesThisServiceWasUsed { get; set; }
         public int ID { get; set; }
-        public Nullable<int> TimesAllServicesWereUsed { get; set; }
-        public Nullable<int> EstimatedProductsDeliveredByThisService { get; set; }
-        public Nullable<int> ProductsDeliveredByThisService { get; set; }
-        public Nullable<int> ProductsReturnedByThisService { get; set; }
-        public Nullable<int> EstimatedProductsDeliveredByAllServices { get; set; }
-        public Nullable<int> ProductsDeliveredByAllServices { get; set; }
-        public Nullable<int> ProductsReturnedByAllServices { get; set; }
-        public Nullable<int> ClientsWhoUsedThisService { get; set; }
-        public Nullable<int> ClientsWhoHadDeliveriesByThisService { get; set; }
-        public Nullable<int> ClientsWhoHadReturnsByThisService { get; set; }
-        public Nullable<int> ClientsWhoUsedAllServices { get; set; }
-        public Nullable<int> ClientsWhoHadDeliveriesByAllServices { get; set; }
-        public Nullable<int> ClientsWhoHadReturnsByAllServices { get; set; }
-        public Nullable<int> EstimatedProductQuantityDeliveredByThisService { get; set; }
-        public Nullable<int> ProductQuantityDeliveredByThisService { get; set; }
-        public Nullable<int> ProductQuantityReturnedByThisService { get; set; }
-        public Nullable<int> EstimatedProductQuantityDeliveredByAllServices { get; set; }
-        public Nullable<int> ProductQuantityDeliveredByAllServices { get; set; }
-        public Nullable<int> ProductQuantityReturnedByAllServices { get; set; }
-        public Nullable<decimal> TotalIncomeOfThisService { get; set; }
-        public Nullable<decimal> DeliveryIncomeOfThisService { get; set; }
-        public Nullable<decimal> ReturnIncomeOfThisService { get; set; }
-        public Nullable<decimal> TotalIncomeOfAllServices { get; set; }
-        public Nullable<decimal> DeliveryIncomeOfAllServices { get; set; }
-        public Nullable<decimal> ReturnIncomeOfAllServices { get; set; }
-        public Nullable<decimal> ProductDeliveryRateByItsEstimatedDelivery { get; set; }
-        public Nullable<decimal> ProductReturnRateByItsEstimatedDelivery { get; set; }
-        public Nullable<decimal> ProductDeliveryRateByGlobalEstimatedDelivery { get; set; }
-        public Nullable<decimal> ProductReturnRateByGlobalEstimatedDelivery { get; set; }
-        public Nullable<decimal> GlobalProductDeliveryRate { get; set; }
-        public Nullable<decimal> GlobalProductReturnRate { get; set; }
-        public Nullable<decimal> ClientDeliveryUseRateByItsEstimatedUse { get; set; }
-        public Nullable<decimal> ClientReturnUseRateByItsEstimatedUse { get; set; }
-        public Nullable<decimal> ClientDeliveryUseRateByGlobalEstimatedUse { get; set; }
-        public Nullable<decimal> ClientReturnUseRateByGlobalEstimatedUse { get; set; }
-        public Nullable<decimal> GlobalClientDeliveryUseRate { get; set; }
-        public Nullable<decimal> GlobalClientReturnUseRate { get; set; }
-        public Nullable<decimal> ProductQuantityDeliveryRateByItsEstimatedDelivery { get; set; }
-        public Nullable<decimal> ProductQuantityReturnRateByItsEstimatedDelivery { get; set; }
-        public Nullable<decimal> ProductQuantityDeliveryRateByGlobalEstimatedDelivery { get; set; }
-        public Nullable<decimal> ProductQuantityReturnRateByGlobalEstimatedDelivery { get; set; }
-        public Nullable<decimal> GlobalProductQuantityDeliveryRate { get; set; }
-        public Nullable<decimal> GlobalProductQuantityReturnRate { get; set; }
-        public Nullable<decimal> ServiceDeliveryIncomeRateByItsTotalIncome { get; set; }
-        public Nullable<decimal> ServiceReturnIncomeRateByItsTotalIncome { get; set; }
-        public Nullable<decimal> ServiceDeliveryIncomeRateByGlobalTotalIncome { get; set; }
-        public Nullable<decimal> ServiceReturnIncomeRateByGlobalTotalIncome { get; set; }
-        public Nullable<decimal> GlobalServiceDeliveryIncomeRate { get; set; }
-        public Nullable<decimal> GlobalServiceReturnIncomeRate { get; set; }
-        public Nullable<decimal> ServiceUseRate { get; set; }
     }
 }

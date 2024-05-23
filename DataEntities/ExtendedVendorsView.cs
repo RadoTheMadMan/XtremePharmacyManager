@@ -16,38 +16,5 @@ namespace XtremePharmacyManager.DataEntities
     {
         public int ID { get; set; }
         public string VendorName { get; set; }
-        public Nullable<int> CountProductsReceivedFromThisVendor { get; set; }
-        public Nullable<int> CountAllProducts { get; set; }
-        public Nullable<int> CountClientsWhoReceivedFromThisVendor { get; set; }
-        public Nullable<int> CountAllClients { get; set; }
-        public Nullable<int> StorageQuantityOfProductsFromThisVendor { get; set; }
-        public Nullable<int> StorageQuantityOfAllProducts { get; set; }
-        public Nullable<int> EstimatedNumberOfSoldProductsFromThisVendor { get; set; }
-        public Nullable<int> NumberOfSoldProductsFromThisVendor { get; set; }
-        public Nullable<int> NumberOfReturnedProductsFromThisVendor { get; set; }
-        public Nullable<int> EstimatedNumberOfSoldProductsFromAllVendors { get; set; }
-        public Nullable<int> NumberOfSoldProductsFromAllVendors { get; set; }
-        public Nullable<int> NumberOfReturnedProductsFromAllBVendors { get; set; }
-        public Nullable<decimal> EstimatedSalesFromThisVendor { get; set; }
-        public Nullable<decimal> SalesFromThisVendor { get; set; }
-        public Nullable<decimal> ReturnsFromThisVendor { get; set; }
-        public Nullable<decimal> EstimatedSalesFromAllVendors { get; set; }
-        public Nullable<decimal> SalesFromAllVendors { get; set; }
-        public Nullable<decimal> ReturnsFromAllVendors { get; set; }
-        public Nullable<decimal> VendorSaleRateByItsEstimatedSale { get; set; }
-        public Nullable<decimal> VendorReturnRateByItsEstimatedSale { get; set; }
-        public Nullable<decimal> VendorSaleRateByGlobalEstimatedSale { get; set; }
-        public Nullable<decimal> VendorReturnRateByGlobalEstimatedSale { get; set; }
-        public Nullable<decimal> GlobalVendorSaleRate { get; set; }
-        public Nullable<decimal> GlobalVendorReturnRate { get; set; }
-        public Nullable<decimal> VendorSaleQuantityRateByItsEstimatedQuantitySale { get; set; }
-        public Nullable<decimal> VendorReturnQuantityRateByItsEstimatedQuantitySale { get; set; }
-        public Nullable<decimal> VendorSaleQuantityRateByGlobalEstimatedQuantitySale { get; set; }
-        public Nullable<decimal> VendorReturnQuantityRateByGlobalEstimatedQuantitySale { get; set; }
-        public Nullable<decimal> GlobalVendorSaleQuantityRate { get; set; }
-        public Nullable<decimal> GlobalVendorReturnQuantityRate { get; set; }
-        public Nullable<decimal> VendorUseRateByClient { get; set; }
-        public Nullable<decimal> ProductStoragePercent { get; set; }
-        public Nullable<decimal> VendorUseRateByProduct { get; set; }
     }
 }
