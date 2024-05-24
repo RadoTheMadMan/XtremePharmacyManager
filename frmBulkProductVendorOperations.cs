@@ -125,6 +125,8 @@ namespace XtremePharmacyManager
             try
             {
                 manager.ExecuteOperations();
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -148,6 +150,8 @@ namespace XtremePharmacyManager
                     selected_operation.UpdateName();
                     manager.UpdateAllOperations(selected_operation);
                 }
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -193,6 +197,8 @@ namespace XtremePharmacyManager
                     ID = Int32.Parse(txtID.Text),
                     VendorName = txtVendorName.Text
                 }, IsSilent)) ;
+                selected_target = null;
+                selected_operation = null;
             }
             catch(Exception ex)
             {
@@ -237,6 +243,8 @@ namespace XtremePharmacyManager
                     selected_operation.UpdateName();
                     manager.UpdateOperation(selected_operation);
                 }
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -250,36 +258,11 @@ namespace XtremePharmacyManager
 
         private void cbSelectRecord_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ProductVendor selected_record = (ProductVendor)cbSelectRecord.SelectedItem;
             try
             {
-                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && ((ProductVendor)cbSelectRecord.SelectedItem) == selected_operation.TargetObject)
+                if(selected_record != null)
                 {
-                    selected_target = selected_operation.TargetObject;
-                }
-                else
-                {
-                    ProductVendor selected_record = (ProductVendor)cbSelectRecord.SelectedItem;
-                    if (selected_record != null && manager_entities.ProductVendors.Where(x => x.ID == selected_record.ID).Any())
-                    {
-                        selected_target = manager_entities.ProductVendors.Where(x => x.ID == selected_record.ID).FirstOrDefault();
-                    }
-                }
-                if (cbSelectRecord.SelectedItem != null && selected_target == null)
-                {
-                    ProductVendor selected_record = (ProductVendor)cbSelectRecord.SelectedItem;
-                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
-                    this.txtVendorName.Text = (!String.IsNullOrEmpty(selected_record.VendorName)) ? selected_record.VendorName.ToString() : string.Empty;
-                    cbSelectRecord.SelectedValue = selected_record.ID;
-                }
-                else if (selected_target != null)
-                {
-                    this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    this.txtVendorName.Text = (!String.IsNullOrEmpty(selected_target.VendorName)) ? selected_target.VendorName.ToString() : string.Empty;
-                    cbSelectRecord.SelectedValue = selected_target.ID;
-                }
-                else
-                {
-                    ProductVendor selected_record = (ProductVendor)cbSelectRecord.SelectedItem;
                     this.txtID.Text = (selected_record.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtVendorName.Text = (!String.IsNullOrEmpty(selected_record.VendorName)) ? selected_record.VendorName.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_record.ID;

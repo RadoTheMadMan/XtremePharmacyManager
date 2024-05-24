@@ -134,6 +134,8 @@ namespace XtremePharmacyManager
             try
             {
                 manager.ExecuteOperations();
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -171,6 +173,8 @@ namespace XtremePharmacyManager
                     selected_operation.UpdateName();
                     manager.UpdateAllOperations(selected_operation);
                 };
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -240,6 +244,8 @@ namespace XtremePharmacyManager
                     UserDiagnose = txtDiagnose.Text,
                     UserRole = cbRole.SelectedIndex
                 }, IsSilent));
+                selected_target = null;
+                selected_operation = null;
             }
             catch(Exception ex)
             {
@@ -298,6 +304,8 @@ namespace XtremePharmacyManager
                     selected_operation.UpdateName();
                     manager.UpdateOperation(selected_operation);
                 }
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -326,61 +334,12 @@ namespace XtremePharmacyManager
 
         private void cbSelectRecord_SelectedIndexChanged(object sender, EventArgs e)
         {
+            Bitmap currentpfp = new Bitmap(64, 64);
+            User selected_record = (User)cbSelectRecord.SelectedItem;
             try
             {
-                Bitmap currentpfp = new Bitmap(64, 64);
-                if(selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && ((User)cbSelectRecord.SelectedItem) == selected_operation.TargetObject)
+               if(selected_record != null)
                 {
-                    selected_target = selected_operation.TargetObject;
-                }
-                else
-                {
-                    User selected_record = (User)cbSelectRecord.SelectedItem;
-                    if (selected_record != null && manager_entities.Users.Where(x => x.ID == selected_record.ID).Any())
-                    {
-                        selected_target = manager_entities.Users.Where(x => x.ID == selected_record.ID).FirstOrDefault();
-                    }
-                }
-                if (cbSelectRecord.SelectedItem  != null && selected_target == null)
-                {
-                    User selected_record = (User)cbSelectRecord.SelectedItem;
-                    if (selected_record.UserProfilePic != null) { ConvertBinaryToImage(selected_record.UserProfilePic, out currentpfp); }
-                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
-                    this.txtUsername.Text = (!String.IsNullOrEmpty(selected_record.UserName)) ? selected_record.UserName.ToString() : string.Empty;
-                    this.txtPassword.Text = (!String.IsNullOrEmpty(selected_record.UserPassword)) ? selected_record.UserPassword.ToString() : string.Empty;
-                    this.txtDisplayName.Text = (!String.IsNullOrEmpty(selected_record.UserDisplayName)) ? selected_record.UserDisplayName.ToString() : string.Empty;
-                    this.dtBirthDate.Value = (selected_record.UserBirthDate != null && selected_record.UserBirthDate > DateTime.MinValue && selected_record.UserBirthDate < DateTime.MaxValue) ? selected_record.UserBirthDate : DateTime.Now;
-                    this.txtPhone.Text = (!String.IsNullOrEmpty(selected_record.UserPhone)) ? selected_record.UserPhone.ToString() : string.Empty;
-                    this.txtEmail.Text = (!String.IsNullOrEmpty(selected_record.UserEmail)) ? selected_record.UserEmail.ToString() : string.Empty;
-                    this.txtAddress.Text = (!String.IsNullOrEmpty(selected_record.UserAddress)) ? selected_record.UserAddress.ToString() : string.Empty;
-                    txtBalance.Text = (selected_record.UserBalance >= 0) ? Convert.ToInt32(selected_record.UserBalance).ToString() : string.Empty;
-                    trbBalance.Value = (selected_record.UserBalance >= 0) ? Convert.ToInt32(selected_record.UserBalance) : 0;
-                    txtDiagnose.Text = (!String.IsNullOrEmpty(selected_record.UserDiagnose)) ? selected_record.UserDiagnose : string.Empty;
-                    cbRole.SelectedIndex = (selected_record.UserRole >= 0 && selected_record.UserRole <= 2) ? selected_record.UserRole : 1;
-                    pbUserProfilePic.Image = (selected_record.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
-                    cbSelectRecord.SelectedValue = selected_record.ID;
-                }
-                else if (selected_target != null)
-                {
-                    if (selected_target.UserProfilePic != null) { ConvertBinaryToImage(selected_target.UserProfilePic, out currentpfp); }
-                    this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    this.txtUsername.Text = (!String.IsNullOrEmpty(selected_target.UserName)) ? selected_target.UserName.ToString() : string.Empty;
-                    this.txtPassword.Text = (!String.IsNullOrEmpty(selected_target.UserPassword)) ? selected_target.UserPassword.ToString() : string.Empty;
-                    this.txtDisplayName.Text = (!String.IsNullOrEmpty(selected_target.UserDisplayName)) ? selected_target.UserDisplayName.ToString() : string.Empty;
-                    this.dtBirthDate.Value = (selected_target.UserBirthDate != null && selected_target.UserBirthDate > DateTime.MinValue && selected_target.UserBirthDate < DateTime.MaxValue) ? selected_target.UserBirthDate : DateTime.Now;
-                    this.txtPhone.Text = (!String.IsNullOrEmpty(selected_target.UserPhone)) ? selected_target.UserPhone.ToString() : string.Empty;
-                    this.txtEmail.Text = (!String.IsNullOrEmpty(selected_target.UserEmail)) ? selected_target.UserEmail.ToString() : string.Empty;
-                    this.txtAddress.Text = (!String.IsNullOrEmpty(selected_target.UserAddress)) ? selected_target.UserAddress.ToString() : string.Empty;
-                    txtBalance.Text = (selected_target.UserBalance >= 0) ? Convert.ToInt32(selected_target.UserBalance).ToString() : string.Empty;
-                    trbBalance.Value = (selected_target.UserBalance >= 0) ? Convert.ToInt32(selected_target.UserBalance) : 0;
-                    txtDiagnose.Text = (!String.IsNullOrEmpty(selected_target.UserDiagnose)) ? selected_target.UserDiagnose : string.Empty;
-                    cbRole.SelectedIndex = (selected_target.UserRole >= 0 && selected_target.UserRole <= 2) ? selected_target.UserRole : 1;
-                    pbUserProfilePic.Image = (selected_target.UserProfilePic != null) ? currentpfp : new Bitmap(64, 64);
-                    cbSelectRecord.SelectedValue = selected_target.ID;
-                }
-                else
-                {
-                    User selected_record = (User)cbSelectRecord.SelectedItem;
                     if (selected_record.UserProfilePic != null) { ConvertBinaryToImage(selected_record.UserProfilePic, out currentpfp); }
                     this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
                     this.txtUsername.Text = (!String.IsNullOrEmpty(selected_record.UserName)) ? selected_record.UserName.ToString() : string.Empty;

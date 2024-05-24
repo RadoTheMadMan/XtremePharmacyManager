@@ -170,9 +170,9 @@
             this.txtOperationLogs.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOperationLogs.Location = new System.Drawing.Point(23, 441);
+            this.txtOperationLogs.Location = new System.Drawing.Point(23, 458);
             this.txtOperationLogs.Name = "txtOperationLogs";
-            this.txtOperationLogs.Size = new System.Drawing.Size(766, 161);
+            this.txtOperationLogs.Size = new System.Drawing.Size(766, 144);
             this.txtOperationLogs.TabIndex = 46;
             this.txtOperationLogs.Text = "";
             // 
@@ -193,7 +193,7 @@
             // 
             this.checkSilentOperation.AutoSize = true;
             this.checkSilentOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkSilentOperation.Location = new System.Drawing.Point(255, 415);
+            this.checkSilentOperation.Location = new System.Drawing.Point(23, 392);
             this.checkSilentOperation.Name = "checkSilentOperation";
             this.checkSilentOperation.Size = new System.Drawing.Size(140, 20);
             this.checkSilentOperation.TabIndex = 44;
@@ -206,7 +206,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOperationResults.AutoSize = true;
             this.lblOperationResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationResults.Location = new System.Drawing.Point(20, 415);
+            this.lblOperationResults.Location = new System.Drawing.Point(19, 433);
             this.lblOperationResults.Name = "lblOperationResults";
             this.lblOperationResults.Size = new System.Drawing.Size(139, 16);
             this.lblOperationResults.TabIndex = 43;
@@ -223,7 +223,7 @@
             "UPDATE",
             "DELETE",
             "CUSTOM(Only for operations with custom action overrides)"});
-            this.cbOperationType.Location = new System.Drawing.Point(555, 411);
+            this.cbOperationType.Location = new System.Drawing.Point(555, 425);
             this.cbOperationType.Name = "cbOperationType";
             this.cbOperationType.Size = new System.Drawing.Size(229, 24);
             this.cbOperationType.TabIndex = 42;
@@ -235,7 +235,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOperationType.AutoSize = true;
             this.lblOperationType.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationType.Location = new System.Drawing.Point(412, 415);
+            this.lblOperationType.Location = new System.Drawing.Point(412, 429);
             this.lblOperationType.Name = "lblOperationType";
             this.lblOperationType.Size = new System.Drawing.Size(119, 16);
             this.lblOperationType.TabIndex = 41;

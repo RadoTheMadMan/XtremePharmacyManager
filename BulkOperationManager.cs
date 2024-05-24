@@ -1,6 +1,7 @@
 ﻿using Microsoft.ReportingServices.Diagnostics.Utilities;
 using Microsoft.ReportingServices.Interfaces;
 using System;
+using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -56,6 +57,14 @@ namespace XtremePharmacyManager
         public bool IsSilent { get { return is_silent; } set { is_silent = value; } }
         public int ErrorCode {  get { return error_code; } set { error_code = value; } }
         public int InnerErrorCode { get { return inner_error_code; } set { inner_error_code = value; } }
+
+        public BulkOperation()
+        {
+            type = BulkOperationType.DEFAULT;
+            target_object = (T)Activator.CreateInstance(typeof(T));
+            is_silent = true;
+            operation_name = $"{type} operation on {target_object.GetType()}";
+        }
         public BulkOperation(BulkOperationType optype,T obj, bool is_silent)
         {
             type = optype;
@@ -248,15 +257,25 @@ namespace XtremePharmacyManager
         {
             Type objectType = TargetObject.GetType();
             Type otherobjbasetype = obj.GetType().GetTypeInfo().BaseType;
-            if (objectType == otherobjbasetype || objectType == obj.GetType())
+            try
             {
-                foreach (var property in objectType.GetProperties())
+                target_object = (T)Activator.CreateInstance(typeof(T));
+                if (objectType == otherobjbasetype || objectType == obj.GetType())
                 {
-                    var current_target_value = property.GetValue(target_object, null);
-                    var current_other_object_value = property.GetValue(obj, null);
-                    MessageBox.Show($"Current Target object's value: {current_target_value}\nOther Target Object's value: {current_other_object_value}\n");
-                    property.SetValue(TargetObject, current_other_object_value, null);
-                    MessageBox.Show($"Updated Target object's value: {current_target_value}\nOther Target Object's value: {current_other_object_value}\n");
+                    foreach (var property in objectType.GetProperties())
+                    {
+                        var current_target_value = property.GetValue(target_object, null);
+                        var current_other_object_value = property.GetValue(obj, null);
+                        property.SetValue(target_object, current_other_object_value, null);
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}:::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ex.InnerException != null)
+                {
+                    MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -265,6 +284,11 @@ namespace XtremePharmacyManager
     public class BulkUserOperation : BulkOperation<User>
     {
         static Entities entities;
+
+        public BulkUserOperation() :base()
+        {
+
+        }
 
         public BulkUserOperation(BulkOperationType type,ref Entities ent, User target_user, bool is_silent) : base(type, target_user, is_silent)
         {
@@ -485,6 +509,11 @@ namespace XtremePharmacyManager
     {
         static Entities entities;
 
+        public BulkProductBrandOperation() : base()
+        {
+
+        }
+
         public BulkProductBrandOperation(BulkOperationType type, ref Entities ent, ProductBrand target_brand, bool is_silent) : base(type, target_brand, is_silent)
         {
             entities = ent;
@@ -653,6 +682,11 @@ namespace XtremePharmacyManager
     public class BulkProductVendorOperation : BulkOperation<ProductVendor>
     {
         static Entities entities;
+
+        public BulkProductVendorOperation() : base()
+        {
+
+        }
 
         public BulkProductVendorOperation(BulkOperationType type, ref Entities ent, ProductVendor target_vendor, bool is_silent) : base(type, target_vendor, is_silent)
         {
@@ -823,6 +857,11 @@ namespace XtremePharmacyManager
     {
         static Entities entities;
 
+        public BulkPaymentMethodOperation() : base()
+        {
+
+        }
+
         public BulkPaymentMethodOperation(BulkOperationType type, ref Entities ent, PaymentMethod target_method, bool is_silent) : base(type, target_method, is_silent)
         {
             entities = ent;
@@ -992,6 +1031,11 @@ namespace XtremePharmacyManager
     public class BulkDeliveryServiceOperation : BulkOperation<DeliveryService>
     {
         static Entities entities;
+
+        public BulkDeliveryServiceOperation() : base()
+        {
+
+        }
 
         public BulkDeliveryServiceOperation(BulkOperationType type, ref Entities ent, DeliveryService target_service, bool is_silent) : base(type, target_service, is_silent)
         {
@@ -1164,6 +1208,11 @@ namespace XtremePharmacyManager
     public class BulkProductOperation : BulkOperation<Product>
     {
         static Entities entities;
+
+        public BulkProductOperation() : base()
+        {
+
+        }
 
         public BulkProductOperation(BulkOperationType type, ref Entities ent, Product target_product, bool is_silent) : base(type, target_product, is_silent)
         {
@@ -1338,6 +1387,11 @@ namespace XtremePharmacyManager
     {
         static Entities entities;
 
+        public BulkProductImageOperation() : base()
+        {
+
+        }
+
         public BulkProductImageOperation(BulkOperationType type, ref Entities ent, ProductImage target_image, bool is_silent) : base(type, target_image, is_silent)
         {
             entities = ent;
@@ -1489,6 +1543,11 @@ namespace XtremePharmacyManager
     {
         static Entities entities;
         bool add_total_price_override_on_create;
+
+        public BulkProductOrderOperation() : base()
+        {
+
+        }
 
         public BulkProductOrderOperation(BulkOperationType type, ref Entities ent, ProductOrder target_order, bool add_total_price_override_on_create, bool is_silent) : base(type, target_order, is_silent)
         {
@@ -1664,6 +1723,11 @@ namespace XtremePharmacyManager
     public class BulkOrderDeliveryOperation : BulkOperation<OrderDelivery>
     {
         static Entities entities;
+
+        public BulkOrderDeliveryOperation() : base()
+        {
+
+        }
 
         public BulkOrderDeliveryOperation(BulkOperationType type, ref Entities ent, OrderDelivery target_delivery, bool is_silent) : base(type, target_delivery, is_silent)
         {
@@ -1969,7 +2033,28 @@ namespace XtremePharmacyManager
             if (bulk_operation != null && bulk_operations.Contains(bulk_operation))
             {
                 int operation_index = bulk_operations.IndexOf(bulk_operation);
-                bulk_operations[operation_index] = bulk_operation;
+                Type current_operation_type = bulk_operations[operation_index].GetType();
+                Type template_operation_type = bulk_operation.GetType();
+                BulkOperation<T> current_operation_for_change = bulk_operations[operation_index];
+                if (template_operation_type.IsAssignableFrom(current_operation_type))
+                {
+                    current_operation_for_change = (BulkOperation<T>)Activator.CreateInstance(current_operation_type);
+                    foreach(var property in current_operation_type.GetProperties())
+                    {
+                        var current_operation_property = property.GetValue(current_operation_for_change, null);
+                        var template_operation_property = property.GetValue(bulk_operation, null);
+                        if (current_operation_property.Equals(current_operation_for_change.TargetObject)) //if it is the target object update the target object using the function
+                        {
+                            current_operation_for_change.UpdateTargetObject(bulk_operation.TargetObject);
+                        }
+                        else
+                        {
+                            property.SetValue(current_operation_for_change, template_operation_property, null); //else update it using the reflection
+                        }
+                    }
+                    current_operation_for_change.UpdateName();
+                    bulk_operations[operation_index] = current_operation_for_change;
+                }
             }
             BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
             ev_args.OperationsList = bulk_operations;
@@ -1987,7 +2072,28 @@ namespace XtremePharmacyManager
             {
                 for(int i = 0; i<bulk_operations.Count; i++)
                 {
-                    bulk_operations[i] = bulk_operation;
+                    Type current_operation_type = bulk_operations[i].GetType();
+                    Type template_operation_type = bulk_operation.GetType();
+                    BulkOperation<T> current_operation_for_change = bulk_operations[i];
+                    if (template_operation_type.IsAssignableFrom(current_operation_type))
+                    {
+                        current_operation_for_change = (BulkOperation<T>)Activator.CreateInstance(current_operation_type);
+                        foreach (var property in current_operation_type.GetProperties())
+                        {
+                            var current_operation_property = property.GetValue(current_operation_for_change, null);
+                            var template_operation_property = property.GetValue(bulk_operation, null);
+                            if (current_operation_property.Equals(current_operation_for_change.TargetObject)) //if it is the target object update the target object using the function
+                            {
+                                current_operation_for_change.UpdateTargetObject(bulk_operation.TargetObject);
+                            }
+                            else
+                            {
+                                property.SetValue(current_operation_for_change, template_operation_property, null); //else update it using the reflection
+                            }
+                        }
+                        current_operation_for_change.UpdateName();
+                        bulk_operations[i] = current_operation_for_change;
+                    }
                 }
             }
             BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();

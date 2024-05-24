@@ -202,7 +202,9 @@ namespace XtremePharmacyManager
                     ID = Int32.Parse(txtID.Text),
                     ServiceName = txtServiceName.Text,
                     ServicePrice = trbPrice.Value
-            }, IsSilent)) ;
+            }, IsSilent));
+                selected_target = null;
+                selected_operation = null;
             }
             catch(Exception ex)
             {

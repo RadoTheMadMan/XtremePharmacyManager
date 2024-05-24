@@ -195,7 +195,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.checkSilentOperation.AutoSize = true;
             this.checkSilentOperation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkSilentOperation.Location = new System.Drawing.Point(261, 313);
+            this.checkSilentOperation.Location = new System.Drawing.Point(24, 275);
             this.checkSilentOperation.Name = "checkSilentOperation";
             this.checkSilentOperation.Size = new System.Drawing.Size(140, 20);
             this.checkSilentOperation.TabIndex = 44;
@@ -319,7 +319,7 @@
             this.lstBulkOperations.ItemHeight = 16;
             this.lstBulkOperations.Location = new System.Drawing.Point(24, 153);
             this.lstBulkOperations.Name = "lstBulkOperations";
-            this.lstBulkOperations.Size = new System.Drawing.Size(766, 148);
+            this.lstBulkOperations.Size = new System.Drawing.Size(766, 116);
             this.lstBulkOperations.TabIndex = 35;
             this.lstBulkOperations.ValueMember = "TargetObject";
             this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);

@@ -125,6 +125,8 @@ namespace XtremePharmacyManager
             try
             {
                 manager.ExecuteOperations();
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -148,6 +150,8 @@ namespace XtremePharmacyManager
                     selected_operation.UpdateName();
                     manager.UpdateAllOperations(selected_operation);
                 }
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -193,6 +197,8 @@ namespace XtremePharmacyManager
                     ID = Int32.Parse(txtID.Text),
                     BrandName = txtBrandName.Text
                 }, IsSilent));
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -237,6 +243,8 @@ namespace XtremePharmacyManager
                     selected_operation.UpdateName();
                     manager.UpdateOperation(selected_operation);
                 }
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -250,35 +258,10 @@ namespace XtremePharmacyManager
 
         private void cbSelectRecord_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ProductBrand selected_record = (ProductBrand)cbSelectRecord.SelectedItem;
             try {
-                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && ((ProductBrand)cbSelectRecord.SelectedItem) == selected_operation.TargetObject)
+                if(selected_record != null)
                 {
-                    selected_target = selected_operation.TargetObject;
-                }
-                else
-                {
-                    ProductBrand selected_record = (ProductBrand)cbSelectRecord.SelectedItem;
-                    if (selected_record != null && manager_entities.ProductBrands.Where(x => x.ID == selected_record.ID).Any())
-                    {
-                        selected_target = manager_entities.ProductBrands.Where(x => x.ID == selected_record.ID).FirstOrDefault();
-                    }
-                }
-                if (cbSelectRecord.SelectedItem != null && selected_target == null)
-                {
-                    ProductBrand selected_record = (ProductBrand)cbSelectRecord.SelectedItem;
-                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
-                    this.txtBrandName.Text = (!String.IsNullOrEmpty(selected_record.BrandName)) ? selected_record.BrandName.ToString() : string.Empty;
-                    cbSelectRecord.SelectedValue = selected_record.ID;
-                }
-                else if (selected_target != null)
-                {
-                    this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    this.txtBrandName.Text = (!String.IsNullOrEmpty(selected_target.BrandName)) ? selected_target.BrandName.ToString() : string.Empty;
-                    cbSelectRecord.SelectedValue = selected_target.ID;
-                }
-                else
-                {
-                    ProductBrand selected_record = (ProductBrand)cbSelectRecord.SelectedItem;
                     this.txtID.Text = (selected_record.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
                     this.txtBrandName.Text = (!String.IsNullOrEmpty(selected_record.BrandName)) ? selected_record.BrandName.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_record.ID;

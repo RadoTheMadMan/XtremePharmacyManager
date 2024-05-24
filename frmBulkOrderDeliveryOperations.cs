@@ -243,6 +243,8 @@ namespace XtremePharmacyManager
             try
             {
                 manager.ExecuteOperations();
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -271,6 +273,8 @@ namespace XtremePharmacyManager
                     selected_operation.UpdateName();
                     manager.UpdateAllOperations(selected_operation);
                 }
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -328,6 +332,8 @@ namespace XtremePharmacyManager
                     DeliveryStatus = cbStatus.SelectedIndex,
                     DeliveryReason = txtReason.Text
             }, IsSilent));
+                selected_target = null;
+                selected_operation = null;
             }
             catch(Exception ex)
             {
@@ -377,6 +383,8 @@ namespace XtremePharmacyManager
                     selected_operation.UpdateName();
                     manager.UpdateOperation(selected_operation);
                 }
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -390,52 +398,11 @@ namespace XtremePharmacyManager
 
         private void cbSelectRecord_SelectedIndexChanged(object sender, EventArgs e)
         {
+            OrderDelivery selected_record = (OrderDelivery)cbSelectRecord.SelectedItem;
             try
             {
-                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && ((OrderDelivery)cbSelectRecord.SelectedItem) == selected_operation.TargetObject)
+               if(selected_record != null)
                 {
-                    selected_target = selected_operation.TargetObject;
-                }
-                else
-                {
-                    OrderDelivery selected_record = (OrderDelivery)cbSelectRecord.SelectedItem;
-                    if (selected_record != null && manager_entities.OrderDeliveries.Where(x => x.ID == selected_record.ID).Any())
-                    {
-                        selected_target = manager_entities.OrderDeliveries.Where(x => x.ID == selected_record.ID).FirstOrDefault();
-                    }
-                }
-                if (cbSelectRecord.SelectedItem != null && selected_target == null)
-                {
-                    OrderDelivery selected_record = (OrderDelivery)cbSelectRecord.SelectedItem;
-                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
-                    this.txtReason.Text = (!String.IsNullOrEmpty(selected_record.DeliveryReason)) ? selected_record.DeliveryReason.ToString() : string.Empty;
-                    this.txtCargoID.Text = (!String.IsNullOrEmpty(selected_record.CargoID)) ? selected_record.CargoID.ToString() : string.Empty;
-                    this.txtPrice.Text = (selected_record.TotalPrice >= 0) ? Convert.ToInt32(selected_record.TotalPrice).ToString() : string.Empty;
-                    this.trbPrice.Value = (selected_record.TotalPrice >= 0) ? Convert.ToInt32(selected_record.TotalPrice) : 0;
-                    cbSelectRecord.SelectedValue = selected_record.ID;
-                    cbOrder.SelectedValue = selected_record.OrderID;
-                    cbDeliveryService.SelectedValue = selected_record.DeliveryServiceID;
-                    cbPaymentMethod.SelectedValue = selected_record.PaymentMethodID;
-                    cbStatus.SelectedIndex = selected_record.DeliveryStatus;
-                    cbSelectRecord.SelectedValue = selected_record.ID;
-                }
-                else if (selected_target != null)
-                {
-                    this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    this.txtReason.Text = (!String.IsNullOrEmpty(selected_target.DeliveryReason)) ? selected_target.DeliveryReason.ToString() : string.Empty;
-                    this.txtCargoID.Text = (!String.IsNullOrEmpty(selected_target.CargoID)) ? selected_target.CargoID.ToString() : string.Empty;
-                    this.txtPrice.Text = (selected_target.TotalPrice >= 0) ? Convert.ToInt32(selected_target.TotalPrice).ToString() : string.Empty;
-                    this.trbPrice.Value = (selected_target.TotalPrice >= 0) ? Convert.ToInt32(selected_target.TotalPrice) : 0;
-                    cbSelectRecord.SelectedValue = selected_target.ID;
-                    cbOrder.SelectedValue = selected_target.OrderID;
-                    cbDeliveryService.SelectedValue = selected_target.DeliveryServiceID;
-                    cbPaymentMethod.SelectedValue = selected_target.PaymentMethodID;
-                    cbStatus.SelectedIndex = selected_target.DeliveryStatus;
-                    cbSelectRecord.SelectedValue = selected_target.ID;
-                }
-                else
-                {
-                    OrderDelivery selected_record = (OrderDelivery)cbSelectRecord.SelectedItem;
                     this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
                     this.txtReason.Text = (!String.IsNullOrEmpty(selected_record.DeliveryReason)) ? selected_record.DeliveryReason.ToString() : string.Empty;
                     this.txtCargoID.Text = (!String.IsNullOrEmpty(selected_record.CargoID)) ? selected_record.CargoID.ToString() : string.Empty;

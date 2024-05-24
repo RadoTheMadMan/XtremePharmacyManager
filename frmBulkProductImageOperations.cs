@@ -165,6 +165,8 @@ namespace XtremePharmacyManager
             try
             {
                 manager.ExecuteOperations();
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -192,6 +194,8 @@ namespace XtremePharmacyManager
                     selected_operation.UpdateName();
                     manager.UpdateAllOperations(selected_operation);
                 }
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -245,6 +249,8 @@ namespace XtremePharmacyManager
                     ImageName = txtImageName.Text,
                     ImageData = image_bytes
                 }, IsSilent)) ;
+                selected_target = null;
+                selected_operation = null;
             }
             catch(Exception ex)
             {
@@ -293,6 +299,8 @@ namespace XtremePharmacyManager
                     selected_operation.UpdateName();
                     manager.UpdateOperation(selected_operation);
                 }
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -307,44 +315,11 @@ namespace XtremePharmacyManager
         private void cbSelectRecord_SelectedIndexChanged(object sender, EventArgs e)
         {
             Bitmap selected_image;
+            ProductImage selected_record = (ProductImage)cbSelectRecord.SelectedItem;
             try
             {
-                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && ((ProductImage)cbSelectRecord.SelectedItem) == selected_operation.TargetObject)
+               if(selected_record != null) 
                 {
-                    selected_target = selected_operation.TargetObject;
-                }
-                else
-                {
-                    ProductImage selected_record = (ProductImage)cbSelectRecord.SelectedItem;
-                    if (selected_record != null && manager_entities.ProductImages.Where(x => x.ID == selected_record.ID).Any())
-                    {
-                        selected_target = manager_entities.ProductImages.Where(x => x.ID == selected_record.ID).FirstOrDefault();
-                    }
-                }
-                if (cbSelectRecord.SelectedItem != null && selected_target == null)
-                {
-                    ProductImage selected_record = (ProductImage)cbSelectRecord.SelectedItem;
-                    ConvertBinaryToImage(selected_record.ImageData, out selected_image);
-                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
-                    cbProduct.SelectedValue = selected_record.ProductID;
-                    this.txtImageName.Text = (!String.IsNullOrEmpty(selected_record.ImageName)) ? selected_record.ImageName.ToString() : string.Empty;
-                    this.pbProductImageData.Image = selected_image;
-                    cbSelectRecord.SelectedValue = selected_record.ID;
-                }
-                else if (selected_target != null)
-                {
-                    this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    ConvertBinaryToImage(selected_target.ImageData, out selected_image);
-                    this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    cbProduct.SelectedValue = selected_target.ProductID;
-                    this.txtImageName.Text = (!String.IsNullOrEmpty(selected_target.ImageName)) ? selected_target.ImageName.ToString() : string.Empty;
-                    this.pbProductImageData.Image = selected_image;
-                    cbSelectRecord.SelectedValue = selected_target.ID;
-                }
-                else
-                {
-                    ProductImage selected_record = (ProductImage)cbSelectRecord.SelectedItem;
                     ConvertBinaryToImage(selected_record.ImageData, out selected_image);
                     this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
                     cbProduct.SelectedValue = selected_record.ProductID;

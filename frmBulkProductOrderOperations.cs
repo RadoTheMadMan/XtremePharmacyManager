@@ -244,6 +244,8 @@ namespace XtremePharmacyManager
             try
             {
                 manager.ExecuteOperations();
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -273,6 +275,8 @@ namespace XtremePharmacyManager
                     selected_operation.UpdateName();
                     manager.UpdateAllOperations(selected_operation);
                 }
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -332,6 +336,8 @@ namespace XtremePharmacyManager
                     OrderPrice = trbPrice.Value,
                     OrderReason = txtReason.Text,
             }, OverridePriceAsTotalOnAdd,IsSilent));
+                selected_target = null;
+                selected_operation = null;
             }
             catch(Exception ex)
             {
@@ -382,6 +388,8 @@ namespace XtremePharmacyManager
                     selected_operation.UpdateName();
                     manager.UpdateOperation(selected_operation);
                 }
+                selected_target = null;
+                selected_operation = null;
             }
             catch (Exception ex)
             {
@@ -395,53 +403,11 @@ namespace XtremePharmacyManager
 
         private void cbSelectRecord_SelectedIndexChanged(object sender, EventArgs e)
         {
+            ProductOrder selected_record = (ProductOrder)cbSelectRecord.SelectedItem;
             try
             {
-                if (selected_operation != null && selected_operation.TargetObject != null && cbSelectRecord.Items.Contains(selected_operation.TargetObject) && ((ProductOrder)cbSelectRecord.SelectedItem) == selected_operation.TargetObject)
+               if(selected_record != null)
                 {
-                    selected_target = selected_operation.TargetObject;
-                }
-                else
-                {
-                    ProductOrder selected_record = (ProductOrder)cbSelectRecord.SelectedItem;
-                    if (selected_record != null && manager_entities.ProductOrders.Where(x => x.ID == selected_record.ID).Any())
-                    {
-                        selected_target = manager_entities.ProductOrders.Where(x => x.ID == selected_record.ID).FirstOrDefault();
-                    }
-                }
-                if (cbSelectRecord.SelectedItem != null && selected_target == null)
-                {
-                    ProductOrder selected_record = (ProductOrder)cbSelectRecord.SelectedItem;
-                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
-                    this.txtPrice.Text = (selected_record.OrderPrice >= 0) ? Convert.ToInt32(selected_record.OrderPrice).ToString() : string.Empty;
-                    this.trbPrice.Value = (selected_record.OrderPrice >= 0) ? Convert.ToInt32(selected_record.OrderPrice) : 0;
-                    this.txtQuantity.Text = (selected_record.DesiredQuantity >= 0) ? selected_record.DesiredQuantity.ToString() : string.Empty;
-                    this.trbQuantity.Value = (selected_record.DesiredQuantity >= 0) ? selected_record.DesiredQuantity : 0;
-                    cbSelectRecord.SelectedValue = selected_record.ID;
-                    cbProduct.SelectedValue = selected_record.ProductID;
-                    cbClient.SelectedValue = selected_record.ClientID;
-                    cbEmployee.SelectedValue = selected_record.EmployeeID;
-                    cbStatus.SelectedIndex = selected_record.OrderStatus;
-                    cbSelectRecord.SelectedValue = selected_record.ID;
-                }
-                else if (selected_target != null)
-                {
-                    this.txtID.Text = (selected_target.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
-                    this.txtReason.Text = (!String.IsNullOrEmpty(selected_target.OrderReason)) ? selected_target.OrderReason.ToString() : string.Empty;
-                    this.txtPrice.Text = (selected_target.OrderPrice >= 0) ? Convert.ToInt32(selected_target.OrderPrice).ToString() : string.Empty;
-                    this.trbPrice.Value = (selected_target.OrderPrice >= 0) ? Convert.ToInt32(selected_target.OrderPrice) : 0;
-                    this.txtQuantity.Text = (selected_target.DesiredQuantity >= 0) ? selected_target.DesiredQuantity.ToString() : string.Empty;
-                    this.trbQuantity.Value = (selected_target.DesiredQuantity >= 0) ? selected_target.DesiredQuantity : 0;
-                    cbSelectRecord.SelectedValue = selected_target.ID;
-                    cbProduct.SelectedValue = selected_target.ProductID;
-                    cbClient.SelectedValue = selected_target.ClientID;
-                    cbEmployee.SelectedValue = selected_target.EmployeeID;
-                    cbStatus.SelectedIndex = selected_target.OrderStatus;
-                    cbSelectRecord.SelectedValue = selected_target.ID;
-                }
-                else
-                {
-                    ProductOrder selected_record = (ProductOrder)cbSelectRecord.SelectedItem;
                     this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
                     this.txtPrice.Text = (selected_record.OrderPrice >= 0) ? Convert.ToInt32(selected_record.OrderPrice).ToString() : string.Empty;
                     this.trbPrice.Value = (selected_record.OrderPrice >= 0) ? Convert.ToInt32(selected_record.OrderPrice) : 0;
