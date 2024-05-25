@@ -145,7 +145,8 @@ namespace XtremePharmacyManager
                 //if loading the last logins is successful handle login here
                 if (currentUser == null)
                 {
-                    //Add login logic here
+                    //make a login form and instantiate it, it will be a special one instantiated and closed as a dialog and it will have reference
+                    //to the current user so it will change it at runtime and apply changes at closing
                 }
             }
             catch (Exception ex)
@@ -467,7 +468,7 @@ namespace XtremePharmacyManager
                 {
                     if (userssearchform != null)
                     {
-                        userssearchform = null;
+                        userssearchform.Close();
                     }
                     if (deliveryservicessearchform != null)
                     {
@@ -570,7 +571,7 @@ namespace XtremePharmacyManager
                 {
                     productvendorssearchform = null;
                 }
-                if (productssearchform!= null);
+                if (productssearchform != null);
                 {
                     productssearchform = null;
                 }
@@ -641,6 +642,14 @@ namespace XtremePharmacyManager
                         entities.Database.Connection.Close();
                     }
                     entities = null;
+                }
+                if(currentUser != null)
+                {
+                    currentUser = null;
+                }
+                if(last_Logins != null)
+                {
+                    last_Logins = null;
                 }
             }
             catch (Exception ex)
@@ -1114,7 +1123,7 @@ namespace XtremePharmacyManager
                                 }
                             }
                             //if the retrieved user is not null, i.e. valid then add if, otherwise don't
-                            if(retrieved_user != null)
+                            if(retrieved_user != null && !retrieved_users.Contains(retrieved_user))
                             {
                                 retrieved_users.Add(retrieved_user);
                                 result = true;
@@ -1183,17 +1192,16 @@ namespace XtremePharmacyManager
                            result = true;
                            break;
                         }
-                        else //if it doesn't exist, save it as new
-                        {
-                            using (FileStream fs = new FileStream(login.UserName + ".bin", FileMode.OpenOrCreate | FileMode.CreateNew, FileAccess.ReadWrite))
-                            {
-                                BinaryFormatter bf = new BinaryFormatter();
-                                bf.Serialize(fs, login);
-                            }
-                            result = true;
-                            break;
-                        }
                     }
+                }
+                else //if it doesn't exist, save it as new
+                {
+                    using (FileStream fs = new FileStream(login.UserName + ".bin", FileMode.OpenOrCreate | FileMode.CreateNew, FileAccess.ReadWrite))
+                    {
+                        BinaryFormatter bf = new BinaryFormatter();
+                        bf.Serialize(fs, login);
+                    }
+                    result = true;
                 }
             }
             catch (Exception ex)
