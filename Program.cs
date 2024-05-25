@@ -29,6 +29,7 @@ namespace XtremePharmacyManager
         public static string COMPANY_NAME = "";
         public static string CURRENT_CULTURE = "";
         public static string REPORT_DIRECTORY = "";
+        public static string SAVED_LOGINS_DIRECTORY = "";
         public static string EMPLOYEE_REPORT_NAME = "";
         public static string CLIENT_REPORT_NAME = "";
         public static string PRODUCT_BRAND_REPORT_NAME = "";
@@ -79,6 +80,10 @@ namespace XtremePharmacyManager
             DB_PASSWORD = ConfigurationManager.AppSettings["dbpassword"];
             COMPANY_NAME = ConfigurationManager.AppSettings["company_name"];
             CURRENT_CULTURE = ConfigurationManager.AppSettings["current_culture"];
+            SAVED_LOGINS_DIRECTORY = (ConfigurationManager.AppSettings["saved_logins_directory"] != null &&
+               Directory.Exists(Path.GetFullPath(ConfigurationManager.AppSettings["saved_logins_directory"]))) ?
+               Path.GetFullPath(ConfigurationManager.AppSettings["saved_logins_directory"]) :
+               Path.GetFullPath($"{Application.StartupPath}/{ConfigurationManager.AppSettings["saved_logins_directory"]}/");
             REPORT_DIRECTORY = (ConfigurationManager.AppSettings["report_directory"] != null &&
                 Directory.Exists(Path.GetFullPath(ConfigurationManager.AppSettings["report_directory"]))) ?
                 Path.GetFullPath(ConfigurationManager.AppSettings["report_directory"]) :

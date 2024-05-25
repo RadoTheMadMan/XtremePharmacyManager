@@ -10,7 +10,9 @@ using System.Data.Entity;
 using System.Data.Entity.Core.EntityClient;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -43,6 +45,8 @@ namespace XtremePharmacyManager
         static frmSearchProductOrders orderssearchform;
         static frmSearchOrderDeliveries orderdeliveriessearchform;
         static frmLogs logsform;
+        static User currentUser;
+        static List<User> last_Logins;
         static frmImageBinConverter imgbinform;
         static frmBulkUserOperations bulkUserOperationsform;
         static frmBulkProductBrandOperations bulkProductBrandOperationsform;
@@ -56,6 +60,9 @@ namespace XtremePharmacyManager
         public frmMain()
         {
             InitializeComponent();
+            InitializeEntities(out entities);
+            InitializeLogger(ref entities, out logger);
+            InitializeBulkManagers();
         }
 
         private void TestConnection()
@@ -125,11 +132,26 @@ namespace XtremePharmacyManager
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            //moved these here so it constructs and loads faster
-            InitializeEntities(out entities);
-            InitializeLogger(ref entities, out logger);
-            InitializeBulkManagers();
-            TestConnection();
+            try
+            {
+                //moved these here so it constructs and loads faster
+                TestConnection();
+                //if the connection is successful time to load last logins
+                //use binary desearialisation to check for username files in .bin format, this will be hardcoded
+                if(CheckOrCreateLoginDirectory())
+                {
+                    LoadSavedLogins(out last_Logins);
+                }
+                //if loading the last logins is successful handle login here
+                if (currentUser == null)
+                {
+                    //Add login logic here
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 
@@ -956,6 +978,233 @@ namespace XtremePharmacyManager
         {
             bulkProductVendorOperationsform = null;
         }
+
+        public static bool CheckOrCreateLoginDirectory()
+        {
+            bool result = false;
+            try
+            {
+
+                if (!Directory.Exists(GLOBAL_RESOURCES.SAVED_LOGINS_DIRECTORY))
+                {
+                    //create the directory if it doesn't exist
+                    DirectoryInfo created_directory = Directory.CreateDirectory(GLOBAL_RESOURCES.SAVED_LOGINS_DIRECTORY);
+                    if(created_directory != null && created_directory.Exists)
+                    {
+                        //if the creation was successful
+                        result = true;
+                    }
+                    else
+                    {
+                        //otherwise don't bother, just set the result and proceed to the finish line
+                        result = false;
+                    }
+                }
+                else
+                {
+                    //return the check if it exists
+                    result = Directory.Exists(GLOBAL_RESOURCES.SAVED_LOGINS_DIRECTORY);
+                }
+            }
+            catch (Exception ex)
+            {
+                //return false on exception
+                result = false;
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return result;
+        }
+
+        public static bool IsLoginInList(User login)
+        {
+            bool result = false;
+            try
+            {
+                if(login  != null && last_Logins.Contains(login))
+                {
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                //return false on exception
+                result = false;
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return result;
+        }
+
+        public static bool IsLoginInFileSystem(User login)
+        {
+            bool result = false;
+            List<FileInfo> files;
+            try
+            {
+                if (CheckOrCreateLoginDirectory() && IsLoginInList(login)) //if the directory exists and the user is in the login list
+                {
+                    files = new List<FileInfo>();
+                    foreach (string filename in Directory.EnumerateFiles(GLOBAL_RESOURCES.SAVED_LOGINS_DIRECTORY))
+                    {
+                        //add the files to the file list if they exist
+                        if (File.Exists(filename))
+                        {
+                            files.Add(new FileInfo(filename));
+                        }
+                    }
+                    //now browse the file list and check if they are .bin(binary extension)
+                    foreach (FileInfo file in files)
+                    {
+                        if (file.Exists && file.Name == login.UserName && file.Extension.IndexOf("bin",StringComparison.OrdinalIgnoreCase) >= 0) //if they are .bin proceed and have the username of the user as their file name return true and break
+                        {
+                            result = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //return false on exception
+                result = false;
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return result;
+        }
+
+        public static bool LoadSavedLogins(out List<User> login_list)
+        {
+            bool result = true;
+            List<FileInfo> files;
+            List<User> retrieved_users = new List<User>();
+            try
+            {
+                //first check or create the logins directory and if it is successful browse it
+                if (CheckOrCreateLoginDirectory())
+                {
+                    files = new List<FileInfo>();
+                    foreach(string filename in Directory.EnumerateFiles(GLOBAL_RESOURCES.SAVED_LOGINS_DIRECTORY))
+                    {
+                        //add the files to the file list if they exist
+                        if(File.Exists(filename))
+                        {
+                            files.Add(new FileInfo(filename));
+                        }
+                    }
+                    //now browse the file list and check if they are .bin(binary extension)
+                    foreach(FileInfo file in files)
+                    {
+                        if(file.Exists && file.Extension.IndexOf("bin", StringComparison.OrdinalIgnoreCase) >= 0) //if they are .bin proceed with user extraction
+                        {
+                            User retrieved_user;
+                            //load the user with binary deserialization from the file stream
+                            using(FileStream fs = new FileStream(file.FullName,FileMode.Open,FileAccess.Read))
+                            {
+                                BinaryFormatter bf = new BinaryFormatter();
+                                if (fs.Length > 0)
+                                {
+                                    retrieved_user = (User)bf.Deserialize(fs);
+                                }
+                                else
+                                {
+                                    retrieved_user = null;
+                                }
+                            }
+                            //if the retrieved user is not null, i.e. valid then add if, otherwise don't
+                            if(retrieved_user != null)
+                            {
+                                retrieved_users.Add(retrieved_user);
+                                result = true;
+                            }
+                            else
+                            {
+                                result = false;
+                            }
+                        }
+                    }
+                }
+                if (retrieved_users.Count > 0)
+                {
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                //return false on exception
+                result = false;
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            login_list = retrieved_users;
+            return result;
+        }
+
+        public static bool SaveLoginToFileSystem(User login)
+        {
+            bool result = true;
+            List<FileInfo> files;
+            User existing_login;
+            try
+            {
+                //first check or create the logins directory and if it is successful browse it
+                if (CheckOrCreateLoginDirectory() && IsLoginInList(login) && IsLoginInFileSystem(login)) //if the user exists both in the list and the file system proceed
+                {
+                    files = new List<FileInfo>();
+                    foreach (string filename in Directory.EnumerateFiles(GLOBAL_RESOURCES.SAVED_LOGINS_DIRECTORY))
+                    {
+                        //add the files to the file list if they exist
+                        if (File.Exists(filename))
+                        {
+                            files.Add(new FileInfo(filename));
+                        }
+                    }
+                    //now browse the file list and check if they are .bin(binary extension)
+                    foreach (FileInfo file in files)
+                    {
+                        if (file.Exists && file.Name == login.UserName && file.Extension.IndexOf("bin", StringComparison.OrdinalIgnoreCase) >= 0) //if they are .bin and have the username of the login as its filename retrieve the existing data then set it with shallow copy and save it overwriting the file
+                        {
+                           //retrieve existing login data to confirm it exists
+                           using(FileStream fs = new FileStream(file.FullName,FileMode.OpenOrCreate | FileMode.Create, FileAccess.ReadWrite))
+                           {
+                                BinaryFormatter bf = new BinaryFormatter();
+                                existing_login = (User)bf.Deserialize(fs);
+                                if (existing_login != null)
+                                {
+                                    existing_login = login;
+                                    bf.Serialize(fs, existing_login);
+                                }
+                           }
+                           result = true;
+                           break;
+                        }
+                        else //if it doesn't exist, save it as new
+                        {
+                            using (FileStream fs = new FileStream(login.UserName + ".bin", FileMode.OpenOrCreate | FileMode.CreateNew, FileAccess.ReadWrite))
+                            {
+                                BinaryFormatter bf = new BinaryFormatter();
+                                bf.Serialize(fs, login);
+                            }
+                            result = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //return false on exception
+                result = false;
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return result;
+        }
+
     }
 }
 

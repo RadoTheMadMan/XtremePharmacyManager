@@ -576,7 +576,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Logins\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="DataEntities\XTremePharmacyModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
