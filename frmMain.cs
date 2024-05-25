@@ -140,13 +140,87 @@ namespace XtremePharmacyManager
                 //use binary desearialisation to check for username files in .bin format, this will be hardcoded
                 if(CheckOrCreateLoginDirectory())
                 {
-                    LoadSavedLogins(out last_Logins);
-                }
-                //if loading the last logins is successful handle login here
-                if (currentUser == null)
-                {
-                    //make a login form and instantiate it, it will be a special one instantiated and closed as a dialog and it will have reference
-                    //to the current user so it will change it at runtime and apply changes at closing
+                    if(!LoadSavedLogins(out last_Logins) && currentUser == null)
+                    {
+                        //as the function returns true if the logins list is not empty and if the current user is null then this fires up
+                        //make a login form and instantiate it, it will be a special one instantiated and closed as a dialog and it will have reference
+                        //to the current user so it will apply changes at closing
+                        frmLogin loginform = new frmLogin(ref entities, ref last_Logins);
+                        DialogResult res = loginform.ShowDialog();
+                        if(res == DialogResult.OK)
+                        {
+                            currentUser = loginform.ResultingUser;
+                            if(currentUser == null)
+                            {
+                                MessageBox.Show("No user currently logged in. Application will exit!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                Application.Exit();
+                            }
+                            else
+                            {
+                                last_Logins.Add(currentUser);
+                                SaveLoginToFileSystem(currentUser);
+                            }
+                        }
+                        else if(res == DialogResult.Cancel)
+                        {
+                            MessageBox.Show("You can't use this application without a proper authorization in the database. Application will exit!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            if (loginform != null)
+                            {
+                                loginform = null;
+                            }
+                            Application.Exit();
+                        }
+                        else
+                        {
+                            MessageBox.Show("You can't use this application without a proper authorization in the database and closing the login without even confirming or cancelling it will not help you. Application will exit!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            if (loginform != null)
+                            {
+                                loginform = null;
+                            }
+                            Application.Exit();
+                        }
+                    }
+                    else
+                    {
+                        //handle login anyway
+                        //as the function returns true if the logins list is not empty and if the current user is null then this fires up
+                        //make a login form and instantiate it, it will be a special one instantiated and closed as a dialog and it will have reference
+                        //to the current user so it will apply changes at closing
+                        frmLogin loginform = new frmLogin(ref entities, ref last_Logins);
+                        DialogResult res = loginform.ShowDialog();
+                        if (res == DialogResult.OK)
+                        {
+                            currentUser = loginform.ResultingUser;
+                            if (currentUser == null)
+                            {
+                                MessageBox.Show("No user currently logged in. Application will exit!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                Application.Exit();
+                            }
+                            else
+                            {
+                                last_Logins.Add(currentUser);
+                                SaveLoginToFileSystem(currentUser);
+                            }
+                        }
+                        else if (res == DialogResult.Cancel)
+                        {
+                            MessageBox.Show("You can't use this application without a proper authorization in the database. Application will exit!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            if (loginform != null)
+                            {
+                                loginform = null;
+                            }
+                            Application.Exit();
+                        }
+                        else
+                        {
+                            MessageBox.Show("You can't use this application without a proper authorization in the database and closing the login without even confirming or cancelling it will not help you. Application will exit!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            if (loginform != null)
+                            {
+                                loginform = null;
+                            }
+                            Application.Exit();
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -1196,10 +1270,14 @@ namespace XtremePharmacyManager
                 }
                 else //if it doesn't exist, save it as new
                 {
-                    using (FileStream fs = new FileStream(login.UserName + ".bin", FileMode.OpenOrCreate | FileMode.CreateNew, FileAccess.ReadWrite))
+                    string new_file_path = Path.Combine(Path.GetFullPath(GLOBAL_RESOURCES.SAVED_LOGINS_DIRECTORY), $"{login.UserName}.bin");
+                    if (!File.Exists(new_file_path))
                     {
-                        BinaryFormatter bf = new BinaryFormatter();
-                        bf.Serialize(fs, login);
+                        using (FileStream fs = new FileStream(new_file_path, FileMode.CreateNew, FileAccess.Write))
+                        {
+                            BinaryFormatter bf = new BinaryFormatter();
+                            bf.Serialize(fs, login);
+                        }
                     }
                     result = true;
                 }

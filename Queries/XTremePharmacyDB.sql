@@ -3660,7 +3660,7 @@ go
  begin
  print @success_message;
  set @logmessage = 'User ' + original_login() + 'has logged in successfully. Logged in at: ' + try_cast(@current_date as varchar);
- set @additionalloginformation = 'Host Name: ' + HOST_NAME() + '\n' + 'User Name: ' + original_login() + '\n';
+ set @additionalloginformation = 'ID' + try_cast(@found_user_id as varchar) + '\n' + 'Host Name: ' + HOST_NAME() + '\n' + 'User Name: ' + original_login() + '\n';
  insert into XTremePharmacyDB.dbo.Logs(LogDate,LogTitle,LogMessage,AdditionalLogInformation) values (@current_date, @logtitle,@logmessage,@additionalloginformation);
  end
  else /* on failure send the failure message and rollback the login, a.k.a. deny access */
