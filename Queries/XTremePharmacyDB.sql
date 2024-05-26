@@ -1677,6 +1677,13 @@ select 'Dummy entries shall not be deleted!';
 end
 end
 go
+
+/* Stored procedures to add members to roles, alter their logins and so. Replace the 'ABC' in the execute as in them with your system administrator account. 
+They are used in the triggers to alter logins and require sysadmin users, I couldn't add any permissions to server roles and as I have fucked them up I will redo them
+tomorrow and make the servers use stored procedures that SHOULD BE ONLY FOR SYSTEM ADMINISTRATORS AND DATABASE TRIGGERS TO USE!!!*/
+go
+
+go
 /* end of the stored procedures */
 /* beginning of views */
 
@@ -1876,16 +1883,20 @@ select * from ExtendedOrderDeliveriesView;
 select * from OrderDeliveries;
 
 /* end of database views */
-/* now for the interesting part, database roles, they are XPAdmin for admin, XPEmployee for Employee and XPClient for Client,
+/* now for the interesting part, database and roles, I had to remake them and add more to them, they are XPAdmin for admin, XPEmployee for Employee and XPClient for Client,
 they will be assigned via a trigger on each added user when creating a new login for the database. Admins full power over
 all tables while Employees and Clients have restricted create/read/update/delete permissions to specific tables */
+
+
 
 
 create role XPAdmin;
 grant alter, control, delete, execute, insert, references, select, take ownership, update, view definition
 on schema::dbo to XPAdmin;
+grant alter any role to XPAdmin;
 
-create role XPEmployee;
+
+create server role XPEmployee;
 grant delete, select, insert, update, references, view definition on ProductOrders to XPEmployee;
 grant delete, select, insert, update, references, view definition on OrderDeliveries to XPEmployee;
 grant delete, select, insert, update, references, view definition on ProductImages to XPEmployee;
@@ -1905,10 +1916,11 @@ grant select on ExtendedPaymentMethodsView to XPEmployee;
 grant select on ExtendedProductOrdersView to XPEmployee;
 grant select on ExtendedProductView to XPEmployee;
 grant select on ExtendedVendorsView to XPEmployee;
-
+grant alter any role to XPEmployee;
 
 
 create role XPClient;
+use XTremePharmacyDB;
 grant execute on AddProductOrder to XPClient;
 grant execute on GetProductOrder to XPClient;
 grant execute on UpdateProductOrderByID to XPClient;
@@ -1935,11 +1947,17 @@ grant select on ProductBrands to XPClient;
 grant select on ProductVendors to XPClient;
 grant select on PaymentMethods to XPClient;
 grant select on DeliveryServices to XPClient;
+use master;
+grant alter any role to XPClient;
+grant alter any login to XPClient;
+grant alter any user to XPClient;
 
-exec sp_helprotect;
+use XTremePharmacyDB;
+
+
 
 /* below is to verify that the roles exist after we finished creating them*/
-select * from sys.database_principals;
+select * from sys.server_principals;
 
 /* end of roles */
 /* triggers, the most important part, especially for product orders */
