@@ -1883,9 +1883,10 @@ select * from ExtendedOrderDeliveriesView;
 select * from OrderDeliveries;
 
 /* end of database views */
-/* now for the interesting part, database and roles, I had to remake them and add more to them, they are XPAdmin for admin, XPEmployee for Employee and XPClient for Client,
+/* now for the interesting part, database roles, I had to remake them and add more to them, they are XPAdmin for admin, XPEmployee for Employee and XPClient for Client,
 they will be assigned via a trigger on each added user when creating a new login for the database. Admins full power over
-all tables while Employees and Clients have restricted create/read/update/delete permissions to specific tables */
+all tables while Employees and Clients have restricted create/read/update/delete permissions to specific tables. I added stored procedures that only triggers for users will
+use and they will need to be executed as system administrators in order for the whole database to work otherwise users cannot be changed in terms of logins or deleted*/
 
 
 
@@ -1896,7 +1897,36 @@ on schema::dbo to XPAdmin;
 grant alter any role to XPAdmin;
 
 
-create server role XPEmployee;
+create role XPEmployee;
+grant execute on AddProductOrder to XPClient;
+grant execute on GetProductOrder to XPClient;
+grant execute on UpdateProductOrderByID to XPClient;
+grant execute on DeleteProductOrder to XPEmployee;
+grant execute on DeleteProductOrderByID to XPEmployee;
+grant execute on AddOrderDelivery to XPEmployee;
+grant execute on GetOrderDelivery to XPEmployee;
+grant execute on UpdateOrderDeliveryByID to XPEmployee;
+grant execute on DeleteOrderDelivery to XPEmployee;
+grant execute on DeleteOrderDeliveryByID to XPEmployee;
+grant execute on AddProductImage to XPEmployee;
+grant execute on GetProductImage to XPEmployee;
+grant execute on UpdateProductImageByID to XPEmployee;
+grant execute on DeleteProductImage to XPEmployee;
+grant execute on DeleteProductImageByID to XPEmployee;
+grant execute on AddUser to XPEmployee;
+grant execute on DeleteUser to XPEmployee;
+grant execute on DeleteUserByID to XPEmployee;
+grant execute on GetUser to XPEmployee;
+grant execute on UpdateUserByID to XPEmployee;
+grant execute on GetProduct to XPEmployee;
+grant execute on GetBrand to XPEmployee;
+grant execute on GetVendor to XPEmployee;
+grant execute on GetPaymentMethod to XPEmployee;
+grant execute on GetDeliveryService to XPEmployee;
+grant execute on AddLog to XPEmployee;
+grant execute on UpdateLogByID to XPEmployee;
+grant execute on DeleteLog to XPEmployee;
+grant execute on DeleteLogByID to XPEmployee;
 grant delete, select, insert, update, references, view definition on ProductOrders to XPEmployee;
 grant delete, select, insert, update, references, view definition on OrderDeliveries to XPEmployee;
 grant delete, select, insert, update, references, view definition on ProductImages to XPEmployee;
@@ -1904,7 +1934,7 @@ grant delete, select, insert, update, references, view definition on Users to XP
 grant select on Products to XPEmployee;
 grant delete, select, insert, update, references, view definition on Logs to XPEmployee;
 grant select on ProductBrands to XPEmployee;
-grant select on Productvendors to XPEmployee;
+grant select on ProductVendors to XPEmployee;
 grant select on PaymentMethods to XPEmployee;
 grant select on DeliveryServices to XPEmployee;
 grant select on ClientView to XPEmployee;
@@ -1920,7 +1950,6 @@ grant alter any role to XPEmployee;
 
 
 create role XPClient;
-use XTremePharmacyDB;
 grant execute on AddProductOrder to XPClient;
 grant execute on GetProductOrder to XPClient;
 grant execute on UpdateProductOrderByID to XPClient;
@@ -1947,12 +1976,8 @@ grant select on ProductBrands to XPClient;
 grant select on ProductVendors to XPClient;
 grant select on PaymentMethods to XPClient;
 grant select on DeliveryServices to XPClient;
-use master;
 grant alter any role to XPClient;
-grant alter any login to XPClient;
-grant alter any user to XPClient;
 
-use XTremePharmacyDB;
 
 
 
