@@ -1893,18 +1893,50 @@ grant delete, select, insert, update, references, view definition on Users to XP
 grant select on Products to XPEmployee;
 grant delete, select, insert, update, references, view definition on Logs to XPEmployee;
 grant select on ProductBrands to XPEmployee;
+grant select on Productvendors to XPEmployee;
 grant select on PaymentMethods to XPEmployee;
 grant select on DeliveryServices to XPEmployee;
+grant select on ClientView to XPEmployee;
+grant select on EmployeeView to XPEmployee;
+grant select on ExtendedBrandsView to XPEmployee;
+grant select on ExtendedDeliveryServicesView to XPEmployee;
+grant select on ExtendedOrderDeliveriesView to XPEmployee;
+grant select on ExtendedPaymentMethodsView to XPEmployee;
+grant select on ExtendedProductOrdersView to XPEmployee;
+grant select on ExtendedProductView to XPEmployee;
+grant select on ExtendedVendorsView to XPEmployee;
+
+
 
 create role XPClient;
+grant execute on AddProductOrder to XPClient;
+grant execute on GetProductOrder to XPClient;
+grant execute on UpdateProductOrderByID to XPClient;
+grant execute on AddOrderDelivery to XPClient;
+grant execute on GetOrderDelivery to XPClient;
+grant execute on UpdateOrderDeliveryByID to XPClient;
+grant execute on GetProductImage to XPClient;
+grant execute on AddUser to XPClient;
+grant execute on DeleteUser to XPClient;
+grant execute on DeleteUserByID to XPClient;
+grant execute on GetUser to XPClient;
+grant execute on UpdateUserByID to XPClient;
+grant execute on GetProduct to XPClient;
+grant execute on GetBrand to XPClient;
+grant execute on GetVendor to XPClient;
+grant execute on GetPaymentMethod to XPClient;
+grant execute on GetDeliveryService to XPClient;
 grant select, insert, update, references, view definition on ProductOrders to XPClient;
 grant select, insert, update, references, view definition on OrderDeliveries to XPClient;
 grant select on ProductImages to XPEmployee;
 grant delete, select, insert, update, references, view definition on Users to XPClient;
 grant select on Products to XPClient;
 grant select on ProductBrands to XPClient;
+grant select on ProductVendors to XPClient;
 grant select on PaymentMethods to XPClient;
 grant select on DeliveryServices to XPClient;
+
+exec sp_helprotect;
 
 /* below is to verify that the roles exist after we finished creating them*/
 select * from sys.database_principals;

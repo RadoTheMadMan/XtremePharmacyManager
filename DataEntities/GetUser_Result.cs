@@ -10,7 +10,8 @@
 namespace XtremePharmacyManager.DataEntities
 {
     using System;
-    
+
+    [Serializable]
     public partial class GetUser_Result
     {
         public int ID { get; set; }

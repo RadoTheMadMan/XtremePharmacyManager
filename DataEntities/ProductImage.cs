@@ -11,7 +11,8 @@ namespace XtremePharmacyManager.DataEntities
 {
     using System;
     using System.Collections.Generic;
-    
+
+    [Serializable]
     public partial class ProductImage
     {
         public int ID { get; set; }

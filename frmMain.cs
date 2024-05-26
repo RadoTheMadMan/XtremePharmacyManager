@@ -71,6 +71,8 @@ namespace XtremePharmacyManager
             {
                 if (entities != null)
                 {
+                    MessageBox.Show($"Current Connection String: {entities.Database.Connection.ConnectionString}", "Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Current Connection state: {entities.Database.Connection.State}", "Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (entities.Database.Connection.State != ConnectionState.Open)
                     {
                         entities.Database.Connection.Open();
@@ -97,7 +99,7 @@ namespace XtremePharmacyManager
                 scsb.InitialCatalog = GLOBAL_RESOURCES.DB_NAME; ;
                 scsb.UserID = GLOBAL_RESOURCES.DB_USER;
                 scsb.Password = GLOBAL_RESOURCES.DB_PASSWORD;
-                scsb.IntegratedSecurity = true;
+                scsb.IntegratedSecurity = false;
                 connString = scsb.ConnectionString;
                 esb.Metadata = $"{Application.StartupPath}/DataEntities/XTremePharmacyModel.csdl|"+
                                $"{Application.StartupPath}/DataEntities/XTremePharmacyModel.ssdl|"+
@@ -108,6 +110,21 @@ namespace XtremePharmacyManager
             catch(Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}",$"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            target = new Entities(esb);
+        }
+
+        private void InitializeEntities(string conn_string, out Entities target)
+        {
+            SqlConnectionStringBuilder scsb = new SqlConnectionStringBuilder();
+            EntityConnectionStringBuilder esb = new EntityConnectionStringBuilder();
+            try
+            {
+               esb.ConnectionString = conn_string;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             target = new Entities(esb);
         }
@@ -157,7 +174,11 @@ namespace XtremePharmacyManager
                             }
                             else
                             {
-                                last_Logins.Add(currentUser);
+                                InitializeEntities(loginform.ConnectionString, out entities);
+                                if (!last_Logins.Contains(currentUser))
+                                {
+                                    last_Logins.Add(currentUser);
+                                }
                                 SaveLoginToFileSystem(currentUser);
                             }
                         }
@@ -198,7 +219,11 @@ namespace XtremePharmacyManager
                             }
                             else
                             {
-                                last_Logins.Add(currentUser);
+                                InitializeEntities(loginform.ConnectionString, out entities);
+                                if (!last_Logins.Contains(currentUser))
+                                {
+                                    last_Logins.Add(currentUser);
+                                }
                                 SaveLoginToFileSystem(currentUser);
                             }
                         }
@@ -220,6 +245,20 @@ namespace XtremePharmacyManager
                             }
                             Application.Exit();
                         }
+                    }
+                }
+                if(entities != null && entities.Database.Connection.State != ConnectionState.Open)
+                {
+                    MessageBox.Show($"Current Connection String: {entities.Database.Connection.ConnectionString}", "Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Current Connection state: {entities.Database.Connection.State}", "Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    entities.Database.Connection.Open();
+                    if(entities.Database.Connection.State == ConnectionState.Open)
+                    {
+                        MessageBox.Show("Successful connection and login to the database.\nNow you are ready to go", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Failed to connect and login to the database.\nThis was not supposed to happen so contact the system administrator and/or check the credentials...\n", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -1141,7 +1180,7 @@ namespace XtremePharmacyManager
                     //now browse the file list and check if they are .bin(binary extension)
                     foreach (FileInfo file in files)
                     {
-                        if (file.Exists && file.Name == login.UserName && file.Extension.IndexOf("bin",StringComparison.OrdinalIgnoreCase) >= 0) //if they are .bin proceed and have the username of the user as their file name return true and break
+                        if (file.Exists && file.Name == $"{login.UserName}.bin" && file.Extension.IndexOf("bin",StringComparison.OrdinalIgnoreCase) >= 0) //if they are .bin proceed and have the username of the user as their file name return true and break
                         {
                             result = true;
                             break;
@@ -1250,10 +1289,10 @@ namespace XtremePharmacyManager
                     //now browse the file list and check if they are .bin(binary extension)
                     foreach (FileInfo file in files)
                     {
-                        if (file.Exists && file.Name == login.UserName && file.Extension.IndexOf("bin", StringComparison.OrdinalIgnoreCase) >= 0) //if they are .bin and have the username of the login as its filename retrieve the existing data then set it with shallow copy and save it overwriting the file
+                        if (file.Exists && file.Name == $"{login.UserName}.bin" && file.Extension.IndexOf("bin", StringComparison.OrdinalIgnoreCase) >= 0) //if they are .bin and have the username of the login as its filename retrieve the existing data then set it with shallow copy and save it overwriting the file
                         {
                            //retrieve existing login data to confirm it exists
-                           using(FileStream fs = new FileStream(file.FullName,FileMode.OpenOrCreate | FileMode.Create, FileAccess.ReadWrite))
+                           using(FileStream fs = new FileStream(file.FullName,FileMode.CreateNew | FileMode.Create, FileAccess.Read|FileAccess.Write))
                            {
                                 BinaryFormatter bf = new BinaryFormatter();
                                 existing_login = (User)bf.Deserialize(fs);
@@ -1271,13 +1310,10 @@ namespace XtremePharmacyManager
                 else //if it doesn't exist, save it as new
                 {
                     string new_file_path = Path.Combine(Path.GetFullPath(GLOBAL_RESOURCES.SAVED_LOGINS_DIRECTORY), $"{login.UserName}.bin");
-                    if (!File.Exists(new_file_path))
+                    using (FileStream fs = new FileStream(new_file_path, FileMode.CreateNew, FileAccess.Write))
                     {
-                        using (FileStream fs = new FileStream(new_file_path, FileMode.CreateNew, FileAccess.Write))
-                        {
-                            BinaryFormatter bf = new BinaryFormatter();
-                            bf.Serialize(fs, login);
-                        }
+                        BinaryFormatter bf = new BinaryFormatter();
+                        bf.Serialize(fs, login);
                     }
                     result = true;
                 }

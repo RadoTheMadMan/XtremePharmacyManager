@@ -11,7 +11,8 @@ namespace XtremePharmacyManager.DataEntities
 {
     using System;
     using System.Collections.Generic;
-    
+
+    [Serializable]
     public partial class ExtendedDeliveryServicesView
     {
         public string ServiceName { get; set; }

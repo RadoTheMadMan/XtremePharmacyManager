@@ -23,8 +23,10 @@ namespace XtremePharmacyManager
         static List<User> last_logins;
         static Entities ent;
         User user_result;
+        string connection_string = "";
 
         public User ResultingUser { get { return user_result; } }
+        public string ConnectionString { get { return connection_string; } }
         public frmLogin(ref Entities entities, ref List<User> last_login_list)
         {
             InitializeComponent();
@@ -52,7 +54,7 @@ namespace XtremePharmacyManager
                     }
                     else
                     {
-                        MessageBox.Show("No user found with the specified credentials by your application configuration.\nPlease configure the application with database credentials from your system administrator or create an user with the stored procedures and set it as a sysadmin if you are a system administrator and try again.\nThe admin role for the database is different from the sysadmin role and this is for security reasons.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("No user found with the specified credentials by your application configuration.\nPlease configure the application with database credentials provided by your system administrator or create an user with the stored procedures and set it as a sysadmin if you are a system administrator and try again.\nThe admin role for the database is different from the sysadmin role and this is for security reasons.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 txtUsername.Text = GLOBAL_RESOURCES.DB_USER;
@@ -106,34 +108,26 @@ namespace XtremePharmacyManager
                         else if (retrieved_users.Count == 1)
                         {
                             user_result = retrieved_users.FirstOrDefault();
-                            MessageBox.Show("Successfully found the user.\nNow the connection string will be set up to work with these credentials and the application will reconnect.\nPlease be patient...\n", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            MessageBox.Show("Successfully found the user.\nNow the connection string will be set up to work with these credentials.\nPlease be patient...\n", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             //close, rebuild the connection string and try to reconnect
                             ent.Database.Connection.Close();
                             scsb.DataSource = GLOBAL_RESOURCES.DOMAIN_ADDRESS;
                             scsb.InitialCatalog = GLOBAL_RESOURCES.DB_NAME;
                             scsb.UserID = txtUsername.Text;
                             scsb.Password = txtPassword.Text;
-                            scsb.IntegratedSecurity = true;
+                            scsb.IntegratedSecurity = false;
                             connString = scsb.ConnectionString;
                             esb.Metadata = $"{Application.StartupPath}/DataEntities/XTremePharmacyModel.csdl|" +
                                            $"{Application.StartupPath}/DataEntities/XTremePharmacyModel.ssdl|" +
                                            $"{Application.StartupPath}/DataEntities/XTremePharmacyModel.msl";
                             esb.Provider = "System.Data.SqlClient";
                             esb.ProviderConnectionString = connString;
-                            ent = new Entities(esb);
-                            ent.Database.Connection.Open();
-                            if(ent.Database.Connection.State == ConnectionState.Open)
-                            {
-                                MessageBox.Show("Successful connection with the credentials.\nNow you are logged in and can proceed.\nPress OK to continue.\n", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            else
-                            {
-                                MessageBox.Show("With valid login credentials you were supposed to be connected but you aren't.\nPlease contact the administrator of your database to check the server.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
+                            MessageBox.Show("Connection string is set up.\nPress OK to continue...\n", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            connection_string = esb.ConnectionString;
                         }
                         else
                         {
-                            MessageBox.Show("No user found with the specified credentials by your application configuration.\nPlease configure the application with database credentials from your system administrator or create an user with the stored procedures and set it as a sysadmin if you are a system administrator and try again.\nThe admin role for the database is different from the sysadmin role and this is for security reasons.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("No user found with the specified credentials by your input.\nPlease configure input the credentials you registered with or provided by your system administrator.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
