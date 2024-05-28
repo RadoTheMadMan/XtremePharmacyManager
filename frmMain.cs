@@ -482,6 +482,7 @@ namespace XtremePharmacyManager
             {
                 MessageBox.Show("Delivery Service list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
         private void Deliveryservicessearchform_FormClosed(object sender, FormClosedEventArgs e)
@@ -522,6 +523,7 @@ namespace XtremePharmacyManager
             {
                 MessageBox.Show("Payment Method list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
         private void Paymentmethodssearchform_FormClosed(object sender, FormClosedEventArgs e)
@@ -562,6 +564,7 @@ namespace XtremePharmacyManager
             {
                 MessageBox.Show("Product Brand list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
         private void Productbrandssearchform_FormClosed(object sender, FormClosedEventArgs e)
@@ -1322,6 +1325,7 @@ namespace XtremePharmacyManager
             {
                 MessageBox.Show("Product Vendors list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
         }
 
         private void Productvendorssearchform_FormClosed(object sender, FormClosedEventArgs e)

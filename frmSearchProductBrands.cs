@@ -67,19 +67,19 @@ namespace XtremePharmacyManager
             Int32.TryParse(txtID.Text, out BrandID);
             string BrandName = txtBrandName.Text;
             int SearchMode = cbSearchMode.SelectedIndex;
-          if (SearchMode == 1)
+          if (SearchMode == 1 && current_user.UserRole == 0)
             {
                 product_brands = ent.ProductBrands.Where(
                     x => x.ID == BrandID ^ x.BrandName.Contains(BrandName)).ToList(); 
                 dgvProductBrands.DataSource = product_brands;
             }
-            else if (SearchMode == 2)
+            else if (SearchMode == 2 && current_user.UserRole == 0)
             {
                 product_brands = ent.ProductBrands.Where(
                     x => x.ID == BrandID || x.BrandName.Contains(BrandName)).ToList();
                 dgvProductBrands.DataSource = product_brands;
             }
-            else if (SearchMode == 3)
+            else if (SearchMode == 3 && current_user.UserRole == 0)
             {
                 product_brands = ent.GetBrand(BrandID,BrandName).ToList();
                 dgvProductBrands.DataSource = product_brands;
