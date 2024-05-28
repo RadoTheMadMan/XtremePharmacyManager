@@ -1299,7 +1299,7 @@ namespace XtremePharmacyManager
                     {
                         if (productvendorssearchform == null)
                         {
-                            productvendorssearchform = new frmSearchProductVendors(ref entities, ref logger, ref bulkProductVendorOperationManager);
+                            productvendorssearchform = new frmSearchProductVendors(ref entities, ref currentUser, ref logger, ref bulkProductVendorOperationManager);
                             productvendorssearchform.MdiParent = this;
                             productvendorssearchform.Dock = DockStyle.Fill;
                             productvendorssearchform.FormClosed += Productvendorssearchform_FormClosed;

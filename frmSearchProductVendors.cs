@@ -1,5 +1,4 @@
 ﻿using Microsoft.Reporting.WinForms;
-using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,12 +18,14 @@ namespace XtremePharmacyManager
     public partial class frmSearchProductVendors : Form
     {
         static Entities ent;
+        static User current_user;
         static Logger logger;
         static List<ProductVendor> product_vendors;
         static BulkOperationManager<ProductVendor> manager;
-        public frmSearchProductVendors(ref Entities entity, ref Logger extlogger, ref BulkOperationManager<ProductVendor> bulkvendormanager)
+        public frmSearchProductVendors(ref Entities entity, ref User currentUser, ref Logger extlogger, ref BulkOperationManager<ProductVendor> bulkvendormanager)
         {
             ent = entity;
+            current_user = currentUser;
             logger = extlogger;
             manager = bulkvendormanager;
             manager.BulkOperationsExecuted += ProductVendors_OnBulkOperationExecuted;
@@ -42,7 +43,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open)
+                if (ent.Database.Connection.State == ConnectionState.Open && current_user.UserRole == 0)
                 {
                     product_vendors = ent.GetVendor(-1, "").ToList();
                     foreach(var entry in product_vendors)
@@ -66,25 +67,29 @@ namespace XtremePharmacyManager
             Int32.TryParse(txtID.Text, out VendorID);
             string VendorName = txtVendorName.Text;
             int SearchMode = cbSearchMode.SelectedIndex;
-          if (SearchMode == 1)
+          if (SearchMode == 1 && current_user.UserRole == 0)
             {
                 product_vendors = ent.ProductVendors.Where(
                     x => x.ID == VendorID ^ x.VendorName.Contains(VendorName)).ToList(); 
                 dgvProductVendors.DataSource = product_vendors;
             }
-            else if (SearchMode == 2)
+            else if (SearchMode == 2 && current_user.UserRole == 0)
             {
                 product_vendors = ent.ProductVendors.Where(
                     x => x.ID == VendorID || x.VendorName.Contains(VendorName)).ToList();
                 dgvProductVendors.DataSource = product_vendors;
             }
-            else if (SearchMode == 3)
+            else if (SearchMode == 3 && current_user.UserRole == 0)
             {
                 product_vendors = ent.GetVendor(VendorID,VendorName).ToList();
                 dgvProductVendors.DataSource = product_vendors;
             }
             else
             {
+                if(current_user.UserRole != 0)
+                {
+                    MessageBox.Show("Product Vendors list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 RefreshProductVendors();
             }
             logger.RefreshLogs();
@@ -100,7 +105,7 @@ namespace XtremePharmacyManager
             ProductVendor selectedVendor;
             try
             {
-                if (dgvProductVendors.SelectedRows.Count > 0)
+                if (dgvProductVendors.SelectedRows.Count > 0 && current_user.UserRole == 0)
                 {
                     row = dgvProductVendors.SelectedRows[0];
                     if (row != null && product_vendors != null)
@@ -196,7 +201,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
-                else
+                else if(current_user.UserRole == 0)
                 {
                     //Create a new vendor
                     selectedVendor = new ProductVendor();
@@ -224,6 +229,10 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show("You don't have permissions to add/edit product vendors.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 logger.RefreshLogs();
             }
             catch(Exception ex)
@@ -242,7 +251,7 @@ namespace XtremePharmacyManager
             ProductVendor selectedVendor;
             try
             {
-                if (dgvProductVendors.SelectedRows.Count > 0)
+                if (dgvProductVendors.SelectedRows.Count > 0 && current_user.UserRole == 0)
                 {
                     row = dgvProductVendors.SelectedRows[0];
                     if (row != null && product_vendors != null)
@@ -282,6 +291,10 @@ namespace XtremePharmacyManager
                             }
                         }
                     }
+                }
+                else
+                {
+                    MessageBox.Show("You don't have permissions to delete product vendors.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 logger.RefreshLogs();
             }
@@ -336,45 +349,52 @@ namespace XtremePharmacyManager
             ReportParameterCollection current_params;
             try
             {
-                if (dgvProductVendors.SelectedRows.Count > 0)
+                if (current_user.UserRole == 0 || current_user.UserRole == 1)
                 {
-                    row = dgvProductVendors.SelectedRows[0];
-                    if (row != null && product_vendors != null)
+                    if (dgvProductVendors.SelectedRows.Count > 0)
                     {
-                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
-                        //Contrary to the CRUD operations, report generating will be for all records no matter
-                        //if they are dummy or not
-                        currentVendor = product_vendors.Where(x => x.ID == ID).FirstOrDefault();
-                        if (currentVendor != null)
+                        row = dgvProductVendors.SelectedRows[0];
+                        if (row != null && product_vendors != null)
                         {
-                            target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PRODUCT_VENDOR_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
-                            ExtendedVendorsView view = ent.ExtendedVendorsViews.Where(x => x.ID == currentVendor.ID).FirstOrDefault();
-                            if (view != null)
+                            Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
+                            //Contrary to the CRUD operations, report generating will be for all records no matter
+                            //if they are dummy or not
+                            currentVendor = product_vendors.Where(x => x.ID == ID).FirstOrDefault();
+                            if (currentVendor != null)
                             {
-                                Type view_type = view.GetType();
-                                DataTable dt = new DataTable();
-                                Object[] values = new Object[view_type.GetProperties().Length];
-                                int propindex = 0; //track the property index
-                                //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
-                                //imported them yet
-                                foreach (var prop in view_type.GetProperties())
+                                target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PRODUCT_VENDOR_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+                                ExtendedVendorsView view = ent.ExtendedVendorsViews.Where(x => x.ID == currentVendor.ID).FirstOrDefault();
+                                if (view != null)
                                 {
-                                    dt.Columns.Add(prop.Name);
-                                    values[propindex] = prop.GetValue(view, null);
-                                    propindex++; //indrease the property index after adding the property name
-                                    //in for and foreach loops everything starts from 0 as always
+                                    Type view_type = view.GetType();
+                                    DataTable dt = new DataTable();
+                                    Object[] values = new Object[view_type.GetProperties().Length];
+                                    int propindex = 0; //track the property index
+                                                       //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
+                                                       //imported them yet
+                                    foreach (var prop in view_type.GetProperties())
+                                    {
+                                        dt.Columns.Add(prop.Name);
+                                        values[propindex] = prop.GetValue(view, null);
+                                        propindex++; //indrease the property index after adding the property name
+                                                     //in for and foreach loops everything starts from 0 as always
+                                    }
+                                    propindex = 0; //reset the index
+                                    dt.Rows.Add(values); //add the values
+                                                         //then clear the values to ensure memory is not wasted
+                                    Array.Clear(values, 0, values.Length);
+                                    current_source = new ReportDataSource("ProductVendorReportData", dt);
+                                    current_params = new ReportParameterCollection();
+                                    current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
+                                    new frmReports(target_report_file, ref current_source, ref current_params).Show();
                                 }
-                                propindex = 0; //reset the index
-                                dt.Rows.Add(values); //add the values
-                                //then clear the values to ensure memory is not wasted
-                                Array.Clear(values, 0, values.Length);
-                                current_source = new ReportDataSource("ProductVendorReportData", dt);
-                                current_params = new ReportParameterCollection();
-                                current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
-                                new frmReports(target_report_file, ref current_source, ref current_params).Show();
                             }
                         }
                     }
+                }
+                else
+                {
+                    MessageBox.Show($"User reports cannot be generated or you don't have permissions to view them", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -383,6 +403,29 @@ namespace XtremePharmacyManager
             }
         }
 
-
+        private void frmSearchProductVendors_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (manager != null)
+            {
+                manager = null;
+            }
+            if (logger != null)
+            {
+                logger = null;
+            }
+            if (current_user != null)
+            {
+                current_user = null;
+            }
+            if (product_vendors != null)
+            {
+                product_vendors.Clear();
+                product_vendors = null;
+            }
+            if (ent != null)
+            {
+                ent = null;
+            }
+        }
     }
 }

@@ -58,10 +58,6 @@ namespace XtremePharmacyManager
                     }
                     dgvUsers.DataSource = users;
                 }
-                else
-                {
-                    MessageBox.Show($"Users cannot be retrieved because applications is not connected or you don't have permissions to view them", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
             }
             catch(Exception ex)
             {
@@ -326,7 +322,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show($"You don't have permissions to delete users besides your own account.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"You don't have permissions to add/edit users besides your own account.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 logger.RefreshLogs();
             }
