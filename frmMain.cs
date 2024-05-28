@@ -71,8 +71,6 @@ namespace XtremePharmacyManager
             {
                 if (entities != null)
                 {
-                    MessageBox.Show($"Current Connection String: {entities.Database.Connection.ConnectionString}", "Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MessageBox.Show($"Current Connection state: {entities.Database.Connection.State}", "Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     if (entities.Database.Connection.State != ConnectionState.Open)
                     {
                         entities.Database.Connection.Open();
@@ -80,6 +78,18 @@ namespace XtremePharmacyManager
                     if (entities.Database.Connection.State == ConnectionState.Open)
                     {
                         MessageBox.Show($"{GLOBAL_RESOURCES.CONNECTION_SUCCESSFUL_MESSAGE}", "Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        if(MessageBox.Show($"Connection error. Please check the application configuration and/or contact your system administrator", "Test", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error) == DialogResult.Retry)
+                        {
+                            entities.Database.Connection.Open();
+                            if (entities.Database.Connection.State != ConnectionState.Open)
+                            {
+                                MessageBox.Show($"Couldn't connect even after a retry. Application will exit...", "Test", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                Application.Exit();
+                            }
+                        }
                     }
                 }
             }
@@ -174,10 +184,67 @@ namespace XtremePharmacyManager
                             }
                             else
                             {
-                                InitializeEntities(loginform.ConnectionString, out entities);
-                                if (!last_Logins.Contains(currentUser))
+                                if (currentUser.UserRole == 0 || currentUser.UserRole == 1)
+                                {
+                                    InitializeEntities(loginform.ConnectionString, out entities);
+                                    InitializeLogger(ref entities, out logger);
+                                    InitializeBulkManagers();
+                                    if(currentUser.UserRole == 1)
+                                    {
+                                        tsmenuUsers.Enabled = false;
+                                        tsmenuProductBrands.Enabled = false;
+                                        tsmenuProductVendors.Enabled = false;
+                                        tsmenuPaymentMethods.Enabled = false;
+                                        tsmenuDeliveryServices.Enabled = false;
+                                        tsmenuProducts.Enabled = true;
+                                        tsmenuProductOrders.Enabled = true;
+                                        tsmenuOrderDeliveries.Enabled = true;
+                                        tsmenuLogs.Enabled = true;
+                                        tsmenuBulkUserOperations.Enabled = false;
+                                        tsmenuBulkProductBrandOperations.Enabled = false;
+                                        tsmenuBulkProductVendorOperations.Enabled = false;
+                                        tsmenuBulkPaymentMethodOperations.Enabled = false;
+                                        tsmenuBulkDeliveryServiceOperations.Enabled = false;
+                                        tsmenuBulkProductOperations.Enabled = false;
+                                        tsmenuBulkProductImageOperations.Enabled = true;
+                                        tsmenuBulkProductOrderOperations.Enabled = true;
+                                        tsmenuBulkOrderDeliveryOperations.Enabled = true;
+                                    }
+                                    else if(currentUser.UserRole == 0)
+                                    {
+                                        tsmenuUsers.Enabled = true;
+                                        tsmenuProductBrands.Enabled = true;
+                                        tsmenuProductVendors.Enabled = true;
+                                        tsmenuPaymentMethods.Enabled = true;
+                                        tsmenuDeliveryServices.Enabled = true;
+                                        tsmenuProducts.Enabled = true;
+                                        tsmenuProductOrders.Enabled = true;
+                                        tsmenuOrderDeliveries.Enabled = true;
+                                        tsmenuLogs.Enabled = true;
+                                        tsmenuBulkUserOperations.Enabled = true;
+                                        tsmenuBulkProductBrandOperations.Enabled = true;
+                                        tsmenuBulkProductVendorOperations.Enabled = true;
+                                        tsmenuBulkPaymentMethodOperations.Enabled = true;
+                                        tsmenuBulkDeliveryServiceOperations.Enabled = true;
+                                        tsmenuBulkProductOperations.Enabled = true;
+                                        tsmenuBulkProductImageOperations.Enabled = true;
+                                        tsmenuBulkProductOrderOperations.Enabled = true;
+                                        tsmenuBulkOrderDeliveryOperations.Enabled = true;
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("This application is only for administrators and employees!\nClient use of it is unaothorized and the application will exit!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    Application.Exit();
+                                }
+                                if (last_Logins != null && !last_Logins.Contains(currentUser))
                                 {
                                     last_Logins.Add(currentUser);
+                                    foreach(var login in last_Logins)
+                                    {
+                                        entities.Entry(entities.Users.Where(x=>x.ID == login.ID).FirstOrDefault()).Reload();
+                                        SaveLoginToFileSystem(login);
+                                    }
                                 }
                                 SaveLoginToFileSystem(currentUser);
                             }
@@ -219,10 +286,26 @@ namespace XtremePharmacyManager
                             }
                             else
                             {
-                                InitializeEntities(loginform.ConnectionString, out entities);
-                                if (!last_Logins.Contains(currentUser))
+
+                                if (currentUser.UserRole == 0 || currentUser.UserRole == 1)
+                                {
+                                    InitializeEntities(loginform.ConnectionString, out entities);
+                                    InitializeLogger(ref entities, out logger);
+                                    InitializeBulkManagers();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("This application is only for administrators and employees!\nClient use of it is unaothorized and the application will exit!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    Application.Exit();
+                                }
+                                if (last_Logins != null && !last_Logins.Contains(currentUser))
                                 {
                                     last_Logins.Add(currentUser);
+                                    foreach (var login in last_Logins)
+                                    {
+                                        entities.Entry(entities.Users.Where(x => x.ID == login.ID).FirstOrDefault()).Reload();
+                                        SaveLoginToFileSystem(login);
+                                    }
                                 }
                                 SaveLoginToFileSystem(currentUser);
                             }
@@ -249,8 +332,6 @@ namespace XtremePharmacyManager
                 }
                 if(entities != null && entities.Database.Connection.State != ConnectionState.Open)
                 {
-                    MessageBox.Show($"Current Connection String: {entities.Database.Connection.ConnectionString}", "Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MessageBox.Show($"Current Connection state: {entities.Database.Connection.State}", "Test", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     entities.Database.Connection.Open();
                     if(entities.Database.Connection.State == ConnectionState.Open)
                     {
@@ -258,8 +339,15 @@ namespace XtremePharmacyManager
                     }
                     else
                     {
-                        MessageBox.Show($"Failed to connect and login to the database.\nThis was not supposed to happen so contact the system administrator and/or check the credentials...\n", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if(MessageBox.Show($"Failed to connect and login to the database.\nThis was not supposed to happen so contact the system administrator and/or check the application configuration...\n", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error) == DialogResult.Retry)
+                        {
+                            TestConnection();
+                        }
                     }
+                }
+                if (currentUser != null && entities != null)
+                {
+                    this.Text = $"{System.Diagnostics.Process.GetCurrentProcess().ProcessName} - Current Host: {entities.Database.Connection.DataSource} - Current Operator: {currentUser.UserDisplayName}";
                 }
             }
             catch (Exception ex)
@@ -272,29 +360,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuUsers_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (userssearchform == null)
+                    try
                     {
-                        userssearchform = new frmSearchUsers(ref entities, ref logger, ref bulkUserOperationManager);
-                        userssearchform.MdiParent = this;
-                        userssearchform.Dock = DockStyle.Fill;
-                        userssearchform.FormClosed += Usersearchform_FormClosed;
-                        userssearchform.Show();
+                        if (userssearchform == null)
+                        {
+                            userssearchform = new frmSearchUsers(ref entities, ref currentUser, ref logger, ref bulkUserOperationManager);
+                            userssearchform.MdiParent = this;
+                            userssearchform.Dock = DockStyle.Fill;
+                            userssearchform.FormClosed += Usersearchform_FormClosed;
+                            userssearchform.Show();
+                        }
+                        else
+                        {
+                            userssearchform.WindowState = FormWindowState.Normal;
+                            userssearchform.Dock = DockStyle.Fill;
+                            userssearchform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        userssearchform.WindowState = FormWindowState.Normal;
-                        userssearchform.Dock = DockStyle.Fill;
-                        userssearchform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch(Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("User list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1166,7 +1261,7 @@ namespace XtremePharmacyManager
             List<FileInfo> files;
             try
             {
-                if (CheckOrCreateLoginDirectory() && IsLoginInList(login)) //if the directory exists and the user is in the login list
+                if (login != null && CheckOrCreateLoginDirectory() && IsLoginInList(login)) //if the directory exists and the user is in the login list
                 {
                     files = new List<FileInfo>();
                     foreach (string filename in Directory.EnumerateFiles(GLOBAL_RESOURCES.SAVED_LOGINS_DIRECTORY))
@@ -1186,6 +1281,10 @@ namespace XtremePharmacyManager
                             break;
                         }
                     }
+                }
+                else
+                {
+                    result = false;
                 }
             }
             catch (Exception ex)
@@ -1275,7 +1374,7 @@ namespace XtremePharmacyManager
             try
             {
                 //first check or create the logins directory and if it is successful browse it
-                if (CheckOrCreateLoginDirectory() && IsLoginInList(login) && IsLoginInFileSystem(login)) //if the user exists both in the list and the file system proceed
+                if (login != null && CheckOrCreateLoginDirectory() && IsLoginInList(login) && IsLoginInFileSystem(login)) //if the user exists both in the list and the file system proceed
                 {
                     files = new List<FileInfo>();
                     foreach (string filename in Directory.EnumerateFiles(GLOBAL_RESOURCES.SAVED_LOGINS_DIRECTORY))
@@ -1309,13 +1408,20 @@ namespace XtremePharmacyManager
                 }
                 else //if it doesn't exist, save it as new
                 {
-                    string new_file_path = Path.Combine(Path.GetFullPath(GLOBAL_RESOURCES.SAVED_LOGINS_DIRECTORY), $"{login.UserName}.bin");
-                    using (FileStream fs = new FileStream(new_file_path, FileMode.CreateNew, FileAccess.Write))
+                    if (login != null)
                     {
-                        BinaryFormatter bf = new BinaryFormatter();
-                        bf.Serialize(fs, login);
+                        string new_file_path = Path.Combine(Path.GetFullPath(GLOBAL_RESOURCES.SAVED_LOGINS_DIRECTORY), $"{login.UserName}.bin");
+                        using (FileStream fs = new FileStream(new_file_path, FileMode.CreateNew, FileAccess.Write))
+                        {
+                            BinaryFormatter bf = new BinaryFormatter();
+                            bf.Serialize(fs, login);
+                        }
+                        result = true;
                     }
-                    result = true;
+                    else
+                    {
+                        result = false;
+                    }
                 }
             }
             catch (Exception ex)

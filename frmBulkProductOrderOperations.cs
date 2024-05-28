@@ -173,7 +173,7 @@ namespace XtremePharmacyManager
             }
             cbSelectRecord.DataSource = entries;
             product_entries = manager_entities.Products.ToList();
-            foreach (var entry in entries)
+            foreach (var entry in product_entries)
             {
                 manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
             }

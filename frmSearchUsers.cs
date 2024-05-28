@@ -24,11 +24,13 @@ namespace XtremePharmacyManager
     {
         static Entities ent;
         static List<User> users;
+        static User current_user;
         static Logger logger;
         static BulkOperationManager<User> manager;
-        public frmSearchUsers(ref Entities entity, ref Logger extlogger, ref BulkOperationManager<User> bulkusermanager)
+        public frmSearchUsers(ref Entities entity, ref User currentUser, ref Logger extlogger, ref BulkOperationManager<User> bulkusermanager)
         {
             ent = entity;
+            current_user = currentUser;
             logger = extlogger;
             manager = bulkusermanager;
             manager.BulkOperationsExecuted += Users_OnBulkOperationExecuted;
@@ -46,7 +48,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open)
+                if (ent.Database.Connection.State == ConnectionState.Open && current_user.UserRole == 0)
                 {
                     users = ent.GetUser(-1, "", "", "", DateTime.Now, DateTime.Now, "", "", "", new decimal(), "", DateTime.Now, DateTime.Now, 0).ToList();
                     foreach(var user in users)
@@ -55,6 +57,10 @@ namespace XtremePharmacyManager
                         ent.Entry(ent.Users.Where(x => x.ID == user.ID).FirstOrDefault()).Reload();
                     }
                     dgvUsers.DataSource = users;
+                }
+                else
+                {
+                    MessageBox.Show($"Users cannot be retrieved because applications is not connected or you don't have permissions to view them", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch(Exception ex)
@@ -83,7 +89,7 @@ namespace XtremePharmacyManager
             DateTime RegisterDateTo = dtRegisterDateTo.Value;
             int Role = cbRole.SelectedIndex;
             int SearchMode = cbSearchMode.SelectedIndex;
-          if (SearchMode == 1)
+          if (SearchMode == 1 && current_user.UserRole == 0)
             {
                 users = ent.Users.Where(
                     x => x.ID == UserID ^ x.UserName.Contains(UserName) ^ x.UserPassword.Contains(Password) ^
@@ -93,7 +99,7 @@ namespace XtremePharmacyManager
                 ).ToList(); 
                 dgvUsers.DataSource = users;
             }
-            else if (SearchMode == 2)
+            else if (SearchMode == 2 && current_user.UserRole == 0)
             {
                 users = ent.Users.Where(
                     x => x.ID == UserID || x.UserName.Contains(UserName) || x.UserPassword.Contains(Password) ||
@@ -103,13 +109,17 @@ namespace XtremePharmacyManager
                 ).ToList();
                 dgvUsers.DataSource = users;
             }
-            else if (SearchMode == 3)
+            else if (SearchMode == 3 && current_user.UserRole == 0)
             {
                 users = ent.GetUser(UserID,UserName,Password,DisplayName,BirthDateFrom,BirthDateTo,Phone,Email,Address,Balance,Diagnose,RegisterDateFrom,RegisterDateTo,Role).ToList();
                 dgvUsers.DataSource = users;
             }
             else
             {
+                if (current_user.UserRole != 0)
+                {
+                    MessageBox.Show("User list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 RefreshUsers();
             }
             logger.RefreshLogs();
@@ -132,7 +142,7 @@ namespace XtremePharmacyManager
             User selectedUser;
             try
             {
-                if (dgvUsers.SelectedRows.Count > 0)
+                if (dgvUsers.SelectedRows.Count > 0 && current_user.UserRole == 0)
                 {
                     row = dgvUsers.SelectedRows[0];
                     if (row != null && users != null)
@@ -273,7 +283,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
-                else
+                else if(current_user.UserRole == 0)
                 {
                     selectedUser = new User();
                     DialogResult res = new frmEditUser(ref selectedUser).ShowDialog();
@@ -314,6 +324,10 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show($"You don't have permissions to delete users besides your own account.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 logger.RefreshLogs();
             }
             catch(Exception ex)
@@ -332,7 +346,7 @@ namespace XtremePharmacyManager
             User selectedUser;
             try
             {
-                if (dgvUsers.SelectedRows.Count > 0)
+                if (dgvUsers.SelectedRows.Count > 0 && current_user.UserRole == 0 )
                 {
                     row = dgvUsers.SelectedRows[0];
                     if (row != null && users != null)
@@ -384,6 +398,10 @@ namespace XtremePharmacyManager
                             }
                         }
                     }
+                }
+                else
+                {
+                    MessageBox.Show($"You don't have permissions to delete users besides your own account.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 logger.RefreshLogs();
             }
@@ -480,113 +498,120 @@ namespace XtremePharmacyManager
             ReportParameterCollection current_params;
             try
             {
-                if(dgvUsers.SelectedRows.Count > 0)
+                if (current_user.UserRole == 0 || current_user.UserRole == 1)
                 {
-                    row = dgvUsers.SelectedRows[0];
-                    if(row != null && users != null)
+                    if (dgvUsers.SelectedRows.Count > 0)
                     {
-                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
-                        //Contrary to the CRUD operations, report generating will be for all records no matter
-                        //if they are dummy or not
-                        currentUser = users.Where(x=>x.ID == ID).FirstOrDefault();
-                        if(currentUser != null)
+                        row = dgvUsers.SelectedRows[0];
+                        if (row != null && users != null)
                         {
-                            if(currentUser.UserRole == 0 ||  currentUser.UserRole == 1) //if the user is employee or admin(considered an employee)
+                            Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
+                            //Contrary to the CRUD operations, report generating will be for all records no matter
+                            //if they are dummy or not
+                            currentUser = users.Where(x => x.ID == ID).FirstOrDefault();
+                            if (currentUser != null)
                             {
-                                target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.EMPLOYEE_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
-                                EmployeeView view = ent.EmployeeViews.Where(x=>x.ID == currentUser.ID).FirstOrDefault();
-                                if (view != null)
+                                if (currentUser.UserRole == 0 || currentUser.UserRole == 1) //if the user is employee or admin(considered an employee)
                                 {
-                                    Type view_type = view.GetType();
-                                    DataTable dt = new DataTable();
-                                    Object[] values = new Object[view_type.GetProperties().Length];
-                                    int propindex = 0; //track the property index
-                                    //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
-                                    //imported them yet
-                                    foreach (var prop in view_type.GetProperties())
+                                    target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.EMPLOYEE_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+                                    EmployeeView view = ent.EmployeeViews.Where(x => x.ID == currentUser.ID).FirstOrDefault();
+                                    if (view != null)
                                     {
-                                        dt.Columns.Add(prop.Name);
-                                        //for users there will be a special treatment in terms of the profile picture
-                                        //it will be a base64 string containing the image data
-                                        if ((prop != null && prop.GetValue(view, null) != null) && (prop.GetValue(view, null).GetType() == typeof(byte[]) || prop.GetValue(view, null).GetType() == typeof(Byte[])))
+                                        Type view_type = view.GetType();
+                                        DataTable dt = new DataTable();
+                                        Object[] values = new Object[view_type.GetProperties().Length];
+                                        int propindex = 0; //track the property index
+                                                           //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
+                                                           //imported them yet
+                                        foreach (var prop in view_type.GetProperties())
                                         {
-                                            byte[] value = (byte[])prop.GetValue(view, null);
-                                            string Base64ImageData = Convert.ToBase64String(value);
-                                            values[propindex] = Base64ImageData;
+                                            dt.Columns.Add(prop.Name);
+                                            //for users there will be a special treatment in terms of the profile picture
+                                            //it will be a base64 string containing the image data
+                                            if ((prop != null && prop.GetValue(view, null) != null) && (prop.GetValue(view, null).GetType() == typeof(byte[]) || prop.GetValue(view, null).GetType() == typeof(Byte[])))
+                                            {
+                                                byte[] value = (byte[])prop.GetValue(view, null);
+                                                string Base64ImageData = Convert.ToBase64String(value);
+                                                values[propindex] = Base64ImageData;
+                                            }
+                                            else
+                                            {
+                                                values[propindex] = prop.GetValue(view, null);
+                                            }
+                                            propindex++; //indrease the property index after adding the property name
+                                                         //in for and foreach loops everything starts from 0 as always
                                         }
-                                        else
-                                        {
-                                            values[propindex] = prop.GetValue(view, null);
-                                        }
-                                        propindex++; //indrease the property index after adding the property name
-                                                     //in for and foreach loops everything starts from 0 as always
+                                        propindex = 0; //reset the index
+                                        dt.Rows.Add(values); //add the values
+                                                             //then clear the values to ensure memory is not wasted
+                                        Array.Clear(values, 0, values.Length);
+                                        current_source = new ReportDataSource("EmployeeReportData", dt);
+                                        current_params = new ReportParameterCollection();
+                                        Bitmap bmp;
+                                        ConvertBinaryToImage(view.UserProfilePic, out bmp);
+                                        ImageFormat bmp_format = bmp.RawFormat;
+                                        ImageCodecInfo bmp_codec_info = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == bmp.RawFormat.Guid);
+                                        string bmp_mime_type = bmp_codec_info.MimeType;
+                                        current_params.Add(new ReportParameter("Encoding", bmp_mime_type));
+                                        current_params.Add(new ReportParameter("RoleName", cbRole.Items[view.UserRole].ToString()));
+                                        current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
+                                        new frmReports(target_report_file, ref current_source, ref current_params).Show();
                                     }
-                                    propindex = 0; //reset the index
-                                    dt.Rows.Add(values); //add the values
-                                    //then clear the values to ensure memory is not wasted
-                                    Array.Clear(values, 0, values.Length);
-                                    current_source = new ReportDataSource("EmployeeReportData", dt);
-                                    current_params = new ReportParameterCollection();
-                                    Bitmap bmp;
-                                    ConvertBinaryToImage(view.UserProfilePic, out bmp);
-                                    ImageFormat bmp_format = bmp.RawFormat;
-                                    ImageCodecInfo bmp_codec_info = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == bmp.RawFormat.Guid);
-                                    string bmp_mime_type = bmp_codec_info.MimeType;
-                                    current_params.Add(new ReportParameter("Encoding", bmp_mime_type));
-                                    current_params.Add(new ReportParameter("RoleName", cbRole.Items[view.UserRole].ToString()));
-                                    current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
-                                    new frmReports(target_report_file, ref current_source, ref current_params).Show();
                                 }
-                            }
-                            else if(currentUser.UserRole == 2) //if the user is a client
-                            {
-                                target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.CLIENT_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
-                                ClientView view = ent.ClientViews.Where(x => x.ID == currentUser.ID).FirstOrDefault();
-                                if (view != null)
+                                else if (currentUser.UserRole == 2) //if the user is a client
                                 {
-                                    Type view_type = view.GetType();
-                                    DataTable dt = new DataTable();
-                                    Object[] values = new Object[view_type.GetProperties().Length];
-                                    int propindex = 0; //track the property index
-                                    //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
-                                    //imported them yet
-                                    foreach (var prop in view_type.GetProperties())
+                                    target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.CLIENT_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+                                    ClientView view = ent.ClientViews.Where(x => x.ID == currentUser.ID).FirstOrDefault();
+                                    if (view != null)
                                     {
-                                        dt.Columns.Add(prop.Name);
-                                        //for users there will be a special treatment in terms of the profile picture
-                                        //it will be a base64 string containing the image data
-                                        if ((prop != null && prop.GetValue(view, null) != null) && (prop.GetValue(view, null).GetType() == typeof(byte[]) || prop.GetValue(view, null).GetType() == typeof(Byte[])))
+                                        Type view_type = view.GetType();
+                                        DataTable dt = new DataTable();
+                                        Object[] values = new Object[view_type.GetProperties().Length];
+                                        int propindex = 0; //track the property index
+                                                           //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
+                                                           //imported them yet
+                                        foreach (var prop in view_type.GetProperties())
                                         {
-                                            byte[] value = (byte[])prop.GetValue(view, null);
-                                            string Base64ImageData = Convert.ToBase64String(value);
-                                            values[propindex] = Base64ImageData;
+                                            dt.Columns.Add(prop.Name);
+                                            //for users there will be a special treatment in terms of the profile picture
+                                            //it will be a base64 string containing the image data
+                                            if ((prop != null && prop.GetValue(view, null) != null) && (prop.GetValue(view, null).GetType() == typeof(byte[]) || prop.GetValue(view, null).GetType() == typeof(Byte[])))
+                                            {
+                                                byte[] value = (byte[])prop.GetValue(view, null);
+                                                string Base64ImageData = Convert.ToBase64String(value);
+                                                values[propindex] = Base64ImageData;
+                                            }
+                                            else
+                                            {
+                                                values[propindex] = prop.GetValue(view, null);
+                                            }
+                                            propindex++; //indrease the property index after adding the property name
+                                                         //in for and foreach loops everything starts from 0 as always
                                         }
-                                        else
-                                        {
-                                            values[propindex] = prop.GetValue(view, null);
-                                        }
-                                        propindex++; //indrease the property index after adding the property name
-                                                     //in for and foreach loops everything starts from 0 as always
+                                        propindex = 0; //reset the index
+                                        dt.Rows.Add(values); //add the values
+                                                             //then clear the values to ensure memory is not wasted
+                                        Array.Clear(values, 0, values.Length);
+                                        current_source = new ReportDataSource("ClientReportData", dt);
+                                        current_params = new ReportParameterCollection();
+                                        Bitmap bmp;
+                                        ConvertBinaryToImage(view.UserProfilePic, out bmp);
+                                        ImageFormat bmp_format = bmp.RawFormat;
+                                        ImageCodecInfo bmp_codec_info = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == bmp.RawFormat.Guid);
+                                        string bmp_mime_type = bmp_codec_info.MimeType;
+                                        current_params.Add(new ReportParameter("Encoding", bmp_mime_type));
+                                        current_params.Add(new ReportParameter("RoleName", cbRole.Items[view.UserRole].ToString()));
+                                        current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
+                                        new frmReports(target_report_file, ref current_source, ref current_params).Show();
                                     }
-                                    propindex = 0; //reset the index
-                                    dt.Rows.Add(values); //add the values
-                                    //then clear the values to ensure memory is not wasted
-                                    Array.Clear(values, 0, values.Length);
-                                    current_source = new ReportDataSource("ClientReportData", dt);
-                                    current_params = new ReportParameterCollection();
-                                    Bitmap bmp;
-                                    ConvertBinaryToImage(view.UserProfilePic, out bmp);
-                                    ImageFormat bmp_format = bmp.RawFormat;
-                                    ImageCodecInfo bmp_codec_info = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == bmp.RawFormat.Guid);
-                                    string bmp_mime_type = bmp_codec_info.MimeType;
-                                    current_params.Add(new ReportParameter("Encoding", bmp_mime_type));
-                                    current_params.Add(new ReportParameter("RoleName", cbRole.Items[view.UserRole].ToString()));
-                                    current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
-                                    new frmReports(target_report_file, ref current_source, ref current_params).Show();
                                 }
                             }
                         }
                     }
+                }
+                else
+                {
+                    MessageBox.Show($"User reports cannot be generated or you don't have permissions to view them", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -606,6 +631,32 @@ namespace XtremePharmacyManager
                 trbBalance.Maximum = value;
             }
             trbBalance.Value = value;
+        }
+
+        private void frmSearchUsers_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //nullify the values of the form on closing to preserve memory
+            if(manager != null)
+            {
+                manager = null;
+            }
+            if(logger != null)
+            {
+                logger = null;
+            }
+            if(current_user != null)
+            {
+                current_user = null;
+            }
+            if(users != null)
+            {
+                users.Clear();
+                users = null;
+            }
+            if(ent != null)
+            {
+                ent = null;
+            }
         }
     }
 }

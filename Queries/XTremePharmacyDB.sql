@@ -1921,6 +1921,7 @@ grant execute on GetBrand to XPEmployee;
 grant execute on GetVendor to XPEmployee;
 grant execute on GetPaymentMethod to XPEmployee;
 grant execute on GetDeliveryService to XPEmployee;
+grant execute on GetLog to XPEmployee;
 grant execute on AddLog to XPEmployee;
 grant execute on UpdateLogByID to XPEmployee;
 grant execute on DeleteLog to XPEmployee;

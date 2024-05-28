@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlLogin = new System.Windows.Forms.Panel();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnOK = new System.Windows.Forms.Button();
+            this.btnAddLogin = new System.Windows.Forms.Button();
+            this.btnClearLogins = new System.Windows.Forms.Button();
             this.lblLastLogins = new System.Windows.Forms.Label();
             this.lblLoginCredentials = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
@@ -48,14 +48,16 @@
             this.btnApplyChangesToAllTargets = new System.Windows.Forms.Button();
             this.lstLastLogins = new System.Windows.Forms.ListBox();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnRemoveLogin = new System.Windows.Forms.Button();
             this.pnlLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlLogin
             // 
-            this.pnlLogin.Controls.Add(this.btnCancel);
-            this.pnlLogin.Controls.Add(this.btnOK);
+            this.pnlLogin.Controls.Add(this.btnRemoveLogin);
+            this.pnlLogin.Controls.Add(this.btnAddLogin);
+            this.pnlLogin.Controls.Add(this.btnClearLogins);
             this.pnlLogin.Controls.Add(this.lblLastLogins);
             this.pnlLogin.Controls.Add(this.lblLoginCredentials);
             this.pnlLogin.Controls.Add(this.btnLogin);
@@ -77,29 +79,29 @@
             this.pnlLogin.Size = new System.Drawing.Size(876, 295);
             this.pnlLogin.TabIndex = 0;
             // 
-            // btnCancel
+            // btnAddLogin
             // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(230, 192);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(150, 47);
-            this.btnCancel.TabIndex = 51;
-            this.btnCancel.Text = "CANCEL";
-            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnAddLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddLogin.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddLogin.Location = new System.Drawing.Point(286, 192);
+            this.btnAddLogin.Name = "btnAddLogin";
+            this.btnAddLogin.Size = new System.Drawing.Size(265, 47);
+            this.btnAddLogin.TabIndex = 51;
+            this.btnAddLogin.Text = "ADD LOGIN";
+            this.btnAddLogin.UseVisualStyleBackColor = true;
+            this.btnAddLogin.Click += new System.EventHandler(this.btnAddLogin_Click);
             // 
-            // btnOK
+            // btnClearLogins
             // 
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOK.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOK.Location = new System.Drawing.Point(230, 139);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(150, 47);
-            this.btnOK.TabIndex = 50;
-            this.btnOK.Text = "OK";
-            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnClearLogins.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClearLogins.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearLogins.Location = new System.Drawing.Point(286, 139);
+            this.btnClearLogins.Name = "btnClearLogins";
+            this.btnClearLogins.Size = new System.Drawing.Size(265, 47);
+            this.btnClearLogins.TabIndex = 50;
+            this.btnClearLogins.Text = "CLEAR_LOGINS";
+            this.btnClearLogins.UseVisualStyleBackColor = true;
+            this.btnClearLogins.Click += new System.EventHandler(this.btnClearLogins_Click);
             // 
             // lblLastLogins
             // 
@@ -107,7 +109,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLastLogins.AutoSize = true;
             this.lblLastLogins.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastLogins.Location = new System.Drawing.Point(383, 41);
+            this.lblLastLogins.Location = new System.Drawing.Point(554, 41);
             this.lblLastLogins.Name = "lblLastLogins";
             this.lblLastLogins.Size = new System.Drawing.Size(108, 16);
             this.lblLastLogins.TabIndex = 49;
@@ -127,11 +129,12 @@
             // 
             // btnLogin
             // 
+            this.btnLogin.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(8, 139);
+            this.btnLogin.Location = new System.Drawing.Point(15, 139);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(213, 47);
+            this.btnLogin.Size = new System.Drawing.Size(265, 47);
             this.btnLogin.TabIndex = 47;
             this.btnLogin.Text = "LOGIN";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -139,11 +142,12 @@
             // 
             // btnExit
             // 
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(8, 245);
+            this.btnExit.Location = new System.Drawing.Point(15, 245);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(213, 47);
+            this.btnExit.Size = new System.Drawing.Size(265, 47);
             this.btnExit.TabIndex = 46;
             this.btnExit.Text = "EXIT";
             this.btnExit.UseVisualStyleBackColor = true;
@@ -153,9 +157,9 @@
             // 
             this.btnSetCurrentLoginAsDefault.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetCurrentLoginAsDefault.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetCurrentLoginAsDefault.Location = new System.Drawing.Point(8, 192);
+            this.btnSetCurrentLoginAsDefault.Location = new System.Drawing.Point(15, 192);
             this.btnSetCurrentLoginAsDefault.Name = "btnSetCurrentLoginAsDefault";
-            this.btnSetCurrentLoginAsDefault.Size = new System.Drawing.Size(213, 47);
+            this.btnSetCurrentLoginAsDefault.Size = new System.Drawing.Size(265, 47);
             this.btnSetCurrentLoginAsDefault.TabIndex = 45;
             this.btnSetCurrentLoginAsDefault.Text = "SET CURRENT LOGIN AS DEFAULT";
             this.btnSetCurrentLoginAsDefault.UseVisualStyleBackColor = true;
@@ -167,8 +171,9 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtPassword.Location = new System.Drawing.Point(122, 111);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(258, 22);
+            this.txtPassword.Size = new System.Drawing.Size(429, 22);
             this.txtPassword.TabIndex = 44;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // lblPassword
             // 
@@ -188,7 +193,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtUsername.Location = new System.Drawing.Point(122, 83);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(258, 22);
+            this.txtUsername.Size = new System.Drawing.Size(429, 22);
             this.txtUsername.TabIndex = 42;
             // 
             // lblUsername
@@ -272,15 +277,28 @@
             this.lstLastLogins.DisplayMember = "UserName";
             this.lstLastLogins.FormattingEnabled = true;
             this.lstLastLogins.ItemHeight = 16;
-            this.lstLastLogins.Location = new System.Drawing.Point(386, 83);
+            this.lstLastLogins.Location = new System.Drawing.Point(557, 83);
             this.lstLastLogins.Name = "lstLastLogins";
-            this.lstLastLogins.Size = new System.Drawing.Size(478, 212);
+            this.lstLastLogins.Size = new System.Drawing.Size(307, 212);
             this.lstLastLogins.TabIndex = 35;
             this.lstLastLogins.ValueMember = "ID";
+            this.lstLastLogins.SelectedIndexChanged += new System.EventHandler(this.lstLastLogins_SelectedIndexChanged);
             // 
             // userBindingSource
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            // 
+            // btnRemoveLogin
+            // 
+            this.btnRemoveLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveLogin.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveLogin.Location = new System.Drawing.Point(286, 245);
+            this.btnRemoveLogin.Name = "btnRemoveLogin";
+            this.btnRemoveLogin.Size = new System.Drawing.Size(265, 47);
+            this.btnRemoveLogin.TabIndex = 52;
+            this.btnRemoveLogin.Text = "REMOVE LOGIN";
+            this.btnRemoveLogin.UseVisualStyleBackColor = true;
+            this.btnRemoveLogin.Click += new System.EventHandler(this.btnRemoveLogin_Click);
             // 
             // frmLogin
             // 
@@ -318,7 +336,8 @@
         private System.Windows.Forms.Button btnSetCurrentLoginAsDefault;
         private System.Windows.Forms.Label lblLoginCredentials;
         private System.Windows.Forms.Label lblLastLogins;
-        private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Button btnClearLogins;
+        private System.Windows.Forms.Button btnAddLogin;
+        private System.Windows.Forms.Button btnRemoveLogin;
     }
 }

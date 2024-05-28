@@ -50,7 +50,7 @@ namespace XtremePharmacyManager
                     }
                     else if (retrieved_users.Count == 1)
                     {
-                        MessageBox.Show("Successfully found your credentials by the configuration settings of your application.\nOn your confirmation by logging in/clicking ok this will be the user you will work with.\nIf you want another user select from the logins list.\nEvery login is saved into the filesystem in a binary format read only this program.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Successfully found your credentials by the configuration settings of your application.\nOn your confirmation by logging in this will be the user you will work with.\nIf you want another user select from the logins list.\nEvery login is saved into the filesystem in a binary format read only this program.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
@@ -108,7 +108,6 @@ namespace XtremePharmacyManager
                         else if (retrieved_users.Count == 1)
                         {
                             user_result = retrieved_users.FirstOrDefault();
-                            MessageBox.Show("Successfully found the user.\nNow the connection string will be set up to work with these credentials.\nPlease be patient...\n", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             //close, rebuild the connection string and try to reconnect
                             ent.Database.Connection.Close();
                             scsb.DataSource = GLOBAL_RESOURCES.DOMAIN_ADDRESS;
@@ -122,15 +121,103 @@ namespace XtremePharmacyManager
                                            $"{Application.StartupPath}/DataEntities/XTremePharmacyModel.msl";
                             esb.Provider = "System.Data.SqlClient";
                             esb.ProviderConnectionString = connString;
-                            MessageBox.Show("Connection string is set up.\nPress OK to continue...\n", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             connection_string = esb.ConnectionString;
                         }
                         else
                         {
-                            MessageBox.Show("No user found with the specified credentials by your input.\nPlease configure input the credentials you registered with or provided by your system administrator.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("No user found with the specified credentials by your input.\nPlease input the credentials you registered with or provided by your system administrator.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void lstLastLogins_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            User selected_record = (User)lstLastLogins.SelectedItem;
+            if(selected_record != null)
+            {
+                txtUsername.Text = selected_record.UserName;
+                txtPassword.Text = selected_record.UserPassword;
+            }
+        }
+
+        private void btnClearLogins_Click(object sender, EventArgs e)
+        {
+            if (last_logins != null)
+            {
+                last_logins.Clear();
+                lstLastLogins.DataSource = null;
+                lstLastLogins.DataSource = last_logins;
+            }
+        }
+
+        private void btnAddLogin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (last_logins != null)
+                {
+                    if (ent.Database.Connection.State == ConnectionState.Open)
+                    {
+                        if (ent.Users.Where(x => (x.UserName.Contains(txtUsername.Text) && x.UserPassword.Contains(txtPassword.Text))).Any() &&
+                            ent.Users.Where(x => (x.UserName.Contains(txtUsername.Text) && x.UserPassword.Contains(txtPassword.Text))).ToList().Count == 1)
+                        {
+                            User target_login = ent.Users.Where(x => (x.UserName.Contains(txtUsername.Text) && x.UserPassword.Contains(txtPassword.Text))).FirstOrDefault();
+                            last_logins.Add(target_login);
+                        }
+                        else
+                        {
+                            MessageBox.Show($"Multiple login results gotten or none at all.\nPlease check the credentials and try again", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        if (MessageBox.Show($"Application is not connected to the database and login information cannot be retrieved.\nPlease retry.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error) == DialogResult.Retry)
+                        {
+                            ent.Database.Connection.Open();
+                            if(ent.Database.Connection.State != ConnectionState.Open)
+                            {
+                                MessageBox.Show($"Connection failed.\nApplication will exit.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                    lstLastLogins.DataSource = null;
+                    lstLastLogins.DataSource = last_logins;
+                }
+                else
+                {
+                    MessageBox.Show($"Saved Logins list hasn't been retrieved properly.\nPlease restart the application.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnRemoveLogin_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (last_logins != null)
+                {
+                   if(last_logins.Count > 0 && lstLastLogins.SelectedItem != null && last_logins.Contains((User)lstLastLogins.SelectedItem))
+                    {
+                        int index = last_logins.IndexOf((User)lstLastLogins.SelectedItem);
+                        last_logins.RemoveAt(index);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show($"Saved Logins list hasn't been retrieved properly .\nPlease restart the application.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                lstLastLogins.DataSource=null;
+                lstLastLogins.DataSource = last_logins;
             }
             catch (Exception ex)
             {

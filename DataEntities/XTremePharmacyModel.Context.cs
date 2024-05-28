@@ -7,6 +7,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Reflection;
+
+
 namespace XtremePharmacyManager.DataEntities
 {
     using System;
@@ -21,11 +25,12 @@ namespace XtremePharmacyManager.DataEntities
         public Entities()
             : base("name=Entities")
         {
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         public Entities(EntityConnectionStringBuilder esb) : base(esb.ConnectionString)
         {
-
+            this.Configuration.ProxyCreationEnabled = false;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
