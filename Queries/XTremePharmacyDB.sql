@@ -1678,12 +1678,8 @@ end
 end
 go
 
-/* Stored procedures to add members to roles, alter their logins and so. Replace the 'ABC' in the execute as in them with your system administrator account. 
-They are used in the triggers to alter logins and require sysadmin users, I couldn't add any permissions to server roles and as I have fucked them up I will redo them
-tomorrow and make the servers use stored procedures that SHOULD BE ONLY FOR SYSTEM ADMINISTRATORS AND DATABASE TRIGGERS TO USE!!!*/
-go
 
-go
+
 /* end of the stored procedures */
 /* beginning of views */
 
@@ -1894,13 +1890,15 @@ use and they will need to be executed as system administrators in order for the 
 create role XPAdmin;
 grant alter, control, delete, execute, insert, references, select, take ownership, update, view definition
 on schema::dbo to XPAdmin;
-grant alter any role to XPAdmin;
+
+
+
 
 
 create role XPEmployee;
-grant execute on AddProductOrder to XPClient;
-grant execute on GetProductOrder to XPClient;
-grant execute on UpdateProductOrderByID to XPClient;
+grant execute on AddProductOrder to XPEmployee;
+grant execute on GetProductOrder to XPEmployee;
+grant execute on UpdateProductOrderByID to XPEmployee;
 grant execute on DeleteProductOrder to XPEmployee;
 grant execute on DeleteProductOrderByID to XPEmployee;
 grant execute on AddOrderDelivery to XPEmployee;
@@ -1946,7 +1944,7 @@ grant select on ExtendedPaymentMethodsView to XPEmployee;
 grant select on ExtendedProductOrdersView to XPEmployee;
 grant select on ExtendedProductView to XPEmployee;
 grant select on ExtendedVendorsView to XPEmployee;
-grant alter any role to XPEmployee;
+
 
 
 create role XPClient;
@@ -1976,7 +1974,7 @@ grant select on ProductBrands to XPClient;
 grant select on ProductVendors to XPClient;
 grant select on PaymentMethods to XPClient;
 grant select on DeliveryServices to XPClient;
-grant alter any role to XPClient;
+
 
 
 
@@ -2660,7 +2658,6 @@ declare @new_register_date as date;
 declare @new_role as int;
 declare @log_message as varchar(max);
 declare @additional_information as varchar(max);
-DECLARE @sql NVARCHAR(MAX);
 declare @currentdate as date;
 select @new_id = ID from inserted;
 select @new_user_name = UserName from inserted;
@@ -2676,37 +2673,14 @@ select @new_diagnose = UserDiagnose from inserted;
 select @new_register_date = UserDateOfRegister from inserted;
 select @new_role = UserRole from inserted;
 set @currentdate = getdate();
-set @log_message = 'An user was added to the list with the id: ' + try_cast(@new_id as varchar);
-/* first check the role and create a login and add it to role */
-/* I used the chatgpt for making the login creation and altering */
-
-
-SET @sql = 'CREATE LOGIN ' + QUOTENAME(@new_user_name) + ' WITH PASSWORD = ''' + @new_user_password + ''';';
-EXEC sp_executesql @sql;
-
-SET @sql = 'CREATE USER ' + QUOTENAME(@new_user_name) + ' FOR LOGIN ' + QUOTENAME(@new_user_name) + ';';
-EXEC sp_executesql @sql;
-if @new_role = 0
-begin
-set @sql = 'alter role XPAdmin add member ' + QUOTENAME(@new_user_name) + ';';
-exec sp_executesql @sql;
-end
-else if @new_role = 1
-begin
-set @sql = 'alter role XPEmployee add member ' + QUOTENAME(@new_user_name) + ';';
-exec sp_executesql @sql;
-end
-else if @new_role = 2
-begin
-set @sql = 'alter role XPClient add member ' + QUOTENAME(@new_user_name) + ';';
-exec sp_executesql @sql;
-end
+set @log_message = 'An user was added to the list with the id: ' + try_cast(@new_id as varchar) + '. For the system and server administrators: refer the documentation and create users and logins' +
+'for the users in the entries to log in to the database and make the corresponding actions to it. Hint: 0 is XPAdmin, 1 is XPEmployee and 2 is XPClient'
++ 'Role ID corresponds to the UserRole column of the table Users to refer to.';
 set @additional_information = 'User ID: ' + try_cast(@new_id as varchar) + '\n' +
 'User Name: ' + try_cast(@new_user_name as varchar) + '\n' + 'User Password: ' + try_cast(@new_user_password as varchar) + '\n' +
 'Display Name: ' + try_cast(@new_display_name as varchar) + '\n' + 'Birth Date: ' + try_cast(@new_birth_date as varchar) + '\n' +
 'User Phone: ' + try_cast(@new_phone as varchar) + '\n' + 'User Email: ' + try_cast(@new_email as varchar) + '\n' +
-'User Address: ' + try_cast(@new_address as varchar) + '\n' + 'Profile Picture data dump: ' + try_cast(@new_profile_pic as varchar) + '\n' +
-'User Balance: ' + try_cast(@new_user_balance as varchar) + '\n' + 'User Diagnose: ' + try_cast(@new_diagnose as varchar) + '\n'+
+'User Address: ' + try_cast(@new_address as varchar) + '\n' + 'User Balance: ' + try_cast(@new_user_balance as varchar) + '\n' + 'User Diagnose: ' + try_cast(@new_diagnose as varchar) + '\n'+
 'Register Date: ' + try_cast(@new_register_date as varchar) + '\n' + 'Role ID: ' + try_cast(@new_role as varchar) + '\n';
 exec AddLog @logdate = @currentdate, 
 @logtitle='[XTremePharmacyDB] User Added', 
@@ -2781,55 +2755,8 @@ select @new_register_date = UserDateOfRegister from inserted;
 select @old_role = UserRole from deleted;
 select @new_role = UserRole from inserted;
 set @currentdate = getdate();
-/* and before that let's check if the username and/or password are changed and change the logins and users*/
-if @new_user_name != @old_user_name or @new_user_password != @old_user_password or (@old_user_name != @new_user_name and @old_user_password != @new_user_password)
-begin
-set @sql = 'alter login ' + QUOTENAME(@old_user_name) + ' with name = ' + QUOTENAME(@new_user_name) + ';';
-exec sp_executesql @sql;
-set @sql = 'alter login ' + QUOTENAME(@new_user_name) + ' with password = ''' + @new_user_password + ''';';
-exec sp_executesql @sql;
-set @sql = 'alter user ' + QUOTENAME(@old_user_name) + ' with name = ' + QUOTENAME(@new_user_name) + ';';
-exec sp_executesql @sql;
-set @sql = 'alter user ' + QUOTENAME(@new_user_name) + ' with login = ' + QUOTENAME(@new_user_name) + ';';
-exec sp_executesql @sql;
-end
-/* wait a moment, we have to check the old role and remove the user from that role if it has a login */
 if @old_role is not null and @new_role is not null and @old_role != @new_role
 begin
-if @old_role = 0
-begin
-set @sql = 'alter role XPAdmin drop member ' + QUOTENAME(@new_user_name) + ';';
-exec sp_executesql @sql;
-end
-else if @old_role = 1
-begin
-set @sql = 'alter role XPEmployee drop member ' + QUOTENAME(@new_user_name) + ';';
-exec sp_executesql @sql;
-end
-else if @old_role = 2
-begin
-set @sql = 'alter role XPClient drop member ' + QUOTENAME(@new_user_name) + ';';
-exec sp_executesql @sql;
-end
-end
-/* now add the new role if the new role is not null and is different from old role */
-if @old_role is not null and @new_role is not null and @new_role != @old_role
-begin
-if @new_role = 0
-begin
-set @sql = 'alter role XPAdmin add member ' + QUOTENAME(@new_user_name) + ';';
-exec sp_executesql @sql;
-end
-else if @new_role = 1
-begin
-set @sql = 'alter role XPEmployee add member ' + QUOTENAME(@new_user_name) + ';';
-exec sp_executesql @sql;
-end
-else if @new_role = 2
-begin
-set @sql = 'alter role XPClient add member ' + QUOTENAME(@new_user_name) + ';';
-exec sp_executesql @sql;
-end
 /* here still assign the IDs to the new product orders in case the role is changed but the ID isn't */
 if (@old_role = 0 or @old_role = 1) and (@new_role = 0 or @new_role = 1)
 begin
@@ -2933,19 +2860,24 @@ end
 end
 end
 set @log_message = 'An user was updated with the id: ' + try_cast(@old_id as varchar) + 
-'.\n If its role is the same the ID will be updated on the orders,\notherwise it will beed to be manually reselected in the orders.\n';
+'.\n If its role is the same the ID will be updated on the orders,\notherwise it will beed to be manually reselected in the orders.\n For the system administrators: You need to manually alter the database roles and logins for these users'
++'to reflect the changes they did on the database. Hint: use the UserName to change the login name if you can and UserPassword column to set new password to the login.' +
+'regarding to the UserPassword field in the table corresponding to the login''s UserName. Also alter the membership of the database users by referring to the Users table as follows:' +
+'UserRole in the users table is the integer corresponding to the database roles, i.e. 0 for XPAdmin, 1 for XPEmployee and 2 for XPClient. The changes in product orders due to changing roles
+will be reflected automatically. Role ID corresponds to the UserRole column of'
++ 'the table Users to refer to.'
 set @additional_information = 'Old User ID: ' + try_cast(@old_id as varchar) + '\n' +
 'Old User Name: ' + try_cast(@old_user_name as varchar) + '\n' + 'Old User Password: ' + try_cast(@old_user_password as varchar) + '\n' +
 'Old Display Name: ' + try_cast(@old_display_name as varchar) + '\n' + 'Old Birth Date: ' + try_cast(@old_birth_date as varchar) + '\n' +
 'Old User Phone: ' + try_cast(@old_phone as varchar) + '\n' + 'Old User Email: ' + try_cast(@old_email as varchar) + '\n' +
-'Old User Address: ' + try_cast(@old_address as varchar) + '\n' + 'Old Profile Picture data dump: ' + try_cast(@old_profile_pic as varchar) + '\n' +
+'Old User Address: ' + try_cast(@old_address as varchar) + '\n' + 
 'Old User Balance: ' + try_cast(@old_user_balance as varchar) + '\n' + 'Old User Diagnose: ' + try_cast(@old_diagnose as varchar) + '\n'+
 'Old Register Date: ' + try_cast(@old_register_date as varchar) + '\n' + 'New Role ID: ' + try_cast(@old_role as varchar) + '\n' + 
 'New User ID: ' + try_cast(@new_id as varchar) + '\n' +
 'New User Name: ' + try_cast(@new_user_name as varchar) + '\n' + 'New User Password: ' + try_cast(@new_user_password as varchar) + '\n' +
 'New Display Name: ' + try_cast(@new_display_name as varchar) + '\n' + 'New Birth Date: ' + try_cast(@new_birth_date as varchar) + '\n' +
 'New User Phone: ' + try_cast(@new_phone as varchar) + '\n' + 'New User Email: ' + try_cast(@new_email as varchar) + '\n' +
-'New User Address: ' + try_cast(@new_address as varchar) + '\n' + 'New Profile Picture data dump: ' + try_cast(@new_profile_pic as varchar) + '\n' +
+'New User Address: ' + try_cast(@new_address as varchar) + '\n' + 
 'New User Balance: ' + try_cast(@new_user_balance as varchar) + '\n' + 'New User Diagnose: ' + try_cast(@new_diagnose as varchar) + '\n'+
 'New Register Date: ' + try_cast(@new_register_date as varchar) + '\n' + 'New Role ID: ' + try_cast(@new_role as varchar) + '\n' ;
 exec AddLog @logdate = @currentdate, 
@@ -2991,33 +2923,6 @@ select @old_diagnose = UserDiagnose from deleted;
 select @old_register_date = UserDateOfRegister from deleted;
 select @old_role = UserRole from deleted;
 set @currentdate = getdate();
-/* so here for a deleted user remove the user their role */
-if @old_role is not null
-begin
-if @old_role = 0
-begin
-set @sql = 'alter role XPAdmin drop member ' + QUOTENAME(@old_user_name) + ';';
-exec sp_executesql @sql;
-end
-else if @old_role = 1
-begin
-set @sql = 'alter role XPEmployee drop member ' + QUOTENAME(@old_user_name) + ';';
-exec sp_executesql @sql;
-end
-else if @old_role = 2
-begin
-set @sql = 'alter role XPClient drop member ' + QUOTENAME(@old_user_name) + ';';
-exec sp_executesql @sql;
-end
-end
-/* now drop the login data and the user */
-if @old_user_name is not null and @old_user_password is not null
-begin
-set @sql = 'drop user ' + QUOTENAME(@old_user_name) + ';';
-exec sp_executesql @sql;
-set @sql = 'drop login ' + QUOTENAME(@old_user_name) + ';';
-exec sp_executesql @sql;
-end
 /* now delete the ID of the user from the product orders */
 declare @affected_orders as table(OrderCounter int identity primary key not null , OrderID int unique);
 declare @affected_orders_count as int;
@@ -3047,12 +2952,15 @@ update ProductOrders set ClientID = -1, DateModified = @currentdate, OrderReason
 set @affected_orders_count = @affected_orders_count + 1;
 end
 end
-set @log_message = 'An user was removed list with the id: ' + try_cast(@old_id as varchar);
+set @log_message = 'An user was removed list with the id: ' + try_cast(@old_id as varchar)+'. Changes in the product orders will be reflected automatically but if you are a system administrator' +
+'you have manually remove membership of that user to the database and drop them and their login. If the user was with UserRole 0 remove them from the XPAdmin database role' +
+'if they were with UserRole of 1 remove them from the XPEmployee role and if they were with UserRole 2 remove them from the XPClient role. Role ID corresponds to the UserRole column of'
++ 'the table Users to refer to.';
 set @additional_information =  'Old User ID: ' + try_cast(@old_id as varchar) + '\n' +
 'Old User Name: ' + try_cast(@old_user_name as varchar) + '\n' + 'Old User Password: ' + try_cast(@old_user_password as varchar) + '\n' +
 'Old Display Name: ' + try_cast(@old_display_name as varchar) + '\n' + 'Old Birth Date: ' + try_cast(@old_birth_date as varchar) + '\n' +
 'Old User Phone: ' + try_cast(@old_phone as varchar) + '\n' + 'Old User Email: ' + try_cast(@old_email as varchar) + '\n' +
-'Old User Address: ' + try_cast(@old_address as varchar) + '\n' + 'Old Profile Picture data dump: ' + try_cast(@old_profile_pic as varchar) + '\n' +
+'Old User Address: ' + try_cast(@old_address as varchar) + '\n' + 
 'Old User Balance: ' + try_cast(@old_user_balance as varchar) + '\n' + 'Old User Diagnose: ' + try_cast(@old_diagnose as varchar) + '\n'+
 'Old Register Date: ' + try_cast(@old_register_date as varchar) + '\n' + 'New Role ID: ' + try_cast(@old_role as varchar) + '\n';
 exec AddLog @logdate = @currentdate, 
@@ -3333,6 +3241,7 @@ select @new_order_reason as NewOrderReason;
  '. New Date Added: ' + try_cast(@new_date_added as varchar) + '. Old Date Modified: ' + try_cast(@old_date_modified as varchar) + '. New Date Modified: ' + try_cast(@new_date_modified as varchar) +
  '. Old Status ID: ' + try_cast(@old_order_status as varchar) + '. New Status ID: ' + try_cast(@new_order_status as varchar) + '. Old Order Reason: ' + try_cast(@old_order_reason as varchar) +
  '. New Order Reason: ' + try_cast(@new_order_reason as varchar) + '.';
+ select 'Adding Logs';
  exec AddLog @logdate = @current_date,
 			 @logtitle = @log_title,
 			 @logmessage = @log_message,
@@ -3648,6 +3557,7 @@ set @additional_information = 'Old Delivery ID: ' + try_cast(@old_id as varchar)
 'New Cargo ID: ' + try_cast(@new_cargo_id as varchar) + '\n' + 'New Total Price: ' + try_cast(@new_total_price as varchar) + '\n' + 
 'New Date Added: ' + try_cast(@new_date_added as varchar) + '\n' + 'New Date Modified: ' + try_cast(@new_date_modified as varchar) +'\n' +
 'New Delivery Status ID: ' + try_cast(@new_delivery_status as varchar) + '\n' + 'New Delivery Reason: ' + try_cast(@new_delivery_reason as varchar) + '\n';
+select 'Adding Logs';
 exec AddLog @logdate = @current_date, 
 @logtitle='[XTremePharmacyDB] Order Delivery Updated', 
 @logmessage = @log_message,
