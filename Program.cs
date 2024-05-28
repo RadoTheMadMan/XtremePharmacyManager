@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -124,6 +125,13 @@ namespace XtremePharmacyManager
         {
             try
             {
+                Process currentProccess = Process.GetCurrentProcess();
+                bool IsAlreadyOpen = Process.GetProcessesByName(currentProccess.ProcessName).Any(p=>p.Id != currentProccess.Id);
+                if(IsAlreadyOpen)
+                {
+                    MessageBox.Show($"Only one instance of this application can be run at a time", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 resources = new GLOBAL_RESOURCES();
                 GLOBAL_RESOURCES.RefreshSettings();
                 GLOBAL_RESOURCES.UpdateCurrentCultureResources();

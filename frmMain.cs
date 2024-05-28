@@ -81,7 +81,7 @@ namespace XtremePharmacyManager
                     }
                     else
                     {
-                        if(MessageBox.Show($"Connection error. Please check the application configuration and/or contact your system administrator", "Test", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error) == DialogResult.Retry)
+                        if (MessageBox.Show($"Connection error. Please check the application configuration and/or contact your system administrator", "Test", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error) == DialogResult.Retry)
                         {
                             entities.Database.Connection.Open();
                             if (entities.Database.Connection.State != ConnectionState.Open)
@@ -93,7 +93,7 @@ namespace XtremePharmacyManager
                     }
                 }
             }
-            catch(Exception ex) 
+            catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -111,15 +111,15 @@ namespace XtremePharmacyManager
                 scsb.Password = GLOBAL_RESOURCES.DB_PASSWORD;
                 scsb.IntegratedSecurity = false;
                 connString = scsb.ConnectionString;
-                esb.Metadata = $"{Application.StartupPath}/DataEntities/XTremePharmacyModel.csdl|"+
-                               $"{Application.StartupPath}/DataEntities/XTremePharmacyModel.ssdl|"+
+                esb.Metadata = $"{Application.StartupPath}/DataEntities/XTremePharmacyModel.csdl|" +
+                               $"{Application.StartupPath}/DataEntities/XTremePharmacyModel.ssdl|" +
                                $"{Application.StartupPath}/DataEntities/XTremePharmacyModel.msl";
                 esb.Provider = "System.Data.SqlClient";
                 esb.ProviderConnectionString = connString;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}",$"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             target = new Entities(esb);
         }
@@ -130,7 +130,7 @@ namespace XtremePharmacyManager
             EntityConnectionStringBuilder esb = new EntityConnectionStringBuilder();
             try
             {
-               esb.ConnectionString = conn_string;
+                esb.ConnectionString = conn_string;
             }
             catch (Exception ex)
             {
@@ -148,7 +148,7 @@ namespace XtremePharmacyManager
         {
             bulkUserOperationManager = new BulkOperationManager<User>(ref entities);
             bulkProductBrandOperationManager = new BulkOperationManager<ProductBrand>(ref entities);
-            bulkProductVendorOperationManager = new BulkOperationManager<ProductVendor> (ref entities);
+            bulkProductVendorOperationManager = new BulkOperationManager<ProductVendor>(ref entities);
             bulkPaymentMethodOperationManager = new BulkOperationManager<PaymentMethod>(ref entities);
             bulkDeliveryServiceOperationManager = new BulkOperationManager<DeliveryService>(ref entities);
             bulkProductOperationManager = new BulkOperationManager<Product>(ref entities);
@@ -165,19 +165,19 @@ namespace XtremePharmacyManager
                 TestConnection();
                 //if the connection is successful time to load last logins
                 //use binary desearialisation to check for username files in .bin format, this will be hardcoded
-                if(CheckOrCreateLoginDirectory())
+                if (CheckOrCreateLoginDirectory())
                 {
-                    if(!LoadSavedLogins(out last_Logins) && currentUser == null)
+                    if (!LoadSavedLogins(out last_Logins) && currentUser == null)
                     {
                         //as the function returns true if the logins list is not empty and if the current user is null then this fires up
                         //make a login form and instantiate it, it will be a special one instantiated and closed as a dialog and it will have reference
                         //to the current user so it will apply changes at closing
                         frmLogin loginform = new frmLogin(ref entities, ref last_Logins);
                         DialogResult res = loginform.ShowDialog();
-                        if(res == DialogResult.OK)
+                        if (res == DialogResult.OK)
                         {
                             currentUser = loginform.ResultingUser;
-                            if(currentUser == null)
+                            if (currentUser == null)
                             {
                                 MessageBox.Show("No user currently logged in. Application will exit!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 Application.Exit();
@@ -189,7 +189,7 @@ namespace XtremePharmacyManager
                                     InitializeEntities(loginform.ConnectionString, out entities);
                                     InitializeLogger(ref entities, out logger);
                                     InitializeBulkManagers();
-                                    if(currentUser.UserRole == 1)
+                                    if (currentUser.UserRole == 1)
                                     {
                                         tsmenuUsers.Enabled = false;
                                         tsmenuProductBrands.Enabled = false;
@@ -209,8 +209,9 @@ namespace XtremePharmacyManager
                                         tsmenuBulkProductImageOperations.Enabled = true;
                                         tsmenuBulkProductOrderOperations.Enabled = true;
                                         tsmenuBulkOrderDeliveryOperations.Enabled = true;
+                                        MessageBox.Show("You are an employee, you have limited access to the features of this application.\nYour permissions:\n1.Add, edit, delete product images\n2.Generate product reports\n3.Add, edit, delete and/or generate reports for product orders\n4.Add, edit, delete and/or generate reports for order deliveries\n5.View logs\nEverything is created, altered and deleted using stored procedures so the database will calculate some of the things for you.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
-                                    else if(currentUser.UserRole == 0)
+                                    else if (currentUser.UserRole == 0)
                                     {
                                         tsmenuUsers.Enabled = true;
                                         tsmenuProductBrands.Enabled = true;
@@ -230,6 +231,7 @@ namespace XtremePharmacyManager
                                         tsmenuBulkProductImageOperations.Enabled = true;
                                         tsmenuBulkProductOrderOperations.Enabled = true;
                                         tsmenuBulkOrderDeliveryOperations.Enabled = true;
+                                        MessageBox.Show("You are an administrator. You have access to everything in the database.\nEverything is created, altered and deleted using stored procedures so the database will calculate some of the things for you.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
                                 }
                                 else
@@ -240,16 +242,16 @@ namespace XtremePharmacyManager
                                 if (last_Logins != null && !last_Logins.Contains(currentUser))
                                 {
                                     last_Logins.Add(currentUser);
-                                    foreach(var login in last_Logins)
+                                    foreach (var login in last_Logins)
                                     {
-                                        entities.Entry(entities.Users.Where(x=>x.ID == login.ID).FirstOrDefault()).Reload();
+                                        entities.Entry(entities.Users.Where(x => x.ID == login.ID).FirstOrDefault()).Reload();
                                         SaveLoginToFileSystem(login);
                                     }
                                 }
                                 SaveLoginToFileSystem(currentUser);
                             }
                         }
-                        else if(res == DialogResult.Cancel)
+                        else if (res == DialogResult.Cancel)
                         {
                             MessageBox.Show("You can't use this application without a proper authorization in the database. Application will exit!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             if (loginform != null)
@@ -292,6 +294,50 @@ namespace XtremePharmacyManager
                                     InitializeEntities(loginform.ConnectionString, out entities);
                                     InitializeLogger(ref entities, out logger);
                                     InitializeBulkManagers();
+                                    if (currentUser.UserRole == 1)
+                                    {
+                                        tsmenuUsers.Enabled = false;
+                                        tsmenuProductBrands.Enabled = false;
+                                        tsmenuProductVendors.Enabled = false;
+                                        tsmenuPaymentMethods.Enabled = false;
+                                        tsmenuDeliveryServices.Enabled = false;
+                                        tsmenuProducts.Enabled = true;
+                                        tsmenuProductOrders.Enabled = true;
+                                        tsmenuOrderDeliveries.Enabled = true;
+                                        tsmenuLogs.Enabled = true;
+                                        tsmenuBulkUserOperations.Enabled = false;
+                                        tsmenuBulkProductBrandOperations.Enabled = false;
+                                        tsmenuBulkProductVendorOperations.Enabled = false;
+                                        tsmenuBulkPaymentMethodOperations.Enabled = false;
+                                        tsmenuBulkDeliveryServiceOperations.Enabled = false;
+                                        tsmenuBulkProductOperations.Enabled = false;
+                                        tsmenuBulkProductImageOperations.Enabled = true;
+                                        tsmenuBulkProductOrderOperations.Enabled = true;
+                                        tsmenuBulkOrderDeliveryOperations.Enabled = true;
+                                        MessageBox.Show("You are an employee, you have limited access to the features of this application.\nYour permissions:\n1.Add, edit, delete product images\n2.Generate product reports\n3.Add, edit, delete and/or generate reports for product orders\n4.Add, edit, delete and/or generate reports for order deliveries\n5.View logs\nEverything is created, altered and deleted using stored procedures so the database will calculate some of the things for you.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
+                                    else if (currentUser.UserRole == 0)
+                                    {
+                                        tsmenuUsers.Enabled = true;
+                                        tsmenuProductBrands.Enabled = true;
+                                        tsmenuProductVendors.Enabled = true;
+                                        tsmenuPaymentMethods.Enabled = true;
+                                        tsmenuDeliveryServices.Enabled = true;
+                                        tsmenuProducts.Enabled = true;
+                                        tsmenuProductOrders.Enabled = true;
+                                        tsmenuOrderDeliveries.Enabled = true;
+                                        tsmenuLogs.Enabled = true;
+                                        tsmenuBulkUserOperations.Enabled = true;
+                                        tsmenuBulkProductBrandOperations.Enabled = true;
+                                        tsmenuBulkProductVendorOperations.Enabled = true;
+                                        tsmenuBulkPaymentMethodOperations.Enabled = true;
+                                        tsmenuBulkDeliveryServiceOperations.Enabled = true;
+                                        tsmenuBulkProductOperations.Enabled = true;
+                                        tsmenuBulkProductImageOperations.Enabled = true;
+                                        tsmenuBulkProductOrderOperations.Enabled = true;
+                                        tsmenuBulkOrderDeliveryOperations.Enabled = true;
+                                        MessageBox.Show("You are an administrator. You have access to everything in the database.\nEverything is created, altered and deleted using stored procedures so the database will calculate some of the things for you.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    }
                                 }
                                 else
                                 {
@@ -330,16 +376,16 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
-                if(entities != null && entities.Database.Connection.State != ConnectionState.Open)
+                if (entities != null && entities.Database.Connection.State != ConnectionState.Open)
                 {
                     entities.Database.Connection.Open();
-                    if(entities.Database.Connection.State == ConnectionState.Open)
+                    if (entities.Database.Connection.State == ConnectionState.Open)
                     {
                         MessageBox.Show("Successful connection and login to the database.\nNow you are ready to go", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        if(MessageBox.Show($"Failed to connect and login to the database.\nThis was not supposed to happen so contact the system administrator and/or check the application configuration...\n", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error) == DialogResult.Retry)
+                        if (MessageBox.Show($"Failed to connect and login to the database.\nThis was not supposed to happen so contact the system administrator and/or check the application configuration...\n", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error) == DialogResult.Retry)
                         {
                             TestConnection();
                         }
@@ -405,29 +451,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuDeliveryServices_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (deliveryservicessearchform == null)
+                    try
                     {
-                        deliveryservicessearchform = new frmSearchDeliveryServices(ref entities, ref logger, ref bulkDeliveryServiceOperationManager);
-                        deliveryservicessearchform.MdiParent = this;
-                        deliveryservicessearchform.Dock = DockStyle.Fill;
-                        deliveryservicessearchform.FormClosed += Deliveryservicessearchform_FormClosed;
-                        deliveryservicessearchform.Show();
+                        if (deliveryservicessearchform == null)
+                        {
+                            deliveryservicessearchform = new frmSearchDeliveryServices(ref entities, ref logger, ref bulkDeliveryServiceOperationManager);
+                            deliveryservicessearchform.MdiParent = this;
+                            deliveryservicessearchform.Dock = DockStyle.Fill;
+                            deliveryservicessearchform.FormClosed += Deliveryservicessearchform_FormClosed;
+                            deliveryservicessearchform.Show();
+                        }
+                        else
+                        {
+                            deliveryservicessearchform.WindowState = FormWindowState.Normal;
+                            deliveryservicessearchform.Dock = DockStyle.Fill;
+                            deliveryservicessearchform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        deliveryservicessearchform.WindowState = FormWindowState.Normal;
-                        deliveryservicessearchform.Dock = DockStyle.Fill;
-                        deliveryservicessearchform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Delivery Service list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -438,29 +491,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuPaymentMethods_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (paymentmethodssearchform == null)
-                    {   
-                        paymentmethodssearchform = new frmSearchPaymentMethods(ref entities, ref logger, ref bulkPaymentMethodOperationManager);
-                        paymentmethodssearchform.MdiParent = this;
-                        paymentmethodssearchform.Dock = DockStyle.Fill;
-                        paymentmethodssearchform.FormClosed += Paymentmethodssearchform_FormClosed;
-                        paymentmethodssearchform.Show();
-                    }   
-                    else
-                    {  
-                        paymentmethodssearchform.WindowState = FormWindowState.Normal;
-                        paymentmethodssearchform.Dock = DockStyle.Fill;
-                        paymentmethodssearchform.Activate();
+                    try
+                    {
+                        if (paymentmethodssearchform == null)
+                        {
+                            paymentmethodssearchform = new frmSearchPaymentMethods(ref entities, ref logger, ref bulkPaymentMethodOperationManager);
+                            paymentmethodssearchform.MdiParent = this;
+                            paymentmethodssearchform.Dock = DockStyle.Fill;
+                            paymentmethodssearchform.FormClosed += Paymentmethodssearchform_FormClosed;
+                            paymentmethodssearchform.Show();
+                        }
+                        else
+                        {
+                            paymentmethodssearchform.WindowState = FormWindowState.Normal;
+                            paymentmethodssearchform.Dock = DockStyle.Fill;
+                            paymentmethodssearchform.Activate();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Payment Method list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -471,29 +531,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuProductBrands_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (productbrandssearchform == null)
-                    {   
-                        productbrandssearchform = new frmSearchProductBrands(ref entities, ref logger, ref bulkProductBrandOperationManager);
-                        productbrandssearchform.MdiParent = this;
-                        productbrandssearchform.Dock = DockStyle.Fill;
-                        productbrandssearchform.FormClosed += Productbrandssearchform_FormClosed;
-                        productbrandssearchform.Show();
-                    }    
-                    else 
-                    {    
-                        productbrandssearchform.WindowState = FormWindowState.Normal;
-                        productbrandssearchform.Dock = DockStyle.Fill;
-                        productbrandssearchform.Activate();
+                    try
+                    {
+                        if (productbrandssearchform == null)
+                        {
+                            productbrandssearchform = new frmSearchProductBrands(ref entities, ref logger, ref bulkProductBrandOperationManager);
+                            productbrandssearchform.MdiParent = this;
+                            productbrandssearchform.Dock = DockStyle.Fill;
+                            productbrandssearchform.FormClosed += Productbrandssearchform_FormClosed;
+                            productbrandssearchform.Show();
+                        }
+                        else
+                        {
+                            productbrandssearchform.WindowState = FormWindowState.Normal;
+                            productbrandssearchform.Dock = DockStyle.Fill;
+                            productbrandssearchform.Activate();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Product Brand list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -504,29 +571,44 @@ namespace XtremePharmacyManager
 
         private void tsmenuProducts_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0 || currentUser.UserRole == 1)
             {
-                try
+                if (currentUser.UserRole == 0)
                 {
-                    if (productssearchform == null)
+                    MessageBox.Show("You have full access to the products and product images", $"User Access", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (currentUser.UserRole == 1)
+                {
+                    MessageBox.Show("You have limited access to the products and the product images", $"User Access", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                if (entities.Database.Connection.State == ConnectionState.Open)
+                {
+                    try
                     {
-                        productssearchform = new frmSearchProducts(ref entities, ref logger, ref bulkProductOperationManager, ref bulkProductImageOperationManager);
-                        productssearchform.MdiParent = this;
-                        productssearchform.Dock = DockStyle.Fill;
-                        productssearchform.FormClosed += Productssearchform_FormClosed;
-                        productssearchform.Show();
+                        if (productssearchform == null)
+                        {
+                            productssearchform = new frmSearchProducts(ref entities, ref logger, ref bulkProductOperationManager, ref bulkProductImageOperationManager);
+                            productssearchform.MdiParent = this;
+                            productssearchform.Dock = DockStyle.Fill;
+                            productssearchform.FormClosed += Productssearchform_FormClosed;
+                            productssearchform.Show();
+                        }
+                        else
+                        {
+                            productssearchform.WindowState = FormWindowState.Normal;
+                            productssearchform.Dock = DockStyle.Fill;
+                            productssearchform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        productssearchform.WindowState = FormWindowState.Normal;
-                        productssearchform.Dock = DockStyle.Fill;
-                        productssearchform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Products and Product Images list access is given only to administrators and employees of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -537,29 +619,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuProductOrders_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0 || currentUser.UserRole == 1)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (orderssearchform == null)
+                    try
                     {
-                        orderssearchform = new frmSearchProductOrders(ref entities, ref logger, ref bulkProductOrderOperationManager);
-                        orderssearchform.MdiParent = this;
-                        orderssearchform.Dock = DockStyle.Fill;
-                        orderssearchform.FormClosed += Orderssearchform_FormClosed;
-                        orderssearchform.Show();
+                        if (orderssearchform == null)
+                        {
+                            orderssearchform = new frmSearchProductOrders(ref entities, ref logger, ref bulkProductOrderOperationManager);
+                            orderssearchform.MdiParent = this;
+                            orderssearchform.Dock = DockStyle.Fill;
+                            orderssearchform.FormClosed += Orderssearchform_FormClosed;
+                            orderssearchform.Show();
+                        }
+                        else
+                        {
+                            orderssearchform.WindowState = FormWindowState.Normal;
+                            orderssearchform.Dock = DockStyle.Fill;
+                            orderssearchform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        orderssearchform.WindowState = FormWindowState.Normal;
-                        orderssearchform.Dock = DockStyle.Fill;
-                        orderssearchform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Product Orders list access is given only to administrators and employees of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -570,30 +659,38 @@ namespace XtremePharmacyManager
 
         private void tsmenuOrderDeliveries_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0 || currentUser.UserRole == 1)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (orderdeliveriessearchform == null)
+                    try
                     {
-                        orderdeliveriessearchform = new frmSearchOrderDeliveries(ref entities, ref logger, ref bulkOrderDeliveryOperationManager);
-                        orderdeliveriessearchform.MdiParent = this;
-                        orderdeliveriessearchform.Dock = DockStyle.Fill;
-                        orderdeliveriessearchform.FormClosed += Orderdeliveriessearchform_FormClosed;
-                        orderdeliveriessearchform.Show();
+                        if (orderdeliveriessearchform == null)
+                        {
+                            orderdeliveriessearchform = new frmSearchOrderDeliveries(ref entities, ref logger, ref bulkOrderDeliveryOperationManager);
+                            orderdeliveriessearchform.MdiParent = this;
+                            orderdeliveriessearchform.Dock = DockStyle.Fill;
+                            orderdeliveriessearchform.FormClosed += Orderdeliveriessearchform_FormClosed;
+                            orderdeliveriessearchform.Show();
+                        }
+                        else
+                        {
+                            orderdeliveriessearchform.WindowState = FormWindowState.Normal;
+                            orderdeliveriessearchform.Dock = DockStyle.Fill;
+                            orderdeliveriessearchform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        orderdeliveriessearchform.WindowState = FormWindowState.Normal;
-                        orderdeliveriessearchform.Dock = DockStyle.Fill;
-                        orderdeliveriessearchform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            else
+            {
+                MessageBox.Show("Order Deliveries list access is given only to administrators and employees of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
         private void Orderdeliveriessearchform_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -602,30 +699,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuLogs_Click(object sender, EventArgs e)
         {
-
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0 || currentUser.UserRole == 1)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (logsform == null)
+                    try
                     {
-                        logsform = new frmLogs(ref logger);
-                        logsform.MdiParent = this;
-                        logsform.Dock = DockStyle.Fill;
-                        logsform.FormClosed += Logsform_FormClosed;
-                        logsform.Show();
+                        if (logsform == null)
+                        {
+                            logsform = new frmLogs(ref logger);
+                            logsform.MdiParent = this;
+                            logsform.Dock = DockStyle.Fill;
+                            logsform.FormClosed += Logsform_FormClosed;
+                            logsform.Show();
+                        }
+                        else
+                        {
+                            logsform.WindowState = FormWindowState.Normal;
+                            logsform.Dock = DockStyle.Fill;
+                            logsform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        logsform.WindowState = FormWindowState.Normal;
-                        logsform.Dock = DockStyle.Fill;
-                        logsform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Database Logs access is given only to administrators and employees of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -868,29 +971,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuBulkUserOperations_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (bulkUserOperationsform == null)
+                    try
                     {
-                        bulkUserOperationsform = new frmBulkUserOperations(ref bulkUserOperationManager);
-                        bulkUserOperationsform.MdiParent = this;
-                        bulkUserOperationsform.Dock = DockStyle.Fill;
-                        bulkUserOperationsform.FormClosed += bulkUserOperationsform_FormClosed;
-                        bulkUserOperationsform.Show();
+                        if (bulkUserOperationsform == null)
+                        {
+                            bulkUserOperationsform = new frmBulkUserOperations(ref bulkUserOperationManager);
+                            bulkUserOperationsform.MdiParent = this;
+                            bulkUserOperationsform.Dock = DockStyle.Fill;
+                            bulkUserOperationsform.FormClosed += bulkUserOperationsform_FormClosed;
+                            bulkUserOperationsform.Show();
+                        }
+                        else
+                        {
+                            bulkUserOperationsform.WindowState = FormWindowState.Normal;
+                            bulkUserOperationsform.Dock = DockStyle.Fill;
+                            bulkUserOperationsform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        bulkUserOperationsform.WindowState = FormWindowState.Normal;
-                        bulkUserOperationsform.Dock = DockStyle.Fill;
-                        bulkUserOperationsform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Bulk User Operation access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -901,29 +1011,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuBulkProductBrandOperations_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (bulkProductBrandOperationsform == null)
+                    try
                     {
-                        bulkProductBrandOperationsform = new frmBulkProductBrandOperations(ref bulkProductBrandOperationManager);
-                        bulkProductBrandOperationsform.MdiParent = this;
-                        bulkProductBrandOperationsform.Dock = DockStyle.Fill;
-                        bulkProductBrandOperationsform.FormClosed += bulkProductBrandOperationsform_FormClosed;
-                        bulkProductBrandOperationsform.Show();
+                        if (bulkProductBrandOperationsform == null)
+                        {
+                            bulkProductBrandOperationsform = new frmBulkProductBrandOperations(ref bulkProductBrandOperationManager);
+                            bulkProductBrandOperationsform.MdiParent = this;
+                            bulkProductBrandOperationsform.Dock = DockStyle.Fill;
+                            bulkProductBrandOperationsform.FormClosed += bulkProductBrandOperationsform_FormClosed;
+                            bulkProductBrandOperationsform.Show();
+                        }
+                        else
+                        {
+                            bulkProductBrandOperationsform.WindowState = FormWindowState.Normal;
+                            bulkProductBrandOperationsform.Dock = DockStyle.Fill;
+                            bulkProductBrandOperationsform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        bulkProductBrandOperationsform.WindowState = FormWindowState.Normal;
-                        bulkProductBrandOperationsform.Dock = DockStyle.Fill;
-                        bulkProductBrandOperationsform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Bulk Product Brand Operation access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -934,29 +1051,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuBulkPaymentMethodOperations_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (bulkPaymentMethodOperationsform == null)
+                    try
                     {
-                        bulkPaymentMethodOperationsform = new frmBulkPaymentMethodOperations(ref bulkPaymentMethodOperationManager);
-                        bulkPaymentMethodOperationsform.MdiParent = this;
-                        bulkPaymentMethodOperationsform.Dock = DockStyle.Fill;
-                        bulkPaymentMethodOperationsform.FormClosed += bulkPaymentMethodOperationsform_FormClosed;
-                        bulkPaymentMethodOperationsform.Show();
+                        if (bulkPaymentMethodOperationsform == null)
+                        {
+                            bulkPaymentMethodOperationsform = new frmBulkPaymentMethodOperations(ref bulkPaymentMethodOperationManager);
+                            bulkPaymentMethodOperationsform.MdiParent = this;
+                            bulkPaymentMethodOperationsform.Dock = DockStyle.Fill;
+                            bulkPaymentMethodOperationsform.FormClosed += bulkPaymentMethodOperationsform_FormClosed;
+                            bulkPaymentMethodOperationsform.Show();
+                        }
+                        else
+                        {
+                            bulkPaymentMethodOperationsform.WindowState = FormWindowState.Normal;
+                            bulkPaymentMethodOperationsform.Dock = DockStyle.Fill;
+                            bulkPaymentMethodOperationsform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        bulkPaymentMethodOperationsform.WindowState = FormWindowState.Normal;
-                        bulkPaymentMethodOperationsform.Dock = DockStyle.Fill;
-                        bulkPaymentMethodOperationsform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Bulk Payment Method Operation access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -967,29 +1091,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuBulkDeliveryServiceOperations_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (bulkDeliveryServiceOperationsform == null)
+                    try
                     {
-                        bulkDeliveryServiceOperationsform = new frmBulkDeliveryServiceOperations(ref bulkDeliveryServiceOperationManager);
-                        bulkDeliveryServiceOperationsform.MdiParent = this;
-                        bulkDeliveryServiceOperationsform.Dock = DockStyle.Fill;
-                        bulkDeliveryServiceOperationsform.FormClosed += bulkDeliveryServiceOperationsform_FormClosed;
-                        bulkDeliveryServiceOperationsform.Show();
+                        if (bulkDeliveryServiceOperationsform == null)
+                        {
+                            bulkDeliveryServiceOperationsform = new frmBulkDeliveryServiceOperations(ref bulkDeliveryServiceOperationManager);
+                            bulkDeliveryServiceOperationsform.MdiParent = this;
+                            bulkDeliveryServiceOperationsform.Dock = DockStyle.Fill;
+                            bulkDeliveryServiceOperationsform.FormClosed += bulkDeliveryServiceOperationsform_FormClosed;
+                            bulkDeliveryServiceOperationsform.Show();
+                        }
+                        else
+                        {
+                            bulkDeliveryServiceOperationsform.WindowState = FormWindowState.Normal;
+                            bulkDeliveryServiceOperationsform.Dock = DockStyle.Fill;
+                            bulkDeliveryServiceOperationsform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        bulkDeliveryServiceOperationsform.WindowState = FormWindowState.Normal;
-                        bulkDeliveryServiceOperationsform.Dock = DockStyle.Fill;
-                        bulkDeliveryServiceOperationsform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Bulk Delivery Service Operation access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1000,29 +1131,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuBulkProductOperations_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (bulkProductOperationsform == null)
+                    try
                     {
-                        bulkProductOperationsform = new frmBulkProductOperations(ref bulkProductOperationManager);
-                        bulkProductOperationsform.MdiParent = this;
-                        bulkProductOperationsform.Dock = DockStyle.Fill;
-                        bulkProductOperationsform.FormClosed += bulkProductOperationsform_FormClosed;
-                        bulkProductOperationsform.Show();
+                        if (bulkProductOperationsform == null)
+                        {
+                            bulkProductOperationsform = new frmBulkProductOperations(ref bulkProductOperationManager);
+                            bulkProductOperationsform.MdiParent = this;
+                            bulkProductOperationsform.Dock = DockStyle.Fill;
+                            bulkProductOperationsform.FormClosed += bulkProductOperationsform_FormClosed;
+                            bulkProductOperationsform.Show();
+                        }
+                        else
+                        {
+                            bulkProductOperationsform.WindowState = FormWindowState.Normal;
+                            bulkProductOperationsform.Dock = DockStyle.Fill;
+                            bulkProductOperationsform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        bulkProductOperationsform.WindowState = FormWindowState.Normal;
-                        bulkProductOperationsform.Dock = DockStyle.Fill;
-                        bulkProductOperationsform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Bulk Product Operation access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1033,29 +1171,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuBulkProductImageOperations_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0 || currentUser.UserRole == 1)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (bulkProductImageOperationsform == null)
+                    try
                     {
-                        bulkProductImageOperationsform = new frmBulkProductImageOperations(ref bulkProductImageOperationManager);
-                        bulkProductImageOperationsform.MdiParent = this;
-                        bulkProductImageOperationsform.Dock = DockStyle.Fill;
-                        bulkProductImageOperationsform.FormClosed += bulkProductImageOperationsform_FormClosed;
-                        bulkProductImageOperationsform.Show();
+                        if (bulkProductImageOperationsform == null)
+                        {
+                            bulkProductImageOperationsform = new frmBulkProductImageOperations(ref bulkProductImageOperationManager);
+                            bulkProductImageOperationsform.MdiParent = this;
+                            bulkProductImageOperationsform.Dock = DockStyle.Fill;
+                            bulkProductImageOperationsform.FormClosed += bulkProductImageOperationsform_FormClosed;
+                            bulkProductImageOperationsform.Show();
+                        }
+                        else
+                        {
+                            bulkProductImageOperationsform.WindowState = FormWindowState.Normal;
+                            bulkProductImageOperationsform.Dock = DockStyle.Fill;
+                            bulkProductImageOperationsform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        bulkProductImageOperationsform.WindowState = FormWindowState.Normal;
-                        bulkProductImageOperationsform.Dock = DockStyle.Fill;
-                        bulkProductImageOperationsform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Bulk Product Image Operation access is given only to administrators and employees of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1066,29 +1211,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuBulkProductOrderOperations_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0 || currentUser.UserRole == 1)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (bulkProductOrderOperationsform == null)
+                    try
                     {
-                        bulkProductOrderOperationsform = new frmBulkProductOrderOperations(ref bulkProductOrderOperationManager);
-                        bulkProductOrderOperationsform.MdiParent = this;
-                        bulkProductOrderOperationsform.Dock = DockStyle.Fill;
-                        bulkProductOrderOperationsform.FormClosed += bulkProductOrderOperationsform_FormClosed;
-                        bulkProductOrderOperationsform.Show();
+                        if (bulkProductOrderOperationsform == null)
+                        {
+                            bulkProductOrderOperationsform = new frmBulkProductOrderOperations(ref bulkProductOrderOperationManager);
+                            bulkProductOrderOperationsform.MdiParent = this;
+                            bulkProductOrderOperationsform.Dock = DockStyle.Fill;
+                            bulkProductOrderOperationsform.FormClosed += bulkProductOrderOperationsform_FormClosed;
+                            bulkProductOrderOperationsform.Show();
+                        }
+                        else
+                        {
+                            bulkProductOrderOperationsform.WindowState = FormWindowState.Normal;
+                            bulkProductOrderOperationsform.Dock = DockStyle.Fill;
+                            bulkProductOrderOperationsform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        bulkProductOrderOperationsform.WindowState = FormWindowState.Normal;
-                        bulkProductOrderOperationsform.Dock = DockStyle.Fill;
-                        bulkProductOrderOperationsform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Bulk Product Order Operation access is given only to administrators and employees of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1099,29 +1251,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuBulkOrderDeliveryOperations_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0 || currentUser.UserRole == 1)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (bulkOrderDeliveryOperationsform == null)
+                    try
                     {
-                        bulkOrderDeliveryOperationsform = new frmBulkOrderDeliveryOperations(ref bulkOrderDeliveryOperationManager);
-                        bulkOrderDeliveryOperationsform.MdiParent = this;
-                        bulkOrderDeliveryOperationsform.Dock = DockStyle.Fill;
-                        bulkOrderDeliveryOperationsform.FormClosed += bulkOrderDeliveryOperationsform_FormClosed;
-                        bulkOrderDeliveryOperationsform.Show();
+                        if (bulkOrderDeliveryOperationsform == null)
+                        {
+                            bulkOrderDeliveryOperationsform = new frmBulkOrderDeliveryOperations(ref bulkOrderDeliveryOperationManager);
+                            bulkOrderDeliveryOperationsform.MdiParent = this;
+                            bulkOrderDeliveryOperationsform.Dock = DockStyle.Fill;
+                            bulkOrderDeliveryOperationsform.FormClosed += bulkOrderDeliveryOperationsform_FormClosed;
+                            bulkOrderDeliveryOperationsform.Show();
+                        }
+                        else
+                        {
+                            bulkOrderDeliveryOperationsform.WindowState = FormWindowState.Normal;
+                            bulkOrderDeliveryOperationsform.Dock = DockStyle.Fill;
+                            bulkOrderDeliveryOperationsform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        bulkOrderDeliveryOperationsform.WindowState = FormWindowState.Normal;
-                        bulkOrderDeliveryOperationsform.Dock = DockStyle.Fill;
-                        bulkOrderDeliveryOperationsform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Bulk Order Delivery Operation access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1132,29 +1291,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuProductVendors_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (productvendorssearchform == null)
+                    try
                     {
-                        productvendorssearchform = new frmSearchProductVendors(ref entities, ref logger, ref bulkProductVendorOperationManager);
-                        productvendorssearchform.MdiParent = this;
-                        productvendorssearchform.Dock = DockStyle.Fill;
-                        productvendorssearchform.FormClosed += Productvendorssearchform_FormClosed;
-                        productvendorssearchform.Show();
+                        if (productvendorssearchform == null)
+                        {
+                            productvendorssearchform = new frmSearchProductVendors(ref entities, ref logger, ref bulkProductVendorOperationManager);
+                            productvendorssearchform.MdiParent = this;
+                            productvendorssearchform.Dock = DockStyle.Fill;
+                            productvendorssearchform.FormClosed += Productvendorssearchform_FormClosed;
+                            productvendorssearchform.Show();
+                        }
+                        else
+                        {
+                            productvendorssearchform.WindowState = FormWindowState.Normal;
+                            productvendorssearchform.Dock = DockStyle.Fill;
+                            productvendorssearchform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        productvendorssearchform.WindowState = FormWindowState.Normal;
-                        productvendorssearchform.Dock = DockStyle.Fill;
-                        productvendorssearchform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Product Vendors list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1165,29 +1331,36 @@ namespace XtremePharmacyManager
 
         private void tsmenuBulkProductVendorOperations_Click(object sender, EventArgs e)
         {
-            if (entities.Database.Connection.State == ConnectionState.Open)
+            if (currentUser.UserRole == 0)
             {
-                try
+                if (entities.Database.Connection.State == ConnectionState.Open)
                 {
-                    if (bulkProductVendorOperationsform == null)
+                    try
                     {
-                        bulkProductVendorOperationsform = new frmBulkProductVendorOperations(ref bulkProductVendorOperationManager);
-                        bulkProductVendorOperationsform.MdiParent = this;
-                        bulkProductVendorOperationsform.Dock = DockStyle.Fill;
-                        bulkProductVendorOperationsform.FormClosed += bulkProductVendorOperationsform_FormClosed;
-                        bulkProductVendorOperationsform.Show();
+                        if (bulkProductVendorOperationsform == null)
+                        {
+                            bulkProductVendorOperationsform = new frmBulkProductVendorOperations(ref bulkProductVendorOperationManager);
+                            bulkProductVendorOperationsform.MdiParent = this;
+                            bulkProductVendorOperationsform.Dock = DockStyle.Fill;
+                            bulkProductVendorOperationsform.FormClosed += bulkProductVendorOperationsform_FormClosed;
+                            bulkProductVendorOperationsform.Show();
+                        }
+                        else
+                        {
+                            bulkProductVendorOperationsform.WindowState = FormWindowState.Normal;
+                            bulkProductVendorOperationsform.Dock = DockStyle.Fill;
+                            bulkProductVendorOperationsform.Activate();
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        bulkProductVendorOperationsform.WindowState = FormWindowState.Normal;
-                        bulkProductVendorOperationsform.Dock = DockStyle.Fill;
-                        bulkProductVendorOperationsform.Activate();
+                        MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+            }
+            else
+            {
+                MessageBox.Show("Bulk Product Vendor Operation access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
