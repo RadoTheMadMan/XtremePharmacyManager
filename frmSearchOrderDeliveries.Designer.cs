@@ -32,7 +32,7 @@ namespace XtremePharmacyManager
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSearchOrderDeliveries));
             this.dgvOrderDeliveries = new System.Windows.Forms.DataGridView();
             this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -124,14 +124,14 @@ namespace XtremePharmacyManager
             this.dgvOrderDeliveries.MultiSelect = false;
             this.dgvOrderDeliveries.Name = "dgvOrderDeliveries";
             this.dgvOrderDeliveries.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvOrderDeliveries.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvOrderDeliveries.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvOrderDeliveries.RowHeadersWidth = 51;
             this.dgvOrderDeliveries.RowTemplate.Height = 24;
             this.dgvOrderDeliveries.Size = new System.Drawing.Size(820, 146);
@@ -721,6 +721,7 @@ namespace XtremePharmacyManager
             this.MaximizeBox = false;
             this.Name = "frmSearchOrderDeliveries";
             this.Text = "Order Deliveries";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSearchOrderDeliveries_FormClosing);
             this.Load += new System.EventHandler(this.frmSearchOrderDeliveries_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDeliveries)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).EndInit();

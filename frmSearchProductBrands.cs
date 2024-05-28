@@ -43,7 +43,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open && current_user.UserRole == 0)
+                if (ent.Database.Connection.State == ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     product_brands = ent.GetBrand(-1, "").ToList();
                     foreach(var entry in  product_brands)
@@ -67,28 +67,28 @@ namespace XtremePharmacyManager
             Int32.TryParse(txtID.Text, out BrandID);
             string BrandName = txtBrandName.Text;
             int SearchMode = cbSearchMode.SelectedIndex;
-          if (SearchMode == 1 && current_user.UserRole == 0)
+          if (SearchMode == 1 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 product_brands = ent.ProductBrands.Where(
                     x => x.ID == BrandID ^ x.BrandName.Contains(BrandName)).ToList(); 
                 dgvProductBrands.DataSource = product_brands;
             }
-            else if (SearchMode == 2 && current_user.UserRole == 0)
+            else if (SearchMode == 2 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 product_brands = ent.ProductBrands.Where(
                     x => x.ID == BrandID || x.BrandName.Contains(BrandName)).ToList();
                 dgvProductBrands.DataSource = product_brands;
             }
-            else if (SearchMode == 3 && current_user.UserRole == 0)
+            else if (SearchMode == 3 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 product_brands = ent.GetBrand(BrandID,BrandName).ToList();
                 dgvProductBrands.DataSource = product_brands;
             }
             else
             {
-                if(current_user.UserRole != 0)
+                if(current_user.UserRole != 0 && current_user.UserRole != 1)
                 {
-                    MessageBox.Show("Product Brands list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Product Brands list access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 RefreshProductBrands();
             }
@@ -405,10 +405,12 @@ namespace XtremePharmacyManager
         {
             if(manager != null)
             {
+                manager.BulkOperationsExecuted -= ProductBrands_OnBulkOperationExecuted;
                 manager = null;
             }
             if(product_brands != null)
             {
+                product_brands.Clear();
                 product_brands = null;
             }
             if(logger != null)

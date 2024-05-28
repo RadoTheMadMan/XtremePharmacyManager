@@ -43,7 +43,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open && current_user.UserRole == 0)
+                if (ent.Database.Connection.State == ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     payment_methods = ent.GetPaymentMethod(-1, "").ToList();
                     foreach(var entry in payment_methods) 
@@ -67,28 +67,28 @@ namespace XtremePharmacyManager
             Int32.TryParse(txtID.Text, out MethodID);
             string MethodName = txtMethodName.Text;
             int SearchMode = cbSearchMode.SelectedIndex;
-          if (SearchMode == 1 && current_user.UserRole == 0)
+          if (SearchMode == 1 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 payment_methods = ent.PaymentMethods.Where(
                     x => x.ID == MethodID ^ x.MethodName.Contains(MethodName)).ToList(); 
                 dgvPaymentMethods.DataSource = payment_methods;
             }
-            else if (SearchMode == 2 && current_user.UserRole == 0)
+            else if (SearchMode == 2 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 payment_methods = ent.PaymentMethods.Where(
                     x => x.ID == MethodID || x.MethodName.Contains(MethodName)).ToList();
                 dgvPaymentMethods.DataSource = payment_methods;
             }
-            else if (SearchMode == 3 && current_user.UserRole == 0)
+            else if (SearchMode == 3 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 payment_methods = ent.GetPaymentMethod(MethodID,MethodName).ToList();
                 dgvPaymentMethods.DataSource = payment_methods;
             }
             else
             {
-                if (current_user.UserRole != 0)
+                if (current_user.UserRole != 0 && current_user.UserRole != 1)
                 {
-                    MessageBox.Show("Payment Methods list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Payment Methods list access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 RefreshPaymentMethods();
             }
@@ -406,10 +406,12 @@ namespace XtremePharmacyManager
         {
             if(manager != null)
             {
+                manager.BulkOperationsExecuted -= PaymentMethods_OnBulkOperationExecuted;
                 manager = null;
             }
             if (payment_methods != null)
             {
+                payment_methods.Clear();
                 payment_methods = null;
             }
             if(logger != null)

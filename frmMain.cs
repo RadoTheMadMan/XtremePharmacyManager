@@ -141,7 +141,7 @@ namespace XtremePharmacyManager
 
         private void InitializeLogger(ref Entities ent, out Logger target)
         {
-            target = new Logger(ref ent);
+            target = new Logger(ref ent, ref currentUser);
         }
 
         private void InitializeBulkManagers()
@@ -191,11 +191,11 @@ namespace XtremePharmacyManager
                                     InitializeBulkManagers();
                                     if (currentUser.UserRole == 1)
                                     {
-                                        tsmenuUsers.Enabled = false;
-                                        tsmenuProductBrands.Enabled = false;
-                                        tsmenuProductVendors.Enabled = false;
-                                        tsmenuPaymentMethods.Enabled = false;
-                                        tsmenuDeliveryServices.Enabled = false;
+                                        tsmenuUsers.Enabled = true;
+                                        tsmenuProductBrands.Enabled = true;
+                                        tsmenuProductVendors.Enabled = true;
+                                        tsmenuPaymentMethods.Enabled = true;
+                                        tsmenuDeliveryServices.Enabled = true;
                                         tsmenuProducts.Enabled = true;
                                         tsmenuProductOrders.Enabled = true;
                                         tsmenuOrderDeliveries.Enabled = true;
@@ -209,7 +209,7 @@ namespace XtremePharmacyManager
                                         tsmenuBulkProductImageOperations.Enabled = true;
                                         tsmenuBulkProductOrderOperations.Enabled = true;
                                         tsmenuBulkOrderDeliveryOperations.Enabled = true;
-                                        MessageBox.Show("You are an employee, you have limited access to the features of this application.\nYour permissions:\n1.Add, edit, delete product images\n2.Generate product reports\n3.Add, edit, delete and/or generate reports for product orders\n4.Add, edit, delete and/or generate reports for order deliveries\n5.View logs\nEverything is created, altered and deleted using stored procedures so the database will calculate some of the things for you.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        MessageBox.Show("You are an employee, you have limited access to the features of this application.\nYour permissions:\n1.Add, edit, delete product images\n2.Generate product reports\n3.Add, edit, delete and/or generate reports for product orders\n4.Add, edit, delete and/or generate reports for order deliveries\n5.View logs\n6.View the rest of the tables with read-only permissions.\nThe bulk operations enabled for you are for product images, product orders and order deliveries.\nEverything is created, altered and deleted using stored procedures so the database will calculate some of the things for you.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
                                     else if (currentUser.UserRole == 0)
                                     {
@@ -296,11 +296,11 @@ namespace XtremePharmacyManager
                                     InitializeBulkManagers();
                                     if (currentUser.UserRole == 1)
                                     {
-                                        tsmenuUsers.Enabled = false;
-                                        tsmenuProductBrands.Enabled = false;
-                                        tsmenuProductVendors.Enabled = false;
-                                        tsmenuPaymentMethods.Enabled = false;
-                                        tsmenuDeliveryServices.Enabled = false;
+                                        tsmenuUsers.Enabled = true;
+                                        tsmenuProductBrands.Enabled = true;
+                                        tsmenuProductVendors.Enabled = true;
+                                        tsmenuPaymentMethods.Enabled = true;
+                                        tsmenuDeliveryServices.Enabled = true;
                                         tsmenuProducts.Enabled = true;
                                         tsmenuProductOrders.Enabled = true;
                                         tsmenuOrderDeliveries.Enabled = true;
@@ -314,7 +314,7 @@ namespace XtremePharmacyManager
                                         tsmenuBulkProductImageOperations.Enabled = true;
                                         tsmenuBulkProductOrderOperations.Enabled = true;
                                         tsmenuBulkOrderDeliveryOperations.Enabled = true;
-                                        MessageBox.Show("You are an employee, you have limited access to the features of this application.\nYour permissions:\n1.Add, edit, delete product images\n2.Generate product reports\n3.Add, edit, delete and/or generate reports for product orders\n4.Add, edit, delete and/or generate reports for order deliveries\n5.View logs\nEverything is created, altered and deleted using stored procedures so the database will calculate some of the things for you.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        MessageBox.Show("You are an employee, you have limited access to the features of this application.\nYour permissions:\n1.Add, edit, delete product images\n2.Generate product reports\n3.Add, edit, delete and/or generate reports for product orders\n4.Add, edit, delete and/or generate reports for order deliveries\n5.View logs\n6.View the rest of the tables with read-only permissions.\nThe bulk operations enabled for you are for product images, product orders and order deliveries.\nEverything is created, altered and deleted using stored procedures so the database will calculate some of the things for you.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     }
                                     else if (currentUser.UserRole == 0)
                                     {
@@ -406,7 +406,7 @@ namespace XtremePharmacyManager
 
         private void tsmenuUsers_Click(object sender, EventArgs e)
         {
-            if (currentUser.UserRole == 0)
+            if (currentUser.UserRole == 0 || currentUser.UserRole == 1)
             {
                 if (entities.Database.Connection.State == ConnectionState.Open)
                 {
@@ -435,7 +435,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("User list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("User list access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -451,7 +451,7 @@ namespace XtremePharmacyManager
 
         private void tsmenuDeliveryServices_Click(object sender, EventArgs e)
         {
-            if (currentUser.UserRole == 0)
+            if (currentUser.UserRole == 0 || currentUser.UserRole == 1)
             {
                 if (entities.Database.Connection.State == ConnectionState.Open)
                 {
@@ -480,7 +480,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Delivery Service list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Delivery Service list access is given only to administrators of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -492,7 +492,7 @@ namespace XtremePharmacyManager
 
         private void tsmenuPaymentMethods_Click(object sender, EventArgs e)
         {
-            if (currentUser.UserRole == 0)
+            if (currentUser.UserRole == 0 || currentUser.UserRole == 1)
             {
                 if (entities.Database.Connection.State == ConnectionState.Open)
                 {
@@ -521,7 +521,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Payment Method list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Payment Method list access is given only to administrators of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -533,7 +533,7 @@ namespace XtremePharmacyManager
 
         private void tsmenuProductBrands_Click(object sender, EventArgs e)
         {
-            if (currentUser.UserRole == 0)
+            if (currentUser.UserRole == 0 || currentUser.UserRole == 1)
             {
                 if (entities.Database.Connection.State == ConnectionState.Open)
                 {
@@ -562,7 +562,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Product Brand list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Product Brand list access is given only to administrators of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -590,7 +590,7 @@ namespace XtremePharmacyManager
                     {
                         if (productssearchform == null)
                         {
-                            productssearchform = new frmSearchProducts(ref entities, ref logger, ref bulkProductOperationManager, ref bulkProductImageOperationManager);
+                            productssearchform = new frmSearchProducts(ref entities, ref currentUser, ref logger, ref bulkProductOperationManager, ref bulkProductImageOperationManager);
                             productssearchform.MdiParent = this;
                             productssearchform.Dock = DockStyle.Fill;
                             productssearchform.FormClosed += Productssearchform_FormClosed;
@@ -611,7 +611,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Products and Product Images list access is given only to administrators and employees of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Products and Product Images list access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -630,7 +630,7 @@ namespace XtremePharmacyManager
                     {
                         if (orderssearchform == null)
                         {
-                            orderssearchform = new frmSearchProductOrders(ref entities, ref logger, ref bulkProductOrderOperationManager);
+                            orderssearchform = new frmSearchProductOrders(ref entities, ref currentUser, ref logger, ref bulkProductOrderOperationManager);
                             orderssearchform.MdiParent = this;
                             orderssearchform.Dock = DockStyle.Fill;
                             orderssearchform.FormClosed += Orderssearchform_FormClosed;
@@ -651,7 +651,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Product Orders list access is given only to administrators and employees of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Product Orders list access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -670,7 +670,7 @@ namespace XtremePharmacyManager
                     {
                         if (orderdeliveriessearchform == null)
                         {
-                            orderdeliveriessearchform = new frmSearchOrderDeliveries(ref entities, ref logger, ref bulkOrderDeliveryOperationManager);
+                            orderdeliveriessearchform = new frmSearchOrderDeliveries(ref entities, ref currentUser, ref logger, ref bulkOrderDeliveryOperationManager);
                             orderdeliveriessearchform.MdiParent = this;
                             orderdeliveriessearchform.Dock = DockStyle.Fill;
                             orderdeliveriessearchform.FormClosed += Orderdeliveriessearchform_FormClosed;
@@ -691,7 +691,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Order Deliveries list access is given only to administrators and employees of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Order Deliveries list access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
@@ -710,7 +710,7 @@ namespace XtremePharmacyManager
                     {
                         if (logsform == null)
                         {
-                            logsform = new frmLogs(ref logger);
+                            logsform = new frmLogs(ref logger, ref currentUser);
                             logsform.MdiParent = this;
                             logsform.Dock = DockStyle.Fill;
                             logsform.FormClosed += Logsform_FormClosed;
@@ -731,7 +731,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Database Logs access is given only to administrators and employees of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Database Logs access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1003,7 +1003,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Bulk User Operation access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bulk User Operation access is given only to administrators of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1043,7 +1043,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Bulk Product Brand Operation access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bulk Product Brand Operation access is given only to administrators of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1083,7 +1083,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Bulk Payment Method Operation access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bulk Payment Method Operation access is given only to administrators of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1123,7 +1123,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Bulk Delivery Service Operation access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bulk Delivery Service Operation access is given only to administrators of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1163,7 +1163,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Bulk Product Operation access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bulk Product Operation access is given only to administrators of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1203,7 +1203,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Bulk Product Image Operation access is given only to administrators and employees of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bulk Product Image Operation access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1243,7 +1243,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Bulk Product Order Operation access is given only to administrators and employees of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bulk Product Order Operation access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1283,7 +1283,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Bulk Order Delivery Operation access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bulk Order Delivery Operation access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1294,7 +1294,7 @@ namespace XtremePharmacyManager
 
         private void tsmenuProductVendors_Click(object sender, EventArgs e)
         {
-            if (currentUser.UserRole == 0)
+            if (currentUser.UserRole == 0 || currentUser.UserRole == 1)
             {
                 if (entities.Database.Connection.State == ConnectionState.Open)
                 {
@@ -1323,7 +1323,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Product Vendors list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Product Vendors list access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -1364,7 +1364,7 @@ namespace XtremePharmacyManager
             }
             else
             {
-                MessageBox.Show("Bulk Product Vendor Operation access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bulk Product Vendor Operation access is given only to administrators of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

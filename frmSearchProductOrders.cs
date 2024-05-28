@@ -28,15 +28,17 @@ namespace XtremePharmacyManager
         //I hope it works for 
         static Entities ent;
         static Logger logger;
+        static User current_user;
         static BulkOperationManager<ProductOrder> manager;
         static List<Product> products;
         static List<ProductOrder> product_orders;
         static List<User> employees;
         static List<User> clients;
-        public frmSearchProductOrders(ref Entities entity, ref Logger extlogger, ref BulkOperationManager<ProductOrder> ordermanager)
+        public frmSearchProductOrders(ref Entities entity, ref User currentUser, ref Logger extlogger, ref BulkOperationManager<ProductOrder> ordermanager)
         {
             ent = entity;
             logger = extlogger;
+            current_user = currentUser;
             manager = ordermanager;
             manager.BulkOperationsExecuted += ProductOrders_BulkOperationExecuted;
             InitializeComponent();
@@ -57,7 +59,7 @@ namespace XtremePharmacyManager
             {
                
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open)
+                if (ent.Database.Connection.State == ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     products = ent.GetProduct(-1, "", -1, -1, "", 0, new decimal(), new DateTime(), new DateTime(), "", "", "").ToList();
                     foreach(var product in products)
@@ -80,7 +82,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open)
+                if (ent.Database.Connection.State == ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     product_orders = ent.GetProductOrder(-1, -1, 0, new decimal(), -1, -1, new DateTime(), new DateTime(), new DateTime(), new DateTime(), 0, "").ToList();
                     foreach (var product_order in product_orders)
@@ -101,7 +103,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open)
+                if (ent.Database.Connection.State == ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     employees = ent.Users.Where(x => x.UserRole == 0 || x.UserRole == 1).ToList();
                     foreach (var user in employees)
@@ -123,7 +125,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open)
+                if (ent.Database.Connection.State == ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     clients = ent.Users.Where(x => x.UserRole == 2).ToList();
                     foreach (var user in employees)
@@ -171,7 +173,7 @@ namespace XtremePharmacyManager
             decimal PriceOverride = trbPriceOverride.Value;
             string OrderReason = txtOrderReason.Text;
             int SearchMode = cbSearchMode.SelectedIndex;
-            if (SearchMode == 1)
+            if (SearchMode == 1 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 RefreshProducts();
                 RefreshEmployees();
@@ -184,7 +186,7 @@ namespace XtremePharmacyManager
                         (x.OrderPrice <= PriceOverride || x.OrderPrice >= PriceOverride)).ToList();
                 dgvProductOrders.DataSource = product_orders;
             }
-            else if (SearchMode == 2)
+            else if (SearchMode == 2 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 RefreshProducts();
                 RefreshEmployees();
@@ -197,7 +199,7 @@ namespace XtremePharmacyManager
                         (x.OrderPrice <= PriceOverride || x.OrderPrice >= PriceOverride)).ToList();
                 dgvProductOrders.DataSource = product_orders;
             }
-            else if (SearchMode == 3)
+            else if (SearchMode == 3 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 RefreshProducts();
                 RefreshEmployees();
@@ -208,6 +210,10 @@ namespace XtremePharmacyManager
             }
             else
             {
+                if (current_user.UserRole != 0 && current_user.UserRole != 1)
+                {
+                    MessageBox.Show("Product Orders list access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 RefreshProducts();
                 RefreshEmployees();
                 RefreshClients();
@@ -234,7 +240,7 @@ namespace XtremePharmacyManager
             ProductOrder selectedOrder;
             try
             {
-                if (dgvProductOrders.SelectedRows.Count > 0)
+                if (dgvProductOrders.SelectedRows.Count > 0 && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     row = dgvProductOrders.SelectedRows[0];
                     if (row != null && product_orders != null && products != null && clients != null && employees != null)
@@ -398,7 +404,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
-                else
+                else if (current_user.UserRole == 0 || current_user.UserRole == 1)
                 {
                     //Create a new one
                     selectedOrder = new ProductOrder();
@@ -452,6 +458,10 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show($"You don't have permissions to add/edit product orders.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 logger.RefreshLogs();
             }
             catch (Exception ex)
@@ -473,7 +483,7 @@ namespace XtremePharmacyManager
             ProductOrder selectedOrder;
             try
             {
-                if (dgvProductOrders.SelectedRows.Count > 0)
+                if (dgvProductOrders.SelectedRows.Count > 0 && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     row = dgvProductOrders.SelectedRows[0];
                     if (row != null && products != null)
@@ -526,6 +536,10 @@ namespace XtremePharmacyManager
                             }
                         }
                     }
+                }
+                else
+                {
+                    MessageBox.Show($"You don't have permissions to delete product orders.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 logger.RefreshLogs();
             }
@@ -706,88 +720,95 @@ namespace XtremePharmacyManager
             ReportParameterCollection current_params;
             try
             {
-                if (MessageBox.Show("Do you want to generate invoice for this product order?", "Report Generation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                    == DialogResult.Yes)
+                if (current_user.UserRole == 0 || current_user.UserRole == 1)
                 {
-                    IsInvoice = true;
-                }
-                else
-                {
-                    IsInvoice = false;
-                }
-                if (dgvProductOrders.SelectedRows.Count > 0)
-                {
-                    row = dgvProductOrders.SelectedRows[0];
-                    if (row != null && products != null)
+                    if (MessageBox.Show("Do you want to generate invoice for this product order?", "Report Generation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                        == DialogResult.Yes)
                     {
-                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
-                        //Contrary to the CRUD operations, report generating will be for all records no matter
-                        //if they are dummy or not
-                        currentOrder = product_orders.Where(x => x.ID == ID).FirstOrDefault();
-                        if (currentOrder != null)
+                        IsInvoice = true;
+                    }
+                    else
+                    {
+                        IsInvoice = false;
+                    }
+                    if (dgvProductOrders.SelectedRows.Count > 0)
+                    {
+                        row = dgvProductOrders.SelectedRows[0];
+                        if (row != null && products != null)
                         {
-                            if (IsInvoice)
+                            Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
+                            //Contrary to the CRUD operations, report generating will be for all records no matter
+                            //if they are dummy or not
+                            currentOrder = product_orders.Where(x => x.ID == ID).FirstOrDefault();
+                            if (currentOrder != null)
                             {
-                                target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PRODUCT_ORDER_INVOICE_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
-                            }
-                            else
-                            {
-                                target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PRODUCT_ORDER_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
-                            }
-                            ExtendedProductOrdersView view = ent.ExtendedProductOrdersViews.Where(x => x.ID == currentOrder.ID).FirstOrDefault();
-                            if (view != null)
-                            {
-                                Type view_type = view.GetType();
-                                DataTable dt = new DataTable();
-                                Object[] values = new Object[view_type.GetProperties().Length];
-                                int propindex = 0; //track the property index
-                                //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
-                                //imported them yet
-                                foreach(var prop in view_type.GetProperties())
+                                if (IsInvoice)
                                 {
-                                    dt.Columns.Add(prop.Name);
-                                    values[propindex] = prop.GetValue(view, null);
-                                    propindex++; //indrease the property index after adding the property name
-                                    //in for and foreach loops everything starts from 0 as always
+                                    target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PRODUCT_ORDER_INVOICE_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
                                 }
-                                propindex = 0; //reset the index
-                                dt.Rows.Add(values); //add the values
-                                foreach (ExtendedProductOrdersView po_view in ent.ExtendedProductOrdersViews)
+                                else
                                 {
-                                    //as stats are added in the view there is no need for most of them to be calculated
-                                    //because the database calculates them for us there is no need for all of the entries
-                                    //to be imported to the report unless there is an invoice situation like here
-                                    Array.Clear(values,0, values.Length); //so clear the values first
-                                    if (po_view != view)
+                                    target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PRODUCT_ORDER_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+                                }
+                                ExtendedProductOrdersView view = ent.ExtendedProductOrdersViews.Where(x => x.ID == currentOrder.ID).FirstOrDefault();
+                                if (view != null)
+                                {
+                                    Type view_type = view.GetType();
+                                    DataTable dt = new DataTable();
+                                    Object[] values = new Object[view_type.GetProperties().Length];
+                                    int propindex = 0; //track the property index
+                                                       //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
+                                                       //imported them yet
+                                    foreach (var prop in view_type.GetProperties())
                                     {
-                                        if (IsInvoice)
+                                        dt.Columns.Add(prop.Name);
+                                        values[propindex] = prop.GetValue(view, null);
+                                        propindex++; //indrease the property index after adding the property name
+                                                     //in for and foreach loops everything starts from 0 as always
+                                    }
+                                    propindex = 0; //reset the index
+                                    dt.Rows.Add(values); //add the values
+                                    foreach (ExtendedProductOrdersView po_view in ent.ExtendedProductOrdersViews)
+                                    {
+                                        //as stats are added in the view there is no need for most of them to be calculated
+                                        //because the database calculates them for us there is no need for all of the entries
+                                        //to be imported to the report unless there is an invoice situation like here
+                                        Array.Clear(values, 0, values.Length); //so clear the values first
+                                        if (po_view != view)
                                         {
-                                            if (po_view.DateAdded == view.DateAdded && po_view.ClientName == view.ClientName)
+                                            if (IsInvoice)
                                             {
-                                                foreach (var prop in view_type.GetProperties())
+                                                if (po_view.DateAdded == view.DateAdded && po_view.ClientName == view.ClientName)
                                                 {
-                                                    values[propindex] = prop.GetValue(po_view, null);
-                                                    propindex++; //indrease the property index after adding the property name
-                                                    //in for and foreach loops everything starts from 0 as always
+                                                    foreach (var prop in view_type.GetProperties())
+                                                    {
+                                                        values[propindex] = prop.GetValue(po_view, null);
+                                                        propindex++; //indrease the property index after adding the property name
+                                                                     //in for and foreach loops everything starts from 0 as always
+                                                    }
+                                                    dt.Rows.Add(values); //add the values
+                                                    propindex = 0; //reset the property index to be back to zero
                                                 }
-                                                dt.Rows.Add(values); //add the values
-                                                propindex = 0; //reset the property index to be back to zero
                                             }
                                         }
                                     }
+                                    //reset the property index to be zero again
+                                    propindex = 0;
+                                    //then clear the values to ensure memory is not wasted
+                                    Array.Clear(values, 0, values.Length);
+                                    current_source = new ReportDataSource("ProductOrderReportData", dt);
+                                    current_params = new ReportParameterCollection();
+                                    current_params.Add(new ReportParameter("StatusName", cbSelectOrderStatus.Items[view.OrderStatus].ToString()));
+                                    current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
+                                    new frmReports(target_report_file, ref current_source, ref current_params).Show();
                                 }
-                                //reset the property index to be zero again
-                                propindex = 0;
-                                //then clear the values to ensure memory is not wasted
-                                Array.Clear(values,0, values.Length);
-                                current_source = new ReportDataSource("ProductOrderReportData", dt);
-                                current_params = new ReportParameterCollection();
-                                current_params.Add(new ReportParameter("StatusName", cbSelectOrderStatus.Items[view.OrderStatus].ToString()));
-                                current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
-                                new frmReports(target_report_file, ref current_source, ref current_params).Show();
                             }
                         }
                     }
+                }
+                else
+                {
+                    MessageBox.Show($"Product order reports cannot be generated or you don't have permissions to view them", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -816,6 +837,47 @@ namespace XtremePharmacyManager
                 trbDesiredQuantity.Maximum = value;
             }
             trbDesiredQuantity.Value = value;
+        }
+
+        private void frmSearchProductOrders_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (manager != null)
+            {
+                manager.BulkOperationsExecuted -= ProductOrders_BulkOperationExecuted;
+                manager = null;
+            }
+            if (product_orders != null)
+            {
+                product_orders.Clear();
+                product_orders = null;
+            }
+            if (products != null)
+            {
+                products.Clear();
+                products = null;
+            }
+            if(employees != null)
+            {
+                employees.Clear();
+                employees = null;
+            }
+            if (clients != null)
+            {
+                clients.Clear();
+                clients = null;
+            }
+            if (current_user != null)
+            {
+                current_user = null;
+            }
+            if (logger != null)
+            {
+                logger = null;
+            }
+            if (ent != null)
+            {
+                ent = null;
+            }
         }
     }
 }

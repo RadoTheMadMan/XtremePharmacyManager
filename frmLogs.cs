@@ -13,13 +13,14 @@ namespace XtremePharmacyManager.Properties.DataSources
 {
     public partial class frmLogs : Form
     {
-        Logger logger;
-        public frmLogs(ref Logger logger)
+        static Logger logger;
+        static User current_user;
+        public frmLogs(ref Logger extlogger, ref User currentUser)
         {
-            this.logger = logger;
+            logger = extlogger;
+            current_user = currentUser;
             InitializeComponent();
             logger.LogsRefreshed += OnLogsRefreshed;
-            logger.RefreshLogs();
         }
 
         private void OnLogsRefreshed(object sender, LoggerEventArgs e)
@@ -53,6 +54,7 @@ namespace XtremePharmacyManager.Properties.DataSources
 
         private void frmLogs_Load(object sender, EventArgs e)
         {
+            logger.RefreshLogs();
             RefreshLogsInForm(logger.Logs);
         }
 
@@ -60,6 +62,7 @@ namespace XtremePharmacyManager.Properties.DataSources
         {
             try
             {
+                
                 int LogID = -1;
                 Int32.TryParse(txtID.Text, out LogID);
                 DateTime LogDateFrom = dtLogDateFrom.Value;
@@ -68,7 +71,17 @@ namespace XtremePharmacyManager.Properties.DataSources
                 string LogMessage = txtLogMessage.Text;
                 string AdditionalInformation = txtAdditionalInformation.Text;
                 int SearchMode = cbSearchMode.SelectedIndex;
-                logger.RefreshLogs(LogID, LogDateFrom, LogDateTo, LogTitle, LogMessage, AdditionalInformation, SearchMode);
+                if (current_user.UserRole == 0 || current_user.UserRole == 1)
+                {
+                    logger.RefreshLogs(LogID, LogDateFrom, LogDateTo, LogTitle, LogMessage, AdditionalInformation, SearchMode);
+                }
+                else
+                {
+                    if (current_user.UserRole != 0 && current_user.UserRole != 1)
+                    {
+                        MessageBox.Show("Database Logs access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
                 RefreshLogsInForm(logger.Logs);
             }
             catch (Exception ex)
@@ -112,7 +125,12 @@ namespace XtremePharmacyManager.Properties.DataSources
 
         private void frmLogs_FormClosing(object sender, FormClosingEventArgs e)
         {
-            logger.LogsRefreshed -= OnLogsRefreshed;
+            if (logger != null)
+            {
+                logger.LogsRefreshed -= OnLogsRefreshed;
+                logger = null;
+                current_user = null;
+            }
         }
     }
 }

@@ -43,7 +43,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open && current_user.UserRole == 0)
+                if (ent.Database.Connection.State == ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     product_vendors = ent.GetVendor(-1, "").ToList();
                     foreach(var entry in product_vendors)
@@ -67,28 +67,28 @@ namespace XtremePharmacyManager
             Int32.TryParse(txtID.Text, out VendorID);
             string VendorName = txtVendorName.Text;
             int SearchMode = cbSearchMode.SelectedIndex;
-          if (SearchMode == 1 && current_user.UserRole == 0)
+          if (SearchMode == 1 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 product_vendors = ent.ProductVendors.Where(
                     x => x.ID == VendorID ^ x.VendorName.Contains(VendorName)).ToList(); 
                 dgvProductVendors.DataSource = product_vendors;
             }
-            else if (SearchMode == 2 && current_user.UserRole == 0)
+            else if (SearchMode == 2 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 product_vendors = ent.ProductVendors.Where(
                     x => x.ID == VendorID || x.VendorName.Contains(VendorName)).ToList();
                 dgvProductVendors.DataSource = product_vendors;
             }
-            else if (SearchMode == 3 && current_user.UserRole == 0)
+            else if (SearchMode == 3 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 product_vendors = ent.GetVendor(VendorID,VendorName).ToList();
                 dgvProductVendors.DataSource = product_vendors;
             }
             else
             {
-                if(current_user.UserRole != 0)
+                if(current_user.UserRole != 0 && current_user.UserRole != 1)
                 {
-                    MessageBox.Show("Product Vendors list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Product Vendors list access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 RefreshProductVendors();
             }
@@ -407,6 +407,7 @@ namespace XtremePharmacyManager
         {
             if (manager != null)
             {
+                manager.BulkOperationsExecuted -= ProductVendors_OnBulkOperationExecuted;
                 manager = null;
             }
             if (logger != null)

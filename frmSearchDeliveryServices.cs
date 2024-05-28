@@ -42,7 +42,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open && current_user.UserRole == 0)
+                if (ent.Database.Connection.State == ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     delivery_services = ent.GetDeliveryService(-1, "", Convert.ToDecimal(0)).ToList();
                     foreach(var entry in delivery_services)
@@ -67,28 +67,28 @@ namespace XtremePharmacyManager
             string ServiceName = txtServiceName.Text;
             decimal ServicePrice = trbPrice.Value;
             int SearchMode = cbSearchMode.SelectedIndex;
-          if (SearchMode == 1 && current_user.UserRole == 0)
+          if (SearchMode == 1 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 delivery_services = ent.DeliveryServices.Where(
                     x => x.ID == ServiceID ^ x.ServiceName.Contains(ServiceName) ^ x.ServicePrice == ServicePrice).ToList(); 
                 dgvDeliveryServices.DataSource = delivery_services;
             }
-            else if (SearchMode == 2 && current_user.UserRole == 0)
+            else if (SearchMode == 2 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 delivery_services = ent.DeliveryServices.Where(
                     x => x.ID == ServiceID || x.ServiceName.Contains(ServiceName) || x.ServicePrice == ServicePrice).ToList();
                 dgvDeliveryServices.DataSource = delivery_services;
             }
-            else if (SearchMode == 3 && current_user.UserRole == 0)
+            else if (SearchMode == 3 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 delivery_services = ent.GetDeliveryService(ServiceID,ServiceName,ServicePrice).ToList();
                 dgvDeliveryServices.DataSource = delivery_services;
             }
             else
             {
-                if (current_user.UserRole != 0)
+                if (current_user.UserRole != 0 && current_user.UserRole != 1)
                 {
-                    MessageBox.Show("Delivery Services list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Delivery Services list access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 RefreshDeliveryServices();
             }
@@ -426,10 +426,12 @@ namespace XtremePharmacyManager
         {
             if (manager != null)
             {
+                manager.BulkOperationsExecuted -= DeliveryServices_OnBulkOperationExecuted;
                 manager = null;
             }
             if (delivery_services != null)
             {
+                delivery_services.Clear();
                 delivery_services = null;
             }
             if (logger != null)

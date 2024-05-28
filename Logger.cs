@@ -28,14 +28,16 @@ namespace XtremePharmacyManager
     public class Logger
     {
        static Entities entities;
+       static User current_user;
        public static Logger instance;
        public static List<Log> logs;
        public static DateTime lastUpdate;
        public LogsRefreshedEventHandler LogsRefreshed;
        public List<Log> Logs {  get { return logs; } }
-        public Logger(ref Entities ent)
+        public Logger(ref Entities ent, ref User currentUser)
         {
             entities = ent;
+            current_user = currentUser;
             logs = new List<Log>();
             lastUpdate = DateTime.Now;
             if (instance == null)
@@ -44,11 +46,19 @@ namespace XtremePharmacyManager
             }
         }
 
+        ~Logger()
+        {
+            entities = null;
+            logs = null;
+            lastUpdate = DateTime.Now;
+            instance = null;
+        }
+
         public void RefreshLogs()
         {
             try
             {
-                if (entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (entities.Database.Connection.State == System.Data.ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     logs = entities.GetLog(-1, new DateTime(), new DateTime(), "", "", "").ToList();
                     foreach(var entry in logs)
@@ -69,7 +79,7 @@ namespace XtremePharmacyManager
         {
             try
             {
-                if (entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (entities.Database.Connection.State == System.Data.ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     if (SearchMode == 1)
                     {

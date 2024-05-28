@@ -23,16 +23,18 @@ namespace XtremePharmacyManager
     {
         static Entities ent;
         static Logger logger;
+        static User current_user;
         static BulkOperationManager<Product> product_manager;
         static BulkOperationManager<ProductImage> image_manager;
         static List<Product> products;
         static List<ProductBrand> product_brands;
         static List<ProductVendor> product_vendors;
         static List<ProductImage> product_images;
-        public frmSearchProducts(ref Entities entity,ref Logger extlogger, ref BulkOperationManager<Product> productmanager, ref BulkOperationManager<ProductImage> imagemanager)
+        public frmSearchProducts(ref Entities entity, ref User currentUser, ref Logger extlogger, ref BulkOperationManager<Product> productmanager, ref BulkOperationManager<ProductImage> imagemanager)
         {
             ent = entity;
             logger = extlogger;
+            current_user = currentUser;
             product_manager = productmanager;
             product_manager.BulkOperationsExecuted += Products_BulkOperationExecuted;
             image_manager = imagemanager;
@@ -63,7 +65,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open)
+                if (ent.Database.Connection.State == ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     products = ent.GetProduct(-1,"",-1,-1,"",0,new decimal(),new DateTime(),new DateTime(),"","","").ToList();
                     foreach( var entry in products)
@@ -84,7 +86,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open)
+                if (ent.Database.Connection.State == ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     product_brands = ent.GetBrand(-1, "").ToList();
                     foreach(var entry in product_brands)
@@ -106,7 +108,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open)
+                if (ent.Database.Connection.State == ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     product_vendors = ent.GetVendor(-1, "").ToList();
                     foreach(var entry in  product_vendors)
@@ -128,7 +130,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open)
+                if (ent.Database.Connection.State == ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     product_images = ent.GetProductImage(-1,-1,"").ToList();
                     foreach(var entry in product_images)
@@ -163,7 +165,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open)
+                if (ent.Database.Connection.State == ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     product_images = ent.GetProductImage(ImageID, ProductID, ImageName).ToList();
                     lstProductImages.Items.Clear();
@@ -193,7 +195,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open)
+                if (ent.Database.Connection.State == ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     product_images.Clear();
                     foreach(int ID in IDs)
@@ -249,7 +251,7 @@ namespace XtremePharmacyManager
             int Quantity = trbQuantity.Value;
             decimal Price = trbPrice.Value;
             int SearchMode = cbSearchMode.SelectedIndex;
-          if (SearchMode == 1)
+          if (SearchMode == 1 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 RefreshProductBrands();
                 RefreshProductVendors();
@@ -266,7 +268,7 @@ namespace XtremePharmacyManager
                 }
                 RefreshProductImages(extractedids, true);
             }
-            else if (SearchMode == 2)
+            else if (SearchMode == 2 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 RefreshProductBrands();
                 RefreshProductVendors();
@@ -283,7 +285,7 @@ namespace XtremePharmacyManager
                 }
                 RefreshProductImages(extractedids, true);
             }
-            else if (SearchMode == 3)
+            else if (SearchMode == 3 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 RefreshProductBrands();
                 RefreshProductVendors();
@@ -299,6 +301,10 @@ namespace XtremePharmacyManager
             }
             else
             {
+                if(current_user.UserRole != 0 && current_user.UserRole != 1)
+                {
+                    MessageBox.Show("Products and Product Images list access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 RefreshProductBrands();
                 RefreshProductVendors();
                 RefreshProducts();
@@ -325,7 +331,7 @@ namespace XtremePharmacyManager
             Product selectedProduct;
             try
             {
-                if (dgvProducts.SelectedRows.Count > 0)
+                if (dgvProducts.SelectedRows.Count > 0 && current_user.UserRole == 0)
                 {
                     row = dgvProducts.SelectedRows[0];
                     if (row != null && products != null)
@@ -436,7 +442,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
-                else
+                else if(current_user.UserRole == 0)
                 {
                     selectedProduct = new Product();
                     DialogResult res = new frmEditProduct(ref selectedProduct, ref product_brands, ref product_vendors).ShowDialog();
@@ -468,6 +474,10 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show($"You don't have permissions to add/edit products", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 logger.RefreshLogs();
             }
             catch(Exception ex)
@@ -489,7 +499,7 @@ namespace XtremePharmacyManager
             Product selectedProduct;
             try
             {
-                if (dgvProducts.SelectedRows.Count > 0)
+                if (dgvProducts.SelectedRows.Count > 0 && current_user.UserRole == 0)
                 {
                     row = dgvProducts.SelectedRows[0];
                     if (row != null && products != null)
@@ -532,6 +542,10 @@ namespace XtremePharmacyManager
                             }
                         }
                     }
+                }
+                else
+                {
+                    MessageBox.Show($"You don't have permissions to delete products.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 logger.RefreshLogs();
             }
@@ -714,7 +728,7 @@ namespace XtremePharmacyManager
             string ImageName = txtImageName.Text;
             Int32.TryParse(txtImageID.Text, out ImageID);
             Int32.TryParse(txtReferencedID.Text, out ProductID);
-            if (SearchMode == 1)
+            if (SearchMode == 1 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 RefreshProductBrands();
                 RefreshProductVendors();
@@ -734,7 +748,7 @@ namespace XtremePharmacyManager
                     lstProductImages.Items.Add(image_item);
                 }
             }
-            else if (SearchMode == 2)
+            else if (SearchMode == 2 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 RefreshProductBrands();
                 RefreshProductVendors();
@@ -754,7 +768,7 @@ namespace XtremePharmacyManager
                     lstProductImages.Items.Add(image_item);
                 }
             }
-            else if (SearchMode == 3)
+            else if (SearchMode == 3 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 RefreshProductBrands();
                 RefreshProductVendors();
@@ -776,6 +790,10 @@ namespace XtremePharmacyManager
             }
             else
             {
+                if (current_user.UserRole != 0 && current_user.UserRole != 1)
+                {
+                    MessageBox.Show("Products and Product Images list access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 RefreshProductBrands();
                 RefreshProductVendors();
                 RefreshProductImages();
@@ -792,7 +810,7 @@ namespace XtremePharmacyManager
             int ImageID = -1;
             try
             {
-                if (currentItem != null && product_images != null)
+                if (currentItem != null && product_images != null && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     Int32.TryParse(currentItem.Text, out ImageID);
                     if (ImageID >= 0)
@@ -823,7 +841,10 @@ namespace XtremePharmacyManager
                             }
                         }
                     }
-
+                }
+                else
+                {
+                    MessageBox.Show($"You don't have permissions to delete product images.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 logger.RefreshLogs();
             }
@@ -845,7 +866,7 @@ namespace XtremePharmacyManager
             int ImageID = -1;
             try
             {
-                if(lstProductImages.SelectedItems.Count > 0)
+                if(lstProductImages.SelectedItems.Count > 0 && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 { 
                     currentItem = lstProductImages.SelectedItems[0];
                     if (currentItem != null && product_images != null)
@@ -928,7 +949,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
-                else
+                else if(current_user.UserRole == 0 || current_user.UserRole == 1)
                 {
                     selectedImage = new ProductImage();
                     DialogResult res = new frmEditProductImage(ref selectedImage, ref products).ShowDialog();
@@ -951,6 +972,10 @@ namespace XtremePharmacyManager
                             image_manager.AddOperation(new BulkProductImageOperation(BulkOperationType.ADD, ref ent, selectedImage, true));
                         }
                     }
+                }
+                else
+                {
+                    MessageBox.Show($"You don't have permissions to add/edit product images.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 logger.RefreshLogs();
             }
@@ -983,45 +1008,52 @@ namespace XtremePharmacyManager
             ReportParameterCollection current_params;
             try
             {
-                if (dgvProducts.SelectedRows.Count > 0)
+                if (current_user.UserRole == 0 || current_user.UserRole == 1)
                 {
-                    row = dgvProducts.SelectedRows[0];
-                    if (row != null && products != null)
+                    if (dgvProducts.SelectedRows.Count > 0)
                     {
-                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
-                        //Contrary to the CRUD operations, report generating will be for all records no matter
-                        //if they are dummy or not
-                        currentProduct = products.Where(x => x.ID == ID).FirstOrDefault();
-                        if (currentProduct != null)
+                        row = dgvProducts.SelectedRows[0];
+                        if (row != null && products != null)
                         {
-                            target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PRODUCT_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
-                            ExtendedProductView view = ent.ExtendedProductViews.Where(x => x.ID == currentProduct.ID).FirstOrDefault();
-                            if (view != null)
+                            Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
+                            //Contrary to the CRUD operations, report generating will be for all records no matter
+                            //if they are dummy or not
+                            currentProduct = products.Where(x => x.ID == ID).FirstOrDefault();
+                            if (currentProduct != null)
                             {
-                                Type view_type = view.GetType();
-                                DataTable dt = new DataTable();
-                                Object[] values = new Object[view_type.GetProperties().Length];
-                                int propindex = 0; //track the property index
-                                //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
-                                //imported them yet
-                                foreach (var prop in view_type.GetProperties())
+                                target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PRODUCT_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+                                ExtendedProductView view = ent.ExtendedProductViews.Where(x => x.ID == currentProduct.ID).FirstOrDefault();
+                                if (view != null)
                                 {
-                                    dt.Columns.Add(prop.Name);
-                                    values[propindex] = prop.GetValue(view, null);
-                                    propindex++; //indrease the property index after adding the property name
-                                    //in for and foreach loops everything starts from 0 as always
+                                    Type view_type = view.GetType();
+                                    DataTable dt = new DataTable();
+                                    Object[] values = new Object[view_type.GetProperties().Length];
+                                    int propindex = 0; //track the property index
+                                                       //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
+                                                       //imported them yet
+                                    foreach (var prop in view_type.GetProperties())
+                                    {
+                                        dt.Columns.Add(prop.Name);
+                                        values[propindex] = prop.GetValue(view, null);
+                                        propindex++; //indrease the property index after adding the property name
+                                                     //in for and foreach loops everything starts from 0 as always
+                                    }
+                                    propindex = 0; //reset the index
+                                    dt.Rows.Add(values); //add the values
+                                                         //then clear the values to ensure memory is not wasted
+                                    Array.Clear(values, 0, values.Length);
+                                    current_source = new ReportDataSource("ProductReportData", dt);
+                                    current_params = new ReportParameterCollection();
+                                    current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
+                                    new frmReports(target_report_file, ref current_source, ref current_params).Show();
                                 }
-                                propindex = 0; //reset the index
-                                dt.Rows.Add(values); //add the values
-                                //then clear the values to ensure memory is not wasted
-                                Array.Clear(values, 0, values.Length);
-                                current_source = new ReportDataSource("ProductReportData", dt);
-                                current_params = new ReportParameterCollection();
-                                current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
-                                new frmReports(target_report_file, ref current_source, ref current_params).Show();
                             }
                         }
                     }
+                }
+                else
+                {
+                    MessageBox.Show($"Product reports cannot be generated or you don't have permissions to view them", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -1050,6 +1082,52 @@ namespace XtremePharmacyManager
                 trbPrice.Maximum = value;
             }
             trbPrice.Value = value;
+        }
+
+        private void frmSearchProducts_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(image_manager != null)
+            {
+                image_manager.BulkOperationsExecuted -= ProductImages_BulkOperationExecuted;
+                image_manager = null;
+            }
+            if(product_manager != null)
+            {
+                product_manager.BulkOperationsExecuted -= Products_BulkOperationExecuted;
+                product_manager = null;
+            }
+            if(product_images != null)
+            {
+                product_images.Clear();
+                product_images = null;
+            }
+            if(products != null)
+            {
+                products.Clear();
+                products = null;
+            }
+            if(product_brands != null)
+            {
+                product_brands.Clear();
+                product_brands = null;
+            }
+            if(product_vendors != null)
+            {
+                product_vendors.Clear();
+                product_vendors = null;
+            }
+            if(current_user != null)
+            {
+                current_user = null;
+            }
+            if(logger != null)
+            {
+                logger = null;
+            }
+            if(ent != null)
+            {
+                ent = null;
+            }
         }
     }
 }

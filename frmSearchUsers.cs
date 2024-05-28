@@ -48,7 +48,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open && current_user.UserRole == 0)
+                if (ent.Database.Connection.State == ConnectionState.Open && (current_user.UserRole == 0 || current_user.UserRole == 1))
                 {
                     users = ent.GetUser(-1, "", "", "", DateTime.Now, DateTime.Now, "", "", "", new decimal(), "", DateTime.Now, DateTime.Now, 0).ToList();
                     foreach(var user in users)
@@ -85,7 +85,7 @@ namespace XtremePharmacyManager
             DateTime RegisterDateTo = dtRegisterDateTo.Value;
             int Role = cbRole.SelectedIndex;
             int SearchMode = cbSearchMode.SelectedIndex;
-          if (SearchMode == 1 && current_user.UserRole == 0)
+          if (SearchMode == 1 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 users = ent.Users.Where(
                     x => x.ID == UserID ^ x.UserName.Contains(UserName) ^ x.UserPassword.Contains(Password) ^
@@ -95,7 +95,7 @@ namespace XtremePharmacyManager
                 ).ToList(); 
                 dgvUsers.DataSource = users;
             }
-            else if (SearchMode == 2 && current_user.UserRole == 0)
+            else if (SearchMode == 2 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 users = ent.Users.Where(
                     x => x.ID == UserID || x.UserName.Contains(UserName) || x.UserPassword.Contains(Password) ||
@@ -105,16 +105,16 @@ namespace XtremePharmacyManager
                 ).ToList();
                 dgvUsers.DataSource = users;
             }
-            else if (SearchMode == 3 && current_user.UserRole == 0)
+            else if (SearchMode == 3 && (current_user.UserRole == 0 || current_user.UserRole == 1))
             {
                 users = ent.GetUser(UserID,UserName,Password,DisplayName,BirthDateFrom,BirthDateTo,Phone,Email,Address,Balance,Diagnose,RegisterDateFrom,RegisterDateTo,Role).ToList();
                 dgvUsers.DataSource = users;
             }
             else
             {
-                if (current_user.UserRole != 0)
+                if (current_user.UserRole != 0 && current_user.UserRole != 1)
                 {
-                    MessageBox.Show("User list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("User list access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 RefreshUsers();
             }
@@ -634,6 +634,7 @@ namespace XtremePharmacyManager
             //nullify the values of the form on closing to preserve memory
             if(manager != null)
             {
+                manager.BulkOperationsExecuted -= Users_OnBulkOperationExecuted;
                 manager = null;
             }
             if(logger != null)
