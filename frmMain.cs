@@ -459,7 +459,7 @@ namespace XtremePharmacyManager
                     {
                         if (deliveryservicessearchform == null)
                         {
-                            deliveryservicessearchform = new frmSearchDeliveryServices(ref entities, ref logger, ref bulkDeliveryServiceOperationManager);
+                            deliveryservicessearchform = new frmSearchDeliveryServices(ref entities, ref currentUser, ref logger, ref bulkDeliveryServiceOperationManager);
                             deliveryservicessearchform.MdiParent = this;
                             deliveryservicessearchform.Dock = DockStyle.Fill;
                             deliveryservicessearchform.FormClosed += Deliveryservicessearchform_FormClosed;
@@ -499,7 +499,7 @@ namespace XtremePharmacyManager
                     {
                         if (paymentmethodssearchform == null)
                         {
-                            paymentmethodssearchform = new frmSearchPaymentMethods(ref entities, ref logger, ref bulkPaymentMethodOperationManager);
+                            paymentmethodssearchform = new frmSearchPaymentMethods(ref entities, ref currentUser, ref logger, ref bulkPaymentMethodOperationManager);
                             paymentmethodssearchform.MdiParent = this;
                             paymentmethodssearchform.Dock = DockStyle.Fill;
                             paymentmethodssearchform.FormClosed += Paymentmethodssearchform_FormClosed;
@@ -539,7 +539,7 @@ namespace XtremePharmacyManager
                     {
                         if (productbrandssearchform == null)
                         {
-                            productbrandssearchform = new frmSearchProductBrands(ref entities, ref logger, ref bulkProductBrandOperationManager);
+                            productbrandssearchform = new frmSearchProductBrands(ref entities, ref currentUser, ref logger, ref bulkProductBrandOperationManager);
                             productbrandssearchform.MdiParent = this;
                             productbrandssearchform.Dock = DockStyle.Fill;
                             productbrandssearchform.FormClosed += Productbrandssearchform_FormClosed;

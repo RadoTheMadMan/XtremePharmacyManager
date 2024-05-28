@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
@@ -18,12 +19,14 @@ namespace XtremePharmacyManager
     {
         static Entities ent;
         static Logger logger;
+        static User current_user;
         static List<PaymentMethod> payment_methods;
         static BulkOperationManager<PaymentMethod> manager;
-        public frmSearchPaymentMethods(ref Entities entity, ref Logger extlogger, ref BulkOperationManager<PaymentMethod> methodmanager)
+        public frmSearchPaymentMethods(ref Entities entity, ref User currentUser, ref Logger extlogger, ref BulkOperationManager<PaymentMethod> methodmanager)
         {
             ent = entity;
             logger = extlogger;
+            current_user = currentUser;
             manager = methodmanager;
             manager.BulkOperationsExecuted += PaymentMethods_OnBulkOperationExecuted;
             InitializeComponent();
@@ -40,7 +43,7 @@ namespace XtremePharmacyManager
             try
             {
                 //Never try to execute any function if it is not online
-                if (ent.Database.Connection.State == ConnectionState.Open)
+                if (ent.Database.Connection.State == ConnectionState.Open && current_user.UserRole == 0)
                 {
                     payment_methods = ent.GetPaymentMethod(-1, "").ToList();
                     foreach(var entry in payment_methods) 
@@ -64,25 +67,29 @@ namespace XtremePharmacyManager
             Int32.TryParse(txtID.Text, out MethodID);
             string MethodName = txtMethodName.Text;
             int SearchMode = cbSearchMode.SelectedIndex;
-          if (SearchMode == 1)
+          if (SearchMode == 1 && current_user.UserRole == 0)
             {
                 payment_methods = ent.PaymentMethods.Where(
                     x => x.ID == MethodID ^ x.MethodName.Contains(MethodName)).ToList(); 
                 dgvPaymentMethods.DataSource = payment_methods;
             }
-            else if (SearchMode == 2)
+            else if (SearchMode == 2 && current_user.UserRole == 0)
             {
                 payment_methods = ent.PaymentMethods.Where(
                     x => x.ID == MethodID || x.MethodName.Contains(MethodName)).ToList();
                 dgvPaymentMethods.DataSource = payment_methods;
             }
-            else if (SearchMode == 3)
+            else if (SearchMode == 3 && current_user.UserRole == 0)
             {
                 payment_methods = ent.GetPaymentMethod(MethodID,MethodName).ToList();
                 dgvPaymentMethods.DataSource = payment_methods;
             }
             else
             {
+                if (current_user.UserRole != 0)
+                {
+                    MessageBox.Show("Payment Methods list access is given only to administrators of this database.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 RefreshPaymentMethods();
             }
             logger.RefreshLogs();
@@ -98,7 +105,7 @@ namespace XtremePharmacyManager
             PaymentMethod selectedMethod;
             try
             {
-                if (dgvPaymentMethods.SelectedRows.Count > 0)
+                if (dgvPaymentMethods.SelectedRows.Count > 0 && current_user.UserRole == 0)
                 {
                     row = dgvPaymentMethods.SelectedRows[0];
                     if (row != null && payment_methods != null)
@@ -193,7 +200,7 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
-                else
+                else if(current_user.UserRole == 0)
                 {
                     selectedMethod = new PaymentMethod();
                     DialogResult res = new frmEditPaymentMethod(ref selectedMethod).ShowDialog();
@@ -220,7 +227,12 @@ namespace XtremePharmacyManager
                         }
                     }
                 }
+                else
+                {
+                    MessageBox.Show($"You don't have permissions to add/edit payment methods.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 logger.RefreshLogs();
+                
             }
             catch(Exception ex)
             {
@@ -238,7 +250,7 @@ namespace XtremePharmacyManager
             PaymentMethod selectedMethod;
             try
             {
-                if (dgvPaymentMethods.SelectedRows.Count > 0)
+                if (dgvPaymentMethods.SelectedRows.Count > 0 && current_user.UserRole == 0)
                 {
                     row = dgvPaymentMethods.SelectedRows[0];
                     if (row != null && payment_methods != null)
@@ -278,6 +290,10 @@ namespace XtremePharmacyManager
                             }
                         }
                     }
+                }
+                else
+                {
+                    MessageBox.Show($"You don't have permissions to delete payment methods", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 logger.RefreshLogs();
             }
@@ -332,50 +348,81 @@ namespace XtremePharmacyManager
             ReportParameterCollection current_params;
             try
             {
-                if (dgvPaymentMethods.SelectedRows.Count > 0)
+                if (current_user.UserRole == 0 || current_user.UserRole == 1)
                 {
-                    row = dgvPaymentMethods.SelectedRows[0];
-                    if (row != null && payment_methods != null)
+                    if (dgvPaymentMethods.SelectedRows.Count > 0)
                     {
-                        Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
-                        //Contrary to the CRUD operations, report generating will be for all records no matter
-                        //if they are dummy or not
-                        currentMethod = payment_methods.Where(x => x.ID == ID).FirstOrDefault();
-                        if (currentMethod != null)
+                        row = dgvPaymentMethods.SelectedRows[0];
+                        if (row != null && payment_methods != null)
                         {
-                            target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PAYMENT_METHOD_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
-                            ExtendedPaymentMethodsView view = ent.ExtendedPaymentMethodsViews.Where(x => x.ID == currentMethod.ID).FirstOrDefault();
-                            if (view != null)
+                            Int32.TryParse(row.Cells["IDColumn"].Value.ToString(), out ID);
+                            //Contrary to the CRUD operations, report generating will be for all records no matter
+                            //if they are dummy or not
+                            currentMethod = payment_methods.Where(x => x.ID == ID).FirstOrDefault();
+                            if (currentMethod != null)
                             {
-                                Type view_type = view.GetType();
-                                DataTable dt = new DataTable();
-                                Object[] values = new Object[view_type.GetProperties().Length];
-                                int propindex = 0; //track the property index
-                                //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
-                                //imported them yet
-                                foreach (var prop in view_type.GetProperties())
+                                target_report_file = $"{GLOBAL_RESOURCES.REPORT_DIRECTORY}/{GLOBAL_RESOURCES.PAYMENT_METHOD_REPORT_NAME}.{CultureInfo.CurrentCulture}.rdlc";
+                                ExtendedPaymentMethodsView view = ent.ExtendedPaymentMethodsViews.Where(x => x.ID == currentMethod.ID).FirstOrDefault();
+                                if (view != null)
                                 {
-                                    dt.Columns.Add(prop.Name);
-                                    values[propindex] = prop.GetValue(view, null);
-                                    propindex++; //indrease the property index after adding the property name
-                                    //in for and foreach loops everything starts from 0 as always
+                                    Type view_type = view.GetType();
+                                    DataTable dt = new DataTable();
+                                    Object[] values = new Object[view_type.GetProperties().Length];
+                                    int propindex = 0; //track the property index
+                                                       //this is experimental and I am trying it because I added copious amounts of stats to the views but hadn't
+                                                       //imported them yet
+                                    foreach (var prop in view_type.GetProperties())
+                                    {
+                                        dt.Columns.Add(prop.Name);
+                                        values[propindex] = prop.GetValue(view, null);
+                                        propindex++; //indrease the property index after adding the property name
+                                                     //in for and foreach loops everything starts from 0 as always
+                                    }
+                                    propindex = 0; //reset the index
+                                    dt.Rows.Add(values); //add the values
+                                                         //then clear the values to ensure memory is not wasted
+                                    Array.Clear(values, 0, values.Length);
+                                    current_source = new ReportDataSource("PaymentMethodReportData", dt);
+                                    current_params = new ReportParameterCollection();
+                                    current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
+                                    new frmReports(target_report_file, ref current_source, ref current_params).Show();
                                 }
-                                propindex = 0; //reset the index
-                                dt.Rows.Add(values); //add the values
-                                //then clear the values to ensure memory is not wasted
-                                Array.Clear(values, 0, values.Length);
-                                current_source = new ReportDataSource("PaymentMethodReportData", dt);
-                                current_params = new ReportParameterCollection();
-                                current_params.Add(new ReportParameter("CompanyName", GLOBAL_RESOURCES.COMPANY_NAME));
-                                new frmReports(target_report_file, ref current_source, ref current_params).Show();
                             }
                         }
                     }
+                }
+                else
+                {
+                    MessageBox.Show($"Payment method reports cannot be generated or you don't have permissions to view them", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void frmSearchPaymentMethods_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if(manager != null)
+            {
+                manager = null;
+            }
+            if (payment_methods != null)
+            {
+                payment_methods = null;
+            }
+            if(logger != null)
+            {
+                logger = null;
+            }
+            if (current_user != null)
+            {
+                current_user = null;
+            }
+            if(ent != null)
+            {
+                ent = null;
             }
         }
     }
