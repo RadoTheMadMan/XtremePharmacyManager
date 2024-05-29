@@ -345,35 +345,42 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "User has been added.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.AddUser(base.TargetObject.UserName, base.TargetObject.UserPassword, base.TargetObject.UserDisplayName, base.TargetObject.UserBirthDate, base.TargetObject.UserPhone,
-                                     base.TargetObject.UserEmail, base.TargetObject.UserAddress, base.TargetObject.UserProfilePic, base.TargetObject.UserBalance, base.TargetObject.UserDiagnose,
-                                     base.TargetObject.UserRole);
-                    if (entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
-                    }
-                    //update the view on add, update or delete if it hasn't been updated(probably will not be found on add
-                    //or delete and yeah
-                    if (base.TargetObject.UserRole == 0 || base.TargetObject.UserRole == 1)
-                    {
-                        //retrieve the data and if it exists reload it from the database, if not, do nothing
-                        EmployeeView current_emp_view = entities.EmployeeViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                        if (current_emp_view != null)
+                        entities.AddUser(base.TargetObject.UserName, base.TargetObject.UserPassword, base.TargetObject.UserDisplayName, base.TargetObject.UserBirthDate, base.TargetObject.UserPhone,
+                                         base.TargetObject.UserEmail, base.TargetObject.UserAddress, base.TargetObject.UserProfilePic, base.TargetObject.UserBalance, base.TargetObject.UserDiagnose,
+                                         base.TargetObject.UserRole);
+                        if (entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
                         {
-                            entities.Entry(current_emp_view).Reload();
+                            entities.Entry(entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //update the view on add, update or delete if it hasn't been updated(probably will not be found on add
+                        //or delete and yeah
+                        if (base.TargetObject.UserRole == 0 || base.TargetObject.UserRole == 1)
+                        {
+                            //retrieve the data and if it exists reload it from the database, if not, do nothing
+                            EmployeeView current_emp_view = entities.EmployeeViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                            if (current_emp_view != null)
+                            {
+                                entities.Entry(current_emp_view).Reload();
+                            }
+                        }
+                        else if (base.TargetObject.UserRole == 2)
+                        {
+                            //retrieve the data and if it exists reload it from the database, if not, do nothing
+                            ClientView current_cl_view = entities.ClientViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                            if (current_cl_view != null)
+                            {
+                                entities.Entry(current_cl_view).Reload();
+                            }
                         }
                     }
-                    else if (base.TargetObject.UserRole == 2)
-                    {
-                        //retrieve the data and if it exists reload it from the database, if not, do nothing
-                        ClientView current_cl_view = entities.ClientViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                        if (current_cl_view != null)
-                        {
-                            entities.Entry(current_cl_view).Reload();
-                        }
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for users is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -411,36 +418,43 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "User has been updated.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.UpdateUserByID(base.TargetObject.ID, base.TargetObject.UserName, base.TargetObject.UserPassword, base.TargetObject.UserDisplayName, base.TargetObject.UserBirthDate, base.TargetObject.UserPhone,
-                                     base.TargetObject.UserEmail, base.TargetObject.UserAddress, base.TargetObject.UserProfilePic, base.TargetObject.UserBalance, base.TargetObject.UserDiagnose,
-                                     base.TargetObject.UserRole);
-                    if (entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
-                    }
-                    //reload its data on the view as well if it is existing
-                    //update the view on add, update or delete if it hasn't been updated(probably will not be found on add
-                    //or delete and yeah
-                    if (base.TargetObject.UserRole == 0 || base.TargetObject.UserRole == 1)
-                    {
-                        //retrieve the data and if it exists reload it from the database, if not, do nothing
-                        EmployeeView current_emp_view = entities.EmployeeViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                        if (current_emp_view != null)
+                        entities.UpdateUserByID(base.TargetObject.ID, base.TargetObject.UserName, base.TargetObject.UserPassword, base.TargetObject.UserDisplayName, base.TargetObject.UserBirthDate, base.TargetObject.UserPhone,
+                                         base.TargetObject.UserEmail, base.TargetObject.UserAddress, base.TargetObject.UserProfilePic, base.TargetObject.UserBalance, base.TargetObject.UserDiagnose,
+                                         base.TargetObject.UserRole);
+                        if (entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
                         {
-                            entities.Entry(current_emp_view).Reload();
+                            entities.Entry(entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //reload its data on the view as well if it is existing
+                        //update the view on add, update or delete if it hasn't been updated(probably will not be found on add
+                        //or delete and yeah
+                        if (base.TargetObject.UserRole == 0 || base.TargetObject.UserRole == 1)
+                        {
+                            //retrieve the data and if it exists reload it from the database, if not, do nothing
+                            EmployeeView current_emp_view = entities.EmployeeViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                            if (current_emp_view != null)
+                            {
+                                entities.Entry(current_emp_view).Reload();
+                            }
+                        }
+                        else if (base.TargetObject.UserRole == 2)
+                        {
+                            //retrieve the data and if it exists reload it from the database, if not, do nothing
+                            ClientView current_cl_view = entities.ClientViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                            if (current_cl_view != null)
+                            {
+                                entities.Entry(current_cl_view).Reload();
+                            }
                         }
                     }
-                    else if (base.TargetObject.UserRole == 2)
-                    {
-                        //retrieve the data and if it exists reload it from the database, if not, do nothing
-                        ClientView current_cl_view = entities.ClientViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                        if (current_cl_view != null)
-                        {
-                            entities.Entry(current_cl_view).Reload();
-                        }
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for users is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -478,35 +492,42 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "User has been deleted.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.DeleteUserByID(base.TargetObject.ID);
-                    if (entities.Users.Where(x=>x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
-                    }
-                    //no need to reload nonexistent or just added entries but if the view still contains them
-                    //better reload them
-                    //update the view on add, update or delete if it hasn't been updated(probably will not be found on add
-                    //or delete and yeah
-                    if (base.TargetObject.UserRole == 0 || base.TargetObject.UserRole == 1)
-                    {
-                        //retrieve the data and if it exists reload it from the database, if not, do nothing
-                        EmployeeView current_emp_view = entities.EmployeeViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                        if (current_emp_view != null)
+                        entities.DeleteUserByID(base.TargetObject.ID);
+                        if (entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
                         {
-                            entities.Entry(current_emp_view).Reload();
+                            entities.Entry(entities.Users.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //no need to reload nonexistent or just added entries but if the view still contains them
+                        //better reload them
+                        //update the view on add, update or delete if it hasn't been updated(probably will not be found on add
+                        //or delete and yeah
+                        if (base.TargetObject.UserRole == 0 || base.TargetObject.UserRole == 1)
+                        {
+                            //retrieve the data and if it exists reload it from the database, if not, do nothing
+                            EmployeeView current_emp_view = entities.EmployeeViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                            if (current_emp_view != null)
+                            {
+                                entities.Entry(current_emp_view).Reload();
+                            }
+                        }
+                        else if (base.TargetObject.UserRole == 2)
+                        {
+                            //retrieve the data and if it exists reload it from the database, if not, do nothing
+                            ClientView current_cl_view = entities.ClientViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                            if (current_cl_view != null)
+                            {
+                                entities.Entry(current_cl_view).Reload();
+                            }
                         }
                     }
-                    else if (base.TargetObject.UserRole == 2)
-                    {
-                        //retrieve the data and if it exists reload it from the database, if not, do nothing
-                        ClientView current_cl_view = entities.ClientViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                        if (current_cl_view != null)
-                        {
-                            entities.Entry(current_cl_view).Reload();
-                        }
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for users is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
