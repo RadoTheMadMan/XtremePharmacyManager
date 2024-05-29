@@ -589,19 +589,26 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Product Brand has been added.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.AddBrand(base.TargetObject.BrandName);
-                    if (entities.ProductBrands.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.ProductBrands.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.AddBrand(base.TargetObject.BrandName);
+                        if (entities.ProductBrands.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.ProductBrands.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                        ExtendedBrandsView prb_view = entities.ExtendedBrandsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (prb_view != null)
+                        {
+                            entities.Entry(prb_view).Reload();
+                        }
                     }
-                    //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
-                    ExtendedBrandsView prb_view = entities.ExtendedBrandsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (prb_view != null)
-                    {
-                        entities.Entry(prb_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product brands is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -639,19 +646,26 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Product Brand has been updated.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.UpdateBrandByID(base.TargetObject.ID, base.TargetObject.BrandName);
-                    if (entities.ProductBrands.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.ProductBrands.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.UpdateBrandByID(base.TargetObject.ID, base.TargetObject.BrandName);
+                        if (entities.ProductBrands.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.ProductBrands.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                        ExtendedBrandsView prb_view = entities.ExtendedBrandsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (prb_view != null)
+                        {
+                            entities.Entry(prb_view).Reload();
+                        }
                     }
-                    //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
-                    ExtendedBrandsView prb_view = entities.ExtendedBrandsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (prb_view != null)
-                    {
-                        entities.Entry(prb_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product brands is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -689,19 +703,26 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Product Brand has been deleted.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.DeleteBrandByID(base.TargetObject.ID);
-                    if (entities.ProductBrands.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.ProductBrands.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.DeleteBrandByID(base.TargetObject.ID);
+                        if (entities.ProductBrands.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.ProductBrands.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                        ExtendedBrandsView prb_view = entities.ExtendedBrandsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (prb_view != null)
+                        {
+                            entities.Entry(prb_view).Reload();
+                        }
                     }
-                    //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
-                    ExtendedBrandsView prb_view = entities.ExtendedBrandsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (prb_view != null)
-                    {
-                        entities.Entry(prb_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product brands is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -763,19 +784,26 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Product Vendor has been added.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.AddVendor(base.TargetObject.VendorName);
-                    if (entities.ProductVendors.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.ProductVendors.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.AddVendor(base.TargetObject.VendorName);
+                        if (entities.ProductVendors.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.ProductVendors.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                        ExtendedVendorsView prv_view = entities.ExtendedVendorsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (prv_view != null)
+                        {
+                            entities.Entry(prv_view).Reload();
+                        }
                     }
-                    //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
-                    ExtendedVendorsView prv_view = entities.ExtendedVendorsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (prv_view != null)
-                    {
-                        entities.Entry(prv_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product vendors is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -813,19 +841,26 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Product Vendor has been updated.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.UpdateVendorByID(base.TargetObject.ID, base.TargetObject.VendorName);
-                    if (entities.ProductVendors.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.ProductVendors.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.UpdateVendorByID(base.TargetObject.ID, base.TargetObject.VendorName);
+                        if (entities.ProductVendors.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.ProductVendors.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                        ExtendedVendorsView prv_view = entities.ExtendedVendorsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (prv_view != null)
+                        {
+                            entities.Entry(prv_view).Reload();
+                        }
                     }
-                    //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
-                    ExtendedVendorsView prv_view = entities.ExtendedVendorsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (prv_view != null)
-                    {
-                        entities.Entry(prv_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product vendors is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -863,19 +898,26 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Product Vendor has been deleted.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.DeleteVendorByID(base.TargetObject.ID);
-                    if (entities.ProductVendors.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.ProductVendors.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.DeleteVendorByID(base.TargetObject.ID);
+                        if (entities.ProductVendors.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.ProductVendors.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
+                        ExtendedVendorsView prv_view = entities.ExtendedVendorsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (prv_view != null)
+                        {
+                            entities.Entry(prv_view).Reload();
+                        }
                     }
-                    //find the entry that corresponds to the entry in the original table and reload it so it is updated in the model
-                    ExtendedVendorsView prv_view = entities.ExtendedVendorsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (prv_view != null)
-                    {
-                        entities.Entry(prv_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product vendors is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -937,19 +979,26 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Payment Method has been added.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.AddPaymentMethod(base.TargetObject.MethodName);
-                    if (entities.PaymentMethods.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.PaymentMethods.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.AddPaymentMethod(base.TargetObject.MethodName);
+                        if (entities.PaymentMethods.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.PaymentMethods.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //if you find a data from the table entry the operation was performed on in the views reload the view in the model
+                        ExtendedPaymentMethodsView pm_view = entities.ExtendedPaymentMethodsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (pm_view != null)
+                        {
+                            entities.Entry(pm_view).Reload();
+                        }
                     }
-                    //if you find a data from the table entry the operation was performed on in the views reload the view in the model
-                    ExtendedPaymentMethodsView pm_view = entities.ExtendedPaymentMethodsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (pm_view != null)
-                    {
-                        entities.Entry(pm_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for payment methods is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -987,19 +1036,26 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Payment Method has been updated.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.UpdatePaymentMethodByID(base.TargetObject.ID, base.TargetObject.MethodName);
-                    if (entities.PaymentMethods.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.PaymentMethods.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.UpdatePaymentMethodByID(base.TargetObject.ID, base.TargetObject.MethodName);
+                        if (entities.PaymentMethods.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.PaymentMethods.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //if you find a data from the table entry the operation was performed on in the views reload the view in the model
+                        ExtendedPaymentMethodsView pm_view = entities.ExtendedPaymentMethodsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (pm_view != null)
+                        {
+                            entities.Entry(pm_view).Reload();
+                        }
                     }
-                    //if you find a data from the table entry the operation was performed on in the views reload the view in the model
-                    ExtendedPaymentMethodsView pm_view = entities.ExtendedPaymentMethodsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (pm_view != null)
-                    {
-                        entities.Entry(pm_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for payment methods is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1038,19 +1094,26 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Payment Method has been deleted.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.DeletePaymentMethodByID(base.TargetObject.ID);
-                    if (entities.PaymentMethods.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.PaymentMethods.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.DeletePaymentMethodByID(base.TargetObject.ID);
+                        if (entities.PaymentMethods.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.PaymentMethods.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //if you find a data from the table entry the operation was performed on in the views reload the view in the model
+                        ExtendedPaymentMethodsView pm_view = entities.ExtendedPaymentMethodsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (pm_view != null)
+                        {
+                            entities.Entry(pm_view).Reload();
+                        }
                     }
-                    //if you find a data from the table entry the operation was performed on in the views reload the view in the model
-                    ExtendedPaymentMethodsView pm_view = entities.ExtendedPaymentMethodsViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (pm_view != null)
-                    {
-                        entities.Entry(pm_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for payment methods is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1112,20 +1175,27 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Delivery Service has been added.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.AddDeliveryService(base.TargetObject.ServiceName, base.TargetObject.ServicePrice);
-                    if (entities.DeliveryServices.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.DeliveryServices.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.AddDeliveryService(base.TargetObject.ServiceName, base.TargetObject.ServicePrice);
+                        if (entities.DeliveryServices.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.DeliveryServices.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //in whatever this operation is that affects something from the table find the ID of that in the view of the database
+                        //and sync it with the model in case the database doesn't sync it automatically with the model
+                        ExtendedDeliveryServicesView ds_view = entities.ExtendedDeliveryServicesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (ds_view != null)
+                        {
+                            entities.Entry(ds_view).Reload();
+                        }
                     }
-                    //in whatever this operation is that affects something from the table find the ID of that in the view of the database
-                    //and sync it with the model in case the database doesn't sync it automatically with the model
-                    ExtendedDeliveryServicesView ds_view = entities.ExtendedDeliveryServicesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (ds_view != null)
-                    {
-                        entities.Entry(ds_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for delivery services is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1163,20 +1233,27 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Delivery Service has been updated.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.UpdateDeliveryServiceByID(base.TargetObject.ID, base.TargetObject.ServiceName, base.TargetObject.ServicePrice);
-                    if (entities.DeliveryServices.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.DeliveryServices.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.UpdateDeliveryServiceByID(base.TargetObject.ID, base.TargetObject.ServiceName, base.TargetObject.ServicePrice);
+                        if (entities.DeliveryServices.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.DeliveryServices.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //in whatever this operation is that affects something from the table find the ID of that in the view of the database
+                        //and sync it with the model in case the database doesn't sync it automatically with the model
+                        ExtendedDeliveryServicesView ds_view = entities.ExtendedDeliveryServicesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (ds_view != null)
+                        {
+                            entities.Entry(ds_view).Reload();
+                        }
                     }
-                    //in whatever this operation is that affects something from the table find the ID of that in the view of the database
-                    //and sync it with the model in case the database doesn't sync it automatically with the model
-                    ExtendedDeliveryServicesView ds_view = entities.ExtendedDeliveryServicesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (ds_view != null)
-                    {
-                        entities.Entry(ds_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for delivery services is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1214,20 +1291,27 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Delivery Service has been deleted.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.DeleteDeliveryServiceByID(base.TargetObject.ID);
-                    if (entities.DeliveryServices.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.DeliveryServices.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.DeleteDeliveryServiceByID(base.TargetObject.ID);
+                        if (entities.DeliveryServices.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.DeliveryServices.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //in whatever this operation is that affects something from the table find the ID of that in the view of the database
+                        //and sync it with the model in case the database doesn't sync it automatically with the model
+                        ExtendedDeliveryServicesView ds_view = entities.ExtendedDeliveryServicesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (ds_view != null)
+                        {
+                            entities.Entry(ds_view).Reload();
+                        }
                     }
-                    //in whatever this operation is that affects something from the table find the ID of that in the view of the database
-                    //and sync it with the model in case the database doesn't sync it automatically with the model
-                    ExtendedDeliveryServicesView ds_view = entities.ExtendedDeliveryServicesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (ds_view != null)
-                    {
-                        entities.Entry(ds_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for delivery services is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
