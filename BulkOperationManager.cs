@@ -74,7 +74,7 @@ namespace XtremePharmacyManager
             type = optype;
             if (obj != null)  
             {
-                target_object = obj;
+                UpdateTargetObject(obj);
             }
             this.is_silent = is_silent;
             operation_name = $"{type} operation on {target_object.GetType()}";
@@ -2150,8 +2150,8 @@ namespace XtremePharmacyManager
                                 property.SetValue(current_operation_for_change, template_operation_property, null); //else update it using the reflection
                             }
                         }
-                        current_operation_for_change.UpdateName();
                         current_operation_for_change.CurrentUser = this.CurrentUser;
+                        current_operation_for_change.UpdateName();
                         bulk_operations[operation_index] = current_operation_for_change;
                     }
                 }
@@ -2201,8 +2201,8 @@ namespace XtremePharmacyManager
                                     property.SetValue(current_operation_for_change, template_operation_property, null); //else update it using the reflection
                                 }
                             }
-                            current_operation_for_change.UpdateName();
                             current_operation_for_change.CurrentUser = this.CurrentUser;
+                            current_operation_for_change.UpdateName();
                             bulk_operations[i] = current_operation_for_change;
                         }
                     }
