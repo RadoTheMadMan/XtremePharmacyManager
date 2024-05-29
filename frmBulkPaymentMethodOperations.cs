@@ -263,7 +263,7 @@ namespace XtremePharmacyManager
             {
               if(selected_record != null)
                 {
-                    this.txtID.Text = (selected_record.ID >= 0) ? selected_target.ID.ToString() : string.Empty;
+                    this.txtID.Text = (selected_record.ID >= 0) ? selected_record.ID.ToString() : string.Empty;
                     this.txtMethodName.Text = (!String.IsNullOrEmpty(selected_record.MethodName)) ? selected_record.MethodName.ToString() : string.Empty;
                     cbSelectRecord.SelectedValue = selected_record.ID;
                 }

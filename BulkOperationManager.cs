@@ -259,6 +259,10 @@ namespace XtremePharmacyManager
 
         public void UpdateTargetObject(T obj)
         {
+            if(target_object == null)
+            {
+                target_object = (T)Activator.CreateInstance(typeof(T));
+            }
             Type objectType = TargetObject.GetType();
             Type otherobjbasetype = obj.GetType().GetTypeInfo().BaseType;
             try
@@ -2230,7 +2234,12 @@ namespace XtremePharmacyManager
                             operation_log += $"Operation failed. Here are details:\nError Code:{bulk_operation.ErrorCode}\n" +
                                 $"ErrorMessage:{bulk_operation.ErrorMessage}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}: {bulk_operation.StackTrace}\n";
                         }
+                        bulk_operation.Dispose();
                     }
+                }
+                for(int i = 0; i<bulk_operations.Count; i++)
+                {
+                    bulk_operations[i] = null;
                 }
                 endTime = DateTime.Now;
                 deltaTime = endTime - startTime;
@@ -2330,7 +2339,7 @@ namespace XtremePharmacyManager
                         {
                             var current_operation_property = property.GetValue(current_operation_for_change, null);
                             var template_operation_property = property.GetValue(bulk_operation, null);
-                            if (current_operation_property.Equals(current_operation_for_change.TargetObject)) //if it is the target object update the target object using the function
+                            if ( current_operation_property != null && current_operation_property.Equals(current_operation_for_change.TargetObject)) //if it is the target object update the target object using the function
                             {
                                 current_operation_for_change.UpdateTargetObject(bulk_operation.TargetObject);
                             }
@@ -2381,7 +2390,7 @@ namespace XtremePharmacyManager
                             {
                                 var current_operation_property = property.GetValue(current_operation_for_change, null);
                                 var template_operation_property = property.GetValue(bulk_operation, null);
-                                if (current_operation_property.Equals(current_operation_for_change.TargetObject)) //if it is the target object update the target object using the function
+                                if (current_operation_property != null && current_operation_property.Equals(current_operation_for_change.TargetObject)) //if it is the target object update the target object using the function
                                 {
                                     current_operation_for_change.UpdateTargetObject(bulk_operation.TargetObject);
                                 }

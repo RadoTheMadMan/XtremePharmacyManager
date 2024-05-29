@@ -46,7 +46,7 @@ namespace XtremePharmacyManager
                 }
                 cbSelectRecord.DataSource = entries;
                 product_entries = manager_entities.Products.ToList();
-                foreach (var entry in entries)
+                foreach (var entry in product_entries)
                 {
                     manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
                 }
@@ -76,7 +76,7 @@ namespace XtremePharmacyManager
                 }
                 cbSelectRecord.DataSource = entries;
                 product_entries = manager_entities.Products.ToList();
-                foreach (var entry in entries)
+                foreach (var entry in product_entries)
                 {
                     manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
                 }
@@ -109,7 +109,7 @@ namespace XtremePharmacyManager
                 }
                 cbSelectRecord.DataSource = entries;
                 product_entries = manager_entities.Products.ToList();
-                foreach (var entry in entries)
+                foreach (var entry in product_entries)
                 {
                     manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
                 }
@@ -133,13 +133,13 @@ namespace XtremePharmacyManager
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 entries = manager_entities.ProductOrders.ToList();
-                foreach (var entry in entries)
+                foreach (var entry in product_entries)
                 {
                     manager_entities.Entry(manager_entities.ProductOrders.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
                 }
                 cbSelectRecord.DataSource = entries;
                 product_entries = manager_entities.Products.ToList();
-                foreach (var entry in entries)
+                foreach (var entry in product_entries)
                 {
                     manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
                 }
@@ -205,6 +205,7 @@ namespace XtremePharmacyManager
                     cbClient.SelectedValue = selected_target.ClientID;
                     cbEmployee.SelectedValue = selected_target.EmployeeID;
                     cbStatus.SelectedIndex = selected_target.OrderStatus;
+                    txtReason.Text = selected_target.OrderReason;
                     cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                 }
@@ -219,7 +220,7 @@ namespace XtremePharmacyManager
                 }
                 cbSelectRecord.DataSource = entries;
                 product_entries = manager_entities.Products.ToList();
-                foreach (var entry in entries)
+                foreach (var entry in product_entries)
                 {
                     manager_entities.Entry(manager_entities.Products.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
                 }
@@ -307,6 +308,7 @@ namespace XtremePharmacyManager
                     cbClient.SelectedValue = selected_target.ClientID;
                     cbEmployee.SelectedValue = selected_target.EmployeeID;
                     cbStatus.SelectedIndex = selected_target.OrderStatus;
+                    txtReason.Text = selected_target.OrderReason;
                     cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                 }
@@ -418,6 +420,7 @@ namespace XtremePharmacyManager
                     cbClient.SelectedValue = selected_record.ClientID;
                     cbEmployee.SelectedValue = selected_record.EmployeeID;
                     cbStatus.SelectedIndex = selected_record.OrderStatus;
+                    txtReason.Text = selected_record.OrderReason;
                     cbSelectRecord.SelectedValue = selected_record.ID;
                 }
             }

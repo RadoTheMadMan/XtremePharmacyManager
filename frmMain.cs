@@ -255,7 +255,7 @@ namespace XtremePharmacyManager
                         {
                             MessageBox.Show("You can't use this application without a proper authorization in the database. Application will exit!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             if (loginform != null)
-                            {
+                            {loginform.Dispose();
                                 loginform = null;
                             }
                             Application.Exit();
@@ -264,7 +264,7 @@ namespace XtremePharmacyManager
                         {
                             MessageBox.Show("You can't use this application without a proper authorization in the database and closing the login without even confirming or cancelling it will not help you. Application will exit!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             if (loginform != null)
-                            {
+                            {loginform.Dispose();
                                 loginform = null;
                             }
                             Application.Exit();
@@ -360,7 +360,7 @@ namespace XtremePharmacyManager
                         {
                             MessageBox.Show("You can't use this application without a proper authorization in the database. Application will exit!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             if (loginform != null)
-                            {
+                            {loginform.Dispose();
                                 loginform = null;
                             }
                             Application.Exit();
@@ -369,7 +369,7 @@ namespace XtremePharmacyManager
                         {
                             MessageBox.Show("You can't use this application without a proper authorization in the database and closing the login without even confirming or cancelling it will not help you. Application will exit!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             if (loginform != null)
-                            {
+                            {loginform.Dispose();
                                 loginform = null;
                             }
                             Application.Exit();
@@ -441,6 +441,7 @@ namespace XtremePharmacyManager
 
         private void Usersearchform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            userssearchform.Dispose();
             userssearchform = null;
         }
 
@@ -487,6 +488,7 @@ namespace XtremePharmacyManager
 
         private void Deliveryservicessearchform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            deliveryservicessearchform.Dispose();
             deliveryservicessearchform = null;
         }
 
@@ -528,6 +530,7 @@ namespace XtremePharmacyManager
 
         private void Paymentmethodssearchform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            paymentmethodssearchform.Dispose();
             paymentmethodssearchform = null;
         }
 
@@ -569,6 +572,7 @@ namespace XtremePharmacyManager
 
         private void Productbrandssearchform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            productbrandssearchform.Dispose();
             productbrandssearchform = null;
         }
 
@@ -617,6 +621,7 @@ namespace XtremePharmacyManager
 
         private void Productssearchform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            productssearchform.Dispose();
             productssearchform = null;
         }
 
@@ -657,6 +662,7 @@ namespace XtremePharmacyManager
 
         private void Orderssearchform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            orderssearchform.Dispose();
             orderssearchform = null;
         }
 
@@ -697,6 +703,7 @@ namespace XtremePharmacyManager
         }
         private void Orderdeliveriessearchform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            orderdeliveriessearchform.Dispose();
             orderdeliveriessearchform = null;
         }
 
@@ -737,6 +744,7 @@ namespace XtremePharmacyManager
 
         private void Logsform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            logsform.Dispose();
             logsform = null;
         }
 
@@ -770,6 +778,7 @@ namespace XtremePharmacyManager
 
         private void Imgbinform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            imgbinform.Dispose(); 
             imgbinform = null;
         }
 
@@ -867,82 +876,102 @@ namespace XtremePharmacyManager
             {
                 if (userssearchform != null)
                 {
+                    userssearchform.Dispose();
                     userssearchform = null;
                 }
                 if (deliveryservicessearchform != null)
                 {
+                    deliveryservicessearchform.Dispose();
                     deliveryservicessearchform = null;
                 }
                 if (paymentmethodssearchform != null)
                 {
+                    paymentmethodssearchform.Dispose();
                     paymentmethodssearchform = null;
                 }
                 if (productbrandssearchform != null)
                 {
+                    productbrandssearchform.Dispose();
                     productbrandssearchform = null;
                 }
                 if (productvendorssearchform != null)
                 {
+                    productvendorssearchform.Dispose();
                     productvendorssearchform = null;
                 }
-                if (productssearchform != null);
+                if (productssearchform != null)
                 {
+                    productssearchform.Dispose();
                     productssearchform = null;
                 }
                 if(orderssearchform != null)
                 {
+                    orderssearchform.Dispose();
                     orderssearchform = null;
                 }
                 if(orderdeliveriessearchform != null)
-                {
+                {   
+                    orderdeliveriessearchform.Dispose();
                     orderdeliveriessearchform = null;
                 }
                 if(logsform != null)
                 {
+                    logsform.Dispose();
                     logsform = null;
                 }
                 if (imgbinform != null)
                 {
+                    imgbinform.Dispose();
                     imgbinform = null;
                 }
                 if(bulkUserOperationManager != null)
                 {
+                    bulkUserOperationManager.Dispose();
                     bulkUserOperationManager = null;
                 }
                 if(bulkUserOperationsform != null)
                 {
+                    bulkUserOperationsform.Dispose();
                     bulkUserOperationsform = null;
                 }
                 if(bulkProductBrandOperationManager != null)
                 {
+                    bulkProductBrandOperationManager.Dispose();
                     bulkProductBrandOperationManager = null;
                 }
                 if (bulkProductVendorOperationManager != null)
                 {
+                    bulkProductVendorOperationManager.Dispose();
                     bulkProductVendorOperationManager = null;
                 }
                 if (bulkPaymentMethodOperationManager != null)
                 {
+                    bulkPaymentMethodOperationManager.Dispose();
                     bulkPaymentMethodOperationManager = null;
                 }
                 if(bulkDeliveryServiceOperationManager != null)
                 {
+                    bulkDeliveryServiceOperationManager.Dispose();
                     bulkDeliveryServiceOperationManager = null;
                 }
                 if(bulkProductOperationManager != null)
                 {
+                    bulkProductOperationManager.Dispose();
                     bulkProductOperationManager = null;
                 }
                 if(bulkProductImageOperationManager != null)
                 {
+                    bulkProductImageOperationManager.Dispose();
                     bulkProductImageOperationManager = null;
                 }
                 if(bulkProductOrderOperationManager != null)
                 {
+                    bulkProductOrderOperationManager.Dispose();
                     bulkProductOrderOperationManager = null;
                 }
                 if(bulkOrderDeliveryOperationManager != null)
                 {
+                    bulkOrderDeliveryOperationManager.Dispose();
                     bulkOrderDeliveryOperationManager = null;
                 }
                 if (logger != null)
@@ -955,6 +984,7 @@ namespace XtremePharmacyManager
                     {
                         entities.Database.Connection.Close();
                     }
+                    entities.Dispose();
                     entities = null;
                 }
                 if(currentUser != null)
@@ -963,8 +993,10 @@ namespace XtremePharmacyManager
                 }
                 if(last_Logins != null)
                 {
+                    last_Logins.Clear();
                     last_Logins = null;
                 }
+                this.Dispose();
             }
             catch (Exception ex)
             {
@@ -1009,6 +1041,7 @@ namespace XtremePharmacyManager
 
         private void bulkUserOperationsform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            bulkUserOperationsform.Dispose();
             bulkUserOperationsform = null;
         }
 
@@ -1049,6 +1082,7 @@ namespace XtremePharmacyManager
 
         private void bulkProductBrandOperationsform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            bulkProductBrandOperationsform.Dispose();
             bulkProductBrandOperationsform = null;
         }
 
@@ -1089,6 +1123,7 @@ namespace XtremePharmacyManager
 
         private void bulkPaymentMethodOperationsform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            bulkPaymentMethodOperationsform.Dispose();
             bulkPaymentMethodOperationsform = null;
         }
 
@@ -1129,6 +1164,7 @@ namespace XtremePharmacyManager
 
         private void bulkDeliveryServiceOperationsform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            bulkDeliveryServiceOperationsform.Dispose();
             bulkDeliveryServiceOperationsform = null;
         }
 
@@ -1169,6 +1205,7 @@ namespace XtremePharmacyManager
 
         private void bulkProductOperationsform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            bulkProductOperationsform.Dispose();
             bulkProductOperationsform = null;
         }
 
@@ -1209,6 +1246,7 @@ namespace XtremePharmacyManager
 
         private void bulkProductImageOperationsform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            bulkProductImageOperationsform.Dispose();
             bulkProductImageOperationsform = null;
         }
 
@@ -1249,6 +1287,7 @@ namespace XtremePharmacyManager
 
         private void bulkProductOrderOperationsform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            bulkProductOrderOperationsform.Dispose();
             bulkProductOrderOperationsform = null;
         }
 
@@ -1289,6 +1328,7 @@ namespace XtremePharmacyManager
 
         private void bulkOrderDeliveryOperationsform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            bulkOrderDeliveryOperationsform.Dispose();
             bulkOrderDeliveryOperationsform = null;
         }
 
@@ -1330,6 +1370,7 @@ namespace XtremePharmacyManager
 
         private void Productvendorssearchform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            productvendorssearchform.Dispose();
             productvendorssearchform = null;
         }
 
@@ -1370,6 +1411,7 @@ namespace XtremePharmacyManager
 
         private void bulkProductVendorOperationsform_FormClosed(object sender, FormClosedEventArgs e)
         {
+            bulkProductVendorOperationsform.Dispose();
             bulkProductVendorOperationsform = null;
         }
 
