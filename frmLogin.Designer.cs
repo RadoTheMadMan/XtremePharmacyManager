@@ -16,6 +16,19 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+                if (retrieved_users != null)
+                {
+                    retrieved_users.Clear();
+                    retrieved_users = null;
+                }
+                if (last_logins != null)
+                {
+                    last_logins = null;
+                }
+                if (ent != null)
+                {
+                    ent = null;
+                }
             }
             base.Dispose(disposing);
         }
@@ -30,6 +43,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlLogin = new System.Windows.Forms.Panel();
+            this.btnRemoveLogin = new System.Windows.Forms.Button();
             this.btnAddLogin = new System.Windows.Forms.Button();
             this.btnClearLogins = new System.Windows.Forms.Button();
             this.lblLastLogins = new System.Windows.Forms.Label();
@@ -48,7 +62,6 @@
             this.btnApplyChangesToAllTargets = new System.Windows.Forms.Button();
             this.lstLastLogins = new System.Windows.Forms.ListBox();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnRemoveLogin = new System.Windows.Forms.Button();
             this.pnlLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -78,6 +91,18 @@
             this.pnlLogin.Name = "pnlLogin";
             this.pnlLogin.Size = new System.Drawing.Size(876, 295);
             this.pnlLogin.TabIndex = 0;
+            // 
+            // btnRemoveLogin
+            // 
+            this.btnRemoveLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveLogin.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveLogin.Location = new System.Drawing.Point(286, 245);
+            this.btnRemoveLogin.Name = "btnRemoveLogin";
+            this.btnRemoveLogin.Size = new System.Drawing.Size(265, 47);
+            this.btnRemoveLogin.TabIndex = 52;
+            this.btnRemoveLogin.Text = "REMOVE LOGIN";
+            this.btnRemoveLogin.UseVisualStyleBackColor = true;
+            this.btnRemoveLogin.Click += new System.EventHandler(this.btnRemoveLogin_Click);
             // 
             // btnAddLogin
             // 
@@ -288,27 +313,16 @@
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
             // 
-            // btnRemoveLogin
-            // 
-            this.btnRemoveLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveLogin.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveLogin.Location = new System.Drawing.Point(286, 245);
-            this.btnRemoveLogin.Name = "btnRemoveLogin";
-            this.btnRemoveLogin.Size = new System.Drawing.Size(265, 47);
-            this.btnRemoveLogin.TabIndex = 52;
-            this.btnRemoveLogin.Text = "REMOVE LOGIN";
-            this.btnRemoveLogin.UseVisualStyleBackColor = true;
-            this.btnRemoveLogin.Click += new System.EventHandler(this.btnRemoveLogin_Click);
-            // 
             // frmLogin
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(876, 295);
             this.Controls.Add(this.pnlLogin);
             this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.Text = "LOGIN";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLogin_FormClosing);
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.pnlLogin.ResumeLayout(false);
             this.pnlLogin.PerformLayout();

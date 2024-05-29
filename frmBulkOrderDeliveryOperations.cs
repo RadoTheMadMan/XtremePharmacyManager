@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,7 @@ namespace XtremePharmacyManager
         static List<ProductOrder> order_entries;
         static List<PaymentMethod> method_entries;
         static List<DeliveryService> service_entries;
+        static User current_user;
         OrderDelivery selected_target;
         static Entities manager_entities;
         public frmBulkOrderDeliveryOperations(ref BulkOperationManager<OrderDelivery> operation_manager)
@@ -27,6 +29,7 @@ namespace XtremePharmacyManager
             InitializeComponent();
             manager = operation_manager;
             manager_entities = manager.Entities;
+            current_user = manager.CurrentUser;
             manager.BulkOperationsExecuted += OnBulkOperationExecuted;
             manager.BulkOperationAdded += OnBulkOperationListChanged;
             manager.BulkOperationRemoved += OnBulkOperationListChanged;
@@ -242,7 +245,14 @@ namespace XtremePharmacyManager
         {
             try
             {
-                manager.ExecuteOperations();
+                if (current_user.UserRole == 0 || current_user.UserRole == 1)
+                {
+                    manager.ExecuteOperations();
+                }
+                else
+                {
+                    MessageBox.Show("You don't have permissions to use bulk operations for order deliveries.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 selected_target = null;
                 selected_operation = null;
             }
@@ -256,22 +266,29 @@ namespace XtremePharmacyManager
         {
             try
             {
-                if (selected_target != null)
+                if (current_user.UserRole == 0 || current_user.UserRole == 1)
                 {
-                    selected_target.OrderID = Int32.Parse(cbOrder.SelectedValue.ToString());
-                    selected_target.DeliveryServiceID = Int32.Parse(cbDeliveryService.SelectedValue.ToString());
-                    selected_target.PaymentMethodID = Int32.Parse(cbPaymentMethod.SelectedValue.ToString());
-                    selected_target.CargoID = txtCargoID.Text;
-                    selected_target.DeliveryStatus = cbStatus.SelectedIndex;
-                    selected_target.DeliveryReason = txtReason.Text;
+                    if (selected_target != null)
+                    {
+                        selected_target.OrderID = Int32.Parse(cbOrder.SelectedValue.ToString());
+                        selected_target.DeliveryServiceID = Int32.Parse(cbDeliveryService.SelectedValue.ToString());
+                        selected_target.PaymentMethodID = Int32.Parse(cbPaymentMethod.SelectedValue.ToString());
+                        selected_target.CargoID = txtCargoID.Text;
+                        selected_target.DeliveryStatus = cbStatus.SelectedIndex;
+                        selected_target.DeliveryReason = txtReason.Text;
+                    }
+                    if (selected_operation != null)
+                    {
+                        selected_operation.UpdateTargetObject(selected_target);
+                        selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
+                        selected_operation.IsSilent = checkSilentOperation.Checked;
+                        selected_operation.UpdateName();
+                        manager.UpdateAllOperations(selected_operation);
+                    }
                 }
-                if (selected_operation != null)
+                else
                 {
-                    selected_operation.UpdateTargetObject(selected_target);
-                    selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
-                    selected_operation.IsSilent = checkSilentOperation.Checked;
-                    selected_operation.UpdateName();
-                    manager.UpdateAllOperations(selected_operation);
+                    MessageBox.Show("You don't have permissions to use bulk operations for order deliveries.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 selected_target = null;
                 selected_operation = null;
@@ -322,16 +339,23 @@ namespace XtremePharmacyManager
             {
                 bool IsSilent = checkSilentOperation.Checked;
                 BulkOperationType operationType = (BulkOperationType)cbOperationType.SelectedIndex;
-                manager.AddOperation(new BulkOrderDeliveryOperation(operationType, ref manager_entities, new OrderDelivery()
+                if (current_user.UserRole == 0 || current_user.UserRole == 1)
                 {
-                    ID = Int32.Parse(txtID.Text),
-                    OrderID = Int32.Parse(cbOrder.SelectedValue.ToString()),
-                    DeliveryServiceID = Int32.Parse(cbDeliveryService.SelectedValue.ToString()),
-                    PaymentMethodID = Int32.Parse(cbPaymentMethod.SelectedValue.ToString()),
-                    CargoID = txtCargoID.Text,
-                    DeliveryStatus = cbStatus.SelectedIndex,
-                    DeliveryReason = txtReason.Text
-            }, IsSilent));
+                    manager.AddOperation(new BulkOrderDeliveryOperation(operationType, ref manager_entities, new OrderDelivery()
+                    {
+                        ID = Int32.Parse(txtID.Text),
+                        OrderID = Int32.Parse(cbOrder.SelectedValue.ToString()),
+                        DeliveryServiceID = Int32.Parse(cbDeliveryService.SelectedValue.ToString()),
+                        PaymentMethodID = Int32.Parse(cbPaymentMethod.SelectedValue.ToString()),
+                        CargoID = txtCargoID.Text,
+                        DeliveryStatus = cbStatus.SelectedIndex,
+                        DeliveryReason = txtReason.Text
+                    }, IsSilent));
+                }
+                else
+                {
+                    MessageBox.Show("You don't have permissions to use bulk operations for order deliveries.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 selected_target = null;
                 selected_operation = null;
             }
@@ -348,7 +372,14 @@ namespace XtremePharmacyManager
             {
                 if (selected_operation != null)
                 {
-                    manager.RemoveOperation(selected_operation);
+                    if (current_user.UserRole == 0 || current_user.UserRole == 1)
+                    {
+                        manager.RemoveOperation(selected_operation);
+                    }
+                    else
+                    {
+                        MessageBox.Show("You don't have permissions to use bulk operations for order deliveries.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     selected_target = null;
                     selected_operation = null;
                 }
@@ -363,25 +394,32 @@ namespace XtremePharmacyManager
         {
             try
             {
-                if (selected_target != null)
+                if (current_user.UserRole == 0 || current_user.UserRole == 1)
                 {
-                    selected_target.OrderID = Int32.Parse(cbOrder.SelectedValue.ToString());
-                    selected_target.DeliveryServiceID = Int32.Parse(cbDeliveryService.SelectedValue.ToString());
-                    selected_target.PaymentMethodID = Int32.Parse(cbPaymentMethod.SelectedValue.ToString());
-                    selected_target.CargoID = txtCargoID.Text;
-                    selected_target.DeliveryStatus = cbStatus.SelectedIndex;
-                    selected_target.DeliveryReason = txtReason.Text;
+                    if (selected_target != null)
+                    {
+                        selected_target.OrderID = Int32.Parse(cbOrder.SelectedValue.ToString());
+                        selected_target.DeliveryServiceID = Int32.Parse(cbDeliveryService.SelectedValue.ToString());
+                        selected_target.PaymentMethodID = Int32.Parse(cbPaymentMethod.SelectedValue.ToString());
+                        selected_target.CargoID = txtCargoID.Text;
+                        selected_target.DeliveryStatus = cbStatus.SelectedIndex;
+                        selected_target.DeliveryReason = txtReason.Text;
+                    }
+                    if (selected_operation != null)
+                    {
+                        int operation_index = manager.BulkOperations.IndexOf(selected_operation);
+                        BulkOperationType current_type = (BulkOperationType)cbOperationType.SelectedIndex;
+                        bool IsSilent = checkSilentOperation.Checked;
+                        selected_operation.UpdateTargetObject(selected_target);
+                        selected_operation.OperationType = current_type;
+                        selected_operation.IsSilent = IsSilent;
+                        selected_operation.UpdateName();
+                        manager.UpdateOperation(selected_operation);
+                    }
                 }
-                if (selected_operation != null)
+                else
                 {
-                    int operation_index = manager.BulkOperations.IndexOf(selected_operation);
-                    BulkOperationType current_type = (BulkOperationType)cbOperationType.SelectedIndex;
-                    bool IsSilent = checkSilentOperation.Checked;
-                    selected_operation.UpdateTargetObject(selected_target);
-                    selected_operation.OperationType = current_type;
-                    selected_operation.IsSilent = IsSilent;
-                    selected_operation.UpdateName();
-                    manager.UpdateOperation(selected_operation);
+                    MessageBox.Show("You don't have permissions to use bulk operations for order deliveries.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 selected_target = null;
                 selected_operation = null;

@@ -72,23 +72,7 @@ namespace XtremePharmacyManager
             Application.Exit();
         }
 
-        private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if(retrieved_users != null)
-            {
-                retrieved_users.Clear();
-                retrieved_users = null;
-            }
-            if(last_logins != null)
-            {
-                last_logins = null;
-            }
-            if(ent != null)
-            {
-                ent = null;
-            }
-        }
-
+       
         private void btnSetCurrentLoginAsDefault_Click(object sender, EventArgs e)
         {
             var configfile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
