@@ -16,6 +16,28 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+                if (manager != null)
+                {
+                    manager.BulkOperationsExecuted -= DeliveryServices_OnBulkOperationExecuted;
+                    manager = null;
+                }
+                if (delivery_services != null)
+                {
+                    delivery_services.Clear();
+                    delivery_services = null;
+                }
+                if (logger != null)
+                {
+                    logger = null;
+                }
+                if (current_user != null)
+                {
+                    current_user = null;
+                }
+                if (ent != null)
+                {
+                    ent = null;
+                }
             }
             base.Dispose(disposing);
         }
@@ -91,6 +113,8 @@
             // 
             // btnGenerateReport
             // 
+            this.btnGenerateReport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.btnGenerateReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerateReport.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerateReport.Location = new System.Drawing.Point(293, 237);
@@ -131,6 +155,8 @@
             // 
             // btnDelete
             // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Location = new System.Drawing.Point(197, 237);
@@ -143,6 +169,8 @@
             // 
             // btnAddOrEdit
             // 
+            this.btnAddOrEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddOrEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddOrEdit.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddOrEdit.Location = new System.Drawing.Point(101, 237);
@@ -155,6 +183,8 @@
             // 
             // btnSearch
             // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSearch.Location = new System.Drawing.Point(4, 237);
@@ -299,7 +329,6 @@
             this.MaximizeBox = false;
             this.Name = "frmSearchDeliveryServices";
             this.Text = "Delivery Services";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSearchDeliveryServices_FormClosing);
             this.Load += new System.EventHandler(this.frmSearchDeliveryServices_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

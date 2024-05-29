@@ -25,7 +25,7 @@ public class LoggerEventArgs:EventArgs
 
 namespace XtremePharmacyManager
 {
-    public class Logger
+    public class Logger :IDisposable
     {
        static Entities entities;
        static User current_user;
@@ -46,13 +46,7 @@ namespace XtremePharmacyManager
             }
         }
 
-        ~Logger()
-        {
-            entities = null;
-            logs = null;
-            lastUpdate = DateTime.Now;
-            instance = null;
-        }
+
 
         public void RefreshLogs()
         {
@@ -123,5 +117,13 @@ namespace XtremePharmacyManager
             }
         }
 
+        public void Dispose()
+        {
+            logs.Clear();
+            logs = null;
+            lastUpdate = DateTime.Now;
+            instance = null;
+            entities = null;
+        }
     }
 }

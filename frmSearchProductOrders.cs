@@ -839,45 +839,6 @@ namespace XtremePharmacyManager
             trbDesiredQuantity.Value = value;
         }
 
-        private void frmSearchProductOrders_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (manager != null)
-            {
-                manager.BulkOperationsExecuted -= ProductOrders_BulkOperationExecuted;
-                manager = null;
-            }
-            if (product_orders != null)
-            {
-                product_orders.Clear();
-                product_orders = null;
-            }
-            if (products != null)
-            {
-                products.Clear();
-                products = null;
-            }
-            if(employees != null)
-            {
-                employees.Clear();
-                employees = null;
-            }
-            if (clients != null)
-            {
-                clients.Clear();
-                clients = null;
-            }
-            if (current_user != null)
-            {
-                current_user = null;
-            }
-            if (logger != null)
-            {
-                logger = null;
-            }
-            if (ent != null)
-            {
-                ent = null;
-            }
-        }
+
     }
 }

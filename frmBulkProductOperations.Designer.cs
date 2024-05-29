@@ -16,6 +16,45 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+                if(current_user != null )
+                {
+                    current_user = null;
+                }
+                if(selected_operation != null )
+                {
+                    selected_operation = null;
+                }
+                if(selected_target != null )
+                {
+                    selected_target = null;
+                }
+                if(vendor_entries != null )
+                {
+                    vendor_entries.Clear();
+                    vendor_entries = null;
+                }
+                if(brand_entries != null )
+                {
+                    brand_entries.Clear();
+                    brand_entries = null;
+                }
+                if(entries != null)
+                {
+                    entries.Clear();
+                    entries = null;
+                }
+                if(manager_entities != null)
+                {
+                    manager_entities = null;
+                }
+                if(manager != null)
+                {
+                    manager.BulkOperationUpdated -= OnBulkOperationListChanged;
+                    manager.BulkOperationRemoved -= OnBulkOperationListChanged;
+                    manager.BulkOperationAdded -= OnBulkOperationListChanged;
+                    manager.BulkOperationsExecuted -= OnBulkOperationExecuted;
+                    manager = null;
+                }
             }
             base.Dispose(disposing);
         }
@@ -428,7 +467,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOperationLogs.Location = new System.Drawing.Point(22, 424);
             this.txtOperationLogs.Name = "txtOperationLogs";
-            this.txtOperationLogs.Size = new System.Drawing.Size(1213, 166);
+            this.txtOperationLogs.Size = new System.Drawing.Size(1213, 154);
             this.txtOperationLogs.TabIndex = 46;
             this.txtOperationLogs.Text = "";
             // 
@@ -488,12 +527,13 @@
             // 
             // btnAddOperation
             // 
+            this.btnAddOperation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAddOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOperation.Location = new System.Drawing.Point(586, 598);
+            this.btnAddOperation.Location = new System.Drawing.Point(22, 584);
             this.btnAddOperation.Name = "btnAddOperation";
-            this.btnAddOperation.Size = new System.Drawing.Size(211, 47);
+            this.btnAddOperation.Size = new System.Drawing.Size(345, 47);
             this.btnAddOperation.TabIndex = 40;
             this.btnAddOperation.Text = "ADD OPERATION";
             this.btnAddOperation.UseVisualStyleBackColor = true;
@@ -501,10 +541,11 @@
             // 
             // btnRemoveOperation
             // 
+            this.btnRemoveOperation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoveOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnRemoveOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveOperation.Location = new System.Drawing.Point(803, 598);
+            this.btnRemoveOperation.Location = new System.Drawing.Point(373, 584);
             this.btnRemoveOperation.Name = "btnRemoveOperation";
             this.btnRemoveOperation.Size = new System.Drawing.Size(211, 47);
             this.btnRemoveOperation.TabIndex = 39;
@@ -514,10 +555,11 @@
             // 
             // btnApplyChangesToCurrentTarget
             // 
+            this.btnApplyChangesToCurrentTarget.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApplyChangesToCurrentTarget.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnApplyChangesToCurrentTarget.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApplyChangesToCurrentTarget.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(803, 651);
+            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(807, 584);
             this.btnApplyChangesToCurrentTarget.Name = "btnApplyChangesToCurrentTarget";
             this.btnApplyChangesToCurrentTarget.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToCurrentTarget.TabIndex = 38;
@@ -527,10 +569,11 @@
             // 
             // btnExecuteOperations
             // 
+            this.btnExecuteOperations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExecuteOperations.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnExecuteOperations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExecuteOperations.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExecuteOperations.Location = new System.Drawing.Point(1020, 596);
+            this.btnExecuteOperations.Location = new System.Drawing.Point(590, 584);
             this.btnExecuteOperations.Name = "btnExecuteOperations";
             this.btnExecuteOperations.Size = new System.Drawing.Size(211, 47);
             this.btnExecuteOperations.TabIndex = 37;
@@ -540,10 +583,11 @@
             // 
             // btnApplyChangesToAllTargets
             // 
+            this.btnApplyChangesToAllTargets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApplyChangesToAllTargets.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnApplyChangesToAllTargets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApplyChangesToAllTargets.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(1020, 651);
+            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(1024, 584);
             this.btnApplyChangesToAllTargets.Name = "btnApplyChangesToAllTargets";
             this.btnApplyChangesToAllTargets.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToAllTargets.TabIndex = 36;

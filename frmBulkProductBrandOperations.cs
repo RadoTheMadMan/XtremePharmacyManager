@@ -17,6 +17,7 @@ namespace XtremePharmacyManager
         static BulkOperationManager<ProductBrand> manager;
         BulkOperation<ProductBrand> selected_operation;
         ProductBrand selected_target;
+        static User current_user;
         static List<ProductBrand> entries;
         static Entities manager_entities;
         public frmBulkProductBrandOperations(ref BulkOperationManager<ProductBrand> operation_manager)
@@ -24,6 +25,7 @@ namespace XtremePharmacyManager
             InitializeComponent();
             manager = operation_manager;
             manager_entities = manager.Entities;
+            current_user = manager.CurrentUser;
             manager.BulkOperationsExecuted += OnBulkOperationExecuted;
             manager.BulkOperationAdded += OnBulkOperationListChanged;
             manager.BulkOperationRemoved += OnBulkOperationListChanged;
@@ -124,7 +126,14 @@ namespace XtremePharmacyManager
         {
             try
             {
-                manager.ExecuteOperations();
+                if (current_user.UserRole == 0)
+                {
+                    manager.ExecuteOperations();
+                }
+                else
+                {
+                    MessageBox.Show("You don't have permissions to use bulk operations for product brands.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 selected_target = null;
                 selected_operation = null;
             }
@@ -138,21 +147,29 @@ namespace XtremePharmacyManager
         {
             try
             {
-                if (selected_target != null)
+                if (current_user.UserRole == 0)
                 {
-                    selected_target.BrandName = txtBrandName.Text;
+                    if (selected_target != null)
+                    {
+                        selected_target.BrandName = txtBrandName.Text;
+                    }
+                    if (selected_operation != null)
+                    {
+                        selected_operation.UpdateTargetObject(selected_target);
+                        selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
+                        selected_operation.IsSilent = checkSilentOperation.Checked;
+                        selected_operation.UpdateName();
+                        manager.UpdateAllOperations(selected_operation);
+                    }
                 }
-                if (selected_operation != null)
+                else
                 {
-                    selected_operation.UpdateTargetObject(selected_target);
-                    selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
-                    selected_operation.IsSilent = checkSilentOperation.Checked;
-                    selected_operation.UpdateName();
-                    manager.UpdateAllOperations(selected_operation);
+                    MessageBox.Show("You don't have permissions to use bulk operations for product brands.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 selected_target = null;
                 selected_operation = null;
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -192,11 +209,18 @@ namespace XtremePharmacyManager
             {
                 bool IsSilent = checkSilentOperation.Checked;
                 BulkOperationType operationType = (BulkOperationType)cbOperationType.SelectedIndex;
-                manager.AddOperation(new BulkProductBrandOperation(operationType, ref manager_entities, new ProductBrand()
+                if (current_user.UserRole == 0)
                 {
-                    ID = Int32.Parse(txtID.Text),
-                    BrandName = txtBrandName.Text
-                }, IsSilent));
+                    manager.AddOperation(new BulkProductBrandOperation(operationType, ref manager_entities, new ProductBrand()
+                    {
+                        ID = Int32.Parse(txtID.Text),
+                        BrandName = txtBrandName.Text
+                    }, IsSilent));
+                }
+                else
+                {
+                    MessageBox.Show("You don't have permissions to use bulk operations for product brands.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 selected_target = null;
                 selected_operation = null;
             }
@@ -213,7 +237,14 @@ namespace XtremePharmacyManager
             {
                 if (selected_operation != null)
                 {
-                    manager.RemoveOperation(selected_operation);
+                    if (current_user.UserRole == 0)
+                    {
+                        manager.RemoveOperation(selected_operation);
+                    }
+                    else
+                    {
+                        MessageBox.Show("You don't have permissions to use bulk operations for product brands.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     selected_target = null;
                     selected_operation = null;
                 }
@@ -228,20 +259,27 @@ namespace XtremePharmacyManager
         {
             try
             {
-                if (selected_target != null)
+                if (current_user.UserRole == 0)
                 {
-                    selected_target.BrandName = txtBrandName.Text;
+                    if (selected_target != null)
+                    {
+                        selected_target.BrandName = txtBrandName.Text;
+                    }
+                    if (selected_operation != null)
+                    {
+                        int operation_index = manager.BulkOperations.IndexOf(selected_operation);
+                        BulkOperationType current_type = (BulkOperationType)cbOperationType.SelectedIndex;
+                        bool IsSilent = checkSilentOperation.Checked;
+                        selected_operation.UpdateTargetObject(selected_target);
+                        selected_operation.OperationType = current_type;
+                        selected_operation.IsSilent = IsSilent;
+                        selected_operation.UpdateName();
+                        manager.UpdateOperation(selected_operation);
+                    }
                 }
-                if (selected_operation != null)
+                else
                 {
-                    int operation_index = manager.BulkOperations.IndexOf(selected_operation);
-                    BulkOperationType current_type = (BulkOperationType)cbOperationType.SelectedIndex;
-                    bool IsSilent = checkSilentOperation.Checked;
-                    selected_operation.UpdateTargetObject(selected_target);
-                    selected_operation.OperationType = current_type;
-                    selected_operation.IsSilent = IsSilent;
-                    selected_operation.UpdateName();
-                    manager.UpdateOperation(selected_operation);
+                    MessageBox.Show("You don't have permissions to use bulk operations for product brands.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 selected_target = null;
                 selected_operation = null;

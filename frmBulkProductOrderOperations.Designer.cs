@@ -16,6 +16,46 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+                if(selected_operation != null)
+                {
+                    selected_operation = null;
+                }
+                if(selected_target != null)
+                {
+                    selected_target = null;
+                }
+                if(current_user != null)
+                {
+                    current_user = null;
+                }
+                if(client_entries != null)
+                {
+                    client_entries.Clear();
+                    client_entries = null;
+                }
+                if(employee_entries != null)
+                {
+                    employee_entries.Clear();
+                    employee_entries = null;
+                }
+                if(product_entries != null)
+                {
+                    product_entries.Clear();
+                    product_entries = null;
+                }
+                if(entries != null)
+                {
+                    entries.Clear();
+                    entries = null;
+                }
+                if (manager != null)
+                {
+                    manager.BulkOperationUpdated -= OnBulkOperationListChanged;
+                    manager.BulkOperationRemoved -= OnBulkOperationListChanged;
+                    manager.BulkOperationAdded -= OnBulkOperationListChanged;
+                    manager.BulkOperationsExecuted -= OnBulkOperationExecuted;
+                    manager = null;
+                }
             }
             base.Dispose(disposing);
         }
@@ -132,14 +172,14 @@
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlData.Location = new System.Drawing.Point(0, 0);
             this.pnlData.Name = "pnlData";
-            this.pnlData.Size = new System.Drawing.Size(800, 718);
+            this.pnlData.Size = new System.Drawing.Size(1182, 718);
             this.pnlData.TabIndex = 0;
             // 
             // txtPrice
             // 
             this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPrice.Location = new System.Drawing.Point(755, 78);
+            this.txtPrice.Location = new System.Drawing.Point(1137, 78);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(33, 22);
             this.txtPrice.TabIndex = 76;
@@ -149,7 +189,7 @@
             // 
             this.txtQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtQuantity.Location = new System.Drawing.Point(755, 25);
+            this.txtQuantity.Location = new System.Drawing.Point(1137, 25);
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(33, 22);
             this.txtQuantity.TabIndex = 75;
@@ -161,7 +201,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkOverridePriceAsTotalOnAdd.AutoSize = true;
             this.checkOverridePriceAsTotalOnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkOverridePriceAsTotalOnAdd.Location = new System.Drawing.Point(404, 251);
+            this.checkOverridePriceAsTotalOnAdd.Location = new System.Drawing.Point(920, 251);
             this.checkOverridePriceAsTotalOnAdd.Name = "checkOverridePriceAsTotalOnAdd";
             this.checkOverridePriceAsTotalOnAdd.Size = new System.Drawing.Size(250, 20);
             this.checkOverridePriceAsTotalOnAdd.TabIndex = 74;
@@ -287,7 +327,7 @@
             this.trbQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.trbQuantity.AutoSize = false;
-            this.trbQuantity.Location = new System.Drawing.Point(534, 25);
+            this.trbQuantity.Location = new System.Drawing.Point(916, 25);
             this.trbQuantity.Maximum = 5000;
             this.trbQuantity.Name = "trbQuantity";
             this.trbQuantity.Size = new System.Drawing.Size(214, 39);
@@ -301,7 +341,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuantity.Location = new System.Drawing.Point(401, 24);
+            this.lblQuantity.Location = new System.Drawing.Point(783, 24);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(126, 16);
             this.lblQuantity.TabIndex = 56;
@@ -341,7 +381,7 @@
             this.trbPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.trbPrice.AutoSize = false;
-            this.trbPrice.Location = new System.Drawing.Point(534, 77);
+            this.trbPrice.Location = new System.Drawing.Point(916, 77);
             this.trbPrice.Maximum = 5000;
             this.trbPrice.Name = "trbPrice";
             this.trbPrice.Size = new System.Drawing.Size(214, 49);
@@ -355,7 +395,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(401, 85);
+            this.lblPrice.Location = new System.Drawing.Point(783, 85);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(116, 16);
             this.lblPrice.TabIndex = 49;
@@ -398,7 +438,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtOperationLogs.Location = new System.Drawing.Point(22, 490);
             this.txtOperationLogs.Name = "txtOperationLogs";
-            this.txtOperationLogs.Size = new System.Drawing.Size(766, 110);
+            this.txtOperationLogs.Size = new System.Drawing.Size(1148, 108);
             this.txtOperationLogs.TabIndex = 46;
             this.txtOperationLogs.Text = "";
             // 
@@ -438,7 +478,7 @@
             "UPDATE",
             "DELETE",
             "CUSTOM(Only for operations with custom action overrides)"});
-            this.cbOperationType.Location = new System.Drawing.Point(555, 447);
+            this.cbOperationType.Location = new System.Drawing.Point(937, 447);
             this.cbOperationType.Name = "cbOperationType";
             this.cbOperationType.Size = new System.Drawing.Size(229, 24);
             this.cbOperationType.TabIndex = 42;
@@ -450,7 +490,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOperationType.AutoSize = true;
             this.lblOperationType.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationType.Location = new System.Drawing.Point(412, 451);
+            this.lblOperationType.Location = new System.Drawing.Point(794, 451);
             this.lblOperationType.Name = "lblOperationType";
             this.lblOperationType.Size = new System.Drawing.Size(119, 16);
             this.lblOperationType.TabIndex = 41;
@@ -458,12 +498,13 @@
             // 
             // btnAddOperation
             // 
+            this.btnAddOperation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnAddOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOperation.Location = new System.Drawing.Point(139, 606);
+            this.btnAddOperation.Location = new System.Drawing.Point(22, 604);
             this.btnAddOperation.Name = "btnAddOperation";
-            this.btnAddOperation.Size = new System.Drawing.Size(211, 47);
+            this.btnAddOperation.Size = new System.Drawing.Size(280, 47);
             this.btnAddOperation.TabIndex = 40;
             this.btnAddOperation.Text = "ADD OPERATION";
             this.btnAddOperation.UseVisualStyleBackColor = true;
@@ -471,10 +512,11 @@
             // 
             // btnRemoveOperation
             // 
+            this.btnRemoveOperation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoveOperation.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnRemoveOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRemoveOperation.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveOperation.Location = new System.Drawing.Point(356, 606);
+            this.btnRemoveOperation.Location = new System.Drawing.Point(308, 604);
             this.btnRemoveOperation.Name = "btnRemoveOperation";
             this.btnRemoveOperation.Size = new System.Drawing.Size(211, 47);
             this.btnRemoveOperation.TabIndex = 39;
@@ -484,10 +526,11 @@
             // 
             // btnApplyChangesToCurrentTarget
             // 
+            this.btnApplyChangesToCurrentTarget.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApplyChangesToCurrentTarget.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnApplyChangesToCurrentTarget.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApplyChangesToCurrentTarget.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(356, 659);
+            this.btnApplyChangesToCurrentTarget.Location = new System.Drawing.Point(742, 604);
             this.btnApplyChangesToCurrentTarget.Name = "btnApplyChangesToCurrentTarget";
             this.btnApplyChangesToCurrentTarget.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToCurrentTarget.TabIndex = 38;
@@ -497,10 +540,11 @@
             // 
             // btnExecuteOperations
             // 
+            this.btnExecuteOperations.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExecuteOperations.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnExecuteOperations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExecuteOperations.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExecuteOperations.Location = new System.Drawing.Point(573, 606);
+            this.btnExecuteOperations.Location = new System.Drawing.Point(525, 604);
             this.btnExecuteOperations.Name = "btnExecuteOperations";
             this.btnExecuteOperations.Size = new System.Drawing.Size(211, 47);
             this.btnExecuteOperations.TabIndex = 37;
@@ -510,10 +554,11 @@
             // 
             // btnApplyChangesToAllTargets
             // 
+            this.btnApplyChangesToAllTargets.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnApplyChangesToAllTargets.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnApplyChangesToAllTargets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnApplyChangesToAllTargets.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(573, 659);
+            this.btnApplyChangesToAllTargets.Location = new System.Drawing.Point(959, 604);
             this.btnApplyChangesToAllTargets.Name = "btnApplyChangesToAllTargets";
             this.btnApplyChangesToAllTargets.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToAllTargets.TabIndex = 36;
@@ -532,7 +577,7 @@
             this.lstBulkOperations.ItemHeight = 16;
             this.lstBulkOperations.Location = new System.Drawing.Point(22, 277);
             this.lstBulkOperations.Name = "lstBulkOperations";
-            this.lstBulkOperations.Size = new System.Drawing.Size(766, 132);
+            this.lstBulkOperations.Size = new System.Drawing.Size(1148, 132);
             this.lstBulkOperations.TabIndex = 35;
             this.lstBulkOperations.ValueMember = "TargetObject";
             this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);
@@ -601,7 +646,7 @@
             // frmBulkProductOrderOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(800, 721);
+            this.ClientSize = new System.Drawing.Size(1182, 721);
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmBulkProductOrderOperations";

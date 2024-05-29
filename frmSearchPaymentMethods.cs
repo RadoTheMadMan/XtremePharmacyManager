@@ -402,30 +402,6 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void frmSearchPaymentMethods_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if(manager != null)
-            {
-                manager.BulkOperationsExecuted -= PaymentMethods_OnBulkOperationExecuted;
-                manager = null;
-            }
-            if (payment_methods != null)
-            {
-                payment_methods.Clear();
-                payment_methods = null;
-            }
-            if(logger != null)
-            {
-                logger = null;
-            }
-            if (current_user != null)
-            {
-                current_user = null;
-            }
-            if(ent != null)
-            {
-                ent = null;
-            }
-        }
+
     }
 }

@@ -19,6 +19,43 @@ namespace XtremePharmacyManager
             if (disposing && (components != null))
             {
                 components.Dispose();
+                if (manager != null)
+                {
+                    manager.BulkOperationsExecuted -= OrderDeliveries_BulkOperationExecuted;
+                    manager = null;
+                }
+                if (order_deliveries != null)
+                {
+                    order_deliveries.Clear();
+                    order_deliveries = null;
+                }
+                if (product_orders != null)
+                {
+                    product_orders.Clear();
+                    product_orders = null;
+                }
+                if (payment_methods != null)
+                {
+                    payment_methods.Clear();
+                    payment_methods = null;
+                }
+                if (delivery_services != null)
+                {
+                    delivery_services.Clear();
+                    delivery_services = null;
+                }
+                if (current_user != null)
+                {
+                    current_user = null;
+                }
+                if (logger != null)
+                {
+                    logger = null;
+                }
+                if (ent != null)
+                {
+                    ent = null;
+                }
             }
             base.Dispose(disposing);
         }
@@ -32,7 +69,7 @@ namespace XtremePharmacyManager
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSearchOrderDeliveries));
             this.dgvOrderDeliveries = new System.Windows.Forms.DataGridView();
             this.productOrderBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -124,14 +161,14 @@ namespace XtremePharmacyManager
             this.dgvOrderDeliveries.MultiSelect = false;
             this.dgvOrderDeliveries.Name = "dgvOrderDeliveries";
             this.dgvOrderDeliveries.ReadOnly = true;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvOrderDeliveries.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvOrderDeliveries.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvOrderDeliveries.RowHeadersWidth = 51;
             this.dgvOrderDeliveries.RowTemplate.Height = 24;
             this.dgvOrderDeliveries.Size = new System.Drawing.Size(820, 146);
@@ -221,9 +258,11 @@ namespace XtremePharmacyManager
             // 
             // btnGenerateReport
             // 
+            this.btnGenerateReport.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.btnGenerateReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerateReport.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerateReport.Location = new System.Drawing.Point(526, 510);
+            this.btnGenerateReport.Location = new System.Drawing.Point(302, 510);
             this.btnGenerateReport.Name = "btnGenerateReport";
             this.btnGenerateReport.Size = new System.Drawing.Size(278, 47);
             this.btnGenerateReport.TabIndex = 53;
@@ -388,9 +427,11 @@ namespace XtremePharmacyManager
             // 
             // btnDelete
             // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(430, 510);
+            this.btnDelete.Location = new System.Drawing.Point(206, 510);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(90, 47);
             this.btnDelete.TabIndex = 34;
@@ -400,9 +441,11 @@ namespace XtremePharmacyManager
             // 
             // btnAddOrEdit
             // 
+            this.btnAddOrEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.btnAddOrEdit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddOrEdit.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddOrEdit.Location = new System.Drawing.Point(334, 510);
+            this.btnAddOrEdit.Location = new System.Drawing.Point(110, 510);
             this.btnAddOrEdit.Name = "btnAddOrEdit";
             this.btnAddOrEdit.Size = new System.Drawing.Size(90, 47);
             this.btnAddOrEdit.TabIndex = 33;
@@ -440,9 +483,11 @@ namespace XtremePharmacyManager
             // 
             // btnSearch
             // 
+            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(237, 510);
+            this.btnSearch.Location = new System.Drawing.Point(13, 510);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(90, 47);
             this.btnSearch.TabIndex = 30;
@@ -502,9 +547,9 @@ namespace XtremePharmacyManager
             // 
             this.dtDateAddedTo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.dtDateAddedTo.Location = new System.Drawing.Point(155, 158);
+            this.dtDateAddedTo.Location = new System.Drawing.Point(159, 158);
             this.dtDateAddedTo.Name = "dtDateAddedTo";
-            this.dtDateAddedTo.Size = new System.Drawing.Size(240, 22);
+            this.dtDateAddedTo.Size = new System.Drawing.Size(236, 22);
             this.dtDateAddedTo.TabIndex = 12;
             // 
             // lblDateAddedTo
@@ -721,7 +766,6 @@ namespace XtremePharmacyManager
             this.MaximizeBox = false;
             this.Name = "frmSearchOrderDeliveries";
             this.Text = "Order Deliveries";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSearchOrderDeliveries_FormClosing);
             this.Load += new System.EventHandler(this.frmSearchOrderDeliveries_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDeliveries)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).EndInit();

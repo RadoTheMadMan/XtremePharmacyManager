@@ -1,4 +1,6 @@
-﻿namespace XtremePharmacyManager.Properties.DataSources
+﻿using System;
+
+namespace XtremePharmacyManager.Properties.DataSources
 {
     partial class frmImageBinConverter
     {
@@ -16,6 +18,16 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+                if(target_image != null )
+                {
+                    target_image.Dispose();
+                    target_image = null;
+                }
+                if(image_bytes != null )
+                {
+                    Array.Clear(image_bytes, 0, image_bytes.Length);
+                    image_bytes = null;
+                }
             }
             base.Dispose(disposing);
         }
@@ -75,7 +87,7 @@
             // 
             this.btnConvertImageToBinary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConvertImageToBinary.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConvertImageToBinary.Location = new System.Drawing.Point(331, 321);
+            this.btnConvertImageToBinary.Location = new System.Drawing.Point(12, 301);
             this.btnConvertImageToBinary.Name = "btnConvertImageToBinary";
             this.btnConvertImageToBinary.Size = new System.Drawing.Size(228, 47);
             this.btnConvertImageToBinary.TabIndex = 37;
@@ -87,7 +99,7 @@
             // 
             this.buttonConvertBinaryToImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonConvertBinaryToImage.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonConvertBinaryToImage.Location = new System.Drawing.Point(331, 374);
+            this.buttonConvertBinaryToImage.Location = new System.Drawing.Point(12, 354);
             this.buttonConvertBinaryToImage.Name = "buttonConvertBinaryToImage";
             this.buttonConvertBinaryToImage.Size = new System.Drawing.Size(228, 47);
             this.buttonConvertBinaryToImage.TabIndex = 38;
@@ -110,12 +122,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(571, 450);
-            this.Controls.Add(this.pbLoadedImage);
-            this.Controls.Add(this.buttonConvertBinaryToImage);
             this.Controls.Add(this.btnConvertImageToBinary);
-            this.Controls.Add(this.txtImageBytes);
+            this.Controls.Add(this.pbLoadedImage);
             this.Controls.Add(this.lblImageBytes);
             this.Controls.Add(this.lblLoadedImage);
+            this.Controls.Add(this.txtImageBytes);
+            this.Controls.Add(this.buttonConvertBinaryToImage);
             this.MaximizeBox = false;
             this.Name = "frmImageBinConverter";
             this.Text = "Convert Image To Binary and Vice Versa";

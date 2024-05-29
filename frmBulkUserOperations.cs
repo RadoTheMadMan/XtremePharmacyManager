@@ -16,7 +16,8 @@ namespace XtremePharmacyManager
     {
         static BulkOperationManager<User> manager;
         BulkOperation<User> selected_operation;
-        User selected_target;
+        User current_user;
+        static User selected_target;
         static List<User> entries;
         static Entities manager_entities;
         public frmBulkUserOperations(ref BulkOperationManager<User> operation_manager)
@@ -24,6 +25,7 @@ namespace XtremePharmacyManager
             InitializeComponent();
             manager = operation_manager;
             manager_entities = manager.Entities;
+            current_user = manager.CurrentUser;
             manager.BulkOperationsExecuted += OnBulkOperationExecuted;
             manager.BulkOperationAdded += OnBulkOperationListChanged;
             manager.BulkOperationRemoved += OnBulkOperationListChanged;
@@ -133,7 +135,14 @@ namespace XtremePharmacyManager
         {
             try
             {
-                manager.ExecuteOperations();
+                if (current_user.UserRole == 0)
+                {
+                    manager.ExecuteOperations();
+                }
+                else
+                {
+                    MessageBox.Show("You don't have permissions to use bulk operations for users.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 selected_target = null;
                 selected_operation = null;
             }
@@ -147,32 +156,39 @@ namespace XtremePharmacyManager
         {
             try
             {
-                if (selected_target != null)
+                if (current_user.UserRole == 0)
                 {
-                    selected_target.UserDisplayName = txtDisplayName.Text;
-                    selected_target.UserBirthDate = dtBirthDate.Value;
-                    selected_target.UserPhone = txtPhone.Text;
-                    selected_target.UserEmail = txtEmail.Text;
-                    selected_target.UserAddress = txtAddress.Text;
-                    selected_target.UserBalance = trbBalance.Value;
-                    selected_target.UserDiagnose = txtDiagnose.Text;
-                    selected_target.UserRole = cbRole.SelectedIndex;
-                    if (pbUserProfilePic.Image != null)
+                    if (selected_target != null)
                     {
-                        Bitmap current_image = (Bitmap)pbUserProfilePic.Image;
-                        byte[] image_data;
-                        ConvertImageToBinary(current_image, out image_data);
-                        selected_target.UserProfilePic = image_data;
+                        selected_target.UserDisplayName = txtDisplayName.Text;
+                        selected_target.UserBirthDate = dtBirthDate.Value;
+                        selected_target.UserPhone = txtPhone.Text;
+                        selected_target.UserEmail = txtEmail.Text;
+                        selected_target.UserAddress = txtAddress.Text;
+                        selected_target.UserBalance = trbBalance.Value;
+                        selected_target.UserDiagnose = txtDiagnose.Text;
+                        selected_target.UserRole = cbRole.SelectedIndex;
+                        if (pbUserProfilePic.Image != null)
+                        {
+                            Bitmap current_image = (Bitmap)pbUserProfilePic.Image;
+                            byte[] image_data;
+                            ConvertImageToBinary(current_image, out image_data);
+                            selected_target.UserProfilePic = image_data;
+                        }
                     }
+                    if (selected_operation != null)
+                    {
+                        selected_operation.UpdateTargetObject(selected_target);
+                        selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
+                        selected_operation.IsSilent = checkSilentOperation.Checked;
+                        selected_operation.UpdateName();
+                        manager.UpdateAllOperations(selected_operation);
+                    };
                 }
-                if (selected_operation != null)
+                else
                 {
-                    selected_operation.UpdateTargetObject(selected_target);
-                    selected_operation.OperationType = (BulkOperationType)cbOperationType.SelectedIndex;
-                    selected_operation.IsSilent = checkSilentOperation.Checked;
-                    selected_operation.UpdateName();
-                    manager.UpdateAllOperations(selected_operation);
-                };
+                    MessageBox.Show("You don't have permissions to use bulk operations for users.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 selected_target = null;
                 selected_operation = null;
             }
@@ -229,21 +245,28 @@ namespace XtremePharmacyManager
                 Bitmap current_image = (Bitmap)pbUserProfilePic.Image;
                 byte[] image_bytes;
                 ConvertImageToBinary(current_image, out image_bytes);
-                manager.AddOperation(new BulkUserOperation(operationType, ref manager_entities, new User()
+                if (current_user.UserRole == 0)
                 {
-                    ID = Int32.Parse(txtID.Text),
-                    UserName = txtUsername.Text,
-                    UserPassword = txtPassword.Text,
-                    UserDisplayName = txtDisplayName.Text,
-                    UserBirthDate = dtBirthDate.Value,
-                    UserPhone = txtPhone.Text,
-                    UserEmail = txtEmail.Text,
-                    UserAddress = txtAddress.Text,
-                    UserProfilePic = image_bytes,
-                    UserBalance = Convert.ToDecimal(trbBalance.Value),
-                    UserDiagnose = txtDiagnose.Text,
-                    UserRole = cbRole.SelectedIndex
-                }, IsSilent));
+                    manager.AddOperation(new BulkUserOperation(operationType, ref manager_entities, new User()
+                    {
+                        ID = Int32.Parse(txtID.Text),
+                        UserName = txtUsername.Text,
+                        UserPassword = txtPassword.Text,
+                        UserDisplayName = txtDisplayName.Text,
+                        UserBirthDate = dtBirthDate.Value,
+                        UserPhone = txtPhone.Text,
+                        UserEmail = txtEmail.Text,
+                        UserAddress = txtAddress.Text,
+                        UserProfilePic = image_bytes,
+                        UserBalance = Convert.ToDecimal(trbBalance.Value),
+                        UserDiagnose = txtDiagnose.Text,
+                        UserRole = cbRole.SelectedIndex
+                    }, IsSilent));
+                }
+                else
+                {
+                    MessageBox.Show("You don't have permissions to use bulk operations for users.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 selected_target = null;
                 selected_operation = null;
             }
@@ -260,7 +283,14 @@ namespace XtremePharmacyManager
             {
                 if (selected_operation != null)
                 {
-                    manager.RemoveOperation(selected_operation);
+                    if (current_user.UserRole == 0)
+                    {
+                        manager.RemoveOperation(selected_operation);
+                    }
+                    else
+                    {
+                        MessageBox.Show("You don't have permissions to use bulk operations for users.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     selected_target = null;
                     selected_operation = null;
                 }
@@ -275,34 +305,41 @@ namespace XtremePharmacyManager
         {
             try
             {
-                if (selected_target != null)
+                if (current_user.UserRole == 0)
                 {
-                    selected_target.UserDisplayName = txtDisplayName.Text;
-                    selected_target.UserBirthDate = dtBirthDate.Value;
-                    selected_target.UserPhone = txtPhone.Text;
-                    selected_target.UserEmail = txtEmail.Text;
-                    selected_target.UserAddress = txtAddress.Text;
-                    selected_target.UserBalance = trbBalance.Value;
-                    selected_target.UserDiagnose = txtDiagnose.Text;
-                    selected_target.UserRole = cbRole.SelectedIndex;
-                    if (pbUserProfilePic.Image != null)
+                    if (selected_target != null)
                     {
-                        Bitmap current_image = (Bitmap)pbUserProfilePic.Image;
-                        byte[] image_data;
-                        ConvertImageToBinary(current_image, out image_data);
-                        selected_target.UserProfilePic = image_data;
+                        selected_target.UserDisplayName = txtDisplayName.Text;
+                        selected_target.UserBirthDate = dtBirthDate.Value;
+                        selected_target.UserPhone = txtPhone.Text;
+                        selected_target.UserEmail = txtEmail.Text;
+                        selected_target.UserAddress = txtAddress.Text;
+                        selected_target.UserBalance = trbBalance.Value;
+                        selected_target.UserDiagnose = txtDiagnose.Text;
+                        selected_target.UserRole = cbRole.SelectedIndex;
+                        if (pbUserProfilePic.Image != null)
+                        {
+                            Bitmap current_image = (Bitmap)pbUserProfilePic.Image;
+                            byte[] image_data;
+                            ConvertImageToBinary(current_image, out image_data);
+                            selected_target.UserProfilePic = image_data;
+                        }
+                    }
+                    if (selected_operation != null)
+                    {
+                        int operation_index = manager.BulkOperations.IndexOf(selected_operation);
+                        BulkOperationType current_type = (BulkOperationType)cbOperationType.SelectedIndex;
+                        bool IsSilent = checkSilentOperation.Checked;
+                        selected_operation.UpdateTargetObject(selected_target);
+                        selected_operation.OperationType = current_type;
+                        selected_operation.IsSilent = IsSilent;
+                        selected_operation.UpdateName();
+                        manager.UpdateOperation(selected_operation);
                     }
                 }
-                if (selected_operation != null)
+                else
                 {
-                    int operation_index = manager.BulkOperations.IndexOf(selected_operation);
-                    BulkOperationType current_type = (BulkOperationType)cbOperationType.SelectedIndex;
-                    bool IsSilent = checkSilentOperation.Checked;
-                    selected_operation.UpdateTargetObject(selected_target);
-                    selected_operation.OperationType = current_type;
-                    selected_operation.IsSilent = IsSilent;
-                    selected_operation.UpdateName();
-                    manager.UpdateOperation(selected_operation);
+                    MessageBox.Show("You don't have permissions to use bulk operations for users.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 selected_target = null;
                 selected_operation = null;

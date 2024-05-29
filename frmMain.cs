@@ -924,15 +924,55 @@ namespace XtremePharmacyManager
                     imgbinform.Dispose();
                     imgbinform = null;
                 }
-                if(bulkUserOperationManager != null)
-                {
-                    bulkUserOperationManager.Dispose();
-                    bulkUserOperationManager = null;
-                }
-                if(bulkUserOperationsform != null)
+                if (bulkUserOperationsform != null)
                 {
                     bulkUserOperationsform.Dispose();
                     bulkUserOperationsform = null;
+                }
+                if (bulkProductBrandOperationsform != null)
+                {
+                    bulkProductBrandOperationsform.Dispose();
+                    bulkProductBrandOperationsform = null;
+                }
+                if (bulkProductVendorOperationsform != null)
+                {
+                    bulkProductVendorOperationsform.Dispose();
+                    bulkProductVendorOperationsform = null;
+                }
+                if (bulkPaymentMethodOperationsform != null)
+                {
+                    bulkPaymentMethodOperationsform.Dispose();
+                    bulkPaymentMethodOperationsform = null;
+                }
+                if (bulkDeliveryServiceOperationsform != null)
+                {
+                    bulkDeliveryServiceOperationsform.Dispose();
+                    bulkDeliveryServiceOperationsform = null;
+                }
+                if (bulkProductOperationsform != null)
+                {
+                    bulkProductOperationsform.Dispose();
+                    bulkProductOperationsform = null;
+                }
+                if (bulkProductImageOperationsform != null)
+                {
+                    bulkProductImageOperationsform.Dispose();
+                    bulkProductImageOperationsform = null;
+                }
+                if (bulkProductOrderOperationsform != null)
+                {
+                    bulkProductOrderOperationsform.Dispose();
+                    bulkProductOrderOperationsform = null;
+                }
+                if (bulkOrderDeliveryOperationsform != null)
+                {
+                    bulkOrderDeliveryOperationsform.Dispose();
+                    bulkOrderDeliveryOperationsform = null;
+                }
+                if (bulkUserOperationManager != null)
+                {
+                    bulkUserOperationManager.Dispose();
+                    bulkUserOperationManager = null;
                 }
                 if(bulkProductBrandOperationManager != null)
                 {
@@ -976,6 +1016,7 @@ namespace XtremePharmacyManager
                 }
                 if (logger != null)
                 {
+                    logger.Dispose();
                     logger = null;
                 }
                 if (entities != null)

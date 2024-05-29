@@ -59,6 +59,7 @@ namespace XtremePharmacyManager
                 }
                 txtUsername.Text = GLOBAL_RESOURCES.DB_USER;
                 txtPassword.Text = GLOBAL_RESOURCES.DB_PASSWORD;
+                btnLogin.Focus();
             }
             catch (Exception ex)
             {
@@ -77,6 +78,14 @@ namespace XtremePharmacyManager
             {
                 retrieved_users.Clear();
                 retrieved_users = null;
+            }
+            if(last_logins != null)
+            {
+                last_logins = null;
+            }
+            if(ent != null)
+            {
+                ent = null;
             }
         }
 

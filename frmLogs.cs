@@ -123,14 +123,6 @@ namespace XtremePharmacyManager.Properties.DataSources
             }
         }
 
-        private void frmLogs_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (logger != null)
-            {
-                logger.LogsRefreshed -= OnLogsRefreshed;
-                logger = null;
-                current_user = null;
-            }
-        }
+
     }
 }

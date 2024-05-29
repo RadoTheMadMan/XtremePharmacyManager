@@ -1084,50 +1084,6 @@ namespace XtremePharmacyManager
             trbPrice.Value = value;
         }
 
-        private void frmSearchProducts_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if(image_manager != null)
-            {
-                image_manager.BulkOperationsExecuted -= ProductImages_BulkOperationExecuted;
-                image_manager = null;
-            }
-            if(product_manager != null)
-            {
-                product_manager.BulkOperationsExecuted -= Products_BulkOperationExecuted;
-                product_manager = null;
-            }
-            if(product_images != null)
-            {
-                product_images.Clear();
-                product_images = null;
-            }
-            if(products != null)
-            {
-                products.Clear();
-                products = null;
-            }
-            if(product_brands != null)
-            {
-                product_brands.Clear();
-                product_brands = null;
-            }
-            if(product_vendors != null)
-            {
-                product_vendors.Clear();
-                product_vendors = null;
-            }
-            if(current_user != null)
-            {
-                current_user = null;
-            }
-            if(logger != null)
-            {
-                logger = null;
-            }
-            if(ent != null)
-            {
-                ent = null;
-            }
-        }
+
     }
 }

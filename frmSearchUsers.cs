@@ -629,31 +629,5 @@ namespace XtremePharmacyManager
             trbBalance.Value = value;
         }
 
-        private void frmSearchUsers_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //nullify the values of the form on closing to preserve memory
-            if(manager != null)
-            {
-                manager.BulkOperationsExecuted -= Users_OnBulkOperationExecuted;
-                manager = null;
-            }
-            if(logger != null)
-            {
-                logger = null;
-            }
-            if(current_user != null)
-            {
-                current_user = null;
-            }
-            if(users != null)
-            {
-                users.Clear();
-                users = null;
-            }
-            if(ent != null)
-            {
-                ent = null;
-            }
-        }
     }
 }

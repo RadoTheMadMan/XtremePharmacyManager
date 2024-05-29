@@ -16,6 +16,12 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+                if (logger != null)
+                {
+                    logger.LogsRefreshed -= OnLogsRefreshed;
+                    logger = null;
+                    current_user = null;
+                }
             }
             base.Dispose(disposing);
         }
@@ -29,6 +35,11 @@
         private void InitializeComponent()
         {
             this.lstLogs = new System.Windows.Forms.ListView();
+            this.LogIDColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LogDateColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LogTitleColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LogMessageColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.AdditionalInformationColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.dtLogDateTo = new System.Windows.Forms.DateTimePicker();
@@ -44,11 +55,6 @@
             this.txtAdditionalInformation = new System.Windows.Forms.TextBox();
             this.lblAdditionalInformation = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.LogIDColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LogDateColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LogTitleColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LogMessageColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.AdditionalInformationColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lstLogs
@@ -71,6 +77,30 @@
             this.lstLogs.UseCompatibleStateImageBehavior = false;
             this.lstLogs.View = System.Windows.Forms.View.Details;
             this.lstLogs.SelectedIndexChanged += new System.EventHandler(this.lstLogs_SelectedIndexChanged);
+            // 
+            // LogIDColumn
+            // 
+            this.LogIDColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogID;
+            // 
+            // LogDateColumn
+            // 
+            this.LogDateColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogDate;
+            this.LogDateColumn.Width = 99;
+            // 
+            // LogTitleColumn
+            // 
+            this.LogTitleColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogTitle;
+            this.LogTitleColumn.Width = 97;
+            // 
+            // LogMessageColumn
+            // 
+            this.LogMessageColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogMessage;
+            this.LogMessageColumn.Width = 120;
+            // 
+            // AdditionalInformationColumn
+            // 
+            this.AdditionalInformationColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.AdditionalLogInformation;
+            this.AdditionalInformationColumn.Width = 532;
             // 
             // txtID
             // 
@@ -199,19 +229,19 @@
             "Single Criteria",
             "Multiple Criterias",
             "All Criterias"});
-            this.cbSearchMode.Location = new System.Drawing.Point(557, 134);
+            this.cbSearchMode.Location = new System.Drawing.Point(569, 134);
             this.cbSearchMode.Name = "cbSearchMode";
-            this.cbSearchMode.Size = new System.Drawing.Size(231, 24);
+            this.cbSearchMode.Size = new System.Drawing.Size(219, 24);
             this.cbSearchMode.TabIndex = 35;
             this.cbSearchMode.Text = "Multiple Criterias";
             // 
             // txtAdditionalInformation
             // 
             this.txtAdditionalInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAdditionalInformation.Location = new System.Drawing.Point(560, 9);
+            this.txtAdditionalInformation.Location = new System.Drawing.Point(569, 9);
             this.txtAdditionalInformation.Multiline = true;
             this.txtAdditionalInformation.Name = "txtAdditionalInformation";
-            this.txtAdditionalInformation.Size = new System.Drawing.Size(230, 91);
+            this.txtAdditionalInformation.Size = new System.Drawing.Size(221, 91);
             this.txtAdditionalInformation.TabIndex = 34;
             // 
             // lblAdditionalInformation
@@ -220,7 +250,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAdditionalInformation.AutoSize = true;
             this.lblAdditionalInformation.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAdditionalInformation.Location = new System.Drawing.Point(393, 15);
+            this.lblAdditionalInformation.Location = new System.Drawing.Point(392, 15);
             this.lblAdditionalInformation.Name = "lblAdditionalInformation";
             this.lblAdditionalInformation.Size = new System.Drawing.Size(161, 16);
             this.lblAdditionalInformation.TabIndex = 33;
@@ -230,37 +260,13 @@
             // 
             this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearch.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSearch.Location = new System.Drawing.Point(560, 171);
+            this.btnSearch.Location = new System.Drawing.Point(15, 171);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(90, 47);
             this.btnSearch.TabIndex = 37;
             this.btnSearch.Text = "SEARCH";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // LogIDColumn
-            // 
-            this.LogIDColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogID;
-            // 
-            // LogDateColumn
-            // 
-            this.LogDateColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogDate;
-            this.LogDateColumn.Width = 99;
-            // 
-            // LogTitleColumn
-            // 
-            this.LogTitleColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogTitle;
-            this.LogTitleColumn.Width = 97;
-            // 
-            // LogMessageColumn
-            // 
-            this.LogMessageColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.LogMessage;
-            this.LogMessageColumn.Width = 120;
-            // 
-            // AdditionalInformationColumn
-            // 
-            this.AdditionalInformationColumn.Text = global::XtremePharmacyManager.Properties.Settings.Default.AdditionalLogInformation;
-            this.AdditionalInformationColumn.Width = 532;
             // 
             // frmLogs
             // 
@@ -286,7 +292,6 @@
             this.MaximizeBox = false;
             this.Name = "frmLogs";
             this.Text = "Logs";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLogs_FormClosing);
             this.Load += new System.EventHandler(this.frmLogs_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

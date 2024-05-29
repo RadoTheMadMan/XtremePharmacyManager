@@ -401,30 +401,6 @@ namespace XtremePharmacyManager
             }
         }
 
-        private void frmSearchProductBrands_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if(manager != null)
-            {
-                manager.BulkOperationsExecuted -= ProductBrands_OnBulkOperationExecuted;
-                manager = null;
-            }
-            if(product_brands != null)
-            {
-                product_brands.Clear();
-                product_brands = null;
-            }
-            if(logger != null)
-            {
-                logger = null;
-            }
-            if(current_user != null)
-            {
-                current_user = null;
-            }
-            if(ent != null)
-            {
-                ent = null;
-            }
-        }
+
     }
 }
