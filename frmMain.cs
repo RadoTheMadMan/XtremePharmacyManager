@@ -146,15 +146,15 @@ namespace XtremePharmacyManager
 
         private void InitializeBulkManagers()
         {
-            bulkUserOperationManager = new BulkOperationManager<User>(ref entities);
-            bulkProductBrandOperationManager = new BulkOperationManager<ProductBrand>(ref entities);
-            bulkProductVendorOperationManager = new BulkOperationManager<ProductVendor>(ref entities);
-            bulkPaymentMethodOperationManager = new BulkOperationManager<PaymentMethod>(ref entities);
-            bulkDeliveryServiceOperationManager = new BulkOperationManager<DeliveryService>(ref entities);
-            bulkProductOperationManager = new BulkOperationManager<Product>(ref entities);
-            bulkProductImageOperationManager = new BulkOperationManager<ProductImage>(ref entities);
-            bulkProductOrderOperationManager = new BulkOperationManager<ProductOrder>(ref entities);
-            bulkOrderDeliveryOperationManager = new BulkOperationManager<OrderDelivery>(ref entities);
+            bulkUserOperationManager = new BulkOperationManager<User>(ref entities, ref currentUser);
+            bulkProductBrandOperationManager = new BulkOperationManager<ProductBrand>(ref entities, ref currentUser);
+            bulkProductVendorOperationManager = new BulkOperationManager<ProductVendor>(ref entities, ref currentUser);
+            bulkPaymentMethodOperationManager = new BulkOperationManager<PaymentMethod>(ref entities, ref currentUser);
+            bulkDeliveryServiceOperationManager = new BulkOperationManager<DeliveryService>(ref entities, ref currentUser);
+            bulkProductOperationManager = new BulkOperationManager<Product>(ref entities, ref currentUser);
+            bulkProductImageOperationManager = new BulkOperationManager<ProductImage>(ref entities, ref currentUser);
+            bulkProductOrderOperationManager = new BulkOperationManager<ProductOrder>(ref entities, ref currentUser);
+            bulkOrderDeliveryOperationManager = new BulkOperationManager<OrderDelivery>(ref entities, ref currentUser);
         }
 
         private void frmMain_Load(object sender, EventArgs e)

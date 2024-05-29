@@ -11,6 +11,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -35,9 +36,10 @@ namespace XtremePharmacyManager
         void UpdateTargetObject(T obj);
     }
 
-    public class BulkOperation<T> :BulkOperationTargetUpdater<T>//This is the class to derive all bulk operations from and its tasks will be overriden
+    public class BulkOperation<T> :BulkOperationTargetUpdater<T>, IDisposable//This is the class to derive all bulk operations from and its tasks will be overriden
     {
         BulkOperationType type;
+        User current_user;
         T target_object;
         string operation_name = "";
         string success_message = "";
@@ -49,6 +51,8 @@ namespace XtremePharmacyManager
 
 
         public T TargetObject { get { return target_object; } }
+
+        public User CurrentUser { get { return current_user; } set { current_user = value; } }
         public BulkOperationType OperationType { get { return type; } set { type = value; } }
         public string OperationName { get { return operation_name; } set { operation_name = value; } }
         public string SuccessMessage { get { return success_message; } set { success_message = value; } }
@@ -278,6 +282,38 @@ namespace XtremePharmacyManager
                     MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        public void Dispose()
+        {
+            is_silent = false;
+            inner_error_code = -1;
+            error_code = -1;
+            if(stack_trace != null)
+            {
+                stack_trace = null;
+            }
+            if(error_message != null)
+            {
+                error_message = null;
+            }
+            if(success_message != null)
+            {
+                success_message = null;
+            }
+            if(operation_name != null)
+            {
+                operation_name = null;
+            }
+            if(target_object != null)
+            {
+                target_object = default(T);
+            }
+            if(current_user != null)
+            {
+                current_user = null;
+            }
+            type = BulkOperationType.DEFAULT;
         }
     }
 
@@ -1909,10 +1945,11 @@ namespace XtremePharmacyManager
         public Entities Entities = new Entities();
     }
 
-    public class BulkOperationManager <T>//this will be the class that will be exposed
+    public class BulkOperationManager <T> :IDisposable//this will be the class that will be exposed
     {
         ObservableCollection<BulkOperation<T>> bulk_operations;
         static Entities entities;
+        static User current_user;
         int completed_operations = 0;
         int failed_operations = 0;
         string result = "";
@@ -1922,24 +1959,48 @@ namespace XtremePharmacyManager
         public EventHandler<BulkOperationEventArgs<T>> BulkOperationRemoved;
         public EventHandler<BulkOperationEventArgs<T>> BulkOperationUpdated;
         public  Entities Entities { get { return entities; } }
+        public User CurrentUser {  get { return current_user; } }
         public ObservableCollection<BulkOperation<T>> BulkOperations { get { return bulk_operations; } }
         public int CompletedOperations { get { return completed_operations; } }
         public int FailedOperations { get { return failed_operations; } }
         public string Result { get { return result; } }
         public string OperationLog { get { return operation_log; } }
 
+        public BulkOperationManager() //default constructor, we won't use it
+        {
+            entities = new Entities();
+            current_user = new User();
+            bulk_operations = new ObservableCollection<BulkOperation<T>>();
+            completed_operations = 0;
+            failed_operations = 0;
+            result = "";
+            operation_log = "";
+        }
+
         public BulkOperationManager(ref Entities ext_entities)
         {
             entities = ext_entities;
+            current_user = new User();
+            bulk_operations = new ObservableCollection<BulkOperation<T>>();
+            completed_operations = 0;
+            failed_operations = 0;
+            result = "";
+            operation_log = "";
+        }
+        public BulkOperationManager(ref Entities ext_entities, ref User working_user)
+        {
+            entities = ext_entities;
+            current_user = working_user;
             bulk_operations = new  ObservableCollection<BulkOperation<T>> ();
             completed_operations = 0;
             failed_operations = 0;
             result = "";
             operation_log = "";
         }
-        public BulkOperationManager(ref Entities ext_entities, ref ObservableCollection<BulkOperation<T>> operations)
+        public BulkOperationManager(ref Entities ext_entities,ref User working_user, ref ObservableCollection<BulkOperation<T>> operations)
         {
             entities = ext_entities;
+            current_user = working_user;
             if (operations != null)
             {
                 bulk_operations = operations;
@@ -1960,121 +2021,119 @@ namespace XtremePharmacyManager
             DateTime endTime;
             TimeSpan deltaTime;
             startTime = DateTime.Now;
-            if (bulk_operations != null && bulk_operations.Count > 0)
+            try
             {
-                operation_log = $"Operations started executing at: {startTime.ToShortTimeString()}\n";
-                foreach (BulkOperation<T> bulk_operation in bulk_operations)
+                if (bulk_operations != null && bulk_operations.Count > 0)
                 {
-                    bool result = await bulk_operation.Execute();
-                    operation_log += $"Executing operation: {bulk_operation.OperationName}\n";
-                    if (result == true)
+                    operation_log = $"Operations started executing at: {startTime.ToShortTimeString()}\n";
+                    foreach (BulkOperation<T> bulk_operation in bulk_operations)
                     {
-                        completed_operations++;
-                        operation_log += $"Operation successful.Output: {bulk_operation.SuccessMessage}\n";
-                    }
-                    else
-                    {
-                        failed_operations++;
-                        operation_log += $"Operation failed. Here are details:\nError Code:{bulk_operation.ErrorCode}\n" +
-                            $"ErrorMessage:{bulk_operation.ErrorMessage}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}: {bulk_operation.StackTrace}\n";
+                        bool result = await bulk_operation.Execute();
+                        operation_log += $"Executing operation: {bulk_operation.OperationName}\n";
+                        if (result == true)
+                        {
+                            completed_operations++;
+                            operation_log += $"Operation successful.Output: {bulk_operation.SuccessMessage}\n";
+                        }
+                        else
+                        {
+                            failed_operations++;
+                            operation_log += $"Operation failed. Here are details:\nError Code:{bulk_operation.ErrorCode}\n" +
+                                $"ErrorMessage:{bulk_operation.ErrorMessage}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}: {bulk_operation.StackTrace}\n";
+                        }
                     }
                 }
+                endTime = DateTime.Now;
+                deltaTime = endTime - startTime;
+                operation_log += $"Operations finished. Time finished:{endTime.ToShortTimeString()}";
+                bulk_operations.Clear();
+                result = $"Operations Results: Completed Operations: {completed_operations} Failed Operations: {failed_operations} Execution Time: {deltaTime}";
+                BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
+                ev_args.OperationsList = bulk_operations;
+                ev_args.CompletedOperations = completed_operations;
+                ev_args.FailedOperations = failed_operations;
+                ev_args.Result = result;
+                ev_args.OperationLog = operation_log;
+                ev_args.Entities = entities;
+                InvokeBulkOperationsExecutedEvent(this, ev_args);
             }
-            endTime = DateTime.Now;
-            deltaTime = endTime - startTime;
-            operation_log += $"Operations finished. Time finished:{endTime.ToShortTimeString()}";
-            bulk_operations.Clear();
-            result = $"Operations Results: Completed Operations: {completed_operations} Failed Operations: {failed_operations} Execution Time: {deltaTime}";
-            BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
-            ev_args.OperationsList = bulk_operations;
-            ev_args.CompletedOperations = completed_operations;
-            ev_args.FailedOperations = failed_operations;
-            ev_args.Result = result;
-            ev_args.OperationLog = operation_log;
-            ev_args.Entities = entities;
-            InvokeBulkOperationsExecutedEvent(this,ev_args);
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ex.InnerException != null)
+                {
+                    MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }  
+            }
         }
 
         public void AddOperation(BulkOperation<T> bulk_operation)
         {
-            if (bulk_operation != null && !bulk_operations.Contains(bulk_operation))
-            { // don't allow any operation of type that is not of the type of the manager to be added
-                bulk_operations.Add(bulk_operation);  
+            try
+            {
+                if (bulk_operation != null && !bulk_operations.Contains(bulk_operation))
+                { // don't allow any operation of type that is not of the type of the manager to be added
+                    bulk_operation.CurrentUser = this.CurrentUser;
+                    bulk_operations.Add(bulk_operation);
+                }
+                //let's test the memory addresses of the items
+                BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
+                ev_args.OperationsList = bulk_operations;
+                ev_args.CompletedOperations = completed_operations;
+                ev_args.FailedOperations = failed_operations;
+                ev_args.Result = result;
+                ev_args.Entities = entities;
+                InvokeBulkOperationAddedEvent(this, ev_args);
             }
-            //let's test the memory addresses of the items
-            BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
-            ev_args.OperationsList = bulk_operations;
-            ev_args.CompletedOperations = completed_operations;
-            ev_args.FailedOperations = failed_operations;
-            ev_args.Result = result;
-            ev_args.Entities = entities;
-            InvokeBulkOperationAddedEvent(this, ev_args);
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ex.InnerException != null)
+                {
+                    MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         public void RemoveOperation(BulkOperation<T> bulk_operation)
         {   //Look what I did on the add opration method, same is here but for removing bulk operation
-            if(bulk_operation != null && bulk_operations.Contains(bulk_operation))
+            try
             {
-                int operation_index = bulk_operations.IndexOf(bulk_operation);
-                bulk_operations.RemoveAt(operation_index);
+                if (bulk_operation != null && bulk_operations.Contains(bulk_operation))
+                {
+                    int operation_index = bulk_operations.IndexOf(bulk_operation);
+                    bulk_operations[operation_index].Dispose();
+                    bulk_operations.RemoveAt(operation_index);
+                }
+                BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
+                ev_args.OperationsList = bulk_operations;
+                ev_args.CompletedOperations = completed_operations;
+                ev_args.FailedOperations = failed_operations;
+                ev_args.Result = result;
+                ev_args.OperationLog = operation_log;
+                ev_args.Entities = entities;
+                InvokeBulkOperationRemovedEvent(this, ev_args);
             }
-            BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
-            ev_args.OperationsList = bulk_operations;
-            ev_args.CompletedOperations = completed_operations;
-            ev_args.FailedOperations = failed_operations;
-            ev_args.Result = result;
-            ev_args.OperationLog = operation_log;
-            ev_args.Entities = entities;
-            InvokeBulkOperationRemovedEvent(this, ev_args);
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ex.InnerException != null)
+                {
+                    MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         public void UpdateOperation(BulkOperation<T> bulk_operation)
         {   //Look what I did on the add opration method and remove operation, same is here but for updating bulk operation
-            if (bulk_operation != null && bulk_operations.Contains(bulk_operation))
+            try
             {
-                int operation_index = bulk_operations.IndexOf(bulk_operation);
-                Type current_operation_type = bulk_operations[operation_index].GetType();
-                Type template_operation_type = bulk_operation.GetType();
-                BulkOperation<T> current_operation_for_change = bulk_operations[operation_index];
-                if (template_operation_type.IsAssignableFrom(current_operation_type))
+                if (bulk_operation != null && bulk_operations.Contains(bulk_operation))
                 {
-                    current_operation_for_change = (BulkOperation<T>)Activator.CreateInstance(current_operation_type);
-                    foreach(var property in current_operation_type.GetProperties())
-                    {
-                        var current_operation_property = property.GetValue(current_operation_for_change, null);
-                        var template_operation_property = property.GetValue(bulk_operation, null);
-                        if (current_operation_property.Equals(current_operation_for_change.TargetObject)) //if it is the target object update the target object using the function
-                        {
-                            current_operation_for_change.UpdateTargetObject(bulk_operation.TargetObject);
-                        }
-                        else
-                        {
-                            property.SetValue(current_operation_for_change, template_operation_property, null); //else update it using the reflection
-                        }
-                    }
-                    current_operation_for_change.UpdateName();
-                    bulk_operations[operation_index] = current_operation_for_change;
-                }
-            }
-            BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
-            ev_args.OperationsList = bulk_operations;
-            ev_args.CompletedOperations = completed_operations;
-            ev_args.FailedOperations = failed_operations;
-            ev_args.Result = result;
-            ev_args.OperationLog = operation_log;
-            ev_args.Entities = entities;
-            InvokeBulkOperationUpdatedEvent(this, ev_args);
-        }
-
-        public void UpdateAllOperations(BulkOperation<T> bulk_operation)
-        {   //This safely update everything according to the updating operation method
-            if (bulk_operation != null)
-            {
-                for(int i = 0; i<bulk_operations.Count; i++)
-                {
-                    Type current_operation_type = bulk_operations[i].GetType();
+                    int operation_index = bulk_operations.IndexOf(bulk_operation);
+                    Type current_operation_type = bulk_operations[operation_index].GetType();
                     Type template_operation_type = bulk_operation.GetType();
-                    BulkOperation<T> current_operation_for_change = bulk_operations[i];
+                    BulkOperation<T> current_operation_for_change = bulk_operations[operation_index];
                     if (template_operation_type.IsAssignableFrom(current_operation_type))
                     {
                         current_operation_for_change = (BulkOperation<T>)Activator.CreateInstance(current_operation_type);
@@ -2092,18 +2151,79 @@ namespace XtremePharmacyManager
                             }
                         }
                         current_operation_for_change.UpdateName();
-                        bulk_operations[i] = current_operation_for_change;
+                        current_operation_for_change.CurrentUser = this.CurrentUser;
+                        bulk_operations[operation_index] = current_operation_for_change;
                     }
                 }
+                BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
+                ev_args.OperationsList = bulk_operations;
+                ev_args.CompletedOperations = completed_operations;
+                ev_args.FailedOperations = failed_operations;
+                ev_args.Result = result;
+                ev_args.OperationLog = operation_log;
+                ev_args.Entities = entities;
+                InvokeBulkOperationUpdatedEvent(this, ev_args);
             }
-            BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
-            ev_args.OperationsList = bulk_operations;
-            ev_args.CompletedOperations = completed_operations;
-            ev_args.FailedOperations = failed_operations;
-            ev_args.Result = result;
-            ev_args.OperationLog = operation_log;
-            ev_args.Entities = entities;
-            InvokeBulkOperationUpdatedEvent(this, ev_args);
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ex.InnerException != null)
+                {
+                    MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        public void UpdateAllOperations(BulkOperation<T> bulk_operation)
+        {   //This safely update everything according to the updating operation method
+            try
+            {
+                if (bulk_operation != null)
+                {
+                    for (int i = 0; i < bulk_operations.Count; i++)
+                    {
+                        Type current_operation_type = bulk_operations[i].GetType();
+                        Type template_operation_type = bulk_operation.GetType();
+                        BulkOperation<T> current_operation_for_change = bulk_operations[i];
+                        if (template_operation_type.IsAssignableFrom(current_operation_type))
+                        {
+                            current_operation_for_change = (BulkOperation<T>)Activator.CreateInstance(current_operation_type);
+                            foreach (var property in current_operation_type.GetProperties())
+                            {
+                                var current_operation_property = property.GetValue(current_operation_for_change, null);
+                                var template_operation_property = property.GetValue(bulk_operation, null);
+                                if (current_operation_property.Equals(current_operation_for_change.TargetObject)) //if it is the target object update the target object using the function
+                                {
+                                    current_operation_for_change.UpdateTargetObject(bulk_operation.TargetObject);
+                                }
+                                else
+                                {
+                                    property.SetValue(current_operation_for_change, template_operation_property, null); //else update it using the reflection
+                                }
+                            }
+                            current_operation_for_change.UpdateName();
+                            current_operation_for_change.CurrentUser = this.CurrentUser;
+                            bulk_operations[i] = current_operation_for_change;
+                        }
+                    }
+                }
+                BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
+                ev_args.OperationsList = bulk_operations;
+                ev_args.CompletedOperations = completed_operations;
+                ev_args.FailedOperations = failed_operations;
+                ev_args.Result = result;
+                ev_args.OperationLog = operation_log;
+                ev_args.Entities = entities;
+                InvokeBulkOperationUpdatedEvent(this, ev_args);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ex.InnerException != null)
+                {
+                    MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
 
@@ -2136,6 +2256,56 @@ namespace XtremePharmacyManager
             if (BulkOperationUpdated != null)
             {
                 BulkOperationUpdated(this, e);
+            }
+        }
+
+        public void Dispose()
+        {
+            if(operation_log != null)
+            {
+                operation_log = null;
+            }
+            if(result != null)
+            {
+                result = null;
+            }
+            completed_operations = -1;
+            failed_operations = -1;
+            if(current_user != null)
+            {
+                current_user = null;
+            }
+            if(BulkOperationAdded != null)
+            {
+                BulkOperationAdded = null;
+            }
+            if(BulkOperationRemoved != null)
+            {
+                BulkOperationRemoved = null;
+            }
+            if(BulkOperationUpdated != null)
+            {
+                BulkOperationUpdated = null;
+            }
+            if (BulkOperationsExecuted != null)
+            {
+                BulkOperationsExecuted = null;
+            }
+            if(entities!=null)
+            {
+                entities = null;
+            }
+            if(bulk_operations !=null)
+            {
+                foreach(var operation in bulk_operations)
+                {
+                    if(operation.GetType().GetInterfaces().Contains(typeof(IDisposable)))
+                    {
+                        operation.Dispose();
+                    }
+                }
+                bulk_operations.Clear();
+                bulk_operations = null;
             }
         }
     }
