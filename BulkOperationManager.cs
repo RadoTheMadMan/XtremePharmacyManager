@@ -1373,21 +1373,28 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Product has been added.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.AddProduct(base.TargetObject.ProductName,base.TargetObject.BrandID, base.TargetObject.VendorID, base.TargetObject.ProductDescription,
-                        base.TargetObject.ProductQuantity, base.TargetObject.ProductPrice, base.TargetObject.ProductExpiryDate,
-                        base.TargetObject.ProductRegNum, base.TargetObject.ProductPartNum, base.TargetObject.ProductStorageLocation);
-                    if (entities.Products.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.Products.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.AddProduct(base.TargetObject.ProductName, base.TargetObject.BrandID, base.TargetObject.VendorID, base.TargetObject.ProductDescription,
+                            base.TargetObject.ProductQuantity, base.TargetObject.ProductPrice, base.TargetObject.ProductExpiryDate,
+                            base.TargetObject.ProductRegNum, base.TargetObject.ProductPartNum, base.TargetObject.ProductStorageLocation);
+                        if (entities.Products.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.Products.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
+                        ExtendedProductView pr_view = entities.ExtendedProductViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (pr_view != null)
+                        {
+                            entities.Entry(pr_view).Reload();
+                        }
                     }
-                    //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
-                    ExtendedProductView pr_view = entities.ExtendedProductViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (pr_view != null)
-                    {
-                        entities.Entry(pr_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for products is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1425,21 +1432,28 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Product has been updated.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.UpdateProductByID(base.TargetObject.ID,base.TargetObject.ProductName, base.TargetObject.BrandID, base.TargetObject.VendorID, base.TargetObject.ProductDescription,
-                        base.TargetObject.ProductQuantity, base.TargetObject.ProductPrice, base.TargetObject.ProductExpiryDate,
-                        base.TargetObject.ProductRegNum, base.TargetObject.ProductPartNum, base.TargetObject.ProductStorageLocation);
-                    if (entities.Products.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.Products.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.UpdateProductByID(base.TargetObject.ID, base.TargetObject.ProductName, base.TargetObject.BrandID, base.TargetObject.VendorID, base.TargetObject.ProductDescription,
+                            base.TargetObject.ProductQuantity, base.TargetObject.ProductPrice, base.TargetObject.ProductExpiryDate,
+                            base.TargetObject.ProductRegNum, base.TargetObject.ProductPartNum, base.TargetObject.ProductStorageLocation);
+                        if (entities.Products.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.Products.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
+                        ExtendedProductView pr_view = entities.ExtendedProductViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (pr_view != null)
+                        {
+                            entities.Entry(pr_view).Reload();
+                        }
                     }
-                    //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
-                    ExtendedProductView pr_view = entities.ExtendedProductViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (pr_view != null)
-                    {
-                        entities.Entry(pr_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for products is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1477,19 +1491,26 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Product has been deleted.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
-                    entities.DeleteProductByID(base.TargetObject.ID);
-                    if (entities.Products.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.Products.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.DeleteProductByID(base.TargetObject.ID);
+                        if (entities.Products.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.Products.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
+                        ExtendedProductView pr_view = entities.ExtendedProductViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (pr_view != null)
+                        {
+                            entities.Entry(pr_view).Reload();
+                        }
                     }
-                    //Find this entry in the view that corresponds to the entry in the table and if it is found reload it, if not then not
-                    ExtendedProductView pr_view = entities.ExtendedProductViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (pr_view != null)
-                    {
-                        entities.Entry(pr_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for products is done only by the administrators of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1551,13 +1572,20 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Product Image has been added.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
-                    entities.AddProductImage(base.TargetObject.ProductID,base.TargetObject.ImageName,base.TargetObject.ImageData);
-                    if (entities.ProductImages.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.ProductImages.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.AddProductImage(base.TargetObject.ProductID, base.TargetObject.ImageName, base.TargetObject.ImageData);
+                        if (entities.ProductImages.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.ProductImages.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
                     }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product images is done only by the administrators and employees of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1595,13 +1623,20 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Product Image has been updated.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
-                    entities.UpdateProductImageByID(base.TargetObject.ID,base.TargetObject.ProductID, base.TargetObject.ImageName, base.TargetObject.ImageData);
-                    if (entities.ProductImages.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.ProductImages.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.UpdateProductImageByID(base.TargetObject.ID, base.TargetObject.ProductID, base.TargetObject.ImageName, base.TargetObject.ImageData);
+                        if (entities.ProductImages.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.ProductImages.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
                     }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product images is done only by the administrators and employees of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1639,13 +1674,20 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Product Image has been deleted.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
-                    entities.DeleteProductImageByID(base.TargetObject.ID);
-                    if (entities.ProductImages.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.ProductImages.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.DeleteProductImageByID(base.TargetObject.ID);
+                        if (entities.ProductImages.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.ProductImages.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
                     }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product images is done only by the administrators and employees of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1709,20 +1751,27 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Product Order has been added.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
-                    entities.AddProductOrder(base.TargetObject.ProductID, base.TargetObject.DesiredQuantity, base.TargetObject.OrderPrice,
-                    base.TargetObject.ClientID, base.TargetObject.EmployeeID, base.TargetObject.OrderReason, add_total_price_override_on_create);
-                    if (entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.AddProductOrder(base.TargetObject.ProductID, base.TargetObject.DesiredQuantity, base.TargetObject.OrderPrice,
+                        base.TargetObject.ClientID, base.TargetObject.EmployeeID, base.TargetObject.OrderReason, add_total_price_override_on_create);
+                        if (entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
+                        ExtendedProductOrdersView pro_view = entities.ExtendedProductOrdersViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (pro_view != null)
+                        {
+                            entities.Entry(pro_view).Reload();
+                        }
                     }
-                    //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
-                    ExtendedProductOrdersView pro_view = entities.ExtendedProductOrdersViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (pro_view != null)
-                    {
-                        entities.Entry(pro_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product orders is done only by the administrators and employees of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1761,20 +1810,27 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Product Order has been updated.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
-                    entities.UpdateProductOrderByID(base.TargetObject.ID,base.TargetObject.ProductID, base.TargetObject.DesiredQuantity, base.TargetObject.OrderPrice,
-                    base.TargetObject.ClientID, base.TargetObject.EmployeeID, base.TargetObject.OrderStatus, base.TargetObject.OrderReason);
-                    if (entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.UpdateProductOrderByID(base.TargetObject.ID, base.TargetObject.ProductID, base.TargetObject.DesiredQuantity, base.TargetObject.OrderPrice,
+                        base.TargetObject.ClientID, base.TargetObject.EmployeeID, base.TargetObject.OrderStatus, base.TargetObject.OrderReason);
+                        if (entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
+                        ExtendedProductOrdersView pro_view = entities.ExtendedProductOrdersViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (pro_view != null)
+                        {
+                            entities.Entry(pro_view).Reload();
+                        }
                     }
-                    //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
-                    ExtendedProductOrdersView pro_view = entities.ExtendedProductOrdersViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (pro_view != null)
-                    {
-                        entities.Entry(pro_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product orders is done only by the administrators and employees of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1813,19 +1869,26 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Product Order has been deleted.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
-                    entities.DeleteProductOrderByID(base.TargetObject.ID);
-                    if (entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.DeleteProductOrderByID(base.TargetObject.ID);
+                        if (entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.ProductOrders.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
+                        ExtendedProductOrdersView pro_view = entities.ExtendedProductOrdersViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (pro_view != null)
+                        {
+                            entities.Entry(pro_view).Reload();
+                        }
                     }
-                    //get the view of the table where the table entry exists and if exist reload to ensure it has updated data
-                    ExtendedProductOrdersView pro_view = entities.ExtendedProductOrdersViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (pro_view != null)
-                    {
-                        entities.Entry(pro_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product orders is done only by the administrators and employees of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1888,21 +1951,28 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Order Delivery has been added.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
-                    entities.AddOrderDelivery(base.TargetObject.OrderID,base.TargetObject.DeliveryServiceID,base.TargetObject.PaymentMethodID,
-                        base.TargetObject.CargoID,base.TargetObject.DeliveryReason);
-                    if (entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.AddOrderDelivery(base.TargetObject.OrderID, base.TargetObject.DeliveryServiceID, base.TargetObject.PaymentMethodID,
+                            base.TargetObject.CargoID, base.TargetObject.DeliveryReason);
+                        if (entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //whenever you do an operation on something check if it exist in the database views and reload it in the model
+                        //if it exist in the views and/or the tables
+                        ExtendedOrderDeliveriesView od_view = entities.ExtendedOrderDeliveriesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (od_view != null)
+                        {
+                            entities.Entry(od_view).Reload();
+                        }
                     }
-                    //whenever you do an operation on something check if it exist in the database views and reload it in the model
-                    //if it exist in the views and/or the tables
-                    ExtendedOrderDeliveriesView od_view = entities.ExtendedOrderDeliveriesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (od_view != null)
-                    {
-                        entities.Entry(od_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for order deliveries is done only by the administrators and employees of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1940,21 +2010,28 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Order Delivery has been updated.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
-                    entities.UpdateOrderDeliveryByID(base.TargetObject.ID,base.TargetObject.OrderID, base.TargetObject.DeliveryServiceID, base.TargetObject.PaymentMethodID,
-                        base.TargetObject.CargoID, base.TargetObject.DeliveryStatus , base.TargetObject.DeliveryReason);
-                    if (entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.UpdateOrderDeliveryByID(base.TargetObject.ID, base.TargetObject.OrderID, base.TargetObject.DeliveryServiceID, base.TargetObject.PaymentMethodID,
+                            base.TargetObject.CargoID, base.TargetObject.DeliveryStatus, base.TargetObject.DeliveryReason);
+                        if (entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //whenever you do an operation on something check if it exist in the database views and reload it in the model
+                        //if it exist in the views and/or the tables
+                        ExtendedOrderDeliveriesView od_view = entities.ExtendedOrderDeliveriesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (od_view != null)
+                        {
+                            entities.Entry(od_view).Reload();
+                        }
                     }
-                    //whenever you do an operation on something check if it exist in the database views and reload it in the model
-                    //if it exist in the views and/or the tables
-                    ExtendedOrderDeliveriesView od_view = entities.ExtendedOrderDeliveriesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (od_view != null)
-                    {
-                        entities.Entry(od_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for order deliveries is done only by the administrators and employees of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1992,20 +2069,27 @@ namespace XtremePharmacyManager
             {
                 result = true;
                 base.SuccessMessage = "Order Delivery has been deleted.";
-                if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
+                if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
-                    entities.DeleteOrderDeliveryByID(base.TargetObject.ID);
-                    if (entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                    if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
                     {
-                        entities.Entry(entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        entities.DeleteOrderDeliveryByID(base.TargetObject.ID);
+                        if (entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault() != null)
+                        {
+                            entities.Entry(entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
+                        }
+                        //whenever you do an operation on something check if it exist in the database views and reload it in the model
+                        //if it exist in the views and/or the tables
+                        ExtendedOrderDeliveriesView od_view = entities.ExtendedOrderDeliveriesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
+                        if (od_view != null)
+                        {
+                            entities.Entry(od_view).Reload();
+                        }
                     }
-                    //whenever you do an operation on something check if it exist in the database views and reload it in the model
-                    //if it exist in the views and/or the tables
-                    ExtendedOrderDeliveriesView od_view = entities.ExtendedOrderDeliveriesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
-                    if (od_view != null)
-                    {
-                        entities.Entry(od_view).Reload();
-                    }
+                }
+                else
+                {
+                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for order deliveries is done only by the administrators and employees of this system.."));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
