@@ -25,6 +25,27 @@ namespace XtremePharmacyManager
             try
             {
                 var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+                config.AppSettings.Settings["domain"].Value = txtDomainName.Text;
+                config.AppSettings.Settings["dbname"].Value = txtDatabaseName.Text;
+                config.AppSettings.Settings["dbuser"].Value = txtDBUser.Text;
+                config.AppSettings.Settings["dbpassword"].Value = txtDatabasePassword.Text;
+                config.AppSettings.Settings["company_name"].Value = txtCompanyName.Text;
+                MessageBox.Show(cbLanguage.SelectedValue.ToString());
+                config.AppSettings.Settings["current_culture"].Value = cbLanguage.SelectedValue.ToString();
+                config.AppSettings.Settings["report_directory"].Value = txtReportDirectory.Text;
+                config.AppSettings.Settings["saved_logins_directory"].Value = txtSavedLoginsDirectory.Text;
+                config.AppSettings.Settings["emp_report_name"].Value = txtEmployeeReportName.Text;
+                config.AppSettings.Settings["cl_report_name"].Value = txtClientReportName.Text;
+                config.AppSettings.Settings["pb_report_name"].Value = txtProductBrandReportName.Text;
+                config.AppSettings.Settings["pv_report_name"].Value = txtProductVendorReportName.Text;
+                config.AppSettings.Settings["pm_report_name"].Value = txtPaymentMethodReportName.Text;
+                config.AppSettings.Settings["ds_report_name"].Value = txtDeliveryServiceReportName.Text;
+                config.AppSettings.Settings["p_report_name"].Value = txtProductReportName.Text;
+                config.AppSettings.Settings["po_report_name"].Value = txtProductOrderReportName.Text;
+                config.AppSettings.Settings["poi_report_name"].Value = txtProductOrderInvoiceReportName.Text;
+                config.AppSettings.Settings["od_report_name"].Value = txtOrderDeliveryReportName.Text;
+                config.AppSettings.Settings["odi_report_name"].Value = txtOrderDeliveryInvoiceReportName.Text;
+                config.Save(ConfigurationSaveMode.Full);
             }
             catch (Exception ex)
             {

@@ -16,6 +16,10 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+                if(target != null)
+                {
+                    target = null;
+                }
             }
             base.Dispose(disposing);
         }
