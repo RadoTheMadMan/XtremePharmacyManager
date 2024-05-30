@@ -1693,6 +1693,128 @@ namespace XtremePharmacyManager
             return result;
         }
 
+        private void tsmenuExit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DialogResult res = MessageBox.Show($"{GLOBAL_RESOURCES.CLOSE_PROMPT}", $"{GLOBAL_RESOURCES.CLOSE_PROMPT_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (res == DialogResult.Yes)
+                {
+                    if (userssearchform != null)
+                    {
+                        userssearchform.Close();
+                    }
+                    if (deliveryservicessearchform != null)
+                    {
+                        deliveryservicessearchform.Close();
+                    }
+                    if (paymentmethodssearchform != null)
+                    {
+                        paymentmethodssearchform.Close();
+                    }
+                    if (productbrandssearchform != null)
+                    {
+                        productbrandssearchform.Close();
+                    }
+                    if (productvendorssearchform != null)
+                    {
+                        productvendorssearchform.Close();
+                    }
+                    if (productssearchform != null)
+                    {
+                        productssearchform.Close();
+                    }
+                    if (orderssearchform != null)
+                    {
+                        orderssearchform.Close();
+                    }
+                    if (orderdeliveriessearchform != null)
+                    {
+                        orderdeliveriessearchform.Close();
+                    }
+                    if (logsform != null)
+                    {
+                        logsform.Close();
+                    }
+                    if (imgbinform != null)
+                    {
+                        imgbinform.Close();
+                    }
+                    if (bulkUserOperationsform != null)
+                    {
+                        bulkUserOperationsform.Close();
+                    }
+                    if (bulkProductBrandOperationsform != null)
+                    {
+                        bulkProductBrandOperationsform.Close();
+                    }
+                    if (bulkPaymentMethodOperationsform != null)
+                    {
+                        bulkPaymentMethodOperationsform.Close();
+                    }
+                    if (bulkDeliveryServiceOperationsform != null)
+                    {
+                        bulkDeliveryServiceOperationsform.Close();
+                    }
+                    if (bulkProductOperationsform != null)
+                    {
+                        bulkProductOperationsform.Close();
+                    }
+                    if (bulkProductImageOperationsform != null)
+                    {
+                        bulkProductImageOperationsform.Close();
+                    }
+                    if (bulkProductOrderOperationsform != null)
+                    {
+                        bulkProductOrderOperationsform.Close();
+                    }
+                    if (bulkOrderDeliveryOperationsform != null)
+                    {
+                        bulkOrderDeliveryOperationsform.Close();
+                    }
+                    Application.Exit();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void tsmenuAccountSettings_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if(new frmAccountSettings(ref currentUser).ShowDialog() == DialogResult.OK)
+                {
+                    if(entities.Database.Connection.State == ConnectionState.Open)
+                    {
+                        //update the user
+                        entities.UpdateUserByID(currentUser.ID, currentUser.UserName, currentUser.UserPassword, currentUser.UserDisplayName,
+                                                currentUser.UserBirthDate, currentUser.UserPhone, currentUser.UserEmail, currentUser.UserAddress,
+                                                currentUser.UserProfilePic, currentUser.UserBalance, currentUser.UserDiagnose, currentUser.UserRole);
+                        //reload the user
+                        entities.Entry(entities.Users.Where(x => x.ID == currentUser.ID).FirstOrDefault()).Reload();
+                        //refresh logs
+                        logger.RefreshLogs();
+                        //save to filesystem
+                        SaveLoginToFileSystem(currentUser);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Cannot connect to the server to update your user account.\n" +
+                                        $"Please check your application settings to ensure you have a proper connection to the database" +
+                                        $"or contact a system administrator.", "Account Settings",
+                                        MessageBoxButtons.OK,
+                                        MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
 
