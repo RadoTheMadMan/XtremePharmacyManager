@@ -16,6 +16,10 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+                if(login_account != null)
+                {
+                    login_account = null;
+                }
             }
             base.Dispose(disposing);
         }

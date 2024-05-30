@@ -56,8 +56,8 @@
             this.tsmenuDebugTools = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuTestConnection = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmenuBitmapToBinary = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmenuHelp = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmenuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.msMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,7 +69,7 @@
             this.tsmenuAccountSettings,
             this.tsmenuWindow,
             this.tsmenuDebugTools,
-            this.helpToolStripMenuItem});
+            this.tsmenuHelp});
             this.msMain.Location = new System.Drawing.Point(0, 0);
             this.msMain.Name = "msMain";
             this.msMain.Size = new System.Drawing.Size(1348, 28);
@@ -90,6 +90,7 @@
             this.tsmenuApplicationSettings.Name = "tsmenuApplicationSettings";
             this.tsmenuApplicationSettings.Size = new System.Drawing.Size(226, 26);
             this.tsmenuApplicationSettings.Text = "Application Settings";
+            this.tsmenuApplicationSettings.Click += new System.EventHandler(this.tsmenuApplicationSettings_Click);
             // 
             // tsmenuExit
             // 
@@ -287,19 +288,19 @@
             this.tsmenuBitmapToBinary.Text = "&Bitmap To Binary";
             this.tsmenuBitmapToBinary.Click += new System.EventHandler(this.tsmenuBitmapToBinary_Click);
             // 
-            // helpToolStripMenuItem
+            // tsmenuHelp
             // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
-            this.helpToolStripMenuItem.Text = "Help";
+            this.tsmenuHelp.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmenuAbout});
+            this.tsmenuHelp.Name = "tsmenuHelp";
+            this.tsmenuHelp.Size = new System.Drawing.Size(55, 24);
+            this.tsmenuHelp.Text = "Help";
             // 
-            // aboutToolStripMenuItem
+            // tsmenuAbout
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
-            this.aboutToolStripMenuItem.Text = "About";
+            this.tsmenuAbout.Name = "tsmenuAbout";
+            this.tsmenuAbout.Size = new System.Drawing.Size(224, 26);
+            this.tsmenuAbout.Text = "About";
             // 
             // frmMain
             // 
@@ -351,8 +352,8 @@
         private System.Windows.Forms.ToolStripMenuItem tsmenuBulkProductVendorOperations;
         private System.Windows.Forms.ToolStripMenuItem tsmenuApplicationSettings;
         private System.Windows.Forms.ToolStripMenuItem tsmenuExit;
-        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tsmenuHelp;
+        private System.Windows.Forms.ToolStripMenuItem tsmenuAbout;
     }
 }
 

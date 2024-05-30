@@ -1815,6 +1815,14 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void tsmenuApplicationSettings_Click(object sender, EventArgs e)
+        {
+            if(new frmApplicationSettings().ShowDialog() == DialogResult.OK)
+            {
+                MessageBox.Show($"Changing the application settings will take effect after restarting the application.", "Application Settings", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
     }
 }
 

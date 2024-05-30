@@ -193,6 +193,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="frmApplicationSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmApplicationSettings.Designer.cs">
+      <DependentUpon>frmApplicationSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAccountSettings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -395,6 +401,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>XTremePharmacyDBDataSet.xsd</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmApplicationSettings.resx">
+      <DependentUpon>frmApplicationSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAccountSettings.resx">
       <DependentUpon>frmAccountSettings.cs</DependentUpon>
     </EmbeddedResource>
