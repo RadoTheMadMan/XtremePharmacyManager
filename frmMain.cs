@@ -1823,6 +1823,13 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"Changing the application settings will take effect after restarting the application.", "Application Settings", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void tsmenuAbout_Click(object sender, EventArgs e)
+        {
+            frmAbout aboutform = new frmAbout();
+            aboutform.ShowDialog();
+            aboutform.Dispose();
+        }
     }
 }
 

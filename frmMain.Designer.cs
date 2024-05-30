@@ -301,6 +301,7 @@
             this.tsmenuAbout.Name = "tsmenuAbout";
             this.tsmenuAbout.Size = new System.Drawing.Size(224, 26);
             this.tsmenuAbout.Text = "About";
+            this.tsmenuAbout.Click += new System.EventHandler(this.tsmenuAbout_Click);
             // 
             // frmMain
             // 

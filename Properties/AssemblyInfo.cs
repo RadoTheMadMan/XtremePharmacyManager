@@ -6,11 +6,19 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("XtremePharmacyManager")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A robust pharmacy management program with SQL Server-based database and Entity model, regular and bulk operations" +
+                              "and role-based access control anywhere in the form. Its login system is tightly bound to the database's login system and even if" +
+                              "you login with a system administrator account which is not recommended if you aren't in the user list of the database you won't be" +
+                              "even connected and logged in there. About the database, if you add new users be sure to open your favourite SQL database editor that supports" +
+    "SQL Server and add a login and a database user in the database itself and assign the user to the role according to what you put in the table, more about that in the documentation." +
+    "There are extensible options for localisation, user account and resource customisation and login saving(but not" +
+                              "deleting) and localisation. I hadn't done this myself however, for some things I had to use ChatGPT and the world wide web to learn and" +
+                              "apply them so I am using this as open source with the MIT license. Enjoy using it and customising it. If you want to build another program" +
+                              "out of it, however, please, at least put my name in the credits as well and I hope you make a better version of it. RadoTheMadMan out!\r\n")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("XtremePharmacyManager")]
-[assembly: AssemblyCopyright("Copyright ©  2024")]
+[assembly: AssemblyCopyright("Copyright © 2024 Radoslav Dimitrov/RadoTheMadMan")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
