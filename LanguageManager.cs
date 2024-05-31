@@ -28,7 +28,7 @@ namespace XtremePharmacyManager
             language_code = LanguageCode;
         }
 
-        public Language(ref CultureInfo target_info)
+        public Language(CultureInfo target_info)
         {
             display_name = target_info.DisplayName;
             language_code = target_info.Name;
