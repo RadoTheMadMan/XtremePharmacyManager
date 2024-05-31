@@ -16,6 +16,11 @@
             if (disposing && (components != null))
             {
                 components.Dispose();
+                if(languageManager != null)
+                {
+                    languageManager.Dispose();
+                    languageManager = null;
+                }
             }
             base.Dispose(disposing);
         }
@@ -30,6 +35,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.btnAddLanguage = new System.Windows.Forms.Button();
+            this.lstLanguagesInList = new System.Windows.Forms.ListView();
+            this.LanguageDisplayNameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LanguageCodeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnSearchCultureInfo = new System.Windows.Forms.Button();
             this.txtSearchCulture = new System.Windows.Forms.TextBox();
             this.lstFoundCultureInfos = new System.Windows.Forms.ListView();
@@ -82,16 +91,14 @@
             this.txtDomainName = new System.Windows.Forms.TextBox();
             this.lblDomainName = new System.Windows.Forms.Label();
             this.hlpApplicationSettings = new System.Windows.Forms.HelpProvider();
-            this.lstLanguagesInList = new System.Windows.Forms.ListView();
-            this.LanguageDisplayNameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LanguageCodeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnAddLanguage = new System.Windows.Forms.Button();
+            this.btnRemoveLanguage = new System.Windows.Forms.Button();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.languageBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlData
             // 
+            this.pnlData.Controls.Add(this.btnRemoveLanguage);
             this.pnlData.Controls.Add(this.btnAddLanguage);
             this.pnlData.Controls.Add(this.lstLanguagesInList);
             this.pnlData.Controls.Add(this.btnSearchCultureInfo);
@@ -147,6 +154,45 @@
             this.pnlData.Name = "pnlData";
             this.pnlData.Size = new System.Drawing.Size(1152, 715);
             this.pnlData.TabIndex = 0;
+            // 
+            // btnAddLanguage
+            // 
+            this.btnAddLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddLanguage.Font = new System.Drawing.Font("Franklin Gothic Medium", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddLanguage.Location = new System.Drawing.Point(672, 332);
+            this.btnAddLanguage.Name = "btnAddLanguage";
+            this.btnAddLanguage.Size = new System.Drawing.Size(163, 22);
+            this.btnAddLanguage.TabIndex = 79;
+            this.btnAddLanguage.Text = "ADD LANGUAGE";
+            this.btnAddLanguage.UseVisualStyleBackColor = true;
+            this.btnAddLanguage.Click += new System.EventHandler(this.btnAddLanguage_Click);
+            // 
+            // lstLanguagesInList
+            // 
+            this.lstLanguagesInList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lstLanguagesInList.CheckBoxes = true;
+            this.lstLanguagesInList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.LanguageDisplayNameColumn,
+            this.LanguageCodeColumn});
+            this.lstLanguagesInList.FullRowSelect = true;
+            this.lstLanguagesInList.HideSelection = false;
+            this.lstLanguagesInList.Location = new System.Drawing.Point(672, 360);
+            this.lstLanguagesInList.Name = "lstLanguagesInList";
+            this.lstLanguagesInList.Size = new System.Drawing.Size(442, 177);
+            this.lstLanguagesInList.TabIndex = 78;
+            this.lstLanguagesInList.UseCompatibleStateImageBehavior = false;
+            this.lstLanguagesInList.View = System.Windows.Forms.View.Details;
+            // 
+            // LanguageDisplayNameColumn
+            // 
+            this.LanguageDisplayNameColumn.Text = "Language Display Name";
+            this.LanguageDisplayNameColumn.Width = 265;
+            // 
+            // LanguageCodeColumn
+            // 
+            this.LanguageCodeColumn.Text = "Language Code";
+            this.LanguageCodeColumn.Width = 171;
             // 
             // btnSearchCultureInfo
             // 
@@ -691,43 +737,18 @@
             this.lblDomainName.TabIndex = 3;
             this.lblDomainName.Text = "Domain Name:";
             // 
-            // lstLanguagesInList
+            // btnRemoveLanguage
             // 
-            this.lstLanguagesInList.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lstLanguagesInList.CheckBoxes = true;
-            this.lstLanguagesInList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.LanguageDisplayNameColumn,
-            this.LanguageCodeColumn});
-            this.lstLanguagesInList.FullRowSelect = true;
-            this.lstLanguagesInList.HideSelection = false;
-            this.lstLanguagesInList.Location = new System.Drawing.Point(672, 360);
-            this.lstLanguagesInList.Name = "lstLanguagesInList";
-            this.lstLanguagesInList.Size = new System.Drawing.Size(442, 177);
-            this.lstLanguagesInList.TabIndex = 78;
-            this.lstLanguagesInList.UseCompatibleStateImageBehavior = false;
-            this.lstLanguagesInList.View = System.Windows.Forms.View.Details;
-            // 
-            // LanguageDisplayNameColumn
-            // 
-            this.LanguageDisplayNameColumn.Text = "Language Display Name";
-            this.LanguageDisplayNameColumn.Width = 265;
-            // 
-            // LanguageCodeColumn
-            // 
-            this.LanguageCodeColumn.Text = "Language Code";
-            this.LanguageCodeColumn.Width = 171;
-            // 
-            // btnAddLanguage
-            // 
-            this.btnAddLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddLanguage.Font = new System.Drawing.Font("Franklin Gothic Medium", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddLanguage.Location = new System.Drawing.Point(672, 332);
-            this.btnAddLanguage.Name = "btnAddLanguage";
-            this.btnAddLanguage.Size = new System.Drawing.Size(163, 22);
-            this.btnAddLanguage.TabIndex = 79;
-            this.btnAddLanguage.Text = "ADD LANGUAGE";
-            this.btnAddLanguage.UseVisualStyleBackColor = true;
-            this.btnAddLanguage.Click += new System.EventHandler(this.btnAddLanguage_Click);
+            this.btnRemoveLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemoveLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveLanguage.Font = new System.Drawing.Font("Franklin Gothic Medium", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveLanguage.Location = new System.Drawing.Point(841, 332);
+            this.btnRemoveLanguage.Name = "btnRemoveLanguage";
+            this.btnRemoveLanguage.Size = new System.Drawing.Size(163, 22);
+            this.btnRemoveLanguage.TabIndex = 80;
+            this.btnRemoveLanguage.Text = "REMOVE LANGUAGE";
+            this.btnRemoveLanguage.UseVisualStyleBackColor = true;
+            this.btnRemoveLanguage.Click += new System.EventHandler(this.btnRemoveLanguage_Click);
             // 
             // frmApplicationSettings
             // 
@@ -806,5 +827,6 @@
         private System.Windows.Forms.ListView lstLanguagesInList;
         private System.Windows.Forms.ColumnHeader LanguageDisplayNameColumn;
         private System.Windows.Forms.ColumnHeader LanguageCodeColumn;
+        private System.Windows.Forms.Button btnRemoveLanguage;
     }
 }

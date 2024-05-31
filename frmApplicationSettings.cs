@@ -67,7 +67,7 @@ namespace XtremePharmacyManager
                 this.txtDBUser.Text = GLOBAL_RESOURCES.DB_USER;
                 this.txtDatabasePassword.Text = GLOBAL_RESOURCES.DB_PASSWORD;
                 this.txtCompanyName.Text = GLOBAL_RESOURCES.COMPANY_NAME;
-                this.txtSearchCulture.Text = GLOBAL_RESOURCES.CURRENT_CULTURE;
+                this.txtSearchCulture.Text = new CultureInfo(GLOBAL_RESOURCES.CURRENT_CULTURE).DisplayName;
                 FindAndFillCultureInfo(GLOBAL_RESOURCES.CURRENT_CULTURE);
                 LanguageManager.LoadLanguages();
                 FillLanguageList(languageManager.Languages);
@@ -197,7 +197,7 @@ namespace XtremePharmacyManager
 
         private void btnSearchCultureInfo_Click(object sender, EventArgs e)
         {
-            FindAndFillCultureInfo(txtSearchCulture.Text);
+            FindAndFillCultureInfoByDisplayName(txtSearchCulture.Text);
         }
 
         private void btnAddLanguage_Click(object sender, EventArgs e)
@@ -214,9 +214,46 @@ namespace XtremePharmacyManager
                         selected_culture = CultureInfo.GetCultures(CultureTypes.AllCultures).ToList().Where(x=>x.DisplayName.Contains(selected_culture_item.Text)).FirstOrDefault();
                         if(selected_culture != null)
                         {
-                            string language_name_trimmed = selected_culture.DisplayName.Substring(0, selected_culture.DisplayName.IndexOf(" "));
-                            string language_code = selected_culture.Name;
+                            string language_name_trimmed = "";
+                            string language_code = "";
+                            if (selected_culture.DisplayName.IndexOf(" ") >= 0)
+                            {
+                                language_name_trimmed = selected_culture.DisplayName.Substring(0, selected_culture.DisplayName.IndexOf(" "));
+                            }
+                            else
+                            {
+                                language_name_trimmed = selected_culture.DisplayName;
+                            }
+                            language_code = selected_culture.Name;
                             LanguageManager.AddLanguage(language_name_trimmed,language_code);
+                            cbLanguage.DataSource = null;
+                            cbLanguage.DataSource = languageManager.Languages;
+                            FillLanguageList(languageManager.Languages);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnRemoveLanguage_Click(object sender, EventArgs e)
+        {
+            ListViewItem selected_language_item;
+            Language selected_language;
+            try
+            {
+                if (lstLanguagesInList.SelectedItems.Count > 0)
+                {
+                    foreach (var item in lstLanguagesInList.SelectedItems)
+                    {
+                        selected_language_item = (ListViewItem)item;
+                        selected_language = languageManager.Languages.Where(x => x.DisplayName.Contains(selected_language_item.Text)).FirstOrDefault();
+                        if (selected_language != null)
+                        {
+                            LanguageManager.RemoveLanguage(selected_language);
                             cbLanguage.DataSource = null;
                             cbLanguage.DataSource = languageManager.Languages;
                             FillLanguageList(languageManager.Languages);
