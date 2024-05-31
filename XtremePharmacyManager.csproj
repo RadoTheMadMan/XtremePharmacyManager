@@ -392,6 +392,7 @@
       <DependentUpon>frmSearchUsers.cs</DependentUpon>
     </Compile>
     <Compile Include="ImageBinConverter.cs" />
+    <Compile Include="LanguageManager.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -573,6 +574,7 @@
     <None Include="Properties\DataSources\frmSearchDeliveryServices.datasource" />
     <None Include="Properties\DataSources\frmSearchUsers.datasource" />
     <None Include="Properties\DataSources\ImageBinConverter.datasource" />
+    <None Include="Properties\DataSources\Language.datasource" />
     <None Include="Properties\DataSources\Program.datasource" />
     <None Include="Properties\DataSources\SqlServerTypes.Utilities.datasource" />
     <None Include="Properties\DataSources\XtremePharmacyManager.DataEntities.ClientView.datasource" />
@@ -626,7 +628,9 @@
       <DependentUpon>XTremePharmacyModel.edmx</DependentUpon>
       <LastGenOutput>XTremePharmacyModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Language.xml" />
+    <Content Include="Language.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Queries\XTremePharmacyDB.sql">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

@@ -68,6 +68,7 @@
             this.LogTitleColumn,
             this.LogMessageColumn,
             this.AdditionalInformationColumn});
+            this.lstLogs.FullRowSelect = true;
             this.lstLogs.HideSelection = false;
             this.lstLogs.Location = new System.Drawing.Point(13, 224);
             this.lstLogs.MultiSelect = false;

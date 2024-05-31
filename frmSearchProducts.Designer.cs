@@ -166,6 +166,7 @@ namespace XtremePharmacyManager
             this.ProductIDColumn,
             this.ImageNameColumn});
             this.lstProductImages.Font = new System.Drawing.Font("Times New Roman", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstProductImages.FullRowSelect = true;
             this.lstProductImages.HideSelection = false;
             this.lstProductImages.LargeImageList = this.imgListProductImages;
             this.lstProductImages.Location = new System.Drawing.Point(3, 376);
