@@ -33,6 +33,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAccountSettings));
             this.pnlData = new System.Windows.Forms.Panel();
             this.lblUserNotice = new System.Windows.Forms.Label();
             this.pbYourProfilePic = new System.Windows.Forms.PictureBox();
@@ -53,6 +54,7 @@
             this.txtYourUsername = new System.Windows.Forms.TextBox();
             this.lblYourUsername = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ttAccountSettings = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbYourProfilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -98,6 +100,8 @@
             this.lblUserNotice.Text = "IMPORTANT NOTICE:\r\nIf you change your username or \r\npassword to an existing one\r\n" +
     "it will be rejected by the system.\r\nIf this happens contact your system\r\nadminis" +
     "trator.";
+            this.ttAccountSettings.SetToolTip(this.lblUserNotice, "If you are a dumbfuck like my creator read this so you don\'t complain that you ca" +
+        "n\'t change your username and/or password");
             // 
             // pbYourProfilePic
             // 
@@ -109,6 +113,8 @@
             this.pbYourProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbYourProfilePic.TabIndex = 34;
             this.pbYourProfilePic.TabStop = false;
+            this.ttAccountSettings.SetToolTip(this.pbYourProfilePic, "Give yourself a cool profile picture while working. Set it as you please, it is s" +
+        "aved directly on the database in a binary format, no web server involved");
             this.pbYourProfilePic.Click += new System.EventHandler(this.pbYourProfilePic_Click);
             // 
             // btnOK
@@ -122,6 +128,7 @@
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
+            this.ttAccountSettings.SetToolTip(this.btnOK, resources.GetString("btnOK.ToolTip"));
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -136,6 +143,8 @@
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
             this.btnCancel.Text = "CANCEL";
+            this.ttAccountSettings.SetToolTip(this.btnCancel, "Click this if you aren\'t sure about changing your account settings, they will be " +
+        "reverted back to the previous ones");
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // txtYourDiagnose
@@ -147,6 +156,8 @@
             this.txtYourDiagnose.Name = "txtYourDiagnose";
             this.txtYourDiagnose.Size = new System.Drawing.Size(258, 96);
             this.txtYourDiagnose.TabIndex = 23;
+            this.ttAccountSettings.SetToolTip(this.txtYourDiagnose, "The diagnose you have, if we know that we can recommend the exact medicine for yo" +
+        "u so you can be cured from your disease");
             // 
             // lblYourDiagnose
             // 
@@ -169,6 +180,8 @@
             this.txtYourAddress.Name = "txtYourAddress";
             this.txtYourAddress.Size = new System.Drawing.Size(258, 70);
             this.txtYourAddress.TabIndex = 18;
+            this.ttAccountSettings.SetToolTip(this.txtYourAddress, "The address of your home, where we can deliver the medicine you ordered if you ca" +
+        "n\'t go to order inplace");
             // 
             // lblYourAddress
             // 
@@ -190,6 +203,8 @@
             this.txtYourEmail.Name = "txtYourEmail";
             this.txtYourEmail.Size = new System.Drawing.Size(258, 22);
             this.txtYourEmail.TabIndex = 16;
+            this.ttAccountSettings.SetToolTip(this.txtYourEmail, "Your email, used as well for feedback and/or contacting you about ordering medici" +
+        "ne");
             // 
             // lblYourEmail
             // 
@@ -211,6 +226,8 @@
             this.txtYourPhone.Name = "txtYourPhone";
             this.txtYourPhone.Size = new System.Drawing.Size(258, 22);
             this.txtYourPhone.TabIndex = 14;
+            this.ttAccountSettings.SetToolTip(this.txtYourPhone, "Your phone number for contacts with you and feedback from your feedback or for or" +
+        "ders of various medicine");
             // 
             // lblYourPhone
             // 
@@ -232,6 +249,8 @@
             this.txtYourDisplayName.Name = "txtYourDisplayName";
             this.txtYourDisplayName.Size = new System.Drawing.Size(258, 22);
             this.txtYourDisplayName.TabIndex = 8;
+            this.ttAccountSettings.SetToolTip(this.txtYourDisplayName, "The display name of your user account. You thought you will be represented by you" +
+        "r username?");
             // 
             // lblYourDisplayName
             // 
@@ -253,6 +272,7 @@
             this.txtYourPassword.Name = "txtYourPassword";
             this.txtYourPassword.Size = new System.Drawing.Size(258, 22);
             this.txtYourPassword.TabIndex = 6;
+            this.ttAccountSettings.SetToolTip(this.txtYourPassword, "Your password on the database with which you login.");
             // 
             // lblYourPassword
             // 
@@ -274,6 +294,7 @@
             this.txtYourUsername.Name = "txtYourUsername";
             this.txtYourUsername.Size = new System.Drawing.Size(258, 22);
             this.txtYourUsername.TabIndex = 4;
+            this.ttAccountSettings.SetToolTip(this.txtYourUsername, "Your username in the database with which you login");
             // 
             // lblYourUsername
             // 
@@ -291,6 +312,13 @@
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
             // 
+            // ttAccountSettings
+            // 
+            this.ttAccountSettings.IsBalloon = true;
+            this.ttAccountSettings.ShowAlways = true;
+            this.ttAccountSettings.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttAccountSettings.ToolTipTitle = "Help";
+            // 
             // frmAccountSettings
             // 
             this.AcceptButton = this.btnOK;
@@ -301,6 +329,7 @@
             this.MaximizeBox = false;
             this.Name = "frmAccountSettings";
             this.Text = "Account Settings";
+            this.ttAccountSettings.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.Load += new System.EventHandler(this.frmAccountSettings_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -332,5 +361,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.PictureBox pbYourProfilePic;
         private System.Windows.Forms.Label lblUserNotice;
+        private System.Windows.Forms.ToolTip ttAccountSettings;
     }
 }

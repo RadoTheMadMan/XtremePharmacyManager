@@ -88,6 +88,7 @@
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ttBulkDeliveryServiceOperations = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
@@ -419,6 +420,13 @@
             // 
             this.errBulkProvider.ContainerControl = this;
             // 
+            // ttBulkDeliveryServiceOperations
+            // 
+            this.ttBulkDeliveryServiceOperations.IsBalloon = true;
+            this.ttBulkDeliveryServiceOperations.ShowAlways = true;
+            this.ttBulkDeliveryServiceOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttBulkDeliveryServiceOperations.ToolTipTitle = "Help";
+            // 
             // frmBulkDeliveryServiceOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -476,5 +484,6 @@
         private System.Windows.Forms.TrackBar trbPrice;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.ToolTip ttBulkDeliveryServiceOperations;
     }
 }

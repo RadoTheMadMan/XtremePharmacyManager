@@ -27,6 +27,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAbout));
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
@@ -36,6 +37,7 @@
             this.labelCompanyName = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
+            this.ttAbout = new System.Windows.Forms.ToolTip(this.components);
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -78,6 +80,8 @@
             this.logoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.logoPictureBox.TabIndex = 12;
             this.logoPictureBox.TabStop = false;
+            this.ttAbout.SetToolTip(this.logoPictureBox, "The logo of our application.If it is the default one then it is still nonexistent" +
+        ".");
             // 
             // labelProductName
             // 
@@ -90,6 +94,7 @@
             this.labelProductName.TabIndex = 19;
             this.labelProductName.Text = "Product Name";
             this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ttAbout.SetToolTip(this.labelProductName, "The name of the application");
             // 
             // labelVersion
             // 
@@ -102,6 +107,7 @@
             this.labelVersion.TabIndex = 0;
             this.labelVersion.Text = "Version";
             this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ttAbout.SetToolTip(this.labelVersion, "The application version");
             // 
             // labelCopyright
             // 
@@ -114,6 +120,8 @@
             this.labelCopyright.TabIndex = 21;
             this.labelCopyright.Text = "Copyright";
             this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ttAbout.SetToolTip(this.labelCopyright, "the copyright that the creators use, it might not be seen all here but it will be" +
+        " all seen in GitHub");
             // 
             // labelCompanyName
             // 
@@ -126,6 +134,7 @@
             this.labelCompanyName.TabIndex = 22;
             this.labelCompanyName.Text = "Company Name";
             this.labelCompanyName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ttAbout.SetToolTip(this.labelCompanyName, "the creator\'s company if they have one");
             // 
             // textBoxDescription
             // 
@@ -140,6 +149,7 @@
             this.textBoxDescription.TabIndex = 23;
             this.textBoxDescription.TabStop = false;
             this.textBoxDescription.Text = "Description";
+            this.ttAbout.SetToolTip(this.textBoxDescription, "The description of this management application and system in general");
             // 
             // okButton
             // 
@@ -151,6 +161,13 @@
             this.okButton.Size = new System.Drawing.Size(100, 27);
             this.okButton.TabIndex = 24;
             this.okButton.Text = "&OK";
+            // 
+            // ttAbout
+            // 
+            this.ttAbout.IsBalloon = true;
+            this.ttAbout.ShowAlways = true;
+            this.ttAbout.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttAbout.ToolTipTitle = "Help";
             // 
             // frmAbout
             // 
@@ -187,5 +204,6 @@
         private System.Windows.Forms.Label labelCompanyName;
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.ToolTip ttAbout;
     }
 }

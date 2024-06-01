@@ -117,7 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="ttAccountSettings.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>206, 22</value>
+  </metadata>
+  <data name="btnOK.ToolTip" xml:space="preserve">
+    <value>Once you click the changes will be saved to the database and you will have to wait for confirmation of change by the system administrator if you have edited sensitive details like your username and/or password</value>
+  </data>
   <metadata name="userBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value>The account settings that you can change for your database user account. They are safe in the database and you can edit only certain settings for security reasons. The system administrators will have to change your login name and login password manually though.</value>
+  </data>
 </root>
