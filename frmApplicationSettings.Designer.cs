@@ -34,7 +34,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmApplicationSettings));
             this.pnlData = new System.Windows.Forms.Panel();
+            this.btnRemoveLanguage = new System.Windows.Forms.Button();
             this.btnAddLanguage = new System.Windows.Forms.Button();
             this.lstLanguagesInList = new System.Windows.Forms.ListView();
             this.LanguageDisplayNameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -90,8 +92,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtDomainName = new System.Windows.Forms.TextBox();
             this.lblDomainName = new System.Windows.Forms.Label();
-            this.hlpApplicationSettings = new System.Windows.Forms.HelpProvider();
-            this.btnRemoveLanguage = new System.Windows.Forms.Button();
+            this.ttApplicationSettings = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.languageBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -155,6 +156,21 @@
             this.pnlData.Size = new System.Drawing.Size(1152, 715);
             this.pnlData.TabIndex = 0;
             // 
+            // btnRemoveLanguage
+            // 
+            this.btnRemoveLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRemoveLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveLanguage.Font = new System.Drawing.Font("Franklin Gothic Medium", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveLanguage.Location = new System.Drawing.Point(841, 332);
+            this.btnRemoveLanguage.Name = "btnRemoveLanguage";
+            this.btnRemoveLanguage.Size = new System.Drawing.Size(163, 22);
+            this.btnRemoveLanguage.TabIndex = 80;
+            this.btnRemoveLanguage.Text = "REMOVE LANGUAGE";
+            this.ttApplicationSettings.SetToolTip(this.btnRemoveLanguage, "Select a language from the list to remove it if you don\'t want to use it for loca" +
+        "lisation.");
+            this.btnRemoveLanguage.UseVisualStyleBackColor = true;
+            this.btnRemoveLanguage.Click += new System.EventHandler(this.btnRemoveLanguage_Click);
+            // 
             // btnAddLanguage
             // 
             this.btnAddLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -165,6 +181,7 @@
             this.btnAddLanguage.Size = new System.Drawing.Size(163, 22);
             this.btnAddLanguage.TabIndex = 79;
             this.btnAddLanguage.Text = "ADD LANGUAGE";
+            this.ttApplicationSettings.SetToolTip(this.btnAddLanguage, resources.GetString("btnAddLanguage.ToolTip"));
             this.btnAddLanguage.UseVisualStyleBackColor = true;
             this.btnAddLanguage.Click += new System.EventHandler(this.btnAddLanguage_Click);
             // 
@@ -203,6 +220,7 @@
             this.btnSearchCultureInfo.Size = new System.Drawing.Size(163, 22);
             this.btnSearchCultureInfo.TabIndex = 77;
             this.btnSearchCultureInfo.Text = "SEARCH CULTURE INFO";
+            this.ttApplicationSettings.SetToolTip(this.btnSearchCultureInfo, "Click to search culture info");
             this.btnSearchCultureInfo.UseVisualStyleBackColor = true;
             this.btnSearchCultureInfo.Click += new System.EventHandler(this.btnSearchCultureInfo_Click);
             // 
@@ -214,6 +232,8 @@
             this.txtSearchCulture.Name = "txtSearchCulture";
             this.txtSearchCulture.Size = new System.Drawing.Size(258, 22);
             this.txtSearchCulture.TabIndex = 76;
+            this.ttApplicationSettings.SetToolTip(this.txtSearchCulture, "Here you can search culture info based on the version of .Net Framework you are o" +
+        "n. 4.7.2 and above is required, you know?");
             // 
             // lstFoundCultureInfos
             // 
@@ -228,6 +248,7 @@
             this.lstFoundCultureInfos.Name = "lstFoundCultureInfos";
             this.lstFoundCultureInfos.Size = new System.Drawing.Size(442, 177);
             this.lstFoundCultureInfos.TabIndex = 75;
+            this.ttApplicationSettings.SetToolTip(this.lstFoundCultureInfos, "Select any culture you want to localise your application with. It is up to you");
             this.lstFoundCultureInfos.UseCompatibleStateImageBehavior = false;
             this.lstFoundCultureInfos.View = System.Windows.Forms.View.Details;
             // 
@@ -278,6 +299,7 @@
             this.lblCommonSettings.Size = new System.Drawing.Size(263, 38);
             this.lblCommonSettings.TabIndex = 72;
             this.lblCommonSettings.Text = "Common Settings";
+            this.ttApplicationSettings.SetToolTip(this.lblCommonSettings, "Common settings for this application");
             // 
             // txtOrderDeliveryInvoiceReportName
             // 
@@ -287,6 +309,7 @@
             this.txtOrderDeliveryInvoiceReportName.Name = "txtOrderDeliveryInvoiceReportName";
             this.txtOrderDeliveryInvoiceReportName.Size = new System.Drawing.Size(258, 22);
             this.txtOrderDeliveryInvoiceReportName.TabIndex = 71;
+            this.ttApplicationSettings.SetToolTip(this.txtOrderDeliveryInvoiceReportName, resources.GetString("txtOrderDeliveryInvoiceReportName.ToolTip"));
             // 
             // lblOrderDeliveryInvoiceReportName
             // 
@@ -308,6 +331,9 @@
             this.txtOrderDeliveryReportName.Name = "txtOrderDeliveryReportName";
             this.txtOrderDeliveryReportName.Size = new System.Drawing.Size(258, 22);
             this.txtOrderDeliveryReportName.TabIndex = 69;
+            this.ttApplicationSettings.SetToolTip(this.txtOrderDeliveryReportName, "The name of the report file that the program looks for order delivery reports. It" +
+        " needs to include the language code localisation, for example OrderDeliveryRepor" +
+        "t.en-US.rdlc for English and etc");
             // 
             // lblOrderDeliveryReportName
             // 
@@ -329,6 +355,9 @@
             this.txtProductOrderInvoiceReportName.Name = "txtProductOrderInvoiceReportName";
             this.txtProductOrderInvoiceReportName.Size = new System.Drawing.Size(258, 22);
             this.txtProductOrderInvoiceReportName.TabIndex = 67;
+            this.ttApplicationSettings.SetToolTip(this.txtProductOrderInvoiceReportName, "The name of the report file that the program looks for product order invoices. It" +
+        " needs to include the language code localisation, for example ProductOrderInvoic" +
+        "eReport.en-US.rdlc for English and etc");
             // 
             // lblProductOrderInvoiceReportName
             // 
@@ -350,6 +379,9 @@
             this.txtProductOrderReportName.Name = "txtProductOrderReportName";
             this.txtProductOrderReportName.Size = new System.Drawing.Size(258, 22);
             this.txtProductOrderReportName.TabIndex = 65;
+            this.ttApplicationSettings.SetToolTip(this.txtProductOrderReportName, "The name of the report file that the program looks for product order reports. It " +
+        "needs to include the language code localisation, for example ProductOrderReport." +
+        "en-US.rdlc for English and etc");
             // 
             // lblProductOrderReportName
             // 
@@ -371,6 +403,9 @@
             this.txtProductReportName.Name = "txtProductReportName";
             this.txtProductReportName.Size = new System.Drawing.Size(258, 22);
             this.txtProductReportName.TabIndex = 63;
+            this.ttApplicationSettings.SetToolTip(this.txtProductReportName, "The name of the report file that the program looks for product reports. It needs " +
+        "to include the language code localisation, for example ProductReport.en-US.rdlc " +
+        "for English and etc");
             // 
             // lblProductReportName
             // 
@@ -392,6 +427,9 @@
             this.txtDeliveryServiceReportName.Name = "txtDeliveryServiceReportName";
             this.txtDeliveryServiceReportName.Size = new System.Drawing.Size(258, 22);
             this.txtDeliveryServiceReportName.TabIndex = 61;
+            this.ttApplicationSettings.SetToolTip(this.txtDeliveryServiceReportName, "The name of the report file that the program looks for delivery service reports. " +
+        "It needs to include the language code localisation, for example DeliveryServiceR" +
+        "eport.en-US.rdlc for English and etc");
             // 
             // lblDeliveryServiceReportName
             // 
@@ -413,6 +451,9 @@
             this.txtPaymentMethodReportName.Name = "txtPaymentMethodReportName";
             this.txtPaymentMethodReportName.Size = new System.Drawing.Size(258, 22);
             this.txtPaymentMethodReportName.TabIndex = 59;
+            this.ttApplicationSettings.SetToolTip(this.txtPaymentMethodReportName, "The name of the report file that the program looks for payment method reports. It" +
+        " needs to include the language code localisation, for example PaymentMethodRepor" +
+        "t.en-US.rdlc for English and etc");
             // 
             // lblPaymentMethodReportName
             // 
@@ -434,6 +475,9 @@
             this.txtProductVendorReportName.Name = "txtProductVendorReportName";
             this.txtProductVendorReportName.Size = new System.Drawing.Size(258, 22);
             this.txtProductVendorReportName.TabIndex = 57;
+            this.ttApplicationSettings.SetToolTip(this.txtProductVendorReportName, "The name of the report file that the program looks for product vendor reports. It" +
+        " needs to include the language code localisation, for example ProductVendorRepor" +
+        "t.en-US.rdlc for English and etc");
             // 
             // lblProductVendorReportName
             // 
@@ -455,6 +499,9 @@
             this.txtProductBrandReportName.Name = "txtProductBrandReportName";
             this.txtProductBrandReportName.Size = new System.Drawing.Size(258, 22);
             this.txtProductBrandReportName.TabIndex = 55;
+            this.ttApplicationSettings.SetToolTip(this.txtProductBrandReportName, "The name of the report file that the program looks for product brand reports. It " +
+        "needs to include the language code localisation, for example ProductBrandReport." +
+        "en-US.rdlc for English and etc");
             // 
             // lblProductBrandReportName
             // 
@@ -476,6 +523,9 @@
             this.txtClientReportName.Name = "txtClientReportName";
             this.txtClientReportName.Size = new System.Drawing.Size(258, 22);
             this.txtClientReportName.TabIndex = 53;
+            this.ttApplicationSettings.SetToolTip(this.txtClientReportName, "The name of the report file that the program looks for client reports. It needs t" +
+        "o include the language code localisation, for example ClientReport.en-US.rdlc fo" +
+        "r English and etc");
             // 
             // lblClientReportName
             // 
@@ -497,6 +547,9 @@
             this.txtEmployeeReportName.Name = "txtEmployeeReportName";
             this.txtEmployeeReportName.Size = new System.Drawing.Size(258, 22);
             this.txtEmployeeReportName.TabIndex = 51;
+            this.ttApplicationSettings.SetToolTip(this.txtEmployeeReportName, "The name of the report file that the program looks for employee reports. It needs" +
+        " to include the language code localisation, for example EmployeeReport.en-US.rdl" +
+        "c for English and etc");
             // 
             // lblEmployeeReportName
             // 
@@ -518,6 +571,7 @@
             this.txtSavedLoginsDirectory.Name = "txtSavedLoginsDirectory";
             this.txtSavedLoginsDirectory.Size = new System.Drawing.Size(258, 22);
             this.txtSavedLoginsDirectory.TabIndex = 49;
+            this.ttApplicationSettings.SetToolTip(this.txtSavedLoginsDirectory, resources.GetString("txtSavedLoginsDirectory.ToolTip"));
             // 
             // lblSavedLoginsDirectory
             // 
@@ -540,6 +594,7 @@
             this.btnBrowseSavedLoginsDirectory.Size = new System.Drawing.Size(90, 22);
             this.btnBrowseSavedLoginsDirectory.TabIndex = 47;
             this.btnBrowseSavedLoginsDirectory.Text = "BROWSE";
+            this.ttApplicationSettings.SetToolTip(this.btnBrowseSavedLoginsDirectory, "Browse the directory you wish to use to save and load logins here with ease");
             this.btnBrowseSavedLoginsDirectory.UseVisualStyleBackColor = true;
             this.btnBrowseSavedLoginsDirectory.Click += new System.EventHandler(this.btnBrowseSavedLoginsDirectory_Click);
             // 
@@ -551,6 +606,7 @@
             this.txtReportDirectory.Name = "txtReportDirectory";
             this.txtReportDirectory.Size = new System.Drawing.Size(258, 22);
             this.txtReportDirectory.TabIndex = 46;
+            this.ttApplicationSettings.SetToolTip(this.txtReportDirectory, resources.GetString("txtReportDirectory.ToolTip"));
             // 
             // lblReportDirectory
             // 
@@ -571,9 +627,9 @@
             this.cbLanguage.FormattingEnabled = true;
             this.cbLanguage.Location = new System.Drawing.Point(288, 241);
             this.cbLanguage.Name = "cbLanguage";
-            this.hlpApplicationSettings.SetShowHelp(this.cbLanguage, false);
             this.cbLanguage.Size = new System.Drawing.Size(258, 24);
             this.cbLanguage.TabIndex = 44;
+            this.ttApplicationSettings.SetToolTip(this.cbLanguage, resources.GetString("cbLanguage.ToolTip"));
             this.cbLanguage.ValueMember = "LanguageCode";
             // 
             // languageBindingSource
@@ -601,6 +657,8 @@
             this.btnBrowseReportDirectory.Size = new System.Drawing.Size(90, 22);
             this.btnBrowseReportDirectory.TabIndex = 42;
             this.btnBrowseReportDirectory.Text = "BROWSE";
+            this.ttApplicationSettings.SetToolTip(this.btnBrowseReportDirectory, "You can easily browse the directory from which the application gets the report fi" +
+        "les");
             this.btnBrowseReportDirectory.UseVisualStyleBackColor = true;
             this.btnBrowseReportDirectory.Click += new System.EventHandler(this.btnBrowseReportDirectory_Click);
             // 
@@ -612,6 +670,8 @@
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(258, 22);
             this.txtCompanyName.TabIndex = 41;
+            this.ttApplicationSettings.SetToolTip(this.txtCompanyName, "The name of your company or the company you work on. It is represented in the rep" +
+        "orts");
             // 
             // lblCompanyName
             // 
@@ -633,6 +693,7 @@
             this.txtDatabasePassword.Name = "txtDatabasePassword";
             this.txtDatabasePassword.Size = new System.Drawing.Size(258, 22);
             this.txtDatabasePassword.TabIndex = 39;
+            this.ttApplicationSettings.SetToolTip(this.txtDatabasePassword, "The password according to the user you log yourself in to the database.");
             this.txtDatabasePassword.UseSystemPasswordChar = true;
             // 
             // lblDBPassword
@@ -655,6 +716,9 @@
             this.txtDBUser.Name = "txtDBUser";
             this.txtDBUser.Size = new System.Drawing.Size(258, 22);
             this.txtDBUser.TabIndex = 37;
+            this.ttApplicationSettings.SetToolTip(this.txtDBUser, "The database user with which you need to login on the database, it is tightly con" +
+        "nected to the registration in the database and to the role you represent in your" +
+        " company");
             // 
             // lblDBUser
             // 
@@ -676,6 +740,9 @@
             this.txtDatabaseName.Name = "txtDatabaseName";
             this.txtDatabaseName.Size = new System.Drawing.Size(258, 22);
             this.txtDatabaseName.TabIndex = 35;
+            this.ttApplicationSettings.SetToolTip(this.txtDatabaseName, "The database name of this application. If you have changed the database name in t" +
+        "he provided query that sets it up which is not recommended you need to change it" +
+        " here as well");
             // 
             // lblDatabaseName
             // 
@@ -695,11 +762,13 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOK.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOK.Location = new System.Drawing.Point(937, 656);
+            this.btnOK.Location = new System.Drawing.Point(928, 656);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
+            this.ttApplicationSettings.SetToolTip(this.btnOK, "Accept the changes, by clicking it they are saved otherwise nothing gets changed." +
+        "The settings reflect on the application once it is restarted");
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -709,11 +778,13 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancel.Font = new System.Drawing.Font("Franklin Gothic Medium", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(1055, 656);
+            this.btnCancel.Location = new System.Drawing.Point(1024, 656);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
             this.btnCancel.Text = "CANCEL";
+            this.ttApplicationSettings.SetToolTip(this.btnCancel, "Cancel the changes. Even if you changed anything it won\'t be saved and will be re" +
+        "verted back to the previous settings");
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // txtDomainName
@@ -724,6 +795,8 @@
             this.txtDomainName.Name = "txtDomainName";
             this.txtDomainName.Size = new System.Drawing.Size(258, 22);
             this.txtDomainName.TabIndex = 4;
+            this.ttApplicationSettings.SetToolTip(this.txtDomainName, "The domain name of your company\'s server to which this application connects. Be c" +
+        "areful when changing it or let a system administrator set it up for you");
             // 
             // lblDomainName
             // 
@@ -737,18 +810,12 @@
             this.lblDomainName.TabIndex = 3;
             this.lblDomainName.Text = "Domain Name:";
             // 
-            // btnRemoveLanguage
+            // ttApplicationSettings
             // 
-            this.btnRemoveLanguage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoveLanguage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemoveLanguage.Font = new System.Drawing.Font("Franklin Gothic Medium", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveLanguage.Location = new System.Drawing.Point(841, 332);
-            this.btnRemoveLanguage.Name = "btnRemoveLanguage";
-            this.btnRemoveLanguage.Size = new System.Drawing.Size(163, 22);
-            this.btnRemoveLanguage.TabIndex = 80;
-            this.btnRemoveLanguage.Text = "REMOVE LANGUAGE";
-            this.btnRemoveLanguage.UseVisualStyleBackColor = true;
-            this.btnRemoveLanguage.Click += new System.EventHandler(this.btnRemoveLanguage_Click);
+            this.ttApplicationSettings.IsBalloon = true;
+            this.ttApplicationSettings.ShowAlways = true;
+            this.ttApplicationSettings.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttApplicationSettings.ToolTipTitle = "Help";
             // 
             // frmApplicationSettings
             // 
@@ -757,9 +824,11 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1152, 715);
             this.Controls.Add(this.pnlData);
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "frmApplicationSettings";
             this.Text = "Application Settings";
+            this.ttApplicationSettings.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.Load += new System.EventHandler(this.frmApplicationSettings_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -781,7 +850,6 @@
         private System.Windows.Forms.Label lblDBUser;
         private System.Windows.Forms.TextBox txtDatabaseName;
         private System.Windows.Forms.Label lblDatabaseName;
-        private System.Windows.Forms.HelpProvider hlpApplicationSettings;
         private System.Windows.Forms.TextBox txtCompanyName;
         private System.Windows.Forms.Label lblCompanyName;
         private System.Windows.Forms.Button btnBrowseReportDirectory;
@@ -828,5 +896,6 @@
         private System.Windows.Forms.ColumnHeader LanguageDisplayNameColumn;
         private System.Windows.Forms.ColumnHeader LanguageCodeColumn;
         private System.Windows.Forms.Button btnRemoveLanguage;
+        private System.Windows.Forms.ToolTip ttApplicationSettings;
     }
 }
