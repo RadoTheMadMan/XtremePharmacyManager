@@ -198,6 +198,8 @@
             this.lstLanguagesInList.Name = "lstLanguagesInList";
             this.lstLanguagesInList.Size = new System.Drawing.Size(442, 177);
             this.lstLanguagesInList.TabIndex = 78;
+            this.ttApplicationSettings.SetToolTip(this.lstLanguagesInList, "The application languages list. If you want to add new language it be sure to loc" +
+        "alise the reports and the resource file of the application. It is up to you");
             this.lstLanguagesInList.UseCompatibleStateImageBehavior = false;
             this.lstLanguagesInList.View = System.Windows.Forms.View.Details;
             // 
@@ -286,6 +288,8 @@
             this.lblLanguageExtensibilitySettings.Size = new System.Drawing.Size(449, 38);
             this.lblLanguageExtensibilitySettings.TabIndex = 73;
             this.lblLanguageExtensibilitySettings.Text = "Language Extensibility Settings";
+            this.ttApplicationSettings.SetToolTip(this.lblLanguageExtensibilitySettings, "The settings for adding and removing language and then manually extending the app" +
+        "lication to reflect on them. It is up to you to extend it");
             // 
             // lblCommonSettings
             // 

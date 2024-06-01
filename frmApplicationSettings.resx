@@ -120,24 +120,12 @@
   <metadata name="ttApplicationSettings.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>446, 17</value>
   </metadata>
-  <metadata name="ttApplicationSettings.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>446, 17</value>
-  </metadata>
   <data name="btnAddLanguage.ToolTip" xml:space="preserve">
     <value>Add the selected culture  from the list above as an application language. If you want to use it you need to make a copy of the Resources.resx file for the application, make all its strings in the language you want it to be and then copy the report files, put the nessecary culture code in their name for example ProductReport.[language-Code].rdlc and edit them in your favourite report editor to be in the language you want them to be in. The added language will be displayed in the list below.</value>
   </data>
-  <metadata name="ttApplicationSettings.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>446, 17</value>
-  </metadata>
-  <metadata name="ttApplicationSettings.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>446, 17</value>
-  </metadata>
   <data name="txtOrderDeliveryInvoiceReportName.ToolTip" xml:space="preserve">
     <value>The name of the report file that the program looks for order delivery invoices. It needs to include the language code localisation, for example OrderDeliveryInvoiceReport.en-US.rdlc for English and etc</value>
   </data>
-  <metadata name="ttApplicationSettings.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>446, 17</value>
-  </metadata>
   <data name="txtSavedLoginsDirectory.ToolTip" xml:space="preserve">
     <value>The directory where your applications saves logins for quick selection after each login, it saves and loads them in the filesystem and this is made so you don't always have to manually type in your username and/or password to login to the database</value>
   </data>
@@ -150,9 +138,6 @@
   <data name="cbLanguage.ToolTip" xml:space="preserve">
     <value>The language you want this application to be in. Keep in mind that you need to have the required Resources.resx file that reflects on the culture of the language and also a localised versions of the reports with a name that reflects on the selected language, for example Resources.en-US.resx and ProductReport.en-US.rdlc for English, Resources.bg-BG.resx and ProductReport.bg-BG.resx for Bulgarian, etc</value>
   </data>
-  <metadata name="languageBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>228, 17</value>
-  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>77</value>
   </metadata>
