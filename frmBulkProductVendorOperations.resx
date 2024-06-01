@@ -120,6 +120,24 @@
   <metadata name="productVendorBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <metadata name="ttBulkProductVendorOperations.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>766, 58</value>
+  </metadata>
+  <metadata name="ttBulkProductVendorOperations.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>766, 58</value>
+  </metadata>
+  <metadata name="ttBulkProductVendorOperations.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>766, 58</value>
+  </metadata>
+  <data name="cbOperationType.ToolTip" xml:space="preserve">
+    <value>The type of the operation, the default type is the invalid type, the add/update/delete types are defined in each class for the specific operation and custom is valid only if you have a custom task when you extend the application</value>
+  </data>
+  <metadata name="bulkProductVendorOperationBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>272, 17</value>
+  </metadata>
+  <metadata name="productVendorBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="bulkProductVendorOperationBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>272, 17</value>
   </metadata>
@@ -138,4 +156,7 @@
   <metadata name="errBulkProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 58</value>
   </metadata>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value>The bulk product vendor operations window where you can make bulk operations for adding/editing/removing product vendors provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not.</value>
+  </data>
 </root>

@@ -68,6 +68,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBulkProductOperations));
             this.pnlData = new System.Windows.Forms.Panel();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtQuantity = new System.Windows.Forms.TextBox();
@@ -119,6 +120,7 @@
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ttBulkProductOperations = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).BeginInit();
@@ -190,6 +192,9 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(35, 22);
             this.txtPrice.TabIndex = 71;
+            this.ttBulkProductOperations.SetToolTip(this.txtPrice, "The base price of the selected product can be set here. You can dynamically chang" +
+        "e it based on the price of the product the vendors of it set for  your shop/phar" +
+        "macy.");
             this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // txtQuantity
@@ -200,6 +205,9 @@
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(35, 22);
             this.txtQuantity.TabIndex = 70;
+            this.ttBulkProductOperations.SetToolTip(this.txtQuantity, "The storage quantity of the selected product can be set here. You can dynamically" +
+        " change it based on how much of the product is really in stock in your shop/phar" +
+        "macy");
             this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             // 
             // cbVendor
@@ -213,6 +221,7 @@
             this.cbVendor.Name = "cbVendor";
             this.cbVendor.Size = new System.Drawing.Size(223, 24);
             this.cbVendor.TabIndex = 69;
+            this.ttBulkProductOperations.SetToolTip(this.cbVendor, "The vendor the selected product is assigned to can be selected here");
             this.cbVendor.ValueMember = "ID";
             // 
             // productVendorBindingSource
@@ -245,6 +254,8 @@
             this.lblProductNotice.Text = "IMPORTANT NOTICE: To see the expiry date\r\ncheck the side of the product package\r\n" +
     "where the partitude number is\r\nAlso set the base price based on the vendor you s" +
     "et\r\n";
+            this.ttBulkProductOperations.SetToolTip(this.lblProductNotice, "If you are a dumbfuck like my creator read this so you don\'t complain that you ca" +
+        "n\'t change the product data via any operation");
             // 
             // txtStorageLocation
             // 
@@ -254,6 +265,7 @@
             this.txtStorageLocation.Name = "txtStorageLocation";
             this.txtStorageLocation.Size = new System.Drawing.Size(221, 22);
             this.txtStorageLocation.TabIndex = 66;
+            this.ttBulkProductOperations.SetToolTip(this.txtStorageLocation, "The location of the selected product in your storage can be set here");
             // 
             // lblStorageLocation
             // 
@@ -275,6 +287,8 @@
             this.txtPartNum.Name = "txtPartNum";
             this.txtPartNum.Size = new System.Drawing.Size(222, 22);
             this.txtPartNum.TabIndex = 64;
+            this.ttBulkProductOperations.SetToolTip(this.txtPartNum, "The partitude number of the selected product can be set here. You can find it on " +
+        "the side of the package along with its expiry date");
             // 
             // lblPartNum
             // 
@@ -296,6 +310,8 @@
             this.txtRegNum.Name = "txtRegNum";
             this.txtRegNum.Size = new System.Drawing.Size(220, 22);
             this.txtRegNum.TabIndex = 62;
+            this.ttBulkProductOperations.SetToolTip(this.txtRegNum, "The registration number of the selected product can be set here. It is on the cov" +
+        "er of the product.");
             // 
             // lblRegNum
             // 
@@ -317,6 +333,8 @@
             this.dtExpiryDate.Name = "dtExpiryDate";
             this.dtExpiryDate.Size = new System.Drawing.Size(221, 22);
             this.dtExpiryDate.TabIndex = 60;
+            this.ttBulkProductOperations.SetToolTip(this.dtExpiryDate, "The expiry date of the selected product can be set here. You can find it onthe si" +
+        "de of the package along with its partitude number");
             // 
             // lblExpiryDate
             // 
@@ -341,6 +359,9 @@
             this.trbQuantity.Size = new System.Drawing.Size(222, 39);
             this.trbQuantity.TabIndex = 58;
             this.trbQuantity.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ttBulkProductOperations.SetToolTip(this.trbQuantity, "The storage quantity of the selected product can be set here. You can dynamically" +
+        " change it based on how much of the product is really in stock in your shop/phar" +
+        "macy");
             this.trbQuantity.Scroll += new System.EventHandler(this.trbQuantity_Scroll);
             // 
             // lblQuantity
@@ -366,6 +387,7 @@
             this.cbBrand.Name = "cbBrand";
             this.cbBrand.Size = new System.Drawing.Size(223, 24);
             this.cbBrand.TabIndex = 55;
+            this.ttBulkProductOperations.SetToolTip(this.cbBrand, "The brand the selected product is assigned to can be selected here");
             this.cbBrand.ValueMember = "ID";
             // 
             // productBrandBindingSource
@@ -392,6 +414,7 @@
             this.txtProductDescription.Name = "txtProductDescription";
             this.txtProductDescription.Size = new System.Drawing.Size(222, 22);
             this.txtProductDescription.TabIndex = 53;
+            this.ttBulkProductOperations.SetToolTip(this.txtProductDescription, "The description of the selected product can be set here");
             // 
             // lblProductDescription
             // 
@@ -416,6 +439,9 @@
             this.trbPrice.Size = new System.Drawing.Size(222, 41);
             this.trbPrice.TabIndex = 51;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ttBulkProductOperations.SetToolTip(this.trbPrice, "The base price of the selected product can be set here. You can dynamically chang" +
+        "e it based on the price of the product the vendors of it set for  your shop/phar" +
+        "macy.");
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
             // 
             // lblPrice
@@ -441,6 +467,7 @@
             this.cbSelectRecord.Name = "cbSelectRecord";
             this.cbSelectRecord.Size = new System.Drawing.Size(222, 24);
             this.cbSelectRecord.TabIndex = 48;
+            this.ttBulkProductOperations.SetToolTip(this.cbSelectRecord, "The record selection, you can select any existing record from here.");
             this.cbSelectRecord.ValueMember = "ID";
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
@@ -470,6 +497,8 @@
             this.txtOperationLogs.Size = new System.Drawing.Size(1213, 154);
             this.txtOperationLogs.TabIndex = 46;
             this.txtOperationLogs.Text = "";
+            this.ttBulkProductOperations.SetToolTip(this.txtOperationLogs, "It shows the logs of the operations including success messages,error messages and" +
+        " overall time started, time ended and execution duration.");
             // 
             // checkSilentOperation
             // 
@@ -482,6 +511,8 @@
             this.checkSilentOperation.Size = new System.Drawing.Size(140, 20);
             this.checkSilentOperation.TabIndex = 44;
             this.checkSilentOperation.Text = "Silent Operation";
+            this.ttBulkProductOperations.SetToolTip(this.checkSilentOperation, "Check whether the operation is silent or will show you error messages if it has f" +
+        "ailed");
             this.checkSilentOperation.UseVisualStyleBackColor = true;
             // 
             // lblOperationResults
@@ -495,6 +526,8 @@
             this.lblOperationResults.Size = new System.Drawing.Size(139, 16);
             this.lblOperationResults.TabIndex = 43;
             this.lblOperationResults.Text = "Operation Results: ";
+            this.ttBulkProductOperations.SetToolTip(this.lblOperationResults, "Shows the results with numbers of completed operations, failed operations and exe" +
+        "cution time");
             // 
             // cbOperationType
             // 
@@ -512,6 +545,7 @@
             this.cbOperationType.Size = new System.Drawing.Size(229, 24);
             this.cbOperationType.TabIndex = 42;
             this.cbOperationType.Text = "ADD";
+            this.ttBulkProductOperations.SetToolTip(this.cbOperationType, resources.GetString("cbOperationType.ToolTip"));
             // 
             // lblOperationType
             // 
@@ -536,6 +570,7 @@
             this.btnAddOperation.Size = new System.Drawing.Size(345, 47);
             this.btnAddOperation.TabIndex = 40;
             this.btnAddOperation.Text = "ADD OPERATION";
+            this.ttBulkProductOperations.SetToolTip(this.btnAddOperation, "Add a bulk operation to the list");
             this.btnAddOperation.UseVisualStyleBackColor = true;
             this.btnAddOperation.Click += new System.EventHandler(this.btnAddOperation_Click);
             // 
@@ -550,6 +585,7 @@
             this.btnRemoveOperation.Size = new System.Drawing.Size(211, 47);
             this.btnRemoveOperation.TabIndex = 39;
             this.btnRemoveOperation.Text = "REMOVE OPERATION";
+            this.ttBulkProductOperations.SetToolTip(this.btnRemoveOperation, "Remove an existing bulk operation from the list");
             this.btnRemoveOperation.UseVisualStyleBackColor = true;
             this.btnRemoveOperation.Click += new System.EventHandler(this.btnRemoveOperation_Click);
             // 
@@ -564,6 +600,7 @@
             this.btnApplyChangesToCurrentTarget.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToCurrentTarget.TabIndex = 38;
             this.btnApplyChangesToCurrentTarget.Text = "APPLY CHANGES TO THIS TARGET";
+            this.ttBulkProductOperations.SetToolTip(this.btnApplyChangesToCurrentTarget, "Apply changes to the target record of the selected operation");
             this.btnApplyChangesToCurrentTarget.UseVisualStyleBackColor = true;
             this.btnApplyChangesToCurrentTarget.Click += new System.EventHandler(this.btnApplyChangesToCurrentTarget_Click);
             // 
@@ -578,6 +615,7 @@
             this.btnExecuteOperations.Size = new System.Drawing.Size(211, 47);
             this.btnExecuteOperations.TabIndex = 37;
             this.btnExecuteOperations.Text = "EXECUTE OPERATIONS";
+            this.ttBulkProductOperations.SetToolTip(this.btnExecuteOperations, "Execute all operations currently in the list");
             this.btnExecuteOperations.UseVisualStyleBackColor = true;
             this.btnExecuteOperations.Click += new System.EventHandler(this.btnExecuteOperations_Click);
             // 
@@ -592,6 +630,7 @@
             this.btnApplyChangesToAllTargets.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToAllTargets.TabIndex = 36;
             this.btnApplyChangesToAllTargets.Text = "APPLY CHANGES TO ALL TARGETS";
+            this.ttBulkProductOperations.SetToolTip(this.btnApplyChangesToAllTargets, "Applies changes to the target records of all operations");
             this.btnApplyChangesToAllTargets.UseVisualStyleBackColor = true;
             this.btnApplyChangesToAllTargets.Click += new System.EventHandler(this.btnApplyChangesToAllTargets_Click);
             // 
@@ -608,6 +647,8 @@
             this.lstBulkOperations.Name = "lstBulkOperations";
             this.lstBulkOperations.Size = new System.Drawing.Size(1213, 100);
             this.lstBulkOperations.TabIndex = 35;
+            this.ttBulkProductOperations.SetToolTip(this.lstBulkOperations, "the list of bulk operations you have added/edited/removed, it clears when the ope" +
+        "rations are executed.You can select any operation from here");
             this.lstBulkOperations.ValueMember = "TargetObject";
             this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);
             // 
@@ -623,6 +664,7 @@
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(223, 22);
             this.txtProductName.TabIndex = 4;
+            this.ttBulkProductOperations.SetToolTip(this.txtProductName, "The name of the selected product can be set here");
             // 
             // lblProductName
             // 
@@ -644,6 +686,9 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(223, 22);
             this.txtID.TabIndex = 2;
+            this.ttBulkProductOperations.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
+        "hanged so even if you add and ID or change it the database will still set its ow" +
+        "n ID to the record");
             // 
             // lblID
             // 
@@ -689,6 +734,13 @@
             // 
             this.errBulkProvider.ContainerControl = this;
             // 
+            // ttBulkProductOperations
+            // 
+            this.ttBulkProductOperations.IsBalloon = true;
+            this.ttBulkProductOperations.ShowAlways = true;
+            this.ttBulkProductOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttBulkProductOperations.ToolTipTitle = "Help";
+            // 
             // frmBulkProductOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -697,6 +749,7 @@
             this.MaximizeBox = false;
             this.Name = "frmBulkProductOperations";
             this.Text = "Bulk Product Operations";
+            this.ttBulkProductOperations.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.Load += new System.EventHandler(this.frmBulkProductOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -771,5 +824,6 @@
         private System.Windows.Forms.BindingSource productVendorBindingSource;
         private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.ToolTip ttBulkProductOperations;
     }
 }

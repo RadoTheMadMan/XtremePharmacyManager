@@ -53,8 +53,8 @@
             this.lblYourPassword = new System.Windows.Forms.Label();
             this.txtYourUsername = new System.Windows.Forms.TextBox();
             this.lblYourUsername = new System.Windows.Forms.Label();
-            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ttAccountSettings = new System.Windows.Forms.ToolTip(this.components);
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbYourProfilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -273,6 +273,7 @@
             this.txtYourPassword.Size = new System.Drawing.Size(258, 22);
             this.txtYourPassword.TabIndex = 6;
             this.ttAccountSettings.SetToolTip(this.txtYourPassword, "Your password on the database with which you login.");
+            this.txtYourPassword.UseSystemPasswordChar = true;
             // 
             // lblYourPassword
             // 
@@ -308,16 +309,16 @@
             this.lblYourUsername.TabIndex = 3;
             this.lblYourUsername.Text = "Your Username:";
             // 
-            // userBindingSource
-            // 
-            this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
-            // 
             // ttAccountSettings
             // 
             this.ttAccountSettings.IsBalloon = true;
             this.ttAccountSettings.ShowAlways = true;
             this.ttAccountSettings.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
             this.ttAccountSettings.ToolTipTitle = "Help";
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
             // 
             // frmAccountSettings
             // 

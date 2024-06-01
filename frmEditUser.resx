@@ -117,6 +117,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="ttEditUser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>197, 20</value>
+  </metadata>
+  <data name="txtBalance.ToolTip" xml:space="preserve">
+    <value>The balance of the selected user can be set here. No need to set it manually in some cases though, because the changes in the product orders and order deliveries reflect it automatically on status change.</value>
+  </data>
+  <data name="cbRole.ToolTip" xml:space="preserve">
+    <value>The role of the selected user can be set here. If you have changed it will automatically reflect on the product orders that have referenced it and you have to set the user again according to the role. Also you need to change the user in the database's user list to the roles, 0 for Admin(XPAdmin), 1 for Employee(XPEmployee) and 2 for Client(XPClient)</value>
+  </data>
+  <data name="trbBalance.ToolTip" xml:space="preserve">
+    <value>The balance of the selected user can be set here. No need to set it manually in some cases though, because the changes in the product orders and order deliveries reflect it automatically on status change.</value>
+  </data>
+  <metadata name="ttEditUser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>197, 20</value>
+  </metadata>
+  <metadata name="ttEditUser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>197, 20</value>
+  </metadata>
+  <metadata name="ttEditUser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>197, 20</value>
+  </metadata>
+  <metadata name="ttEditUser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>197, 20</value>
+  </metadata>
+  <metadata name="ttEditUser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>197, 20</value>
+  </metadata>
+  <data name="txtPassword.ToolTip" xml:space="preserve">
+    <value>The password in the database of the selected user can be set here. Don't forget that if you change it you need to set it accordingly in the login's password for the selected user in the server's login list</value>
+  </data>
+  <metadata name="ttEditUser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>197, 20</value>
+  </metadata>
+  <metadata name="ttEditUser.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>197, 20</value>
+  </metadata>
   <metadata name="userBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

@@ -58,6 +58,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBulkUserOperations));
             this.pnlData = new System.Windows.Forms.Panel();
             this.txtBalance = new System.Windows.Forms.TextBox();
             this.cbSelectRecord = new System.Windows.Forms.ComboBox();
@@ -100,6 +101,7 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ttBulkUserOperations = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkUserOperationBindingSource)).BeginInit();
@@ -162,6 +164,7 @@
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.Size = new System.Drawing.Size(39, 22);
             this.txtBalance.TabIndex = 49;
+            this.ttBulkUserOperations.SetToolTip(this.txtBalance, resources.GetString("txtBalance.ToolTip"));
             this.txtBalance.TextChanged += new System.EventHandler(this.txtBalance_TextChanged);
             // 
             // cbSelectRecord
@@ -175,6 +178,7 @@
             this.cbSelectRecord.Name = "cbSelectRecord";
             this.cbSelectRecord.Size = new System.Drawing.Size(254, 24);
             this.cbSelectRecord.TabIndex = 48;
+            this.ttBulkUserOperations.SetToolTip(this.cbSelectRecord, "The record selection, you can select any existing record from here.");
             this.cbSelectRecord.ValueMember = "ID";
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
@@ -204,6 +208,8 @@
             this.txtOperationLogs.Size = new System.Drawing.Size(1148, 116);
             this.txtOperationLogs.TabIndex = 46;
             this.txtOperationLogs.Text = "";
+            this.ttBulkUserOperations.SetToolTip(this.txtOperationLogs, "It shows the logs of the operations including success messages,error messages and" +
+        " overall time started, time ended and execution duration.");
             // 
             // lblUserNotice
             // 
@@ -217,6 +223,8 @@
             this.lblUserNotice.Size = new System.Drawing.Size(179, 48);
             this.lblUserNotice.TabIndex = 45;
             this.lblUserNotice.Text = "IMPORTANT NOTICE:\r\nUsername and password\r\nshould be unique\r\n";
+            this.ttBulkUserOperations.SetToolTip(this.lblUserNotice, "If you are a dumbfuck like my creator read this so you don\'t complain that you ca" +
+        "n\'t change the user data via any operation");
             // 
             // checkSilentOperation
             // 
@@ -227,6 +235,8 @@
             this.checkSilentOperation.Size = new System.Drawing.Size(140, 20);
             this.checkSilentOperation.TabIndex = 44;
             this.checkSilentOperation.Text = "Silent Operation";
+            this.ttBulkUserOperations.SetToolTip(this.checkSilentOperation, "Check whether the operation is silent or will show you error messages if it has f" +
+        "ailed");
             this.checkSilentOperation.UseVisualStyleBackColor = true;
             // 
             // lblOperationResults
@@ -235,11 +245,13 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblOperationResults.AutoSize = true;
             this.lblOperationResults.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOperationResults.Location = new System.Drawing.Point(401, 433);
+            this.lblOperationResults.Location = new System.Drawing.Point(24, 439);
             this.lblOperationResults.Name = "lblOperationResults";
             this.lblOperationResults.Size = new System.Drawing.Size(139, 16);
             this.lblOperationResults.TabIndex = 43;
             this.lblOperationResults.Text = "Operation Results: ";
+            this.ttBulkUserOperations.SetToolTip(this.lblOperationResults, "Shows the results with numbers of completed operations, failed operations and exe" +
+        "cution time");
             // 
             // cbOperationType
             // 
@@ -257,6 +269,7 @@
             this.cbOperationType.Size = new System.Drawing.Size(229, 24);
             this.cbOperationType.TabIndex = 42;
             this.cbOperationType.Text = "ADD";
+            this.ttBulkUserOperations.SetToolTip(this.cbOperationType, resources.GetString("cbOperationType.ToolTip"));
             // 
             // lblOperationType
             // 
@@ -281,6 +294,7 @@
             this.btnAddOperation.Size = new System.Drawing.Size(280, 47);
             this.btnAddOperation.TabIndex = 40;
             this.btnAddOperation.Text = "ADD OPERATION";
+            this.ttBulkUserOperations.SetToolTip(this.btnAddOperation, "Add a bulk operation to the list");
             this.btnAddOperation.UseVisualStyleBackColor = true;
             this.btnAddOperation.Click += new System.EventHandler(this.btnAddOperation_Click);
             // 
@@ -295,6 +309,7 @@
             this.btnRemoveOperation.Size = new System.Drawing.Size(211, 47);
             this.btnRemoveOperation.TabIndex = 39;
             this.btnRemoveOperation.Text = "REMOVE OPERATION";
+            this.ttBulkUserOperations.SetToolTip(this.btnRemoveOperation, "Remove an existing bulk operation from the list");
             this.btnRemoveOperation.UseVisualStyleBackColor = true;
             this.btnRemoveOperation.Click += new System.EventHandler(this.btnRemoveOperation_Click);
             // 
@@ -309,6 +324,7 @@
             this.btnApplyChangesToCurrentTarget.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToCurrentTarget.TabIndex = 38;
             this.btnApplyChangesToCurrentTarget.Text = "APPLY CHANGES TO THIS TARGET";
+            this.ttBulkUserOperations.SetToolTip(this.btnApplyChangesToCurrentTarget, "Apply changes to the target record of the selected operation");
             this.btnApplyChangesToCurrentTarget.UseVisualStyleBackColor = true;
             this.btnApplyChangesToCurrentTarget.Click += new System.EventHandler(this.btnApplyChangesToCurrentTarget_Click);
             // 
@@ -323,6 +339,7 @@
             this.btnExecuteOperations.Size = new System.Drawing.Size(211, 47);
             this.btnExecuteOperations.TabIndex = 37;
             this.btnExecuteOperations.Text = "EXECUTE OPERATIONS";
+            this.ttBulkUserOperations.SetToolTip(this.btnExecuteOperations, "Execute all operations currently in the list");
             this.btnExecuteOperations.UseVisualStyleBackColor = true;
             this.btnExecuteOperations.Click += new System.EventHandler(this.btnExecuteOperations_Click);
             // 
@@ -337,6 +354,7 @@
             this.btnApplyChangesToAllTargets.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToAllTargets.TabIndex = 36;
             this.btnApplyChangesToAllTargets.Text = "APPLY CHANGES TO ALL TARGETS";
+            this.ttBulkUserOperations.SetToolTip(this.btnApplyChangesToAllTargets, "Applies changes to the target records of all operations");
             this.btnApplyChangesToAllTargets.UseVisualStyleBackColor = true;
             this.btnApplyChangesToAllTargets.Click += new System.EventHandler(this.btnApplyChangesToAllTargets_Click);
             // 
@@ -353,6 +371,8 @@
             this.lstBulkOperations.Name = "lstBulkOperations";
             this.lstBulkOperations.Size = new System.Drawing.Size(1148, 84);
             this.lstBulkOperations.TabIndex = 35;
+            this.ttBulkUserOperations.SetToolTip(this.lstBulkOperations, "the list of bulk operations you have added/edited/removed, it clears when the ope" +
+        "rations are executed.You can select any operation from here");
             this.lstBulkOperations.ValueMember = "TargetObject";
             this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);
             // 
@@ -371,6 +391,9 @@
             this.pbUserProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbUserProfilePic.TabIndex = 34;
             this.pbUserProfilePic.TabStop = false;
+            this.ttBulkUserOperations.SetToolTip(this.pbUserProfilePic, "The profile picture of the selected user can be set here. The image is saved dire" +
+        "ctly to the database in a binary format and loaded from the binary data so no we" +
+        "b server is involved.");
             this.pbUserProfilePic.Click += new System.EventHandler(this.pbUserProfilePic_Click);
             // 
             // cbRole
@@ -387,6 +410,7 @@
             this.cbRole.Size = new System.Drawing.Size(229, 24);
             this.cbRole.TabIndex = 29;
             this.cbRole.Text = "Employee";
+            this.ttBulkUserOperations.SetToolTip(this.cbRole, resources.GetString("cbRole.ToolTip"));
             // 
             // lblRole
             // 
@@ -409,6 +433,7 @@
             this.txtDiagnose.Name = "txtDiagnose";
             this.txtDiagnose.Size = new System.Drawing.Size(313, 67);
             this.txtDiagnose.TabIndex = 23;
+            this.ttBulkUserOperations.SetToolTip(this.txtDiagnose, "The diagnose of the selected user can be set here.");
             // 
             // lblDiagnose
             // 
@@ -432,6 +457,7 @@
             this.trbBalance.Size = new System.Drawing.Size(259, 56);
             this.trbBalance.TabIndex = 21;
             this.trbBalance.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ttBulkUserOperations.SetToolTip(this.trbBalance, resources.GetString("trbBalance.ToolTip"));
             this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
             // 
             // lblBalance
@@ -455,6 +481,7 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(258, 35);
             this.txtAddress.TabIndex = 18;
+            this.ttBulkUserOperations.SetToolTip(this.txtAddress, "The address of the selected user can be set here.");
             // 
             // lblAddress
             // 
@@ -476,6 +503,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(258, 22);
             this.txtEmail.TabIndex = 16;
+            this.ttBulkUserOperations.SetToolTip(this.txtEmail, "The email of the selected user can be set here.");
             // 
             // lblEmail
             // 
@@ -497,6 +525,7 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(258, 22);
             this.txtPhone.TabIndex = 14;
+            this.ttBulkUserOperations.SetToolTip(this.txtPhone, "The phone of the selected user can be set here.");
             // 
             // lblPhone
             // 
@@ -518,6 +547,8 @@
             this.dtBirthDate.Name = "dtBirthDate";
             this.dtBirthDate.Size = new System.Drawing.Size(257, 22);
             this.dtBirthDate.TabIndex = 10;
+            this.ttBulkUserOperations.SetToolTip(this.dtBirthDate, "The birth date of the selected user can be changed here. Only administrators of t" +
+        "he database can change that");
             // 
             // lblBirthDateFrom
             // 
@@ -539,6 +570,7 @@
             this.txtDisplayName.Name = "txtDisplayName";
             this.txtDisplayName.Size = new System.Drawing.Size(258, 22);
             this.txtDisplayName.TabIndex = 8;
+            this.ttBulkUserOperations.SetToolTip(this.txtDisplayName, "The display name of the selected user can be set here.");
             // 
             // lblDisplayName
             // 
@@ -560,6 +592,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(258, 22);
             this.txtPassword.TabIndex = 6;
+            this.ttBulkUserOperations.SetToolTip(this.txtPassword, resources.GetString("txtPassword.ToolTip"));
             // 
             // lblPassword
             // 
@@ -581,6 +614,9 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(258, 22);
             this.txtUsername.TabIndex = 4;
+            this.ttBulkUserOperations.SetToolTip(this.txtUsername, "The username in the database of the selected user can be set here. Don\'t forget t" +
+        "hat if you have changed it you need to change it in the database\'s user and the " +
+        "server\'s login list accordingly");
             // 
             // lblUsername
             // 
@@ -602,6 +638,9 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(258, 22);
             this.txtID.TabIndex = 2;
+            this.ttBulkUserOperations.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
+        "hanged so even if you add and ID or change it the database will still set its ow" +
+        "n ID to the record");
             // 
             // lblID
             // 
@@ -619,6 +658,13 @@
             // 
             this.errBulkProvider.ContainerControl = this;
             // 
+            // ttBulkUserOperations
+            // 
+            this.ttBulkUserOperations.IsBalloon = true;
+            this.ttBulkUserOperations.ShowAlways = true;
+            this.ttBulkUserOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttBulkUserOperations.ToolTipTitle = "Help";
+            // 
             // frmBulkUserOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -627,6 +673,7 @@
             this.MaximizeBox = false;
             this.Name = "frmBulkUserOperations";
             this.Text = "Bulk User Operations";
+            this.ttBulkUserOperations.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.Load += new System.EventHandler(this.frmBulkUserOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -683,5 +730,6 @@
         private System.Windows.Forms.ComboBox cbSelectRecord;
         private System.Windows.Forms.Label lblSelectRecord;
         private System.Windows.Forms.TextBox txtBalance;
+        private System.Windows.Forms.ToolTip ttBulkUserOperations;
     }
 }

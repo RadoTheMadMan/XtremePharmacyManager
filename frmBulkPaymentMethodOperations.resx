@@ -120,11 +120,14 @@
   <metadata name="paymentMethodBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>358, 58</value>
   </metadata>
+  <metadata name="ttBulkPaymentMethodOperations.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>897, 26</value>
+  </metadata>
+  <data name="cbOperationType.ToolTip" xml:space="preserve">
+    <value>The type of the operation, the default type is the invalid type, the add/update/delete types are defined in each class for the specific operation and custom is valid only if you have a custom task when you extend the application</value>
+  </data>
   <metadata name="bulkPaymentMethodOperationBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>624, 58</value>
-  </metadata>
-  <metadata name="paymentMethodBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>358, 58</value>
   </metadata>
   <metadata name="productBrandBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>641, 17</value>
@@ -141,4 +144,7 @@
   <metadata name="errBulkProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>480, 17</value>
   </metadata>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value>The bulk payment method operations window where you can make bulk operations for adding/editing/removing payment methods provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not.</value>
+  </data>
 </root>

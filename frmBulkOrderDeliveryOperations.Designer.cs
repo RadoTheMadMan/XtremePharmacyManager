@@ -73,6 +73,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBulkOrderDeliveryOperations));
             this.pnlData = new System.Windows.Forms.Panel();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.txtCargoID = new System.Windows.Forms.TextBox();
@@ -119,6 +120,7 @@
             this.bulkProductBrandOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ttBulkOrderDeliveryOperations = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
@@ -184,6 +186,7 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(33, 22);
             this.txtPrice.TabIndex = 76;
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.txtPrice, resources.GetString("txtPrice.ToolTip"));
             this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // txtCargoID
@@ -194,6 +197,7 @@
             this.txtCargoID.Name = "txtCargoID";
             this.txtCargoID.Size = new System.Drawing.Size(240, 22);
             this.txtCargoID.TabIndex = 75;
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.txtCargoID, resources.GetString("txtCargoID.ToolTip"));
             // 
             // lblCargoID
             // 
@@ -228,6 +232,9 @@
             this.cbStatus.Size = new System.Drawing.Size(243, 24);
             this.cbStatus.TabIndex = 73;
             this.cbStatus.Text = "pending delivery";
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbStatus, "The delivery status. based on it the status of the product order changes and the " +
+        "balances of the registered employees and clients is calculated so be REALLY care" +
+        "ful with that");
             // 
             // lblStatus
             // 
@@ -252,6 +259,7 @@
             this.cbPaymentMethod.Name = "cbPaymentMethod";
             this.cbPaymentMethod.Size = new System.Drawing.Size(240, 24);
             this.cbPaymentMethod.TabIndex = 70;
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbPaymentMethod, "Select any existing payment method record to assign the order delivery to");
             this.cbPaymentMethod.ValueMember = "ID";
             // 
             // paymentMethodBindingSource
@@ -281,6 +289,7 @@
             this.cbDeliveryService.Name = "cbDeliveryService";
             this.cbDeliveryService.Size = new System.Drawing.Size(240, 24);
             this.cbDeliveryService.TabIndex = 68;
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbDeliveryService, "Select any existing delivery service record you want the delivery assigned to");
             this.cbDeliveryService.ValueMember = "ID";
             // 
             // deliveryServiceBindingSource
@@ -308,6 +317,8 @@
             this.txtReason.Name = "txtReason";
             this.txtReason.Size = new System.Drawing.Size(241, 51);
             this.txtReason.TabIndex = 62;
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.txtReason, "Type the reason you edited the delivery. Sometimes the database puts its own reas" +
+        "on for change to indicate a change of status and inform you tho");
             // 
             // lblReason
             // 
@@ -332,6 +343,7 @@
             this.cbOrder.Name = "cbOrder";
             this.cbOrder.Size = new System.Drawing.Size(240, 24);
             this.cbOrder.TabIndex = 55;
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbOrder, "Select any existing order record you want to assign the order delivery to");
             this.cbOrder.ValueMember = "ID";
             // 
             // productOrderBindingSource
@@ -361,6 +373,7 @@
             this.trbPrice.Size = new System.Drawing.Size(214, 48);
             this.trbPrice.TabIndex = 51;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.trbPrice, resources.GetString("trbPrice.ToolTip"));
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
             // 
             // lblPrice
@@ -386,6 +399,7 @@
             this.cbSelectRecord.Name = "cbSelectRecord";
             this.cbSelectRecord.Size = new System.Drawing.Size(240, 24);
             this.cbSelectRecord.TabIndex = 48;
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbSelectRecord, "The record selection, you can select any existing record from here.");
             this.cbSelectRecord.ValueMember = "ID";
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
@@ -415,6 +429,8 @@
             this.txtOperationLogs.Size = new System.Drawing.Size(1148, 117);
             this.txtOperationLogs.TabIndex = 46;
             this.txtOperationLogs.Text = "";
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.txtOperationLogs, "It shows the logs of the operations including success messages,error messages and" +
+        " overall time started, time ended and execution duration.");
             // 
             // checkSilentOperation
             // 
@@ -427,6 +443,8 @@
             this.checkSilentOperation.Size = new System.Drawing.Size(140, 20);
             this.checkSilentOperation.TabIndex = 44;
             this.checkSilentOperation.Text = "Silent Operation";
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.checkSilentOperation, "Check whether the operation is silent or will show you error messages if it has f" +
+        "ailed");
             this.checkSilentOperation.UseVisualStyleBackColor = true;
             // 
             // lblOperationResults
@@ -440,6 +458,8 @@
             this.lblOperationResults.Size = new System.Drawing.Size(139, 16);
             this.lblOperationResults.TabIndex = 43;
             this.lblOperationResults.Text = "Operation Results: ";
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.lblOperationResults, "Shows the results with numbers of completed operations, failed operations and exe" +
+        "cution time");
             // 
             // cbOperationType
             // 
@@ -457,6 +477,7 @@
             this.cbOperationType.Size = new System.Drawing.Size(229, 24);
             this.cbOperationType.TabIndex = 42;
             this.cbOperationType.Text = "ADD";
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbOperationType, resources.GetString("cbOperationType.ToolTip"));
             // 
             // lblOperationType
             // 
@@ -481,6 +502,7 @@
             this.btnAddOperation.Size = new System.Drawing.Size(279, 47);
             this.btnAddOperation.TabIndex = 40;
             this.btnAddOperation.Text = "ADD OPERATION";
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.btnAddOperation, "Add a bulk operation to the list");
             this.btnAddOperation.UseVisualStyleBackColor = true;
             this.btnAddOperation.Click += new System.EventHandler(this.btnAddOperation_Click);
             // 
@@ -495,6 +517,7 @@
             this.btnRemoveOperation.Size = new System.Drawing.Size(211, 47);
             this.btnRemoveOperation.TabIndex = 39;
             this.btnRemoveOperation.Text = "REMOVE OPERATION";
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.btnRemoveOperation, "Remove an existing bulk operation from the list");
             this.btnRemoveOperation.UseVisualStyleBackColor = true;
             this.btnRemoveOperation.Click += new System.EventHandler(this.btnRemoveOperation_Click);
             // 
@@ -509,6 +532,7 @@
             this.btnApplyChangesToCurrentTarget.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToCurrentTarget.TabIndex = 38;
             this.btnApplyChangesToCurrentTarget.Text = "APPLY CHANGES TO THIS TARGET";
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.btnApplyChangesToCurrentTarget, "Apply changes to the target record of the selected operation");
             this.btnApplyChangesToCurrentTarget.UseVisualStyleBackColor = true;
             this.btnApplyChangesToCurrentTarget.Click += new System.EventHandler(this.btnApplyChangesToCurrentTarget_Click);
             // 
@@ -523,6 +547,7 @@
             this.btnExecuteOperations.Size = new System.Drawing.Size(211, 47);
             this.btnExecuteOperations.TabIndex = 37;
             this.btnExecuteOperations.Text = "EXECUTE OPERATIONS";
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.btnExecuteOperations, "Execute all operations currently in the list");
             this.btnExecuteOperations.UseVisualStyleBackColor = true;
             this.btnExecuteOperations.Click += new System.EventHandler(this.btnExecuteOperations_Click);
             // 
@@ -537,6 +562,7 @@
             this.btnApplyChangesToAllTargets.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToAllTargets.TabIndex = 36;
             this.btnApplyChangesToAllTargets.Text = "APPLY CHANGES TO ALL TARGETS";
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.btnApplyChangesToAllTargets, "Applies changes to the target records of all operations");
             this.btnApplyChangesToAllTargets.UseVisualStyleBackColor = true;
             this.btnApplyChangesToAllTargets.Click += new System.EventHandler(this.btnApplyChangesToAllTargets_Click);
             // 
@@ -553,6 +579,8 @@
             this.lstBulkOperations.Name = "lstBulkOperations";
             this.lstBulkOperations.Size = new System.Drawing.Size(1148, 100);
             this.lstBulkOperations.TabIndex = 35;
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.lstBulkOperations, "the list of bulk operations you have added/edited/removed, it clears when the ope" +
+        "rations are executed.You can select any operation from here");
             this.lstBulkOperations.ValueMember = "TargetObject";
             this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);
             // 
@@ -568,6 +596,9 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(240, 22);
             this.txtID.TabIndex = 2;
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
+        "hanged so even if you add and ID or change it the database will still set its ow" +
+        "n ID to the record");
             // 
             // lblID
             // 
@@ -621,6 +652,13 @@
             // 
             this.errBulkProvider.ContainerControl = this;
             // 
+            // ttBulkOrderDeliveryOperations
+            // 
+            this.ttBulkOrderDeliveryOperations.IsBalloon = true;
+            this.ttBulkOrderDeliveryOperations.ShowAlways = true;
+            this.ttBulkOrderDeliveryOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttBulkOrderDeliveryOperations.ToolTipTitle = "Help";
+            // 
             // frmBulkOrderDeliveryOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -629,6 +667,7 @@
             this.MaximizeBox = false;
             this.Name = "frmBulkOrderDeliveryOperations";
             this.Text = "Bulk Order Delivery Operations";
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.Load += new System.EventHandler(this.frmBulkOrderDeliveryOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -700,5 +739,6 @@
         private System.Windows.Forms.TextBox txtCargoID;
         private System.Windows.Forms.Label lblCargoID;
         private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.ToolTip ttBulkOrderDeliveryOperations;
     }
 }

@@ -33,6 +33,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditOrderDelivery));
             this.pnlData = new System.Windows.Forms.Panel();
             this.lblCargoID = new System.Windows.Forms.Label();
             this.txtCargoID = new System.Windows.Forms.TextBox();
@@ -57,6 +58,7 @@
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ttEditOrderDelivery = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
@@ -111,6 +113,7 @@
             this.txtCargoID.Name = "txtCargoID";
             this.txtCargoID.Size = new System.Drawing.Size(201, 22);
             this.txtCargoID.TabIndex = 55;
+            this.ttEditOrderDelivery.SetToolTip(this.txtCargoID, resources.GetString("txtCargoID.ToolTip"));
             // 
             // txtDeliveryReason
             // 
@@ -121,6 +124,8 @@
             this.txtDeliveryReason.Name = "txtDeliveryReason";
             this.txtDeliveryReason.Size = new System.Drawing.Size(230, 86);
             this.txtDeliveryReason.TabIndex = 54;
+            this.ttEditOrderDelivery.SetToolTip(this.txtDeliveryReason, "Type the reason you edited the delivery. Sometimes the database puts its own reas" +
+        "on for change to indicate a change of status and inform you tho");
             // 
             // lblDeliveryReason
             // 
@@ -167,6 +172,9 @@
             this.cbSelectDeliveryStatus.Size = new System.Drawing.Size(201, 24);
             this.cbSelectDeliveryStatus.TabIndex = 51;
             this.cbSelectDeliveryStatus.Text = "pending delivery";
+            this.ttEditOrderDelivery.SetToolTip(this.cbSelectDeliveryStatus, "The delivery status. based on it the status of the product order changes and the " +
+        "balances of the registered employees and clients is calculated so be REALLY care" +
+        "ful with that");
             // 
             // cbSelectPaymentMethod
             // 
@@ -177,6 +185,7 @@
             this.cbSelectPaymentMethod.Name = "cbSelectPaymentMethod";
             this.cbSelectPaymentMethod.Size = new System.Drawing.Size(201, 24);
             this.cbSelectPaymentMethod.TabIndex = 48;
+            this.ttEditOrderDelivery.SetToolTip(this.cbSelectPaymentMethod, "Select any existing payment method record to assign the order delivery to");
             this.cbSelectPaymentMethod.ValueMember = "ID";
             // 
             // paymentMethodBindingSource
@@ -204,6 +213,7 @@
             this.cbSelectDeliveryService.Name = "cbSelectDeliveryService";
             this.cbSelectDeliveryService.Size = new System.Drawing.Size(201, 24);
             this.cbSelectDeliveryService.TabIndex = 46;
+            this.ttEditOrderDelivery.SetToolTip(this.cbSelectDeliveryService, "Select any existing delivery service record you want the delivery assigned to");
             this.cbSelectDeliveryService.ValueMember = "ID";
             // 
             // deliveryServiceBindingSource
@@ -231,6 +241,7 @@
             this.cbSelectProductOrders.Name = "cbSelectProductOrders";
             this.cbSelectProductOrders.Size = new System.Drawing.Size(201, 24);
             this.cbSelectProductOrders.TabIndex = 36;
+            this.ttEditOrderDelivery.SetToolTip(this.cbSelectProductOrders, "Select any existing order record you want to assign the order delivery to");
             this.cbSelectProductOrders.ValueMember = "ID";
             // 
             // productOrderBindingSource
@@ -247,6 +258,7 @@
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
+            this.ttEditOrderDelivery.SetToolTip(this.btnOK, "When you click OK this record\'s changes will be saved to the database");
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -260,6 +272,8 @@
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
             this.btnCancel.Text = "CANCEL";
+            this.ttEditOrderDelivery.SetToolTip(this.btnCancel, "When you click this button the changes to therecord will be saved to the memory a" +
+        "llowing you to add it as a bulk operation");
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -284,6 +298,9 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(200, 22);
             this.txtID.TabIndex = 2;
+            this.ttEditOrderDelivery.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
+        "hanged so even if you add and ID or change it the database will still set its ow" +
+        "n ID to the record");
             // 
             // lblID
             // 
@@ -313,6 +330,13 @@
             // 
             this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
             // 
+            // ttEditOrderDelivery
+            // 
+            this.ttEditOrderDelivery.IsBalloon = true;
+            this.ttEditOrderDelivery.ShowAlways = true;
+            this.ttEditOrderDelivery.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttEditOrderDelivery.ToolTipTitle = "Help";
+            // 
             // frmEditOrderDelivery
             // 
             this.AcceptButton = this.btnOK;
@@ -323,6 +347,8 @@
             this.MaximizeBox = false;
             this.Name = "frmEditOrderDelivery";
             this.Text = "Order Delivery Editor. Add or Edit Order Deliveries";
+            this.ttEditOrderDelivery.SetToolTip(this, "The order deliveries editor dialog where you can add/edit order deliveries that y" +
+        "ou can access provided you have the permissions to do so.");
             this.Load += new System.EventHandler(this.frmEditOrderDelivery_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -363,5 +389,6 @@
         private System.Windows.Forms.TextBox txtCargoID;
         private System.Windows.Forms.Label lblCargoID;
         private System.Windows.Forms.BindingSource paymentMethodBindingSource;
+        private System.Windows.Forms.ToolTip ttEditOrderDelivery;
     }
 }

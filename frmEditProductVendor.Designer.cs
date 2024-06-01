@@ -41,6 +41,7 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ttEditProductVendor = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -70,6 +71,7 @@
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
+            this.ttEditProductVendor.SetToolTip(this.btnOK, "When you click OK this record\'s changes will be saved to the database");
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -83,6 +85,8 @@
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
             this.btnCancel.Text = "CANCEL";
+            this.ttEditProductVendor.SetToolTip(this.btnCancel, "When you click this button the changes to therecord will be saved to the memory a" +
+        "llowing you to add it as a bulk operation");
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -94,6 +98,7 @@
             this.txtVendorName.Name = "txtVendorName";
             this.txtVendorName.Size = new System.Drawing.Size(205, 22);
             this.txtVendorName.TabIndex = 4;
+            this.ttEditProductVendor.SetToolTip(this.txtVendorName, "The name of the selected product vendor can be set here.");
             // 
             // lblVendorName
             // 
@@ -116,6 +121,9 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(205, 22);
             this.txtID.TabIndex = 2;
+            this.ttEditProductVendor.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
+        "hanged so even if you add and ID or change it the database will still set its ow" +
+        "n ID to the record");
             // 
             // lblID
             // 
@@ -129,6 +137,13 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
+            // ttEditProductVendor
+            // 
+            this.ttEditProductVendor.IsBalloon = true;
+            this.ttEditProductVendor.ShowAlways = true;
+            this.ttEditProductVendor.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttEditProductVendor.ToolTipTitle = "Help";
+            // 
             // frmEditProductVendor
             // 
             this.AcceptButton = this.btnOK;
@@ -139,6 +154,8 @@
             this.MaximizeBox = false;
             this.Name = "frmEditProductVendor";
             this.Text = "Product Vendor Editor. Add or Update Product Vendor";
+            this.ttEditProductVendor.SetToolTip(this, "The product vendors editor dialog where you can add/edit product vendors that you" +
+        " can access provided you have the permissions to do so.");
             this.Load += new System.EventHandler(this.frmEditProductVendor_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -157,5 +174,6 @@
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.ToolTip ttEditProductVendor;
     }
 }

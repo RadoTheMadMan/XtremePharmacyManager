@@ -33,7 +33,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditUser));
             this.pnlData = new System.Windows.Forms.Panel();
+            this.txtBalance = new System.Windows.Forms.TextBox();
             this.lblUserNotice = new System.Windows.Forms.Label();
             this.pbUserProfilePic = new System.Windows.Forms.PictureBox();
             this.btnOK = new System.Windows.Forms.Button();
@@ -61,7 +63,7 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.txtBalance = new System.Windows.Forms.TextBox();
+            this.ttEditUser = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserProfilePic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).BeginInit();
@@ -104,6 +106,17 @@
             this.pnlData.Size = new System.Drawing.Size(800, 301);
             this.pnlData.TabIndex = 0;
             // 
+            // txtBalance
+            // 
+            this.txtBalance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBalance.Location = new System.Drawing.Point(741, 18);
+            this.txtBalance.Name = "txtBalance";
+            this.txtBalance.Size = new System.Drawing.Size(55, 22);
+            this.txtBalance.TabIndex = 43;
+            this.ttEditUser.SetToolTip(this.txtBalance, resources.GetString("txtBalance.ToolTip"));
+            this.txtBalance.TextChanged += new System.EventHandler(this.txtBalance_TextChanged);
+            // 
             // lblUserNotice
             // 
             this.lblUserNotice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -116,6 +129,8 @@
             this.lblUserNotice.Size = new System.Drawing.Size(179, 48);
             this.lblUserNotice.TabIndex = 42;
             this.lblUserNotice.Text = "IMPORTANT NOTICE:\r\nUsername and password\r\nshould be unique\r\n";
+            this.ttEditUser.SetToolTip(this.lblUserNotice, "If you are a dumbfuck like my creator read this so you don\'t complain that you ca" +
+        "n\'t change the user data via any operation");
             // 
             // pbUserProfilePic
             // 
@@ -126,6 +141,9 @@
             this.pbUserProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbUserProfilePic.TabIndex = 34;
             this.pbUserProfilePic.TabStop = false;
+            this.ttEditUser.SetToolTip(this.pbUserProfilePic, "The profile picture of the selected user can be set here. The image is saved dire" +
+        "ctly to the database in a binary format and loaded from the binary data so no we" +
+        "b server is involved.");
             this.pbUserProfilePic.Click += new System.EventHandler(this.pbUserProfilePic_Click);
             // 
             // btnOK
@@ -138,6 +156,7 @@
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
+            this.ttEditUser.SetToolTip(this.btnOK, "When you click OK this record\'s changes will be saved to the database");
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -151,6 +170,8 @@
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
             this.btnCancel.Text = "CANCEL";
+            this.ttEditUser.SetToolTip(this.btnCancel, "When you click this button the changes to therecord will be saved to the memory a" +
+        "llowing you to add it as a bulk operation");
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -168,6 +189,7 @@
             this.cbRole.Size = new System.Drawing.Size(229, 24);
             this.cbRole.TabIndex = 29;
             this.cbRole.Text = "Employee";
+            this.ttEditUser.SetToolTip(this.cbRole, resources.GetString("cbRole.ToolTip"));
             // 
             // lblRole
             // 
@@ -190,6 +212,7 @@
             this.txtDiagnose.Name = "txtDiagnose";
             this.txtDiagnose.Size = new System.Drawing.Size(313, 56);
             this.txtDiagnose.TabIndex = 23;
+            this.ttEditUser.SetToolTip(this.txtDiagnose, "The diagnose of the selected user can be set here.");
             // 
             // lblDiagnose
             // 
@@ -213,6 +236,7 @@
             this.trbBalance.Size = new System.Drawing.Size(259, 56);
             this.trbBalance.TabIndex = 21;
             this.trbBalance.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ttEditUser.SetToolTip(this.trbBalance, resources.GetString("trbBalance.ToolTip"));
             this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
             // 
             // lblBalance
@@ -236,6 +260,7 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(258, 56);
             this.txtAddress.TabIndex = 18;
+            this.ttEditUser.SetToolTip(this.txtAddress, "The address of the selected user can be set here.");
             // 
             // lblAddress
             // 
@@ -257,6 +282,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(258, 22);
             this.txtEmail.TabIndex = 16;
+            this.ttEditUser.SetToolTip(this.txtEmail, "The email of the selected user can be set here.");
             // 
             // lblEmail
             // 
@@ -278,6 +304,7 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(258, 22);
             this.txtPhone.TabIndex = 14;
+            this.ttEditUser.SetToolTip(this.txtPhone, "The phone of the selected user can be set here.");
             // 
             // lblPhone
             // 
@@ -299,6 +326,8 @@
             this.dtBirthDate.Name = "dtBirthDate";
             this.dtBirthDate.Size = new System.Drawing.Size(257, 22);
             this.dtBirthDate.TabIndex = 10;
+            this.ttEditUser.SetToolTip(this.dtBirthDate, "The birth date of the selected user can be changed here. Only administrators of t" +
+        "he database can change that");
             // 
             // lblBirthDateFrom
             // 
@@ -320,6 +349,7 @@
             this.txtDisplayName.Name = "txtDisplayName";
             this.txtDisplayName.Size = new System.Drawing.Size(258, 22);
             this.txtDisplayName.TabIndex = 8;
+            this.ttEditUser.SetToolTip(this.txtDisplayName, "The display name of the selected user can be set here.");
             // 
             // lblDisplayName
             // 
@@ -341,6 +371,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(258, 22);
             this.txtPassword.TabIndex = 6;
+            this.ttEditUser.SetToolTip(this.txtPassword, resources.GetString("txtPassword.ToolTip"));
             // 
             // lblPassword
             // 
@@ -362,6 +393,9 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(258, 22);
             this.txtUsername.TabIndex = 4;
+            this.ttEditUser.SetToolTip(this.txtUsername, "The username in the database of the selected user can be set here. Don\'t forget t" +
+        "hat if you have changed it you need to change it in the database\'s user and the " +
+        "server\'s login list accordingly");
             // 
             // lblUsername
             // 
@@ -384,6 +418,9 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(258, 22);
             this.txtID.TabIndex = 2;
+            this.ttEditUser.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
+        "hanged so even if you add and ID or change it the database will still set its ow" +
+        "n ID to the record");
             // 
             // lblID
             // 
@@ -401,15 +438,12 @@
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
             // 
-            // txtBalance
+            // ttEditUser
             // 
-            this.txtBalance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBalance.Location = new System.Drawing.Point(741, 18);
-            this.txtBalance.Name = "txtBalance";
-            this.txtBalance.Size = new System.Drawing.Size(55, 22);
-            this.txtBalance.TabIndex = 43;
-            this.txtBalance.TextChanged += new System.EventHandler(this.txtBalance_TextChanged);
+            this.ttEditUser.IsBalloon = true;
+            this.ttEditUser.ShowAlways = true;
+            this.ttEditUser.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttEditUser.ToolTipTitle = "Help";
             // 
             // frmEditUser
             // 
@@ -421,6 +455,8 @@
             this.MaximizeBox = false;
             this.Name = "frmEditUser";
             this.Text = "User Editor. Add or Edit User";
+            this.ttEditUser.SetToolTip(this, "The product vendors editor dialog where you can add/edit product vendors that you" +
+        " can access provided you have the permissions to do so.");
             this.Load += new System.EventHandler(this.frmEditUser_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -463,5 +499,6 @@
         private System.Windows.Forms.PictureBox pbUserProfilePic;
         private System.Windows.Forms.Label lblUserNotice;
         private System.Windows.Forms.TextBox txtBalance;
+        private System.Windows.Forms.ToolTip ttEditUser;
     }
 }

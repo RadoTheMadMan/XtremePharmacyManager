@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="ttBulkOrderDeliveryOperations.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>850, 5</value>
+  </metadata>
+  <data name="txtPrice.ToolTip" xml:space="preserve">
+    <value>This shows the total price, it is calculated automatically based on the price of the order the delivery is assigned to and the delivery service the delivery is assigned to and cannot be changed manually</value>
+  </data>
+  <data name="txtCargoID.ToolTip" xml:space="preserve">
+    <value>This is the cargo ID the site of the delivery services generates for you along with report of details fo the delivery to check and confirm the authenticity of the delivered stock. Put the ID of the cargo document here</value>
+  </data>
   <metadata name="paymentMethodBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>358, 58</value>
   </metadata>
@@ -126,9 +135,15 @@
   <metadata name="productOrderBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 140</value>
   </metadata>
+  <data name="trbPrice.ToolTip" xml:space="preserve">
+    <value>This shows the total price, it is calculated automatically based on the price of the order the delivery is assigned to and the delivery service the delivery is assigned to and cannot be changed manually</value>
+  </data>
   <metadata name="orderDeliveryBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>794, 140</value>
   </metadata>
+  <data name="cbOperationType.ToolTip" xml:space="preserve">
+    <value>The type of the operation, the default type is the invalid type, the add/update/delete types are defined in each class for the specific operation and custom is valid only if you have a custom task when you extend the application</value>
+  </data>
   <metadata name="bulkProductOrderOperationBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>454, 140</value>
   </metadata>
@@ -162,4 +177,7 @@
   <metadata name="errBulkProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>480, 17</value>
   </metadata>
+  <data name="$this.ToolTip" xml:space="preserve">
+    <value>The bulk order delivery operations window where you can make bulk operations for adding/editing/removing order deliveries provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not.</value>
+  </data>
 </root>

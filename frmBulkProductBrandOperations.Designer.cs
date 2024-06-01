@@ -58,6 +58,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmBulkProductBrandOperations));
             this.pnlData = new System.Windows.Forms.Panel();
             this.cbSelectRecord = new System.Windows.Forms.ComboBox();
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -81,6 +82,7 @@
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bulkUserOperationBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.errBulkProvider = new System.Windows.Forms.ErrorProvider(this.components);
+            this.ttBulkProductBrandOperations = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bulkProductBrandOperationBindingSource)).BeginInit();
@@ -125,6 +127,7 @@
             this.cbSelectRecord.Name = "cbSelectRecord";
             this.cbSelectRecord.Size = new System.Drawing.Size(254, 24);
             this.cbSelectRecord.TabIndex = 48;
+            this.ttBulkProductBrandOperations.SetToolTip(this.cbSelectRecord, "The record selection, you can select any existing record from here.");
             this.cbSelectRecord.ValueMember = "ID";
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
@@ -154,6 +157,8 @@
             this.txtOperationLogs.Size = new System.Drawing.Size(1148, 219);
             this.txtOperationLogs.TabIndex = 46;
             this.txtOperationLogs.Text = "";
+            this.ttBulkProductBrandOperations.SetToolTip(this.txtOperationLogs, "It shows the logs of the operations including success messages,error messages and" +
+        " overall time started, time ended and execution duration.");
             // 
             // checkSilentOperation
             // 
@@ -166,6 +171,8 @@
             this.checkSilentOperation.Size = new System.Drawing.Size(140, 20);
             this.checkSilentOperation.TabIndex = 44;
             this.checkSilentOperation.Text = "Silent Operation";
+            this.ttBulkProductBrandOperations.SetToolTip(this.checkSilentOperation, "Check whether the operation is silent or will show you error messages if it has f" +
+        "ailed");
             this.checkSilentOperation.UseVisualStyleBackColor = true;
             // 
             // lblOperationResults
@@ -179,6 +186,8 @@
             this.lblOperationResults.Size = new System.Drawing.Size(139, 16);
             this.lblOperationResults.TabIndex = 43;
             this.lblOperationResults.Text = "Operation Results: ";
+            this.ttBulkProductBrandOperations.SetToolTip(this.lblOperationResults, "Shows the results with numbers of completed operations, failed operations and exe" +
+        "cution time");
             // 
             // cbOperationType
             // 
@@ -196,6 +205,7 @@
             this.cbOperationType.Size = new System.Drawing.Size(229, 24);
             this.cbOperationType.TabIndex = 42;
             this.cbOperationType.Text = "ADD";
+            this.ttBulkProductBrandOperations.SetToolTip(this.cbOperationType, resources.GetString("cbOperationType.ToolTip"));
             // 
             // lblOperationType
             // 
@@ -220,6 +230,7 @@
             this.btnAddOperation.Size = new System.Drawing.Size(280, 47);
             this.btnAddOperation.TabIndex = 40;
             this.btnAddOperation.Text = "ADD OPERATION";
+            this.ttBulkProductBrandOperations.SetToolTip(this.btnAddOperation, "Add a bulk operation to the list");
             this.btnAddOperation.UseVisualStyleBackColor = true;
             this.btnAddOperation.Click += new System.EventHandler(this.btnAddOperation_Click);
             // 
@@ -234,6 +245,7 @@
             this.btnRemoveOperation.Size = new System.Drawing.Size(211, 47);
             this.btnRemoveOperation.TabIndex = 39;
             this.btnRemoveOperation.Text = "REMOVE OPERATION";
+            this.ttBulkProductBrandOperations.SetToolTip(this.btnRemoveOperation, "Remove an existing bulk operation from the list");
             this.btnRemoveOperation.UseVisualStyleBackColor = true;
             this.btnRemoveOperation.Click += new System.EventHandler(this.btnRemoveOperation_Click);
             // 
@@ -248,6 +260,7 @@
             this.btnApplyChangesToCurrentTarget.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToCurrentTarget.TabIndex = 38;
             this.btnApplyChangesToCurrentTarget.Text = "APPLY CHANGES TO THIS TARGET";
+            this.ttBulkProductBrandOperations.SetToolTip(this.btnApplyChangesToCurrentTarget, "Apply changes to the target record of the selected operation");
             this.btnApplyChangesToCurrentTarget.UseVisualStyleBackColor = true;
             this.btnApplyChangesToCurrentTarget.Click += new System.EventHandler(this.btnApplyChangesToCurrentTarget_Click);
             // 
@@ -262,6 +275,7 @@
             this.btnExecuteOperations.Size = new System.Drawing.Size(211, 47);
             this.btnExecuteOperations.TabIndex = 37;
             this.btnExecuteOperations.Text = "EXECUTE OPERATIONS";
+            this.ttBulkProductBrandOperations.SetToolTip(this.btnExecuteOperations, "Execute all operations currently in the list");
             this.btnExecuteOperations.UseVisualStyleBackColor = true;
             this.btnExecuteOperations.Click += new System.EventHandler(this.btnExecuteOperations_Click);
             // 
@@ -276,6 +290,7 @@
             this.btnApplyChangesToAllTargets.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToAllTargets.TabIndex = 36;
             this.btnApplyChangesToAllTargets.Text = "APPLY CHANGES TO ALL TARGETS";
+            this.ttBulkProductBrandOperations.SetToolTip(this.btnApplyChangesToAllTargets, "Applies changes to the target records of all operations");
             this.btnApplyChangesToAllTargets.UseVisualStyleBackColor = true;
             this.btnApplyChangesToAllTargets.Click += new System.EventHandler(this.btnApplyChangesToAllTargets_Click);
             // 
@@ -292,6 +307,8 @@
             this.lstBulkOperations.Name = "lstBulkOperations";
             this.lstBulkOperations.Size = new System.Drawing.Size(1148, 100);
             this.lstBulkOperations.TabIndex = 35;
+            this.ttBulkProductBrandOperations.SetToolTip(this.lstBulkOperations, "the list of bulk operations you have added/edited/removed, it clears when the ope" +
+        "rations are executed.You can select any operation from here");
             this.lstBulkOperations.ValueMember = "TargetObject";
             this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);
             // 
@@ -307,6 +324,7 @@
             this.txtBrandName.Name = "txtBrandName";
             this.txtBrandName.Size = new System.Drawing.Size(258, 22);
             this.txtBrandName.TabIndex = 4;
+            this.ttBulkProductBrandOperations.SetToolTip(this.txtBrandName, "The name of the selected product brand");
             // 
             // lblBrandName
             // 
@@ -328,6 +346,9 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(258, 22);
             this.txtID.TabIndex = 2;
+            this.ttBulkProductBrandOperations.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
+        "hanged so even if you add and ID or change it the database will still set its ow" +
+        "n ID to the record");
             // 
             // lblID
             // 
@@ -353,6 +374,13 @@
             // 
             this.errBulkProvider.ContainerControl = this;
             // 
+            // ttBulkProductBrandOperations
+            // 
+            this.ttBulkProductBrandOperations.IsBalloon = true;
+            this.ttBulkProductBrandOperations.ShowAlways = true;
+            this.ttBulkProductBrandOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttBulkProductBrandOperations.ToolTipTitle = "Help";
+            // 
             // frmBulkProductBrandOperations
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -361,6 +389,7 @@
             this.MaximizeBox = false;
             this.Name = "frmBulkProductBrandOperations";
             this.Text = "Bulk Product Brand Operations";
+            this.ttBulkProductBrandOperations.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.Load += new System.EventHandler(this.frmBulkProductBrandOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -398,5 +427,6 @@
         private System.Windows.Forms.Label lblSelectRecord;
         private System.Windows.Forms.BindingSource productBrandBindingSource;
         private System.Windows.Forms.BindingSource bulkProductBrandOperationBindingSource;
+        private System.Windows.Forms.ToolTip ttBulkProductBrandOperations;
     }
 }

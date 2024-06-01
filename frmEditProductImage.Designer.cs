@@ -46,6 +46,7 @@
             this.lblID = new System.Windows.Forms.Label();
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ttEditProductImage = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbProductImageData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).BeginInit();
@@ -79,6 +80,8 @@
             this.pbProductImageData.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbProductImageData.TabIndex = 37;
             this.pbProductImageData.TabStop = false;
+            this.ttEditProductImage.SetToolTip(this.pbProductImageData, "Select an image and it will be uploaded directly to the database in its binary fo" +
+        "rmat and then downloaded and decoded back to image and shown here.");
             this.pbProductImageData.Click += new System.EventHandler(this.pbProductImageData_Click);
             // 
             // cbSelectProduct
@@ -90,6 +93,7 @@
             this.cbSelectProduct.Name = "cbSelectProduct";
             this.cbSelectProduct.Size = new System.Drawing.Size(219, 24);
             this.cbSelectProduct.TabIndex = 36;
+            this.ttEditProductImage.SetToolTip(this.cbSelectProduct, "the product this image is assigned to in the database can be selected here");
             this.cbSelectProduct.ValueMember = "ID";
             // 
             // productBindingSource
@@ -106,6 +110,7 @@
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
+            this.ttEditProductImage.SetToolTip(this.btnOK, "When you click OK this record\'s changes will be saved to the database");
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -119,6 +124,8 @@
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
             this.btnCancel.Text = "CANCEL";
+            this.ttEditProductImage.SetToolTip(this.btnCancel, "When you click this button the changes to therecord will be saved to the memory a" +
+        "llowing you to add it as a bulk operation");
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -142,6 +149,7 @@
             this.txtImageName.Name = "txtImageName";
             this.txtImageName.Size = new System.Drawing.Size(220, 22);
             this.txtImageName.TabIndex = 4;
+            this.ttEditProductImage.SetToolTip(this.txtImageName, "Choose a friendly name for the image you upload.");
             // 
             // lblImageName
             // 
@@ -164,6 +172,9 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(220, 22);
             this.txtID.TabIndex = 2;
+            this.ttEditProductImage.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
+        "hanged so even if you add and ID or change it the database will still set its ow" +
+        "n ID to the record");
             // 
             // lblID
             // 
@@ -185,6 +196,13 @@
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
             // 
+            // ttEditProductImage
+            // 
+            this.ttEditProductImage.IsBalloon = true;
+            this.ttEditProductImage.ShowAlways = true;
+            this.ttEditProductImage.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttEditProductImage.ToolTipTitle = "Help";
+            // 
             // frmEditProductImage
             // 
             this.AcceptButton = this.btnOK;
@@ -195,6 +213,8 @@
             this.MaximizeBox = false;
             this.Name = "frmEditProductImage";
             this.Text = "Product Image Editor. Add or Edit Product Image";
+            this.ttEditProductImage.SetToolTip(this, "The product images editor dialog where you can add/edit product images that you c" +
+        "an access provided you have the permissions to do so.");
             this.Load += new System.EventHandler(this.frmEditProductImage_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -221,5 +241,6 @@
         private System.Windows.Forms.BindingSource productBrandBindingSource;
         private System.Windows.Forms.PictureBox pbProductImageData;
         private System.Windows.Forms.BindingSource productBindingSource;
+        private System.Windows.Forms.ToolTip ttEditProductImage;
     }
 }

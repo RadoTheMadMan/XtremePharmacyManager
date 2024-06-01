@@ -40,12 +40,14 @@ namespace XtremePharmacyManager.Properties.DataSources
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblLoadedImage = new System.Windows.Forms.Label();
             this.txtImageBytes = new System.Windows.Forms.TextBox();
             this.lblImageBytes = new System.Windows.Forms.Label();
             this.btnConvertImageToBinary = new System.Windows.Forms.Button();
             this.buttonConvertBinaryToImage = new System.Windows.Forms.Button();
             this.pbLoadedImage = new System.Windows.Forms.PictureBox();
+            this.ttImageBinConverter = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbLoadedImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,6 +72,8 @@ namespace XtremePharmacyManager.Properties.DataSources
             this.txtImageBytes.Name = "txtImageBytes";
             this.txtImageBytes.Size = new System.Drawing.Size(230, 209);
             this.txtImageBytes.TabIndex = 34;
+            this.ttImageBinConverter.SetToolTip(this.txtImageBytes, "this is the base64 equivalent of the image because the text boxes can\'t display b" +
+        "inary arrays properly");
             // 
             // lblImageBytes
             // 
@@ -92,6 +96,8 @@ namespace XtremePharmacyManager.Properties.DataSources
             this.btnConvertImageToBinary.Size = new System.Drawing.Size(228, 47);
             this.btnConvertImageToBinary.TabIndex = 37;
             this.btnConvertImageToBinary.Text = "CONVERT IMAGE TO BINARY";
+            this.ttImageBinConverter.SetToolTip(this.btnConvertImageToBinary, "With this button you open an image and convert it to binary and then to base64 fo" +
+        "rmat");
             this.btnConvertImageToBinary.UseVisualStyleBackColor = true;
             this.btnConvertImageToBinary.Click += new System.EventHandler(this.btnConvertImageToBinary_Click);
             // 
@@ -104,6 +110,7 @@ namespace XtremePharmacyManager.Properties.DataSources
             this.buttonConvertBinaryToImage.Size = new System.Drawing.Size(228, 47);
             this.buttonConvertBinaryToImage.TabIndex = 38;
             this.buttonConvertBinaryToImage.Text = "CONVERT BINARY TO IMAGE";
+            this.ttImageBinConverter.SetToolTip(this.buttonConvertBinaryToImage, "With this button you convert a base64 string to binary and then to an image");
             this.buttonConvertBinaryToImage.UseVisualStyleBackColor = true;
             this.buttonConvertBinaryToImage.Click += new System.EventHandler(this.buttonConvertBinaryToImage_Click);
             // 
@@ -116,6 +123,15 @@ namespace XtremePharmacyManager.Properties.DataSources
             this.pbLoadedImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbLoadedImage.TabIndex = 39;
             this.pbLoadedImage.TabStop = false;
+            this.ttImageBinConverter.SetToolTip(this.pbLoadedImage, "this picture loads an image from an open file dialog or from a binary/base64 stre" +
+        "am");
+            // 
+            // ttImageBinConverter
+            // 
+            this.ttImageBinConverter.IsBalloon = true;
+            this.ttImageBinConverter.ShowAlways = true;
+            this.ttImageBinConverter.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttImageBinConverter.ToolTipTitle = "Help";
             // 
             // frmImageBinConverter
             // 
@@ -131,6 +147,8 @@ namespace XtremePharmacyManager.Properties.DataSources
             this.MaximizeBox = false;
             this.Name = "frmImageBinConverter";
             this.Text = "Convert Image To Binary and Vice Versa";
+            this.ttImageBinConverter.SetToolTip(this, "A form used as a debug tool to test how is the image encoded to base64 and to bin" +
+        "ary and vice-versa");
             this.Load += new System.EventHandler(this.frmImageBinConverter_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbLoadedImage)).EndInit();
             this.ResumeLayout(false);
@@ -145,5 +163,6 @@ namespace XtremePharmacyManager.Properties.DataSources
         private System.Windows.Forms.Button btnConvertImageToBinary;
         private System.Windows.Forms.Button buttonConvertBinaryToImage;
         private System.Windows.Forms.PictureBox pbLoadedImage;
+        private System.Windows.Forms.ToolTip ttImageBinConverter;
     }
 }

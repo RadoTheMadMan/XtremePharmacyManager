@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.rwReports = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.ttReports = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // rwReports
@@ -39,7 +41,16 @@
             this.rwReports.ServerReport.BearerToken = null;
             this.rwReports.Size = new System.Drawing.Size(800, 450);
             this.rwReports.TabIndex = 0;
+            this.ttReports.SetToolTip(this.rwReports, "The report viewer which shows every report you have generated using the applicati" +
+        "ons and gives you various options to save it, export it and/or print it");
             this.rwReports.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.FullPage;
+            // 
+            // ttReports
+            // 
+            this.ttReports.IsBalloon = true;
+            this.ttReports.ShowAlways = true;
+            this.ttReports.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttReports.ToolTipTitle = "Help";
             // 
             // frmReports
             // 
@@ -49,6 +60,8 @@
             this.Controls.Add(this.rwReports);
             this.Name = "frmReports";
             this.Text = "Reports";
+            this.ttReports.SetToolTip(this, "The reports dialog window. When you generate any report it will be shown here alo" +
+        "ng with many options for saving, exporting and/or printing it");
             this.Load += new System.EventHandler(this.frmReportcs_Load);
             this.ResumeLayout(false);
 
@@ -57,5 +70,6 @@
         #endregion
 
         private Microsoft.Reporting.WinForms.ReportViewer rwReports;
+        private System.Windows.Forms.ToolTip ttReports;
     }
 }

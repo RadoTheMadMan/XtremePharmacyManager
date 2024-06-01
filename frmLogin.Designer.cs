@@ -42,6 +42,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.pnlLogin = new System.Windows.Forms.Panel();
             this.btnRemoveLogin = new System.Windows.Forms.Button();
             this.btnAddLogin = new System.Windows.Forms.Button();
@@ -62,6 +63,7 @@
             this.btnApplyChangesToAllTargets = new System.Windows.Forms.Button();
             this.lstLastLogins = new System.Windows.Forms.ListBox();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ttLogin = new System.Windows.Forms.ToolTip(this.components);
             this.pnlLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -101,6 +103,8 @@
             this.btnRemoveLogin.Size = new System.Drawing.Size(265, 47);
             this.btnRemoveLogin.TabIndex = 52;
             this.btnRemoveLogin.Text = "REMOVE LOGIN";
+            this.ttLogin.SetToolTip(this.btnRemoveLogin, "With this button an item from the logins list you select will beremoved from the " +
+        "memory but not from the filesystem");
             this.btnRemoveLogin.UseVisualStyleBackColor = true;
             this.btnRemoveLogin.Click += new System.EventHandler(this.btnRemoveLogin_Click);
             // 
@@ -113,6 +117,8 @@
             this.btnAddLogin.Size = new System.Drawing.Size(265, 47);
             this.btnAddLogin.TabIndex = 51;
             this.btnAddLogin.Text = "ADD LOGIN";
+            this.ttLogin.SetToolTip(this.btnAddLogin, "With this button you can add new login credentials to the login list and upon log" +
+        "ging in it will be saved into the filesystem");
             this.btnAddLogin.UseVisualStyleBackColor = true;
             this.btnAddLogin.Click += new System.EventHandler(this.btnAddLogin_Click);
             // 
@@ -125,6 +131,8 @@
             this.btnClearLogins.Size = new System.Drawing.Size(265, 47);
             this.btnClearLogins.TabIndex = 50;
             this.btnClearLogins.Text = "CLEAR_LOGINS";
+            this.ttLogin.SetToolTip(this.btnClearLogins, "With this button the logins list is cleared from the memory but not from the file" +
+        "system");
             this.btnClearLogins.UseVisualStyleBackColor = true;
             this.btnClearLogins.Click += new System.EventHandler(this.btnClearLogins_Click);
             // 
@@ -139,6 +147,8 @@
             this.lblLastLogins.Size = new System.Drawing.Size(108, 16);
             this.lblLastLogins.TabIndex = 49;
             this.lblLastLogins.Text = "LAST LOGINS:";
+            this.ttLogin.SetToolTip(this.lblLastLogins, "The area where the last logins you used will be displayed. Again if you select a " +
+        "client account and try to login you will be booted out.");
             // 
             // lblLoginCredentials
             // 
@@ -151,6 +161,8 @@
             this.lblLoginCredentials.Size = new System.Drawing.Size(268, 16);
             this.lblLoginCredentials.TabIndex = 48;
             this.lblLoginCredentials.Text = "ENTER YOUR LOGIN CREDENTIALS:";
+            this.ttLogin.SetToolTip(this.lblLoginCredentials, "This is the area where you enter your login credentials or login credentials from" +
+        " your application settings are displayed. They are tightly connected.");
             // 
             // btnLogin
             // 
@@ -162,6 +174,8 @@
             this.btnLogin.Size = new System.Drawing.Size(265, 47);
             this.btnLogin.TabIndex = 47;
             this.btnLogin.Text = "LOGIN";
+            this.ttLogin.SetToolTip(this.btnLogin, "With this button you login to the database the software is connected to and if th" +
+        "e credentials are right it will log you in otherwise not.");
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
@@ -175,6 +189,8 @@
             this.btnExit.Size = new System.Drawing.Size(265, 47);
             this.btnExit.TabIndex = 46;
             this.btnExit.Text = "EXIT";
+            this.ttLogin.SetToolTip(this.btnExit, "With this button you exit the application with probably a message that you can\'t " +
+        "use this application without authorisation");
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
@@ -187,6 +203,8 @@
             this.btnSetCurrentLoginAsDefault.Size = new System.Drawing.Size(265, 47);
             this.btnSetCurrentLoginAsDefault.TabIndex = 45;
             this.btnSetCurrentLoginAsDefault.Text = "SET CURRENT LOGIN AS DEFAULT";
+            this.ttLogin.SetToolTip(this.btnSetCurrentLoginAsDefault, "With this button you can set the login credentials you put as login credentials i" +
+        "n your application settings");
             this.btnSetCurrentLoginAsDefault.UseVisualStyleBackColor = true;
             this.btnSetCurrentLoginAsDefault.Click += new System.EventHandler(this.btnSetCurrentLoginAsDefault_Click);
             // 
@@ -198,6 +216,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(429, 22);
             this.txtPassword.TabIndex = 44;
+            this.ttLogin.SetToolTip(this.txtPassword, "Your password on the database with which you login.");
             this.txtPassword.UseSystemPasswordChar = true;
             // 
             // lblPassword
@@ -220,6 +239,7 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(429, 22);
             this.txtUsername.TabIndex = 42;
+            this.ttLogin.SetToolTip(this.txtUsername, "Your username in the database with which you login");
             // 
             // lblUsername
             // 
@@ -306,12 +326,21 @@
             this.lstLastLogins.Name = "lstLastLogins";
             this.lstLastLogins.Size = new System.Drawing.Size(307, 212);
             this.lstLastLogins.TabIndex = 35;
+            this.ttLogin.SetToolTip(this.lstLastLogins, "This is the list of all logins you have previously logged in from. Logins are sav" +
+        "ed into and loaded automatically from the filesystem.");
             this.lstLastLogins.ValueMember = "ID";
             this.lstLastLogins.SelectedIndexChanged += new System.EventHandler(this.lstLastLogins_SelectedIndexChanged);
             // 
             // userBindingSource
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
+            // 
+            // ttLogin
+            // 
+            this.ttLogin.IsBalloon = true;
+            this.ttLogin.ShowAlways = true;
+            this.ttLogin.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttLogin.ToolTipTitle = "Help";
             // 
             // frmLogin
             // 
@@ -323,6 +352,7 @@
             this.MaximizeBox = false;
             this.Name = "frmLogin";
             this.Text = "LOGIN";
+            this.ttLogin.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.pnlLogin.ResumeLayout(false);
             this.pnlLogin.PerformLayout();
@@ -353,5 +383,6 @@
         private System.Windows.Forms.Button btnClearLogins;
         private System.Windows.Forms.Button btnAddLogin;
         private System.Windows.Forms.Button btnRemoveLogin;
+        private System.Windows.Forms.ToolTip ttLogin;
     }
 }

@@ -34,6 +34,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.trbPrice = new System.Windows.Forms.TrackBar();
@@ -43,7 +44,7 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.ttEditDeliveryService = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -67,6 +68,17 @@
             this.pnlData.Size = new System.Drawing.Size(551, 290);
             this.pnlData.TabIndex = 0;
             // 
+            // txtPrice
+            // 
+            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtPrice.Location = new System.Drawing.Point(348, 76);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(76, 22);
+            this.txtPrice.TabIndex = 34;
+            this.ttEditDeliveryService.SetToolTip(this.txtPrice, "the textbox where you can set the price of the delivery service.");
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
+            // 
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -77,6 +89,7 @@
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
+            this.ttEditDeliveryService.SetToolTip(this.btnOK, "When you click OK this record\'s changes will be saved to the database");
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -90,6 +103,8 @@
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
             this.btnCancel.Text = "CANCEL";
+            this.ttEditDeliveryService.SetToolTip(this.btnCancel, "When you click this button the changes to therecord will be saved to the memory a" +
+        "llowing you to add it as a bulk operation");
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -103,6 +118,8 @@
             this.trbPrice.Size = new System.Drawing.Size(205, 56);
             this.trbPrice.TabIndex = 21;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ttEditDeliveryService.SetToolTip(this.trbPrice, "The price of the delivery service you want to set. You can set it here and this s" +
+        "lider can adapt dynamically to the number");
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
             // 
             // lblPrice
@@ -125,6 +142,7 @@
             this.txtServiceName.Name = "txtServiceName";
             this.txtServiceName.Size = new System.Drawing.Size(205, 22);
             this.txtServiceName.TabIndex = 4;
+            this.ttEditDeliveryService.SetToolTip(this.txtServiceName, "The name of the delivery service you want to add/edit");
             // 
             // lblUsername
             // 
@@ -147,6 +165,9 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(205, 22);
             this.txtID.TabIndex = 2;
+            this.ttEditDeliveryService.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
+        "hanged so even if you add and ID or change it the database will still set its ow" +
+        "n ID to the record");
             // 
             // lblID
             // 
@@ -160,15 +181,12 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
-            // txtPrice
+            // ttEditDeliveryService
             // 
-            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtPrice.Location = new System.Drawing.Point(348, 76);
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(76, 22);
-            this.txtPrice.TabIndex = 34;
-            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
+            this.ttEditDeliveryService.IsBalloon = true;
+            this.ttEditDeliveryService.ShowAlways = true;
+            this.ttEditDeliveryService.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttEditDeliveryService.ToolTipTitle = "Help";
             // 
             // frmEditDeliveryService
             // 
@@ -180,6 +198,8 @@
             this.MaximizeBox = false;
             this.Name = "frmEditDeliveryService";
             this.Text = "Delivery Service Editor. Add or Update Delivery Service";
+            this.ttEditDeliveryService.SetToolTip(this, "The delivery services editor dialog where you can add/edit delivery services that" +
+        " you can access provided you have the permissions to do so.");
             this.Load += new System.EventHandler(this.frmEditDeliveryService_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -203,5 +223,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.ToolTip ttEditDeliveryService;
     }
 }

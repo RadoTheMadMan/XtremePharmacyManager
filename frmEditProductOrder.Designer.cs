@@ -33,7 +33,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditProductOrder));
             this.pnlData = new System.Windows.Forms.Panel();
+            this.txtPriceOverride = new System.Windows.Forms.TextBox();
+            this.txtDesiredQuantity = new System.Windows.Forms.TextBox();
             this.txtOrderReason = new System.Windows.Forms.TextBox();
             this.lblOrderReason = new System.Windows.Forms.Label();
             this.lblOrderStatus = new System.Windows.Forms.Label();
@@ -56,8 +59,7 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.txtDesiredQuantity = new System.Windows.Forms.TextBox();
-            this.txtPriceOverride = new System.Windows.Forms.TextBox();
+            this.ttEditProductOrder = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
@@ -96,6 +98,30 @@
             this.pnlData.Size = new System.Drawing.Size(800, 301);
             this.pnlData.TabIndex = 0;
             // 
+            // txtPriceOverride
+            // 
+            this.txtPriceOverride.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPriceOverride.Location = new System.Drawing.Point(738, 90);
+            this.txtPriceOverride.Name = "txtPriceOverride";
+            this.txtPriceOverride.Size = new System.Drawing.Size(50, 22);
+            this.txtPriceOverride.TabIndex = 56;
+            this.ttEditProductOrder.SetToolTip(this.txtPriceOverride, resources.GetString("txtPriceOverride.ToolTip"));
+            this.txtPriceOverride.TextChanged += new System.EventHandler(this.txtPriceOverride_TextChanged);
+            // 
+            // txtDesiredQuantity
+            // 
+            this.txtDesiredQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtDesiredQuantity.Location = new System.Drawing.Point(738, 27);
+            this.txtDesiredQuantity.Name = "txtDesiredQuantity";
+            this.txtDesiredQuantity.Size = new System.Drawing.Size(50, 22);
+            this.txtDesiredQuantity.TabIndex = 55;
+            this.ttEditProductOrder.SetToolTip(this.txtDesiredQuantity, "The desired quantity of the product assigned to the selected order. It plays an i" +
+        "mportant role in calculating the price of the selected order unless the price is" +
+        " overriden");
+            this.txtDesiredQuantity.TextChanged += new System.EventHandler(this.txtDesiredQuantity_TextChanged);
+            // 
             // txtOrderReason
             // 
             this.txtOrderReason.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -105,6 +131,8 @@
             this.txtOrderReason.Name = "txtOrderReason";
             this.txtOrderReason.Size = new System.Drawing.Size(230, 77);
             this.txtOrderReason.TabIndex = 54;
+            this.ttEditProductOrder.SetToolTip(this.txtOrderReason, "Type the reason you edited the order. Sometimes the database puts its own reason " +
+        "for change to indicate a change of status and inform you tho");
             // 
             // lblOrderReason
             // 
@@ -151,6 +179,8 @@
             this.cbSelectOrderStatus.Size = new System.Drawing.Size(219, 24);
             this.cbSelectOrderStatus.TabIndex = 51;
             this.cbSelectOrderStatus.Text = "Awaiting processing";
+            this.ttEditProductOrder.SetToolTip(this.cbSelectOrderStatus, "The status of the order, changing it automatically calculates the employee balanc" +
+        "e, client balance and/or the product quantity if needed");
             // 
             // cbSelectEmployee
             // 
@@ -161,6 +191,9 @@
             this.cbSelectEmployee.Name = "cbSelectEmployee";
             this.cbSelectEmployee.Size = new System.Drawing.Size(219, 24);
             this.cbSelectEmployee.TabIndex = 48;
+            this.ttEditProductOrder.SetToolTip(this.cbSelectEmployee, "The employee that processed the selected order can be set here and usually it is " +
+        "you. Their balance will be calculated automatically on changing the status of th" +
+        "e product order.");
             this.cbSelectEmployee.ValueMember = "ID";
             // 
             // userBindingSource1
@@ -188,6 +221,8 @@
             this.cbSelectClient.Name = "cbSelectClient";
             this.cbSelectClient.Size = new System.Drawing.Size(219, 24);
             this.cbSelectClient.TabIndex = 46;
+            this.ttEditProductOrder.SetToolTip(this.cbSelectClient, "The client that ordered the product can be set here. Their balance will be calcul" +
+        "ated automatically on changing the status of the product order.");
             this.cbSelectClient.ValueMember = "ID";
             // 
             // userBindingSource
@@ -216,6 +251,9 @@
             this.trbDesiredQuantity.Size = new System.Drawing.Size(205, 56);
             this.trbDesiredQuantity.TabIndex = 44;
             this.trbDesiredQuantity.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ttEditProductOrder.SetToolTip(this.trbDesiredQuantity, "The desired quantity of the product assigned to the selected order. It plays an i" +
+        "mportant role in calculating the price of the selected order unless the price is" +
+        " overriden");
             this.trbDesiredQuantity.Scroll += new System.EventHandler(this.trbDesiredQuantity_Scroll);
             // 
             // lblDesiredQuantity
@@ -239,6 +277,9 @@
             this.cbSelectProduct.Name = "cbSelectProduct";
             this.cbSelectProduct.Size = new System.Drawing.Size(219, 24);
             this.cbSelectProduct.TabIndex = 36;
+            this.ttEditProductOrder.SetToolTip(this.cbSelectProduct, "the product the selected order can be assigned to can be changed here. Price is c" +
+        "alculated by the desired quantity and the base product price unless the price is" +
+        " overriden");
             this.cbSelectProduct.ValueMember = "ID";
             // 
             // productBindingSource
@@ -255,6 +296,7 @@
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
+            this.ttEditProductOrder.SetToolTip(this.btnOK, "When you click OK this record\'s changes will be saved to the database");
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -268,6 +310,8 @@
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
             this.btnCancel.Text = "CANCEL";
+            this.ttEditProductOrder.SetToolTip(this.btnCancel, "When you click this button the changes to therecord will be saved to the memory a" +
+        "llowing you to add it as a bulk operation");
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -281,6 +325,7 @@
             this.trbPriceOverride.Size = new System.Drawing.Size(205, 56);
             this.trbPriceOverride.TabIndex = 21;
             this.trbPriceOverride.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ttEditProductOrder.SetToolTip(this.trbPriceOverride, resources.GetString("trbPriceOverride.ToolTip"));
             this.trbPriceOverride.Scroll += new System.EventHandler(this.trbPriceOverride_Scroll);
             // 
             // lblPriceOverride
@@ -316,6 +361,9 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(220, 22);
             this.txtID.TabIndex = 2;
+            this.ttEditProductOrder.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
+        "hanged so even if you add and ID or change it the database will still set its ow" +
+        "n ID to the record");
             // 
             // lblID
             // 
@@ -333,25 +381,12 @@
             // 
             this.productBrandBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductBrand);
             // 
-            // txtDesiredQuantity
+            // ttEditProductOrder
             // 
-            this.txtDesiredQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtDesiredQuantity.Location = new System.Drawing.Point(738, 27);
-            this.txtDesiredQuantity.Name = "txtDesiredQuantity";
-            this.txtDesiredQuantity.Size = new System.Drawing.Size(50, 22);
-            this.txtDesiredQuantity.TabIndex = 55;
-            this.txtDesiredQuantity.TextChanged += new System.EventHandler(this.txtDesiredQuantity_TextChanged);
-            // 
-            // txtPriceOverride
-            // 
-            this.txtPriceOverride.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPriceOverride.Location = new System.Drawing.Point(738, 90);
-            this.txtPriceOverride.Name = "txtPriceOverride";
-            this.txtPriceOverride.Size = new System.Drawing.Size(50, 22);
-            this.txtPriceOverride.TabIndex = 56;
-            this.txtPriceOverride.TextChanged += new System.EventHandler(this.txtPriceOverride_TextChanged);
+            this.ttEditProductOrder.IsBalloon = true;
+            this.ttEditProductOrder.ShowAlways = true;
+            this.ttEditProductOrder.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttEditProductOrder.ToolTipTitle = "Help";
             // 
             // frmEditProductOrder
             // 
@@ -363,6 +398,8 @@
             this.MaximizeBox = false;
             this.Name = "frmEditProductOrder";
             this.Text = "Product Order Editor. Add or Edit Product Orders";
+            this.ttEditProductOrder.SetToolTip(this, "The product orders editor dialog where you can add/edit product orders that you c" +
+        "an access provided you have the permissions to do so.");
             this.Load += new System.EventHandler(this.frmEditProductOrder_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -404,5 +441,6 @@
         private System.Windows.Forms.Label lblOrderReason;
         private System.Windows.Forms.TextBox txtDesiredQuantity;
         private System.Windows.Forms.TextBox txtPriceOverride;
+        private System.Windows.Forms.ToolTip ttEditProductOrder;
     }
 }

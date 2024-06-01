@@ -34,6 +34,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.pnlData = new System.Windows.Forms.Panel();
+            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
             this.cbSelectVendor = new System.Windows.Forms.ComboBox();
             this.productVendorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblProductVendor = new System.Windows.Forms.Label();
@@ -62,8 +64,7 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.txtQuantity = new System.Windows.Forms.TextBox();
-            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.ttEditProduct = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbQuantity)).BeginInit();
@@ -108,6 +109,32 @@
             this.pnlData.Size = new System.Drawing.Size(800, 301);
             this.pnlData.TabIndex = 0;
             // 
+            // txtPrice
+            // 
+            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtPrice.Location = new System.Drawing.Point(739, 88);
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(56, 22);
+            this.txtPrice.TabIndex = 48;
+            this.ttEditProduct.SetToolTip(this.txtPrice, "The base price of the selected product can be set here. You can dynamically chang" +
+        "e it based on the price of the product the vendors of it set for  your shop/phar" +
+        "macy.");
+            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
+            // 
+            // txtQuantity
+            // 
+            this.txtQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtQuantity.Location = new System.Drawing.Point(739, 27);
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(56, 22);
+            this.txtQuantity.TabIndex = 47;
+            this.ttEditProduct.SetToolTip(this.txtQuantity, "The storage quantity of the selected product can be set here. You can dynamically" +
+        " change it based on how much of the product is really in stock in your shop/phar" +
+        "macy");
+            this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
+            // 
             // cbSelectVendor
             // 
             this.cbSelectVendor.DataSource = this.productVendorBindingSource;
@@ -117,6 +144,7 @@
             this.cbSelectVendor.Name = "cbSelectVendor";
             this.cbSelectVendor.Size = new System.Drawing.Size(219, 24);
             this.cbSelectVendor.TabIndex = 46;
+            this.ttEditProduct.SetToolTip(this.cbSelectVendor, "The vendor the selected product is assigned to can be selected here");
             this.cbSelectVendor.ValueMember = "ID";
             // 
             // productVendorBindingSource
@@ -145,6 +173,9 @@
             this.trbQuantity.Size = new System.Drawing.Size(259, 56);
             this.trbQuantity.TabIndex = 44;
             this.trbQuantity.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ttEditProduct.SetToolTip(this.trbQuantity, "The storage quantity of the selected product can be set here. You can dynamically" +
+        " change it based on how much of the product is really in stock in your shop/phar" +
+        "macy");
             this.trbQuantity.Scroll += new System.EventHandler(this.trbQuantity_Scroll);
             // 
             // lblQuantity
@@ -172,6 +203,8 @@
             this.lblProductNotice.TabIndex = 41;
             this.lblProductNotice.Text = "IMPORTANT NOTICE: To see the expiry date\r\ncheck the side of the product package\r\n" +
     "where the partitude number is\r\n";
+            this.ttEditProduct.SetToolTip(this.lblProductNotice, "If you are a dumbfuck like my creator read this so you don\'t complain that you ca" +
+        "n\'t change the product data via any operation");
             // 
             // cbSelectBrand
             // 
@@ -182,6 +215,7 @@
             this.cbSelectBrand.Name = "cbSelectBrand";
             this.cbSelectBrand.Size = new System.Drawing.Size(219, 24);
             this.cbSelectBrand.TabIndex = 36;
+            this.ttEditProduct.SetToolTip(this.cbSelectBrand, "The brand the selected product is assigned to can be selected here");
             this.cbSelectBrand.ValueMember = "ID";
             // 
             // productBrandBindingSource
@@ -198,6 +232,7 @@
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
+            this.ttEditProduct.SetToolTip(this.btnOK, "When you click OK this record\'s changes will be saved to the database");
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -211,6 +246,8 @@
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
             this.btnCancel.Text = "CANCEL";
+            this.ttEditProduct.SetToolTip(this.btnCancel, "When you click this button the changes to therecord will be saved to the memory a" +
+        "llowing you to add it as a bulk operation");
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -224,6 +261,9 @@
             this.trbPrice.Size = new System.Drawing.Size(259, 56);
             this.trbPrice.TabIndex = 21;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ttEditProduct.SetToolTip(this.trbPrice, "The base price of the selected product can be set here. You can dynamically chang" +
+        "e it based on the price of the product the vendors of it set for  your shop/phar" +
+        "macy.");
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
             // 
             // lblPrice
@@ -246,6 +286,7 @@
             this.txtStorageLocation.Name = "txtStorageLocation";
             this.txtStorageLocation.Size = new System.Drawing.Size(220, 22);
             this.txtStorageLocation.TabIndex = 18;
+            this.ttEditProduct.SetToolTip(this.txtStorageLocation, "The location of the selected product in your storage can be set here");
             // 
             // lblStorageLocation
             // 
@@ -267,6 +308,8 @@
             this.txtPartitudeNumber.Name = "txtPartitudeNumber";
             this.txtPartitudeNumber.Size = new System.Drawing.Size(220, 22);
             this.txtPartitudeNumber.TabIndex = 16;
+            this.ttEditProduct.SetToolTip(this.txtPartitudeNumber, "The partitude number of the selected product can be set here. You can find it on " +
+        "the side of the package along with its expiry date");
             // 
             // lblPartitudeNumber
             // 
@@ -288,6 +331,8 @@
             this.txtRegistrationNumber.Name = "txtRegistrationNumber";
             this.txtRegistrationNumber.Size = new System.Drawing.Size(220, 22);
             this.txtRegistrationNumber.TabIndex = 14;
+            this.ttEditProduct.SetToolTip(this.txtRegistrationNumber, "The registration number of the selected product can be set here. It is on the cov" +
+        "er of the product.");
             // 
             // lblRegistrationNumber
             // 
@@ -309,6 +354,8 @@
             this.dtExpiryDate.Name = "dtExpiryDate";
             this.dtExpiryDate.Size = new System.Drawing.Size(219, 22);
             this.dtExpiryDate.TabIndex = 10;
+            this.ttEditProduct.SetToolTip(this.dtExpiryDate, "The expiry date of the selected product can be set here. You can find it onthe si" +
+        "de of the package along with its partitude number");
             // 
             // lblExpiryDate
             // 
@@ -330,6 +377,7 @@
             this.txtProductDescription.Name = "txtProductDescription";
             this.txtProductDescription.Size = new System.Drawing.Size(220, 22);
             this.txtProductDescription.TabIndex = 8;
+            this.ttEditProduct.SetToolTip(this.txtProductDescription, "The description of the selected product can be set here");
             // 
             // lblProductDescription
             // 
@@ -363,6 +411,7 @@
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(220, 22);
             this.txtProductName.TabIndex = 4;
+            this.ttEditProduct.SetToolTip(this.txtProductName, "The name of the selected product can be set here");
             // 
             // lblProductName
             // 
@@ -385,6 +434,9 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(220, 22);
             this.txtID.TabIndex = 2;
+            this.ttEditProduct.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
+        "hanged so even if you add and ID or change it the database will still set its ow" +
+        "n ID to the record");
             // 
             // lblID
             // 
@@ -402,25 +454,12 @@
             // 
             this.userBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.User);
             // 
-            // txtQuantity
+            // ttEditProduct
             // 
-            this.txtQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtQuantity.Location = new System.Drawing.Point(739, 27);
-            this.txtQuantity.Name = "txtQuantity";
-            this.txtQuantity.Size = new System.Drawing.Size(56, 22);
-            this.txtQuantity.TabIndex = 47;
-            this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
-            // 
-            // txtPrice
-            // 
-            this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtPrice.Location = new System.Drawing.Point(739, 88);
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(56, 22);
-            this.txtPrice.TabIndex = 48;
-            this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
+            this.ttEditProduct.IsBalloon = true;
+            this.ttEditProduct.ShowAlways = true;
+            this.ttEditProduct.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttEditProduct.ToolTipTitle = "Help";
             // 
             // frmEditProduct
             // 
@@ -432,6 +471,8 @@
             this.MaximizeBox = false;
             this.Name = "frmEditProduct";
             this.Text = "Product Editor. Add or Edit Product";
+            this.ttEditProduct.SetToolTip(this, "The products editor dialog where you can add/edit products that you can access pr" +
+        "ovided you have the permissions to do so.");
             this.Load += new System.EventHandler(this.frmEditProduct_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -478,5 +519,6 @@
         private System.Windows.Forms.BindingSource productVendorBindingSource;
         private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.TextBox txtQuantity;
+        private System.Windows.Forms.ToolTip ttEditProduct;
     }
 }

@@ -41,6 +41,7 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ttEditPaymentMethod = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -70,6 +71,7 @@
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = "OK";
+            this.ttEditPaymentMethod.SetToolTip(this.btnOK, "When you click OK this record\'s changes will be saved to the database");
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -83,6 +85,8 @@
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
             this.btnCancel.Text = "CANCEL";
+            this.ttEditPaymentMethod.SetToolTip(this.btnCancel, "When you click this button the changes to therecord will be saved to the memory a" +
+        "llowing you to add it as a bulk operation");
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -94,6 +98,7 @@
             this.txtMethodName.Name = "txtMethodName";
             this.txtMethodName.Size = new System.Drawing.Size(205, 22);
             this.txtMethodName.TabIndex = 4;
+            this.ttEditPaymentMethod.SetToolTip(this.txtMethodName, "The name of the selected payment method");
             // 
             // lblMethodName
             // 
@@ -116,6 +121,9 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(205, 22);
             this.txtID.TabIndex = 2;
+            this.ttEditPaymentMethod.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
+        "hanged so even if you add and ID or change it the database will still set its ow" +
+        "n ID to the record");
             // 
             // lblID
             // 
@@ -129,6 +137,13 @@
             this.lblID.TabIndex = 1;
             this.lblID.Text = "ID:";
             // 
+            // ttEditPaymentMethod
+            // 
+            this.ttEditPaymentMethod.IsBalloon = true;
+            this.ttEditPaymentMethod.ShowAlways = true;
+            this.ttEditPaymentMethod.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttEditPaymentMethod.ToolTipTitle = "Help";
+            // 
             // frmEditPaymentMethod
             // 
             this.AcceptButton = this.btnOK;
@@ -139,6 +154,8 @@
             this.MaximizeBox = false;
             this.Name = "frmEditPaymentMethod";
             this.Text = "Payment Method Editor. Add or Update Payment Method";
+            this.ttEditPaymentMethod.SetToolTip(this, "The payment methods editor dialog where you can add/edit payment methods that you" +
+        " can access provided you have the permissions to do so.");
             this.Load += new System.EventHandler(this.frmEditPaymentMethod_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -157,5 +174,6 @@
         private System.Windows.Forms.BindingSource userBindingSource;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.ToolTip ttEditPaymentMethod;
     }
 }
