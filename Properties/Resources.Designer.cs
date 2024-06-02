@@ -61,6 +61,320 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot connect to the server to update your user account.
+        ///Please check your application settings to ensure you have a proper connection to the database or contact a system administrator. .
+        /// </summary>
+        internal static string AccountSettingsErrorMessage {
+            get {
+                return ResourceManager.GetString("AccountSettingsErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You cannot have empty username or password.
+        ///If you still can&apos;t update your account ask the administrator for a solution to the problem..
+        /// </summary>
+        internal static string AccountSettingsInvalidCredentialsErrorMessage {
+            get {
+                return ResourceManager.GetString("AccountSettingsInvalidCredentialsErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a profile picture for your account.
+        /// </summary>
+        internal static string AccountSettingsProfilePicSelectTitle {
+            get {
+                return ResourceManager.GetString("AccountSettingsProfilePicSelectTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account Settings.
+        /// </summary>
+        internal static string AccountSettingsTitle {
+            get {
+                return ResourceManager.GetString("AccountSettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Only one instance of this application can be run at a time!.
+        /// </summary>
+        internal static string ApplicationInstanceErrorMessage {
+            get {
+                return ResourceManager.GetString("ApplicationInstanceErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changing the application settings will take effect after restarting the application..
+        /// </summary>
+        internal static string ApplicationSettingsChangeNotice {
+            get {
+                return ResourceManager.GetString("ApplicationSettingsChangeNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application Settings.
+        /// </summary>
+        internal static string ApplicationSettingsTitle {
+            get {
+                return ResourceManager.GetString("ApplicationSettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple login results gotten or none at all.
+        ///Please check the credentials and try again..
+        /// </summary>
+        internal static string AuthorisationAddLoginInvalidResultsMessage {
+            get {
+                return ResourceManager.GetString("AuthorisationAddLoginInvalidResultsMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successfully found your credentials by the configuration settings of your application.
+        ///On your confirmation by logging in this will be the user you will work with.
+        ///If you want another user select from the logins list.
+        ///Every login is saved into the filesystem in a binary format read only this program..
+        /// </summary>
+        internal static string AuthorisationAppConfLoginFoundMessage {
+            get {
+                return ResourceManager.GetString("AuthorisationAppConfLoginFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No user found with the specified credentials by your application configuration.
+        ///Please configure the application with database credentials provided by your system administrator or create an user with the stored procedures and set it as a sysadmin if you are a system administrator and try again.
+        ///The admin role for the database is different from the sysadmin role and this is for security reasons..
+        /// </summary>
+        internal static string AuthorisationAppConfLoginNotFoundMessage {
+            get {
+                return ResourceManager.GetString("AuthorisationAppConfLoginNotFoundMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can&apos;t use this application without a proper authorization in the database and closing the login without even confirming or cancelling it will not help you. Application will exit!.
+        /// </summary>
+        internal static string AuthorisationErrorCancelledLoginMessage {
+            get {
+                return ResourceManager.GetString("AuthorisationErrorCancelledLoginMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This application is only for administrators and employees! 
+        ///Client use of it is unauthorized and the application will exit!.
+        /// </summary>
+        internal static string AuthorisationErrorClientLoginMessage {
+            get {
+                return ResourceManager.GetString("AuthorisationErrorClientLoginMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No user currently logged in. Application will exit!.
+        /// </summary>
+        internal static string AuthorisationErrorNoLoginMessage {
+            get {
+                return ResourceManager.GetString("AuthorisationErrorNoLoginMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seems like you are the system administrator for the database and you have either disabled or bypassed the logon trigger and that&apos;s why you were probably connected even if you didn&apos;t have credentials to connect to the database.
+        ///This might damage the system and enabling the trigger is critical.
+        ///This is an important warning because the system is at risk of data breach in multiple ways..
+        /// </summary>
+        internal static string AuthorisationErrorSysAdminBreachMessage {
+            get {
+                return ResourceManager.GetString("AuthorisationErrorSysAdminBreachMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are an administrator.
+        ///You have access to everything in the database.
+        ///Everything is created, altered and deleted using stored procedures so the database will calculate some of the things for you..
+        /// </summary>
+        internal static string AuthorisationLoginAdminNotice {
+            get {
+                return ResourceManager.GetString("AuthorisationLoginAdminNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are an employee, you have limited access to the features of this application.
+        ///Your permissions:
+        ///1.Add, edit, delete product images
+        ///2.Generate product reports
+        ///3.Add, edit, delete and/or generate reports for product orders
+        ///4.Add, edit, delete and/or generate reports for order deliveries
+        ///5.View logs
+        ///6.View the rest of the tables with read-only permissions.
+        ///The bulk operations enabled for you are for product images, product orders and order deliveries.
+        ///Everything is created, altered and deleted usi [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string AuthorisationLoginEmployeeNotice {
+            get {
+                return ResourceManager.GetString("AuthorisationLoginEmployeeNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seems like you didn&apos;t provide any login information at all.
+        ///Please try again..
+        /// </summary>
+        internal static string AuthorisationLoginEmptyInputMessage {
+            get {
+                return ResourceManager.GetString("AuthorisationLoginEmptyInputMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saved Logins list hasn&apos;t been retrieved properly.
+        ///Please restart the application..
+        /// </summary>
+        internal static string AuthorisationLoginFilesystemLoadErrorMessage {
+            get {
+                return ResourceManager.GetString("AuthorisationLoginFilesystemLoadErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No user found with the specified credentials by your input.
+        ///Please input the credentials you registered with or provided by your system administrator..
+        /// </summary>
+        internal static string AuthorisationLoginInvalidInputMessage {
+            get {
+                return ResourceManager.GetString("AuthorisationLoginInvalidInputMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Application is not connected to the database and login information cannot be retrieved.
+        ///Please retry..
+        /// </summary>
+        internal static string AuthorisationLoginNoConnectionMessage {
+            get {
+                return ResourceManager.GetString("AuthorisationLoginNoConnectionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Brand list access is given only to administrators and employees of this system..
+        /// </summary>
+        internal static string BrandMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("BrandMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk Product Brand Operation access is given only to administrators of this system..
+        /// </summary>
+        internal static string BulkBrandMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("BulkBrandMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk Delivery Service Operation access is given only to administrators of this system..
+        /// </summary>
+        internal static string BulkDeliveryServiceMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("BulkDeliveryServiceMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you want to add this as a bulk operation?.
+        /// </summary>
+        internal static string BulkOperationQuestion {
+            get {
+                return ResourceManager.GetString("BulkOperationQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk Operations.
+        /// </summary>
+        internal static string BulkOperationsTitle {
+            get {
+                return ResourceManager.GetString("BulkOperationsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk Order Delivery Operation access is given only to administrators and employees of this system..
+        /// </summary>
+        internal static string BulkOrderDeliveryMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("BulkOrderDeliveryMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk Payment Method Operation access is given only to administrators of this system..
+        /// </summary>
+        internal static string BulkPaymentMethodMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("BulkPaymentMethodMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk Product Image Operation access is given only to administrators and employees of this system..
+        /// </summary>
+        internal static string BulkProductImageMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("BulkProductImageMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk Product Operation access is given only to administrators of this system..
+        /// </summary>
+        internal static string BulkProductMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("BulkProductMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk Product Order Operation access is given only to administrators and employees of this system..
+        /// </summary>
+        internal static string BulkProductOrderMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("BulkProductOrderMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk User Operation access is given only to administrators of this system..
+        /// </summary>
+        internal static string BulkUserMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("BulkUserMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk Product Vendor Operation access is given only to administrators of this system..
+        /// </summary>
+        internal static string BulkVendorMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("BulkVendorMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to close? All unsaved changes incl. bulk operations will be lost.
         /// </summary>
         internal static string ClosePrompt {
@@ -79,6 +393,44 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Couldn&apos;t connect even after a retry. Application will exit....
+        /// </summary>
+        internal static string ConnectionFailedAfterRetryMessage {
+            get {
+                return ResourceManager.GetString("ConnectionFailedAfterRetryMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Failed to connect and login to the database. 
+        ///This was not supposed to happen so contact the system administrator and/or check the application configuration....
+        /// </summary>
+        internal static string ConnectionFailedLoginMessage {
+            get {
+                return ResourceManager.GetString("ConnectionFailedLoginMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connection error. 
+        ///Please check the application configuration and/or contact your system administrator.
+        /// </summary>
+        internal static string ConnectionFailedMessage {
+            get {
+                return ResourceManager.GetString("ConnectionFailedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Successful connection and login to the database. Now you are ready to go..
+        /// </summary>
+        internal static string ConnectionSuccessfulLoginMessage {
+            get {
+                return ResourceManager.GetString("ConnectionSuccessfulLoginMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Connection successfuly open..
         /// </summary>
         internal static string ConnectionSuccessfulMessage {
@@ -88,7 +440,7 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An exception occured.
+        ///   Looks up a localized string similar to Critcal Error: An exception occured.
         /// </summary>
         internal static string CriticalErrorMessage {
             get {
@@ -106,11 +458,146 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Current Host.
+        /// </summary>
+        internal static string CurrentHostTitle {
+            get {
+                return ResourceManager.GetString("CurrentHostTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Operator.
+        /// </summary>
+        internal static string CurrentOperatorTitle {
+            get {
+                return ResourceManager.GetString("CurrentOperatorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery Service list access is given only to administrators and employees of this system..
+        /// </summary>
+        internal static string DeliveryServiceMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("DeliveryServiceMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        internal static string LoginTitle {
+            get {
+                return ResourceManager.GetString("LoginTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Database Logs access is given only to administrators and employees of this system..
+        /// </summary>
+        internal static string LogsMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("LogsMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Deliveries list access is given only to administrators and employees of this system..
+        /// </summary>
+        internal static string OrderDeliveryMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("OrderDeliveryMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Method list access is given only to administrators and employees of this system..
+        /// </summary>
+        internal static string PaymentMethodMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("PaymentMethodMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have full access to the products and product images.
+        /// </summary>
+        internal static string ProductMenuAccessAdminNotice {
+            get {
+                return ResourceManager.GetString("ProductMenuAccessAdminNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have limited access to the products and the product images.
+        /// </summary>
+        internal static string ProductMenuAccessEmployeeNotice {
+            get {
+                return ResourceManager.GetString("ProductMenuAccessEmployeeNotice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Products and Product Images list access is given only to administrators and employees of this system..
+        /// </summary>
+        internal static string ProductMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("ProductMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Orders list access is given only to administrators and employees of this system..
+        /// </summary>
+        internal static string ProductOrderMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("ProductOrderMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stack Trace: .
         /// </summary>
         internal static string StackTraceMessage {
             get {
                 return ResourceManager.GetString("StackTraceMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Test.
+        /// </summary>
+        internal static string TestTitle {
+            get {
+                return ResourceManager.GetString("TestTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Access.
+        /// </summary>
+        internal static string UserAccessTitle {
+            get {
+                return ResourceManager.GetString("UserAccessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User list access is given only to administrators and employees of this system..
+        /// </summary>
+        internal static string UserMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("UserMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Vendors list access is given only to administrators and employees of this system..
+        /// </summary>
+        internal static string VendorMenuAccessErrorMessage {
+            get {
+                return ResourceManager.GetString("VendorMenuAccessErrorMessage", resourceCulture);
             }
         }
     }

@@ -117,22 +117,203 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AccountSettingsErrorMessage" xml:space="preserve">
+    <value>Cannot connect to the server to update your user account.
+Please check your application settings to ensure you have a proper connection to the database or contact a system administrator. </value>
+  </data>
+  <data name="AccountSettingsInvalidCredentialsErrorMessage" xml:space="preserve">
+    <value>You cannot have empty username or password.
+If you still can't update your account ask the administrator for a solution to the problem.</value>
+  </data>
+  <data name="AccountSettingsProfilePicSelectTitle" xml:space="preserve">
+    <value>Select a profile picture for your account</value>
+  </data>
+  <data name="AccountSettingsTitle" xml:space="preserve">
+    <value>Account Settings</value>
+  </data>
+  <data name="ApplicationInstanceErrorMessage" xml:space="preserve">
+    <value>Only one instance of this application can be run at a time!</value>
+  </data>
+  <data name="ApplicationSettingsChangeNotice" xml:space="preserve">
+    <value>Changing the application settings will take effect after restarting the application.</value>
+  </data>
+  <data name="ApplicationSettingsTitle" xml:space="preserve">
+    <value>Application Settings</value>
+  </data>
+  <data name="AuthorisationAddLoginInvalidResultsMessage" xml:space="preserve">
+    <value>Multiple login results gotten or none at all.
+Please check the credentials and try again.</value>
+  </data>
+  <data name="AuthorisationAppConfLoginFoundMessage" xml:space="preserve">
+    <value>Successfully found your credentials by the configuration settings of your application.
+On your confirmation by logging in this will be the user you will work with.
+If you want another user select from the logins list.
+Every login is saved into the filesystem in a binary format read only this program.</value>
+  </data>
+  <data name="AuthorisationAppConfLoginNotFoundMessage" xml:space="preserve">
+    <value>No user found with the specified credentials by your application configuration.
+Please configure the application with database credentials provided by your system administrator or create an user with the stored procedures and set it as a sysadmin if you are a system administrator and try again.
+The admin role for the database is different from the sysadmin role and this is for security reasons.</value>
+  </data>
+  <data name="AuthorisationErrorCancelledLoginMessage" xml:space="preserve">
+    <value>You can't use this application without a proper authorization in the database and closing the login without even confirming or cancelling it will not help you. Application will exit!</value>
+  </data>
+  <data name="AuthorisationErrorClientLoginMessage" xml:space="preserve">
+    <value>This application is only for administrators and employees! 
+Client use of it is unauthorized and the application will exit!</value>
+  </data>
+  <data name="AuthorisationErrorNoLoginMessage" xml:space="preserve">
+    <value>No user currently logged in. Application will exit!</value>
+  </data>
+  <data name="AuthorisationErrorSysAdminBreachMessage" xml:space="preserve">
+    <value>Seems like you are the system administrator for the database and you have either disabled or bypassed the logon trigger and that's why you were probably connected even if you didn't have credentials to connect to the database.
+This might damage the system and enabling the trigger is critical.
+This is an important warning because the system is at risk of data breach in multiple ways.</value>
+  </data>
+  <data name="AuthorisationLoginAdminNotice" xml:space="preserve">
+    <value>You are an administrator.
+You have access to everything in the database.
+Everything is created, altered and deleted using stored procedures so the database will calculate some of the things for you.</value>
+  </data>
+  <data name="AuthorisationLoginEmployeeNotice" xml:space="preserve">
+    <value>You are an employee, you have limited access to the features of this application.
+Your permissions:
+1.Add, edit, delete product images
+2.Generate product reports
+3.Add, edit, delete and/or generate reports for product orders
+4.Add, edit, delete and/or generate reports for order deliveries
+5.View logs
+6.View the rest of the tables with read-only permissions.
+The bulk operations enabled for you are for product images, product orders and order deliveries.
+Everything is created, altered and deleted using stored procedures so the database will calculate some of the things for you.</value>
+  </data>
+  <data name="AuthorisationLoginEmptyInputMessage" xml:space="preserve">
+    <value>Seems like you didn't provide any login information at all.
+Please try again.</value>
+  </data>
+  <data name="AuthorisationLoginFilesystemLoadErrorMessage" xml:space="preserve">
+    <value>Saved Logins list hasn't been retrieved properly.
+Please restart the application.</value>
+  </data>
+  <data name="AuthorisationLoginInvalidInputMessage" xml:space="preserve">
+    <value>No user found with the specified credentials by your input.
+Please input the credentials you registered with or provided by your system administrator.</value>
+  </data>
+  <data name="AuthorisationLoginNoConnectionMessage" xml:space="preserve">
+    <value>Application is not connected to the database and login information cannot be retrieved.
+Please retry.</value>
+  </data>
+  <data name="BrandMenuAccessErrorMessage" xml:space="preserve">
+    <value>Product Brand list access is given only to administrators and employees of this system.</value>
+  </data>
+  <data name="BulkBrandMenuAccessErrorMessage" xml:space="preserve">
+    <value>Bulk Product Brand Operation access is given only to administrators of this system.</value>
+  </data>
+  <data name="BulkDeliveryServiceMenuAccessErrorMessage" xml:space="preserve">
+    <value>Bulk Delivery Service Operation access is given only to administrators of this system.</value>
+  </data>
+  <data name="BulkOperationQuestion" xml:space="preserve">
+    <value>Do you want to add this as a bulk operation?</value>
+  </data>
+  <data name="BulkOperationsTitle" xml:space="preserve">
+    <value>Bulk Operations</value>
+  </data>
+  <data name="BulkOrderDeliveryMenuAccessErrorMessage" xml:space="preserve">
+    <value>Bulk Order Delivery Operation access is given only to administrators and employees of this system.</value>
+  </data>
+  <data name="BulkPaymentMethodMenuAccessErrorMessage" xml:space="preserve">
+    <value>Bulk Payment Method Operation access is given only to administrators of this system.</value>
+  </data>
+  <data name="BulkProductImageMenuAccessErrorMessage" xml:space="preserve">
+    <value>Bulk Product Image Operation access is given only to administrators and employees of this system.</value>
+  </data>
+  <data name="BulkProductMenuAccessErrorMessage" xml:space="preserve">
+    <value>Bulk Product Operation access is given only to administrators of this system.</value>
+  </data>
+  <data name="BulkProductOrderMenuAccessErrorMessage" xml:space="preserve">
+    <value>Bulk Product Order Operation access is given only to administrators and employees of this system.</value>
+  </data>
+  <data name="BulkUserMenuAccessErrorMessage" xml:space="preserve">
+    <value>Bulk User Operation access is given only to administrators of this system.</value>
+  </data>
+  <data name="BulkVendorMenuAccessErrorMessage" xml:space="preserve">
+    <value>Bulk Product Vendor Operation access is given only to administrators of this system.</value>
+  </data>
   <data name="ClosePrompt" xml:space="preserve">
     <value>Do you want to close? All unsaved changes incl. bulk operations will be lost</value>
   </data>
   <data name="ClosePromptTitle" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="ConnectionFailedAfterRetryMessage" xml:space="preserve">
+    <value>Couldn't connect even after a retry. Application will exit...</value>
+  </data>
+  <data name="ConnectionFailedLoginMessage" xml:space="preserve">
+    <value>Failed to connect and login to the database. 
+This was not supposed to happen so contact the system administrator and/or check the application configuration...</value>
+  </data>
+  <data name="ConnectionFailedMessage" xml:space="preserve">
+    <value>Connection error. 
+Please check the application configuration and/or contact your system administrator</value>
+  </data>
+  <data name="ConnectionSuccessfulLoginMessage" xml:space="preserve">
+    <value>Successful connection and login to the database. Now you are ready to go.</value>
+  </data>
   <data name="ConnectionSuccessfulMessage" xml:space="preserve">
     <value>Connection successfuly open.</value>
   </data>
   <data name="CriticalErrorMessage" xml:space="preserve">
-    <value>An exception occured</value>
+    <value>Critcal Error: An exception occured</value>
   </data>
   <data name="CriticalErrorTitle" xml:space="preserve">
     <value>Critical Error</value>
   </data>
+  <data name="CurrentHostTitle" xml:space="preserve">
+    <value>Current Host</value>
+  </data>
+  <data name="CurrentOperatorTitle" xml:space="preserve">
+    <value>Current Operator</value>
+  </data>
+  <data name="DeliveryServiceMenuAccessErrorMessage" xml:space="preserve">
+    <value>Delivery Service list access is given only to administrators and employees of this system.</value>
+  </data>
+  <data name="LoginTitle" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LogsMenuAccessErrorMessage" xml:space="preserve">
+    <value>Database Logs access is given only to administrators and employees of this system.</value>
+  </data>
+  <data name="OrderDeliveryMenuAccessErrorMessage" xml:space="preserve">
+    <value>Order Deliveries list access is given only to administrators and employees of this system.</value>
+  </data>
+  <data name="PaymentMethodMenuAccessErrorMessage" xml:space="preserve">
+    <value>Payment Method list access is given only to administrators and employees of this system.</value>
+  </data>
+  <data name="ProductMenuAccessAdminNotice" xml:space="preserve">
+    <value>You have full access to the products and product images</value>
+  </data>
+  <data name="ProductMenuAccessEmployeeNotice" xml:space="preserve">
+    <value>You have limited access to the products and the product images</value>
+  </data>
+  <data name="ProductMenuAccessErrorMessage" xml:space="preserve">
+    <value>Products and Product Images list access is given only to administrators and employees of this system.</value>
+  </data>
+  <data name="ProductOrderMenuAccessErrorMessage" xml:space="preserve">
+    <value>Product Orders list access is given only to administrators and employees of this system.</value>
+  </data>
   <data name="StackTraceMessage" xml:space="preserve">
     <value>Stack Trace: </value>
+  </data>
+  <data name="TestTitle" xml:space="preserve">
+    <value>Test</value>
+  </data>
+  <data name="UserAccessTitle" xml:space="preserve">
+    <value>User Access</value>
+  </data>
+  <data name="UserMenuAccessErrorMessage" xml:space="preserve">
+    <value>User list access is given only to administrators and employees of this system.</value>
+  </data>
+  <data name="VendorMenuAccessErrorMessage" xml:space="preserve">
+    <value>Product Vendors list access is given only to administrators and employees of this system.</value>
   </data>
 </root>

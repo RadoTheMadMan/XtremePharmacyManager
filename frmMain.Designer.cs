@@ -228,7 +228,7 @@
             this.tsmenuBulkOrderDeliveryOperations});
             this.tsmenuBulkOperations.Name = "tsmenuBulkOperations";
             this.tsmenuBulkOperations.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuBulkOperations.Text = "Bulk Operations";
+            this.tsmenuBulkOperations.Text = $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}";
             this.tsmenuBulkOperations.ToolTipText = "The bulk operations windows whether you can access them or not. They adapt to you" +
     "r permissions role.";
             // 

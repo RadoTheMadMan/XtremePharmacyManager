@@ -88,7 +88,7 @@ namespace XtremePharmacyManager
             {
                 if (current_user.UserRole != 0 && current_user.UserRole != 1)
                 {
-                    MessageBox.Show("Delivery Services list access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.DELIVERY_SERVICE_MENU_ACCESS_ERROR_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 RefreshDeliveryServices();
             }
@@ -139,7 +139,7 @@ namespace XtremePharmacyManager
                                 }
                                 else // or add it as a bulk operation
                                 {
-                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    if (MessageBox.Show($"{GLOBAL_RESOURCES.BULK_OPERATION_QUESTION}", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
                                         //on user prompt add a silent operation by default
                                         manager.AddOperation(new BulkDeliveryServiceOperation(BulkOperationType.UPDATE, ref ent, selectedService, true));
@@ -168,7 +168,7 @@ namespace XtremePharmacyManager
                                 }
                                 else // or add it as a bulk operation
                                 {
-                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    if (MessageBox.Show($"{GLOBAL_RESOURCES.BULK_OPERATION_QUESTION}", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
                                         //on user prompt add a silent operation by default
                                         manager.AddOperation(new BulkDeliveryServiceOperation(BulkOperationType.ADD, ref ent, selectedService, true));
@@ -197,7 +197,7 @@ namespace XtremePharmacyManager
                             }
                             else // or add it as a bulk operation
                             {
-                                if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                if (MessageBox.Show($"{GLOBAL_RESOURCES.BULK_OPERATION_QUESTION}", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                 {
                                     //on user prompt add a silent operation by default
                                     manager.AddOperation(new BulkDeliveryServiceOperation(BulkOperationType.ADD, ref ent, selectedService, true));
@@ -227,7 +227,7 @@ namespace XtremePharmacyManager
                     }
                     else // or add it as a bulk operation
                     {
-                        if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                        if (MessageBox.Show($"{GLOBAL_RESOURCES.BULK_OPERATION_QUESTION}", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             //on user prompt add a silent operation by default
                             manager.AddOperation(new BulkDeliveryServiceOperation(BulkOperationType.ADD, ref ent, selectedService, true));
@@ -288,7 +288,7 @@ namespace XtremePharmacyManager
                                 }
                                 else // or add it as a bulk operation
                                 {
-                                    if (MessageBox.Show("Do you want to add this as a bulk operation?", "Bulk Operations", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    if (MessageBox.Show($"{GLOBAL_RESOURCES.BULK_OPERATION_QUESTION}", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
                                         //on user prompt add a silent operation by default
                                         manager.AddOperation(new BulkDeliveryServiceOperation(BulkOperationType.DELETE, ref ent, selectedService, true));

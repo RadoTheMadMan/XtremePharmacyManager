@@ -329,7 +329,7 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmAccountSettings";
-            this.Text = "Account Settings";
+            this.Text = $"{GLOBAL_RESOURCES.ACCOUNT_SETTINGS_TITLE}";
             this.ttAccountSettings.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.Load += new System.EventHandler(this.frmAccountSettings_Load);
             this.pnlData.ResumeLayout(false);

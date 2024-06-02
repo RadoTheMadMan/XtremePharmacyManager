@@ -79,7 +79,7 @@ namespace XtremePharmacyManager.Properties.DataSources
                 {
                     if (current_user.UserRole != 0 && current_user.UserRole != 1)
                     {
-                        MessageBox.Show("Database Logs access is given only to administrators and employees of this system.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.LOGS_MENU_ACCESS_ERROR_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 RefreshLogsInForm(logger.Logs);

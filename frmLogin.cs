@@ -45,16 +45,15 @@ namespace XtremePharmacyManager
                     retrieved_users = ent.Users.Where(x => (x.UserName.Equals(GLOBAL_RESOURCES.DB_USER) && x.UserPassword.Equals(GLOBAL_RESOURCES.DB_PASSWORD))).ToList();
                     if ((String.IsNullOrEmpty(GLOBAL_RESOURCES.DB_USER) && String.IsNullOrEmpty(GLOBAL_RESOURCES.DB_PASSWORD)) || retrieved_users.Count > 1)
                     {
-                        MessageBox.Show("Seems like you are the system administrator for the database and you have either disabled or bypassed the logon trigger and that's why you were probably connected even if you didn't have credentials to connect to the database.\nThis might damage the system and enabling the trigger is critical.\nThis is an important warning because " +
-                            "the system is at risk of data breach in multiple ways.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.AUTHORISATION_ERROR_SYSADMIN_BREACH_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else if (retrieved_users.Count == 1)
                     {
-                        MessageBox.Show("Successfully found your credentials by the configuration settings of your application.\nOn your confirmation by logging in this will be the user you will work with.\nIf you want another user select from the logins list.\nEvery login is saved into the filesystem in a binary format read only this program.", "Login", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.AUTHORISATION_APPCONF_LOGIN_FOUND_MESSAGE}", $"{GLOBAL_RESOURCES.LOGIN_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        MessageBox.Show("No user found with the specified credentials by your application configuration.\nPlease configure the application with database credentials provided by your system administrator or create an user with the stored procedures and set it as a sysadmin if you are a system administrator and try again.\nThe admin role for the database is different from the sysadmin role and this is for security reasons.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.AUTHORISATION_APPCONF_LOGIN_NOT_FOUND_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 txtUsername.Text = GLOBAL_RESOURCES.DB_USER;
@@ -96,7 +95,7 @@ namespace XtremePharmacyManager
                         retrieved_users = ent.Users.Where(x => (x.UserName.Equals(txtUsername.Text) && x.UserPassword.Equals(txtPassword.Text))).ToList();
                         if ((String.IsNullOrEmpty(txtUsername.Text) && String.IsNullOrEmpty(txtPassword.Text)) || retrieved_users.Count > 1)
                         {
-                            MessageBox.Show("Seems like you didn't provide any login information at all.\nPlease try again.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.AUTHORISATION_LOGIN_EMPTY_INPUT_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         else if (retrieved_users.Count == 1)
                         {
@@ -118,7 +117,7 @@ namespace XtremePharmacyManager
                         }
                         else
                         {
-                            MessageBox.Show("No user found with the specified credentials by your input.\nPlease input the credentials you registered with or provided by your system administrator.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.AUTHORISATION_LOGIN_INVALID_INPUT_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -165,17 +164,17 @@ namespace XtremePharmacyManager
                         }
                         else
                         {
-                            MessageBox.Show($"Multiple login results gotten or none at all.\nPlease check the credentials and try again", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.AUTHORISATION_ADD_LOGIN_INVALID_RESULTS_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        if (MessageBox.Show($"Application is not connected to the database and login information cannot be retrieved.\nPlease retry.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error) == DialogResult.Retry)
+                        if (MessageBox.Show($"{GLOBAL_RESOURCES.AUTHORISATION_LOGIN_NO_CONNECTION_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.AbortRetryIgnore, MessageBoxIcon.Error) == DialogResult.Retry)
                         {
                             ent.Database.Connection.Open();
                             if(ent.Database.Connection.State != ConnectionState.Open)
                             {
-                                MessageBox.Show($"Connection failed.\nApplication will exit.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show($"{GLOBAL_RESOURCES.CONNECTION_FAILED_AFTER_RETRY_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
@@ -184,7 +183,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show($"Saved Logins list hasn't been retrieved properly.\nPlease restart the application.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.AUTHORISATION_LOGIN_FILESYSTEM_LOAD_ERROR_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -207,7 +206,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show($"Saved Logins list hasn't been retrieved properly .\nPlease restart the application.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.AUTHORISATION_LOGIN_FILESYSTEM_LOAD_ERROR_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 lstLastLogins.DataSource=null;
                 lstLastLogins.DataSource = last_logins;

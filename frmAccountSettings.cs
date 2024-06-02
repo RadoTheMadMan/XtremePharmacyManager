@@ -27,7 +27,7 @@ namespace XtremePharmacyManager
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Images|*.png*;*.bmp*;*.jpg*;*.jpeg*;*.jfif*";
             ofd.Multiselect = false;
-            ofd.Title = "Select a profile picture for your account";
+            ofd.Title = $"{GLOBAL_RESOURCES.ACCOUNT_SETTINGS_PROFILE_PIC_SELECT_TITLE}";
             if (login_account != null)
             {
                 if (ofd.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(ofd.FileName))
@@ -81,7 +81,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show($"You cannot have empty username or password.\nIf you still can't update your account ask the administrator for a solution to the problem.\n", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.ACCOUNT_SETTINGS_INVALID_CREDENTIALS_ERROR_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)

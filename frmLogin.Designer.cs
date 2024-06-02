@@ -173,7 +173,7 @@
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(265, 47);
             this.btnLogin.TabIndex = 47;
-            this.btnLogin.Text = "LOGIN";
+            this.btnLogin.Text = $"{GLOBAL_RESOURCES.LOGIN_TITLE}";
             this.ttLogin.SetToolTip(this.btnLogin, "With this button you login to the database the software is connected to and if th" +
         "e credentials are right it will log you in otherwise not.");
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -351,7 +351,7 @@
             this.Controls.Add(this.pnlLogin);
             this.MaximizeBox = false;
             this.Name = "frmLogin";
-            this.Text = "LOGIN";
+            this.Text = $"{GLOBAL_RESOURCES.LOGIN_TITLE}";
             this.ttLogin.SetToolTip(this, resources.GetString("$this.ToolTip"));
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.pnlLogin.ResumeLayout(false);
