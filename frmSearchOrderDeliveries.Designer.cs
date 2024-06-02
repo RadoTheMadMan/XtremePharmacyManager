@@ -114,6 +114,7 @@ namespace XtremePharmacyManager
             this.lblID = new System.Windows.Forms.Label();
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productImageBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ttSearchOrderDeliveries = new System.Windows.Forms.ToolTip(this.components);
             this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductOrderIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.TotalPriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -173,6 +174,8 @@ namespace XtremePharmacyManager
             this.dgvOrderDeliveries.RowTemplate.Height = 24;
             this.dgvOrderDeliveries.Size = new System.Drawing.Size(820, 146);
             this.dgvOrderDeliveries.TabIndex = 1;
+            this.ttSearchOrderDeliveries.SetToolTip(this.dgvOrderDeliveries, "The list of order deliveries in the database. Select any to add/edit/delete/gener" +
+        "ate report based on your permissions.");
             this.dgvOrderDeliveries.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvOrderDeliveries_CellClick);
             this.dgvOrderDeliveries.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvOrderDeliveries_RowsAdded);
             // 
@@ -254,6 +257,7 @@ namespace XtremePharmacyManager
             this.txtTotalPrice.Name = "txtTotalPrice";
             this.txtTotalPrice.Size = new System.Drawing.Size(60, 22);
             this.txtTotalPrice.TabIndex = 54;
+            this.ttSearchOrderDeliveries.SetToolTip(this.txtTotalPrice, "The total price with which you want to search order deliveries");
             this.txtTotalPrice.TextChanged += new System.EventHandler(this.txtTotalPrice_TextChanged);
             // 
             // btnGenerateReport
@@ -267,6 +271,9 @@ namespace XtremePharmacyManager
             this.btnGenerateReport.Size = new System.Drawing.Size(278, 47);
             this.btnGenerateReport.TabIndex = 53;
             this.btnGenerateReport.Text = "GENERATE REPORT";
+            this.ttSearchOrderDeliveries.SetToolTip(this.btnGenerateReport, "When you click the button you generate a report on  an entry based on the permiss" +
+        "ions you have and whether the report definition based on localisation is present" +
+        ".");
             this.btnGenerateReport.UseVisualStyleBackColor = true;
             this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
@@ -278,6 +285,7 @@ namespace XtremePharmacyManager
             this.txtCargoID.Name = "txtCargoID";
             this.txtCargoID.Size = new System.Drawing.Size(200, 22);
             this.txtCargoID.TabIndex = 52;
+            this.ttSearchOrderDeliveries.SetToolTip(this.txtCargoID, "The cargo document ID with which you want to search order deliveries");
             // 
             // lblCargoID
             // 
@@ -324,6 +332,7 @@ namespace XtremePharmacyManager
             this.cbSelectDeliveryStatus.Size = new System.Drawing.Size(232, 24);
             this.cbSelectDeliveryStatus.TabIndex = 49;
             this.cbSelectDeliveryStatus.Text = "pending delivery";
+            this.ttSearchOrderDeliveries.SetToolTip(this.cbSelectDeliveryStatus, "The status with which you want to search order deliveries");
             // 
             // lblOrderDeliveryNotice
             // 
@@ -337,6 +346,8 @@ namespace XtremePharmacyManager
             this.lblOrderDeliveryNotice.Size = new System.Drawing.Size(441, 240);
             this.lblOrderDeliveryNotice.TabIndex = 48;
             this.lblOrderDeliveryNotice.Text = resources.GetString("lblOrderDeliveryNotice.Text");
+            this.ttSearchOrderDeliveries.SetToolTip(this.lblOrderDeliveryNotice, "If you are a dumbfuck like my creator read this so you don\'t complain that you ca" +
+        "n\'t change the order delivery data via any operation");
             // 
             // dtDateModifiedTo
             // 
@@ -346,6 +357,7 @@ namespace XtremePharmacyManager
             this.dtDateModifiedTo.Name = "dtDateModifiedTo";
             this.dtDateModifiedTo.Size = new System.Drawing.Size(233, 22);
             this.dtDateModifiedTo.TabIndex = 47;
+            this.ttSearchOrderDeliveries.SetToolTip(this.dtDateModifiedTo, "The date modified to which you want to search order deliveries");
             // 
             // lblDateModifiedTo
             // 
@@ -367,6 +379,7 @@ namespace XtremePharmacyManager
             this.dtDateModifiedFrom.Name = "dtDateModifiedFrom";
             this.dtDateModifiedFrom.Size = new System.Drawing.Size(232, 22);
             this.dtDateModifiedFrom.TabIndex = 45;
+            this.ttSearchOrderDeliveries.SetToolTip(this.dtDateModifiedFrom, "The date modified from which you want to search order deliveries");
             // 
             // lblDateModifiedFrom
             // 
@@ -389,6 +402,7 @@ namespace XtremePharmacyManager
             this.cbSelectPaymentMethod.Name = "cbSelectPaymentMethod";
             this.cbSelectPaymentMethod.Size = new System.Drawing.Size(200, 24);
             this.cbSelectPaymentMethod.TabIndex = 43;
+            this.ttSearchOrderDeliveries.SetToolTip(this.cbSelectPaymentMethod, "The payment method with which you want to search order deliveries");
             this.cbSelectPaymentMethod.ValueMember = "ID";
             // 
             // lblSelectPaymentMethod
@@ -412,6 +426,7 @@ namespace XtremePharmacyManager
             this.cbSelectProductOrder.Name = "cbSelectProductOrder";
             this.cbSelectProductOrder.Size = new System.Drawing.Size(200, 24);
             this.cbSelectProductOrder.TabIndex = 41;
+            this.ttSearchOrderDeliveries.SetToolTip(this.cbSelectProductOrder, "The product order with which you want to search order deliveries");
             this.cbSelectProductOrder.ValueMember = "ID";
             // 
             // cbSelectDeliveryService
@@ -423,6 +438,7 @@ namespace XtremePharmacyManager
             this.cbSelectDeliveryService.Name = "cbSelectDeliveryService";
             this.cbSelectDeliveryService.Size = new System.Drawing.Size(200, 24);
             this.cbSelectDeliveryService.TabIndex = 35;
+            this.ttSearchOrderDeliveries.SetToolTip(this.cbSelectDeliveryService, "The delivery service with which you want to search order deliveries");
             this.cbSelectDeliveryService.ValueMember = "ID";
             // 
             // btnDelete
@@ -436,6 +452,7 @@ namespace XtremePharmacyManager
             this.btnDelete.Size = new System.Drawing.Size(90, 47);
             this.btnDelete.TabIndex = 34;
             this.btnDelete.Text = "DELETE";
+            this.ttSearchOrderDeliveries.SetToolTip(this.btnDelete, "When you click the button you delete an entry based on the permissions you have.");
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -450,6 +467,8 @@ namespace XtremePharmacyManager
             this.btnAddOrEdit.Size = new System.Drawing.Size(90, 47);
             this.btnAddOrEdit.TabIndex = 33;
             this.btnAddOrEdit.Text = "ADD/EDIT";
+            this.ttSearchOrderDeliveries.SetToolTip(this.btnAddOrEdit, "When you click the button you add/edit an entry based on the permissions you have" +
+        ".");
             this.btnAddOrEdit.UseVisualStyleBackColor = true;
             this.btnAddOrEdit.Click += new System.EventHandler(this.btnAddOrEdit_Click);
             // 
@@ -480,6 +499,7 @@ namespace XtremePharmacyManager
             this.cbSearchMode.Size = new System.Drawing.Size(231, 24);
             this.cbSearchMode.TabIndex = 31;
             this.cbSearchMode.Text = "Multiple Criterias";
+            this.ttSearchOrderDeliveries.SetToolTip(this.cbSearchMode, resources.GetString("cbSearchMode.ToolTip"));
             // 
             // btnSearch
             // 
@@ -492,6 +512,8 @@ namespace XtremePharmacyManager
             this.btnSearch.Size = new System.Drawing.Size(90, 47);
             this.btnSearch.TabIndex = 30;
             this.btnSearch.Text = "SEARCH";
+            this.ttSearchOrderDeliveries.SetToolTip(this.btnSearch, "When you click the button you search based on the criterias search mode you selec" +
+        "ted.");
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -506,6 +528,7 @@ namespace XtremePharmacyManager
             this.trbTotalPrice.Size = new System.Drawing.Size(219, 50);
             this.trbTotalPrice.TabIndex = 21;
             this.trbTotalPrice.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ttSearchOrderDeliveries.SetToolTip(this.trbTotalPrice, "The total price with which you want to search order deliveries");
             this.trbTotalPrice.Scroll += new System.EventHandler(this.trbTotalPrice_Scroll);
             // 
             // lblTotalPrice
@@ -530,6 +553,7 @@ namespace XtremePharmacyManager
             this.txtDeliveryReason.Name = "txtDeliveryReason";
             this.txtDeliveryReason.Size = new System.Drawing.Size(230, 112);
             this.txtDeliveryReason.TabIndex = 14;
+            this.ttSearchOrderDeliveries.SetToolTip(this.txtDeliveryReason, "The reason with which you want to search order deliveries");
             // 
             // lblDeliveryReason
             // 
@@ -551,6 +575,7 @@ namespace XtremePharmacyManager
             this.dtDateAddedTo.Name = "dtDateAddedTo";
             this.dtDateAddedTo.Size = new System.Drawing.Size(236, 22);
             this.dtDateAddedTo.TabIndex = 12;
+            this.ttSearchOrderDeliveries.SetToolTip(this.dtDateAddedTo, "The date added to which you want to search order deliveries");
             // 
             // lblDateAddedTo
             // 
@@ -572,6 +597,7 @@ namespace XtremePharmacyManager
             this.dtDateAddedFrom.Name = "dtDateAddedFrom";
             this.dtDateAddedFrom.Size = new System.Drawing.Size(236, 22);
             this.dtDateAddedFrom.TabIndex = 10;
+            this.ttSearchOrderDeliveries.SetToolTip(this.dtDateAddedFrom, "The date added from which you want to search order deliveries");
             // 
             // lblDateAddedFrom
             // 
@@ -617,6 +643,7 @@ namespace XtremePharmacyManager
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(200, 22);
             this.txtID.TabIndex = 2;
+            this.ttSearchOrderDeliveries.SetToolTip(this.txtID, "The ID of the selected record entry to be searched is here");
             // 
             // lblID
             // 
@@ -637,6 +664,13 @@ namespace XtremePharmacyManager
             // productImageBindingSource
             // 
             this.productImageBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductImage);
+            // 
+            // ttSearchOrderDeliveries
+            // 
+            this.ttSearchOrderDeliveries.IsBalloon = true;
+            this.ttSearchOrderDeliveries.ShowAlways = true;
+            this.ttSearchOrderDeliveries.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttSearchOrderDeliveries.ToolTipTitle = "Help";
             // 
             // IDColumn
             // 
@@ -766,6 +800,9 @@ namespace XtremePharmacyManager
             this.MaximizeBox = false;
             this.Name = "frmSearchOrderDeliveries";
             this.Text = "Order Deliveries";
+            this.ttSearchOrderDeliveries.SetToolTip(this, "The order deliveries window where you can search, add, edit, delete and generate " +
+        "reports on the order deliveries. Whether you can do it or not depends on your pe" +
+        "rmissions");
             this.Load += new System.EventHandler(this.frmSearchOrderDeliveries_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrderDeliveries)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productOrderBindingSource)).EndInit();
@@ -830,6 +867,7 @@ namespace XtremePharmacyManager
         private Label lblCargoID;
         private Button btnGenerateReport;
         private TextBox txtTotalPrice;
+        private ToolTip ttSearchOrderDeliveries;
         private DataGridViewTextBoxColumn IDColumn;
         private DataGridViewComboBoxColumn ProductOrderIDColumn;
         private DataGridViewTextBoxColumn TotalPriceColumn;

@@ -112,6 +112,7 @@ namespace XtremePharmacyManager
             this.lblID = new System.Windows.Forms.Label();
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productImageBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ttSearchProductOrders = new System.Windows.Forms.ToolTip(this.components);
             this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProductIDColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.DesiredQuantityColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -169,6 +170,8 @@ namespace XtremePharmacyManager
             this.dgvProductOrders.RowTemplate.Height = 24;
             this.dgvProductOrders.Size = new System.Drawing.Size(820, 113);
             this.dgvProductOrders.TabIndex = 1;
+            this.ttSearchProductOrders.SetToolTip(this.dgvProductOrders, "The list of product orders in the database. Select any to add/edit/delete/generat" +
+        "e report based on your permissions.");
             this.dgvProductOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductOrders_CellClick);
             this.dgvProductOrders.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvProductOrders_RowsAdded);
             // 
@@ -239,6 +242,7 @@ namespace XtremePharmacyManager
             this.txtPriceOverride.Name = "txtPriceOverride";
             this.txtPriceOverride.Size = new System.Drawing.Size(42, 22);
             this.txtPriceOverride.TabIndex = 53;
+            this.ttSearchProductOrders.SetToolTip(this.txtPriceOverride, "The price overrride with which you want to search product orders");
             this.txtPriceOverride.TextChanged += new System.EventHandler(this.txtPriceOverride_TextChanged);
             // 
             // txtDesiredQuantity
@@ -249,6 +253,7 @@ namespace XtremePharmacyManager
             this.txtDesiredQuantity.Name = "txtDesiredQuantity";
             this.txtDesiredQuantity.Size = new System.Drawing.Size(42, 22);
             this.txtDesiredQuantity.TabIndex = 52;
+            this.ttSearchProductOrders.SetToolTip(this.txtDesiredQuantity, "The desired quantity with which you want to search product orders");
             this.txtDesiredQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             // 
             // btnGenerateReport
@@ -262,6 +267,9 @@ namespace XtremePharmacyManager
             this.btnGenerateReport.Size = new System.Drawing.Size(278, 47);
             this.btnGenerateReport.TabIndex = 51;
             this.btnGenerateReport.Text = "GENERATE REPORT";
+            this.ttSearchProductOrders.SetToolTip(this.btnGenerateReport, "When you click the button you generate a report on  an entry based on the permiss" +
+        "ions you have and whether the report definition based on localisation is present" +
+        ".");
             this.btnGenerateReport.UseVisualStyleBackColor = true;
             this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
@@ -298,6 +306,7 @@ namespace XtremePharmacyManager
             this.cbSelectOrderStatus.Size = new System.Drawing.Size(232, 24);
             this.cbSelectOrderStatus.TabIndex = 49;
             this.cbSelectOrderStatus.Text = "Awaiting processing";
+            this.ttSearchProductOrders.SetToolTip(this.cbSelectOrderStatus, "The status with which you want to search product orders");
             // 
             // lblProductOrderNotice
             // 
@@ -311,6 +320,8 @@ namespace XtremePharmacyManager
             this.lblProductOrderNotice.Size = new System.Drawing.Size(397, 285);
             this.lblProductOrderNotice.TabIndex = 48;
             this.lblProductOrderNotice.Text = resources.GetString("lblProductOrderNotice.Text");
+            this.ttSearchProductOrders.SetToolTip(this.lblProductOrderNotice, "If you are a dumbfuck like my creator read this so you don\'t complain that you ca" +
+        "n\'t change the product order data via any operation");
             // 
             // dtDateModifiedTo
             // 
@@ -320,6 +331,7 @@ namespace XtremePharmacyManager
             this.dtDateModifiedTo.Name = "dtDateModifiedTo";
             this.dtDateModifiedTo.Size = new System.Drawing.Size(233, 22);
             this.dtDateModifiedTo.TabIndex = 47;
+            this.ttSearchProductOrders.SetToolTip(this.dtDateModifiedTo, "The date modified to which you want to search product orders");
             // 
             // lblDateModifiedTo
             // 
@@ -341,6 +353,7 @@ namespace XtremePharmacyManager
             this.dtDateModifiedFrom.Name = "dtDateModifiedFrom";
             this.dtDateModifiedFrom.Size = new System.Drawing.Size(232, 22);
             this.dtDateModifiedFrom.TabIndex = 45;
+            this.ttSearchProductOrders.SetToolTip(this.dtDateModifiedFrom, "The date modified from which you want to search product orders");
             // 
             // lblDateModifiedFrom
             // 
@@ -363,6 +376,7 @@ namespace XtremePharmacyManager
             this.cbSelectClient.Name = "cbSelectClient";
             this.cbSelectClient.Size = new System.Drawing.Size(240, 24);
             this.cbSelectClient.TabIndex = 43;
+            this.ttSearchProductOrders.SetToolTip(this.cbSelectClient, "The client with which you want to search product orders");
             this.cbSelectClient.ValueMember = "ID";
             // 
             // lblSelectClient
@@ -386,6 +400,7 @@ namespace XtremePharmacyManager
             this.cbSelectProduct.Name = "cbSelectProduct";
             this.cbSelectProduct.Size = new System.Drawing.Size(240, 24);
             this.cbSelectProduct.TabIndex = 41;
+            this.ttSearchProductOrders.SetToolTip(this.cbSelectProduct, "The product with which you want to search product orders");
             this.cbSelectProduct.ValueMember = "ID";
             // 
             // trbDesiredQuantity
@@ -399,6 +414,7 @@ namespace XtremePharmacyManager
             this.trbDesiredQuantity.Size = new System.Drawing.Size(219, 50);
             this.trbDesiredQuantity.TabIndex = 38;
             this.trbDesiredQuantity.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ttSearchProductOrders.SetToolTip(this.trbDesiredQuantity, "The desired quantity with which you want to search product orders");
             this.trbDesiredQuantity.Scroll += new System.EventHandler(this.trbQuantity_Scroll);
             // 
             // lblDesiredQuantity
@@ -423,6 +439,7 @@ namespace XtremePharmacyManager
             this.cbSelectEmployee.Name = "cbSelectEmployee";
             this.cbSelectEmployee.Size = new System.Drawing.Size(240, 24);
             this.cbSelectEmployee.TabIndex = 35;
+            this.ttSearchProductOrders.SetToolTip(this.cbSelectEmployee, "The employee with which you want to search product orders");
             this.cbSelectEmployee.ValueMember = "ID";
             // 
             // btnDelete
@@ -436,6 +453,7 @@ namespace XtremePharmacyManager
             this.btnDelete.Size = new System.Drawing.Size(90, 47);
             this.btnDelete.TabIndex = 34;
             this.btnDelete.Text = "DELETE";
+            this.ttSearchProductOrders.SetToolTip(this.btnDelete, "When you click the button you delete an entry based on the permissions you have.");
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -450,6 +468,8 @@ namespace XtremePharmacyManager
             this.btnAddOrEdit.Size = new System.Drawing.Size(90, 47);
             this.btnAddOrEdit.TabIndex = 33;
             this.btnAddOrEdit.Text = "ADD/EDIT";
+            this.ttSearchProductOrders.SetToolTip(this.btnAddOrEdit, "When you click the button you add/edit an entry based on the permissions you have" +
+        ".");
             this.btnAddOrEdit.UseVisualStyleBackColor = true;
             this.btnAddOrEdit.Click += new System.EventHandler(this.btnAddOrEdit_Click);
             // 
@@ -480,6 +500,7 @@ namespace XtremePharmacyManager
             this.cbSearchMode.Size = new System.Drawing.Size(231, 24);
             this.cbSearchMode.TabIndex = 31;
             this.cbSearchMode.Text = "Multiple Criterias";
+            this.ttSearchProductOrders.SetToolTip(this.cbSearchMode, resources.GetString("cbSearchMode.ToolTip"));
             // 
             // btnSearch
             // 
@@ -492,6 +513,8 @@ namespace XtremePharmacyManager
             this.btnSearch.Size = new System.Drawing.Size(90, 47);
             this.btnSearch.TabIndex = 30;
             this.btnSearch.Text = "SEARCH";
+            this.ttSearchProductOrders.SetToolTip(this.btnSearch, "When you click the button you search based on the criterias search mode you selec" +
+        "ted.");
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -506,6 +529,7 @@ namespace XtremePharmacyManager
             this.trbPriceOverride.Size = new System.Drawing.Size(219, 50);
             this.trbPriceOverride.TabIndex = 21;
             this.trbPriceOverride.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ttSearchProductOrders.SetToolTip(this.trbPriceOverride, "The price overrride with which you want to search product orders");
             this.trbPriceOverride.Scroll += new System.EventHandler(this.trbPrice_Scroll);
             // 
             // lblPriceOverride
@@ -530,6 +554,7 @@ namespace XtremePharmacyManager
             this.txtOrderReason.Name = "txtOrderReason";
             this.txtOrderReason.Size = new System.Drawing.Size(230, 77);
             this.txtOrderReason.TabIndex = 14;
+            this.ttSearchProductOrders.SetToolTip(this.txtOrderReason, "The reason with which you want to search product orders");
             // 
             // lblOrderReason
             // 
@@ -551,6 +576,7 @@ namespace XtremePharmacyManager
             this.dtDateAddedTo.Name = "dtDateAddedTo";
             this.dtDateAddedTo.Size = new System.Drawing.Size(240, 22);
             this.dtDateAddedTo.TabIndex = 12;
+            this.ttSearchProductOrders.SetToolTip(this.dtDateAddedTo, "The date added to which you want to search product orders");
             // 
             // lblDateAddedTo
             // 
@@ -572,6 +598,7 @@ namespace XtremePharmacyManager
             this.dtDateAddedFrom.Name = "dtDateAddedFrom";
             this.dtDateAddedFrom.Size = new System.Drawing.Size(239, 22);
             this.dtDateAddedFrom.TabIndex = 10;
+            this.ttSearchProductOrders.SetToolTip(this.dtDateAddedFrom, "The date added from which you want to search product orders");
             // 
             // lblDateAddedFrom
             // 
@@ -617,6 +644,7 @@ namespace XtremePharmacyManager
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(240, 22);
             this.txtID.TabIndex = 2;
+            this.ttSearchProductOrders.SetToolTip(this.txtID, "The ID of the selected record entry to be searched is here");
             // 
             // lblID
             // 
@@ -637,6 +665,13 @@ namespace XtremePharmacyManager
             // productImageBindingSource
             // 
             this.productImageBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.ProductImage);
+            // 
+            // ttSearchProductOrders
+            // 
+            this.ttSearchProductOrders.IsBalloon = true;
+            this.ttSearchProductOrders.ShowAlways = true;
+            this.ttSearchProductOrders.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttSearchProductOrders.ToolTipTitle = "Help";
             // 
             // IDColumn
             // 
@@ -766,6 +801,9 @@ namespace XtremePharmacyManager
             this.MaximizeBox = false;
             this.Name = "frmSearchProductOrders";
             this.Text = "Product Orders";
+            this.ttSearchProductOrders.SetToolTip(this, "The product orders window where you can search, add, edit, delete and generate re" +
+        "ports on the product orders. Whether you can do it or not depends on your permis" +
+        "sions");
             this.Load += new System.EventHandler(this.frmSearchProductOrders_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductOrders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBindingSource)).EndInit();
@@ -826,6 +864,7 @@ namespace XtremePharmacyManager
         private Button btnGenerateReport;
         private TextBox txtPriceOverride;
         private TextBox txtDesiredQuantity;
+        private ToolTip ttSearchProductOrders;
         private DataGridViewTextBoxColumn IDColumn;
         private DataGridViewComboBoxColumn ProductIDColumn;
         private DataGridViewTextBoxColumn DesiredQuantityColumn;

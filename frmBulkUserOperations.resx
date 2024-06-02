@@ -126,9 +126,6 @@
   <metadata name="userBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="ttBulkUserOperations.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>628, 19</value>
-  </metadata>
   <data name="cbOperationType.ToolTip" xml:space="preserve">
     <value>The type of the operation, the default type is the invalid type, the add/update/delete types are defined in each class for the specific operation and custom is valid only if you have a custom task when you extend the application</value>
   </data>
@@ -141,18 +138,9 @@
   <data name="trbBalance.ToolTip" xml:space="preserve">
     <value>The balance of the selected user can be set here. No need to set it manually in some cases though, because the changes in the product orders and order deliveries reflect it automatically on status change.</value>
   </data>
-  <metadata name="ttBulkUserOperations.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>628, 19</value>
-  </metadata>
   <data name="txtPassword.ToolTip" xml:space="preserve">
     <value>The password in the database of the selected user can be set here. Don't forget that if you change it you need to set it accordingly in the login's password for the selected user in the server's login list</value>
   </data>
-  <metadata name="userBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="bulkUserOperationBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>200, 17</value>
-  </metadata>
   <metadata name="errBulkProvider.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>480, 17</value>
   </metadata>

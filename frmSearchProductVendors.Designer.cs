@@ -51,7 +51,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSearchProductVendors));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlData = new System.Windows.Forms.Panel();
             this.btnGenerateReport = new System.Windows.Forms.Button();
             this.lblSearchMode = new System.Windows.Forms.Label();
@@ -64,18 +65,19 @@
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.dgvProductVendors = new System.Windows.Forms.DataGridView();
+            this.productVendorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.productVendorBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ttSearchProductVendors = new System.Windows.Forms.ToolTip(this.components);
             this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VendorNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductVendors)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -110,6 +112,9 @@
             this.btnGenerateReport.Size = new System.Drawing.Size(175, 47);
             this.btnGenerateReport.TabIndex = 45;
             this.btnGenerateReport.Text = "GENERATE REPORT";
+            this.ttSearchProductVendors.SetToolTip(this.btnGenerateReport, "When you click the button you generate a report on  an entry based on the permiss" +
+        "ions you have and whether the report definition based on localisation is present" +
+        ".");
             this.btnGenerateReport.UseVisualStyleBackColor = true;
             this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
@@ -140,6 +145,7 @@
             this.cbSearchMode.Size = new System.Drawing.Size(225, 24);
             this.cbSearchMode.TabIndex = 35;
             this.cbSearchMode.Text = "Multiple Criterias";
+            this.ttSearchProductVendors.SetToolTip(this.cbSearchMode, resources.GetString("cbSearchMode.ToolTip"));
             // 
             // btnDelete
             // 
@@ -152,6 +158,7 @@
             this.btnDelete.Size = new System.Drawing.Size(90, 47);
             this.btnDelete.TabIndex = 34;
             this.btnDelete.Text = "DELETE";
+            this.ttSearchProductVendors.SetToolTip(this.btnDelete, "When you click the button you delete an entry based on the permissions you have.");
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -166,6 +173,8 @@
             this.btnAddOrEdit.Size = new System.Drawing.Size(90, 47);
             this.btnAddOrEdit.TabIndex = 33;
             this.btnAddOrEdit.Text = "ADD/EDIT";
+            this.ttSearchProductVendors.SetToolTip(this.btnAddOrEdit, "When you click the button you add/edit an entry based on the permissions you have" +
+        ".");
             this.btnAddOrEdit.UseVisualStyleBackColor = true;
             this.btnAddOrEdit.Click += new System.EventHandler(this.btnAddOrEdit_Click);
             // 
@@ -180,6 +189,8 @@
             this.btnSearch.Size = new System.Drawing.Size(90, 47);
             this.btnSearch.TabIndex = 30;
             this.btnSearch.Text = "SEARCH";
+            this.ttSearchProductVendors.SetToolTip(this.btnSearch, "When you click the button you search based on the criterias search mode you selec" +
+        "ted.");
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -191,6 +202,7 @@
             this.txtVendorName.Name = "txtVendorName";
             this.txtVendorName.Size = new System.Drawing.Size(225, 22);
             this.txtVendorName.TabIndex = 4;
+            this.ttSearchProductVendors.SetToolTip(this.txtVendorName, "The vendor name with which you want to search product vendors");
             // 
             // lblVendorName
             // 
@@ -212,6 +224,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(225, 22);
             this.txtID.TabIndex = 2;
+            this.ttSearchProductVendors.SetToolTip(this.txtID, "The ID of the selected record entry to be searched is here");
             // 
             // lblID
             // 
@@ -242,18 +255,20 @@
             this.dgvProductVendors.MultiSelect = false;
             this.dgvProductVendors.Name = "dgvProductVendors";
             this.dgvProductVendors.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvProductVendors.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvProductVendors.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvProductVendors.RowHeadersWidth = 51;
             this.dgvProductVendors.RowTemplate.Height = 24;
             this.dgvProductVendors.Size = new System.Drawing.Size(483, 113);
             this.dgvProductVendors.TabIndex = 1;
+            this.ttSearchProductVendors.SetToolTip(this.dgvProductVendors, "The list of product vendors in the database. Select any to add/edit/delete/genera" +
+        "te report based on your permissions.");
             this.dgvProductVendors.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductVendors_CellClick);
             // 
             // productVendorBindingSource
@@ -267,6 +282,13 @@
             // paymentMethodBindingSource
             // 
             this.paymentMethodBindingSource.DataSource = typeof(XtremePharmacyManager.DataEntities.PaymentMethod);
+            // 
+            // ttSearchProductVendors
+            // 
+            this.ttSearchProductVendors.IsBalloon = true;
+            this.ttSearchProductVendors.ShowAlways = true;
+            this.ttSearchProductVendors.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttSearchProductVendors.ToolTipTitle = "Help";
             // 
             // IDColumn
             // 
@@ -295,13 +317,16 @@
             this.MaximizeBox = false;
             this.Name = "frmSearchProductVendors";
             this.Text = "Product Vendors";
+            this.ttSearchProductVendors.SetToolTip(this, "The product vendors window where you can search, add, edit, delete and generate r" +
+        "eports on the product vendors. Whether you can do it or not depends on your perm" +
+        "issions");
             this.Load += new System.EventHandler(this.frmSearchProductVendors_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductVendors)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.deliveryServiceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.productVendorBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.productBrandBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.paymentMethodBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -330,6 +355,7 @@
         private System.Windows.Forms.BindingSource productBrandBindingSource;
         private System.Windows.Forms.Button btnGenerateReport;
         private System.Windows.Forms.BindingSource productVendorBindingSource;
+        private System.Windows.Forms.ToolTip ttSearchProductVendors;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn VendorNameColumn;
     }

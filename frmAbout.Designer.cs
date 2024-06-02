@@ -161,6 +161,7 @@
             this.okButton.Size = new System.Drawing.Size(100, 27);
             this.okButton.TabIndex = 24;
             this.okButton.Text = "&OK";
+            this.ttAbout.SetToolTip(this.okButton, "By clicking this button you exit the dialog");
             // 
             // ttAbout
             // 

@@ -51,6 +51,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSearchProductBrands));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlData = new System.Windows.Forms.Panel();
             this.btnGenerateReport = new System.Windows.Forms.Button();
@@ -66,6 +67,7 @@
             this.dgvProductBrands = new System.Windows.Forms.DataGridView();
             this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ttSearchProductBrands = new System.Windows.Forms.ToolTip(this.components);
             this.productBrandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -108,6 +110,9 @@
             this.btnGenerateReport.Size = new System.Drawing.Size(175, 47);
             this.btnGenerateReport.TabIndex = 45;
             this.btnGenerateReport.Text = "GENERATE REPORT";
+            this.ttSearchProductBrands.SetToolTip(this.btnGenerateReport, "When you click the button you generate a report on  an entry based on the permiss" +
+        "ions you have and whether the report definition based on localisation is present" +
+        ".");
             this.btnGenerateReport.UseVisualStyleBackColor = true;
             this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
@@ -138,6 +143,7 @@
             this.cbSearchMode.Size = new System.Drawing.Size(225, 24);
             this.cbSearchMode.TabIndex = 35;
             this.cbSearchMode.Text = "Multiple Criterias";
+            this.ttSearchProductBrands.SetToolTip(this.cbSearchMode, resources.GetString("cbSearchMode.ToolTip"));
             // 
             // btnDelete
             // 
@@ -150,6 +156,7 @@
             this.btnDelete.Size = new System.Drawing.Size(90, 47);
             this.btnDelete.TabIndex = 34;
             this.btnDelete.Text = "DELETE";
+            this.ttSearchProductBrands.SetToolTip(this.btnDelete, "When you click the button you delete an entry based on the permissions you have.");
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -164,6 +171,8 @@
             this.btnAddOrEdit.Size = new System.Drawing.Size(90, 47);
             this.btnAddOrEdit.TabIndex = 33;
             this.btnAddOrEdit.Text = "ADD/EDIT";
+            this.ttSearchProductBrands.SetToolTip(this.btnAddOrEdit, "When you click the button you add/edit an entry based on the permissions you have" +
+        ".");
             this.btnAddOrEdit.UseVisualStyleBackColor = true;
             this.btnAddOrEdit.Click += new System.EventHandler(this.btnAddOrEdit_Click);
             // 
@@ -178,6 +187,8 @@
             this.btnSearch.Size = new System.Drawing.Size(90, 47);
             this.btnSearch.TabIndex = 30;
             this.btnSearch.Text = "SEARCH";
+            this.ttSearchProductBrands.SetToolTip(this.btnSearch, "When you click the button you search based on the criterias search mode you selec" +
+        "ted.");
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -189,6 +200,7 @@
             this.txtBrandName.Name = "txtBrandName";
             this.txtBrandName.Size = new System.Drawing.Size(225, 22);
             this.txtBrandName.TabIndex = 4;
+            this.ttSearchProductBrands.SetToolTip(this.txtBrandName, "The brand name with which you want to search product brands");
             // 
             // lblBrandName
             // 
@@ -210,6 +222,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(225, 22);
             this.txtID.TabIndex = 2;
+            this.ttSearchProductBrands.SetToolTip(this.txtID, "The ID of the selected record entry to be searched is here");
             // 
             // lblID
             // 
@@ -252,7 +265,16 @@
             this.dgvProductBrands.RowTemplate.Height = 24;
             this.dgvProductBrands.Size = new System.Drawing.Size(483, 113);
             this.dgvProductBrands.TabIndex = 1;
+            this.ttSearchProductBrands.SetToolTip(this.dgvProductBrands, "The list of product brands in the database. Select any to add/edit/delete/generat" +
+        "e report based on your permissions.");
             this.dgvProductBrands.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductBrands_CellClick);
+            // 
+            // ttSearchProductBrands
+            // 
+            this.ttSearchProductBrands.IsBalloon = true;
+            this.ttSearchProductBrands.ShowAlways = true;
+            this.ttSearchProductBrands.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttSearchProductBrands.ToolTipTitle = "Help";
             // 
             // productBrandBindingSource
             // 
@@ -289,6 +311,9 @@
             this.MaximizeBox = false;
             this.Name = "frmSearchProductBrands";
             this.Text = "Product Brands";
+            this.ttSearchProductBrands.SetToolTip(this, "The product brands window where you can search, add, edit, delete and generate re" +
+        "ports on the product brands. Whether you can do it or not depends on your permis" +
+        "sions");
             this.Load += new System.EventHandler(this.frmSearchProductBrands_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -322,6 +347,7 @@
         private System.Windows.Forms.BindingSource paymentMethodBindingSource;
         private System.Windows.Forms.BindingSource productBrandBindingSource;
         private System.Windows.Forms.Button btnGenerateReport;
+        private System.Windows.Forms.ToolTip ttSearchProductBrands;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn BrandNameColumn;
     }

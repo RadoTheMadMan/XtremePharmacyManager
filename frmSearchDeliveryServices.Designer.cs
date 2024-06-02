@@ -51,7 +51,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSearchDeliveryServices));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlData = new System.Windows.Forms.Panel();
             this.txtPrice = new System.Windows.Forms.TextBox();
             this.btnGenerateReport = new System.Windows.Forms.Button();
@@ -72,6 +73,7 @@
             this.ServicePriceColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deliveryServiceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ttSearchDeliveryServices = new System.Windows.Forms.ToolTip(this.components);
             this.pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.trbPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDeliveryServices)).BeginInit();
@@ -109,6 +111,7 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(100, 22);
             this.txtPrice.TabIndex = 48;
+            this.ttSearchDeliveryServices.SetToolTip(this.txtPrice, "The service price with which you want to search delivery services");
             this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // btnGenerateReport
@@ -122,6 +125,9 @@
             this.btnGenerateReport.Size = new System.Drawing.Size(175, 47);
             this.btnGenerateReport.TabIndex = 47;
             this.btnGenerateReport.Text = "GENERATE REPORT";
+            this.ttSearchDeliveryServices.SetToolTip(this.btnGenerateReport, "When you click the button you generate a report on  an entry based on the permiss" +
+        "ions you have and whether the report definition based on localisation is present" +
+        ".");
             this.btnGenerateReport.UseVisualStyleBackColor = true;
             this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
@@ -152,6 +158,7 @@
             this.cbSearchMode.Size = new System.Drawing.Size(229, 24);
             this.cbSearchMode.TabIndex = 35;
             this.cbSearchMode.Text = "Multiple Criterias";
+            this.ttSearchDeliveryServices.SetToolTip(this.cbSearchMode, resources.GetString("cbSearchMode.ToolTip"));
             // 
             // btnDelete
             // 
@@ -164,6 +171,7 @@
             this.btnDelete.Size = new System.Drawing.Size(90, 47);
             this.btnDelete.TabIndex = 34;
             this.btnDelete.Text = "DELETE";
+            this.ttSearchDeliveryServices.SetToolTip(this.btnDelete, "When you click the button you delete an entry based on the permissions you have.");
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -178,6 +186,8 @@
             this.btnAddOrEdit.Size = new System.Drawing.Size(90, 47);
             this.btnAddOrEdit.TabIndex = 33;
             this.btnAddOrEdit.Text = "ADD/EDIT";
+            this.ttSearchDeliveryServices.SetToolTip(this.btnAddOrEdit, "When you click the button you add/edit an entry based on the permissions you have" +
+        ".");
             this.btnAddOrEdit.UseVisualStyleBackColor = true;
             this.btnAddOrEdit.Click += new System.EventHandler(this.btnAddOrEdit_Click);
             // 
@@ -192,6 +202,8 @@
             this.btnSearch.Size = new System.Drawing.Size(90, 47);
             this.btnSearch.TabIndex = 30;
             this.btnSearch.Text = "SEARCH";
+            this.ttSearchDeliveryServices.SetToolTip(this.btnSearch, "When you click the button you search based on the criterias search mode you selec" +
+        "ted.");
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -205,6 +217,7 @@
             this.trbPrice.Size = new System.Drawing.Size(217, 56);
             this.trbPrice.TabIndex = 21;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.ttSearchDeliveryServices.SetToolTip(this.trbPrice, "The service price with which you want to search delivery services");
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
             // 
             // lblPrice
@@ -227,6 +240,7 @@
             this.txtServiceName.Name = "txtServiceName";
             this.txtServiceName.Size = new System.Drawing.Size(217, 22);
             this.txtServiceName.TabIndex = 4;
+            this.ttSearchDeliveryServices.SetToolTip(this.txtServiceName, "The service name with which you want to search delivery services");
             // 
             // lblServiceName
             // 
@@ -248,6 +262,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(217, 22);
             this.txtID.TabIndex = 2;
+            this.ttSearchDeliveryServices.SetToolTip(this.txtID, "The ID of the selected record entry to be searched is here");
             // 
             // lblID
             // 
@@ -279,18 +294,20 @@
             this.dgvDeliveryServices.MultiSelect = false;
             this.dgvDeliveryServices.Name = "dgvDeliveryServices";
             this.dgvDeliveryServices.ReadOnly = true;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvDeliveryServices.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Franklin Gothic Medium", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvDeliveryServices.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvDeliveryServices.RowHeadersWidth = 51;
             this.dgvDeliveryServices.RowTemplate.Height = 24;
             this.dgvDeliveryServices.Size = new System.Drawing.Size(475, 160);
             this.dgvDeliveryServices.TabIndex = 1;
+            this.ttSearchDeliveryServices.SetToolTip(this.dgvDeliveryServices, "The list of delivery services in the database. Select any to add/edit/delete/gene" +
+        "rate report based on your permissions.");
             this.dgvDeliveryServices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDeliveryServices_CellClick);
             // 
             // IDColumn
@@ -320,6 +337,13 @@
             this.ServicePriceColumn.Name = "ServicePriceColumn";
             this.ServicePriceColumn.ReadOnly = true;
             // 
+            // ttSearchDeliveryServices
+            // 
+            this.ttSearchDeliveryServices.IsBalloon = true;
+            this.ttSearchDeliveryServices.ShowAlways = true;
+            this.ttSearchDeliveryServices.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttSearchDeliveryServices.ToolTipTitle = "Help";
+            // 
             // frmSearchDeliveryServices
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -329,6 +353,9 @@
             this.MaximizeBox = false;
             this.Name = "frmSearchDeliveryServices";
             this.Text = "Delivery Services";
+            this.ttSearchDeliveryServices.SetToolTip(this, "The delivery services window where you can search, add, edit, delete and generate" +
+        " reports on the delivery services. Whether you can do it or not depends on your " +
+        "permissions");
             this.Load += new System.EventHandler(this.frmSearchDeliveryServices_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -367,5 +394,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ServicePriceColumn;
         private System.Windows.Forms.Button btnGenerateReport;
         private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.ToolTip ttSearchDeliveryServices;
     }
 }

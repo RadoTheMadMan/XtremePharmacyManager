@@ -159,6 +159,9 @@
   <metadata name="orderDeliveryBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>263, 58</value>
   </metadata>
+  <metadata name="ttSearchOrderDeliveries.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1016, 54</value>
+  </metadata>
   <metadata name="productBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>447, 17</value>
   </metadata>
@@ -185,6 +188,9 @@ be edited again
 6. The Cargo ID is provided when you generate cargo document
 from your delivery service and is in its header and is used only
 if you want the product to be paid on delivery or delivered in general</value>
+  </data>
+  <data name="cbSearchMode.ToolTip" xml:space="preserve">
+    <value>The search modes with which you want to search entries.\nAll criterias - search by all criterias.\nNone - show all entries.\nSingle criteria - entries that are on one criteria with other criterias excluded.\nMultiple criterias - with multiple criterias but not all criterias included in the search.</value>
   </data>
   <metadata name="productBrandBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>200, 17</value>

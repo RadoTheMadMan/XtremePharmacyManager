@@ -156,6 +156,9 @@
   <metadata name="productOrderBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 58</value>
   </metadata>
+  <metadata name="ttSearchProductOrders.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>263, 58</value>
+  </metadata>
   <metadata name="imgListProductImages.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>661, 22</value>
   </metadata>
@@ -180,6 +183,9 @@ setting it and use your common sense
 5. Orders who are completed, returned or cancelled cannot
 be edited again
 </value>
+  </data>
+  <data name="cbSearchMode.ToolTip" xml:space="preserve">
+    <value>The search modes with which you want to search entries.\nAll criterias - search by all criterias.\nNone - show all entries.\nSingle criteria - entries that are on one criteria with other criterias excluded.\nMultiple criterias - with multiple criterias but not all criterias included in the search.</value>
   </data>
   <metadata name="productBrandBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>200, 17</value>

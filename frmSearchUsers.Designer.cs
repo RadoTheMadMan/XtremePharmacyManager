@@ -55,6 +55,7 @@ namespace XtremePharmacyManager
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSearchUsers));
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.lblID = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
@@ -93,6 +94,7 @@ namespace XtremePharmacyManager
             this.txtBalance = new System.Windows.Forms.TextBox();
             this.btnGenerateReport = new System.Windows.Forms.Button();
             this.lblUserNotice = new System.Windows.Forms.Label();
+            this.ttSearchUsers = new System.Windows.Forms.ToolTip(this.components);
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UsernameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -152,6 +154,8 @@ namespace XtremePharmacyManager
             this.dgvUsers.RowTemplate.Height = 24;
             this.dgvUsers.Size = new System.Drawing.Size(917, 99);
             this.dgvUsers.TabIndex = 1;
+            this.ttSearchUsers.SetToolTip(this.dgvUsers, "The list of product orders in the database. Select any to add/edit/delete/generat" +
+        "e report based on your permissions.");
             this.dgvUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellClick);
             this.dgvUsers.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvUsers_RowsAdded);
             // 
@@ -175,6 +179,7 @@ namespace XtremePharmacyManager
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(258, 22);
             this.txtID.TabIndex = 2;
+            this.ttSearchUsers.SetToolTip(this.txtID, "The ID of the selected record entry to be searched is here");
             // 
             // lblUsername
             // 
@@ -196,6 +201,7 @@ namespace XtremePharmacyManager
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(258, 22);
             this.txtUsername.TabIndex = 4;
+            this.ttSearchUsers.SetToolTip(this.txtUsername, "The username with which you want to search users");
             // 
             // lblPassword
             // 
@@ -217,6 +223,7 @@ namespace XtremePharmacyManager
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(258, 22);
             this.txtPassword.TabIndex = 6;
+            this.ttSearchUsers.SetToolTip(this.txtPassword, "The password with which you want to search users");
             // 
             // lblDisplayName
             // 
@@ -238,6 +245,7 @@ namespace XtremePharmacyManager
             this.txtDisplayName.Name = "txtDisplayName";
             this.txtDisplayName.Size = new System.Drawing.Size(258, 22);
             this.txtDisplayName.TabIndex = 8;
+            this.ttSearchUsers.SetToolTip(this.txtDisplayName, "The display name with which you want to search users");
             // 
             // lblBirthDateFrom
             // 
@@ -259,6 +267,7 @@ namespace XtremePharmacyManager
             this.dtBirthDateFrom.Name = "dtBirthDateFrom";
             this.dtBirthDateFrom.Size = new System.Drawing.Size(251, 22);
             this.dtBirthDateFrom.TabIndex = 10;
+            this.ttSearchUsers.SetToolTip(this.dtBirthDateFrom, "The birth date from which you want to search users");
             // 
             // lblBirthDateTo
             // 
@@ -280,6 +289,7 @@ namespace XtremePharmacyManager
             this.dtBirthDateTo.Name = "dtBirthDateTo";
             this.dtBirthDateTo.Size = new System.Drawing.Size(251, 22);
             this.dtBirthDateTo.TabIndex = 12;
+            this.ttSearchUsers.SetToolTip(this.dtBirthDateTo, "The birth date to which you want to search users");
             // 
             // lblPhone
             // 
@@ -301,6 +311,7 @@ namespace XtremePharmacyManager
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(258, 22);
             this.txtPhone.TabIndex = 14;
+            this.ttSearchUsers.SetToolTip(this.txtPhone, "The phone with which you want to search users");
             // 
             // lblEmail
             // 
@@ -322,6 +333,7 @@ namespace XtremePharmacyManager
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(258, 22);
             this.txtEmail.TabIndex = 16;
+            this.ttSearchUsers.SetToolTip(this.txtEmail, "The email with which you want to search users");
             // 
             // lblAddress
             // 
@@ -344,6 +356,7 @@ namespace XtremePharmacyManager
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(258, 52);
             this.txtAddress.TabIndex = 18;
+            this.ttSearchUsers.SetToolTip(this.txtAddress, "The address with which you want to search users");
             // 
             // lblBalance
             // 
@@ -364,8 +377,9 @@ namespace XtremePharmacyManager
             this.trbBalance.Location = new System.Drawing.Point(592, 18);
             this.trbBalance.Maximum = 5000;
             this.trbBalance.Name = "trbBalance";
-            this.trbBalance.Size = new System.Drawing.Size(259, 62);
+            this.trbBalance.Size = new System.Drawing.Size(259, 56);
             this.trbBalance.TabIndex = 21;
+            this.ttSearchUsers.SetToolTip(this.trbBalance, "The balance with which you want to search users");
             this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
             // 
             // lblDiagnose
@@ -389,6 +403,7 @@ namespace XtremePharmacyManager
             this.txtDiagnose.Name = "txtDiagnose";
             this.txtDiagnose.Size = new System.Drawing.Size(313, 63);
             this.txtDiagnose.TabIndex = 23;
+            this.ttSearchUsers.SetToolTip(this.txtDiagnose, "The diagnose with which you want to search users");
             // 
             // lblRegisterDateFrom
             // 
@@ -410,6 +425,7 @@ namespace XtremePharmacyManager
             this.dtRegisterDateFrom.Name = "dtRegisterDateFrom";
             this.dtRegisterDateFrom.Size = new System.Drawing.Size(229, 22);
             this.dtRegisterDateFrom.TabIndex = 25;
+            this.ttSearchUsers.SetToolTip(this.dtRegisterDateFrom, "The registration date from which you want to search users");
             // 
             // lblRegisterDateTo
             // 
@@ -431,6 +447,7 @@ namespace XtremePharmacyManager
             this.dtRegisterDateTo.Name = "dtRegisterDateTo";
             this.dtRegisterDateTo.Size = new System.Drawing.Size(229, 22);
             this.dtRegisterDateTo.TabIndex = 27;
+            this.ttSearchUsers.SetToolTip(this.dtRegisterDateTo, "The registration date to which you want to search users");
             // 
             // lblRole
             // 
@@ -458,6 +475,7 @@ namespace XtremePharmacyManager
             this.cbRole.Size = new System.Drawing.Size(229, 24);
             this.cbRole.TabIndex = 29;
             this.cbRole.Text = "Employee";
+            this.ttSearchUsers.SetToolTip(this.cbRole, "The role in the system with which you want to search users");
             // 
             // btnSearch
             // 
@@ -470,6 +488,8 @@ namespace XtremePharmacyManager
             this.btnSearch.Size = new System.Drawing.Size(90, 47);
             this.btnSearch.TabIndex = 30;
             this.btnSearch.Text = "SEARCH";
+            this.ttSearchUsers.SetToolTip(this.btnSearch, "When you click the button you search based on the criterias search mode you selec" +
+        "ted.");
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -488,6 +508,7 @@ namespace XtremePharmacyManager
             this.cbSearchMode.Size = new System.Drawing.Size(229, 24);
             this.cbSearchMode.TabIndex = 31;
             this.cbSearchMode.Text = "Multiple Criterias";
+            this.ttSearchUsers.SetToolTip(this.cbSearchMode, resources.GetString("cbSearchMode.ToolTip"));
             // 
             // lblSearchMode
             // 
@@ -512,6 +533,8 @@ namespace XtremePharmacyManager
             this.btnAddOrEdit.Size = new System.Drawing.Size(90, 47);
             this.btnAddOrEdit.TabIndex = 33;
             this.btnAddOrEdit.Text = "ADD/EDIT";
+            this.ttSearchUsers.SetToolTip(this.btnAddOrEdit, "When you click the button you add/edit an entry based on the permissions you have" +
+        ".");
             this.btnAddOrEdit.UseVisualStyleBackColor = true;
             this.btnAddOrEdit.Click += new System.EventHandler(this.btnAddOrEdit_Click);
             // 
@@ -526,6 +549,7 @@ namespace XtremePharmacyManager
             this.btnDelete.Size = new System.Drawing.Size(90, 47);
             this.btnDelete.TabIndex = 34;
             this.btnDelete.Text = "DELETE";
+            this.ttSearchUsers.SetToolTip(this.btnDelete, "When you click the button you delete an entry based on the permissions you have.");
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -582,6 +606,7 @@ namespace XtremePharmacyManager
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.Size = new System.Drawing.Size(47, 22);
             this.txtBalance.TabIndex = 45;
+            this.ttSearchUsers.SetToolTip(this.txtBalance, "The balance with which you want to search users");
             this.txtBalance.TextChanged += new System.EventHandler(this.txtBalance_TextChanged);
             // 
             // btnGenerateReport
@@ -595,6 +620,9 @@ namespace XtremePharmacyManager
             this.btnGenerateReport.Size = new System.Drawing.Size(175, 47);
             this.btnGenerateReport.TabIndex = 44;
             this.btnGenerateReport.Text = "GENERATE REPORT";
+            this.ttSearchUsers.SetToolTip(this.btnGenerateReport, "When you click the button you generate a report on  an entry based on the permiss" +
+        "ions you have and whether the report definition based on localisation is present" +
+        ".");
             this.btnGenerateReport.UseVisualStyleBackColor = true;
             this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
@@ -610,6 +638,15 @@ namespace XtremePharmacyManager
             this.lblUserNotice.Size = new System.Drawing.Size(179, 48);
             this.lblUserNotice.TabIndex = 43;
             this.lblUserNotice.Text = "IMPORTANT NOTICE:\r\nUsername and password\r\nshould be unique\r\n";
+            this.ttSearchUsers.SetToolTip(this.lblUserNotice, "If you are a dumbfuck like my creator read this so you don\'t complain that you ca" +
+        "n\'t change the user data via any operation");
+            // 
+            // ttSearchUsers
+            // 
+            this.ttSearchUsers.IsBalloon = true;
+            this.ttSearchUsers.ShowAlways = true;
+            this.ttSearchUsers.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            this.ttSearchUsers.ToolTipTitle = "Help";
             // 
             // userBindingSource
             // 
@@ -751,6 +788,8 @@ namespace XtremePharmacyManager
             this.MaximizeBox = false;
             this.Name = "frmSearchUsers";
             this.Text = "Users";
+            this.ttSearchUsers.SetToolTip(this, "The users window where you can search, add, edit, delete and generate reports on " +
+        "the users. Whether you can do it or not depends on your permissions");
             this.Load += new System.EventHandler(this.frmSearchUsers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trbBalance)).EndInit();
@@ -804,6 +843,7 @@ namespace XtremePharmacyManager
         private Label lblUserNotice;
         private Button btnGenerateReport;
         private TextBox txtBalance;
+        private ToolTip ttSearchUsers;
         private DataGridViewTextBoxColumn IDColumn;
         private DataGridViewTextBoxColumn UsernameColumn;
         private DataGridViewTextBoxColumn PasswordColumn;
