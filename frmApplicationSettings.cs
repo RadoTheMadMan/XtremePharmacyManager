@@ -175,7 +175,7 @@ namespace XtremePharmacyManager
         {
             //initialize with the preconfigured path
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            folderBrowserDialog.Description = "Select a folder to get the report files from...";
+            folderBrowserDialog.Description = $"{GLOBAL_RESOURCES.APPLICATION_SETTINGS_REPORTS_FOLDER_SELECT_TITLE}";
             folderBrowserDialog.SelectedPath = this.txtReportDirectory.Text;
             if(folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
@@ -187,7 +187,7 @@ namespace XtremePharmacyManager
         {
             //initialize with the preconfigured path
             FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
-            folderBrowserDialog.Description = "Select a folder to save your logins into and load them from....";
+            folderBrowserDialog.Description = $"{GLOBAL_RESOURCES.APPLICATION_SETTINGS_LOGINS_FOLDER_SELECT_TITLE}";
             folderBrowserDialog.SelectedPath = this.txtSavedLoginsDirectory.Text;
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {

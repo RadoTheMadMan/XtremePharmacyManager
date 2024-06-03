@@ -67,7 +67,7 @@ namespace XtremePharmacyManager
             type = BulkOperationType.DEFAULT;
             target_object = (T)Activator.CreateInstance(typeof(T));
             is_silent = true;
-            operation_name = $"{type} operation on {target_object.GetType()}";
+            operation_name = $"{type} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {target_object.GetType()}";
         }
         public BulkOperation(BulkOperationType optype,T obj, bool is_silent)
         {
@@ -77,12 +77,12 @@ namespace XtremePharmacyManager
                 UpdateTargetObject(obj);
             }
             this.is_silent = is_silent;
-            operation_name = $"{type} operation on {target_object.GetType()}";
+            operation_name = $"{type} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {target_object.GetType()}";
         }
 
         public virtual void UpdateName()
         {
-            operation_name = $"{type} operation on {target_object.GetType()}";
+            operation_name = $"{type} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {target_object.GetType()}";
         }
 
         
@@ -120,7 +120,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                success_message = "Sample bulk create task executed successfully.";
+                success_message = $"{GLOBAL_RESOURCES.SAMPLE_BULK_OPERATION_CREATE_TASK_SUCCESS_MESSAGE}";
                 Debug.WriteLineIf(result, success_message);
             }
             catch (Exception ex)
@@ -132,7 +132,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -142,7 +142,7 @@ namespace XtremePharmacyManager
                 if(ex.InnerException != null)
                 {
                     inner_error_code = ex.InnerException.HResult;
-                    error_message += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    error_message += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     stack_trace += ex.InnerException.StackTrace + "\n";
                 }
             }
@@ -155,7 +155,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                success_message = "Sample bulk update task executed successfully.";
+                success_message = $"{GLOBAL_RESOURCES.SAMPLE_BULK_OPERATION_UPDATE_TASK_SUCCESS_MESSAGE}";
                 Debug.WriteLineIf(result, success_message);
             }
             catch (Exception ex)
@@ -167,7 +167,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -177,7 +177,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     inner_error_code = ex.InnerException.HResult;
-                    error_message += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    error_message +=  $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     stack_trace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -191,7 +191,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                success_message = "Sample bulk update task executed successfully.";
+                success_message = $"{GLOBAL_RESOURCES.SAMPLE_BULK_OPERATION_DELETE_TASK_SUCCESS_MESSAGE}";
                 Debug.WriteLineIf(result, success_message);
             }
             catch (Exception ex)
@@ -203,7 +203,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -213,7 +213,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     inner_error_code = ex.InnerException.HResult;
-                    error_message += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    error_message += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     stack_trace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -227,7 +227,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                success_message = "Sample custom bulk task executed successfully.";
+                success_message = $"{GLOBAL_RESOURCES.SAMPLE_BULK_OPERATION_CUSTOM_TASK_SUCCESS_MESSAGE}";
                 Debug.WriteLineIf(result, success_message);
             }
             catch (Exception ex)
@@ -239,7 +239,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -249,7 +249,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     inner_error_code = ex.InnerException.HResult;
-                    error_message += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    error_message += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     stack_trace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -283,7 +283,7 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}:::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (ex.InnerException != null)
                 {
-                    MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -333,13 +333,13 @@ namespace XtremePharmacyManager
         public BulkUserOperation(BulkOperationType type,ref Entities ent, User target_user, bool is_silent) : base(type, target_user, is_silent)
         {
             entities = ent;
-            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{type} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{base.OperationType} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -348,7 +348,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "User has been added.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_USER_OPERATION_CREATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -384,7 +384,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for users is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_USER_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -397,7 +397,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}:::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -407,7 +407,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -421,7 +421,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "User has been updated.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_USER_OPERATION_UPDATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -458,7 +458,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for users is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_USER_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -471,7 +471,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -481,7 +481,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -495,7 +495,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "User has been deleted.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_USER_OPERATION_DELETE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -531,7 +531,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for users is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_USER_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -544,7 +544,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -554,7 +554,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -578,12 +578,12 @@ namespace XtremePharmacyManager
         public BulkProductBrandOperation(BulkOperationType type, ref Entities ent, ProductBrand target_brand, bool is_silent) : base(type, target_brand, is_silent)
         {
             entities = ent;
-            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{type} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{base.OperationType} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -592,7 +592,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Product Brand has been added.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_BRAND_OPERATION_CREATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -612,7 +612,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product brands is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_BRAND_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -625,7 +625,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -635,7 +635,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -649,7 +649,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Product Brand has been updated.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_BRAND_OPERATION_UPDATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -669,7 +669,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product brands is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_BRAND_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -682,7 +682,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -692,7 +692,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -706,7 +706,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Product Brand has been deleted.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_BRAND_OPERATION_DELETE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -726,7 +726,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product brands is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_BRAND_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -739,7 +739,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -749,7 +749,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -773,12 +773,12 @@ namespace XtremePharmacyManager
         public BulkProductVendorOperation(BulkOperationType type, ref Entities ent, ProductVendor target_vendor, bool is_silent) : base(type, target_vendor, is_silent)
         {
             entities = ent;
-            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{type} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{base.OperationType} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -787,7 +787,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Product Vendor has been added.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_VENDOR_OPERATION_CREATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -807,7 +807,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product vendors is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_VENDOR_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -820,7 +820,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -830,7 +830,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -844,7 +844,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Product Vendor has been updated.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_VENDOR_OPERATION_UPDATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -864,7 +864,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product vendors is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_VENDOR_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -877,7 +877,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -887,7 +887,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -901,7 +901,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Product Vendor has been deleted.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_VENDOR_OPERATION_DELETE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -921,7 +921,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product vendors is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_VENDOR_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -934,7 +934,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -944,7 +944,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -968,12 +968,12 @@ namespace XtremePharmacyManager
         public BulkPaymentMethodOperation(BulkOperationType type, ref Entities ent, PaymentMethod target_method, bool is_silent) : base(type, target_method, is_silent)
         {
             entities = ent;
-            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{type} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{base.OperationType} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -982,7 +982,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Payment Method has been added.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_PAYMENT_METHOD_OPERATION_CREATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1002,7 +1002,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for payment methods is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_PAYMENT_METHOD_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1015,7 +1015,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1025,7 +1025,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -1039,7 +1039,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Payment Method has been updated.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_PAYMENT_METHOD_OPERATION_UPDATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1059,7 +1059,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for payment methods is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_PAYMENT_METHOD_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1073,7 +1073,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1083,7 +1083,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -1097,7 +1097,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Payment Method has been deleted.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_PAYMENT_METHOD_OPERATION_DELETE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1117,7 +1117,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for payment methods is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_PAYMENT_METHOD_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1130,7 +1130,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1140,7 +1140,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -1164,12 +1164,12 @@ namespace XtremePharmacyManager
         public BulkDeliveryServiceOperation(BulkOperationType type, ref Entities ent, DeliveryService target_service, bool is_silent) : base(type, target_service, is_silent)
         {
             entities = ent;
-            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{type} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{base.OperationType} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -1178,7 +1178,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Delivery Service has been added.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_DELIVERY_SERVICE_OPERATION_CREATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1199,7 +1199,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for delivery services is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_DELIVERY_SERVICE_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1212,7 +1212,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1222,7 +1222,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -1236,7 +1236,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Delivery Service has been updated.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_DELIVERY_SERVICE_OPERATION_UPDATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1257,7 +1257,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for delivery services is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_DELIVERY_SERVICE_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1270,7 +1270,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1280,7 +1280,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -1294,7 +1294,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Delivery Service has been deleted.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_DELIVERY_SERVICE_OPERATION_DELETE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1315,7 +1315,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for delivery services is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_DELIVERY_SERVICE_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1328,7 +1328,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1338,7 +1338,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -1362,12 +1362,12 @@ namespace XtremePharmacyManager
         public BulkProductOperation(BulkOperationType type, ref Entities ent, Product target_product, bool is_silent) : base(type, target_product, is_silent)
         {
             entities = ent;
-            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{type} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{base.OperationType} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -1376,7 +1376,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Product has been added.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_PRODUCT_OPERATION_CREATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1398,7 +1398,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for products is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_PRODUCT_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1411,7 +1411,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1421,7 +1421,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -1435,7 +1435,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Product has been updated.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_PRODUCT_OPERATION_UPDATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1457,7 +1457,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for products is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_PRODUCT_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1470,7 +1470,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1480,7 +1480,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -1494,7 +1494,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Product has been deleted.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_PRODUCT_OPERATION_DELETE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && base.CurrentUser.UserRole == 0)
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1514,7 +1514,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for products is done only by the administrators of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_PRODUCT_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1527,7 +1527,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1537,7 +1537,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -1561,12 +1561,12 @@ namespace XtremePharmacyManager
         public BulkProductImageOperation(BulkOperationType type, ref Entities ent, ProductImage target_image, bool is_silent) : base(type, target_image, is_silent)
         {
             entities = ent;
-            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{type} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{base.OperationType} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -1575,7 +1575,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Product Image has been added.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_PRODUCT_IMAGE_OPERATION_CREATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1589,7 +1589,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product images is done only by the administrators and employees of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_PRODUCT_IMAGE_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1602,7 +1602,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1612,7 +1612,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -1626,7 +1626,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Product Image has been updated.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_PRODUCT_IMAGE_OPERATION_UPDATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1640,7 +1640,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product images is done only by the administrators and employees of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_PRODUCT_IMAGE_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1653,7 +1653,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1663,7 +1663,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -1677,7 +1677,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Product Image has been deleted.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_PRODUCT_IMAGE_OPERATION_DELETE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1691,7 +1691,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product images is done only by the administrators and employees of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_PRODUCT_IMAGE_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1704,7 +1704,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1714,7 +1714,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -1739,13 +1739,13 @@ namespace XtremePharmacyManager
         public BulkProductOrderOperation(BulkOperationType type, ref Entities ent, ProductOrder target_order, bool add_total_price_override_on_create, bool is_silent) : base(type, target_order, is_silent)
         {
             entities = ent;
-            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{type} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
             this.add_total_price_override_on_create = add_total_price_override_on_create;
         }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{base.OperationType} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -1754,7 +1754,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Product Order has been added.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_PRODUCT_ORDER_OPERATION_CREATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1775,7 +1775,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product orders is done only by the administrators and employees of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_PRODUCT_ORDER_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1789,7 +1789,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1799,7 +1799,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -1813,7 +1813,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Product Order has been updated.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_PRODUCT_ORDER_OPERATION_UPDATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1834,7 +1834,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product orders is done only by the administrators and employees of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_PRODUCT_ORDER_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1848,7 +1848,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1858,7 +1858,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -1872,7 +1872,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Product Order has been deleted.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_PRODUCT_ORDER_OPERATION_DELETE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1892,7 +1892,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for product orders is done only by the administrators and employees of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_PRODUCT_ORDER_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
                 return result;
@@ -1906,7 +1906,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1916,7 +1916,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -1940,12 +1940,12 @@ namespace XtremePharmacyManager
         public BulkOrderDeliveryOperation(BulkOperationType type, ref Entities ent, OrderDelivery target_delivery, bool is_silent) : base(type, target_delivery, is_silent)
         {
             entities = ent;
-            base.OperationName = $"{type} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{type} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         public override void UpdateName()
         {
-            base.OperationName = $"{base.OperationType} operation on {base.TargetObject.GetType()} with ID: {base.TargetObject.ID}";
+            base.OperationName = $"{base.OperationType} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} {base.TargetObject.GetType()} {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_TARGET_ID_NAME} {base.TargetObject.ID}";
         }
 
         protected override async Task<bool> createTask()
@@ -1954,7 +1954,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Order Delivery has been added.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_ORDER_DELIVERY_OPERATION_CREATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -1965,7 +1965,7 @@ namespace XtremePharmacyManager
                         {
                             entities.Entry(entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                         }
-                        //whenever you do an operation on something check if it exist in the database views and reload it in the model
+                        //whenever you do an {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} something check if it exist in the database views and reload it in the model
                         //if it exist in the views and/or the tables
                         ExtendedOrderDeliveriesView od_view = entities.ExtendedOrderDeliveriesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
                         if (od_view != null)
@@ -1976,7 +1976,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for order deliveries is done only by the administrators and employees of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_ORDER_DELIVERY_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -1989,7 +1989,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -1999,7 +1999,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -2013,7 +2013,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Order Delivery has been updated.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_ORDER_DELIVERY_OPERATION_UPDATE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -2024,7 +2024,7 @@ namespace XtremePharmacyManager
                         {
                             entities.Entry(entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                         }
-                        //whenever you do an operation on something check if it exist in the database views and reload it in the model
+                        //whenever you do an {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} something check if it exist in the database views and reload it in the model
                         //if it exist in the views and/or the tables
                         ExtendedOrderDeliveriesView od_view = entities.ExtendedOrderDeliveriesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
                         if (od_view != null)
@@ -2035,7 +2035,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for order deliveries is done only by the administrators and employees of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_ORDER_DELIVERY_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -2048,7 +2048,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -2058,7 +2058,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -2072,7 +2072,7 @@ namespace XtremePharmacyManager
             try
             {
                 result = true;
-                base.SuccessMessage = "Order Delivery has been deleted.";
+                base.SuccessMessage = $"{GLOBAL_RESOURCES.BULK_ORDER_DELIVERY_OPERATION_DELETE_TASK_SUCCESS_MESSAGE}";
                 if (base.CurrentUser != null && (base.CurrentUser.UserRole == 0 || base.CurrentUser.UserRole == 1))
                 {
                     if (entities != null && entities.Database.Connection.State == System.Data.ConnectionState.Open)
@@ -2082,7 +2082,7 @@ namespace XtremePharmacyManager
                         {
                             entities.Entry(entities.OrderDeliveries.Where(x => x.ID == TargetObject.ID).FirstOrDefault()).Reload();
                         }
-                        //whenever you do an operation on something check if it exist in the database views and reload it in the model
+                        //whenever you do an {GLOBAL_RESOURCES.BULK_OPERATION_OPERATION_ON_NAME} something check if it exist in the database views and reload it in the model
                         //if it exist in the views and/or the tables
                         ExtendedOrderDeliveriesView od_view = entities.ExtendedOrderDeliveriesViews.Where(x => x.ID == TargetObject.ID).FirstOrDefault();
                         if (od_view != null)
@@ -2093,7 +2093,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    throw new UnauthorizedAccessException("An access exception occured and this operation cannot be executed.", new Exception("Executing bulk operations for order deliveries is done only by the administrators and employees of this system.."));
+                    throw new UnauthorizedAccessException($"{GLOBAL_RESOURCES.BULK_OPERATION_UNAUTHORISED_ERROR_MESSAGE}", new Exception($"{GLOBAL_RESOURCES.BULK_ORDER_DELIVERY_OPERATION_UNAUTHORISED_ERROR_MESSAGE}"));
                 }
                 Debug.WriteLineIf(result, base.SuccessMessage);
             }
@@ -2106,7 +2106,7 @@ namespace XtremePharmacyManager
                         MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         if (ex.InnerException != null)
                         {
-                            MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     });
                 }
@@ -2116,7 +2116,7 @@ namespace XtremePharmacyManager
                 if (ex.InnerException != null)
                 {
                     base.InnerErrorCode = ex.InnerException.HResult;
-                    base.ErrorMessage += "Inner exception details:\n" + ex.InnerException.Message + "\n";
+                    base.ErrorMessage += $"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS} {ex.InnerException.Message}\n";
                     base.StackTrace += ex.InnerException.StackTrace + "\n";
                 }
                 result = false;
@@ -2218,21 +2218,21 @@ namespace XtremePharmacyManager
             {
                 if (bulk_operations != null && bulk_operations.Count > 0)
                 {
-                    operation_log = $"Operations started executing at: {startTime.ToShortTimeString()}\n";
+                    operation_log = $"{GLOBAL_RESOURCES.BULK_OPERATION_START_TIME_MESSAGE} {startTime.ToShortTimeString()}\n";
                     foreach (BulkOperation<T> bulk_operation in bulk_operations)
                     {
                         bool result = await bulk_operation.Execute();
-                        operation_log += $"Executing operation: {bulk_operation.OperationName}\n";
+                        operation_log += $"{GLOBAL_RESOURCES.BULK_OPERATION_EXECUTING_MESSAGE} {bulk_operation.OperationName}\n";
                         if (result == true)
                         {
                             completed_operations++;
-                            operation_log += $"Operation successful.Output: {bulk_operation.SuccessMessage}\n";
+                            operation_log += $"{GLOBAL_RESOURCES.BULK_OPERATION_SUCCESSFUL_MESSAGE} {bulk_operation.SuccessMessage}\n";
                         }
                         else
                         {
                             failed_operations++;
-                            operation_log += $"Operation failed. Here are details:\nError Code:{bulk_operation.ErrorCode}\n" +
-                                $"ErrorMessage:{bulk_operation.ErrorMessage}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}: {bulk_operation.StackTrace}\n";
+                            operation_log += $"{GLOBAL_RESOURCES.BULK_OPERATION_FAILED_MESSAGE}\n{GLOBAL_RESOURCES.BULK_OPERATION_ERROR_CODE_MESSAGE}{bulk_operation.ErrorCode}\n" +
+                                $"{GLOBAL_RESOURCES.BULK_OPERATION_ERROR_MESSAGE}{bulk_operation.ErrorMessage}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}: {bulk_operation.StackTrace}\n";
                         }
                         bulk_operation.Dispose();
                     }
@@ -2243,9 +2243,9 @@ namespace XtremePharmacyManager
                 }
                 endTime = DateTime.Now;
                 deltaTime = endTime - startTime;
-                operation_log += $"Operations finished. Time finished:{endTime.ToShortTimeString()}";
+                operation_log += $"{GLOBAL_RESOURCES.BULK_OPERATION_END_TIME_MESSAGE}{endTime.ToShortTimeString()}";
                 bulk_operations.Clear();
-                result = $"Operations Results: Completed Operations: {completed_operations} Failed Operations: {failed_operations} Execution Time: {deltaTime}";
+                result = $"{GLOBAL_RESOURCES.BULK_OPERATION_RESULTS_MESSAGE} {GLOBAL_RESOURCES.BULK_OPERATION_COMPLETED_COUNT_MESSAGE} {completed_operations} {GLOBAL_RESOURCES.BULK_OPERATION_FAILED_COUNT_MESSAGE} {failed_operations} {GLOBAL_RESOURCES.BULK_OPERATION_EXECUTION_TIME_MESSAGE} {deltaTime}";
                 BulkOperationEventArgs<T> ev_args = new BulkOperationEventArgs<T>();
                 ev_args.OperationsList = bulk_operations;
                 ev_args.CompletedOperations = completed_operations;
@@ -2260,7 +2260,7 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (ex.InnerException != null)
                 {
-                    MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }  
             }
         }
@@ -2288,7 +2288,7 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (ex.InnerException != null)
                 {
-                    MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -2317,7 +2317,7 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (ex.InnerException != null)
                 {
-                    MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -2367,7 +2367,7 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (ex.InnerException != null)
                 {
-                    MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -2419,7 +2419,7 @@ namespace XtremePharmacyManager
                 MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_MESSAGE}::{ex.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 if (ex.InnerException != null)
                 {
-                    MessageBox.Show($"Inner exception details:{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.CRITICAL_ERROR_INNER_EXCEPTION_DETAILS}{ex.InnerException.Message}\n{GLOBAL_RESOURCES.STACK_TRACE_MESSAGE}:{ex.InnerException.StackTrace}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

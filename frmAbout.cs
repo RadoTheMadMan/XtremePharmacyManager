@@ -98,9 +98,9 @@ namespace XtremePharmacyManager
 
         private void frmAbout_Load(object sender, EventArgs e)
         {
-            this.Text = String.Format("About {0}", AssemblyTitle);
+            this.Text = String.Format($"{GLOBAL_RESOURCES.ABOUT_TITLE}: {AssemblyTitle}");
             this.labelProductName.Text = AssemblyProduct;
-            this.labelVersion.Text = String.Format("Version {0}", AssemblyVersion);
+            this.labelVersion.Text = String.Format($"{GLOBAL_RESOURCES.VERSION_TITLE} {AssemblyVersion}");
             this.labelCopyright.Text = AssemblyCopyright;
             this.labelCompanyName.Text = AssemblyCompany;
             this.textBoxDescription.Text = AssemblyDescription;

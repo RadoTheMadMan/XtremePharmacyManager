@@ -71,7 +71,7 @@ namespace XtremePharmacyManager
                     manager_entities.Entry(manager_entities.ProductVendors.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
                 }
                 cbSelectRecord.DataSource = entries;
-                lblOperationResults.Text = "Operation Results: ";
+                lblOperationResults.Text = $"{GLOBAL_RESOURCES.LBL_BULK_OPERATION_RESULTS_TEXT}";
                 txtOperationLogs.Text = "";
             }
             catch (Exception ex)
@@ -132,7 +132,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show("You don't have permissions to use bulk operations for product vendors.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.BULK_VENDOR_OPERATION_NO_PERMISSION_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 selected_target = null;
                 selected_operation = null;
@@ -164,7 +164,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show("You don't have permissions to use bulk operations for product vendors.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.BULK_VENDOR_OPERATION_NO_PERMISSION_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 selected_target = null;
                 selected_operation = null;
@@ -193,7 +193,7 @@ namespace XtremePharmacyManager
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                     cbSelectRecord.SelectedValue = selected_target.ID;
                 }
-                lblOperationResults.Text = "Operation Results: ";
+                lblOperationResults.Text = $"{GLOBAL_RESOURCES.LBL_BULK_OPERATION_RESULTS_TEXT}";
                 txtOperationLogs.Text = "";
             }
             catch (Exception ex)
@@ -218,7 +218,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show("You don't have permissions to use bulk operations for product vendors.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.BULK_VENDOR_OPERATION_NO_PERMISSION_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 selected_target = null;
                 selected_operation = null;
@@ -242,7 +242,7 @@ namespace XtremePharmacyManager
                     }
                     else
                     {
-                        MessageBox.Show("You don't have permissions to use bulk operations for product vendors.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.BULK_VENDOR_OPERATION_NO_PERMISSION_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     selected_target = null;
                     selected_operation = null;
@@ -278,7 +278,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show("You don't have permissions to use bulk operations for product vendors.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.BULK_VENDOR_OPERATION_NO_PERMISSION_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 selected_target = null;
                 selected_operation = null;

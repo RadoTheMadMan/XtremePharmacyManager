@@ -29,7 +29,7 @@ namespace XtremePharmacyManager
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Images|*.png*;*.bmp*;*.jpg*;*.jpeg*;*.jfif*";
             ofd.Multiselect = false;
-            ofd.Title = "Select an image to upload or for add/update operation";
+            ofd.Title = $"{GLOBAL_RESOURCES.IMAGE_UPLOAD_FOR_OPERATION_TITLE}";
             if (target != null)
             {
                 if (ofd.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(ofd.FileName))
@@ -68,8 +68,11 @@ namespace XtremePharmacyManager
                     target.ID = Int32.Parse(txtID.Text);
                     target.ImageName = txtImageName.Text;
                     target.ProductID = Int32.Parse(cbSelectProduct.SelectedValue.ToString());
-                    ConvertImageToBinary((Bitmap)pbProductImageData.Image, out imageBytes);
-                    target.ImageData = imageBytes;
+                    if ((Bitmap)pbProductImageData.Image != null)
+                    {
+                        ConvertImageToBinary((Bitmap)pbProductImageData.Image, out imageBytes);
+                        target.ImageData = imageBytes;
+                    }
                 }
             }
             catch (Exception ex)
@@ -88,8 +91,11 @@ namespace XtremePharmacyManager
                     target.ID = Int32.Parse(txtID.Text);
                     target.ImageName = txtImageName.Text;
                     target.ProductID = Int32.Parse(cbSelectProduct.SelectedValue.ToString());
-                    ConvertImageToBinary((Bitmap)pbProductImageData.Image, out imageBytes);
-                    target.ImageData = imageBytes;
+                    if ((Bitmap)pbProductImageData.Image != null)
+                    {
+                        ConvertImageToBinary((Bitmap)pbProductImageData.Image, out imageBytes);
+                        target.ImageData = imageBytes;
+                    }
                 }
             }
             catch (Exception ex)

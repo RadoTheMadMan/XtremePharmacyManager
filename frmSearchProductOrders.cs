@@ -280,7 +280,7 @@ namespace XtremePharmacyManager
                                     if (MessageBox.Show($"{GLOBAL_RESOURCES.BULK_OPERATION_QUESTION}", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
                                         //on user prompt add a silent operation by default
-                                        if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                        if (MessageBox.Show($"{GLOBAL_RESOURCES.BULK_PRODUCT_ORDER_TOTAL_PRICE_OVERRIDE_QUESTION}", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                         {
                                             OverridePriceAsTotal = true;
                                             manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.UPDATE, ref ent, selectedOrder, OverridePriceAsTotal, true));
@@ -303,7 +303,7 @@ namespace XtremePharmacyManager
                                     if (ent.Database.Connection.State == ConnectionState.Open)
                                     {
                                         bool OverridePriceAsTotal = false;
-                                        res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                        res = MessageBox.Show($"{GLOBAL_RESOURCES.PRODUCT_ORDER_TOTAL_PRICE_OVERRIDE_QUESTION}", $"{GLOBAL_RESOURCES.NEW_ORDER_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                         if (res == DialogResult.Yes)
                                         {
                                             OverridePriceAsTotal = true;
@@ -334,7 +334,7 @@ namespace XtremePharmacyManager
                                     if (MessageBox.Show($"{GLOBAL_RESOURCES.BULK_OPERATION_QUESTION}", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
                                         //on user prompt add a silent operation by default
-                                        if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                        if (MessageBox.Show($"{GLOBAL_RESOURCES.BULK_PRODUCT_ORDER_TOTAL_PRICE_OVERRIDE_QUESTION}", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                         {
                                             OverridePriceAsTotal = true;
                                             manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, OverridePriceAsTotal, true));
@@ -358,7 +358,7 @@ namespace XtremePharmacyManager
                                 if (ent.Database.Connection.State == ConnectionState.Open)
                                 {
                                     bool OverridePriceAsTotal = false;
-                                    res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                    res = MessageBox.Show($"{GLOBAL_RESOURCES.PRODUCT_ORDER_TOTAL_PRICE_OVERRIDE_QUESTION}", $"{GLOBAL_RESOURCES.NEW_ORDER_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                                     if (res == DialogResult.Yes)
                                     {
                                         OverridePriceAsTotal = true;
@@ -389,7 +389,7 @@ namespace XtremePharmacyManager
                                 if (MessageBox.Show($"{GLOBAL_RESOURCES.BULK_OPERATION_QUESTION}", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                 {
                                     //on user prompt add a silent operation by default
-                                    if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                    if (MessageBox.Show($"{GLOBAL_RESOURCES.BULK_PRODUCT_ORDER_TOTAL_PRICE_OVERRIDE_QUESTION}", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
                                         OverridePriceAsTotal = true;
                                         manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, OverridePriceAsTotal, true));
@@ -414,7 +414,7 @@ namespace XtremePharmacyManager
                         if (ent.Database.Connection.State == ConnectionState.Open)
                         {
                             bool OverridePriceAsTotal = false;
-                            res = MessageBox.Show("Do you want to override the price of that order as total?", "New Order", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            res = MessageBox.Show($"{GLOBAL_RESOURCES.PRODUCT_ORDER_TOTAL_PRICE_OVERRIDE_QUESTION}", $"{GLOBAL_RESOURCES.NEW_ORDER_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (res == DialogResult.Yes)
                             {
                                 OverridePriceAsTotal = true;
@@ -445,7 +445,7 @@ namespace XtremePharmacyManager
                         if (MessageBox.Show($"{GLOBAL_RESOURCES.BULK_OPERATION_QUESTION}", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
                             //on user prompt add a silent operation by default
-                            if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                            if (MessageBox.Show($"{GLOBAL_RESOURCES.BULK_PRODUCT_ORDER_TOTAL_PRICE_OVERRIDE_QUESTION}", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                             {
                                 OverridePriceAsTotal = true;
                                 manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.ADD, ref ent, selectedOrder, OverridePriceAsTotal, true));
@@ -460,7 +460,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show($"You don't have permissions to add/edit product orders.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.PRODUCT_ORDER_EDIT_OPERATION_PERMISSION_ERROR}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 logger.RefreshLogs();
             }
@@ -496,8 +496,7 @@ namespace XtremePharmacyManager
                             {
                                 //Show the editor window to delete the selected product order or whatever it is
                                 //on dialog result yes update it
-                                DialogResult res = MessageBox.Show("Are you sure you want to delete this record?\nThis operation is irreversible and can cause " +
-                                "troubles in the database relations.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                                DialogResult res = MessageBox.Show($"{GLOBAL_RESOURCES.RECORD_DELETION_WARNING}", $"{GLOBAL_RESOURCES.WARNING_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                                 if (res == DialogResult.Yes)
                                 {
                                     if (ent.Database.Connection.State == ConnectionState.Open)
@@ -521,7 +520,7 @@ namespace XtremePharmacyManager
                                     if (MessageBox.Show($"{GLOBAL_RESOURCES.BULK_OPERATION_QUESTION}", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                     {
                                         //on user prompt add a silent operation by default
-                                        if (MessageBox.Show("Do you want the bulk order operation to add order with total price override on create?", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                                        if (MessageBox.Show($"{GLOBAL_RESOURCES.BULK_PRODUCT_ORDER_TOTAL_PRICE_OVERRIDE_QUESTION}", $"{GLOBAL_RESOURCES.BULK_OPERATIONS_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                                         {
                                             OverridePriceAsTotal = true;
                                             manager.AddOperation(new BulkProductOrderOperation(BulkOperationType.DELETE, ref ent, selectedOrder, OverridePriceAsTotal, true));
@@ -539,7 +538,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show($"You don't have permissions to delete product orders.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.PRODUCT_ORDER_DELETE_OPERATION_PERMISSION_ERROR}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 logger.RefreshLogs();
             }
@@ -722,7 +721,7 @@ namespace XtremePharmacyManager
             {
                 if (current_user.UserRole == 0 || current_user.UserRole == 1)
                 {
-                    if (MessageBox.Show("Do you want to generate invoice for this product order?", "Report Generation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                    if (MessageBox.Show($"{GLOBAL_RESOURCES.PRODUCT_ORDER_INVOICE_GENERATION_QUESTION}", $"{GLOBAL_RESOURCES.REPORT_GENERATION_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                         == DialogResult.Yes)
                     {
                         IsInvoice = true;
@@ -808,7 +807,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show($"Product order reports cannot be generated or you don't have permissions to view them", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.REPORT_GENERATION_PERMISSION_ERROR}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)

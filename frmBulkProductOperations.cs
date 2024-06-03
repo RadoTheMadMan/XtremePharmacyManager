@@ -109,7 +109,7 @@ namespace XtremePharmacyManager
                     manager_entities.Entry(manager_entities.ProductVendors.Where(x => x.ID == entry.ID).FirstOrDefault()).Reload();
                 }
                 cbVendor.DataSource = vendor_entries;
-                lblOperationResults.Text = "Operation Results: ";
+                lblOperationResults.Text = $"{GLOBAL_RESOURCES.LBL_BULK_OPERATION_RESULTS_TEXT}";
                 txtOperationLogs.Text = "";
             }
             catch (Exception ex)
@@ -217,7 +217,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show("You don't have permissions to use bulk operations for products.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.BULK_PRODUCT_OPERATION_NO_PERMISSION_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 selected_target = null;
                 selected_operation = null;
@@ -258,7 +258,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show("You don't have permissions to use bulk operations for products.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.BULK_PRODUCT_OPERATION_NO_PERMISSION_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 selected_target = null;
                 selected_operation = null;
@@ -298,7 +298,7 @@ namespace XtremePharmacyManager
                     cbOperationType.SelectedIndex = (int)selected_operation.OperationType;
                     checkSilentOperation.Checked = selected_operation.IsSilent;
                 }
-                lblOperationResults.Text = "Operation Results: ";
+                lblOperationResults.Text = $"{GLOBAL_RESOURCES.LBL_BULK_OPERATION_RESULTS_TEXT}";
                 txtOperationLogs.Text = "";
             }
             catch (Exception ex)
@@ -332,7 +332,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show("You don't have permissions to use bulk operations for products.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.BULK_PRODUCT_OPERATION_NO_PERMISSION_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 selected_target = null;
                 selected_operation = null;
@@ -356,7 +356,7 @@ namespace XtremePharmacyManager
                     }
                     else
                     {
-                        MessageBox.Show("You don't have permissions to use bulk operations for products.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.BULK_PRODUCT_OPERATION_NO_PERMISSION_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     selected_target = null;
                     selected_operation = null;
@@ -401,7 +401,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show("You don't have permissions to use bulk operations for products.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.BULK_PRODUCT_OPERATION_NO_PERMISSION_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 selected_target = null;
                 selected_operation = null;

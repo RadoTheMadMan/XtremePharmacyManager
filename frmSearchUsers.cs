@@ -322,7 +322,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show($"You don't have permissions to add/edit users besides your own account.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.USER_EDIT_OPERATION_PERMISSION_ERROR}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 logger.RefreshLogs();
             }
@@ -355,8 +355,7 @@ namespace XtremePharmacyManager
                             {
                                 //Show the editor window to edit the selected user
                                 //on dialog result yes update it
-                                DialogResult res = MessageBox.Show("Are you sure you want to delete this record?\nThis operation is irreversible and can cause " +
-                                "troubles in the database relations.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                                DialogResult res = MessageBox.Show($"{GLOBAL_RESOURCES.RECORD_DELETION_WARNING}", $"{GLOBAL_RESOURCES.WARNING_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                                 if (res == DialogResult.Yes)
                                 {
                                     if (ent.Database.Connection.State == ConnectionState.Open)
@@ -397,7 +396,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show($"You don't have permissions to delete users besides your own account.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.USER_DELETE_OPERATION_PERMISSION_ERROR}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 logger.RefreshLogs();
             }
@@ -607,7 +606,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show($"User reports cannot be generated or you don't have permissions to view them", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Reports cannot be generated or you don't have permissions to view them", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)

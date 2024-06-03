@@ -100,7 +100,7 @@ namespace XtremePharmacyManager
                     if ((node.Attributes["LanguageName"] != null && node.Attributes["LanguageName"].Value.Contains(DisplayName)) &&
                         (node.Attributes["LanguageCode"] != null && node.Attributes["LanguageCode"].Value.Contains(LanguageCode)))
                     {
-                        MessageBox.Show($"This language already exists!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.LANGUAGE_MANAGER_LANGUAGE_EXIST_ERROR_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
@@ -136,7 +136,7 @@ namespace XtremePharmacyManager
                     if ((node.Attributes["LanguageName"] != null && node.Attributes["LanguageName"].Value.Contains(lang.DisplayName)) &&
                         (node.Attributes["LanguageCode"] != null && node.Attributes["LanguageCode"].Value.Contains(lang.LanguageCode)))
                     {
-                        MessageBox.Show($"This language already exists!", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show($"{GLOBAL_RESOURCES.LANGUAGE_MANAGER_LANGUAGE_EXIST_ERROR_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
@@ -183,7 +183,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show($"This language wasn't added in the first place or was removed", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.LANGUAGE_MANAGER_LANGUAGE_NONEXISTENT_ERROR_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 using (FileStream fs = new FileStream(Path.GetFullPath(Application.StartupPath + "/Language.xml"), FileMode.Create, FileAccess.Write))
@@ -225,7 +225,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show($"This language wasn't added in the first place or was removed", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.LANGUAGE_MANAGER_LANGUAGE_NONEXISTENT_ERROR_MESSAGE}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 using (FileStream fs = new FileStream(Path.GetFullPath(Application.StartupPath + "/Language.xml"), FileMode.Create, FileAccess.Write))

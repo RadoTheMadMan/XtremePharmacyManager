@@ -1,11 +1,12 @@
 ﻿using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using XtremePharmacyManager;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("XtremePharmacyManager")]
+[assembly: AssemblyTitle("XTremePharmacyManager")]
 [assembly: AssemblyDescription("A robust pharmacy management program with SQL Server-based database and Entity model, regular and bulk operations" +
                               "and role-based access control anywhere in the form. Its login system is tightly bound to the database's login system and even if" +
                               "you login with a system administrator account which is not recommended if you aren't in the user list of the database you won't be" +
@@ -17,7 +18,7 @@ using System.Runtime.InteropServices;
                               "out of it, however, please, at least put my name in the credits as well and I hope you make a better version of it. RadoTheMadMan out!\r\n")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("XtremePharmacyManager")]
+[assembly: AssemblyProduct("XTremePharmacyManager")]
 [assembly: AssemblyCopyright("Copyright © 2024 Radoslav Dimitrov/RadoTheMadMan")]
 [assembly: AssemblyTrademark("Copyright © 2024 Radoslav Dimitrov/RadoTheMadMan\r\n\r\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\r\n\r\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\r\n\r\nTHE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.")]
 [assembly: AssemblyCulture("")]
@@ -25,7 +26,7 @@ using System.Runtime.InteropServices;
 // Setting ComVisible to false makes the types in this assembly not visible
 // to COM components.  If you need to access a type in this assembly from
 // COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(false)]
+[assembly: ComVisible(true)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid("4945c02a-7526-4327-9269-bd1d23e2cff4")]

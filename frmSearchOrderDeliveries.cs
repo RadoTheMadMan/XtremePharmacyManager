@@ -373,7 +373,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show($"You don't have permissions to add/edit order deliveries.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.ORDER_DELIVERY_EDIT_OPERATION_PERMISSION_ERROR}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 logger.RefreshLogs();
             }
@@ -409,8 +409,7 @@ namespace XtremePharmacyManager
                             {
                                 //Show the editor window to edit the selected user
                                 //on dialog result yes update it
-                                DialogResult res = MessageBox.Show("Are you sure you want to delete this record?\nThis operation is irreversible and can cause " +
-                                "troubles in the database relations.", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                                DialogResult res = MessageBox.Show($"{GLOBAL_RESOURCES.RECORD_DELETION_WARNING}", $"{GLOBAL_RESOURCES.WARNING_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                                 if (res == DialogResult.Yes)
                                 {
                                     if (ent.Database.Connection.State == ConnectionState.Open)
@@ -443,7 +442,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show($"You don't have permissions to delete order deliveries.", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.ORDER_DELIVERY_DELETE_OPERATION_PERMISSION_ERROR}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 logger.RefreshLogs();
             }
@@ -624,7 +623,7 @@ namespace XtremePharmacyManager
             {
                 if (current_user.UserRole == 0 || current_user.UserRole == 1)
                 {
-                    if (MessageBox.Show("Do you want to generate invoice for this order delivery?", "Report Generation", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                    if (MessageBox.Show($"{GLOBAL_RESOURCES.ORDER_DELIVERY_INVOICE_GENERATION_QUESTION}", $"{GLOBAL_RESOURCES.REPORT_GENERATION_TITLE}", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
                         == DialogResult.Yes)
                     {
                         IsInvoice = true;
@@ -710,7 +709,7 @@ namespace XtremePharmacyManager
                 }
                 else
                 {
-                    MessageBox.Show($"Order delivery reports cannot be generated or you don't have permissions to view them", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"{GLOBAL_RESOURCES.REPORT_GENERATION_PERMISSION_ERROR}", $"{GLOBAL_RESOURCES.CRITICAL_ERROR_TITLE}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)

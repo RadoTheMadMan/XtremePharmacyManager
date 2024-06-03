@@ -53,7 +53,7 @@ namespace XtremePharmacyManager.Properties.DataSources
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.Filter = "Images|*.png*;*.bmp*;*.jpg*;*.jpeg*;*.jfif*";
                 ofd.Multiselect = false;
-                ofd.Title = "Select an image to upload or for add/update operation";
+                ofd.Title = $"{GLOBAL_RESOURCES.IMAGE_BIN_CONVERTER_CONVERT_IMAGE_TITLE}";
                 if (ofd.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(ofd.FileName))
                 {
                     target_image = new Bitmap(ofd.FileName);

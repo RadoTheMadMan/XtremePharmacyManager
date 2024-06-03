@@ -36,7 +36,7 @@ namespace XtremePharmacyManager
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Filter = "Images|*.png*;*.bmp*;*.jpg*;*.jpeg*;*.jfif*";
             ofd.Multiselect = false;
-            ofd.Title = "Select an image to upload or for add/update operation";
+            ofd.Title = $"{GLOBAL_RESOURCES.IMAGE_UPLOAD_FOR_OPERATION_TITLE}";
             if(target != null)
             {
                 if(ofd.ShowDialog() == DialogResult.OK && !String.IsNullOrEmpty(ofd.FileName))
@@ -89,8 +89,11 @@ namespace XtremePharmacyManager
                     target.UserPhone = txtPhone.Text;
                     target.UserEmail = txtEmail.Text;
                     target.UserAddress = txtAddress.Text;
-                    ConvertImageToBinary((Bitmap)pbUserProfilePic.Image, out imageBytes);
-                    target.UserProfilePic = imageBytes;
+                    if ((Bitmap)pbUserProfilePic.Image != null)
+                    {
+                        ConvertImageToBinary((Bitmap)pbUserProfilePic.Image, out imageBytes);
+                        target.UserProfilePic = imageBytes;
+                    }
                     target.UserBalance = trbBalance.Value;
                     target.UserDiagnose = txtDiagnose.Text;
                     target.UserRole = cbRole.SelectedIndex;
@@ -117,8 +120,11 @@ namespace XtremePharmacyManager
                     target.UserPhone = txtPhone.Text;
                     target.UserEmail = txtEmail.Text;
                     target.UserAddress = txtAddress.Text;
-                    ConvertImageToBinary((Bitmap)pbUserProfilePic.Image, out imageBytes);
-                    target.UserProfilePic = imageBytes;
+                    if ((Bitmap)pbUserProfilePic.Image != null)
+                    {
+                        ConvertImageToBinary((Bitmap)pbUserProfilePic.Image, out imageBytes);
+                        target.UserProfilePic = imageBytes;
+                    }
                     target.UserBalance = trbBalance.Value;
                     target.UserDiagnose = txtDiagnose.Text;
                     target.UserRole = cbRole.SelectedIndex;
