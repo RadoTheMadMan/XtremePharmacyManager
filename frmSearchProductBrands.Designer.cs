@@ -109,7 +109,7 @@
             this.btnGenerateReport.Name = "btnGenerateReport";
             this.btnGenerateReport.Size = new System.Drawing.Size(175, 47);
             this.btnGenerateReport.TabIndex = 45;
-            this.btnGenerateReport.Text = "GENERATE REPORT";
+            this.btnGenerateReport.Text = GLOBAL_RESOURCES.BTN_GENERATE_REPORT_TITLE;
             this.ttSearchProductBrands.SetToolTip(this.btnGenerateReport, "When you click the button you generate a report on  an entry based on the permiss" +
         "ions you have and whether the report definition based on localisation is present" +
         ".");
@@ -126,7 +126,7 @@
             this.lblSearchMode.Name = "lblSearchMode";
             this.lblSearchMode.Size = new System.Drawing.Size(103, 16);
             this.lblSearchMode.TabIndex = 36;
-            this.lblSearchMode.Text = "Search Mode:";
+            this.lblSearchMode.Text = GLOBAL_RESOURCES.LBL_SEARCH_MODE_TITLE;
             // 
             // cbSearchMode
             // 
@@ -134,16 +134,16 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.cbSearchMode.FormattingEnabled = true;
             this.cbSearchMode.Items.AddRange(new object[] {
-            "None",
-            "Single Criteria",
-            "Multiple Criterias",
-            "All Criterias"});
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_NONE,
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_SINGLE,
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_MULTIPLE,
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_ALL});
             this.cbSearchMode.Location = new System.Drawing.Point(131, 184);
             this.cbSearchMode.Name = "cbSearchMode";
             this.cbSearchMode.Size = new System.Drawing.Size(225, 24);
             this.cbSearchMode.TabIndex = 35;
-            this.cbSearchMode.Text = "Multiple Criterias";
-            this.ttSearchProductBrands.SetToolTip(this.cbSearchMode, resources.GetString("cbSearchMode.ToolTip"));
+            this.cbSearchMode.Text = GLOBAL_RESOURCES.LBL_SEARCH_MODE_MULTIPLE;
+            this.ttSearchProductBrands.SetToolTip(this.cbSearchMode, GLOBAL_RESOURCES.CB_SEARCH_MODE_TOOLTIP_TITLE);
             // 
             // btnDelete
             // 
@@ -155,8 +155,8 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(90, 47);
             this.btnDelete.TabIndex = 34;
-            this.btnDelete.Text = "DELETE";
-            this.ttSearchProductBrands.SetToolTip(this.btnDelete, "When you click the button you delete an entry based on the permissions you have.");
+            this.btnDelete.Text = GLOBAL_RESOURCES.BTN_DELETE_TITLE;
+            this.ttSearchProductBrands.SetToolTip(this.btnDelete, GLOBAL_RESOURCES.BTN_DELETE_TOOLTIP_TITLE);
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -170,8 +170,8 @@
             this.btnAddOrEdit.Name = "btnAddOrEdit";
             this.btnAddOrEdit.Size = new System.Drawing.Size(90, 47);
             this.btnAddOrEdit.TabIndex = 33;
-            this.btnAddOrEdit.Text = "ADD/EDIT";
-            this.ttSearchProductBrands.SetToolTip(this.btnAddOrEdit, "When you click the button you add/edit an entry based on the permissions you have" +
+            this.btnAddOrEdit.Text = GLOBAL_RESOURCES.BTN_ADD_EDIT_TITLE;
+            this.ttSearchProductBrands.SetToolTip(this.btnAddOrEdit, GLOBAL_RESOURCES.BTN_ADD_EDIT_TOOLTIP_TITLE +
         ".");
             this.btnAddOrEdit.UseVisualStyleBackColor = true;
             this.btnAddOrEdit.Click += new System.EventHandler(this.btnAddOrEdit_Click);
@@ -186,9 +186,8 @@
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(90, 47);
             this.btnSearch.TabIndex = 30;
-            this.btnSearch.Text = "SEARCH";
-            this.ttSearchProductBrands.SetToolTip(this.btnSearch, "When you click the button you search based on the criterias search mode you selec" +
-        "ted.");
+            this.btnSearch.Text = GLOBAL_RESOURCES.BTN_SEARCH_TITLE;
+            this.ttSearchProductBrands.SetToolTip(this.btnSearch, GLOBAL_RESOURCES.BTN_SEARCH_TOOLTIP_TITLE);
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -222,7 +221,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(225, 22);
             this.txtID.TabIndex = 2;
-            this.ttSearchProductBrands.SetToolTip(this.txtID, "The ID of the selected record entry to be searched is here");
+            this.ttSearchProductBrands.SetToolTip(this.txtID, GLOBAL_RESOURCES.ID_SEARCH_TOOLTIP_TITLE);
             // 
             // lblID
             // 
@@ -234,7 +233,7 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // dgvProductBrands
             // 
@@ -274,7 +273,7 @@
             this.ttSearchProductBrands.IsBalloon = true;
             this.ttSearchProductBrands.ShowAlways = true;
             this.ttSearchProductBrands.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttSearchProductBrands.ToolTipTitle = "Help";
+            this.ttSearchProductBrands.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // productBrandBindingSource
             // 
@@ -287,8 +286,8 @@
             // IDColumn
             // 
             this.IDColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IDColumn.DataPropertyName = "ID";
-            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.DataPropertyName = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.IDColumn.HeaderText = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.IDColumn.MinimumWidth = 6;
             this.IDColumn.Name = "IDColumn";
             this.IDColumn.ReadOnly = true;

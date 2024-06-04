@@ -53,7 +53,7 @@
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.lblPhone = new System.Windows.Forms.Label();
             this.dtBirthDate = new System.Windows.Forms.DateTimePicker();
-            this.lblBirthDateFrom = new System.Windows.Forms.Label();
+            this.lblBirthDate = new System.Windows.Forms.Label();
             this.txtDisplayName = new System.Windows.Forms.TextBox();
             this.lblDisplayName = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -91,7 +91,7 @@
             this.pnlData.Controls.Add(this.txtPhone);
             this.pnlData.Controls.Add(this.lblPhone);
             this.pnlData.Controls.Add(this.dtBirthDate);
-            this.pnlData.Controls.Add(this.lblBirthDateFrom);
+            this.pnlData.Controls.Add(this.lblBirthDate);
             this.pnlData.Controls.Add(this.txtDisplayName);
             this.pnlData.Controls.Add(this.lblDisplayName);
             this.pnlData.Controls.Add(this.txtPassword);
@@ -181,14 +181,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbRole.FormattingEnabled = true;
             this.cbRole.Items.AddRange(new object[] {
-            "Admin",
-            "Employee",
-            "Client"});
+            GLOBAL_RESOURCES.LBL_ROLE_ADMIN,
+            GLOBAL_RESOURCES.LBL_ROLE_EMPLOYEE,
+            GLOBAL_RESOURCES.LBL_ROLE_CLIENT});
             this.cbRole.Location = new System.Drawing.Point(559, 119);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(229, 24);
             this.cbRole.TabIndex = 29;
-            this.cbRole.Text = "Employee";
+            this.cbRole.Text = GLOBAL_RESOURCES.LBL_ROLE_EMPLOYEE;
             this.ttEditUser.SetToolTip(this.cbRole, resources.GetString("cbRole.ToolTip"));
             // 
             // lblRole
@@ -201,7 +201,7 @@
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(44, 16);
             this.lblRole.TabIndex = 28;
-            this.lblRole.Text = "Role:";
+            this.lblRole.Text = GLOBAL_RESOURCES.LBL_ROLE_TITLE;
             // 
             // txtDiagnose
             // 
@@ -224,7 +224,7 @@
             this.lblDiagnose.Name = "lblDiagnose";
             this.lblDiagnose.Size = new System.Drawing.Size(78, 16);
             this.lblDiagnose.TabIndex = 22;
-            this.lblDiagnose.Text = "Diagnose:";
+            this.lblDiagnose.Text = GLOBAL_RESOURCES.LBL_DIAGNOSE_TITLE;
             // 
             // trbBalance
             // 
@@ -249,7 +249,7 @@
             this.lblBalance.Name = "lblBalance";
             this.lblBalance.Size = new System.Drawing.Size(68, 16);
             this.lblBalance.TabIndex = 19;
-            this.lblBalance.Text = "Balance:";
+            this.lblBalance.Text = GLOBAL_RESOURCES.LBL_BALANCE_TITLE;
             // 
             // txtAddress
             // 
@@ -272,7 +272,7 @@
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(69, 16);
             this.lblAddress.TabIndex = 17;
-            this.lblAddress.Text = "Address:";
+            this.lblAddress.Text = GLOBAL_RESOURCES.LBL_ADDRESS_TITLE;
             // 
             // txtEmail
             // 
@@ -294,7 +294,7 @@
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(50, 16);
             this.lblEmail.TabIndex = 15;
-            this.lblEmail.Text = "Email:";
+            this.lblEmail.Text = GLOBAL_RESOURCES.LBL_EMAIL_TITLE;
             // 
             // txtPhone
             // 
@@ -316,7 +316,7 @@
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(55, 16);
             this.lblPhone.TabIndex = 13;
-            this.lblPhone.Text = "Phone:";
+            this.lblPhone.Text = GLOBAL_RESOURCES.LBL_PHONE_TITLE;
             // 
             // dtBirthDate
             // 
@@ -331,15 +331,15 @@
             // 
             // lblBirthDateFrom
             // 
-            this.lblBirthDateFrom.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblBirthDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblBirthDateFrom.AutoSize = true;
-            this.lblBirthDateFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBirthDateFrom.Location = new System.Drawing.Point(19, 129);
-            this.lblBirthDateFrom.Name = "lblBirthDateFrom";
-            this.lblBirthDateFrom.Size = new System.Drawing.Size(79, 16);
-            this.lblBirthDateFrom.TabIndex = 9;
-            this.lblBirthDateFrom.Text = "Birth Date:";
+            this.lblBirthDate.AutoSize = true;
+            this.lblBirthDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBirthDate.Location = new System.Drawing.Point(19, 129);
+            this.lblBirthDate.Name = "lblBirthDateFrom";
+            this.lblBirthDate.Size = new System.Drawing.Size(79, 16);
+            this.lblBirthDate.TabIndex = 9;
+            this.lblBirthDate.Text = "Birth Date:";
             // 
             // txtDisplayName
             // 
@@ -361,7 +361,7 @@
             this.lblDisplayName.Name = "lblDisplayName";
             this.lblDisplayName.Size = new System.Drawing.Size(109, 16);
             this.lblDisplayName.TabIndex = 7;
-            this.lblDisplayName.Text = "Display Name:";
+            this.lblDisplayName.Text = GLOBAL_RESOURCES.LBL_DISPLAY_NAME_TITLE;
             // 
             // txtPassword
             // 
@@ -383,7 +383,7 @@
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(79, 16);
             this.lblPassword.TabIndex = 5;
-            this.lblPassword.Text = "Password:";
+            this.lblPassword.Text = GLOBAL_RESOURCES.LBL_PASSWORD_TITLE;
             // 
             // txtUsername
             // 
@@ -407,7 +407,7 @@
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(82, 16);
             this.lblUsername.TabIndex = 3;
-            this.lblUsername.Text = "Username:";
+            this.lblUsername.Text = GLOBAL_RESOURCES.LBL_USERNAME_TITLE;
             // 
             // txtID
             // 
@@ -432,7 +432,7 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // userBindingSource
             // 
@@ -443,7 +443,7 @@
             this.ttEditUser.IsBalloon = true;
             this.ttEditUser.ShowAlways = true;
             this.ttEditUser.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttEditUser.ToolTipTitle = "Help";
+            this.ttEditUser.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmEditUser
             // 
@@ -477,7 +477,7 @@
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.Label lblBirthDateFrom;
+        private System.Windows.Forms.Label lblBirthDate;
         private System.Windows.Forms.TextBox txtDisplayName;
         private System.Windows.Forms.Label lblDisplayName;
         private System.Windows.Forms.DateTimePicker dtBirthDate;

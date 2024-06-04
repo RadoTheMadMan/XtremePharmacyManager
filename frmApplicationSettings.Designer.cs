@@ -819,7 +819,7 @@
             this.ttApplicationSettings.IsBalloon = true;
             this.ttApplicationSettings.ShowAlways = true;
             this.ttApplicationSettings.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttApplicationSettings.ToolTipTitle = "Help";
+            this.ttApplicationSettings.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmApplicationSettings
             // 

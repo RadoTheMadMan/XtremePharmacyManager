@@ -181,7 +181,7 @@
             this.cbSelectRecord.Size = new System.Drawing.Size(254, 24);
             this.cbSelectRecord.TabIndex = 48;
             this.ttBulkDeliveryServiceOperations.SetToolTip(this.cbSelectRecord, "The record selection, you can select any existing record from here.");
-            this.cbSelectRecord.ValueMember = "ID";
+            this.cbSelectRecord.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
             // deliveryServiceBindingSource
@@ -413,7 +413,7 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // paymentMethodBindingSource
             // 
@@ -448,7 +448,7 @@
             this.ttBulkDeliveryServiceOperations.IsBalloon = true;
             this.ttBulkDeliveryServiceOperations.ShowAlways = true;
             this.ttBulkDeliveryServiceOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttBulkDeliveryServiceOperations.ToolTipTitle = "Help";
+            this.ttBulkDeliveryServiceOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmBulkDeliveryServiceOperations
             // 

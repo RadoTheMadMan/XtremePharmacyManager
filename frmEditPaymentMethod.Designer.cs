@@ -135,14 +135,14 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // ttEditPaymentMethod
             // 
             this.ttEditPaymentMethod.IsBalloon = true;
             this.ttEditPaymentMethod.ShowAlways = true;
             this.ttEditPaymentMethod.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttEditPaymentMethod.ToolTipTitle = "Help";
+            this.ttEditPaymentMethod.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmEditPaymentMethod
             // 

@@ -22,7 +22,7 @@ namespace XtremePharmacyManager.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "17.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace XtremePharmacyManager.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("XtremePharmacyManager.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace XtremePharmacyManager.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,7 +63,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
-        internal static string AboutTitle {
+        public static string AboutTitle {
             get {
                 return ResourceManager.GetString("AboutTitle", resourceCulture);
             }
@@ -73,7 +73,7 @@ namespace XtremePharmacyManager.Properties {
         ///   Looks up a localized string similar to Cannot connect to the server to update your user account.
         ///Please check your application settings to ensure you have a proper connection to the database or contact a system administrator. .
         /// </summary>
-        internal static string AccountSettingsErrorMessage {
+        public static string AccountSettingsErrorMessage {
             get {
                 return ResourceManager.GetString("AccountSettingsErrorMessage", resourceCulture);
             }
@@ -83,7 +83,7 @@ namespace XtremePharmacyManager.Properties {
         ///   Looks up a localized string similar to You cannot have empty username or password.
         ///If you still can&apos;t update your account ask the administrator for a solution to the problem..
         /// </summary>
-        internal static string AccountSettingsInvalidCredentialsErrorMessage {
+        public static string AccountSettingsInvalidCredentialsErrorMessage {
             get {
                 return ResourceManager.GetString("AccountSettingsInvalidCredentialsErrorMessage", resourceCulture);
             }
@@ -92,7 +92,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select a profile picture for your account.
         /// </summary>
-        internal static string AccountSettingsProfilePicSelectTitle {
+        public static string AccountSettingsProfilePicSelectTitle {
             get {
                 return ResourceManager.GetString("AccountSettingsProfilePicSelectTitle", resourceCulture);
             }
@@ -101,16 +101,34 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Account Settings.
         /// </summary>
-        internal static string AccountSettingsTitle {
+        public static string AccountSettingsTitle {
             get {
                 return ResourceManager.GetString("AccountSettingsTitle", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string AddressColTitle {
+            get {
+                return ResourceManager.GetString("AddressColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The address with which you want to search users.
+        /// </summary>
+        public static string AddressSearchTooltip {
+            get {
+                return ResourceManager.GetString("AddressSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Only one instance of this application can be run at a time!.
         /// </summary>
-        internal static string ApplicationInstanceErrorMessage {
+        public static string ApplicationInstanceErrorMessage {
             get {
                 return ResourceManager.GetString("ApplicationInstanceErrorMessage", resourceCulture);
             }
@@ -119,7 +137,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Changing the application settings will take effect after restarting the application..
         /// </summary>
-        internal static string ApplicationSettingsChangeNotice {
+        public static string ApplicationSettingsChangeNotice {
             get {
                 return ResourceManager.GetString("ApplicationSettingsChangeNotice", resourceCulture);
             }
@@ -128,7 +146,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select a folder to save your logins into and load them from.....
         /// </summary>
-        internal static string ApplicationSettingsLoginsFolderSelectTitle {
+        public static string ApplicationSettingsLoginsFolderSelectTitle {
             get {
                 return ResourceManager.GetString("ApplicationSettingsLoginsFolderSelectTitle", resourceCulture);
             }
@@ -137,7 +155,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select a folder to get the report files from....
         /// </summary>
-        internal static string ApplicationSettingsReportsFolderSelectTitle {
+        public static string ApplicationSettingsReportsFolderSelectTitle {
             get {
                 return ResourceManager.GetString("ApplicationSettingsReportsFolderSelectTitle", resourceCulture);
             }
@@ -146,7 +164,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Application Settings.
         /// </summary>
-        internal static string ApplicationSettingsTitle {
+        public static string ApplicationSettingsTitle {
             get {
                 return ResourceManager.GetString("ApplicationSettingsTitle", resourceCulture);
             }
@@ -155,7 +173,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to XtremePharmacyManager.
         /// </summary>
-        internal static string AssemblyProductName {
+        public static string AssemblyProductName {
             get {
                 return ResourceManager.GetString("AssemblyProductName", resourceCulture);
             }
@@ -164,7 +182,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to XtremePharmacyManager.
         /// </summary>
-        internal static string AssemblyTitle {
+        public static string AssemblyTitle {
             get {
                 return ResourceManager.GetString("AssemblyTitle", resourceCulture);
             }
@@ -174,7 +192,7 @@ namespace XtremePharmacyManager.Properties {
         ///   Looks up a localized string similar to Multiple login results gotten or none at all.
         ///Please check the credentials and try again..
         /// </summary>
-        internal static string AuthorisationAddLoginInvalidResultsMessage {
+        public static string AuthorisationAddLoginInvalidResultsMessage {
             get {
                 return ResourceManager.GetString("AuthorisationAddLoginInvalidResultsMessage", resourceCulture);
             }
@@ -186,7 +204,7 @@ namespace XtremePharmacyManager.Properties {
         ///If you want another user select from the logins list.
         ///Every login is saved into the filesystem in a binary format read only this program..
         /// </summary>
-        internal static string AuthorisationAppConfLoginFoundMessage {
+        public static string AuthorisationAppConfLoginFoundMessage {
             get {
                 return ResourceManager.GetString("AuthorisationAppConfLoginFoundMessage", resourceCulture);
             }
@@ -197,7 +215,7 @@ namespace XtremePharmacyManager.Properties {
         ///Please configure the application with database credentials provided by your system administrator or create an user with the stored procedures and set it as a sysadmin if you are a system administrator and try again.
         ///The admin role for the database is different from the sysadmin role and this is for security reasons..
         /// </summary>
-        internal static string AuthorisationAppConfLoginNotFoundMessage {
+        public static string AuthorisationAppConfLoginNotFoundMessage {
             get {
                 return ResourceManager.GetString("AuthorisationAppConfLoginNotFoundMessage", resourceCulture);
             }
@@ -206,7 +224,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You can&apos;t use this application without a proper authorization in the database and closing the login without even confirming or cancelling it will not help you. Application will exit!.
         /// </summary>
-        internal static string AuthorisationErrorCancelledLoginMessage {
+        public static string AuthorisationErrorCancelledLoginMessage {
             get {
                 return ResourceManager.GetString("AuthorisationErrorCancelledLoginMessage", resourceCulture);
             }
@@ -216,7 +234,7 @@ namespace XtremePharmacyManager.Properties {
         ///   Looks up a localized string similar to This application is only for administrators and employees! 
         ///Client use of it is unauthorized and the application will exit!.
         /// </summary>
-        internal static string AuthorisationErrorClientLoginMessage {
+        public static string AuthorisationErrorClientLoginMessage {
             get {
                 return ResourceManager.GetString("AuthorisationErrorClientLoginMessage", resourceCulture);
             }
@@ -225,7 +243,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to No user currently logged in. Application will exit!.
         /// </summary>
-        internal static string AuthorisationErrorNoLoginMessage {
+        public static string AuthorisationErrorNoLoginMessage {
             get {
                 return ResourceManager.GetString("AuthorisationErrorNoLoginMessage", resourceCulture);
             }
@@ -236,7 +254,7 @@ namespace XtremePharmacyManager.Properties {
         ///This might damage the system and enabling the trigger is critical.
         ///This is an important warning because the system is at risk of data breach in multiple ways..
         /// </summary>
-        internal static string AuthorisationErrorSysAdminBreachMessage {
+        public static string AuthorisationErrorSysAdminBreachMessage {
             get {
                 return ResourceManager.GetString("AuthorisationErrorSysAdminBreachMessage", resourceCulture);
             }
@@ -247,7 +265,7 @@ namespace XtremePharmacyManager.Properties {
         ///You have access to everything in the database.
         ///Everything is created, altered and deleted using stored procedures so the database will calculate some of the things for you..
         /// </summary>
-        internal static string AuthorisationLoginAdminNotice {
+        public static string AuthorisationLoginAdminNotice {
             get {
                 return ResourceManager.GetString("AuthorisationLoginAdminNotice", resourceCulture);
             }
@@ -265,7 +283,7 @@ namespace XtremePharmacyManager.Properties {
         ///The bulk operations enabled for you are for product images, product orders and order deliveries.
         ///Everything is created, altered and deleted usi [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string AuthorisationLoginEmployeeNotice {
+        public static string AuthorisationLoginEmployeeNotice {
             get {
                 return ResourceManager.GetString("AuthorisationLoginEmployeeNotice", resourceCulture);
             }
@@ -275,7 +293,7 @@ namespace XtremePharmacyManager.Properties {
         ///   Looks up a localized string similar to Seems like you didn&apos;t provide any login information at all.
         ///Please try again..
         /// </summary>
-        internal static string AuthorisationLoginEmptyInputMessage {
+        public static string AuthorisationLoginEmptyInputMessage {
             get {
                 return ResourceManager.GetString("AuthorisationLoginEmptyInputMessage", resourceCulture);
             }
@@ -285,7 +303,7 @@ namespace XtremePharmacyManager.Properties {
         ///   Looks up a localized string similar to Saved Logins list hasn&apos;t been retrieved properly.
         ///Please restart the application..
         /// </summary>
-        internal static string AuthorisationLoginFilesystemLoadErrorMessage {
+        public static string AuthorisationLoginFilesystemLoadErrorMessage {
             get {
                 return ResourceManager.GetString("AuthorisationLoginFilesystemLoadErrorMessage", resourceCulture);
             }
@@ -295,7 +313,7 @@ namespace XtremePharmacyManager.Properties {
         ///   Looks up a localized string similar to No user found with the specified credentials by your input.
         ///Please input the credentials you registered with or provided by your system administrator..
         /// </summary>
-        internal static string AuthorisationLoginInvalidInputMessage {
+        public static string AuthorisationLoginInvalidInputMessage {
             get {
                 return ResourceManager.GetString("AuthorisationLoginInvalidInputMessage", resourceCulture);
             }
@@ -305,16 +323,43 @@ namespace XtremePharmacyManager.Properties {
         ///   Looks up a localized string similar to Application is not connected to the database and login information cannot be retrieved.
         ///Please retry..
         /// </summary>
-        internal static string AuthorisationLoginNoConnectionMessage {
+        public static string AuthorisationLoginNoConnectionMessage {
             get {
                 return ResourceManager.GetString("AuthorisationLoginNoConnectionMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Balance.
+        /// </summary>
+        public static string BalanceColTitle {
+            get {
+                return ResourceManager.GetString("BalanceColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The balance with which you want to search users.
+        /// </summary>
+        public static string BalanceSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("BalanceSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Birth Date.
+        /// </summary>
+        public static string BirthDateColTitle {
+            get {
+                return ResourceManager.GetString("BirthDateColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to delete product brands..
         /// </summary>
-        internal static string BrandDeleteOperationPermissionError {
+        public static string BrandDeleteOperationPermissionError {
             get {
                 return ResourceManager.GetString("BrandDeleteOperationPermissionError", resourceCulture);
             }
@@ -323,7 +368,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to add/edit product brands..
         /// </summary>
-        internal static string BrandEditOperationPermissionError {
+        public static string BrandEditOperationPermissionError {
             get {
                 return ResourceManager.GetString("BrandEditOperationPermissionError", resourceCulture);
             }
@@ -332,16 +377,88 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product Brand list access is given only to administrators and employees of this system..
         /// </summary>
-        internal static string BrandMenuAccessErrorMessage {
+        public static string BrandMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("BrandMenuAccessErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ADD/EDIT.
+        /// </summary>
+        public static string BtnAddEditTitle {
+            get {
+                return ResourceManager.GetString("BtnAddEditTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you click the button you add/edit an entry based on the permissions you have..
+        /// </summary>
+        public static string BtnAddEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnAddEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DELETE.
+        /// </summary>
+        public static string BtnDeleteTitle {
+            get {
+                return ResourceManager.GetString("BtnDeleteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you click the button you delete an entry based on the permissions you have..
+        /// </summary>
+        public static string BtnDeleteTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnDeleteTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GENERATE REPORT.
+        /// </summary>
+        public static string BtnGenerateReportTitle {
+            get {
+                return ResourceManager.GetString("BtnGenerateReportTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you click the button you generate a report on an entry based on the permissions you have and whether the report definition based on localisation is present..
+        /// </summary>
+        public static string BtnGenerateReportTooltip {
+            get {
+                return ResourceManager.GetString("BtnGenerateReportTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEARCH.
+        /// </summary>
+        public static string BtnSearchTitle {
+            get {
+                return ResourceManager.GetString("BtnSearchTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you click the button you search based on the criterias search mode you selected..
+        /// </summary>
+        public static string BtnSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bulk Product Brand Operation access is given only to administrators of this system..
         /// </summary>
-        internal static string BulkBrandMenuAccessErrorMessage {
+        public static string BulkBrandMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("BulkBrandMenuAccessErrorMessage", resourceCulture);
             }
@@ -350,7 +467,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product Brand has been added..
         /// </summary>
-        internal static string BulkBrandOperationCreateTaskSuccessMessage {
+        public static string BulkBrandOperationCreateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkBrandOperationCreateTaskSuccessMessage", resourceCulture);
             }
@@ -359,7 +476,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product Brand has been deleted..
         /// </summary>
-        internal static string BulkBrandOperationDeleteTaskSuccessMessage {
+        public static string BulkBrandOperationDeleteTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkBrandOperationDeleteTaskSuccessMessage", resourceCulture);
             }
@@ -368,7 +485,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to use bulk operations for product brands..
         /// </summary>
-        internal static string BulkBrandOperationNoPermissionMessage {
+        public static string BulkBrandOperationNoPermissionMessage {
             get {
                 return ResourceManager.GetString("BulkBrandOperationNoPermissionMessage", resourceCulture);
             }
@@ -377,7 +494,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Executing bulk operations for product brands is done only by the administrators of this system...
         /// </summary>
-        internal static string BulkBrandOperationUnauthorisedErrorMessage {
+        public static string BulkBrandOperationUnauthorisedErrorMessage {
             get {
                 return ResourceManager.GetString("BulkBrandOperationUnauthorisedErrorMessage", resourceCulture);
             }
@@ -386,7 +503,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product Brand has been updated..
         /// </summary>
-        internal static string BulkBrandOperationUpdateTaskSuccessMessage {
+        public static string BulkBrandOperationUpdateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkBrandOperationUpdateTaskSuccessMessage", resourceCulture);
             }
@@ -395,7 +512,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Bulk Delivery Service Operation access is given only to administrators of this system..
         /// </summary>
-        internal static string BulkDeliveryServiceMenuAccessErrorMessage {
+        public static string BulkDeliveryServiceMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("BulkDeliveryServiceMenuAccessErrorMessage", resourceCulture);
             }
@@ -404,7 +521,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Delivery Service has been added..
         /// </summary>
-        internal static string BulkDeliveryServiceOperationCreateTaskSuccessMessage {
+        public static string BulkDeliveryServiceOperationCreateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkDeliveryServiceOperationCreateTaskSuccessMessage", resourceCulture);
             }
@@ -413,7 +530,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Delivery Service has been deleted..
         /// </summary>
-        internal static string BulkDeliveryServiceOperationDeleteTaskSuccessMessage {
+        public static string BulkDeliveryServiceOperationDeleteTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkDeliveryServiceOperationDeleteTaskSuccessMessage", resourceCulture);
             }
@@ -422,7 +539,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to use bulk operations for delivery services..
         /// </summary>
-        internal static string BulkDeliveryServiceOperationNoPermissionMessage {
+        public static string BulkDeliveryServiceOperationNoPermissionMessage {
             get {
                 return ResourceManager.GetString("BulkDeliveryServiceOperationNoPermissionMessage", resourceCulture);
             }
@@ -431,7 +548,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Executing bulk operations for delivery services is done only by the administrators of this system...
         /// </summary>
-        internal static string BulkDeliveryServiceOperationUnauthorisedErrorMessage {
+        public static string BulkDeliveryServiceOperationUnauthorisedErrorMessage {
             get {
                 return ResourceManager.GetString("BulkDeliveryServiceOperationUnauthorisedErrorMessage", resourceCulture);
             }
@@ -440,7 +557,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Delivery Service has been updated..
         /// </summary>
-        internal static string BulkDeliveryServiceOperationUpdateTaskSuccessMessage {
+        public static string BulkDeliveryServiceOperationUpdateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkDeliveryServiceOperationUpdateTaskSuccessMessage", resourceCulture);
             }
@@ -449,7 +566,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Completed Operations:.
         /// </summary>
-        internal static string BulkOperationCompletedCountMessage {
+        public static string BulkOperationCompletedCountMessage {
             get {
                 return ResourceManager.GetString("BulkOperationCompletedCountMessage", resourceCulture);
             }
@@ -458,7 +575,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Operations finished. Time finished:.
         /// </summary>
-        internal static string BulkOperationEndTimeMessage {
+        public static string BulkOperationEndTimeMessage {
             get {
                 return ResourceManager.GetString("BulkOperationEndTimeMessage", resourceCulture);
             }
@@ -467,7 +584,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Error Code:.
         /// </summary>
-        internal static string BulkOperationErrorCodeMessage {
+        public static string BulkOperationErrorCodeMessage {
             get {
                 return ResourceManager.GetString("BulkOperationErrorCodeMessage", resourceCulture);
             }
@@ -476,7 +593,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Error Message:.
         /// </summary>
-        internal static string BulkOperationErrorMessage {
+        public static string BulkOperationErrorMessage {
             get {
                 return ResourceManager.GetString("BulkOperationErrorMessage", resourceCulture);
             }
@@ -485,7 +602,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Executing operation:.
         /// </summary>
-        internal static string BulkOperationExecutingMessage {
+        public static string BulkOperationExecutingMessage {
             get {
                 return ResourceManager.GetString("BulkOperationExecutingMessage", resourceCulture);
             }
@@ -494,7 +611,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Execution Time:.
         /// </summary>
-        internal static string BulkOperationExecutionTimeMessage {
+        public static string BulkOperationExecutionTimeMessage {
             get {
                 return ResourceManager.GetString("BulkOperationExecutionTimeMessage", resourceCulture);
             }
@@ -503,7 +620,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Failed Operations:.
         /// </summary>
-        internal static string BulkOperationFailedCountMessage {
+        public static string BulkOperationFailedCountMessage {
             get {
                 return ResourceManager.GetString("BulkOperationFailedCountMessage", resourceCulture);
             }
@@ -512,7 +629,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Operation failed. Here are details:.
         /// </summary>
-        internal static string BulkOperationFailedMessage {
+        public static string BulkOperationFailedMessage {
             get {
                 return ResourceManager.GetString("BulkOperationFailedMessage", resourceCulture);
             }
@@ -521,7 +638,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to operation on.
         /// </summary>
-        internal static string BulkOperationOperationOnName {
+        public static string BulkOperationOperationOnName {
             get {
                 return ResourceManager.GetString("BulkOperationOperationOnName", resourceCulture);
             }
@@ -530,7 +647,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to with ID:.
         /// </summary>
-        internal static string BulkOperationOperatonOnTargetIDName {
+        public static string BulkOperationOperatonOnTargetIDName {
             get {
                 return ResourceManager.GetString("BulkOperationOperatonOnTargetIDName", resourceCulture);
             }
@@ -539,7 +656,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Do you want to add this as a bulk operation?.
         /// </summary>
-        internal static string BulkOperationQuestion {
+        public static string BulkOperationQuestion {
             get {
                 return ResourceManager.GetString("BulkOperationQuestion", resourceCulture);
             }
@@ -548,7 +665,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Operations Results:.
         /// </summary>
-        internal static string BulkOperationResultsMessage {
+        public static string BulkOperationResultsMessage {
             get {
                 return ResourceManager.GetString("BulkOperationResultsMessage", resourceCulture);
             }
@@ -557,7 +674,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Operations started executing at:.
         /// </summary>
-        internal static string BulkOperationStartTimeMessage {
+        public static string BulkOperationStartTimeMessage {
             get {
                 return ResourceManager.GetString("BulkOperationStartTimeMessage", resourceCulture);
             }
@@ -566,7 +683,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Bulk Operations.
         /// </summary>
-        internal static string BulkOperationsTitle {
+        public static string BulkOperationsTitle {
             get {
                 return ResourceManager.GetString("BulkOperationsTitle", resourceCulture);
             }
@@ -575,7 +692,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Operation successful.Output:.
         /// </summary>
-        internal static string BulkOperationSuccessfulMessage {
+        public static string BulkOperationSuccessfulMessage {
             get {
                 return ResourceManager.GetString("BulkOperationSuccessfulMessage", resourceCulture);
             }
@@ -584,7 +701,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to An access exception occured and this operation cannot be executed..
         /// </summary>
-        internal static string BulkOperationUnauthorisedErrorMessage {
+        public static string BulkOperationUnauthorisedErrorMessage {
             get {
                 return ResourceManager.GetString("BulkOperationUnauthorisedErrorMessage", resourceCulture);
             }
@@ -593,7 +710,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Bulk Order Delivery Operation access is given only to administrators and employees of this system..
         /// </summary>
-        internal static string BulkOrderDeliveryMenuAccessErrorMessage {
+        public static string BulkOrderDeliveryMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("BulkOrderDeliveryMenuAccessErrorMessage", resourceCulture);
             }
@@ -602,7 +719,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Order Delivery has been added..
         /// </summary>
-        internal static string BulkOrderDeliveryOperationCreateTaskSuccessMessage {
+        public static string BulkOrderDeliveryOperationCreateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkOrderDeliveryOperationCreateTaskSuccessMessage", resourceCulture);
             }
@@ -611,7 +728,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Order Delivery has been deleted..
         /// </summary>
-        internal static string BulkOrderDeliveryOperationDeleteTaskSuccessMessage {
+        public static string BulkOrderDeliveryOperationDeleteTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkOrderDeliveryOperationDeleteTaskSuccessMessage", resourceCulture);
             }
@@ -620,7 +737,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to use bulk operations for order deliveries..
         /// </summary>
-        internal static string BulkOrderDeliveryOperationNoPermissionMessage {
+        public static string BulkOrderDeliveryOperationNoPermissionMessage {
             get {
                 return ResourceManager.GetString("BulkOrderDeliveryOperationNoPermissionMessage", resourceCulture);
             }
@@ -629,7 +746,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Executing bulk operations for order deliveries is done only by the administrators and employees of this system...
         /// </summary>
-        internal static string BulkOrderDeliveryOperationUnauthorisedErrorMessage {
+        public static string BulkOrderDeliveryOperationUnauthorisedErrorMessage {
             get {
                 return ResourceManager.GetString("BulkOrderDeliveryOperationUnauthorisedErrorMessage", resourceCulture);
             }
@@ -638,7 +755,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Order Delivery has been updated..
         /// </summary>
-        internal static string BulkOrderDeliveryOperationUpdateTaskSuccessMessage {
+        public static string BulkOrderDeliveryOperationUpdateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkOrderDeliveryOperationUpdateTaskSuccessMessage", resourceCulture);
             }
@@ -647,7 +764,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Bulk Payment Method Operation access is given only to administrators of this system..
         /// </summary>
-        internal static string BulkPaymentMethodMenuAccessErrorMessage {
+        public static string BulkPaymentMethodMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("BulkPaymentMethodMenuAccessErrorMessage", resourceCulture);
             }
@@ -656,7 +773,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Payment Method has been added..
         /// </summary>
-        internal static string BulkPaymentMethodOperationCreateTaskSuccessMessage {
+        public static string BulkPaymentMethodOperationCreateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkPaymentMethodOperationCreateTaskSuccessMessage", resourceCulture);
             }
@@ -665,7 +782,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Payment Method has been deleted..
         /// </summary>
-        internal static string BulkPaymentMethodOperationDeleteTaskSuccessMessage {
+        public static string BulkPaymentMethodOperationDeleteTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkPaymentMethodOperationDeleteTaskSuccessMessage", resourceCulture);
             }
@@ -674,7 +791,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to use bulk operations for payment methods..
         /// </summary>
-        internal static string BulkPaymentMethodOperationNoPermissionMessage {
+        public static string BulkPaymentMethodOperationNoPermissionMessage {
             get {
                 return ResourceManager.GetString("BulkPaymentMethodOperationNoPermissionMessage", resourceCulture);
             }
@@ -683,7 +800,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Executing bulk operations for payment methods is done only by the administrators of this system...
         /// </summary>
-        internal static string BulkPaymentMethodOperationUnauthorisedErrorMessage {
+        public static string BulkPaymentMethodOperationUnauthorisedErrorMessage {
             get {
                 return ResourceManager.GetString("BulkPaymentMethodOperationUnauthorisedErrorMessage", resourceCulture);
             }
@@ -692,7 +809,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Payment Method has been updated..
         /// </summary>
-        internal static string BulkPaymentMethodOperationUpdateTaskSuccessMessage {
+        public static string BulkPaymentMethodOperationUpdateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkPaymentMethodOperationUpdateTaskSuccessMessage", resourceCulture);
             }
@@ -701,7 +818,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Bulk Product Image Operation access is given only to administrators and employees of this system..
         /// </summary>
-        internal static string BulkProductImageMenuAccessErrorMessage {
+        public static string BulkProductImageMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("BulkProductImageMenuAccessErrorMessage", resourceCulture);
             }
@@ -710,7 +827,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product Image has been added..
         /// </summary>
-        internal static string BulkProductImageOperationCreateTaskSuccessMessage {
+        public static string BulkProductImageOperationCreateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkProductImageOperationCreateTaskSuccessMessage", resourceCulture);
             }
@@ -719,7 +836,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product Image has been deleted..
         /// </summary>
-        internal static string BulkProductImageOperationDeleteTaskSuccessMessage {
+        public static string BulkProductImageOperationDeleteTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkProductImageOperationDeleteTaskSuccessMessage", resourceCulture);
             }
@@ -728,7 +845,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to use bulk operations for product images..
         /// </summary>
-        internal static string BulkProductImageOperationNoPermissionMessage {
+        public static string BulkProductImageOperationNoPermissionMessage {
             get {
                 return ResourceManager.GetString("BulkProductImageOperationNoPermissionMessage", resourceCulture);
             }
@@ -737,7 +854,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Executing bulk operations for product images is done only by the administrators and employees of this system...
         /// </summary>
-        internal static string BulkProductImageOperationUnauthorisedErrorMessage {
+        public static string BulkProductImageOperationUnauthorisedErrorMessage {
             get {
                 return ResourceManager.GetString("BulkProductImageOperationUnauthorisedErrorMessage", resourceCulture);
             }
@@ -746,7 +863,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product Image has been updated..
         /// </summary>
-        internal static string BulkProductImageOperationUpdateTaskSuccessMessage {
+        public static string BulkProductImageOperationUpdateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkProductImageOperationUpdateTaskSuccessMessage", resourceCulture);
             }
@@ -755,7 +872,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Bulk Product Operation access is given only to administrators of this system..
         /// </summary>
-        internal static string BulkProductMenuAccessErrorMessage {
+        public static string BulkProductMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("BulkProductMenuAccessErrorMessage", resourceCulture);
             }
@@ -764,7 +881,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product has been added..
         /// </summary>
-        internal static string BulkProductOperationCreateTaskSuccessMessage {
+        public static string BulkProductOperationCreateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkProductOperationCreateTaskSuccessMessage", resourceCulture);
             }
@@ -773,7 +890,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product has been deleted..
         /// </summary>
-        internal static string BulkProductOperationDeleteTaskSuccessMessage {
+        public static string BulkProductOperationDeleteTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkProductOperationDeleteTaskSuccessMessage", resourceCulture);
             }
@@ -782,7 +899,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to use bulk operations for products..
         /// </summary>
-        internal static string BulkProductOperationNoPermissionMessage {
+        public static string BulkProductOperationNoPermissionMessage {
             get {
                 return ResourceManager.GetString("BulkProductOperationNoPermissionMessage", resourceCulture);
             }
@@ -791,7 +908,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Executing bulk operations for products is done only by the administrators of this system...
         /// </summary>
-        internal static string BulkProductOperationUnauthorisedErrorMessage {
+        public static string BulkProductOperationUnauthorisedErrorMessage {
             get {
                 return ResourceManager.GetString("BulkProductOperationUnauthorisedErrorMessage", resourceCulture);
             }
@@ -800,7 +917,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product has been updated..
         /// </summary>
-        internal static string BulkProductOperationUpdateTaskSuccessMessage {
+        public static string BulkProductOperationUpdateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkProductOperationUpdateTaskSuccessMessage", resourceCulture);
             }
@@ -809,7 +926,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Bulk Product Order Operation access is given only to administrators and employees of this system..
         /// </summary>
-        internal static string BulkProductOrderMenuAccessErrorMessage {
+        public static string BulkProductOrderMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("BulkProductOrderMenuAccessErrorMessage", resourceCulture);
             }
@@ -818,7 +935,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product Order has been added..
         /// </summary>
-        internal static string BulkProductOrderOperationCreateTaskSuccessMessage {
+        public static string BulkProductOrderOperationCreateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkProductOrderOperationCreateTaskSuccessMessage", resourceCulture);
             }
@@ -827,7 +944,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product Order has been deleted..
         /// </summary>
-        internal static string BulkProductOrderOperationDeleteTaskSuccessMessage {
+        public static string BulkProductOrderOperationDeleteTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkProductOrderOperationDeleteTaskSuccessMessage", resourceCulture);
             }
@@ -836,7 +953,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to use bulk operations for product orders..
         /// </summary>
-        internal static string BulkProductOrderOperationNoPermissionMessage {
+        public static string BulkProductOrderOperationNoPermissionMessage {
             get {
                 return ResourceManager.GetString("BulkProductOrderOperationNoPermissionMessage", resourceCulture);
             }
@@ -845,7 +962,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Executing bulk operations for product orders is done only by the administrators and employees of this system...
         /// </summary>
-        internal static string BulkProductOrderOperationUnauthorisedErrorMessage {
+        public static string BulkProductOrderOperationUnauthorisedErrorMessage {
             get {
                 return ResourceManager.GetString("BulkProductOrderOperationUnauthorisedErrorMessage", resourceCulture);
             }
@@ -854,7 +971,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product Order has been updated..
         /// </summary>
-        internal static string BulkProductOrderOperationUpdateTaskSuccessMessage {
+        public static string BulkProductOrderOperationUpdateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkProductOrderOperationUpdateTaskSuccessMessage", resourceCulture);
             }
@@ -863,7 +980,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Do you want the bulk order operation to add order with total price override on create?.
         /// </summary>
-        internal static string BulkProductOrderTotalPriceOverrideQuestion {
+        public static string BulkProductOrderTotalPriceOverrideQuestion {
             get {
                 return ResourceManager.GetString("BulkProductOrderTotalPriceOverrideQuestion", resourceCulture);
             }
@@ -872,7 +989,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Bulk User Operation access is given only to administrators of this system..
         /// </summary>
-        internal static string BulkUserMenuAccessErrorMessage {
+        public static string BulkUserMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("BulkUserMenuAccessErrorMessage", resourceCulture);
             }
@@ -881,7 +998,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to User has been added..
         /// </summary>
-        internal static string BulkUserOperationCreateTaskSuccessMessage {
+        public static string BulkUserOperationCreateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkUserOperationCreateTaskSuccessMessage", resourceCulture);
             }
@@ -890,7 +1007,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to User has been deleted..
         /// </summary>
-        internal static string BulkUserOperationDeleteTaskSuccessMessage {
+        public static string BulkUserOperationDeleteTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkUserOperationDeleteTaskSuccessMessage", resourceCulture);
             }
@@ -899,7 +1016,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to use bulk operations for users..
         /// </summary>
-        internal static string BulkUserOperationNoPermissionMessage {
+        public static string BulkUserOperationNoPermissionMessage {
             get {
                 return ResourceManager.GetString("BulkUserOperationNoPermissionMessage", resourceCulture);
             }
@@ -908,7 +1025,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Executing bulk operations for users is done only by the administrators of this system...
         /// </summary>
-        internal static string BulkUserOperationUnauthorisedErrorMessage {
+        public static string BulkUserOperationUnauthorisedErrorMessage {
             get {
                 return ResourceManager.GetString("BulkUserOperationUnauthorisedErrorMessage", resourceCulture);
             }
@@ -917,7 +1034,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to User has been updated..
         /// </summary>
-        internal static string BulkUserOperationUpdateTaskSuccessMessage {
+        public static string BulkUserOperationUpdateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkUserOperationUpdateTaskSuccessMessage", resourceCulture);
             }
@@ -926,7 +1043,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Bulk Product Vendor Operation access is given only to administrators of this system..
         /// </summary>
-        internal static string BulkVendorMenuAccessErrorMessage {
+        public static string BulkVendorMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("BulkVendorMenuAccessErrorMessage", resourceCulture);
             }
@@ -935,7 +1052,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product Vendor has been added..
         /// </summary>
-        internal static string BulkVendorOperationCreateTaskSuccessMessage {
+        public static string BulkVendorOperationCreateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkVendorOperationCreateTaskSuccessMessage", resourceCulture);
             }
@@ -944,7 +1061,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product Vendor has been deleted..
         /// </summary>
-        internal static string BulkVendorOperationDeleteTaskSuccessMessage {
+        public static string BulkVendorOperationDeleteTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkVendorOperationDeleteTaskSuccessMessage", resourceCulture);
             }
@@ -953,7 +1070,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to use bulk operations for product vendors..
         /// </summary>
-        internal static string BulkVendorOperationNoPermissionMessage {
+        public static string BulkVendorOperationNoPermissionMessage {
             get {
                 return ResourceManager.GetString("BulkVendorOperationNoPermissionMessage", resourceCulture);
             }
@@ -962,7 +1079,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Executing bulk operations for product vendors is done only by the administrators of this system...
         /// </summary>
-        internal static string BulkVendorOperationUnauthorisedErrorMessage {
+        public static string BulkVendorOperationUnauthorisedErrorMessage {
             get {
                 return ResourceManager.GetString("BulkVendorOperationUnauthorisedErrorMessage", resourceCulture);
             }
@@ -971,16 +1088,29 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product Vendor has been updated..
         /// </summary>
-        internal static string BulkVendorOperationUpdateTaskSuccessMessage {
+        public static string BulkVendorOperationUpdateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkVendorOperationUpdateTaskSuccessMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The search modes with which you want to search entries.
+        ///All criterias - search by all criterias.
+        ///None - show all entries.
+        ///Single criteria - entries that are on one criteria with other criterias excluded.
+        ///Multiple criterias - with multiple criterias but not all criterias included in the search..
+        /// </summary>
+        public static string CbSearchModeTooltipTitle {
+            get {
+                return ResourceManager.GetString("CbSearchModeTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to close? All unsaved changes incl. bulk operations will be lost.
         /// </summary>
-        internal static string ClosePrompt {
+        public static string ClosePrompt {
             get {
                 return ResourceManager.GetString("ClosePrompt", resourceCulture);
             }
@@ -989,7 +1119,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
-        internal static string ClosePromptTitle {
+        public static string ClosePromptTitle {
             get {
                 return ResourceManager.GetString("ClosePromptTitle", resourceCulture);
             }
@@ -998,7 +1128,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Couldn&apos;t connect even after a retry. Application will exit....
         /// </summary>
-        internal static string ConnectionFailedAfterRetryMessage {
+        public static string ConnectionFailedAfterRetryMessage {
             get {
                 return ResourceManager.GetString("ConnectionFailedAfterRetryMessage", resourceCulture);
             }
@@ -1008,7 +1138,7 @@ namespace XtremePharmacyManager.Properties {
         ///   Looks up a localized string similar to Failed to connect and login to the database. 
         ///This was not supposed to happen so contact the system administrator and/or check the application configuration....
         /// </summary>
-        internal static string ConnectionFailedLoginMessage {
+        public static string ConnectionFailedLoginMessage {
             get {
                 return ResourceManager.GetString("ConnectionFailedLoginMessage", resourceCulture);
             }
@@ -1018,7 +1148,7 @@ namespace XtremePharmacyManager.Properties {
         ///   Looks up a localized string similar to Connection error. 
         ///Please check the application configuration and/or contact your system administrator.
         /// </summary>
-        internal static string ConnectionFailedMessage {
+        public static string ConnectionFailedMessage {
             get {
                 return ResourceManager.GetString("ConnectionFailedMessage", resourceCulture);
             }
@@ -1027,7 +1157,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Successful connection and login to the database. Now you are ready to go..
         /// </summary>
-        internal static string ConnectionSuccessfulLoginMessage {
+        public static string ConnectionSuccessfulLoginMessage {
             get {
                 return ResourceManager.GetString("ConnectionSuccessfulLoginMessage", resourceCulture);
             }
@@ -1036,7 +1166,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Connection successfuly open..
         /// </summary>
-        internal static string ConnectionSuccessfulMessage {
+        public static string ConnectionSuccessfulMessage {
             get {
                 return ResourceManager.GetString("ConnectionSuccessfulMessage", resourceCulture);
             }
@@ -1046,7 +1176,7 @@ namespace XtremePharmacyManager.Properties {
         ///   Looks up a localized string similar to Inner exception details:
         ///.
         /// </summary>
-        internal static string CriticalErrorInnerExceptionDetails {
+        public static string CriticalErrorInnerExceptionDetails {
             get {
                 return ResourceManager.GetString("CriticalErrorInnerExceptionDetails", resourceCulture);
             }
@@ -1055,7 +1185,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Critcal Error: An exception occured.
         /// </summary>
-        internal static string CriticalErrorMessage {
+        public static string CriticalErrorMessage {
             get {
                 return ResourceManager.GetString("CriticalErrorMessage", resourceCulture);
             }
@@ -1064,7 +1194,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Critical Error.
         /// </summary>
-        internal static string CriticalErrorTitle {
+        public static string CriticalErrorTitle {
             get {
                 return ResourceManager.GetString("CriticalErrorTitle", resourceCulture);
             }
@@ -1073,7 +1203,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Current Host.
         /// </summary>
-        internal static string CurrentHostTitle {
+        public static string CurrentHostTitle {
             get {
                 return ResourceManager.GetString("CurrentHostTitle", resourceCulture);
             }
@@ -1082,7 +1212,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Current Operator.
         /// </summary>
-        internal static string CurrentOperatorTitle {
+        public static string CurrentOperatorTitle {
             get {
                 return ResourceManager.GetString("CurrentOperatorTitle", resourceCulture);
             }
@@ -1091,7 +1221,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to delete delivery services..
         /// </summary>
-        internal static string DeliveryServiceDeleteOperationPermissionError {
+        public static string DeliveryServiceDeleteOperationPermissionError {
             get {
                 return ResourceManager.GetString("DeliveryServiceDeleteOperationPermissionError", resourceCulture);
             }
@@ -1100,7 +1230,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to add/edit delivery services..
         /// </summary>
-        internal static string DeliveryServiceEditOperationPermissionError {
+        public static string DeliveryServiceEditOperationPermissionError {
             get {
                 return ResourceManager.GetString("DeliveryServiceEditOperationPermissionError", resourceCulture);
             }
@@ -1109,16 +1239,97 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Delivery Service list access is given only to administrators and employees of this system..
         /// </summary>
-        internal static string DeliveryServiceMenuAccessErrorMessage {
+        public static string DeliveryServiceMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("DeliveryServiceMenuAccessErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The list of users in the database. Select any to add/edit/delete/generate report based on your permissions..
+        /// </summary>
+        public static string DgvUsersTooltipTitle {
+            get {
+                return ResourceManager.GetString("DgvUsersTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diagnose.
+        /// </summary>
+        public static string DiagnoseColTitle {
+            get {
+                return ResourceManager.GetString("DiagnoseColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The diagnose with which you want to search users.
+        /// </summary>
+        public static string DiagnoseSearchTooltip {
+            get {
+                return ResourceManager.GetString("DiagnoseSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display Name.
+        /// </summary>
+        public static string DisplayNameColTitle {
+            get {
+                return ResourceManager.GetString("DisplayNameColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The display name with which you want to search users.
+        /// </summary>
+        public static string DisplayNameSearchTooltip {
+            get {
+                return ResourceManager.GetString("DisplayNameSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string EmailColTitle {
+            get {
+                return ResourceManager.GetString("EmailColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The email with which you want to search users.
+        /// </summary>
+        public static string EmailSearchTooltip {
+            get {
+                return ResourceManager.GetString("EmailSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help.
+        /// </summary>
+        public static string HelpTooltipTitle {
+            get {
+                return ResourceManager.GetString("HelpTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The ID of the selected record entry to be searched is here.
+        /// </summary>
+        public static string IDSearchTooltip {
+            get {
+                return ResourceManager.GetString("IDSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select an image to test the conversion capabilities...
         /// </summary>
-        internal static string ImageBinConverterConvertImageTitle {
+        public static string ImageBinConverterConvertImageTitle {
             get {
                 return ResourceManager.GetString("ImageBinConverterConvertImageTitle", resourceCulture);
             }
@@ -1127,7 +1338,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Select an image to upload or for add/update operation....
         /// </summary>
-        internal static string ImageUploadForOperationTitle {
+        public static string ImageUploadForOperationTitle {
             get {
                 return ResourceManager.GetString("ImageUploadForOperationTitle", resourceCulture);
             }
@@ -1136,7 +1347,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to This language already exists!.
         /// </summary>
-        internal static string LanguageManagerLanguageExistErrorMessage {
+        public static string LanguageManagerLanguageExistErrorMessage {
             get {
                 return ResourceManager.GetString("LanguageManagerLanguageExistErrorMessage", resourceCulture);
             }
@@ -1145,25 +1356,234 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to This language wasn&apos;t added in the first place or was removed.
         /// </summary>
-        internal static string LanguageManagerLanguageNonexistentErrorMessage {
+        public static string LanguageManagerLanguageNonexistentErrorMessage {
             get {
                 return ResourceManager.GetString("LanguageManagerLanguageNonexistentErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address:.
+        /// </summary>
+        public static string LblAddressTitle {
+            get {
+                return ResourceManager.GetString("LblAddressTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Balance:.
+        /// </summary>
+        public static string LblBalanceTitle {
+            get {
+                return ResourceManager.GetString("LblBalanceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Operation Results:.
         /// </summary>
-        internal static string lblBulkOperationResultsText {
+        public static string lblBulkOperationResultsText {
             get {
                 return ResourceManager.GetString("lblBulkOperationResultsText", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Diagnose:.
+        /// </summary>
+        public static string LblDiagnoseTitle {
+            get {
+                return ResourceManager.GetString("LblDiagnoseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display Name:.
+        /// </summary>
+        public static string LblDisplayNameTitle {
+            get {
+                return ResourceManager.GetString("LblDisplayNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email:.
+        /// </summary>
+        public static string LblEmailTitle {
+            get {
+                return ResourceManager.GetString("LblEmailTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID:.
+        /// </summary>
+        public static string LblIDTitle {
+            get {
+                return ResourceManager.GetString("LblIDTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password:.
+        /// </summary>
+        public static string LblPasswordTitle {
+            get {
+                return ResourceManager.GetString("LblPasswordTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone:.
+        /// </summary>
+        public static string LblPhoneTitle {
+            get {
+                return ResourceManager.GetString("LblPhoneTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Admin.
+        /// </summary>
+        public static string LblRoleAdmin {
+            get {
+                return ResourceManager.GetString("LblRoleAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client.
+        /// </summary>
+        public static string LblRoleClient {
+            get {
+                return ResourceManager.GetString("LblRoleClient", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employee.
+        /// </summary>
+        public static string LblRoleEmployee {
+            get {
+                return ResourceManager.GetString("LblRoleEmployee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role:.
+        /// </summary>
+        public static string LblRoleTitle {
+            get {
+                return ResourceManager.GetString("LblRoleTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Criterias.
+        /// </summary>
+        public static string LblSearchModeAll {
+            get {
+                return ResourceManager.GetString("LblSearchModeAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Multiple Criterias.
+        /// </summary>
+        public static string LblSearchModeMultiple {
+            get {
+                return ResourceManager.GetString("LblSearchModeMultiple", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        public static string LblSearchModeNone {
+            get {
+                return ResourceManager.GetString("LblSearchModeNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single Criteria.
+        /// </summary>
+        public static string LblSearchModeSingle {
+            get {
+                return ResourceManager.GetString("LblSearchModeSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search Mode:.
+        /// </summary>
+        public static string LblSearchModeTitle {
+            get {
+                return ResourceManager.GetString("LblSearchModeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Birth Date From:.
+        /// </summary>
+        public static string LblUserBDateFromTitle {
+            get {
+                return ResourceManager.GetString("LblUserBDateFromTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Birth Date To:.
+        /// </summary>
+        public static string LblUserBDateToTitle {
+            get {
+                return ResourceManager.GetString("LblUserBDateToTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Username:.
+        /// </summary>
+        public static string LblUsernameTitle {
+            get {
+                return ResourceManager.GetString("LblUsernameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IMPORTANT NOTICE:
+        ///Username and password
+        ///should be unique.
+        /// </summary>
+        public static string LblUserNoticeTitle {
+            get {
+                return ResourceManager.GetString("LblUserNoticeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registered On From:.
+        /// </summary>
+        public static string LblUserRegDateFromTitle {
+            get {
+                return ResourceManager.GetString("LblUserRegDateFromTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registered On To:.
+        /// </summary>
+        public static string LblUserRegDateToTitle {
+            get {
+                return ResourceManager.GetString("LblUserRegDateToTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
-        internal static string LoginTitle {
+        public static string LoginTitle {
             get {
                 return ResourceManager.GetString("LoginTitle", resourceCulture);
             }
@@ -1172,7 +1592,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Database Logs access is given only to administrators and employees of this system..
         /// </summary>
-        internal static string LogsMenuAccessErrorMessage {
+        public static string LogsMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("LogsMenuAccessErrorMessage", resourceCulture);
             }
@@ -1181,7 +1601,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to New Order.
         /// </summary>
-        internal static string NewOrderTitle {
+        public static string NewOrderTitle {
             get {
                 return ResourceManager.GetString("NewOrderTitle", resourceCulture);
             }
@@ -1190,7 +1610,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to delete order deliveries..
         /// </summary>
-        internal static string OrderDeliveryDeleteOperationPermissionError {
+        public static string OrderDeliveryDeleteOperationPermissionError {
             get {
                 return ResourceManager.GetString("OrderDeliveryDeleteOperationPermissionError", resourceCulture);
             }
@@ -1199,7 +1619,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to add/edit order deliveries..
         /// </summary>
-        internal static string OrderDeliveryEditOperationPermissionError {
+        public static string OrderDeliveryEditOperationPermissionError {
             get {
                 return ResourceManager.GetString("OrderDeliveryEditOperationPermissionError", resourceCulture);
             }
@@ -1208,7 +1628,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Do you want to generate invoice for this order delivery?.
         /// </summary>
-        internal static string OrderDeliveryInvoiceGenerationQuestion {
+        public static string OrderDeliveryInvoiceGenerationQuestion {
             get {
                 return ResourceManager.GetString("OrderDeliveryInvoiceGenerationQuestion", resourceCulture);
             }
@@ -1217,16 +1637,34 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Order Deliveries list access is given only to administrators and employees of this system..
         /// </summary>
-        internal static string OrderDeliveryMenuAccessErrorMessage {
+        public static string OrderDeliveryMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("OrderDeliveryMenuAccessErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string PasswordColTitle {
+            get {
+                return ResourceManager.GetString("PasswordColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password with which you want to search users.
+        /// </summary>
+        public static string PasswordSearchTooltip {
+            get {
+                return ResourceManager.GetString("PasswordSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to delete payment methods..
         /// </summary>
-        internal static string PaymentMethodDeleteOperationPermissionError {
+        public static string PaymentMethodDeleteOperationPermissionError {
             get {
                 return ResourceManager.GetString("PaymentMethodDeleteOperationPermissionError", resourceCulture);
             }
@@ -1235,7 +1673,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to add/edit payment methods..
         /// </summary>
-        internal static string PaymentMethodEditOperationPermissionError {
+        public static string PaymentMethodEditOperationPermissionError {
             get {
                 return ResourceManager.GetString("PaymentMethodEditOperationPermissionError", resourceCulture);
             }
@@ -1244,16 +1682,34 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Payment Method list access is given only to administrators and employees of this system..
         /// </summary>
-        internal static string PaymentMethodMenuAccessErrorMessage {
+        public static string PaymentMethodMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("PaymentMethodMenuAccessErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Phone.
+        /// </summary>
+        public static string PhoneColTitle {
+            get {
+                return ResourceManager.GetString("PhoneColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The phone with which you want to search users.
+        /// </summary>
+        public static string PhoneSearchTooltip {
+            get {
+                return ResourceManager.GetString("PhoneSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to delete products..
         /// </summary>
-        internal static string ProductDeleteOperationPermissionError {
+        public static string ProductDeleteOperationPermissionError {
             get {
                 return ResourceManager.GetString("ProductDeleteOperationPermissionError", resourceCulture);
             }
@@ -1262,7 +1718,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to add/edit products..
         /// </summary>
-        internal static string ProductEditOperationPermissionError {
+        public static string ProductEditOperationPermissionError {
             get {
                 return ResourceManager.GetString("ProductEditOperationPermissionError", resourceCulture);
             }
@@ -1271,7 +1727,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to delete product images..
         /// </summary>
-        internal static string ProductImageDeleteOperationPermissionError {
+        public static string ProductImageDeleteOperationPermissionError {
             get {
                 return ResourceManager.GetString("ProductImageDeleteOperationPermissionError", resourceCulture);
             }
@@ -1280,7 +1736,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to add/edit product images..
         /// </summary>
-        internal static string ProductImageEditOperationPermissionError {
+        public static string ProductImageEditOperationPermissionError {
             get {
                 return ResourceManager.GetString("ProductImageEditOperationPermissionError", resourceCulture);
             }
@@ -1289,7 +1745,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You have full access to the products and product images.
         /// </summary>
-        internal static string ProductMenuAccessAdminNotice {
+        public static string ProductMenuAccessAdminNotice {
             get {
                 return ResourceManager.GetString("ProductMenuAccessAdminNotice", resourceCulture);
             }
@@ -1298,7 +1754,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You have limited access to the products and the product images.
         /// </summary>
-        internal static string ProductMenuAccessEmployeeNotice {
+        public static string ProductMenuAccessEmployeeNotice {
             get {
                 return ResourceManager.GetString("ProductMenuAccessEmployeeNotice", resourceCulture);
             }
@@ -1307,7 +1763,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Products and Product Images list access is given only to administrators and employees of this system..
         /// </summary>
-        internal static string ProductMenuAccessErrorMessage {
+        public static string ProductMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("ProductMenuAccessErrorMessage", resourceCulture);
             }
@@ -1316,7 +1772,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to delete product orders..
         /// </summary>
-        internal static string ProductOrderDeleteOperationPermissionError {
+        public static string ProductOrderDeleteOperationPermissionError {
             get {
                 return ResourceManager.GetString("ProductOrderDeleteOperationPermissionError", resourceCulture);
             }
@@ -1325,7 +1781,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to add/edit product orders..
         /// </summary>
-        internal static string ProductOrderEditOperationPermissionError {
+        public static string ProductOrderEditOperationPermissionError {
             get {
                 return ResourceManager.GetString("ProductOrderEditOperationPermissionError", resourceCulture);
             }
@@ -1334,7 +1790,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Do you want to generate invoice for this product order?.
         /// </summary>
-        internal static string ProductOrderInvoiceGenerationQuestion {
+        public static string ProductOrderInvoiceGenerationQuestion {
             get {
                 return ResourceManager.GetString("ProductOrderInvoiceGenerationQuestion", resourceCulture);
             }
@@ -1343,7 +1799,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product Orders list access is given only to administrators and employees of this system..
         /// </summary>
-        internal static string ProductOrderMenuAccessErrorMessage {
+        public static string ProductOrderMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("ProductOrderMenuAccessErrorMessage", resourceCulture);
             }
@@ -1352,9 +1808,18 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Do you want to override the price of that order as total?.
         /// </summary>
-        internal static string ProductOrderTotalPriceOverrideQuestion {
+        public static string ProductOrderTotalPriceOverrideQuestion {
             get {
                 return ResourceManager.GetString("ProductOrderTotalPriceOverrideQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile Picture.
+        /// </summary>
+        public static string ProfilePicColTitle {
+            get {
+                return ResourceManager.GetString("ProfilePicColTitle", resourceCulture);
             }
         }
         
@@ -1362,16 +1827,25 @@ namespace XtremePharmacyManager.Properties {
         ///   Looks up a localized string similar to Are you sure you want to delete this record?
         ///This operation is irreversible and can cause troubles in the database relations..
         /// </summary>
-        internal static string RecordDeletionWarning {
+        public static string RecordDeletionWarning {
             get {
                 return ResourceManager.GetString("RecordDeletionWarning", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Register Date.
+        /// </summary>
+        public static string RegisterDateColTitle {
+            get {
+                return ResourceManager.GetString("RegisterDateColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reports cannot be generated or you don&apos;t have permissions to view them..
         /// </summary>
-        internal static string ReportGenerationPermissionError {
+        public static string ReportGenerationPermissionError {
             get {
                 return ResourceManager.GetString("ReportGenerationPermissionError", resourceCulture);
             }
@@ -1380,16 +1854,34 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Report Generation.
         /// </summary>
-        internal static string ReportGenerationTitle {
+        public static string ReportGenerationTitle {
             get {
                 return ResourceManager.GetString("ReportGenerationTitle", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Role.
+        /// </summary>
+        public static string RoleColTitle {
+            get {
+                return ResourceManager.GetString("RoleColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The role in the system with which you want to search users.
+        /// </summary>
+        public static string RoleSearchTooltip {
+            get {
+                return ResourceManager.GetString("RoleSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sample bulk create task executed successfully..
         /// </summary>
-        internal static string SampleBulkOperationCreateTaskSuccessMessage {
+        public static string SampleBulkOperationCreateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("SampleBulkOperationCreateTaskSuccessMessage", resourceCulture);
             }
@@ -1398,7 +1890,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Sample custom bulk task executed successfully..
         /// </summary>
-        internal static string SampleBulkOperationCustomTaskSuccessMessage {
+        public static string SampleBulkOperationCustomTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("SampleBulkOperationCustomTaskSuccessMessage", resourceCulture);
             }
@@ -1407,7 +1899,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Sample bulk delete task executed successfully..
         /// </summary>
-        internal static string SampleBulkOperationDeleteTaskSuccessMessage {
+        public static string SampleBulkOperationDeleteTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("SampleBulkOperationDeleteTaskSuccessMessage", resourceCulture);
             }
@@ -1416,7 +1908,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Sample bulk update task executed successfully..
         /// </summary>
-        internal static string SampleBulkOperationUpdateTaskSuccessMessage {
+        public static string SampleBulkOperationUpdateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("SampleBulkOperationUpdateTaskSuccessMessage", resourceCulture);
             }
@@ -1425,7 +1917,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Stack Trace: .
         /// </summary>
-        internal static string StackTraceMessage {
+        public static string StackTraceMessage {
             get {
                 return ResourceManager.GetString("StackTraceMessage", resourceCulture);
             }
@@ -1434,7 +1926,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Test.
         /// </summary>
-        internal static string TestTitle {
+        public static string TestTitle {
             get {
                 return ResourceManager.GetString("TestTitle", resourceCulture);
             }
@@ -1443,16 +1935,34 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to User Access.
         /// </summary>
-        internal static string UserAccessTitle {
+        public static string UserAccessTitle {
             get {
                 return ResourceManager.GetString("UserAccessTitle", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The birth date from which you want to search users.
+        /// </summary>
+        public static string UserBDateFromSearchTooltip {
+            get {
+                return ResourceManager.GetString("UserBDateFromSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The birth date to which you want to search users.
+        /// </summary>
+        public static string UserBDateToSearchTooltip {
+            get {
+                return ResourceManager.GetString("UserBDateToSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to delete users besides your own account..
         /// </summary>
-        internal static string UserDeleteOperationPermissionError {
+        public static string UserDeleteOperationPermissionError {
             get {
                 return ResourceManager.GetString("UserDeleteOperationPermissionError", resourceCulture);
             }
@@ -1461,25 +1971,97 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to add/edit users besides your own account..
         /// </summary>
-        internal static string UserEditOperationPermissionError {
+        public static string UserEditOperationPermissionError {
             get {
                 return ResourceManager.GetString("UserEditOperationPermissionError", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User ID.
+        /// </summary>
+        public static string UserIDColTitle {
+            get {
+                return ResourceManager.GetString("UserIDColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User list access is given only to administrators and employees of this system..
         /// </summary>
-        internal static string UserMenuAccessErrorMessage {
+        public static string UserMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("UserMenuAccessErrorMessage", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Username.
+        /// </summary>
+        public static string UserNameColTitle {
+            get {
+                return ResourceManager.GetString("UserNameColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The username with which you want to search users.
+        /// </summary>
+        public static string UsernameSearchTooltip {
+            get {
+                return ResourceManager.GetString("UsernameSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you are a dumbfuck like my creator read this so you don&apos;t complain that you can&apos;t change the user data via any operation.
+        /// </summary>
+        public static string UserNoticeTooltipTitle {
+            get {
+                return ResourceManager.GetString("UserNoticeTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The registration date from which you want to search users.
+        /// </summary>
+        public static string UserRegDateFromSearchTooltip {
+            get {
+                return ResourceManager.GetString("UserRegDateFromSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The registration date to which you want to search users.
+        /// </summary>
+        public static string UserRegDateToSearchTooltip {
+            get {
+                return ResourceManager.GetString("UserRegDateToSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users.
+        /// </summary>
+        public static string UsersTitle {
+            get {
+                return ResourceManager.GetString("UsersTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The users window where you can search, add, edit, delete and generate reports on the users. Whether you can do it or not depends on your permissions.
+        /// </summary>
+        public static string UsersTooltipTitle {
+            get {
+                return ResourceManager.GetString("UsersTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to delete product vendors..
         /// </summary>
-        internal static string VendorDeleteOperationPermissionError {
+        public static string VendorDeleteOperationPermissionError {
             get {
                 return ResourceManager.GetString("VendorDeleteOperationPermissionError", resourceCulture);
             }
@@ -1488,7 +2070,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to add/edit product vendors..
         /// </summary>
-        internal static string VendorEditOperationPermissionError {
+        public static string VendorEditOperationPermissionError {
             get {
                 return ResourceManager.GetString("VendorEditOperationPermissionError", resourceCulture);
             }
@@ -1497,7 +2079,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Product Vendors list access is given only to administrators and employees of this system..
         /// </summary>
-        internal static string VendorMenuAccessErrorMessage {
+        public static string VendorMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("VendorMenuAccessErrorMessage", resourceCulture);
             }
@@ -1506,7 +2088,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Version.
         /// </summary>
-        internal static string VersionTitle {
+        public static string VersionTitle {
             get {
                 return ResourceManager.GetString("VersionTitle", resourceCulture);
             }
@@ -1515,7 +2097,7 @@ namespace XtremePharmacyManager.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Warning.
         /// </summary>
-        internal static string WarningTitle {
+        public static string WarningTitle {
             get {
                 return ResourceManager.GetString("WarningTitle", resourceCulture);
             }

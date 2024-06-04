@@ -116,7 +116,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(237, 22);
             this.txtID.TabIndex = 4;
-            this.ttLogs.SetToolTip(this.txtID, "The ID of the selected record entry to be searched is here");
+            this.ttLogs.SetToolTip(this.txtID, GLOBAL_RESOURCES.ID_SEARCH_TOOLTIP_TITLE);
             // 
             // lblID
             // 
@@ -128,7 +128,7 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 3;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // dtLogDateTo
             // 
@@ -228,7 +228,7 @@
             this.lblSearchMode.Name = "lblSearchMode";
             this.lblSearchMode.Size = new System.Drawing.Size(103, 16);
             this.lblSearchMode.TabIndex = 36;
-            this.lblSearchMode.Text = "Search Mode:";
+            this.lblSearchMode.Text = GLOBAL_RESOURCES.LBL_SEARCH_MODE_TITLE;
             // 
             // cbSearchMode
             // 
@@ -236,16 +236,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbSearchMode.FormattingEnabled = true;
             this.cbSearchMode.Items.AddRange(new object[] {
-            "None",
-            "Single Criteria",
-            "Multiple Criterias",
-            "All Criterias"});
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_NONE,
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_SINGLE,
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_MULTIPLE,
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_ALL});
             this.cbSearchMode.Location = new System.Drawing.Point(569, 134);
             this.cbSearchMode.Name = "cbSearchMode";
             this.cbSearchMode.Size = new System.Drawing.Size(219, 24);
             this.cbSearchMode.TabIndex = 35;
-            this.cbSearchMode.Text = "Multiple Criterias";
-            this.ttLogs.SetToolTip(this.cbSearchMode, resources.GetString("cbSearchMode.ToolTip"));
+            this.cbSearchMode.Text = GLOBAL_RESOURCES.LBL_SEARCH_MODE_MULTIPLE;
+            this.ttLogs.SetToolTip(this.cbSearchMode, GLOBAL_RESOURCES.CB_SEARCH_MODE_TOOLTIP_TITLE);
             // 
             // txtAdditionalInformation
             // 
@@ -277,9 +277,8 @@
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(90, 47);
             this.btnSearch.TabIndex = 37;
-            this.btnSearch.Text = "SEARCH";
-            this.ttLogs.SetToolTip(this.btnSearch, "When you click the button you search based on the criterias search mode you selec" +
-        "ted.");
+            this.btnSearch.Text = GLOBAL_RESOURCES.BTN_SEARCH_TITLE;
+            this.ttLogs.SetToolTip(this.btnSearch, GLOBAL_RESOURCES.BTN_SEARCH_TOOLTIP_TITLE);
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -288,7 +287,7 @@
             this.ttLogs.IsBalloon = true;
             this.ttLogs.ShowAlways = true;
             this.ttLogs.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttLogs.ToolTipTitle = "Help";
+            this.ttLogs.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmLogs
             // 

@@ -154,8 +154,7 @@ namespace XtremePharmacyManager
             this.dgvUsers.RowTemplate.Height = 24;
             this.dgvUsers.Size = new System.Drawing.Size(917, 99);
             this.dgvUsers.TabIndex = 1;
-            this.ttSearchUsers.SetToolTip(this.dgvUsers, "The list of product orders in the database. Select any to add/edit/delete/generat" +
-        "e report based on your permissions.");
+            this.ttSearchUsers.SetToolTip(this.dgvUsers, GLOBAL_RESOURCES.DGV_USERS_TOOLTIP_TITLE);
             this.dgvUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUsers_CellClick);
             this.dgvUsers.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvUsers_RowsAdded);
             // 
@@ -173,7 +172,7 @@ namespace XtremePharmacyManager
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // txtID
             // 
@@ -183,7 +182,7 @@ namespace XtremePharmacyManager
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(258, 22);
             this.txtID.TabIndex = 2;
-            this.ttSearchUsers.SetToolTip(this.txtID, "The ID of the selected record entry to be searched is here");
+            this.ttSearchUsers.SetToolTip(this.txtID, GLOBAL_RESOURCES.ID_SEARCH_TOOLTIP_TITLE);
             // 
             // lblUsername
             // 
@@ -195,7 +194,7 @@ namespace XtremePharmacyManager
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(82, 16);
             this.lblUsername.TabIndex = 3;
-            this.lblUsername.Text = "Username:";
+            this.lblUsername.Text = GLOBAL_RESOURCES.LBL_USERNAME_TITLE;
             // 
             // txtUsername
             // 
@@ -205,7 +204,7 @@ namespace XtremePharmacyManager
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(258, 22);
             this.txtUsername.TabIndex = 4;
-            this.ttSearchUsers.SetToolTip(this.txtUsername, "The username with which you want to search users");
+            this.ttSearchUsers.SetToolTip(this.txtUsername, GLOBAL_RESOURCES.USERNAME_SEARCH_TOOLTIP_TITLE);
             // 
             // lblPassword
             // 
@@ -217,7 +216,7 @@ namespace XtremePharmacyManager
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(79, 16);
             this.lblPassword.TabIndex = 5;
-            this.lblPassword.Text = "Password:";
+            this.lblPassword.Text = GLOBAL_RESOURCES.LBL_PASSWORD_TITLE;
             // 
             // txtPassword
             // 
@@ -227,7 +226,7 @@ namespace XtremePharmacyManager
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(258, 22);
             this.txtPassword.TabIndex = 6;
-            this.ttSearchUsers.SetToolTip(this.txtPassword, "The password with which you want to search users");
+            this.ttSearchUsers.SetToolTip(this.txtPassword, GLOBAL_RESOURCES.PASSWORD_SEARCH_TOOLTIP_TITLE);
             // 
             // lblDisplayName
             // 
@@ -239,7 +238,7 @@ namespace XtremePharmacyManager
             this.lblDisplayName.Name = "lblDisplayName";
             this.lblDisplayName.Size = new System.Drawing.Size(109, 16);
             this.lblDisplayName.TabIndex = 7;
-            this.lblDisplayName.Text = "Display Name:";
+            this.lblDisplayName.Text = GLOBAL_RESOURCES.LBL_DISPLAY_NAME_TITLE;
             // 
             // txtDisplayName
             // 
@@ -249,7 +248,7 @@ namespace XtremePharmacyManager
             this.txtDisplayName.Name = "txtDisplayName";
             this.txtDisplayName.Size = new System.Drawing.Size(258, 22);
             this.txtDisplayName.TabIndex = 8;
-            this.ttSearchUsers.SetToolTip(this.txtDisplayName, "The display name with which you want to search users");
+            this.ttSearchUsers.SetToolTip(this.txtDisplayName, GLOBAL_RESOURCES.DISPLAY_NAME_SEARCH_TOOLTIP_TITLE);
             // 
             // lblBirthDateFrom
             // 
@@ -261,7 +260,7 @@ namespace XtremePharmacyManager
             this.lblBirthDateFrom.Name = "lblBirthDateFrom";
             this.lblBirthDateFrom.Size = new System.Drawing.Size(118, 16);
             this.lblBirthDateFrom.TabIndex = 9;
-            this.lblBirthDateFrom.Text = "Birth Date From:";
+            this.lblBirthDateFrom.Text = GLOBAL_RESOURCES.LBL_USER_B_DATE_FROM_TITLE;
             // 
             // dtBirthDateFrom
             // 
@@ -271,7 +270,7 @@ namespace XtremePharmacyManager
             this.dtBirthDateFrom.Name = "dtBirthDateFrom";
             this.dtBirthDateFrom.Size = new System.Drawing.Size(251, 22);
             this.dtBirthDateFrom.TabIndex = 10;
-            this.ttSearchUsers.SetToolTip(this.dtBirthDateFrom, "The birth date from which you want to search users");
+            this.ttSearchUsers.SetToolTip(this.dtBirthDateFrom, GLOBAL_RESOURCES.USER_B_DATE_FROM_SEARCH_TOOLTIP);
             // 
             // lblBirthDateTo
             // 
@@ -283,7 +282,7 @@ namespace XtremePharmacyManager
             this.lblBirthDateTo.Name = "lblBirthDateTo";
             this.lblBirthDateTo.Size = new System.Drawing.Size(102, 16);
             this.lblBirthDateTo.TabIndex = 11;
-            this.lblBirthDateTo.Text = "Birth Date To:";
+            this.lblBirthDateTo.Text = GLOBAL_RESOURCES.LBL_USER_B_DATE_TO_TITLE;
             // 
             // dtBirthDateTo
             // 
@@ -293,7 +292,7 @@ namespace XtremePharmacyManager
             this.dtBirthDateTo.Name = "dtBirthDateTo";
             this.dtBirthDateTo.Size = new System.Drawing.Size(251, 22);
             this.dtBirthDateTo.TabIndex = 12;
-            this.ttSearchUsers.SetToolTip(this.dtBirthDateTo, "The birth date to which you want to search users");
+            this.ttSearchUsers.SetToolTip(this.dtBirthDateTo, GLOBAL_RESOURCES.USER_B_DATE_TO_SEARCH_TOOLTIP);
             // 
             // lblPhone
             // 
@@ -305,7 +304,7 @@ namespace XtremePharmacyManager
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(55, 16);
             this.lblPhone.TabIndex = 13;
-            this.lblPhone.Text = "Phone:";
+            this.lblPhone.Text = GLOBAL_RESOURCES.LBL_PHONE_TITLE;
             // 
             // txtPhone
             // 
@@ -315,7 +314,7 @@ namespace XtremePharmacyManager
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(258, 22);
             this.txtPhone.TabIndex = 14;
-            this.ttSearchUsers.SetToolTip(this.txtPhone, "The phone with which you want to search users");
+            this.ttSearchUsers.SetToolTip(this.txtPhone, GLOBAL_RESOURCES.PHONE_SEARCH_TOOLTIP_TITLE);
             // 
             // lblEmail
             // 
@@ -327,7 +326,7 @@ namespace XtremePharmacyManager
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(50, 16);
             this.lblEmail.TabIndex = 15;
-            this.lblEmail.Text = "Email:";
+            this.lblEmail.Text = GLOBAL_RESOURCES.LBL_EMAIL_TITLE;
             // 
             // txtEmail
             // 
@@ -337,7 +336,7 @@ namespace XtremePharmacyManager
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(258, 22);
             this.txtEmail.TabIndex = 16;
-            this.ttSearchUsers.SetToolTip(this.txtEmail, "The email with which you want to search users");
+            this.ttSearchUsers.SetToolTip(this.txtEmail, GLOBAL_RESOURCES.EMAIL_SEARCH_TOOLTIP_TITLE);
             // 
             // lblAddress
             // 
@@ -349,7 +348,7 @@ namespace XtremePharmacyManager
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(69, 16);
             this.lblAddress.TabIndex = 17;
-            this.lblAddress.Text = "Address:";
+            this.lblAddress.Text = GLOBAL_RESOURCES.LBL_ADDRESS_TITLE;
             // 
             // txtAddress
             // 
@@ -360,7 +359,7 @@ namespace XtremePharmacyManager
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(258, 52);
             this.txtAddress.TabIndex = 18;
-            this.ttSearchUsers.SetToolTip(this.txtAddress, "The address with which you want to search users");
+            this.ttSearchUsers.SetToolTip(this.txtAddress, GLOBAL_RESOURCES.ADDRESS_SEARCH_TOOLTIP_TITLE);
             // 
             // lblBalance
             // 
@@ -372,7 +371,7 @@ namespace XtremePharmacyManager
             this.lblBalance.Name = "lblBalance";
             this.lblBalance.Size = new System.Drawing.Size(68, 16);
             this.lblBalance.TabIndex = 19;
-            this.lblBalance.Text = "Balance:";
+            this.lblBalance.Text = GLOBAL_RESOURCES.LBL_BALANCE_TITLE;
             // 
             // trbBalance
             // 
@@ -383,7 +382,7 @@ namespace XtremePharmacyManager
             this.trbBalance.Name = "trbBalance";
             this.trbBalance.Size = new System.Drawing.Size(259, 56);
             this.trbBalance.TabIndex = 21;
-            this.ttSearchUsers.SetToolTip(this.trbBalance, "The balance with which you want to search users");
+            this.ttSearchUsers.SetToolTip(this.trbBalance, GLOBAL_RESOURCES.BALANCE_SEARCH_TOOLTIP_TITLE);
             this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
             // 
             // lblDiagnose
@@ -396,7 +395,7 @@ namespace XtremePharmacyManager
             this.lblDiagnose.Name = "lblDiagnose";
             this.lblDiagnose.Size = new System.Drawing.Size(78, 16);
             this.lblDiagnose.TabIndex = 22;
-            this.lblDiagnose.Text = "Diagnose:";
+            this.lblDiagnose.Text = GLOBAL_RESOURCES.LBL_DIAGNOSE_TITLE;
             // 
             // txtDiagnose
             // 
@@ -407,7 +406,7 @@ namespace XtremePharmacyManager
             this.txtDiagnose.Name = "txtDiagnose";
             this.txtDiagnose.Size = new System.Drawing.Size(313, 63);
             this.txtDiagnose.TabIndex = 23;
-            this.ttSearchUsers.SetToolTip(this.txtDiagnose, "The diagnose with which you want to search users");
+            this.ttSearchUsers.SetToolTip(this.txtDiagnose, GLOBAL_RESOURCES.DIAGNOSE_SEARCH_TOOLTIP_TITLE);
             // 
             // lblRegisterDateFrom
             // 
@@ -419,7 +418,7 @@ namespace XtremePharmacyManager
             this.lblRegisterDateFrom.Name = "lblRegisterDateFrom";
             this.lblRegisterDateFrom.Size = new System.Drawing.Size(150, 16);
             this.lblRegisterDateFrom.TabIndex = 24;
-            this.lblRegisterDateFrom.Text = "Registered On From:";
+            this.lblRegisterDateFrom.Text = GLOBAL_RESOURCES.LBL_USER_REG_DATE_FROM_TITLE;
             // 
             // dtRegisterDateFrom
             // 
@@ -429,7 +428,7 @@ namespace XtremePharmacyManager
             this.dtRegisterDateFrom.Name = "dtRegisterDateFrom";
             this.dtRegisterDateFrom.Size = new System.Drawing.Size(229, 22);
             this.dtRegisterDateFrom.TabIndex = 25;
-            this.ttSearchUsers.SetToolTip(this.dtRegisterDateFrom, "The registration date from which you want to search users");
+            this.ttSearchUsers.SetToolTip(this.dtRegisterDateFrom, GLOBAL_RESOURCES.USER_REG_DATE_FROM_SEARCH_TOOLTIP);
             // 
             // lblRegisterDateTo
             // 
@@ -441,7 +440,7 @@ namespace XtremePharmacyManager
             this.lblRegisterDateTo.Name = "lblRegisterDateTo";
             this.lblRegisterDateTo.Size = new System.Drawing.Size(134, 16);
             this.lblRegisterDateTo.TabIndex = 26;
-            this.lblRegisterDateTo.Text = "Registered On To:";
+            this.lblRegisterDateTo.Text = GLOBAL_RESOURCES.LBL_USER_REG_DATE_TO_TITLE;
             // 
             // dtRegisterDateTo
             // 
@@ -451,7 +450,7 @@ namespace XtremePharmacyManager
             this.dtRegisterDateTo.Name = "dtRegisterDateTo";
             this.dtRegisterDateTo.Size = new System.Drawing.Size(229, 22);
             this.dtRegisterDateTo.TabIndex = 27;
-            this.ttSearchUsers.SetToolTip(this.dtRegisterDateTo, "The registration date to which you want to search users");
+            this.ttSearchUsers.SetToolTip(this.dtRegisterDateTo, GLOBAL_RESOURCES.USER_REG_DATE_TO_SEARCH_TOOLTIP);
             // 
             // lblRole
             // 
@@ -463,7 +462,7 @@ namespace XtremePharmacyManager
             this.lblRole.Name = "lblRole";
             this.lblRole.Size = new System.Drawing.Size(44, 16);
             this.lblRole.TabIndex = 28;
-            this.lblRole.Text = "Role:";
+            this.lblRole.Text = GLOBAL_RESOURCES.LBL_ROLE_TITLE;
             // 
             // cbRole
             // 
@@ -471,15 +470,15 @@ namespace XtremePharmacyManager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbRole.FormattingEnabled = true;
             this.cbRole.Items.AddRange(new object[] {
-            "Admin",
-            "Employee",
-            "Client"});
+            GLOBAL_RESOURCES.LBL_ROLE_ADMIN,
+            GLOBAL_RESOURCES.LBL_ROLE_EMPLOYEE,
+            GLOBAL_RESOURCES.LBL_ROLE_CLIENT});
             this.cbRole.Location = new System.Drawing.Point(676, 181);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(229, 24);
             this.cbRole.TabIndex = 29;
-            this.cbRole.Text = "Employee";
-            this.ttSearchUsers.SetToolTip(this.cbRole, "The role in the system with which you want to search users");
+            this.cbRole.Text = GLOBAL_RESOURCES.LBL_ROLE_EMPLOYEE;
+            this.ttSearchUsers.SetToolTip(this.cbRole, GLOBAL_RESOURCES.ROLE_SEARCH_TOOLTIP_TITLE);
             // 
             // btnSearch
             // 
@@ -491,9 +490,8 @@ namespace XtremePharmacyManager
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(90, 47);
             this.btnSearch.TabIndex = 30;
-            this.btnSearch.Text = "SEARCH";
-            this.ttSearchUsers.SetToolTip(this.btnSearch, "When you click the button you search based on the criterias search mode you selec" +
-        "ted.");
+            this.btnSearch.Text = GLOBAL_RESOURCES.BTN_SEARCH_TITLE;
+            this.ttSearchUsers.SetToolTip(this.btnSearch, GLOBAL_RESOURCES.BTN_SEARCH_TOOLTIP_TITLE);
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -503,16 +501,16 @@ namespace XtremePharmacyManager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbSearchMode.FormattingEnabled = true;
             this.cbSearchMode.Items.AddRange(new object[] {
-            "None",
-            "Single Criteria",
-            "Multiple Criterias",
-            "All Criterias"});
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_NONE,
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_SINGLE,
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_MULTIPLE,
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_ALL});
             this.cbSearchMode.Location = new System.Drawing.Point(676, 211);
             this.cbSearchMode.Name = "cbSearchMode";
             this.cbSearchMode.Size = new System.Drawing.Size(229, 24);
             this.cbSearchMode.TabIndex = 31;
-            this.cbSearchMode.Text = "Multiple Criterias";
-            this.ttSearchUsers.SetToolTip(this.cbSearchMode, resources.GetString("cbSearchMode.ToolTip"));
+            this.cbSearchMode.Text = GLOBAL_RESOURCES.LBL_SEARCH_MODE_MULTIPLE;
+            this.ttSearchUsers.SetToolTip(this.cbSearchMode, GLOBAL_RESOURCES.CB_SEARCH_MODE_TOOLTIP_TITLE);
             // 
             // lblSearchMode
             // 
@@ -524,7 +522,7 @@ namespace XtremePharmacyManager
             this.lblSearchMode.Name = "lblSearchMode";
             this.lblSearchMode.Size = new System.Drawing.Size(103, 16);
             this.lblSearchMode.TabIndex = 32;
-            this.lblSearchMode.Text = "Search Mode:";
+            this.lblSearchMode.Text = GLOBAL_RESOURCES.LBL_SEARCH_MODE_TITLE;
             // 
             // btnAddOrEdit
             // 
@@ -536,9 +534,8 @@ namespace XtremePharmacyManager
             this.btnAddOrEdit.Name = "btnAddOrEdit";
             this.btnAddOrEdit.Size = new System.Drawing.Size(90, 47);
             this.btnAddOrEdit.TabIndex = 33;
-            this.btnAddOrEdit.Text = "ADD/EDIT";
-            this.ttSearchUsers.SetToolTip(this.btnAddOrEdit, "When you click the button you add/edit an entry based on the permissions you have" +
-        ".");
+            this.btnAddOrEdit.Text = GLOBAL_RESOURCES.BTN_ADD_EDIT_TITLE;
+            this.ttSearchUsers.SetToolTip(this.btnAddOrEdit, GLOBAL_RESOURCES.BTN_ADD_EDIT_TOOLTIP_TITLE);
             this.btnAddOrEdit.UseVisualStyleBackColor = true;
             this.btnAddOrEdit.Click += new System.EventHandler(this.btnAddOrEdit_Click);
             // 
@@ -552,8 +549,8 @@ namespace XtremePharmacyManager
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(90, 47);
             this.btnDelete.TabIndex = 34;
-            this.btnDelete.Text = "DELETE";
-            this.ttSearchUsers.SetToolTip(this.btnDelete, "When you click the button you delete an entry based on the permissions you have.");
+            this.btnDelete.Text = GLOBAL_RESOURCES.BTN_DELETE_TITLE;
+            this.ttSearchUsers.SetToolTip(this.btnDelete, GLOBAL_RESOURCES.BTN_DELETE_TOOLTIP_TITLE);
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -610,7 +607,7 @@ namespace XtremePharmacyManager
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.Size = new System.Drawing.Size(47, 22);
             this.txtBalance.TabIndex = 45;
-            this.ttSearchUsers.SetToolTip(this.txtBalance, "The balance with which you want to search users");
+            this.ttSearchUsers.SetToolTip(this.txtBalance, GLOBAL_RESOURCES.BALANCE_SEARCH_TOOLTIP_TITLE);
             this.txtBalance.TextChanged += new System.EventHandler(this.txtBalance_TextChanged);
             // 
             // btnGenerateReport
@@ -623,10 +620,8 @@ namespace XtremePharmacyManager
             this.btnGenerateReport.Name = "btnGenerateReport";
             this.btnGenerateReport.Size = new System.Drawing.Size(175, 47);
             this.btnGenerateReport.TabIndex = 44;
-            this.btnGenerateReport.Text = "GENERATE REPORT";
-            this.ttSearchUsers.SetToolTip(this.btnGenerateReport, "When you click the button you generate a report on  an entry based on the permiss" +
-        "ions you have and whether the report definition based on localisation is present" +
-        ".");
+            this.btnGenerateReport.Text = GLOBAL_RESOURCES.BTN_GENERATE_REPORT_TITLE;
+            this.ttSearchUsers.SetToolTip(this.btnGenerateReport, GLOBAL_RESOURCES.BTN_GENERATE_REPORT_TOOLTIP_TITLE);
             this.btnGenerateReport.UseVisualStyleBackColor = true;
             this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
@@ -641,21 +636,20 @@ namespace XtremePharmacyManager
             this.lblUserNotice.Name = "lblUserNotice";
             this.lblUserNotice.Size = new System.Drawing.Size(179, 48);
             this.lblUserNotice.TabIndex = 43;
-            this.lblUserNotice.Text = "IMPORTANT NOTICE:\r\nUsername and password\r\nshould be unique\r\n";
-            this.ttSearchUsers.SetToolTip(this.lblUserNotice, "If you are a dumbfuck like my creator read this so you don\'t complain that you ca" +
-        "n\'t change the user data via any operation");
+            this.lblUserNotice.Text = GLOBAL_RESOURCES.LBL_USER_NOTICE_TITLE;
+            this.ttSearchUsers.SetToolTip(this.lblUserNotice, GLOBAL_RESOURCES.USER_NOTICE_TOOLTIP_TITLE);
             // 
             // ttSearchUsers
             // 
             this.ttSearchUsers.IsBalloon = true;
             this.ttSearchUsers.ShowAlways = true;
             this.ttSearchUsers.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttSearchUsers.ToolTipTitle = "Help";
+            this.ttSearchUsers.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // IDColumn
             // 
             this.IDColumn.DataPropertyName = "ID";
-            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.HeaderText = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.IDColumn.MinimumWidth = 6;
             this.IDColumn.Name = "IDColumn";
             this.IDColumn.ReadOnly = true;
@@ -664,7 +658,7 @@ namespace XtremePharmacyManager
             // UsernameColumn
             // 
             this.UsernameColumn.DataPropertyName = "UserName";
-            this.UsernameColumn.HeaderText = "Username";
+            this.UsernameColumn.HeaderText = GLOBAL_RESOURCES.USER_NAME_COL_TITLE;
             this.UsernameColumn.MinimumWidth = 6;
             this.UsernameColumn.Name = "UsernameColumn";
             this.UsernameColumn.ReadOnly = true;
@@ -673,7 +667,7 @@ namespace XtremePharmacyManager
             // PasswordColumn
             // 
             this.PasswordColumn.DataPropertyName = "UserPassword";
-            this.PasswordColumn.HeaderText = "Password";
+            this.PasswordColumn.HeaderText = GLOBAL_RESOURCES.PASSWORD_COL_TITLE;
             this.PasswordColumn.MinimumWidth = 6;
             this.PasswordColumn.Name = "PasswordColumn";
             this.PasswordColumn.ReadOnly = true;
@@ -682,7 +676,7 @@ namespace XtremePharmacyManager
             // DisplayNameColumn
             // 
             this.DisplayNameColumn.DataPropertyName = "UserDisplayName";
-            this.DisplayNameColumn.HeaderText = "Display Name";
+            this.DisplayNameColumn.HeaderText = GLOBAL_RESOURCES.DISPLAY_NAME_COL_TITLE;
             this.DisplayNameColumn.MinimumWidth = 6;
             this.DisplayNameColumn.Name = "DisplayNameColumn";
             this.DisplayNameColumn.ReadOnly = true;
@@ -691,7 +685,7 @@ namespace XtremePharmacyManager
             // BirthDateColumn
             // 
             this.BirthDateColumn.DataPropertyName = "UserBirthDate";
-            this.BirthDateColumn.HeaderText = "Birth Date";
+            this.BirthDateColumn.HeaderText = GLOBAL_RESOURCES.BIRTH_DATE_COL_TITLE;
             this.BirthDateColumn.MinimumWidth = 6;
             this.BirthDateColumn.Name = "BirthDateColumn";
             this.BirthDateColumn.ReadOnly = true;
@@ -700,7 +694,7 @@ namespace XtremePharmacyManager
             // PhoneColumn
             // 
             this.PhoneColumn.DataPropertyName = "UserPhone";
-            this.PhoneColumn.HeaderText = "Phone";
+            this.PhoneColumn.HeaderText = GLOBAL_RESOURCES.PHONE_COL_TITLE;
             this.PhoneColumn.MinimumWidth = 6;
             this.PhoneColumn.Name = "PhoneColumn";
             this.PhoneColumn.ReadOnly = true;
@@ -709,7 +703,7 @@ namespace XtremePharmacyManager
             // EmailColumn
             // 
             this.EmailColumn.DataPropertyName = "UserEmail";
-            this.EmailColumn.HeaderText = "Email";
+            this.EmailColumn.HeaderText = GLOBAL_RESOURCES.EMAIL_COL_TITLE;
             this.EmailColumn.MinimumWidth = 6;
             this.EmailColumn.Name = "EmailColumn";
             this.EmailColumn.ReadOnly = true;
@@ -718,7 +712,7 @@ namespace XtremePharmacyManager
             // AddressColumn
             // 
             this.AddressColumn.DataPropertyName = "UserAddress";
-            this.AddressColumn.HeaderText = "Address";
+            this.AddressColumn.HeaderText = GLOBAL_RESOURCES.ADDRESS_COL_TITLE;
             this.AddressColumn.MinimumWidth = 6;
             this.AddressColumn.Name = "AddressColumn";
             this.AddressColumn.ReadOnly = true;
@@ -727,7 +721,7 @@ namespace XtremePharmacyManager
             // ProfilePicColumn
             // 
             this.ProfilePicColumn.DataPropertyName = "UserProfilePic";
-            this.ProfilePicColumn.HeaderText = "Profile Picture";
+            this.ProfilePicColumn.HeaderText = GLOBAL_RESOURCES.PROFILE_PIC_COL_TITLE;
             this.ProfilePicColumn.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
             this.ProfilePicColumn.MinimumWidth = 6;
             this.ProfilePicColumn.Name = "ProfilePicColumn";
@@ -737,7 +731,7 @@ namespace XtremePharmacyManager
             // BalanceColumn
             // 
             this.BalanceColumn.DataPropertyName = "UserBalance";
-            this.BalanceColumn.HeaderText = "Balance";
+            this.BalanceColumn.HeaderText = GLOBAL_RESOURCES.BALANCE_COL_TITLE;
             this.BalanceColumn.MinimumWidth = 6;
             this.BalanceColumn.Name = "BalanceColumn";
             this.BalanceColumn.ReadOnly = true;
@@ -748,7 +742,7 @@ namespace XtremePharmacyManager
             // DiagnoseColumn
             // 
             this.DiagnoseColumn.DataPropertyName = "UserDiagnose";
-            this.DiagnoseColumn.HeaderText = "Diagnose";
+            this.DiagnoseColumn.HeaderText = GLOBAL_RESOURCES.DIAGNOSE_COL_TITLE;
             this.DiagnoseColumn.MinimumWidth = 6;
             this.DiagnoseColumn.Name = "DiagnoseColumn";
             this.DiagnoseColumn.ReadOnly = true;
@@ -759,7 +753,7 @@ namespace XtremePharmacyManager
             // RegisterDateColumn
             // 
             this.RegisterDateColumn.DataPropertyName = "UserDateOfRegister";
-            this.RegisterDateColumn.HeaderText = "Register Date";
+            this.RegisterDateColumn.HeaderText = GLOBAL_RESOURCES.REGISTER_DATE_COL_TITLE;
             this.RegisterDateColumn.MinimumWidth = 6;
             this.RegisterDateColumn.Name = "RegisterDateColumn";
             this.RegisterDateColumn.ReadOnly = true;
@@ -769,11 +763,11 @@ namespace XtremePharmacyManager
             // 
             // RoleColumn
             // 
-            this.RoleColumn.HeaderText = "Role";
+            this.RoleColumn.HeaderText = GLOBAL_RESOURCES.ROLE_COL_TITLE;
             this.RoleColumn.Items.AddRange(new object[] {
-            "Admin",
-            "Employee",
-            "Client"});
+            GLOBAL_RESOURCES.LBL_ROLE_ADMIN,
+            GLOBAL_RESOURCES.LBL_ROLE_EMPLOYEE,
+            GLOBAL_RESOURCES.LBL_ROLE_CLIENT});
             this.RoleColumn.MinimumWidth = 6;
             this.RoleColumn.Name = "RoleColumn";
             this.RoleColumn.ReadOnly = true;
@@ -787,9 +781,8 @@ namespace XtremePharmacyManager
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmSearchUsers";
-            this.Text = "Users";
-            this.ttSearchUsers.SetToolTip(this, "The users window where you can search, add, edit, delete and generate reports on " +
-        "the users. Whether you can do it or not depends on your permissions");
+            this.Text = GLOBAL_RESOURCES.USERS_TITLE;
+            this.ttSearchUsers.SetToolTip(this, GLOBAL_RESOURCES.USERS_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmSearchUsers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();

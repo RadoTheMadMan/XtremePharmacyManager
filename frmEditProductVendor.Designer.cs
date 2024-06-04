@@ -135,14 +135,14 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // ttEditProductVendor
             // 
             this.ttEditProductVendor.IsBalloon = true;
             this.ttEditProductVendor.ShowAlways = true;
             this.ttEditProductVendor.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttEditProductVendor.ToolTipTitle = "Help";
+            this.ttEditProductVendor.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmEditProductVendor
             // 

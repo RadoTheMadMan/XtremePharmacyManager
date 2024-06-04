@@ -804,7 +804,7 @@ namespace XtremePharmacyManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnID = base.Columns["ID"];
+                this.columnID = base.Columns[GLOBAL_RESOURCES.USER_ID_COL_TITLE];
                 this.columnUserName = base.Columns["UserName"];
                 this.columnUserPassword = base.Columns["UserPassword"];
                 this.columnUserDisplayName = base.Columns["UserDisplayName"];
@@ -822,7 +822,7 @@ namespace XtremePharmacyManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnID = new global::System.Data.DataColumn(GLOBAL_RESOURCES.USER_ID_COL_TITLE, typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
                 this.columnUserName = new global::System.Data.DataColumn("UserName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUserName);
@@ -1253,7 +1253,7 @@ namespace XtremePharmacyManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnID = base.Columns["ID"];
+                this.columnID = base.Columns[GLOBAL_RESOURCES.USER_ID_COL_TITLE];
                 this.columnUserName = base.Columns["UserName"];
                 this.columnUserPassword = base.Columns["UserPassword"];
                 this.columnUserDisplayName = base.Columns["UserDisplayName"];
@@ -1271,7 +1271,7 @@ namespace XtremePharmacyManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnID = new global::System.Data.DataColumn(GLOBAL_RESOURCES.USER_ID_COL_TITLE, typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
                 this.columnUserName = new global::System.Data.DataColumn("UserName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUserName);
@@ -1581,14 +1581,14 @@ namespace XtremePharmacyManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnID = base.Columns["ID"];
+                this.columnID = base.Columns[GLOBAL_RESOURCES.USER_ID_COL_TITLE];
                 this.columnBrandName = base.Columns["BrandName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnID = new global::System.Data.DataColumn(GLOBAL_RESOURCES.USER_ID_COL_TITLE, typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
                 this.columnBrandName = new global::System.Data.DataColumn("BrandName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnBrandName);
@@ -1870,7 +1870,7 @@ namespace XtremePharmacyManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnID = base.Columns["ID"];
+                this.columnID = base.Columns[GLOBAL_RESOURCES.USER_ID_COL_TITLE];
                 this.columnServiceName = base.Columns["ServiceName"];
                 this.columnServicePrice = base.Columns["ServicePrice"];
             }
@@ -1878,7 +1878,7 @@ namespace XtremePharmacyManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnID = new global::System.Data.DataColumn(GLOBAL_RESOURCES.USER_ID_COL_TITLE, typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
                 this.columnServiceName = new global::System.Data.DataColumn("ServiceName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnServiceName);
@@ -2393,7 +2393,7 @@ namespace XtremePharmacyManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnID = base.Columns["ID"];
+                this.columnID = base.Columns[GLOBAL_RESOURCES.USER_ID_COL_TITLE];
                 this.columnProductName = base.Columns["ProductName"];
                 this.columnBrandName = base.Columns["BrandName"];
                 this.columnVendorName = base.Columns["VendorName"];
@@ -2420,7 +2420,7 @@ namespace XtremePharmacyManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnID = new global::System.Data.DataColumn(GLOBAL_RESOURCES.USER_ID_COL_TITLE, typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
                 this.columnProductName = new global::System.Data.DataColumn("ProductName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProductName);
@@ -2763,14 +2763,14 @@ namespace XtremePharmacyManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnID = base.Columns["ID"];
+                this.columnID = base.Columns[GLOBAL_RESOURCES.USER_ID_COL_TITLE];
                 this.columnMethodName = base.Columns["MethodName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnID = new global::System.Data.DataColumn(GLOBAL_RESOURCES.USER_ID_COL_TITLE, typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
                 this.columnMethodName = new global::System.Data.DataColumn("MethodName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnMethodName);
@@ -3222,7 +3222,7 @@ namespace XtremePharmacyManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnID = base.Columns["ID"];
+                this.columnID = base.Columns[GLOBAL_RESOURCES.USER_ID_COL_TITLE];
                 this.columnProductName = base.Columns["ProductName"];
                 this.columnBrandName = base.Columns["BrandName"];
                 this.columnVendorName = base.Columns["VendorName"];
@@ -3244,7 +3244,7 @@ namespace XtremePharmacyManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnID = new global::System.Data.DataColumn(GLOBAL_RESOURCES.USER_ID_COL_TITLE, typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
                 this.columnProductName = new global::System.Data.DataColumn("ProductName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProductName);
@@ -3668,7 +3668,7 @@ namespace XtremePharmacyManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnID = base.Columns["ID"];
+                this.columnID = base.Columns[GLOBAL_RESOURCES.USER_ID_COL_TITLE];
                 this.columnProductName = base.Columns["ProductName"];
                 this.columnBrandName = base.Columns["BrandName"];
                 this.columnVendorName = base.Columns["VendorName"];
@@ -3684,7 +3684,7 @@ namespace XtremePharmacyManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnID = new global::System.Data.DataColumn(GLOBAL_RESOURCES.USER_ID_COL_TITLE, typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
                 this.columnProductName = new global::System.Data.DataColumn("ProductName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnProductName);
@@ -3988,14 +3988,14 @@ namespace XtremePharmacyManager {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
-                this.columnID = base.Columns["ID"];
+                this.columnID = base.Columns[GLOBAL_RESOURCES.USER_ID_COL_TITLE];
                 this.columnVendorName = base.Columns["VendorName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             private void InitClass() {
-                this.columnID = new global::System.Data.DataColumn("ID", typeof(int), null, global::System.Data.MappingType.Element);
+                this.columnID = new global::System.Data.DataColumn(GLOBAL_RESOURCES.USER_ID_COL_TITLE, typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnID);
                 this.columnVendorName = new global::System.Data.DataColumn("VendorName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVendorName);
@@ -6119,7 +6119,7 @@ namespace XtremePharmacyManager.XTremePharmacyDBDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "ClientView";
-            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add(GLOBAL_RESOURCES.USER_ID_COL_TITLE, GLOBAL_RESOURCES.USER_ID_COL_TITLE);
             tableMapping.ColumnMappings.Add("UserName", "UserName");
             tableMapping.ColumnMappings.Add("UserPassword", "UserPassword");
             tableMapping.ColumnMappings.Add("UserDisplayName", "UserDisplayName");
@@ -6301,7 +6301,7 @@ namespace XtremePharmacyManager.XTremePharmacyDBDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "EmployeeView";
-            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add(GLOBAL_RESOURCES.USER_ID_COL_TITLE, GLOBAL_RESOURCES.USER_ID_COL_TITLE);
             tableMapping.ColumnMappings.Add("UserName", "UserName");
             tableMapping.ColumnMappings.Add("UserPassword", "UserPassword");
             tableMapping.ColumnMappings.Add("UserDisplayName", "UserDisplayName");
@@ -6483,7 +6483,7 @@ namespace XtremePharmacyManager.XTremePharmacyDBDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "ExtendedBrandsView";
-            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add(GLOBAL_RESOURCES.USER_ID_COL_TITLE, GLOBAL_RESOURCES.USER_ID_COL_TITLE);
             tableMapping.ColumnMappings.Add("BrandName", "BrandName");
             this._adapter.TableMappings.Add(tableMapping);
         }
@@ -6652,7 +6652,7 @@ namespace XtremePharmacyManager.XTremePharmacyDBDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "ExtendedDeliveryServicesView";
-            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add(GLOBAL_RESOURCES.USER_ID_COL_TITLE, GLOBAL_RESOURCES.USER_ID_COL_TITLE);
             tableMapping.ColumnMappings.Add("ServiceName", "ServiceName");
             tableMapping.ColumnMappings.Add("ServicePrice", "ServicePrice");
             this._adapter.TableMappings.Add(tableMapping);
@@ -6822,7 +6822,7 @@ namespace XtremePharmacyManager.XTremePharmacyDBDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "ExtendedOrderDeliveriesView";
-            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add(GLOBAL_RESOURCES.USER_ID_COL_TITLE, GLOBAL_RESOURCES.USER_ID_COL_TITLE);
             tableMapping.ColumnMappings.Add("ProductName", "ProductName");
             tableMapping.ColumnMappings.Add("BrandName", "BrandName");
             tableMapping.ColumnMappings.Add("VendorName", "VendorName");
@@ -7011,7 +7011,7 @@ namespace XtremePharmacyManager.XTremePharmacyDBDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "ExtendedPaymentMethodsView";
-            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add(GLOBAL_RESOURCES.USER_ID_COL_TITLE, GLOBAL_RESOURCES.USER_ID_COL_TITLE);
             tableMapping.ColumnMappings.Add("MethodName", "MethodName");
             this._adapter.TableMappings.Add(tableMapping);
         }
@@ -7180,7 +7180,7 @@ namespace XtremePharmacyManager.XTremePharmacyDBDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "ExtendedProductOrdersView";
-            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add(GLOBAL_RESOURCES.USER_ID_COL_TITLE, GLOBAL_RESOURCES.USER_ID_COL_TITLE);
             tableMapping.ColumnMappings.Add("ProductName", "ProductName");
             tableMapping.ColumnMappings.Add("BrandName", "BrandName");
             tableMapping.ColumnMappings.Add("VendorName", "VendorName");
@@ -7364,7 +7364,7 @@ namespace XtremePharmacyManager.XTremePharmacyDBDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "ExtendedProductView";
-            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add(GLOBAL_RESOURCES.USER_ID_COL_TITLE, GLOBAL_RESOURCES.USER_ID_COL_TITLE);
             tableMapping.ColumnMappings.Add("ProductName", "ProductName");
             tableMapping.ColumnMappings.Add("BrandName", "BrandName");
             tableMapping.ColumnMappings.Add("VendorName", "VendorName");
@@ -7544,7 +7544,7 @@ namespace XtremePharmacyManager.XTremePharmacyDBDataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "ExtendedVendorsView";
-            tableMapping.ColumnMappings.Add("ID", "ID");
+            tableMapping.ColumnMappings.Add(GLOBAL_RESOURCES.USER_ID_COL_TITLE, GLOBAL_RESOURCES.USER_ID_COL_TITLE);
             tableMapping.ColumnMappings.Add("VendorName", "VendorName");
             this._adapter.TableMappings.Add(tableMapping);
         }

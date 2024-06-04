@@ -265,7 +265,7 @@
             this.ttBulkProductOrderOperations.SetToolTip(this.cbEmployee, "The employee that processed the selected order can be set here and usually it is " +
         "you. Their balance will be calculated automatically on changing the status of th" +
         "e product order.");
-            this.cbEmployee.ValueMember = "ID";
+            this.cbEmployee.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // userBindingSource1
             // 
@@ -296,7 +296,7 @@
             this.cbClient.TabIndex = 68;
             this.ttBulkProductOrderOperations.SetToolTip(this.cbClient, "The client that ordered the product can be set here. Their balance will be calcul" +
         "ated automatically on changing the status of the product order.");
-            this.cbClient.ValueMember = "ID";
+            this.cbClient.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // userBindingSource
             // 
@@ -380,7 +380,7 @@
             this.ttBulkProductOrderOperations.SetToolTip(this.cbProduct, "the product the selected order can be assigned to can be changed here. Price is c" +
         "alculated by the desired quantity and the base product price unless the price is" +
         " overriden");
-            this.cbProduct.ValueMember = "ID";
+            this.cbProduct.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // productBindingSource
             // 
@@ -429,14 +429,14 @@
             this.cbSelectRecord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.cbSelectRecord.DataSource = this.productOrderBindingSource;
-            this.cbSelectRecord.DisplayMember = "ID";
+            this.cbSelectRecord.DisplayMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.cbSelectRecord.FormattingEnabled = true;
             this.cbSelectRecord.Location = new System.Drawing.Point(169, 16);
             this.cbSelectRecord.Name = "cbSelectRecord";
             this.cbSelectRecord.Size = new System.Drawing.Size(226, 24);
             this.cbSelectRecord.TabIndex = 48;
             this.ttBulkProductOrderOperations.SetToolTip(this.cbSelectRecord, "The record selection, you can select any existing record from here.");
-            this.cbSelectRecord.ValueMember = "ID";
+            this.cbSelectRecord.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
             // productOrderBindingSource
@@ -646,7 +646,7 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // productBrandBindingSource
             // 
@@ -689,7 +689,7 @@
             this.ttBulkProductOrderOperations.IsBalloon = true;
             this.ttBulkProductOrderOperations.ShowAlways = true;
             this.ttBulkProductOrderOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttBulkProductOrderOperations.ToolTipTitle = "Help";
+            this.ttBulkProductOrderOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmBulkProductOrderOperations
             // 

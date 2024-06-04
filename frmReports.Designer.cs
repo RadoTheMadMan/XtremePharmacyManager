@@ -50,7 +50,7 @@
             this.ttReports.IsBalloon = true;
             this.ttReports.ShowAlways = true;
             this.ttReports.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttReports.ToolTipTitle = "Help";
+            this.ttReports.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmReports
             // 

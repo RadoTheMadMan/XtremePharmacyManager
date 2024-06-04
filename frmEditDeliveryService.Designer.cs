@@ -179,14 +179,14 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // ttEditDeliveryService
             // 
             this.ttEditDeliveryService.IsBalloon = true;
             this.ttEditDeliveryService.ShowAlways = true;
             this.ttEditDeliveryService.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttEditDeliveryService.ToolTipTitle = "Help";
+            this.ttEditDeliveryService.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmEditDeliveryService
             // 

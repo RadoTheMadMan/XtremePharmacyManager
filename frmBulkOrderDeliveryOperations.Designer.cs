@@ -260,7 +260,7 @@
             this.cbPaymentMethod.Size = new System.Drawing.Size(240, 24);
             this.cbPaymentMethod.TabIndex = 70;
             this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbPaymentMethod, "Select any existing payment method record to assign the order delivery to");
-            this.cbPaymentMethod.ValueMember = "ID";
+            this.cbPaymentMethod.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // paymentMethodBindingSource
             // 
@@ -290,7 +290,7 @@
             this.cbDeliveryService.Size = new System.Drawing.Size(240, 24);
             this.cbDeliveryService.TabIndex = 68;
             this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbDeliveryService, "Select any existing delivery service record you want the delivery assigned to");
-            this.cbDeliveryService.ValueMember = "ID";
+            this.cbDeliveryService.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // deliveryServiceBindingSource
             // 
@@ -337,14 +337,14 @@
             this.cbOrder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.cbOrder.DataSource = this.productOrderBindingSource;
-            this.cbOrder.DisplayMember = "ID";
+            this.cbOrder.DisplayMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.cbOrder.FormattingEnabled = true;
             this.cbOrder.Location = new System.Drawing.Point(195, 74);
             this.cbOrder.Name = "cbOrder";
             this.cbOrder.Size = new System.Drawing.Size(240, 24);
             this.cbOrder.TabIndex = 55;
             this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbOrder, "Select any existing order record you want to assign the order delivery to");
-            this.cbOrder.ValueMember = "ID";
+            this.cbOrder.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // productOrderBindingSource
             // 
@@ -393,14 +393,14 @@
             this.cbSelectRecord.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.cbSelectRecord.DataSource = this.orderDeliveryBindingSource;
-            this.cbSelectRecord.DisplayMember = "ID";
+            this.cbSelectRecord.DisplayMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.cbSelectRecord.FormattingEnabled = true;
             this.cbSelectRecord.Location = new System.Drawing.Point(195, 16);
             this.cbSelectRecord.Name = "cbSelectRecord";
             this.cbSelectRecord.Size = new System.Drawing.Size(240, 24);
             this.cbSelectRecord.TabIndex = 48;
             this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbSelectRecord, "The record selection, you can select any existing record from here.");
-            this.cbSelectRecord.ValueMember = "ID";
+            this.cbSelectRecord.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
             // orderDeliveryBindingSource
@@ -610,7 +610,7 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // userBindingSource1
             // 
@@ -657,7 +657,7 @@
             this.ttBulkOrderDeliveryOperations.IsBalloon = true;
             this.ttBulkOrderDeliveryOperations.ShowAlways = true;
             this.ttBulkOrderDeliveryOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttBulkOrderDeliveryOperations.ToolTipTitle = "Help";
+            this.ttBulkOrderDeliveryOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmBulkOrderDeliveryOperations
             // 

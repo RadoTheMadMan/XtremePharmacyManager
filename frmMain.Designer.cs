@@ -338,7 +338,7 @@
             this.tsmenuAbout});
             this.tsmenuHelp.Name = "tsmenuHelp";
             this.tsmenuHelp.Size = new System.Drawing.Size(55, 24);
-            this.tsmenuHelp.Text = "Help";
+            this.tsmenuHelp.Text = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             this.tsmenuHelp.ToolTipText = "The help menu for the application";
             // 
             // tsmenuAbout
@@ -354,7 +354,7 @@
             this.ttMain.IsBalloon = true;
             this.ttMain.ShowAlways = true;
             this.ttMain.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttMain.ToolTipTitle = "Help";
+            this.ttMain.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmMain
             // 

@@ -194,7 +194,7 @@
             this.ttEditProductOrder.SetToolTip(this.cbSelectEmployee, "The employee that processed the selected order can be set here and usually it is " +
         "you. Their balance will be calculated automatically on changing the status of th" +
         "e product order.");
-            this.cbSelectEmployee.ValueMember = "ID";
+            this.cbSelectEmployee.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // userBindingSource1
             // 
@@ -223,7 +223,7 @@
             this.cbSelectClient.TabIndex = 46;
             this.ttEditProductOrder.SetToolTip(this.cbSelectClient, "The client that ordered the product can be set here. Their balance will be calcul" +
         "ated automatically on changing the status of the product order.");
-            this.cbSelectClient.ValueMember = "ID";
+            this.cbSelectClient.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // userBindingSource
             // 
@@ -280,7 +280,7 @@
             this.ttEditProductOrder.SetToolTip(this.cbSelectProduct, "the product the selected order can be assigned to can be changed here. Price is c" +
         "alculated by the desired quantity and the base product price unless the price is" +
         " overriden");
-            this.cbSelectProduct.ValueMember = "ID";
+            this.cbSelectProduct.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // productBindingSource
             // 
@@ -375,7 +375,7 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // productBrandBindingSource
             // 
@@ -386,7 +386,7 @@
             this.ttEditProductOrder.IsBalloon = true;
             this.ttEditProductOrder.ShowAlways = true;
             this.ttEditProductOrder.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttEditProductOrder.ToolTipTitle = "Help";
+            this.ttEditProductOrder.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmEditProductOrder
             // 

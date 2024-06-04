@@ -229,7 +229,7 @@
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(79, 16);
             this.lblPassword.TabIndex = 43;
-            this.lblPassword.Text = "Password:";
+            this.lblPassword.Text = GLOBAL_RESOURCES.LBL_PASSWORD_TITLE;
             // 
             // txtUsername
             // 
@@ -251,7 +251,7 @@
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(82, 16);
             this.lblUsername.TabIndex = 41;
-            this.lblUsername.Text = "Username:";
+            this.lblUsername.Text = GLOBAL_RESOURCES.LBL_USERNAME_TITLE;
             // 
             // btnAddOperation
             // 
@@ -328,7 +328,7 @@
             this.lstLastLogins.TabIndex = 35;
             this.ttLogin.SetToolTip(this.lstLastLogins, "This is the list of all logins you have previously logged in from. Logins are sav" +
         "ed into and loaded automatically from the filesystem.");
-            this.lstLastLogins.ValueMember = "ID";
+            this.lstLastLogins.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.lstLastLogins.SelectedIndexChanged += new System.EventHandler(this.lstLastLogins_SelectedIndexChanged);
             // 
             // userBindingSource
@@ -340,7 +340,7 @@
             this.ttLogin.IsBalloon = true;
             this.ttLogin.ShowAlways = true;
             this.ttLogin.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttLogin.ToolTipTitle = "Help";
+            this.ttLogin.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmLogin
             // 

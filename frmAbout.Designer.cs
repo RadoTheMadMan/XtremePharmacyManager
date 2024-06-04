@@ -168,7 +168,7 @@
             this.ttAbout.IsBalloon = true;
             this.ttAbout.ShowAlways = true;
             this.ttAbout.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttAbout.ToolTipTitle = "Help";
+            this.ttAbout.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmAbout
             // 

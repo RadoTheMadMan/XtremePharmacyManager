@@ -511,7 +511,7 @@
       <DependentUpon>frmLogs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -573,6 +573,7 @@
     <None Include="Properties\DataSources\frmMain.datasource" />
     <None Include="Properties\DataSources\frmSearchDeliveryServices.datasource" />
     <None Include="Properties\DataSources\frmSearchUsers.datasource" />
+    <None Include="Properties\DataSources\GLOBAL_RESOURCES.datasource" />
     <None Include="Properties\DataSources\ImageBinConverter.datasource" />
     <None Include="Properties\DataSources\Language.datasource" />
     <None Include="Properties\DataSources\Program.datasource" />

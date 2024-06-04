@@ -145,7 +145,7 @@
             this.cbSelectVendor.Size = new System.Drawing.Size(219, 24);
             this.cbSelectVendor.TabIndex = 46;
             this.ttEditProduct.SetToolTip(this.cbSelectVendor, "The vendor the selected product is assigned to can be selected here");
-            this.cbSelectVendor.ValueMember = "ID";
+            this.cbSelectVendor.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // productVendorBindingSource
             // 
@@ -216,7 +216,7 @@
             this.cbSelectBrand.Size = new System.Drawing.Size(219, 24);
             this.cbSelectBrand.TabIndex = 36;
             this.ttEditProduct.SetToolTip(this.cbSelectBrand, "The brand the selected product is assigned to can be selected here");
-            this.cbSelectBrand.ValueMember = "ID";
+            this.cbSelectBrand.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // productBrandBindingSource
             // 
@@ -448,7 +448,7 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // userBindingSource
             // 
@@ -459,7 +459,7 @@
             this.ttEditProduct.IsBalloon = true;
             this.ttEditProduct.ShowAlways = true;
             this.ttEditProduct.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttEditProduct.ToolTipTitle = "Help";
+            this.ttEditProduct.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmEditProduct
             // 

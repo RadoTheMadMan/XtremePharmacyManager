@@ -169,7 +169,7 @@
             this.lblYourDiagnose.Name = "lblYourDiagnose";
             this.lblYourDiagnose.Size = new System.Drawing.Size(78, 16);
             this.lblYourDiagnose.TabIndex = 22;
-            this.lblYourDiagnose.Text = "Diagnose:";
+            this.lblYourDiagnose.Text = GLOBAL_RESOURCES.LBL_DIAGNOSE_TITLE;
             // 
             // txtYourAddress
             // 
@@ -314,7 +314,7 @@
             this.ttAccountSettings.IsBalloon = true;
             this.ttAccountSettings.ShowAlways = true;
             this.ttAccountSettings.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttAccountSettings.ToolTipTitle = "Help";
+            this.ttAccountSettings.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // userBindingSource
             // 

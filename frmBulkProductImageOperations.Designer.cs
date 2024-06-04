@@ -171,7 +171,7 @@
             this.cbProduct.Size = new System.Drawing.Size(221, 24);
             this.cbProduct.TabIndex = 55;
             this.ttBulkProductImageOperations.SetToolTip(this.cbProduct, "the product this image is assigned to in the database can be selected here");
-            this.cbProduct.ValueMember = "ID";
+            this.cbProduct.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // productBindingSource
             // 
@@ -201,7 +201,7 @@
             this.cbSelectRecord.Size = new System.Drawing.Size(222, 24);
             this.cbSelectRecord.TabIndex = 48;
             this.ttBulkProductImageOperations.SetToolTip(this.cbSelectRecord, "The record selection, you can select any existing record from here.");
-            this.cbSelectRecord.ValueMember = "ID";
+            this.cbSelectRecord.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
             // productImageBindingSource
@@ -438,7 +438,7 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // productBrandBindingSource
             // 
@@ -485,7 +485,7 @@
             this.ttBulkProductImageOperations.IsBalloon = true;
             this.ttBulkProductImageOperations.ShowAlways = true;
             this.ttBulkProductImageOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttBulkProductImageOperations.ToolTipTitle = "Help";
+            this.ttBulkProductImageOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmBulkProductImageOperations
             // 

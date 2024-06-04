@@ -279,7 +279,7 @@ namespace XtremePharmacyManager
             this.cbSelectVendor.Size = new System.Drawing.Size(232, 24);
             this.cbSelectVendor.TabIndex = 50;
             this.ttSearchProducts.SetToolTip(this.cbSelectVendor, "The product vendor with which you want to search products");
-            this.cbSelectVendor.ValueMember = "ID";
+            this.cbSelectVendor.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // productVendorBindingSource
             // 
@@ -306,7 +306,7 @@ namespace XtremePharmacyManager
             this.btnGenerateReport.Name = "btnGenerateReport";
             this.btnGenerateReport.Size = new System.Drawing.Size(127, 48);
             this.btnGenerateReport.TabIndex = 48;
-            this.btnGenerateReport.Text = "GENERATE REPORT";
+            this.btnGenerateReport.Text = GLOBAL_RESOURCES.BTN_GENERATE_REPORT_TITLE;
             this.ttSearchProducts.SetToolTip(this.btnGenerateReport, "When you click the button you generate a report on  an entry based on the permiss" +
         "ions you have and whether the report definition based on localisation is present" +
         ".");
@@ -366,7 +366,7 @@ namespace XtremePharmacyManager
             this.cbSelectBrand.Size = new System.Drawing.Size(259, 24);
             this.cbSelectBrand.TabIndex = 35;
             this.ttSearchProducts.SetToolTip(this.cbSelectBrand, "The product brand with which you want to search products");
-            this.cbSelectBrand.ValueMember = "ID";
+            this.cbSelectBrand.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // productBrandBindingSource
             // 
@@ -381,8 +381,8 @@ namespace XtremePharmacyManager
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(62, 48);
             this.btnDelete.TabIndex = 34;
-            this.btnDelete.Text = "DELETE";
-            this.ttSearchProducts.SetToolTip(this.btnDelete, "When you click the button you delete an entry based on the permissions you have.");
+            this.btnDelete.Text = GLOBAL_RESOURCES.BTN_DELETE_TITLE;
+            this.ttSearchProducts.SetToolTip(this.btnDelete, GLOBAL_RESOURCES.BTN_DELETE_TOOLTIP_TITLE);
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -395,8 +395,8 @@ namespace XtremePharmacyManager
             this.btnAddOrEdit.Name = "btnAddOrEdit";
             this.btnAddOrEdit.Size = new System.Drawing.Size(77, 48);
             this.btnAddOrEdit.TabIndex = 33;
-            this.btnAddOrEdit.Text = "ADD/EDIT";
-            this.ttSearchProducts.SetToolTip(this.btnAddOrEdit, "When you click the button you add/edit an entry based on the permissions you have" +
+            this.btnAddOrEdit.Text = GLOBAL_RESOURCES.BTN_ADD_EDIT_TITLE;
+            this.ttSearchProducts.SetToolTip(this.btnAddOrEdit, GLOBAL_RESOURCES.BTN_ADD_EDIT_TOOLTIP_TITLE +
         ".");
             this.btnAddOrEdit.UseVisualStyleBackColor = true;
             this.btnAddOrEdit.Click += new System.EventHandler(this.btnAddOrEdit_Click);
@@ -411,7 +411,7 @@ namespace XtremePharmacyManager
             this.lblSearchMode.Name = "lblSearchMode";
             this.lblSearchMode.Size = new System.Drawing.Size(103, 16);
             this.lblSearchMode.TabIndex = 32;
-            this.lblSearchMode.Text = "Search Mode:";
+            this.lblSearchMode.Text = GLOBAL_RESOURCES.LBL_SEARCH_MODE_TITLE;
             // 
             // cbSearchMode
             // 
@@ -419,16 +419,16 @@ namespace XtremePharmacyManager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbSearchMode.FormattingEnabled = true;
             this.cbSearchMode.Items.AddRange(new object[] {
-            "None",
-            "Single Criteria",
-            "Multiple Criterias",
-            "All Criterias"});
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_NONE,
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_SINGLE,
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_MULTIPLE,
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_ALL});
             this.cbSearchMode.Location = new System.Drawing.Point(569, 213);
             this.cbSearchMode.Name = "cbSearchMode";
             this.cbSearchMode.Size = new System.Drawing.Size(232, 24);
             this.cbSearchMode.TabIndex = 31;
-            this.cbSearchMode.Text = "Multiple Criterias";
-            this.ttSearchProducts.SetToolTip(this.cbSearchMode, resources.GetString("cbSearchMode.ToolTip"));
+            this.cbSearchMode.Text = GLOBAL_RESOURCES.LBL_SEARCH_MODE_MULTIPLE;
+            this.ttSearchProducts.SetToolTip(this.cbSearchMode, GLOBAL_RESOURCES.CB_SEARCH_MODE_TOOLTIP_TITLE);
             // 
             // btnSearch
             // 
@@ -439,9 +439,8 @@ namespace XtremePharmacyManager
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(66, 48);
             this.btnSearch.TabIndex = 30;
-            this.btnSearch.Text = "SEARCH";
-            this.ttSearchProducts.SetToolTip(this.btnSearch, "When you click the button you search based on the criterias search mode you selec" +
-        "ted.");
+            this.btnSearch.Text = GLOBAL_RESOURCES.BTN_SEARCH_TITLE;
+            this.ttSearchProducts.SetToolTip(this.btnSearch, GLOBAL_RESOURCES.BTN_SEARCH_TOOLTIP_TITLE);
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -646,7 +645,7 @@ namespace XtremePharmacyManager
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(258, 22);
             this.txtID.TabIndex = 2;
-            this.ttSearchProducts.SetToolTip(this.txtID, "The ID of the selected record entry to be searched is here");
+            this.ttSearchProducts.SetToolTip(this.txtID, GLOBAL_RESOURCES.ID_SEARCH_TOOLTIP_TITLE);
             // 
             // lblID
             // 
@@ -658,7 +657,7 @@ namespace XtremePharmacyManager
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // dgvProducts
             // 
@@ -756,8 +755,7 @@ namespace XtremePharmacyManager
             this.btnSearchProductImage.Size = new System.Drawing.Size(196, 47);
             this.btnSearchProductImage.TabIndex = 46;
             this.btnSearchProductImage.Text = "SEARCH A PRODUCT IMAGE";
-            this.ttSearchProducts.SetToolTip(this.btnSearchProductImage, "When you click the button you search based on the criterias search mode you selec" +
-        "ted.");
+            this.ttSearchProducts.SetToolTip(this.btnSearchProductImage, GLOBAL_RESOURCES.BTN_SEARCH_TOOLTIP_TITLE);
             this.btnSearchProductImage.UseVisualStyleBackColor = true;
             this.btnSearchProductImage.Click += new System.EventHandler(this.btnSearchProductImage_Click);
             // 
@@ -772,7 +770,7 @@ namespace XtremePharmacyManager
             this.btnDeleteProductImage.Size = new System.Drawing.Size(196, 47);
             this.btnDeleteProductImage.TabIndex = 45;
             this.btnDeleteProductImage.Text = "DELETE A PRODUCT IMAGE";
-            this.ttSearchProducts.SetToolTip(this.btnDeleteProductImage, "When you click the button you delete an entry based on the permissions you have.");
+            this.ttSearchProducts.SetToolTip(this.btnDeleteProductImage, GLOBAL_RESOURCES.BTN_DELETE_TOOLTIP_TITLE);
             this.btnDeleteProductImage.UseVisualStyleBackColor = true;
             this.btnDeleteProductImage.Click += new System.EventHandler(this.btnDeleteProductImage_Click);
             // 
@@ -787,7 +785,7 @@ namespace XtremePharmacyManager
             this.btnAddEditProductImage.Size = new System.Drawing.Size(196, 47);
             this.btnAddEditProductImage.TabIndex = 40;
             this.btnAddEditProductImage.Text = "ADD/EDIT A PRODUCT IMAGE";
-            this.ttSearchProducts.SetToolTip(this.btnAddEditProductImage, "When you click the button you add/edit an entry based on the permissions you have" +
+            this.ttSearchProducts.SetToolTip(this.btnAddEditProductImage, GLOBAL_RESOURCES.BTN_ADD_EDIT_TOOLTIP_TITLE +
         ".");
             this.btnAddEditProductImage.UseVisualStyleBackColor = true;
             this.btnAddEditProductImage.Click += new System.EventHandler(this.btnAddEditProductImage_Click);
@@ -851,7 +849,7 @@ namespace XtremePharmacyManager
             this.txtImageID.Name = "txtImageID";
             this.txtImageID.Size = new System.Drawing.Size(202, 22);
             this.txtImageID.TabIndex = 43;
-            this.ttSearchProducts.SetToolTip(this.txtImageID, "The ID of the selected record entry to be searched is here");
+            this.ttSearchProducts.SetToolTip(this.txtImageID, GLOBAL_RESOURCES.ID_SEARCH_TOOLTIP_TITLE);
             // 
             // lblRefetrencedID
             // 
@@ -894,12 +892,12 @@ namespace XtremePharmacyManager
             this.ttSearchProducts.IsBalloon = true;
             this.ttSearchProducts.ShowAlways = true;
             this.ttSearchProducts.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttSearchProducts.ToolTipTitle = "Help";
+            this.ttSearchProducts.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // IDColumn
             // 
-            this.IDColumn.DataPropertyName = "ID";
-            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.DataPropertyName = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.IDColumn.HeaderText = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.IDColumn.MinimumWidth = 6;
             this.IDColumn.Name = "IDColumn";
             this.IDColumn.ReadOnly = true;
@@ -916,7 +914,7 @@ namespace XtremePharmacyManager
             this.BrandIDColumn.ReadOnly = true;
             this.BrandIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.BrandIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.BrandIDColumn.ValueMember = "ID";
+            this.BrandIDColumn.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.BrandIDColumn.Width = 125;
             // 
             // VendorIDColumn
@@ -930,7 +928,7 @@ namespace XtremePharmacyManager
             this.VendorIDColumn.ReadOnly = true;
             this.VendorIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.VendorIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.VendorIDColumn.ValueMember = "ID";
+            this.VendorIDColumn.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.VendorIDColumn.Width = 125;
             // 
             // ProductNameColumn

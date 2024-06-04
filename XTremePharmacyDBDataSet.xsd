@@ -19,7 +19,7 @@
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE DataSetColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE />
               <Mapping SourceColumn="UserName" DataSetColumn="UserName" />
               <Mapping SourceColumn="UserPassword" DataSetColumn="UserPassword" />
               <Mapping SourceColumn="UserDisplayName" DataSetColumn="UserDisplayName" />
@@ -47,7 +47,7 @@
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE DataSetColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE />
               <Mapping SourceColumn="UserName" DataSetColumn="UserName" />
               <Mapping SourceColumn="UserPassword" DataSetColumn="UserPassword" />
               <Mapping SourceColumn="UserDisplayName" DataSetColumn="UserDisplayName" />
@@ -75,7 +75,7 @@
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE DataSetColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE />
               <Mapping SourceColumn="BrandName" DataSetColumn="BrandName" />
             </Mappings>
             <Sources />
@@ -92,7 +92,7 @@
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE DataSetColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE />
               <Mapping SourceColumn="ServiceName" DataSetColumn="ServiceName" />
               <Mapping SourceColumn="ServicePrice" DataSetColumn="ServicePrice" />
             </Mappings>
@@ -110,7 +110,7 @@
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE DataSetColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE />
               <Mapping SourceColumn="ProductName" DataSetColumn="ProductName" />
               <Mapping SourceColumn="BrandName" DataSetColumn="BrandName" />
               <Mapping SourceColumn="VendorName" DataSetColumn="VendorName" />
@@ -147,7 +147,7 @@
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE DataSetColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE />
               <Mapping SourceColumn="MethodName" DataSetColumn="MethodName" />
             </Mappings>
             <Sources />
@@ -164,7 +164,7 @@
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE DataSetColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE />
               <Mapping SourceColumn="ProductName" DataSetColumn="ProductName" />
               <Mapping SourceColumn="BrandName" DataSetColumn="BrandName" />
               <Mapping SourceColumn="VendorName" DataSetColumn="VendorName" />
@@ -196,7 +196,7 @@
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE DataSetColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE />
               <Mapping SourceColumn="ProductName" DataSetColumn="ProductName" />
               <Mapping SourceColumn="BrandName" DataSetColumn="BrandName" />
               <Mapping SourceColumn="VendorName" DataSetColumn="VendorName" />
@@ -222,7 +222,7 @@
               </DbSource>
             </MainSource>
             <Mappings>
-              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE DataSetColumn=GLOBAL_RESOURCES.USER_ID_COL_TITLE />
               <Mapping SourceColumn="VendorName" DataSetColumn="VendorName" />
             </Mappings>
             <Sources />
@@ -238,7 +238,7 @@
         <xs:element name="ClientView" msprop:Generator_RowEvHandlerName="ClientViewRowChangeEventHandler" msprop:Generator_RowDeletedName="ClientViewRowDeleted" msprop:Generator_RowDeletingName="ClientViewRowDeleting" msprop:Generator_RowEvArgName="ClientViewRowChangeEvent" msprop:Generator_TablePropName="ClientView" msprop:Generator_RowChangedName="ClientViewRowChanged" msprop:Generator_RowChangingName="ClientViewRowChanging" msprop:Generator_TableClassName="ClientViewDataTable" msprop:Generator_RowClassName="ClientViewRow" msprop:Generator_TableVarName="tableClientView" msprop:Generator_UserTableName="ClientView">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name=GLOBAL_RESOURCES.USER_ID_COL_TITLE msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow=GLOBAL_RESOURCES.USER_ID_COL_TITLE msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName=GLOBAL_RESOURCES.USER_ID_COL_TITLE type="xs:int" />
               <xs:element name="UserName" msprop:Generator_ColumnPropNameInRow="UserName" msprop:Generator_ColumnPropNameInTable="UserNameColumn" msprop:Generator_ColumnVarNameInTable="columnUserName" msprop:Generator_UserColumnName="UserName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -299,7 +299,7 @@
         <xs:element name="EmployeeView" msprop:Generator_RowEvHandlerName="EmployeeViewRowChangeEventHandler" msprop:Generator_RowDeletedName="EmployeeViewRowDeleted" msprop:Generator_RowDeletingName="EmployeeViewRowDeleting" msprop:Generator_RowEvArgName="EmployeeViewRowChangeEvent" msprop:Generator_TablePropName="EmployeeView" msprop:Generator_RowChangedName="EmployeeViewRowChanged" msprop:Generator_RowChangingName="EmployeeViewRowChanging" msprop:Generator_TableClassName="EmployeeViewDataTable" msprop:Generator_RowClassName="EmployeeViewRow" msprop:Generator_TableVarName="tableEmployeeView" msprop:Generator_UserTableName="EmployeeView">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name=GLOBAL_RESOURCES.USER_ID_COL_TITLE msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow=GLOBAL_RESOURCES.USER_ID_COL_TITLE msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName=GLOBAL_RESOURCES.USER_ID_COL_TITLE type="xs:int" />
               <xs:element name="UserName" msprop:Generator_ColumnPropNameInRow="UserName" msprop:Generator_ColumnPropNameInTable="UserNameColumn" msprop:Generator_ColumnVarNameInTable="columnUserName" msprop:Generator_UserColumnName="UserName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -360,7 +360,7 @@
         <xs:element name="ExtendedBrandsView" msprop:Generator_RowEvHandlerName="ExtendedBrandsViewRowChangeEventHandler" msprop:Generator_RowDeletedName="ExtendedBrandsViewRowDeleted" msprop:Generator_RowDeletingName="ExtendedBrandsViewRowDeleting" msprop:Generator_RowEvArgName="ExtendedBrandsViewRowChangeEvent" msprop:Generator_TablePropName="ExtendedBrandsView" msprop:Generator_RowChangedName="ExtendedBrandsViewRowChanged" msprop:Generator_RowChangingName="ExtendedBrandsViewRowChanging" msprop:Generator_TableClassName="ExtendedBrandsViewDataTable" msprop:Generator_RowClassName="ExtendedBrandsViewRow" msprop:Generator_TableVarName="tableExtendedBrandsView" msprop:Generator_UserTableName="ExtendedBrandsView">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name=GLOBAL_RESOURCES.USER_ID_COL_TITLE msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow=GLOBAL_RESOURCES.USER_ID_COL_TITLE msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName=GLOBAL_RESOURCES.USER_ID_COL_TITLE type="xs:int" />
               <xs:element name="BrandName" msprop:Generator_ColumnPropNameInRow="BrandName" msprop:Generator_ColumnPropNameInTable="BrandNameColumn" msprop:Generator_ColumnVarNameInTable="columnBrandName" msprop:Generator_UserColumnName="BrandName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -374,7 +374,7 @@
         <xs:element name="ExtendedDeliveryServicesView" msprop:Generator_RowEvHandlerName="ExtendedDeliveryServicesViewRowChangeEventHandler" msprop:Generator_RowDeletedName="ExtendedDeliveryServicesViewRowDeleted" msprop:Generator_RowDeletingName="ExtendedDeliveryServicesViewRowDeleting" msprop:Generator_RowEvArgName="ExtendedDeliveryServicesViewRowChangeEvent" msprop:Generator_TablePropName="ExtendedDeliveryServicesView" msprop:Generator_RowChangedName="ExtendedDeliveryServicesViewRowChanged" msprop:Generator_RowChangingName="ExtendedDeliveryServicesViewRowChanging" msprop:Generator_TableClassName="ExtendedDeliveryServicesViewDataTable" msprop:Generator_RowClassName="ExtendedDeliveryServicesViewRow" msprop:Generator_TableVarName="tableExtendedDeliveryServicesView" msprop:Generator_UserTableName="ExtendedDeliveryServicesView">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name=GLOBAL_RESOURCES.USER_ID_COL_TITLE msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow=GLOBAL_RESOURCES.USER_ID_COL_TITLE msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName=GLOBAL_RESOURCES.USER_ID_COL_TITLE type="xs:int" />
               <xs:element name="ServiceName" msprop:Generator_ColumnPropNameInRow="ServiceName" msprop:Generator_ColumnPropNameInTable="ServiceNameColumn" msprop:Generator_ColumnVarNameInTable="columnServiceName" msprop:Generator_UserColumnName="ServiceName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -389,7 +389,7 @@
         <xs:element name="ExtendedOrderDeliveriesView" msprop:Generator_RowEvHandlerName="ExtendedOrderDeliveriesViewRowChangeEventHandler" msprop:Generator_RowDeletedName="ExtendedOrderDeliveriesViewRowDeleted" msprop:Generator_RowDeletingName="ExtendedOrderDeliveriesViewRowDeleting" msprop:Generator_RowEvArgName="ExtendedOrderDeliveriesViewRowChangeEvent" msprop:Generator_TablePropName="ExtendedOrderDeliveriesView" msprop:Generator_RowChangedName="ExtendedOrderDeliveriesViewRowChanged" msprop:Generator_RowChangingName="ExtendedOrderDeliveriesViewRowChanging" msprop:Generator_TableClassName="ExtendedOrderDeliveriesViewDataTable" msprop:Generator_RowClassName="ExtendedOrderDeliveriesViewRow" msprop:Generator_TableVarName="tableExtendedOrderDeliveriesView" msprop:Generator_UserTableName="ExtendedOrderDeliveriesView">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name=GLOBAL_RESOURCES.USER_ID_COL_TITLE msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow=GLOBAL_RESOURCES.USER_ID_COL_TITLE msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName=GLOBAL_RESOURCES.USER_ID_COL_TITLE type="xs:int" />
               <xs:element name="ProductName" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="ProductName" msprop:Generator_ColumnPropNameInTable="ProductNameColumn" msprop:Generator_ColumnVarNameInTable="columnProductName" msprop:Generator_UserColumnName="ProductName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -495,7 +495,7 @@
         <xs:element name="ExtendedPaymentMethodsView" msprop:Generator_RowEvHandlerName="ExtendedPaymentMethodsViewRowChangeEventHandler" msprop:Generator_RowDeletedName="ExtendedPaymentMethodsViewRowDeleted" msprop:Generator_RowDeletingName="ExtendedPaymentMethodsViewRowDeleting" msprop:Generator_RowEvArgName="ExtendedPaymentMethodsViewRowChangeEvent" msprop:Generator_TablePropName="ExtendedPaymentMethodsView" msprop:Generator_RowChangedName="ExtendedPaymentMethodsViewRowChanged" msprop:Generator_RowChangingName="ExtendedPaymentMethodsViewRowChanging" msprop:Generator_TableClassName="ExtendedPaymentMethodsViewDataTable" msprop:Generator_RowClassName="ExtendedPaymentMethodsViewRow" msprop:Generator_TableVarName="tableExtendedPaymentMethodsView" msprop:Generator_UserTableName="ExtendedPaymentMethodsView">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name=GLOBAL_RESOURCES.USER_ID_COL_TITLE msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow=GLOBAL_RESOURCES.USER_ID_COL_TITLE msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName=GLOBAL_RESOURCES.USER_ID_COL_TITLE type="xs:int" />
               <xs:element name="MethodName" msprop:Generator_ColumnPropNameInRow="MethodName" msprop:Generator_ColumnPropNameInTable="MethodNameColumn" msprop:Generator_ColumnVarNameInTable="columnMethodName" msprop:Generator_UserColumnName="MethodName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -509,7 +509,7 @@
         <xs:element name="ExtendedProductOrdersView" msprop:Generator_RowEvHandlerName="ExtendedProductOrdersViewRowChangeEventHandler" msprop:Generator_RowDeletedName="ExtendedProductOrdersViewRowDeleted" msprop:Generator_RowDeletingName="ExtendedProductOrdersViewRowDeleting" msprop:Generator_RowEvArgName="ExtendedProductOrdersViewRowChangeEvent" msprop:Generator_TablePropName="ExtendedProductOrdersView" msprop:Generator_RowChangedName="ExtendedProductOrdersViewRowChanged" msprop:Generator_RowChangingName="ExtendedProductOrdersViewRowChanging" msprop:Generator_TableClassName="ExtendedProductOrdersViewDataTable" msprop:Generator_RowClassName="ExtendedProductOrdersViewRow" msprop:Generator_TableVarName="tableExtendedProductOrdersView" msprop:Generator_UserTableName="ExtendedProductOrdersView">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name=GLOBAL_RESOURCES.USER_ID_COL_TITLE msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow=GLOBAL_RESOURCES.USER_ID_COL_TITLE msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName=GLOBAL_RESOURCES.USER_ID_COL_TITLE type="xs:int" />
               <xs:element name="ProductName" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="ProductName" msprop:Generator_ColumnPropNameInTable="ProductNameColumn" msprop:Generator_ColumnVarNameInTable="columnProductName" msprop:Generator_UserColumnName="ProductName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -592,7 +592,7 @@
         <xs:element name="ExtendedProductView" msprop:Generator_RowEvHandlerName="ExtendedProductViewRowChangeEventHandler" msprop:Generator_RowDeletedName="ExtendedProductViewRowDeleted" msprop:Generator_RowDeletingName="ExtendedProductViewRowDeleting" msprop:Generator_RowEvArgName="ExtendedProductViewRowChangeEvent" msprop:Generator_TablePropName="ExtendedProductView" msprop:Generator_RowChangedName="ExtendedProductViewRowChanged" msprop:Generator_RowChangingName="ExtendedProductViewRowChanging" msprop:Generator_TableClassName="ExtendedProductViewDataTable" msprop:Generator_RowClassName="ExtendedProductViewRow" msprop:Generator_TableVarName="tableExtendedProductView" msprop:Generator_UserTableName="ExtendedProductView">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name=GLOBAL_RESOURCES.USER_ID_COL_TITLE msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow=GLOBAL_RESOURCES.USER_ID_COL_TITLE msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName=GLOBAL_RESOURCES.USER_ID_COL_TITLE type="xs:int" />
               <xs:element name="ProductName" msprop:Generator_ColumnPropNameInRow="ProductName" msprop:Generator_ColumnPropNameInTable="ProductNameColumn" msprop:Generator_ColumnVarNameInTable="columnProductName" msprop:Generator_UserColumnName="ProductName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -651,7 +651,7 @@
         <xs:element name="ExtendedVendorsView" msprop:Generator_RowEvHandlerName="ExtendedVendorsViewRowChangeEventHandler" msprop:Generator_RowDeletedName="ExtendedVendorsViewRowDeleted" msprop:Generator_RowDeletingName="ExtendedVendorsViewRowDeleting" msprop:Generator_RowEvArgName="ExtendedVendorsViewRowChangeEvent" msprop:Generator_TablePropName="ExtendedVendorsView" msprop:Generator_RowChangedName="ExtendedVendorsViewRowChanged" msprop:Generator_RowChangingName="ExtendedVendorsViewRowChanging" msprop:Generator_TableClassName="ExtendedVendorsViewDataTable" msprop:Generator_RowClassName="ExtendedVendorsViewRow" msprop:Generator_TableVarName="tableExtendedVendorsView" msprop:Generator_UserTableName="ExtendedVendorsView">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:int" />
+              <xs:element name=GLOBAL_RESOURCES.USER_ID_COL_TITLE msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow=GLOBAL_RESOURCES.USER_ID_COL_TITLE msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName=GLOBAL_RESOURCES.USER_ID_COL_TITLE type="xs:int" />
               <xs:element name="VendorName" msprop:Generator_ColumnPropNameInRow="VendorName" msprop:Generator_ColumnPropNameInTable="VendorNameColumn" msprop:Generator_ColumnVarNameInTable="columnVendorName" msprop:Generator_UserColumnName="VendorName">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">

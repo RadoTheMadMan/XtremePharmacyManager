@@ -132,7 +132,7 @@
             this.cbSelectRecord.Size = new System.Drawing.Size(254, 24);
             this.cbSelectRecord.TabIndex = 48;
             this.ttBulkProductVendorOperations.SetToolTip(this.cbSelectRecord, "The record selection, you can select any existing record from here.");
-            this.cbSelectRecord.ValueMember = "ID";
+            this.cbSelectRecord.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
             // productVendorBindingSource
@@ -360,7 +360,7 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // productBrandBindingSource
             // 
@@ -387,7 +387,7 @@
             this.ttBulkProductVendorOperations.IsBalloon = true;
             this.ttBulkProductVendorOperations.ShowAlways = true;
             this.ttBulkProductVendorOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttBulkProductVendorOperations.ToolTipTitle = "Help";
+            this.ttBulkProductVendorOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmBulkProductVendorOperations
             // 

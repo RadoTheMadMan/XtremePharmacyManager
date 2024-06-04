@@ -270,7 +270,7 @@ namespace XtremePharmacyManager
             this.btnGenerateReport.Name = "btnGenerateReport";
             this.btnGenerateReport.Size = new System.Drawing.Size(278, 47);
             this.btnGenerateReport.TabIndex = 53;
-            this.btnGenerateReport.Text = "GENERATE REPORT";
+            this.btnGenerateReport.Text = GLOBAL_RESOURCES.BTN_GENERATE_REPORT_TITLE;
             this.ttSearchOrderDeliveries.SetToolTip(this.btnGenerateReport, "When you click the button you generate a report on  an entry based on the permiss" +
         "ions you have and whether the report definition based on localisation is present" +
         ".");
@@ -403,7 +403,7 @@ namespace XtremePharmacyManager
             this.cbSelectPaymentMethod.Size = new System.Drawing.Size(200, 24);
             this.cbSelectPaymentMethod.TabIndex = 43;
             this.ttSearchOrderDeliveries.SetToolTip(this.cbSelectPaymentMethod, "The payment method with which you want to search order deliveries");
-            this.cbSelectPaymentMethod.ValueMember = "ID";
+            this.cbSelectPaymentMethod.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // lblSelectPaymentMethod
             // 
@@ -420,14 +420,14 @@ namespace XtremePharmacyManager
             // cbSelectProductOrder
             // 
             this.cbSelectProductOrder.DataSource = this.productOrderBindingSource;
-            this.cbSelectProductOrder.DisplayMember = "ID";
+            this.cbSelectProductOrder.DisplayMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.cbSelectProductOrder.FormattingEnabled = true;
             this.cbSelectProductOrder.Location = new System.Drawing.Point(195, 40);
             this.cbSelectProductOrder.Name = "cbSelectProductOrder";
             this.cbSelectProductOrder.Size = new System.Drawing.Size(200, 24);
             this.cbSelectProductOrder.TabIndex = 41;
             this.ttSearchOrderDeliveries.SetToolTip(this.cbSelectProductOrder, "The product order with which you want to search order deliveries");
-            this.cbSelectProductOrder.ValueMember = "ID";
+            this.cbSelectProductOrder.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // cbSelectDeliveryService
             // 
@@ -439,7 +439,7 @@ namespace XtremePharmacyManager
             this.cbSelectDeliveryService.Size = new System.Drawing.Size(200, 24);
             this.cbSelectDeliveryService.TabIndex = 35;
             this.ttSearchOrderDeliveries.SetToolTip(this.cbSelectDeliveryService, "The delivery service with which you want to search order deliveries");
-            this.cbSelectDeliveryService.ValueMember = "ID";
+            this.cbSelectDeliveryService.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // btnDelete
             // 
@@ -451,8 +451,8 @@ namespace XtremePharmacyManager
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(90, 47);
             this.btnDelete.TabIndex = 34;
-            this.btnDelete.Text = "DELETE";
-            this.ttSearchOrderDeliveries.SetToolTip(this.btnDelete, "When you click the button you delete an entry based on the permissions you have.");
+            this.btnDelete.Text = GLOBAL_RESOURCES.BTN_DELETE_TITLE;
+            this.ttSearchOrderDeliveries.SetToolTip(this.btnDelete, GLOBAL_RESOURCES.BTN_DELETE_TOOLTIP_TITLE);
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -466,8 +466,8 @@ namespace XtremePharmacyManager
             this.btnAddOrEdit.Name = "btnAddOrEdit";
             this.btnAddOrEdit.Size = new System.Drawing.Size(90, 47);
             this.btnAddOrEdit.TabIndex = 33;
-            this.btnAddOrEdit.Text = "ADD/EDIT";
-            this.ttSearchOrderDeliveries.SetToolTip(this.btnAddOrEdit, "When you click the button you add/edit an entry based on the permissions you have" +
+            this.btnAddOrEdit.Text = GLOBAL_RESOURCES.BTN_ADD_EDIT_TITLE;
+            this.ttSearchOrderDeliveries.SetToolTip(this.btnAddOrEdit, GLOBAL_RESOURCES.BTN_ADD_EDIT_TOOLTIP_TITLE +
         ".");
             this.btnAddOrEdit.UseVisualStyleBackColor = true;
             this.btnAddOrEdit.Click += new System.EventHandler(this.btnAddOrEdit_Click);
@@ -482,7 +482,7 @@ namespace XtremePharmacyManager
             this.lblSearchMode.Name = "lblSearchMode";
             this.lblSearchMode.Size = new System.Drawing.Size(103, 16);
             this.lblSearchMode.TabIndex = 32;
-            this.lblSearchMode.Text = "Search Mode:";
+            this.lblSearchMode.Text = GLOBAL_RESOURCES.LBL_SEARCH_MODE_TITLE;
             // 
             // cbSearchMode
             // 
@@ -490,16 +490,16 @@ namespace XtremePharmacyManager
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbSearchMode.FormattingEnabled = true;
             this.cbSearchMode.Items.AddRange(new object[] {
-            "None",
-            "Single Criteria",
-            "Multiple Criterias",
-            "All Criterias"});
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_NONE,
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_SINGLE,
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_MULTIPLE,
+            GLOBAL_RESOURCES.LBL_SEARCH_MODE_ALL});
             this.cbSearchMode.Location = new System.Drawing.Point(572, 225);
             this.cbSearchMode.Name = "cbSearchMode";
             this.cbSearchMode.Size = new System.Drawing.Size(231, 24);
             this.cbSearchMode.TabIndex = 31;
-            this.cbSearchMode.Text = "Multiple Criterias";
-            this.ttSearchOrderDeliveries.SetToolTip(this.cbSearchMode, resources.GetString("cbSearchMode.ToolTip"));
+            this.cbSearchMode.Text = GLOBAL_RESOURCES.LBL_SEARCH_MODE_MULTIPLE;
+            this.ttSearchOrderDeliveries.SetToolTip(this.cbSearchMode, GLOBAL_RESOURCES.CB_SEARCH_MODE_TOOLTIP_TITLE);
             // 
             // btnSearch
             // 
@@ -511,9 +511,8 @@ namespace XtremePharmacyManager
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(90, 47);
             this.btnSearch.TabIndex = 30;
-            this.btnSearch.Text = "SEARCH";
-            this.ttSearchOrderDeliveries.SetToolTip(this.btnSearch, "When you click the button you search based on the criterias search mode you selec" +
-        "ted.");
+            this.btnSearch.Text = GLOBAL_RESOURCES.BTN_SEARCH_TITLE;
+            this.ttSearchOrderDeliveries.SetToolTip(this.btnSearch, GLOBAL_RESOURCES.BTN_SEARCH_TOOLTIP_TITLE);
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
@@ -643,7 +642,7 @@ namespace XtremePharmacyManager
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(200, 22);
             this.txtID.TabIndex = 2;
-            this.ttSearchOrderDeliveries.SetToolTip(this.txtID, "The ID of the selected record entry to be searched is here");
+            this.ttSearchOrderDeliveries.SetToolTip(this.txtID, GLOBAL_RESOURCES.ID_SEARCH_TOOLTIP_TITLE);
             // 
             // lblID
             // 
@@ -655,7 +654,7 @@ namespace XtremePharmacyManager
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // productBrandBindingSource
             // 
@@ -670,12 +669,12 @@ namespace XtremePharmacyManager
             this.ttSearchOrderDeliveries.IsBalloon = true;
             this.ttSearchOrderDeliveries.ShowAlways = true;
             this.ttSearchOrderDeliveries.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttSearchOrderDeliveries.ToolTipTitle = "Help";
+            this.ttSearchOrderDeliveries.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // IDColumn
             // 
-            this.IDColumn.DataPropertyName = "ID";
-            this.IDColumn.HeaderText = "ID";
+            this.IDColumn.DataPropertyName = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.IDColumn.HeaderText = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.IDColumn.MinimumWidth = 6;
             this.IDColumn.Name = "IDColumn";
             this.IDColumn.ReadOnly = true;
@@ -685,14 +684,14 @@ namespace XtremePharmacyManager
             // 
             this.ProductOrderIDColumn.DataPropertyName = "OrderID";
             this.ProductOrderIDColumn.DataSource = this.productOrderBindingSource;
-            this.ProductOrderIDColumn.DisplayMember = "ID";
+            this.ProductOrderIDColumn.DisplayMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.ProductOrderIDColumn.HeaderText = "Product Order ID";
             this.ProductOrderIDColumn.MinimumWidth = 6;
             this.ProductOrderIDColumn.Name = "ProductOrderIDColumn";
             this.ProductOrderIDColumn.ReadOnly = true;
             this.ProductOrderIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.ProductOrderIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.ProductOrderIDColumn.ValueMember = "ID";
+            this.ProductOrderIDColumn.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.ProductOrderIDColumn.Width = 125;
             // 
             // TotalPriceColumn
@@ -717,7 +716,7 @@ namespace XtremePharmacyManager
             this.DeliveryServiceIDColumn.ReadOnly = true;
             this.DeliveryServiceIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.DeliveryServiceIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.DeliveryServiceIDColumn.ValueMember = "ID";
+            this.DeliveryServiceIDColumn.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.DeliveryServiceIDColumn.Width = 125;
             // 
             // PaymentMethodIDColumn
@@ -731,7 +730,7 @@ namespace XtremePharmacyManager
             this.PaymentMethodIDColumn.ReadOnly = true;
             this.PaymentMethodIDColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.PaymentMethodIDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.PaymentMethodIDColumn.ValueMember = "ID";
+            this.PaymentMethodIDColumn.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.PaymentMethodIDColumn.Width = 200;
             // 
             // CargoIDColumn

@@ -94,7 +94,7 @@
             this.cbSelectProduct.Size = new System.Drawing.Size(219, 24);
             this.cbSelectProduct.TabIndex = 36;
             this.ttEditProductImage.SetToolTip(this.cbSelectProduct, "the product this image is assigned to in the database can be selected here");
-            this.cbSelectProduct.ValueMember = "ID";
+            this.cbSelectProduct.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // productBindingSource
             // 
@@ -186,7 +186,7 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // productBrandBindingSource
             // 
@@ -201,7 +201,7 @@
             this.ttEditProductImage.IsBalloon = true;
             this.ttEditProductImage.ShowAlways = true;
             this.ttEditProductImage.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttEditProductImage.ToolTipTitle = "Help";
+            this.ttEditProductImage.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmEditProductImage
             // 

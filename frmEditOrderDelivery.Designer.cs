@@ -186,7 +186,7 @@
             this.cbSelectPaymentMethod.Size = new System.Drawing.Size(201, 24);
             this.cbSelectPaymentMethod.TabIndex = 48;
             this.ttEditOrderDelivery.SetToolTip(this.cbSelectPaymentMethod, "Select any existing payment method record to assign the order delivery to");
-            this.cbSelectPaymentMethod.ValueMember = "ID";
+            this.cbSelectPaymentMethod.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // paymentMethodBindingSource
             // 
@@ -214,7 +214,7 @@
             this.cbSelectDeliveryService.Size = new System.Drawing.Size(201, 24);
             this.cbSelectDeliveryService.TabIndex = 46;
             this.ttEditOrderDelivery.SetToolTip(this.cbSelectDeliveryService, "Select any existing delivery service record you want the delivery assigned to");
-            this.cbSelectDeliveryService.ValueMember = "ID";
+            this.cbSelectDeliveryService.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // deliveryServiceBindingSource
             // 
@@ -235,14 +235,14 @@
             // cbSelectProductOrders
             // 
             this.cbSelectProductOrders.DataSource = this.productOrderBindingSource;
-            this.cbSelectProductOrders.DisplayMember = "ID";
+            this.cbSelectProductOrders.DisplayMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.cbSelectProductOrders.FormattingEnabled = true;
             this.cbSelectProductOrders.Location = new System.Drawing.Point(194, 42);
             this.cbSelectProductOrders.Name = "cbSelectProductOrders";
             this.cbSelectProductOrders.Size = new System.Drawing.Size(201, 24);
             this.cbSelectProductOrders.TabIndex = 36;
             this.ttEditOrderDelivery.SetToolTip(this.cbSelectProductOrders, "Select any existing order record you want to assign the order delivery to");
-            this.cbSelectProductOrders.ValueMember = "ID";
+            this.cbSelectProductOrders.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // productOrderBindingSource
             // 
@@ -312,7 +312,7 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // userBindingSource1
             // 
@@ -335,7 +335,7 @@
             this.ttEditOrderDelivery.IsBalloon = true;
             this.ttEditOrderDelivery.ShowAlways = true;
             this.ttEditOrderDelivery.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttEditOrderDelivery.ToolTipTitle = "Help";
+            this.ttEditOrderDelivery.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmEditOrderDelivery
             // 

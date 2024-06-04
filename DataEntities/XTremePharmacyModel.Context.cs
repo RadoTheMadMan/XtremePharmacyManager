@@ -295,8 +295,8 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("balance", typeof(decimal));
     
             var diagnoseParameter = diagnose != null ?
-                new ObjectParameter("diagnose", diagnose) :
-                new ObjectParameter("diagnose", typeof(string));
+                new ObjectParameter(GLOBAL_RESOURCES.DIAGNOSE_COL_TITLE, diagnose) :
+                new ObjectParameter(GLOBAL_RESOURCES.DIAGNOSE_COL_TITLE, typeof(string));
     
             var roleParameter = role.HasValue ?
                 new ObjectParameter("role", role) :
@@ -668,8 +668,8 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("balance", typeof(decimal));
     
             var diagnoseParameter = diagnose != null ?
-                new ObjectParameter("diagnose", diagnose) :
-                new ObjectParameter("diagnose", typeof(string));
+                new ObjectParameter(GLOBAL_RESOURCES.DIAGNOSE_COL_TITLE, diagnose) :
+                new ObjectParameter(GLOBAL_RESOURCES.DIAGNOSE_COL_TITLE, typeof(string));
     
             var registerdatefromParameter = registerdatefrom.HasValue ?
                 new ObjectParameter("registerdatefrom", registerdatefrom) :
@@ -1234,8 +1234,8 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("balance", typeof(decimal));
     
             var diagnoseParameter = diagnose != null ?
-                new ObjectParameter("diagnose", diagnose) :
-                new ObjectParameter("diagnose", typeof(string));
+                new ObjectParameter(GLOBAL_RESOURCES.DIAGNOSE_COL_TITLE, diagnose) :
+                new ObjectParameter(GLOBAL_RESOURCES.DIAGNOSE_COL_TITLE, typeof(string));
     
             var registerdatefromParameter = registerdatefrom.HasValue ?
                 new ObjectParameter("registerdatefrom", registerdatefrom) :
@@ -1295,8 +1295,8 @@ namespace XtremePharmacyManager.DataEntities
                 new ObjectParameter("balance", typeof(decimal));
     
             var diagnoseParameter = diagnose != null ?
-                new ObjectParameter("diagnose", diagnose) :
-                new ObjectParameter("diagnose", typeof(string));
+                new ObjectParameter(GLOBAL_RESOURCES.DIAGNOSE_COL_TITLE, diagnose) :
+                new ObjectParameter(GLOBAL_RESOURCES.DIAGNOSE_COL_TITLE, typeof(string));
     
             var registerdatefromParameter = registerdatefrom.HasValue ?
                 new ObjectParameter("registerdatefrom", registerdatefrom) :

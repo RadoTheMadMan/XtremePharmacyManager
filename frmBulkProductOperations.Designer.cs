@@ -222,7 +222,7 @@
             this.cbVendor.Size = new System.Drawing.Size(223, 24);
             this.cbVendor.TabIndex = 69;
             this.ttBulkProductOperations.SetToolTip(this.cbVendor, "The vendor the selected product is assigned to can be selected here");
-            this.cbVendor.ValueMember = "ID";
+            this.cbVendor.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // productVendorBindingSource
             // 
@@ -388,7 +388,7 @@
             this.cbBrand.Size = new System.Drawing.Size(223, 24);
             this.cbBrand.TabIndex = 55;
             this.ttBulkProductOperations.SetToolTip(this.cbBrand, "The brand the selected product is assigned to can be selected here");
-            this.cbBrand.ValueMember = "ID";
+            this.cbBrand.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // productBrandBindingSource
             // 
@@ -468,7 +468,7 @@
             this.cbSelectRecord.Size = new System.Drawing.Size(222, 24);
             this.cbSelectRecord.TabIndex = 48;
             this.ttBulkProductOperations.SetToolTip(this.cbSelectRecord, "The record selection, you can select any existing record from here.");
-            this.cbSelectRecord.ValueMember = "ID";
+            this.cbSelectRecord.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
             // productBindingSource
@@ -700,7 +700,7 @@
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(26, 16);
             this.lblID.TabIndex = 1;
-            this.lblID.Text = "ID:";
+            this.lblID.Text = GLOBAL_RESOURCES.LBL_ID_TITLE;
             // 
             // deliveryServiceBindingSource
             // 
@@ -739,7 +739,7 @@
             this.ttBulkProductOperations.IsBalloon = true;
             this.ttBulkProductOperations.ShowAlways = true;
             this.ttBulkProductOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttBulkProductOperations.ToolTipTitle = "Help";
+            this.ttBulkProductOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
             // 
             // frmBulkProductOperations
             // 
