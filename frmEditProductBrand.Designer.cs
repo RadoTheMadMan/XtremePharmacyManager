@@ -97,7 +97,7 @@
             this.txtBrandName.Name = "txtBrandName";
             this.txtBrandName.Size = new System.Drawing.Size(205, 22);
             this.txtBrandName.TabIndex = 4;
-            this.ttEditProductBrand.SetToolTip(this.txtBrandName, "The name of the selected product brand");
+            this.ttEditProductBrand.SetToolTip(this.txtBrandName, GLOBAL_RESOURCES.BRAND_NAME_EDIT_TOOLTIP_TITLE);
             // 
             // lblBrandName
             // 
@@ -150,9 +150,8 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmEditProductBrand";
-            this.Text = "Product Brand Editor. Add or Update Product Brand";
-            this.ttEditProductBrand.SetToolTip(this, "The product brands editor dialog where you can add/edit product brands that you c" +
-        "an access provided you have the permissions to do so.");
+            this.Text = GLOBAL_RESOURCES.EDIT_BRAND_TITLE;
+            this.ttEditProductBrand.SetToolTip(this, GLOBAL_RESOURCES.EDIT_BRAND_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmEditProductBrand_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

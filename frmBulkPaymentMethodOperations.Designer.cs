@@ -328,7 +328,7 @@
             this.txtMethodName.Name = "txtMethodName";
             this.txtMethodName.Size = new System.Drawing.Size(258, 22);
             this.txtMethodName.TabIndex = 4;
-            this.ttBulkPaymentMethodOperations.SetToolTip(this.txtMethodName, "The name of the selected payment method");
+            this.ttBulkPaymentMethodOperations.SetToolTip(this.txtMethodName, GLOBAL_RESOURCES.METHOD_NAME_EDIT_TOOLTIP_TITLE);
             // 
             // lblMethodName
             // 

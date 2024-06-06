@@ -80,8 +80,7 @@
             this.pbProductImageData.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbProductImageData.TabIndex = 37;
             this.pbProductImageData.TabStop = false;
-            this.ttEditProductImage.SetToolTip(this.pbProductImageData, "Select an image and it will be uploaded directly to the database in its binary fo" +
-        "rmat and then downloaded and decoded back to image and shown here.");
+            this.ttEditProductImage.SetToolTip(this.pbProductImageData,GLOBAL_RESOURCES.PRODUCT_IMAGE_EDIT_TOOLTIP_TITLE);
             this.pbProductImageData.Click += new System.EventHandler(this.pbProductImageData_Click);
             // 
             // cbSelectProduct
@@ -93,8 +92,8 @@
             this.cbSelectProduct.Name = "cbSelectProduct";
             this.cbSelectProduct.Size = new System.Drawing.Size(219, 24);
             this.cbSelectProduct.TabIndex = 36;
-            this.ttEditProductImage.SetToolTip(this.cbSelectProduct, "the product this image is assigned to in the database can be selected here");
-            this.cbSelectProduct.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.ttEditProductImage.SetToolTip(this.cbSelectProduct, GLOBAL_RESOURCES.PRODUCT_FOR_IMAGE_ASSIGN_TOOLTIP_TITLE);
+            this.cbSelectProduct.ValueMember = "ID";
             // 
             // productBindingSource
             // 
@@ -148,7 +147,7 @@
             this.txtImageName.Name = "txtImageName";
             this.txtImageName.Size = new System.Drawing.Size(220, 22);
             this.txtImageName.TabIndex = 4;
-            this.ttEditProductImage.SetToolTip(this.txtImageName, "Choose a friendly name for the image you upload.");
+            this.ttEditProductImage.SetToolTip(this.txtImageName, GLOBAL_RESOURCES.IMAGE_NAME_EDIT_TOOLTIP_TITLE);
             // 
             // lblImageName
             // 
@@ -209,9 +208,8 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmEditProductImage";
-            this.Text = "Product Image Editor. Add or Edit Product Image";
-            this.ttEditProductImage.SetToolTip(this, "The product images editor dialog where you can add/edit product images that you c" +
-        "an access provided you have the permissions to do so.");
+            this.Text = GLOBAL_RESOURCES.EDIT_PRODUCT_IMAGE_TITLE;
+            this.ttEditProductImage.SetToolTip(this, GLOBAL_RESOURCES.EDIT_PRODUCT_IMAGE_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmEditProductImage_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

@@ -192,9 +192,7 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(35, 22);
             this.txtPrice.TabIndex = 71;
-            this.ttBulkProductOperations.SetToolTip(this.txtPrice, "The base price of the selected product can be set here. You can dynamically chang" +
-        "e it based on the price of the product the vendors of it set for  your shop/phar" +
-        "macy.");
+            this.ttBulkProductOperations.SetToolTip(this.txtPrice, GLOBAL_RESOURCES.PRODUCT_PRICE_EDIT_TOOLTIP_TITLE);
             this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // txtQuantity
@@ -205,9 +203,7 @@
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(35, 22);
             this.txtQuantity.TabIndex = 70;
-            this.ttBulkProductOperations.SetToolTip(this.txtQuantity, "The storage quantity of the selected product can be set here. You can dynamically" +
-        " change it based on how much of the product is really in stock in your shop/phar" +
-        "macy");
+            this.ttBulkProductOperations.SetToolTip(this.txtQuantity, GLOBAL_RESOURCES.QUANTITY_EDIT_TOOLTIP_TITLE);
             this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             // 
             // cbVendor
@@ -221,7 +217,7 @@
             this.cbVendor.Name = "cbVendor";
             this.cbVendor.Size = new System.Drawing.Size(223, 24);
             this.cbVendor.TabIndex = 69;
-            this.ttBulkProductOperations.SetToolTip(this.cbVendor, "The vendor the selected product is assigned to can be selected here");
+            this.ttBulkProductOperations.SetToolTip(this.cbVendor, GLOBAL_RESOURCES.VENDOR_ASSIGN_TOOLTIP_TITLE);
             this.cbVendor.ValueMember = "ID";
             // 
             // productVendorBindingSource
@@ -251,9 +247,7 @@
             this.lblProductNotice.Name = "lblProductNotice";
             this.lblProductNotice.Size = new System.Drawing.Size(366, 64);
             this.lblProductNotice.TabIndex = 67;
-            this.lblProductNotice.Text = "IMPORTANT NOTICE: To see the expiry date\r\ncheck the side of the product package\r\n" +
-    "where the partitude number is\r\nAlso set the base price based on the vendor you s" +
-    "et\r\n";
+            this.lblProductNotice.Text = GLOBAL_RESOURCES.LBL_PRODUCT_NOTICE_TITLE;
             this.ttBulkProductOperations.SetToolTip(this.lblProductNotice, GLOBAL_RESOURCES.PRODUCT_NOTICE_TOOLTIP_TITLE);
             // 
             // txtStorageLocation
@@ -264,7 +258,7 @@
             this.txtStorageLocation.Name = "txtStorageLocation";
             this.txtStorageLocation.Size = new System.Drawing.Size(221, 22);
             this.txtStorageLocation.TabIndex = 66;
-            this.ttBulkProductOperations.SetToolTip(this.txtStorageLocation, "The location of the selected product in your storage can be set here");
+            this.ttBulkProductOperations.SetToolTip(this.txtStorageLocation, GLOBAL_RESOURCES.S_LOCATION_EDIT_TOOLTIP_TITLE);
             // 
             // lblStorageLocation
             // 
@@ -286,8 +280,7 @@
             this.txtPartNum.Name = "txtPartNum";
             this.txtPartNum.Size = new System.Drawing.Size(222, 22);
             this.txtPartNum.TabIndex = 64;
-            this.ttBulkProductOperations.SetToolTip(this.txtPartNum, "The partitude number of the selected product can be set here. You can find it on " +
-        "the side of the package along with its expiry date");
+            this.ttBulkProductOperations.SetToolTip(this.txtPartNum, GLOBAL_RESOURCES.PART_NUM_EDIT_TOOLTIP_TITLE);
             // 
             // lblPartNum
             // 
@@ -309,8 +302,7 @@
             this.txtRegNum.Name = "txtRegNum";
             this.txtRegNum.Size = new System.Drawing.Size(220, 22);
             this.txtRegNum.TabIndex = 62;
-            this.ttBulkProductOperations.SetToolTip(this.txtRegNum, "The registration number of the selected product can be set here. It is on the cov" +
-        "er of the product.");
+            this.ttBulkProductOperations.SetToolTip(this.txtRegNum, GLOBAL_RESOURCES.REG_NUM_EDIT_TOOLTIP_TITLE);
             // 
             // lblRegNum
             // 
@@ -332,8 +324,7 @@
             this.dtExpiryDate.Name = "dtExpiryDate";
             this.dtExpiryDate.Size = new System.Drawing.Size(221, 22);
             this.dtExpiryDate.TabIndex = 60;
-            this.ttBulkProductOperations.SetToolTip(this.dtExpiryDate, "The expiry date of the selected product can be set here. You can find it onthe si" +
-        "de of the package along with its partitude number");
+            this.ttBulkProductOperations.SetToolTip(this.dtExpiryDate,GLOBAL_RESOURCES.PRODUCT_EXP_DATE_EDIT_TOOLTIP_TITLE);
             // 
             // lblExpiryDate
             // 
@@ -358,9 +349,7 @@
             this.trbQuantity.Size = new System.Drawing.Size(222, 39);
             this.trbQuantity.TabIndex = 58;
             this.trbQuantity.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ttBulkProductOperations.SetToolTip(this.trbQuantity, "The storage quantity of the selected product can be set here. You can dynamically" +
-        " change it based on how much of the product is really in stock in your shop/phar" +
-        "macy");
+            this.ttBulkProductOperations.SetToolTip(this.trbQuantity, GLOBAL_RESOURCES.QUANTITY_EDIT_TOOLTIP_TITLE);
             this.trbQuantity.Scroll += new System.EventHandler(this.trbQuantity_Scroll);
             // 
             // lblQuantity
@@ -386,7 +375,7 @@
             this.cbBrand.Name = "cbBrand";
             this.cbBrand.Size = new System.Drawing.Size(223, 24);
             this.cbBrand.TabIndex = 55;
-            this.ttBulkProductOperations.SetToolTip(this.cbBrand, "The brand the selected product is assigned to can be selected here");
+            this.ttBulkProductOperations.SetToolTip(this.cbBrand, GLOBAL_RESOURCES.BRAND_ASSIGN_TOOLTIP_TITLE);
             this.cbBrand.ValueMember = "ID";
             // 
             // productBrandBindingSource
@@ -413,7 +402,7 @@
             this.txtProductDescription.Name = "txtProductDescription";
             this.txtProductDescription.Size = new System.Drawing.Size(222, 22);
             this.txtProductDescription.TabIndex = 53;
-            this.ttBulkProductOperations.SetToolTip(this.txtProductDescription, "The description of the selected product can be set here");
+            this.ttBulkProductOperations.SetToolTip(this.txtProductDescription, GLOBAL_RESOURCES.PRODUCT_DESCRIPTION_EDIT_TOOLTIP_TITLE);
             // 
             // lblProductDescription
             // 
@@ -425,7 +414,7 @@
             this.lblProductDescription.Name = "lblProductDescription";
             this.lblProductDescription.Size = new System.Drawing.Size(147, 16);
             this.lblProductDescription.TabIndex = 52;
-            this.lblProductDescription.Text = "Product Description:";
+            this.lblProductDescription.Text = GLOBAL_RESOURCES.LBL_PRODUCT_DESCRIPTION_TITLE;
             // 
             // trbPrice
             // 
@@ -438,9 +427,7 @@
             this.trbPrice.Size = new System.Drawing.Size(222, 41);
             this.trbPrice.TabIndex = 51;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ttBulkProductOperations.SetToolTip(this.trbPrice, "The base price of the selected product can be set here. You can dynamically chang" +
-        "e it based on the price of the product the vendors of it set for  your shop/phar" +
-        "macy.");
+            this.ttBulkProductOperations.SetToolTip(this.trbPrice, GLOBAL_RESOURCES.PRODUCT_PRICE_EDIT_TOOLTIP_TITLE);
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
             // 
             // lblPrice
@@ -663,7 +650,7 @@
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(223, 22);
             this.txtProductName.TabIndex = 4;
-            this.ttBulkProductOperations.SetToolTip(this.txtProductName, "The name of the selected product can be set here");
+            this.ttBulkProductOperations.SetToolTip(this.txtProductName, GLOBAL_RESOURCES.PRODUCT_NAME_EDIT_TOOLTIP_TITLE);
             // 
             // lblProductName
             // 

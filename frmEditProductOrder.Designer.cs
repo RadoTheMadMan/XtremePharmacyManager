@@ -106,7 +106,7 @@
             this.txtPriceOverride.Name = "txtPriceOverride";
             this.txtPriceOverride.Size = new System.Drawing.Size(50, 22);
             this.txtPriceOverride.TabIndex = 56;
-            this.ttEditProductOrder.SetToolTip(this.txtPriceOverride, resources.GetString("txtPriceOverride.ToolTip"));
+            this.ttEditProductOrder.SetToolTip(this.txtPriceOverride, GLOBAL_RESOURCES.PRICE_OVERRIDE_EDIT_TOOLTIP_TITLE);
             this.txtPriceOverride.TextChanged += new System.EventHandler(this.txtPriceOverride_TextChanged);
             // 
             // txtDesiredQuantity
@@ -117,9 +117,7 @@
             this.txtDesiredQuantity.Name = "txtDesiredQuantity";
             this.txtDesiredQuantity.Size = new System.Drawing.Size(50, 22);
             this.txtDesiredQuantity.TabIndex = 55;
-            this.ttEditProductOrder.SetToolTip(this.txtDesiredQuantity, "The desired quantity of the product assigned to the selected order. It plays an i" +
-        "mportant role in calculating the price of the selected order unless the price is" +
-        " overriden");
+            this.ttEditProductOrder.SetToolTip(this.txtDesiredQuantity, GLOBAL_RESOURCES.DESIRED_QUANTITY_EDIT_TOOLTIP_TITLE);
             this.txtDesiredQuantity.TextChanged += new System.EventHandler(this.txtDesiredQuantity_TextChanged);
             // 
             // txtOrderReason
@@ -131,8 +129,7 @@
             this.txtOrderReason.Name = "txtOrderReason";
             this.txtOrderReason.Size = new System.Drawing.Size(230, 77);
             this.txtOrderReason.TabIndex = 54;
-            this.ttEditProductOrder.SetToolTip(this.txtOrderReason, "Type the reason you edited the order. Sometimes the database puts its own reason " +
-        "for change to indicate a change of status and inform you tho");
+            this.ttEditProductOrder.SetToolTip(this.txtOrderReason,GLOBAL_RESOURCES.ORDER_REASON_EDIT_TOOLTIP_TITLE);
             // 
             // lblOrderReason
             // 
@@ -173,14 +170,13 @@
             GLOBAL_RESOURCES.LBL_ORDER_STATUS_PROCESSING,
             GLOBAL_RESOURCES.LBL_ORDER_STATUS_CANCELLED,
             GLOBAL_RESOURCES.LBL_ORDER_STATUS_RETURNED,
-           GLOBAL_RESOURCES.LBL_ORDER_STATUS_COMPLETED});
+            GLOBAL_RESOURCES.LBL_ORDER_STATUS_COMPLETED});
             this.cbSelectOrderStatus.Location = new System.Drawing.Point(176, 147);
             this.cbSelectOrderStatus.Name = "cbSelectOrderStatus";
             this.cbSelectOrderStatus.Size = new System.Drawing.Size(219, 24);
             this.cbSelectOrderStatus.TabIndex = 51;
             this.cbSelectOrderStatus.Text = GLOBAL_RESOURCES.LBL_ORDER_STATUS_PENDING;
-            this.ttEditProductOrder.SetToolTip(this.cbSelectOrderStatus, "The status of the order, changing it automatically calculates the employee balanc" +
-        "e, client balance and/or the product quantity if needed");
+            this.ttEditProductOrder.SetToolTip(this.cbSelectOrderStatus, GLOBAL_RESOURCES.ORDER_STATUS_ASSIGN_TOOLTIP_TITLE);
             // 
             // cbSelectEmployee
             // 
@@ -191,10 +187,8 @@
             this.cbSelectEmployee.Name = "cbSelectEmployee";
             this.cbSelectEmployee.Size = new System.Drawing.Size(219, 24);
             this.cbSelectEmployee.TabIndex = 48;
-            this.ttEditProductOrder.SetToolTip(this.cbSelectEmployee, "The employee that processed the selected order can be set here and usually it is " +
-        "you. Their balance will be calculated automatically on changing the status of th" +
-        "e product order.");
-            this.cbSelectEmployee.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.ttEditProductOrder.SetToolTip(this.cbSelectEmployee,GLOBAL_RESOURCES.EMPLOYEE_ASSIGN_TOOLTIP_TITLE);
+            this.cbSelectEmployee.ValueMember = "ID";
             // 
             // userBindingSource1
             // 
@@ -221,9 +215,8 @@
             this.cbSelectClient.Name = "cbSelectClient";
             this.cbSelectClient.Size = new System.Drawing.Size(219, 24);
             this.cbSelectClient.TabIndex = 46;
-            this.ttEditProductOrder.SetToolTip(this.cbSelectClient, "The client that ordered the product can be set here. Their balance will be calcul" +
-        "ated automatically on changing the status of the product order.");
-            this.cbSelectClient.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.ttEditProductOrder.SetToolTip(this.cbSelectClient,GLOBAL_RESOURCES.CLIENT_ASSIGN_TOOLTIP_TITLE);
+            this.cbSelectClient.ValueMember = "ID";
             // 
             // userBindingSource
             // 
@@ -251,9 +244,7 @@
             this.trbDesiredQuantity.Size = new System.Drawing.Size(205, 56);
             this.trbDesiredQuantity.TabIndex = 44;
             this.trbDesiredQuantity.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ttEditProductOrder.SetToolTip(this.trbDesiredQuantity, "The desired quantity of the product assigned to the selected order. It plays an i" +
-        "mportant role in calculating the price of the selected order unless the price is" +
-        " overriden");
+            this.ttEditProductOrder.SetToolTip(this.trbDesiredQuantity, GLOBAL_RESOURCES.DESIRED_QUANTITY_EDIT_TOOLTIP_TITLE);
             this.trbDesiredQuantity.Scroll += new System.EventHandler(this.trbDesiredQuantity_Scroll);
             // 
             // lblDesiredQuantity
@@ -277,10 +268,8 @@
             this.cbSelectProduct.Name = "cbSelectProduct";
             this.cbSelectProduct.Size = new System.Drawing.Size(219, 24);
             this.cbSelectProduct.TabIndex = 36;
-            this.ttEditProductOrder.SetToolTip(this.cbSelectProduct, "the product the selected order can be assigned to can be changed here. Price is c" +
-        "alculated by the desired quantity and the base product price unless the price is" +
-        " overriden");
-            this.cbSelectProduct.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.ttEditProductOrder.SetToolTip(this.cbSelectProduct, GLOBAL_RESOURCES.PRODUCT_ASSIGN_TOOLTIP_TITLE);
+            this.cbSelectProduct.ValueMember = "ID";
             // 
             // productBindingSource
             // 
@@ -324,7 +313,7 @@
             this.trbPriceOverride.Size = new System.Drawing.Size(205, 56);
             this.trbPriceOverride.TabIndex = 21;
             this.trbPriceOverride.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ttEditProductOrder.SetToolTip(this.trbPriceOverride, resources.GetString("trbPriceOverride.ToolTip"));
+            this.ttEditProductOrder.SetToolTip(this.trbPriceOverride, GLOBAL_RESOURCES.PRICE_OVERRIDE_EDIT_TOOLTIP_TITLE);
             this.trbPriceOverride.Scroll += new System.EventHandler(this.trbPriceOverride_Scroll);
             // 
             // lblPriceOverride
@@ -394,9 +383,8 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmEditProductOrder";
-            this.Text = "Product Order Editor. Add or Edit Product Orders";
-            this.ttEditProductOrder.SetToolTip(this, "The product orders editor dialog where you can add/edit product orders that you c" +
-        "an access provided you have the permissions to do so.");
+            this.Text = GLOBAL_RESOURCES.EDIT_PRODUCT_ORDER_TITLE;
+            this.ttEditProductOrder.SetToolTip(this, GLOBAL_RESOURCES.EDIT_PRODUCT_ORDER_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmEditProductOrder_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

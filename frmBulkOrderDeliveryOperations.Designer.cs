@@ -197,7 +197,7 @@
             this.txtCargoID.Name = "txtCargoID";
             this.txtCargoID.Size = new System.Drawing.Size(240, 22);
             this.txtCargoID.TabIndex = 75;
-            this.ttBulkOrderDeliveryOperations.SetToolTip(this.txtCargoID, resources.GetString("txtCargoID.ToolTip"));
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.txtCargoID, GLOBAL_RESOURCES.CARGO_ID_EDIT_TOOLTIP_TITLE);
             // 
             // lblCargoID
             // 
@@ -232,9 +232,7 @@
             this.cbStatus.Size = new System.Drawing.Size(243, 24);
             this.cbStatus.TabIndex = 73;
             this.cbStatus.Text =GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_PENDING;
-            this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbStatus, "The delivery status. based on it the status of the product order changes and the " +
-        "balances of the registered employees and clients is calculated so be REALLY care" +
-        "ful with that");
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbStatus, GLOBAL_RESOURCES.DELIVERY_STATUS_ASSIGN_TOOLTIP_TITLE);
             // 
             // lblStatus
             // 
@@ -259,7 +257,7 @@
             this.cbPaymentMethod.Name = "cbPaymentMethod";
             this.cbPaymentMethod.Size = new System.Drawing.Size(240, 24);
             this.cbPaymentMethod.TabIndex = 70;
-            this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbPaymentMethod, "Select any existing payment method record to assign the order delivery to");
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbPaymentMethod, GLOBAL_RESOURCES.PAYMENT_METHOD_ASSIGN_TOOLTIP_TITLE);
             this.cbPaymentMethod.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // paymentMethodBindingSource
@@ -289,7 +287,7 @@
             this.cbDeliveryService.Name = "cbDeliveryService";
             this.cbDeliveryService.Size = new System.Drawing.Size(240, 24);
             this.cbDeliveryService.TabIndex = 68;
-            this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbDeliveryService, "Select any existing delivery service record you want the delivery assigned to");
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbDeliveryService, GLOBAL_RESOURCES.DELIVERY_SERVICE_ASSIGN_TOOLTIP_TITLE);
             this.cbDeliveryService.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // deliveryServiceBindingSource
@@ -317,8 +315,7 @@
             this.txtReason.Name = "txtReason";
             this.txtReason.Size = new System.Drawing.Size(241, 51);
             this.txtReason.TabIndex = 62;
-            this.ttBulkOrderDeliveryOperations.SetToolTip(this.txtReason, "Type the reason you edited the delivery. Sometimes the database puts its own reas" +
-        "on for change to indicate a change of status and inform you tho");
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.txtReason, GLOBAL_RESOURCES.DELIVERY_REASON_EDIT_TOOLTIP_TITLE);
             // 
             // lblReason
             // 
@@ -343,7 +340,7 @@
             this.cbOrder.Name = "cbOrder";
             this.cbOrder.Size = new System.Drawing.Size(240, 24);
             this.cbOrder.TabIndex = 55;
-            this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbOrder, "Select any existing order record you want to assign the order delivery to");
+            this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbOrder, GLOBAL_RESOURCES.PRODUCT_ORDER_ASSIGN_TOOLTIP_TITLE);
             this.cbOrder.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // productOrderBindingSource

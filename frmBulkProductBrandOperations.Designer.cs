@@ -324,7 +324,7 @@
             this.txtBrandName.Name = "txtBrandName";
             this.txtBrandName.Size = new System.Drawing.Size(258, 22);
             this.txtBrandName.TabIndex = 4;
-            this.ttBulkProductBrandOperations.SetToolTip(this.txtBrandName, "The name of the selected product brand");
+            this.ttBulkProductBrandOperations.SetToolTip(this.txtBrandName, GLOBAL_RESOURCES.BRAND_NAME_EDIT_TOOLTIP_TITLE);
             // 
             // lblBrandName
             // 

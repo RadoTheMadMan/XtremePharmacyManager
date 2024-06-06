@@ -447,6 +447,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The brand the selected product is assigned to can be selected here..
+        /// </summary>
+        public static string BrandAssignTooltipTitle {
+            get {
+                return ResourceManager.GetString("BrandAssignTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Brand.
         /// </summary>
         public static string BrandColTitle {
@@ -497,6 +506,15 @@ namespace XtremePharmacyManager.Properties {
         public static string BrandNameColTitle {
             get {
                 return ResourceManager.GetString("BrandNameColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the selected product brand can be set here..
+        /// </summary>
+        public static string BrandNameEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("BrandNameEditTooltipTitle", resourceCulture);
             }
         }
         
@@ -1581,6 +1599,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is the cargo ID the site of the delivery services generates for you along with report of details fo the delivery to check and confirm the authenticity of the delivered stock. Put the ID of the cargo document here..
+        /// </summary>
+        public static string CargoIDEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("CargoIDEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The cargo document ID with which you want to search order deliveries.
         /// </summary>
         public static string CargoIDSearchTooltipTitle {
@@ -1617,6 +1644,15 @@ namespace XtremePharmacyManager.Properties {
         public static string CbSelectVendorSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("CbSelectVendorSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The client that ordered the product can be set here. Their balance will be calculated automatically on changing the status of the product order..
+        /// </summary>
+        public static string ClientAssignTooltipTitle {
+            get {
+                return ResourceManager.GetString("ClientAssignTooltipTitle", resourceCulture);
             }
         }
         
@@ -1813,6 +1849,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The textbox where you can set the price of the delivery service..
+        /// </summary>
+        public static string DeliveryPriceEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("DeliveryPriceEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The service price with which you want to search delivery services.
         /// </summary>
         public static string DeliveryPriceSearchTooltipTitle {
@@ -1831,11 +1876,29 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type the reason you edited the delivery. Sometimes the database puts its own reason for change to indicate a change of status and inform you tho..
+        /// </summary>
+        public static string DeliveryReasonEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("DeliveryReasonEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The reason with which you want to search order deliveries.
         /// </summary>
         public static string DeliveryReasonSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("DeliveryReasonSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select any existing delivery service record you want the delivery assigned to.
+        /// </summary>
+        public static string DeliveryServiceAssignTooltipTitle {
+            get {
+                return ResourceManager.GetString("DeliveryServiceAssignTooltipTitle", resourceCulture);
             }
         }
         
@@ -1894,6 +1957,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The delivery status. Based on it the status of the product order changes and the balances of the registered employees and clients is calculated so be REALLY careful with that.
+        /// </summary>
+        public static string DeliveryStatusAssignTooltipTitle {
+            get {
+                return ResourceManager.GetString("DeliveryStatusAssignTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delivery Status.
         /// </summary>
         public static string DeliveryStatusColTitle {
@@ -1917,6 +1989,15 @@ namespace XtremePharmacyManager.Properties {
         public static string DesiredQuantityColTitle {
             get {
                 return ResourceManager.GetString("DesiredQuantityColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The desired quantity of the product assigned to the selected order. It plays an important role in calculating the price of the selected order unless the price is overriden.
+        /// </summary>
+        public static string DesiredQuantityEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("DesiredQuantityEditTooltipTitle", resourceCulture);
             }
         }
         
@@ -2056,6 +2137,132 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Brand Editor. Add or Update Product Brand.
+        /// </summary>
+        public static string EditBrandTitle {
+            get {
+                return ResourceManager.GetString("EditBrandTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product brands editor dialog where you can add/edit product brands that you can access provided you have the permissions to do so..
+        /// </summary>
+        public static string EditBrandTooltipTitle {
+            get {
+                return ResourceManager.GetString("EditBrandTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery Service Editor. Add or Update Delivery Service.
+        /// </summary>
+        public static string EditDeliveryServiceTitle {
+            get {
+                return ResourceManager.GetString("EditDeliveryServiceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The delivery services editor dialog where you can add/edit delivery services that you can access provided you have the permissions to do so..
+        /// </summary>
+        public static string EditDeliveryServiceTooltipTitle {
+            get {
+                return ResourceManager.GetString("EditDeliveryServiceTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Delivery Editor. Add or Edit Order Deliveries.
+        /// </summary>
+        public static string EditOrderDeliveryTitle {
+            get {
+                return ResourceManager.GetString("EditOrderDeliveryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The order deliveries editor dialog where you can add/edit order deliveries that you can access provided you have the permissions to do so..
+        /// </summary>
+        public static string EditOrderDeliveryTooltipTitle {
+            get {
+                return ResourceManager.GetString("EditOrderDeliveryTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Method Editor. Add or Update Payment Method.
+        /// </summary>
+        public static string EditPaymentMethodTitle {
+            get {
+                return ResourceManager.GetString("EditPaymentMethodTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The payment methods editor dialog where you can add/edit payment methods that you can access provided you have the permissions to do so..
+        /// </summary>
+        public static string EditPaymentMethodTooltipTitle {
+            get {
+                return ResourceManager.GetString("EditPaymentMethodTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Image Editor. Add or Edit Product Image.
+        /// </summary>
+        public static string EditProductImageTitle {
+            get {
+                return ResourceManager.GetString("EditProductImageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product images editor dialog where you can add/edit product images that you can access provided you have the permissions to do so..
+        /// </summary>
+        public static string EditProductImageTooltipTitle {
+            get {
+                return ResourceManager.GetString("EditProductImageTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Order Editor. Add or Edit Product Orders.
+        /// </summary>
+        public static string EditProductOrderTitle {
+            get {
+                return ResourceManager.GetString("EditProductOrderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product orders editor dialog where you can add/edit product orders that you can access provided you have the permissions to do so..
+        /// </summary>
+        public static string EditProductOrderTooltipTitle {
+            get {
+                return ResourceManager.GetString("EditProductOrderTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Editor. Add or Edit Product.
+        /// </summary>
+        public static string EditProductTitle {
+            get {
+                return ResourceManager.GetString("EditProductTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The products editor dialog where you can add/edit products that you can access provided you have the permissions to do so..
+        /// </summary>
+        public static string EditProductTooltipTitle {
+            get {
+                return ResourceManager.GetString("EditProductTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User Editor. Add or Edit User.
         /// </summary>
         public static string EditUserTitle {
@@ -2119,6 +2326,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The employee that processed the selected order can be set here and usually it is you. Their balance will be calculated automatically on changing the status of the product order..
+        /// </summary>
+        public static string EmployeeAssignTooltipTitle {
+            get {
+                return ResourceManager.GetString("EmployeeAssignTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Employee.
         /// </summary>
         public static string EmployeeColTitle {
@@ -2173,15 +2389,6 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Date From:.
-        /// </summary>
-        public static string GLOBAL_RESOURCES_LBL_LOG_DATE_FROM_TITLE {
-            get {
-                return ResourceManager.GetString("GLOBAL_RESOURCES.LBL_LOG_DATE_FROM_TITLE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to The help menu for the application.
         /// </summary>
         public static string HelpMenuTooltipTitle {
@@ -2232,6 +2439,15 @@ namespace XtremePharmacyManager.Properties {
         public static string ImageBytesTooltipTitle {
             get {
                 return ResourceManager.GetString("ImageBytesTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose a friendly name for the image you upload..
+        /// </summary>
+        public static string ImageNameEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("ImageNameEditTooltipTitle", resourceCulture);
             }
         }
         
@@ -2385,6 +2601,15 @@ namespace XtremePharmacyManager.Properties {
         public static string LblClientTitle {
             get {
                 return ResourceManager.GetString("LblClientTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date From:.
+        /// </summary>
+        public static string LblDateFromTitle {
+            get {
+                return ResourceManager.GetString("LblDateFromTitle", resourceCulture);
             }
         }
         
@@ -2790,6 +3015,15 @@ namespace XtremePharmacyManager.Properties {
         public static string LblProductExpDateFromTitle {
             get {
                 return ResourceManager.GetString("LblProductExpDateFromTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expiry Date:.
+        /// </summary>
+        public static string LblProductExpDateTitle {
+            get {
+                return ResourceManager.GetString("LblProductExpDateTitle", resourceCulture);
             }
         }
         
@@ -3285,6 +3519,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The name of the selected payment method.
+        /// </summary>
+        public static string MethodNameEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("MethodNameEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The method name with which you want to search payment methods.
         /// </summary>
         public static string MethodNameSearchTooltipTitle {
@@ -3407,12 +3650,9 @@ namespace XtremePharmacyManager.Properties {
         ///1. The total price is automatically calculated by the system
         ///by the product order price assigned to the delivery and the price of the
         ///delivery service assigned to the delivery.
-        ///2. Always put a reason behind your edits, that&apos;s what
-        ///Delivery Reason is for
+        ///2. Always put a reason behind your edits, that&apos;s what Delivery Reason is for and keep in mind that the system delivery reasons with its own on certain status changes.
         ///3. Client balance and employee balance are calculated
-        ///automatically upon changing the status so be careful when
-        ///setting it and use your common sense
-        ///4. Deliveries who are com [rest of string was truncated]&quot;;.
+        ///automatically upon changing the s [rest of string was truncated]&quot;;.
         /// </summary>
         public static string OrderDeliveryNoticeTitle {
             get {
@@ -3457,11 +3697,29 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Type the reason you edited the order. Sometimes the database puts its own reason for change to indicate a change of status and inform you tho..
+        /// </summary>
+        public static string OrderReasonEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("OrderReasonEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The reason with which you want to search product orders.
         /// </summary>
         public static string OrderReasonSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("OrderReasonSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The status of the order, changing it automatically calculates the employee balance, client balance and/or the product quantity if needed..
+        /// </summary>
+        public static string OrderStatusAssignTooltipTitle {
+            get {
+                return ResourceManager.GetString("OrderStatusAssignTooltipTitle", resourceCulture);
             }
         }
         
@@ -3480,6 +3738,15 @@ namespace XtremePharmacyManager.Properties {
         public static string OrderStatusSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("OrderStatusSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The partitude number of the selected product can be set here. You can find it on the side of the package along with its expiry date..
+        /// </summary>
+        public static string PartNumEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("PartNumEditTooltipTitle", resourceCulture);
             }
         }
         
@@ -3516,6 +3783,15 @@ namespace XtremePharmacyManager.Properties {
         public static string PasswordSearchTooltip {
             get {
                 return ResourceManager.GetString("PasswordSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select any existing payment method record to assign the order delivery to.
+        /// </summary>
+        public static string PaymentMethodAssignTooltipTitle {
+            get {
+                return ResourceManager.GetString("PaymentMethodAssignTooltipTitle", resourceCulture);
             }
         }
         
@@ -3664,11 +3940,29 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The price override of the selected order. It can be overriden if you set a price higher than the base product&apos;s price and will be calculated accordingly by the desired quantity of the order unless it is set as total..
+        /// </summary>
+        public static string PriceOverrideEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("PriceOverrideEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The price overrride with which you want to search product orders.
         /// </summary>
         public static string PriceOverrideSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("PriceOverrideSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to the product the selected order can be assigned to can be changed here. Price is calculated by the desired quantity and the base product price unless the price is overriden.
+        /// </summary>
+        public static string ProductAssignTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductAssignTooltipTitle", resourceCulture);
             }
         }
         
@@ -3718,6 +4012,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The description of the selected product can be set here..
+        /// </summary>
+        public static string ProductDescriptionEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductDescriptionEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The product description with which you want to search products.
         /// </summary>
         public static string ProductDescriptionSearchTooltipTitle {
@@ -3745,6 +4048,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The expiry date of the selected product can be set here. You can find it on the side of the package along with its partitude number..
+        /// </summary>
+        public static string ProductExpDateEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductExpDateEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The expiry date from which you want to search products.
         /// </summary>
         public static string ProductExpDateFromSearchTooltip {
@@ -3759,6 +4071,15 @@ namespace XtremePharmacyManager.Properties {
         public static string ProductExpDateToSearchTooltip {
             get {
                 return ResourceManager.GetString("ProductExpDateToSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to the product this image is assigned to in the database can be selected here.
+        /// </summary>
+        public static string ProductForImageAssignTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductForImageAssignTooltipTitle", resourceCulture);
             }
         }
         
@@ -3786,6 +4107,15 @@ namespace XtremePharmacyManager.Properties {
         public static string ProductImageEditOperationPermissionError {
             get {
                 return ResourceManager.GetString("ProductImageEditOperationPermissionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select an image and it will be uploaded directly to the database in its binary format and then downloaded and decoded back to image and shown here..
+        /// </summary>
+        public static string ProductImageEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductImageEditTooltipTitle", resourceCulture);
             }
         }
         
@@ -3835,6 +4165,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The name of the selected product can be set here..
+        /// </summary>
+        public static string ProductNameEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductNameEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The product name with which you want to search products.
         /// </summary>
         public static string ProductNameSearchTooltipTitle {
@@ -3849,6 +4188,15 @@ namespace XtremePharmacyManager.Properties {
         public static string ProductNoticeTooltipTitle {
             get {
                 return ResourceManager.GetString("ProductNoticeTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select any existing order record you want to assign the order delivery to.
+        /// </summary>
+        public static string ProductOrderAssignTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductOrderAssignTooltipTitle", resourceCulture);
             }
         }
         
@@ -3989,6 +4337,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The base price of the selected product can be set here. You can manually change it based on the price of the product the vendors of it set for  your shop/pharmacy..
+        /// </summary>
+        public static string ProductPriceEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductPriceEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The base price with which you want to search products.
         /// </summary>
         public static string ProductPriceSearchTooltipTitle {
@@ -4070,6 +4427,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The storage quantity of the selected product can be set here. You can dynamically change it based on how much of the product is really in stock in your shop/pharmacy..
+        /// </summary>
+        public static string QuantityEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("QuantityEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The storage quantity with which you want to search products.
         /// </summary>
         public static string QuantitySearchTooltipTitle {
@@ -4103,6 +4469,15 @@ namespace XtremePharmacyManager.Properties {
         public static string RegisterDateColTitle {
             get {
                 return ResourceManager.GetString("RegisterDateColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The registration number of the selected product can be set here. It is on the cover of the product..
+        /// </summary>
+        public static string RegNumEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("RegNumEditTooltipTitle", resourceCulture);
             }
         }
         
@@ -4243,6 +4618,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The name of the delivery service you want to add/edit.
+        /// </summary>
+        public static string ServiceNameEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("ServiceNameEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The service name with which you want to search delivery services.
         /// </summary>
         public static string ServiceNameSearchTooltipTitle {
@@ -4257,6 +4641,15 @@ namespace XtremePharmacyManager.Properties {
         public static string ServicePriceColTitle {
             get {
                 return ResourceManager.GetString("ServicePriceColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The location of the selected product in your storage can be set here..
+        /// </summary>
+        public static string SLocationEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("SLocationEditTooltipTitle", resourceCulture);
             }
         }
         
@@ -4491,6 +4884,15 @@ namespace XtremePharmacyManager.Properties {
         public static string UsersTooltipTitle {
             get {
                 return ResourceManager.GetString("UsersTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The vendor the selected product is assigned to can be selected here..
+        /// </summary>
+        public static string VendorAssignTooltipTitle {
+            get {
+                return ResourceManager.GetString("VendorAssignTooltipTitle", resourceCulture);
             }
         }
         

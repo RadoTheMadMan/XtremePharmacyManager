@@ -40,7 +40,7 @@
             this.trbPrice = new System.Windows.Forms.TrackBar();
             this.lblPrice = new System.Windows.Forms.Label();
             this.txtServiceName = new System.Windows.Forms.TextBox();
-            this.lblUsername = new System.Windows.Forms.Label();
+            this.lblServiceName = new System.Windows.Forms.Label();
             this.txtID = new System.Windows.Forms.TextBox();
             this.lblID = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -59,7 +59,7 @@
             this.pnlData.Controls.Add(this.trbPrice);
             this.pnlData.Controls.Add(this.lblPrice);
             this.pnlData.Controls.Add(this.txtServiceName);
-            this.pnlData.Controls.Add(this.lblUsername);
+            this.pnlData.Controls.Add(this.lblServiceName);
             this.pnlData.Controls.Add(this.txtID);
             this.pnlData.Controls.Add(this.lblID);
             this.pnlData.Dock = System.Windows.Forms.DockStyle.Top;
@@ -76,7 +76,7 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(76, 22);
             this.txtPrice.TabIndex = 34;
-            this.ttEditDeliveryService.SetToolTip(this.txtPrice, "the textbox where you can set the price of the delivery service.");
+            this.ttEditDeliveryService.SetToolTip(this.txtPrice, GLOBAL_RESOURCES.DELIVERY_PRICE_EDIT_TOOLTIP_TITLE);
             this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // btnOK
@@ -117,8 +117,7 @@
             this.trbPrice.Size = new System.Drawing.Size(205, 56);
             this.trbPrice.TabIndex = 21;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ttEditDeliveryService.SetToolTip(this.trbPrice, "The price of the delivery service you want to set. You can set it here and this s" +
-        "lider can adapt dynamically to the number");
+            this.ttEditDeliveryService.SetToolTip(this.trbPrice, GLOBAL_RESOURCES.DELIVERY_PRICE_EDIT_TOOLTIP_TITLE);
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
             // 
             // lblPrice
@@ -141,19 +140,19 @@
             this.txtServiceName.Name = "txtServiceName";
             this.txtServiceName.Size = new System.Drawing.Size(205, 22);
             this.txtServiceName.TabIndex = 4;
-            this.ttEditDeliveryService.SetToolTip(this.txtServiceName, "The name of the delivery service you want to add/edit");
+            this.ttEditDeliveryService.SetToolTip(this.txtServiceName, GLOBAL_RESOURCES.SERVICE_NAME_EDIT_TOOLTIP_TITLE);
             // 
             // lblUsername
             // 
-            this.lblUsername.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblServiceName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblUsername.AutoSize = true;
-            this.lblUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.Location = new System.Drawing.Point(19, 45);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(109, 16);
-            this.lblUsername.TabIndex = 3;
-            this.lblUsername.Text = GLOBAL_RESOURCES.LBL_SERVICE_NAME_TITLE;
+            this.lblServiceName.AutoSize = true;
+            this.lblServiceName.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblServiceName.Location = new System.Drawing.Point(19, 45);
+            this.lblServiceName.Name = "lblServiceName";
+            this.lblServiceName.Size = new System.Drawing.Size(109, 16);
+            this.lblServiceName.TabIndex = 3;
+            this.lblServiceName.Text = GLOBAL_RESOURCES.LBL_SERVICE_NAME_TITLE;
             // 
             // txtID
             // 
@@ -194,9 +193,8 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmEditDeliveryService";
-            this.Text = "Delivery Service Editor. Add or Update Delivery Service";
-            this.ttEditDeliveryService.SetToolTip(this, "The delivery services editor dialog where you can add/edit delivery services that" +
-        " you can access provided you have the permissions to do so.");
+            this.Text = GLOBAL_RESOURCES.EDIT_DELIVERY_SERVICE_TITLE;
+            this.ttEditDeliveryService.SetToolTip(this, GLOBAL_RESOURCES.EDIT_DELIVERY_SERVICE_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmEditDeliveryService_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -213,7 +211,7 @@
         private System.Windows.Forms.Label lblID;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.TextBox txtServiceName;
-        private System.Windows.Forms.Label lblUsername;
+        private System.Windows.Forms.Label lblServiceName;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.TrackBar trbPrice;
         private System.Windows.Forms.BindingSource userBindingSource;

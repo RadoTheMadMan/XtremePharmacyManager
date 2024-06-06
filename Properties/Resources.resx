@@ -789,7 +789,7 @@ Please check the application configuration and/or contact your system administra
   <data name="LblClientTitle" xml:space="preserve">
     <value>Client:</value>
   </data>
-  <data name="GLOBAL_RESOURCES.LBL_LOG_DATE_FROM_TITLE" xml:space="preserve">
+  <data name="LblDateFromTitle" xml:space="preserve">
     <value>Date From:</value>
   </data>
   <data name="LblDateToTitle" xml:space="preserve">
@@ -1091,8 +1091,7 @@ keep in mind these rules:
 1. The total price is automatically calculated by the system
 by the product order price assigned to the delivery and the price of the
 delivery service assigned to the delivery.
-2. Always put a reason behind your edits, that's what
-Delivery Reason is for
+2. Always put a reason behind your edits, that's what Delivery Reason is for and keep in mind that the system delivery reasons with its own on certain status changes.
 3. Client balance and employee balance are calculated
 automatically upon changing the status so be careful when
 setting it and use your common sense
@@ -1680,13 +1679,148 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="UserRoleEditTooltipTitle" xml:space="preserve">
     <value>The role of the selected user can be set here. If you have changed it will automatically reflect on the product orders that have referenced it and you have to set the user again according to the role. Also you need to change the user in the database's user list to the roles, 0 for Admin(XPAdmin), 1 for Employee(XPEmployee) and 2 for Client(XPClient)</value>
   </data>
+  <data name="ClientAssignTooltipTitle" xml:space="preserve">
+    <value>The client that ordered the product can be set here. Their balance will be calculated automatically on changing the status of the product order.</value>
+  </data>
+  <data name="DesiredQuantityEditTooltipTitle" xml:space="preserve">
+    <value>The desired quantity of the product assigned to the selected order. It plays an important role in calculating the price of the selected order unless the price is overriden</value>
+  </data>
+  <data name="EditProductImageTitle" xml:space="preserve">
+    <value>Product Image Editor. Add or Edit Product Image</value>
+  </data>
+  <data name="EditProductImageTooltipTitle" xml:space="preserve">
+    <value>The product images editor dialog where you can add/edit product images that you can access provided you have the permissions to do so.</value>
+  </data>
+  <data name="EditProductOrderTitle" xml:space="preserve">
+    <value>Product Order Editor. Add or Edit Product Orders</value>
+  </data>
+  <data name="EditProductOrderTooltipTitle" xml:space="preserve">
+    <value>The product orders editor dialog where you can add/edit product orders that you can access provided you have the permissions to do so.</value>
+  </data>
   <data name="EditVendorTitle" xml:space="preserve">
     <value>Product Vendor Editor. Add or Update Product Vendor</value>
   </data>
   <data name="EditVendorTooltipTitle" xml:space="preserve">
     <value>The product vendors editor dialog where you can add/edit product vendors that you can access provided you have the permissions to do so.</value>
   </data>
+  <data name="EmployeeAssignTooltipTitle" xml:space="preserve">
+    <value>The employee that processed the selected order can be set here and usually it is you. Their balance will be calculated automatically on changing the status of the product order.</value>
+  </data>
+  <data name="ImageNameEditTooltipTitle" xml:space="preserve">
+    <value>Choose a friendly name for the image you upload.</value>
+  </data>
+  <data name="OrderReasonEditTooltipTitle" xml:space="preserve">
+    <value>Type the reason you edited the order. Sometimes the database puts its own reason for change to indicate a change of status and inform you tho.</value>
+  </data>
+  <data name="OrderStatusAssignTooltipTitle" xml:space="preserve">
+    <value>The status of the order, changing it automatically calculates the employee balance, client balance and/or the product quantity if needed.</value>
+  </data>
+  <data name="PriceOverrideEditTooltipTitle" xml:space="preserve">
+    <value>The price override of the selected order. It can be overriden if you set a price higher than the base product's price and will be calculated accordingly by the desired quantity of the order unless it is set as total.</value>
+  </data>
+  <data name="ProductAssignTooltipTitle" xml:space="preserve">
+    <value>the product the selected order can be assigned to can be changed here. Price is calculated by the desired quantity and the base product price unless the price is overriden</value>
+  </data>
+  <data name="ProductForImageAssignTooltipTitle" xml:space="preserve">
+    <value>the product this image is assigned to in the database can be selected here</value>
+  </data>
+  <data name="ProductImageEditTooltipTitle" xml:space="preserve">
+    <value>Select an image and it will be uploaded directly to the database in its binary format and then downloaded and decoded back to image and shown here.</value>
+  </data>
   <data name="VendorNameEditTooltipTitle" xml:space="preserve">
     <value>The name of the selected product vendor can be set here.</value>
+  </data>
+  <data name="BrandNameEditTooltipTitle" xml:space="preserve">
+    <value>The name of the selected product brand can be set here.</value>
+  </data>
+  <data name="EditBrandTitle" xml:space="preserve">
+    <value>Product Brand Editor. Add or Update Product Brand</value>
+  </data>
+  <data name="EditBrandTooltipTitle" xml:space="preserve">
+    <value>The product brands editor dialog where you can add/edit product brands that you can access provided you have the permissions to do so.</value>
+  </data>
+  <data name="BrandAssignTooltipTitle" xml:space="preserve">
+    <value>The brand the selected product is assigned to can be selected here.</value>
+  </data>
+  <data name="EditProductTitle" xml:space="preserve">
+    <value>Product Editor. Add or Edit Product</value>
+  </data>
+  <data name="EditProductTooltipTitle" xml:space="preserve">
+    <value>The products editor dialog where you can add/edit products that you can access provided you have the permissions to do so.</value>
+  </data>
+  <data name="LblProductExpDateTitle" xml:space="preserve">
+    <value>Expiry Date:</value>
+  </data>
+  <data name="PartNumEditTooltipTitle" xml:space="preserve">
+    <value>The partitude number of the selected product can be set here. You can find it on the side of the package along with its expiry date.</value>
+  </data>
+  <data name="ProductDescriptionEditTooltipTitle" xml:space="preserve">
+    <value>The description of the selected product can be set here.</value>
+  </data>
+  <data name="ProductExpDateEditTooltipTitle" xml:space="preserve">
+    <value>The expiry date of the selected product can be set here. You can find it on the side of the package along with its partitude number.</value>
+  </data>
+  <data name="ProductNameEditTooltipTitle" xml:space="preserve">
+    <value>The name of the selected product can be set here.</value>
+  </data>
+  <data name="ProductPriceEditTooltipTitle" xml:space="preserve">
+    <value>The base price of the selected product can be set here. You can manually change it based on the price of the product the vendors of it set for  your shop/pharmacy.</value>
+  </data>
+  <data name="QuantityEditTooltipTitle" xml:space="preserve">
+    <value>The storage quantity of the selected product can be set here. You can dynamically change it based on how much of the product is really in stock in your shop/pharmacy.</value>
+  </data>
+  <data name="RegNumEditTooltipTitle" xml:space="preserve">
+    <value>The registration number of the selected product can be set here. It is on the cover of the product.</value>
+  </data>
+  <data name="SLocationEditTooltipTitle" xml:space="preserve">
+    <value>The location of the selected product in your storage can be set here.</value>
+  </data>
+  <data name="VendorAssignTooltipTitle" xml:space="preserve">
+    <value>The vendor the selected product is assigned to can be selected here.</value>
+  </data>
+  <data name="CargoIDEditTooltipTitle" xml:space="preserve">
+    <value>This is the cargo ID the site of the delivery services generates for you along with report of details fo the delivery to check and confirm the authenticity of the delivered stock. Put the ID of the cargo document here.</value>
+  </data>
+  <data name="DeliveryReasonEditTooltipTitle" xml:space="preserve">
+    <value>Type the reason you edited the delivery. Sometimes the database puts its own reason for change to indicate a change of status and inform you tho.</value>
+  </data>
+  <data name="DeliveryServiceAssignTooltipTitle" xml:space="preserve">
+    <value>Select any existing delivery service record you want the delivery assigned to</value>
+  </data>
+  <data name="DeliveryStatusAssignTooltipTitle" xml:space="preserve">
+    <value>The delivery status. Based on it the status of the product order changes and the balances of the registered employees and clients is calculated so be REALLY careful with that</value>
+  </data>
+  <data name="EditOrderDeliveryTitle" xml:space="preserve">
+    <value>Order Delivery Editor. Add or Edit Order Deliveries</value>
+  </data>
+  <data name="EditOrderDeliveryTooltipTitle" xml:space="preserve">
+    <value>The order deliveries editor dialog where you can add/edit order deliveries that you can access provided you have the permissions to do so.</value>
+  </data>
+  <data name="EditPaymentMethodTitle" xml:space="preserve">
+    <value>Payment Method Editor. Add or Update Payment Method</value>
+  </data>
+  <data name="EditPaymentMethodTooltipTitle" xml:space="preserve">
+    <value>The payment methods editor dialog where you can add/edit payment methods that you can access provided you have the permissions to do so.</value>
+  </data>
+  <data name="MethodNameEditTooltipTitle" xml:space="preserve">
+    <value>The name of the selected payment method</value>
+  </data>
+  <data name="PaymentMethodAssignTooltipTitle" xml:space="preserve">
+    <value>Select any existing payment method record to assign the order delivery to</value>
+  </data>
+  <data name="ProductOrderAssignTooltipTitle" xml:space="preserve">
+    <value>Select any existing order record you want to assign the order delivery to</value>
+  </data>
+  <data name="DeliveryPriceEditTooltipTitle" xml:space="preserve">
+    <value>The textbox where you can set the price of the delivery service.</value>
+  </data>
+  <data name="EditDeliveryServiceTitle" xml:space="preserve">
+    <value>Delivery Service Editor. Add or Update Delivery Service</value>
+  </data>
+  <data name="EditDeliveryServiceTooltipTitle" xml:space="preserve">
+    <value>The delivery services editor dialog where you can add/edit delivery services that you can access provided you have the permissions to do so.</value>
+  </data>
+  <data name="ServiceNameEditTooltipTitle" xml:space="preserve">
+    <value>The name of the delivery service you want to add/edit</value>
   </data>
 </root>

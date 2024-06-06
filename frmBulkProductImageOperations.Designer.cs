@@ -155,8 +155,7 @@
             this.pbProductImageData.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbProductImageData.TabIndex = 56;
             this.pbProductImageData.TabStop = false;
-            this.ttBulkProductImageOperations.SetToolTip(this.pbProductImageData, "Select an image and it will be uploaded directly to the database in its binary fo" +
-        "rmat and then downloaded and decoded back to image and shown here.");
+            this.ttBulkProductImageOperations.SetToolTip(this.pbProductImageData,GLOBAL_RESOURCES.PRODUCT_IMAGE_EDIT_TOOLTIP_TITLE);
             this.pbProductImageData.Click += new System.EventHandler(this.pbProductImageData_Click);
             // 
             // cbProduct
@@ -170,7 +169,7 @@
             this.cbProduct.Name = "cbProduct";
             this.cbProduct.Size = new System.Drawing.Size(221, 24);
             this.cbProduct.TabIndex = 55;
-            this.ttBulkProductImageOperations.SetToolTip(this.cbProduct, "the product this image is assigned to in the database can be selected here");
+            this.ttBulkProductImageOperations.SetToolTip(this.cbProduct, GLOBAL_RESOURCES.PRODUCT_FOR_IMAGE_ASSIGN_TOOLTIP_TITLE);
             this.cbProduct.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
             // 
             // productBindingSource
@@ -402,7 +401,7 @@
             this.txtImageName.Name = "txtImageName";
             this.txtImageName.Size = new System.Drawing.Size(221, 22);
             this.txtImageName.TabIndex = 4;
-            this.ttBulkProductImageOperations.SetToolTip(this.txtImageName, "Choose a friendly name for the image you upload.");
+            this.ttBulkProductImageOperations.SetToolTip(this.txtImageName, GLOBAL_RESOURCES.IMAGE_NAME_EDIT_TOOLTIP_TITLE);
             // 
             // lblImageName
             // 

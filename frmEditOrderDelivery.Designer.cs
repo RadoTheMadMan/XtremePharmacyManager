@@ -39,7 +39,7 @@
             this.txtCargoID = new System.Windows.Forms.TextBox();
             this.txtDeliveryReason = new System.Windows.Forms.TextBox();
             this.lblDeliveryReason = new System.Windows.Forms.Label();
-            this.lblOrderStatus = new System.Windows.Forms.Label();
+            this.lblDeliveryStatus = new System.Windows.Forms.Label();
             this.cbSelectDeliveryStatus = new System.Windows.Forms.ComboBox();
             this.cbSelectPaymentMethod = new System.Windows.Forms.ComboBox();
             this.paymentMethodBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -75,7 +75,7 @@
             this.pnlData.Controls.Add(this.txtCargoID);
             this.pnlData.Controls.Add(this.txtDeliveryReason);
             this.pnlData.Controls.Add(this.lblDeliveryReason);
-            this.pnlData.Controls.Add(this.lblOrderStatus);
+            this.pnlData.Controls.Add(this.lblDeliveryStatus);
             this.pnlData.Controls.Add(this.cbSelectDeliveryStatus);
             this.pnlData.Controls.Add(this.cbSelectPaymentMethod);
             this.pnlData.Controls.Add(this.lblPaymentMethod);
@@ -113,7 +113,7 @@
             this.txtCargoID.Name = "txtCargoID";
             this.txtCargoID.Size = new System.Drawing.Size(201, 22);
             this.txtCargoID.TabIndex = 55;
-            this.ttEditOrderDelivery.SetToolTip(this.txtCargoID, resources.GetString("txtCargoID.ToolTip"));
+            this.ttEditOrderDelivery.SetToolTip(this.txtCargoID, GLOBAL_RESOURCES.CARGO_ID_EDIT_TOOLTIP_TITLE);
             // 
             // txtDeliveryReason
             // 
@@ -124,8 +124,7 @@
             this.txtDeliveryReason.Name = "txtDeliveryReason";
             this.txtDeliveryReason.Size = new System.Drawing.Size(230, 86);
             this.txtDeliveryReason.TabIndex = 54;
-            this.ttEditOrderDelivery.SetToolTip(this.txtDeliveryReason, "Type the reason you edited the delivery. Sometimes the database puts its own reas" +
-        "on for change to indicate a change of status and inform you tho");
+            this.ttEditOrderDelivery.SetToolTip(this.txtDeliveryReason, GLOBAL_RESOURCES.DELIVERY_REASON_EDIT_TOOLTIP_TITLE);
             // 
             // lblDeliveryReason
             // 
@@ -139,17 +138,17 @@
             this.lblDeliveryReason.TabIndex = 53;
             this.lblDeliveryReason.Text = GLOBAL_RESOURCES.LBL_DELIVERY_REASON_TITLE;
             // 
-            // lblOrderStatus
+            // lblDeliveryStatus
             // 
-            this.lblOrderStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblDeliveryStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblOrderStatus.AutoSize = true;
-            this.lblOrderStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOrderStatus.Location = new System.Drawing.Point(20, 169);
-            this.lblOrderStatus.Name = "lblOrderStatus";
-            this.lblOrderStatus.Size = new System.Drawing.Size(97, 16);
-            this.lblOrderStatus.TabIndex = 52;
-            this.lblOrderStatus.Text = GLOBAL_RESOURCES.LBL_ORDER_STATUS_TITLE;
+            this.lblDeliveryStatus.AutoSize = true;
+            this.lblDeliveryStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDeliveryStatus.Location = new System.Drawing.Point(20, 169);
+            this.lblDeliveryStatus.Name = "lblOrderStatus";
+            this.lblDeliveryStatus.Size = new System.Drawing.Size(97, 16);
+            this.lblDeliveryStatus.TabIndex = 52;
+            this.lblDeliveryStatus.Text = GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_TITLE;
             // 
             // cbSelectDeliveryStatus
             // 
@@ -157,24 +156,23 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.cbSelectDeliveryStatus.FormattingEnabled = true;
             this.cbSelectDeliveryStatus.Items.AddRange(new object[] {
-           GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_PENDING,
+            GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_PENDING,
             GLOBAL_RESOURCES.LBL_STATUS_PREPAID,
             GLOBAL_RESOURCES.LBL_STATUS_DIRECTLY_PAID,
             GLOBAL_RESOURCES.LBL_STATUS_PAID_ON_DELIVERY,
-           GLOBAL_RESOURCES.LBL_STATUS_GENERATING_INVOICE,
+            GLOBAL_RESOURCES.LBL_STATUS_GENERATING_INVOICE,
             GLOBAL_RESOURCES.LBL_STATUS_GENERATING_REPORT,
             GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_ON_THE_MOVE,
             GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_CANCELLED,
             GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_RETURNED,
-            GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_COMPLETED});
+            GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_COMPLETED
+            });
             this.cbSelectDeliveryStatus.Location = new System.Drawing.Point(194, 166);
             this.cbSelectDeliveryStatus.Name = "cbSelectDeliveryStatus";
             this.cbSelectDeliveryStatus.Size = new System.Drawing.Size(201, 24);
             this.cbSelectDeliveryStatus.TabIndex = 51;
             this.cbSelectDeliveryStatus.Text =GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_PENDING;
-            this.ttEditOrderDelivery.SetToolTip(this.cbSelectDeliveryStatus, "The delivery status. based on it the status of the product order changes and the " +
-        "balances of the registered employees and clients is calculated so be REALLY care" +
-        "ful with that");
+            this.ttEditOrderDelivery.SetToolTip(this.cbSelectDeliveryStatus, GLOBAL_RESOURCES.DELIVERY_STATUS_ASSIGN_TOOLTIP_TITLE);
             // 
             // cbSelectPaymentMethod
             // 
@@ -185,8 +183,8 @@
             this.cbSelectPaymentMethod.Name = "cbSelectPaymentMethod";
             this.cbSelectPaymentMethod.Size = new System.Drawing.Size(201, 24);
             this.cbSelectPaymentMethod.TabIndex = 48;
-            this.ttEditOrderDelivery.SetToolTip(this.cbSelectPaymentMethod, "Select any existing payment method record to assign the order delivery to");
-            this.cbSelectPaymentMethod.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.ttEditOrderDelivery.SetToolTip(this.cbSelectPaymentMethod, GLOBAL_RESOURCES.PAYMENT_METHOD_ASSIGN_TOOLTIP_TITLE);
+            this.cbSelectPaymentMethod.ValueMember = "ID";
             // 
             // paymentMethodBindingSource
             // 
@@ -213,8 +211,8 @@
             this.cbSelectDeliveryService.Name = "cbSelectDeliveryService";
             this.cbSelectDeliveryService.Size = new System.Drawing.Size(201, 24);
             this.cbSelectDeliveryService.TabIndex = 46;
-            this.ttEditOrderDelivery.SetToolTip(this.cbSelectDeliveryService, "Select any existing delivery service record you want the delivery assigned to");
-            this.cbSelectDeliveryService.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.ttEditOrderDelivery.SetToolTip(this.cbSelectDeliveryService, GLOBAL_RESOURCES.DELIVERY_SERVICE_ASSIGN_TOOLTIP_TITLE);
+            this.cbSelectDeliveryService.ValueMember = "ID";
             // 
             // deliveryServiceBindingSource
             // 
@@ -235,14 +233,14 @@
             // cbSelectProductOrders
             // 
             this.cbSelectProductOrders.DataSource = this.productOrderBindingSource;
-            this.cbSelectProductOrders.DisplayMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.cbSelectProductOrders.DisplayMember = "ID";
             this.cbSelectProductOrders.FormattingEnabled = true;
             this.cbSelectProductOrders.Location = new System.Drawing.Point(194, 42);
             this.cbSelectProductOrders.Name = "cbSelectProductOrders";
             this.cbSelectProductOrders.Size = new System.Drawing.Size(201, 24);
             this.cbSelectProductOrders.TabIndex = 36;
-            this.ttEditOrderDelivery.SetToolTip(this.cbSelectProductOrders, "Select any existing order record you want to assign the order delivery to");
-            this.cbSelectProductOrders.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.ttEditOrderDelivery.SetToolTip(this.cbSelectProductOrders, GLOBAL_RESOURCES.PRODUCT_ORDER_ASSIGN_TOOLTIP_TITLE);
+            this.cbSelectProductOrders.ValueMember = "ID";
             // 
             // productOrderBindingSource
             // 
@@ -286,7 +284,7 @@
             this.lblSelectProductOrder.Name = "lblSelectProductOrder";
             this.lblSelectProductOrder.Size = new System.Drawing.Size(117, 16);
             this.lblSelectProductOrder.TabIndex = 5;
-            this.lblSelectProductOrder.Text = "Select Order ID:";
+            this.lblSelectProductOrder.Text = GLOBAL_RESOURCES.LBL_PRODUCT_ORDER_TITLE;
             // 
             // txtID
             // 
@@ -343,9 +341,8 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmEditOrderDelivery";
-            this.Text = "Order Delivery Editor. Add or Edit Order Deliveries";
-            this.ttEditOrderDelivery.SetToolTip(this, "The order deliveries editor dialog where you can add/edit order deliveries that y" +
-        "ou can access provided you have the permissions to do so.");
+            this.Text = GLOBAL_RESOURCES.EDIT_ORDER_DELIVERY_TITLE;
+            this.ttEditOrderDelivery.SetToolTip(this, GLOBAL_RESOURCES.EDIT_ORDER_DELIVERY_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmEditOrderDelivery_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();
@@ -377,7 +374,7 @@
         private System.Windows.Forms.Label lblDeliveryService;
         private System.Windows.Forms.ComboBox cbSelectPaymentMethod;
         private System.Windows.Forms.Label lblPaymentMethod;
-        private System.Windows.Forms.Label lblOrderStatus;
+        private System.Windows.Forms.Label lblDeliveryStatus;
         private System.Windows.Forms.ComboBox cbSelectDeliveryStatus;
         private System.Windows.Forms.TextBox txtDeliveryReason;
         private System.Windows.Forms.Label lblDeliveryReason;

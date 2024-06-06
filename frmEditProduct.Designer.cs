@@ -117,9 +117,7 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(56, 22);
             this.txtPrice.TabIndex = 48;
-            this.ttEditProduct.SetToolTip(this.txtPrice, "The base price of the selected product can be set here. You can dynamically chang" +
-        "e it based on the price of the product the vendors of it set for  your shop/phar" +
-        "macy.");
+            this.ttEditProduct.SetToolTip(this.txtPrice, GLOBAL_RESOURCES.PRODUCT_PRICE_EDIT_TOOLTIP_TITLE);
             this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // txtQuantity
@@ -130,9 +128,7 @@
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(56, 22);
             this.txtQuantity.TabIndex = 47;
-            this.ttEditProduct.SetToolTip(this.txtQuantity, "The storage quantity of the selected product can be set here. You can dynamically" +
-        " change it based on how much of the product is really in stock in your shop/phar" +
-        "macy");
+            this.ttEditProduct.SetToolTip(this.txtQuantity, GLOBAL_RESOURCES.QUANTITY_EDIT_TOOLTIP_TITLE);
             this.txtQuantity.TextChanged += new System.EventHandler(this.txtQuantity_TextChanged);
             // 
             // cbSelectVendor
@@ -144,7 +140,7 @@
             this.cbSelectVendor.Name = "cbSelectVendor";
             this.cbSelectVendor.Size = new System.Drawing.Size(219, 24);
             this.cbSelectVendor.TabIndex = 46;
-            this.ttEditProduct.SetToolTip(this.cbSelectVendor, "The vendor the selected product is assigned to can be selected here");
+            this.ttEditProduct.SetToolTip(this.cbSelectVendor, GLOBAL_RESOURCES.VENDOR_ASSIGN_TOOLTIP_TITLE);
             this.cbSelectVendor.ValueMember = "ID";
             // 
             // productVendorBindingSource
@@ -161,7 +157,7 @@
             this.lblProductVendor.Name = "lblProductVendor";
             this.lblProductVendor.Size = new System.Drawing.Size(118, 16);
             this.lblProductVendor.TabIndex = 45;
-            this.lblProductVendor.Text = "Product Vendor:";
+            this.lblProductVendor.Text = GLOBAL_RESOURCES.LBL_VENDOR_TITLE;
             // 
             // trbQuantity
             // 
@@ -173,9 +169,7 @@
             this.trbQuantity.Size = new System.Drawing.Size(259, 56);
             this.trbQuantity.TabIndex = 44;
             this.trbQuantity.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ttEditProduct.SetToolTip(this.trbQuantity, "The storage quantity of the selected product can be set here. You can dynamically" +
-        " change it based on how much of the product is really in stock in your shop/phar" +
-        "macy");
+            this.ttEditProduct.SetToolTip(this.trbQuantity, GLOBAL_RESOURCES.QUANTITY_EDIT_TOOLTIP_TITLE);
             this.trbQuantity.Scroll += new System.EventHandler(this.trbQuantity_Scroll);
             // 
             // lblQuantity
@@ -201,8 +195,7 @@
             this.lblProductNotice.Name = "lblProductNotice";
             this.lblProductNotice.Size = new System.Drawing.Size(319, 48);
             this.lblProductNotice.TabIndex = 41;
-            this.lblProductNotice.Text = "IMPORTANT NOTICE: To see the expiry date\r\ncheck the side of the product package\r\n" +
-    "where the partitude number is\r\n";
+            this.lblProductNotice.Text = GLOBAL_RESOURCES.LBL_PRODUCT_NOTICE_TITLE;
             this.ttEditProduct.SetToolTip(this.lblProductNotice, GLOBAL_RESOURCES.PRODUCT_NOTICE_TOOLTIP_TITLE);
             // 
             // cbSelectBrand
@@ -214,7 +207,7 @@
             this.cbSelectBrand.Name = "cbSelectBrand";
             this.cbSelectBrand.Size = new System.Drawing.Size(219, 24);
             this.cbSelectBrand.TabIndex = 36;
-            this.ttEditProduct.SetToolTip(this.cbSelectBrand, "The brand the selected product is assigned to can be selected here");
+            this.ttEditProduct.SetToolTip(this.cbSelectBrand, GLOBAL_RESOURCES.BRAND_ASSIGN_TOOLTIP_TITLE);
             this.cbSelectBrand.ValueMember = "ID";
             // 
             // productBrandBindingSource
@@ -259,9 +252,7 @@
             this.trbPrice.Size = new System.Drawing.Size(259, 56);
             this.trbPrice.TabIndex = 21;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ttEditProduct.SetToolTip(this.trbPrice, "The base price of the selected product can be set here. You can dynamically chang" +
-        "e it based on the price of the product the vendors of it set for  your shop/phar" +
-        "macy.");
+            this.ttEditProduct.SetToolTip(this.trbPrice, GLOBAL_RESOURCES.PRODUCT_PRICE_EDIT_TOOLTIP_TITLE);
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
             // 
             // lblPrice
@@ -284,7 +275,7 @@
             this.txtStorageLocation.Name = "txtStorageLocation";
             this.txtStorageLocation.Size = new System.Drawing.Size(220, 22);
             this.txtStorageLocation.TabIndex = 18;
-            this.ttEditProduct.SetToolTip(this.txtStorageLocation, "The location of the selected product in your storage can be set here");
+            this.ttEditProduct.SetToolTip(this.txtStorageLocation, GLOBAL_RESOURCES.S_LOCATION_EDIT_TOOLTIP_TITLE);
             // 
             // lblStorageLocation
             // 
@@ -306,8 +297,7 @@
             this.txtPartitudeNumber.Name = "txtPartitudeNumber";
             this.txtPartitudeNumber.Size = new System.Drawing.Size(220, 22);
             this.txtPartitudeNumber.TabIndex = 16;
-            this.ttEditProduct.SetToolTip(this.txtPartitudeNumber, "The partitude number of the selected product can be set here. You can find it on " +
-        "the side of the package along with its expiry date");
+            this.ttEditProduct.SetToolTip(this.txtPartitudeNumber, GLOBAL_RESOURCES.PART_NUM_EDIT_TOOLTIP_TITLE);
             // 
             // lblPartitudeNumber
             // 
@@ -329,8 +319,7 @@
             this.txtRegistrationNumber.Name = "txtRegistrationNumber";
             this.txtRegistrationNumber.Size = new System.Drawing.Size(220, 22);
             this.txtRegistrationNumber.TabIndex = 14;
-            this.ttEditProduct.SetToolTip(this.txtRegistrationNumber, "The registration number of the selected product can be set here. It is on the cov" +
-        "er of the product.");
+            this.ttEditProduct.SetToolTip(this.txtRegistrationNumber, GLOBAL_RESOURCES.REG_NUM_EDIT_TOOLTIP_TITLE);
             // 
             // lblRegistrationNumber
             // 
@@ -352,8 +341,7 @@
             this.dtExpiryDate.Name = "dtExpiryDate";
             this.dtExpiryDate.Size = new System.Drawing.Size(219, 22);
             this.dtExpiryDate.TabIndex = 10;
-            this.ttEditProduct.SetToolTip(this.dtExpiryDate, "The expiry date of the selected product can be set here. You can find it onthe si" +
-        "de of the package along with its partitude number");
+            this.ttEditProduct.SetToolTip(this.dtExpiryDate,GLOBAL_RESOURCES.PRODUCT_EXP_DATE_EDIT_TOOLTIP_TITLE);
             // 
             // lblExpiryDate
             // 
@@ -365,7 +353,7 @@
             this.lblExpiryDate.Name = "lblExpiryDate";
             this.lblExpiryDate.Size = new System.Drawing.Size(91, 16);
             this.lblExpiryDate.TabIndex = 9;
-            this.lblExpiryDate.Text = "Expiry Date:";
+            this.lblExpiryDate.Text = GLOBAL_RESOURCES.LBL_PRODUCT_EXP_DATE_TITLE;
             // 
             // txtProductDescription
             // 
@@ -375,7 +363,7 @@
             this.txtProductDescription.Name = "txtProductDescription";
             this.txtProductDescription.Size = new System.Drawing.Size(220, 22);
             this.txtProductDescription.TabIndex = 8;
-            this.ttEditProduct.SetToolTip(this.txtProductDescription, "The description of the selected product can be set here");
+            this.ttEditProduct.SetToolTip(this.txtProductDescription, GLOBAL_RESOURCES.PRODUCT_DESCRIPTION_EDIT_TOOLTIP_TITLE);
             // 
             // lblProductDescription
             // 
@@ -387,7 +375,7 @@
             this.lblProductDescription.Name = "lblProductDescription";
             this.lblProductDescription.Size = new System.Drawing.Size(147, 16);
             this.lblProductDescription.TabIndex = 7;
-            this.lblProductDescription.Text = "Product Description:";
+            this.lblProductDescription.Text = GLOBAL_RESOURCES.LBL_PRODUCT_DESCRIPTION_TITLE;
             // 
             // lblProductBrand
             // 
@@ -399,7 +387,7 @@
             this.lblProductBrand.Name = "lblProductBrand";
             this.lblProductBrand.Size = new System.Drawing.Size(109, 16);
             this.lblProductBrand.TabIndex = 5;
-            this.lblProductBrand.Text = "Product Brand:";
+            this.lblProductBrand.Text = GLOBAL_RESOURCES.LBL_BRAND_TITLE;
             // 
             // txtProductName
             // 
@@ -409,7 +397,7 @@
             this.txtProductName.Name = "txtProductName";
             this.txtProductName.Size = new System.Drawing.Size(220, 22);
             this.txtProductName.TabIndex = 4;
-            this.ttEditProduct.SetToolTip(this.txtProductName, "The name of the selected product can be set here");
+            this.ttEditProduct.SetToolTip(this.txtProductName, GLOBAL_RESOURCES.PRODUCT_NAME_EDIT_TOOLTIP_TITLE);
             // 
             // lblProductName
             // 
@@ -466,9 +454,8 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmEditProduct";
-            this.Text = "Product Editor. Add or Edit Product";
-            this.ttEditProduct.SetToolTip(this, "The products editor dialog where you can add/edit products that you can access pr" +
-        "ovided you have the permissions to do so.");
+            this.Text = GLOBAL_RESOURCES.EDIT_PRODUCT_TITLE;
+            this.ttEditProduct.SetToolTip(this, GLOBAL_RESOURCES.EDIT_PRODUCT_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmEditProduct_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

@@ -542,9 +542,54 @@ namespace XtremePharmacyManager
         private static string lBL_BIRTH_DATE_TITLE = "";
         private static string eDIT_USER_TITLE = "";
         private static string eDIT_USER_TOOLTIP_TITLE = "";
-        public static string VENDOR_NAME_EDIT_TOOLTIP_TITLE = "";
-        public static string EDIT_VENDOR_TITLE = "";
-        public static string EDIT_VENDOR_TOOLTIP_TITLE = "";
+        private static string vENDOR_NAME_EDIT_TOOLTIP_TITLE = "";
+        private static string eDIT_VENDOR_TITLE = "";
+        private static string eDIT_VENDOR_TOOLTIP_TITLE = "";
+        private static string oRDER_REASON_EDIT_TOOLTIP_TITLE = "";
+        private static string oRDER_STATUS_ASSIGN_TOOLTIP_TITLE = "";
+        private static string pRODUCT_ASSIGN_TOOLTIP_TITLE = "";
+        private static string cLIENT_ASSIGN_TOOLTIP_TITLE = "";
+        private static string eMPLOYEE_ASSIGN_TOOLTIP_TITLE = "";
+        private static string dESIRED_QUANTITY_EDIT_TOOLTIP_TITLE = "";
+        private static string pRICE_OVERRIDE_EDIT_TOOLTIP_TITLE = "";
+        private static string eDIT_PRODUCT_ORDER_TITLE = "";
+        private static string eDIT_PRODUCT_ORDER_TOOLTIP_TITLE = "";
+        private static string pRODUCT_IMAGE_EDIT_TOOLTIP_TITLE = "";
+        private static string pRODUCT_FOR_IMAGE_ASSIGN_TOOLTIP_TITLE = "";
+        private static string iMAGE_NAME_EDIT_TOOLTIP_TITLE = "";
+        private static string eDIT_PRODUCT_IMAGE_TITLE = "";
+        private static string eDIT_PRODUCT_IMAGE_TOOLTIP_TITLE = "";
+        private static string bRAND_NAME_EDIT_TOOLTIP_TITLE = "";
+        private static string eDIT_BRAND_TITLE = "";
+        private static string eDIT_BRAND_TOOLTIP_TITLE = "";
+        private static string pRODUCT_PRICE_EDIT_TOOLTIP_TITLE = "";
+        private static string vENDOR_ASSIGN_TOOLTIP_TITLE = "";
+        private static string bRAND_ASSIGN_TOOLTIP_TITLE = "";
+        private static string pRODUCT_EXP_DATE_EDIT_TOOLTIP_TITLE = "";
+        private static string lBL_PRODUCT_EXP_DATE_TITLE = "";
+        private static string pRODUCT_DESCRIPTION_EDIT_TOOLTIP_TITLE = "";
+        private static string pRODUCT_NAME_EDIT_TOOLTIP_TITLE = "";
+        private static string pART_NUM_EDIT_TOOLTIP_TITLE = "";
+        private static string rEG_NUM_EDIT_TOOLTIP_TITLE = "";
+        private static string s_LOCATION_EDIT_TOOLTIP_TITLE = "";
+        private static string qUANTITY_EDIT_TOOLTIP_TITLE = "";
+        private static string eDIT_PRODUCT_TITLE = "";
+        private static string eDIT_PRODUCT_TOOLTIP_TITLE = "";
+        private static string mETHOD_NAME_EDIT_TOOLTIP_TITLE = "";
+        private static string eDIT_PAYMENT_METHOD_TITLE = "";
+        private static string eDIT_PAYMENT_METHOD_TOOLTIP_TITLE = "";
+        private static string cARGO_ID_EDIT_TOOLTIP_TITLE = "";
+        private static string dELIVERY_REASON_EDIT_TOOLTIP_TITLE = "";
+        private static string dELIVERY_STATUS_ASSIGN_TOOLTIP_TITLE = "";
+        private static string pAYMENT_METHOD_ASSIGN_TOOLTIP_TITLE = "";
+        private static string dELIVERY_SERVICE_ASSIGN_TOOLTIP_TITLE = "";
+        private static string pRODUCT_ORDER_ASSIGN_TOOLTIP_TITLE = "";
+        private static string eDIT_ORDER_DELIVERY_TITLE = "";
+        private static string eDIT_ORDER_DELIVERY_TOOLTIP_TITLE = "";
+        private static string dELIVERY_PRICE_EDIT_TOOLTIP_TITLE = "";
+        private static string sERVICE_NAME_EDIT_TOOLTIP_TITLE = "";
+        private static string eDIT_DELIVERY_SERVICE_TITLE = "";
+        private static string eDIT_DELIVERY_SERVICE_TOOLTIP_TITLE = "";
         public static GLOBAL_RESOURCES instance;
         public EventHandler<CultureInfo> CultureInfoChanged;
 
@@ -1066,6 +1111,54 @@ namespace XtremePharmacyManager
         public static string LBL_BIRTH_DATE_TITLE { get => lBL_BIRTH_DATE_TITLE; set => lBL_BIRTH_DATE_TITLE = value; }
         public static string EDIT_USER_TITLE { get => eDIT_USER_TITLE; set => eDIT_USER_TITLE = value; }
         public static string EDIT_USER_TOOLTIP_TITLE { get => eDIT_USER_TOOLTIP_TITLE; set => eDIT_USER_TOOLTIP_TITLE = value; }
+        public static string VENDOR_NAME_EDIT_TOOLTIP_TITLE { get => vENDOR_NAME_EDIT_TOOLTIP_TITLE; set => vENDOR_NAME_EDIT_TOOLTIP_TITLE = value; }
+        public static string EDIT_VENDOR_TITLE { get => eDIT_VENDOR_TITLE; set => eDIT_VENDOR_TITLE = value; }
+        public static string EDIT_VENDOR_TOOLTIP_TITLE { get => eDIT_VENDOR_TOOLTIP_TITLE; set => eDIT_VENDOR_TOOLTIP_TITLE = value; }
+        public static string ORDER_REASON_EDIT_TOOLTIP_TITLE { get => oRDER_REASON_EDIT_TOOLTIP_TITLE; set => oRDER_REASON_EDIT_TOOLTIP_TITLE = value; }
+        public static string ORDER_STATUS_ASSIGN_TOOLTIP_TITLE { get => oRDER_STATUS_ASSIGN_TOOLTIP_TITLE; set => oRDER_STATUS_ASSIGN_TOOLTIP_TITLE = value; }
+        public static string PRODUCT_ASSIGN_TOOLTIP_TITLE { get => pRODUCT_ASSIGN_TOOLTIP_TITLE; set => pRODUCT_ASSIGN_TOOLTIP_TITLE = value; }
+        public static string CLIENT_ASSIGN_TOOLTIP_TITLE { get => cLIENT_ASSIGN_TOOLTIP_TITLE; set => cLIENT_ASSIGN_TOOLTIP_TITLE = value; }
+        public static string EMPLOYEE_ASSIGN_TOOLTIP_TITLE { get => eMPLOYEE_ASSIGN_TOOLTIP_TITLE; set => eMPLOYEE_ASSIGN_TOOLTIP_TITLE = value; }
+        public static string DESIRED_QUANTITY_EDIT_TOOLTIP_TITLE { get => dESIRED_QUANTITY_EDIT_TOOLTIP_TITLE; set => dESIRED_QUANTITY_EDIT_TOOLTIP_TITLE = value; }
+        public static string PRICE_OVERRIDE_EDIT_TOOLTIP_TITLE { get => pRICE_OVERRIDE_EDIT_TOOLTIP_TITLE; set => pRICE_OVERRIDE_EDIT_TOOLTIP_TITLE = value; }
+        public static string EDIT_PRODUCT_ORDER_TITLE { get => eDIT_PRODUCT_ORDER_TITLE; set => eDIT_PRODUCT_ORDER_TITLE = value; }
+        public static string EDIT_PRODUCT_ORDER_TOOLTIP_TITLE { get => eDIT_PRODUCT_ORDER_TOOLTIP_TITLE; set => eDIT_PRODUCT_ORDER_TOOLTIP_TITLE = value; }
+        public static string PRODUCT_IMAGE_EDIT_TOOLTIP_TITLE { get => pRODUCT_IMAGE_EDIT_TOOLTIP_TITLE; set => pRODUCT_IMAGE_EDIT_TOOLTIP_TITLE = value; }
+        public static string PRODUCT_FOR_IMAGE_ASSIGN_TOOLTIP_TITLE { get => pRODUCT_FOR_IMAGE_ASSIGN_TOOLTIP_TITLE; set => pRODUCT_FOR_IMAGE_ASSIGN_TOOLTIP_TITLE = value; }
+        public static string IMAGE_NAME_EDIT_TOOLTIP_TITLE { get => iMAGE_NAME_EDIT_TOOLTIP_TITLE; set => iMAGE_NAME_EDIT_TOOLTIP_TITLE = value; }
+        public static string EDIT_PRODUCT_IMAGE_TITLE { get => eDIT_PRODUCT_IMAGE_TITLE; set => eDIT_PRODUCT_IMAGE_TITLE = value; }
+        public static string EDIT_PRODUCT_IMAGE_TOOLTIP_TITLE { get => eDIT_PRODUCT_IMAGE_TOOLTIP_TITLE; set => eDIT_PRODUCT_IMAGE_TOOLTIP_TITLE = value; }
+        public static string BRAND_NAME_EDIT_TOOLTIP_TITLE { get => bRAND_NAME_EDIT_TOOLTIP_TITLE; set => bRAND_NAME_EDIT_TOOLTIP_TITLE = value; }
+        public static string EDIT_BRAND_TITLE { get => eDIT_BRAND_TITLE; set => eDIT_BRAND_TITLE = value; }
+        public static string EDIT_BRAND_TOOLTIP_TITLE { get => eDIT_BRAND_TOOLTIP_TITLE; set => eDIT_BRAND_TOOLTIP_TITLE = value; }
+        public static string PRODUCT_PRICE_EDIT_TOOLTIP_TITLE { get => pRODUCT_PRICE_EDIT_TOOLTIP_TITLE; set => pRODUCT_PRICE_EDIT_TOOLTIP_TITLE = value; }
+        public static string VENDOR_ASSIGN_TOOLTIP_TITLE { get => vENDOR_ASSIGN_TOOLTIP_TITLE; set => vENDOR_ASSIGN_TOOLTIP_TITLE = value; }
+        public static string BRAND_ASSIGN_TOOLTIP_TITLE { get => bRAND_ASSIGN_TOOLTIP_TITLE; set => bRAND_ASSIGN_TOOLTIP_TITLE = value; }
+        public static string PRODUCT_EXP_DATE_EDIT_TOOLTIP_TITLE { get => pRODUCT_EXP_DATE_EDIT_TOOLTIP_TITLE; set => pRODUCT_EXP_DATE_EDIT_TOOLTIP_TITLE = value; }
+        public static string LBL_PRODUCT_EXP_DATE_TITLE { get => lBL_PRODUCT_EXP_DATE_TITLE; set => lBL_PRODUCT_EXP_DATE_TITLE = value; }
+        public static string PRODUCT_DESCRIPTION_EDIT_TOOLTIP_TITLE { get => pRODUCT_DESCRIPTION_EDIT_TOOLTIP_TITLE; set => pRODUCT_DESCRIPTION_EDIT_TOOLTIP_TITLE = value; }
+        public static string PRODUCT_NAME_EDIT_TOOLTIP_TITLE { get => pRODUCT_NAME_EDIT_TOOLTIP_TITLE; set => pRODUCT_NAME_EDIT_TOOLTIP_TITLE = value; }
+        public static string PART_NUM_EDIT_TOOLTIP_TITLE { get => pART_NUM_EDIT_TOOLTIP_TITLE; set => pART_NUM_EDIT_TOOLTIP_TITLE = value; }
+        public static string REG_NUM_EDIT_TOOLTIP_TITLE { get => rEG_NUM_EDIT_TOOLTIP_TITLE; set => rEG_NUM_EDIT_TOOLTIP_TITLE = value; }
+        public static string S_LOCATION_EDIT_TOOLTIP_TITLE { get => s_LOCATION_EDIT_TOOLTIP_TITLE; set => s_LOCATION_EDIT_TOOLTIP_TITLE = value; }
+        public static string QUANTITY_EDIT_TOOLTIP_TITLE { get => qUANTITY_EDIT_TOOLTIP_TITLE; set => qUANTITY_EDIT_TOOLTIP_TITLE = value; }
+        public static string EDIT_PRODUCT_TITLE { get => eDIT_PRODUCT_TITLE; set => eDIT_PRODUCT_TITLE = value; }
+        public static string EDIT_PRODUCT_TOOLTIP_TITLE { get => eDIT_PRODUCT_TOOLTIP_TITLE; set => eDIT_PRODUCT_TOOLTIP_TITLE = value; }
+        public static string METHOD_NAME_EDIT_TOOLTIP_TITLE { get => mETHOD_NAME_EDIT_TOOLTIP_TITLE; set => mETHOD_NAME_EDIT_TOOLTIP_TITLE = value; }
+        public static string EDIT_PAYMENT_METHOD_TITLE { get => eDIT_PAYMENT_METHOD_TITLE; set => eDIT_PAYMENT_METHOD_TITLE = value; }
+        public static string EDIT_PAYMENT_METHOD_TOOLTIP_TITLE { get => eDIT_PAYMENT_METHOD_TOOLTIP_TITLE; set => eDIT_PAYMENT_METHOD_TOOLTIP_TITLE = value; }
+        public static string CARGO_ID_EDIT_TOOLTIP_TITLE { get => cARGO_ID_EDIT_TOOLTIP_TITLE; set => cARGO_ID_EDIT_TOOLTIP_TITLE = value; }
+        public static string DELIVERY_REASON_EDIT_TOOLTIP_TITLE { get => dELIVERY_REASON_EDIT_TOOLTIP_TITLE; set => dELIVERY_REASON_EDIT_TOOLTIP_TITLE = value; }
+        public static string DELIVERY_STATUS_ASSIGN_TOOLTIP_TITLE { get => dELIVERY_STATUS_ASSIGN_TOOLTIP_TITLE; set => dELIVERY_STATUS_ASSIGN_TOOLTIP_TITLE = value; }
+        public static string PAYMENT_METHOD_ASSIGN_TOOLTIP_TITLE { get => pAYMENT_METHOD_ASSIGN_TOOLTIP_TITLE; set => pAYMENT_METHOD_ASSIGN_TOOLTIP_TITLE = value; }
+        public static string DELIVERY_SERVICE_ASSIGN_TOOLTIP_TITLE { get => dELIVERY_SERVICE_ASSIGN_TOOLTIP_TITLE; set => dELIVERY_SERVICE_ASSIGN_TOOLTIP_TITLE = value; }
+        public static string PRODUCT_ORDER_ASSIGN_TOOLTIP_TITLE { get => pRODUCT_ORDER_ASSIGN_TOOLTIP_TITLE; set => pRODUCT_ORDER_ASSIGN_TOOLTIP_TITLE = value; }
+        public static string EDIT_ORDER_DELIVERY_TITLE { get => eDIT_ORDER_DELIVERY_TITLE; set => eDIT_ORDER_DELIVERY_TITLE = value; }
+        public static string EDIT_ORDER_DELIVERY_TOOLTIP_TITLE { get => eDIT_ORDER_DELIVERY_TOOLTIP_TITLE; set => eDIT_ORDER_DELIVERY_TOOLTIP_TITLE = value; }
+        public static string DELIVERY_PRICE_EDIT_TOOLTIP_TITLE { get => dELIVERY_PRICE_EDIT_TOOLTIP_TITLE; set => dELIVERY_PRICE_EDIT_TOOLTIP_TITLE = value; }
+        public static string SERVICE_NAME_EDIT_TOOLTIP_TITLE { get => sERVICE_NAME_EDIT_TOOLTIP_TITLE; set => sERVICE_NAME_EDIT_TOOLTIP_TITLE = value; }
+        public static string EDIT_DELIVERY_SERVICE_TITLE { get => eDIT_DELIVERY_SERVICE_TITLE; set => eDIT_DELIVERY_SERVICE_TITLE = value; }
+        public static string EDIT_DELIVERY_SERVICE_TOOLTIP_TITLE { get => eDIT_DELIVERY_SERVICE_TOOLTIP_TITLE; set => eDIT_DELIVERY_SERVICE_TOOLTIP_TITLE = value; }
 
         public GLOBAL_RESOURCES()
         {
@@ -1507,6 +1600,51 @@ namespace XtremePharmacyManager
             USERS_MENU_TOOLTIP_TITLE = manager.GetString("UsersMenuTooltipTitle", CultureInfo.CurrentCulture);
             BRANDS_MENU_TOOLTIP_TITLE = manager.GetString("BrandsMenuTooltipTitle", CultureInfo.CurrentCulture);
             VENDORS_MENU_TOOLTIP_TITLE = manager.GetString("VendorsMenuTooltipTitle", CultureInfo.CurrentCulture);
+            DESIRED_QUANTITY_EDIT_TOOLTIP_TITLE = manager.GetString("DesiredQuantityEditTooltipTitle", CultureInfo.CurrentCulture);
+            PRICE_OVERRIDE_EDIT_TOOLTIP_TITLE = manager.GetString("PriceOverrideEditTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_ASSIGN_TOOLTIP_TITLE = manager.GetString("ProductAssignTooltipTitle", CultureInfo.CurrentCulture);
+            EMPLOYEE_ASSIGN_TOOLTIP_TITLE = manager.GetString("EmployeeAssignTooltipTitle", CultureInfo.CurrentCulture);
+            CLIENT_ASSIGN_TOOLTIP_TITLE = manager.GetString("ClientAssignTooltipTitle", CultureInfo.CurrentCulture);
+            ORDER_STATUS_ASSIGN_TOOLTIP_TITLE = manager.GetString("OrderStatusAssignTooltipTitle", CultureInfo.CurrentCulture);
+            ORDER_REASON_EDIT_TOOLTIP_TITLE = manager.GetString("OrderReasonEditTooltipTitle", CultureInfo.CurrentCulture);
+            EDIT_PRODUCT_ORDER_TITLE = manager.GetString("EditProductOrderTitle", CultureInfo.CurrentCulture);
+            EDIT_PRODUCT_ORDER_TOOLTIP_TITLE = manager.GetString("EditProductOrderTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_IMAGE_EDIT_TOOLTIP_TITLE = manager.GetString("ProductImageEditTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_FOR_IMAGE_ASSIGN_TOOLTIP_TITLE = manager.GetString("ProductForImageAssignTooltipTitle", CultureInfo.CurrentCulture);
+            IMAGE_NAME_EDIT_TOOLTIP_TITLE = manager.GetString("ImageNameEditTooltipTitle", CultureInfo.CurrentCulture);
+            EDIT_PRODUCT_IMAGE_TITLE = manager.GetString("EditProductImageTitle", CultureInfo.CurrentCulture);
+            EDIT_PRODUCT_IMAGE_TOOLTIP_TITLE = manager.GetString("EditProductImageTitle", CultureInfo.CurrentCulture);
+            BRAND_NAME_EDIT_TOOLTIP_TITLE = manager.GetString("BrandNameEditTooltipTitle", CultureInfo.CurrentCulture);
+            EDIT_BRAND_TITLE = manager.GetString("EditBrandTitle", CultureInfo.CurrentCulture);
+            EDIT_BRAND_TOOLTIP_TITLE = manager.GetString("EditBrandTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_PRICE_EDIT_TOOLTIP_TITLE = manager.GetString("ProductPriceEditTooltipTitle", CultureInfo.CurrentCulture);
+            QUANTITY_EDIT_TOOLTIP_TITLE = manager.GetString("QuantityEditTooltipTitle", CultureInfo.CurrentCulture);
+            VENDOR_ASSIGN_TOOLTIP_TITLE = manager.GetString("VendorAssignTooltipTitle", CultureInfo.CurrentCulture);
+            BRAND_ASSIGN_TOOLTIP_TITLE = manager.GetString("BrandAssignTooltipTitle", CultureInfo.CurrentCulture);
+            S_LOCATION_EDIT_TOOLTIP_TITLE = manager.GetString("SLocationEditTooltipTitle", CultureInfo.CurrentCulture);
+            PART_NUM_EDIT_TOOLTIP_TITLE = manager.GetString("PartNumEditTooltipTitle", CultureInfo.CurrentCulture);
+            REG_NUM_EDIT_TOOLTIP_TITLE = manager.GetString("RegNumEditTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_EXP_DATE_EDIT_TOOLTIP_TITLE = manager.GetString("ProductExpDateEditTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_PRODUCT_EXP_DATE_TITLE = manager.GetString("LblProductExpDateTitle", CultureInfo.CurrentCulture);
+            PRODUCT_DESCRIPTION_EDIT_TOOLTIP_TITLE = manager.GetString("ProductDescriptionEditTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_NAME_EDIT_TOOLTIP_TITLE = manager.GetString("ProductNameEditTooltipTitle", CultureInfo.CurrentCulture);
+            EDIT_PRODUCT_TITLE = manager.GetString("EditProductTitle", CultureInfo.CurrentCulture);
+            EDIT_PRODUCT_TOOLTIP_TITLE = manager.GetString("EditProductTooltipTitle", CultureInfo.CurrentCulture);
+            METHOD_NAME_EDIT_TOOLTIP_TITLE = manager.GetString("MethodNameEditTooltipTitle", CultureInfo.CurrentCulture);
+            EDIT_PAYMENT_METHOD_TITLE = manager.GetString("EditPaymentMethodTitle", CultureInfo.CurrentCulture);
+            EDIT_PAYMENT_METHOD_TOOLTIP_TITLE = manager.GetString("EditPaymentMethodTooltipTitle", CultureInfo.CurrentCulture);
+            CARGO_ID_EDIT_TOOLTIP_TITLE = manager.GetString("CargoIDEditTooltipTitle", CultureInfo.CurrentCulture);
+            DELIVERY_REASON_EDIT_TOOLTIP_TITLE = manager.GetString("DeliveryReasonEditTooltipTitle", CultureInfo.CurrentCulture);
+            DELIVERY_STATUS_ASSIGN_TOOLTIP_TITLE = manager.GetString("DeliveryStatusAssignTooltipTitle", CultureInfo.CurrentCulture);
+            PAYMENT_METHOD_ASSIGN_TOOLTIP_TITLE = manager.GetString("PaymentMethodAssignTooltipTitle", CultureInfo.CurrentCulture);
+            DELIVERY_SERVICE_ASSIGN_TOOLTIP_TITLE = manager.GetString("DeliveryServiceAssignTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_ORDER_ASSIGN_TOOLTIP_TITLE = manager.GetString("ProductOrderAssignTooltipTitle", CultureInfo.CurrentCulture);
+            EDIT_ORDER_DELIVERY_TITLE = manager.GetString("EditOrderDeliveryTitle", CultureInfo.CurrentCulture);
+            EDIT_ORDER_DELIVERY_TOOLTIP_TITLE = manager.GetString("EditOrderDeliveryTooltipTitle", CultureInfo.CurrentCulture);
+            DELIVERY_PRICE_EDIT_TOOLTIP_TITLE = manager.GetString("DeliveryPriceEditTooltipTitle", CultureInfo.CurrentCulture);
+            SERVICE_NAME_EDIT_TOOLTIP_TITLE = manager.GetString("ServiceNameEditTooltipTitle", CultureInfo.CurrentCulture);
+            EDIT_DELIVERY_SERVICE_TITLE = manager.GetString("EditDeliveryServiceTitle", CultureInfo.CurrentCulture);
+            EDIT_DELIVERY_SERVICE_TOOLTIP_TITLE = manager.GetString("EditDeliveryServiceTooltipTitle", CultureInfo.CurrentCulture);
             BTN_SEARCH_PRODUCT_IMAGE_TITLE = manager.GetString("BtnSearchProductImageTitle", CultureInfo.CurrentCulture);
             BTN_DELETE_PRODUCT_IMAGE_TITLE = manager.GetString("BtnDeleteProductImageTitle", CultureInfo.CurrentCulture);
             BTN_ADD_EDIT_PRODUCT_IMAGE_TITLE = manager.GetString("BtnAddEditProductImageTitle", CultureInfo.CurrentCulture);

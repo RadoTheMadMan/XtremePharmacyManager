@@ -97,7 +97,7 @@
             this.txtMethodName.Name = "txtMethodName";
             this.txtMethodName.Size = new System.Drawing.Size(205, 22);
             this.txtMethodName.TabIndex = 4;
-            this.ttEditPaymentMethod.SetToolTip(this.txtMethodName, "The name of the selected payment method");
+            this.ttEditPaymentMethod.SetToolTip(this.txtMethodName, GLOBAL_RESOURCES.METHOD_NAME_EDIT_TOOLTIP_TITLE);
             // 
             // lblMethodName
             // 
@@ -150,9 +150,8 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmEditPaymentMethod";
-            this.Text = "Payment Method Editor. Add or Update Payment Method";
-            this.ttEditPaymentMethod.SetToolTip(this, "The payment methods editor dialog where you can add/edit payment methods that you" +
-        " can access provided you have the permissions to do so.");
+            this.Text = GLOBAL_RESOURCES.EDIT_PAYMENT_METHOD_TITLE;
+            this.ttEditPaymentMethod.SetToolTip(this, GLOBAL_RESOURCES.EDIT_PAYMENT_METHOD_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmEditPaymentMethod_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

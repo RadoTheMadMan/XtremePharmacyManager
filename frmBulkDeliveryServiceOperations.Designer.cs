@@ -139,7 +139,7 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(34, 22);
             this.txtPrice.TabIndex = 52;
-            this.ttBulkDeliveryServiceOperations.SetToolTip(this.txtPrice, "the textbox where you can set the price of the delivery service.");
+            this.ttBulkDeliveryServiceOperations.SetToolTip(this.txtPrice, GLOBAL_RESOURCES.DELIVERY_PRICE_EDIT_TOOLTIP_TITLE);
             this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // trbPrice
@@ -153,8 +153,7 @@
             this.trbPrice.Size = new System.Drawing.Size(259, 36);
             this.trbPrice.TabIndex = 51;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ttBulkDeliveryServiceOperations.SetToolTip(this.trbPrice, "The price of the delivery service you want to set. You can set it here and this s" +
-        "lider can adapt dynamically to the number");
+            this.ttBulkDeliveryServiceOperations.SetToolTip(this.trbPrice, GLOBAL_RESOURCES.DELIVERY_PRICE_EDIT_TOOLTIP_TITLE);
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
             // 
             // lblPrice
@@ -377,7 +376,7 @@
             this.txtServiceName.Name = "txtServiceName";
             this.txtServiceName.Size = new System.Drawing.Size(258, 22);
             this.txtServiceName.TabIndex = 4;
-            this.ttBulkDeliveryServiceOperations.SetToolTip(this.txtServiceName, "The name of the delivery service you want to add/edit");
+            this.ttBulkDeliveryServiceOperations.SetToolTip(this.txtServiceName, GLOBAL_RESOURCES.SERVICE_NAME_EDIT_TOOLTIP_TITLE);
             // 
             // lblServiceName
             // 
