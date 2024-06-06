@@ -488,6 +488,41 @@ namespace XtremePharmacyManager
         private static string lOG_DATE_FROM_SEARCH_TOOLTIP_TITLE = "";
         private static string lOGS_TOOLTIP_TITLE = "";
         private static string lOG_DATE_FROM_TITLE = "";
+        private static string bTN_REMOVE_LOGIN_TITLE = "";
+        private static string bTN_REMOVE_LOGIN_TOOLTIP_TITLE = "";
+        private static string bTN_CLEAR_LOGINS_TITLE = "";
+        private static string bTN_CLEAR_LOGINS_TOOLTIP_TITLE = "";
+        private static string lBL_LAST_LOGINS_TITLE = "";
+        private static string lBL_LAST_LOGINS_TOOLTIP_TITLE = "";
+        private static string lBL_LOGIN_CREDENTIALS_TITLE = "";
+        private static string lBL_LOGIN_CREDENTIALS_TOOLTIP_TITLE = "";
+        private static string bTN_LOGIN_TITLE = "";
+        private static string bTN_LOGIN_TOOLTIP_TITLE = "";
+        private static string bTN_EXIT_TITLE = "";
+        private static string bTN_EXIT_TOOLTIP_TITLE = "";
+        private static string bTN_SET_CURRENT_LOGIN_AS_DEFAULT_TITLE = "";
+        private static string bTN_SET_CURRENT_LOGIN_AS_DEFAULT_TOOLTIP_TITLE = "";
+        private static string lOGIN_PASSWORD_TOOLTIP_TITLE = "";
+        private static string lOGIN_USERNAME_TOOLTIP_TITLE = "";
+        private static string bTN_ADD_OPERATION_TITLE = "";
+        private static string bTN_REMOVE_OPERATION_TITLE = "";
+        private static string bTN_APPLY_CHANGES_TO_CURRENT_TARGET_TITLE = "";
+        private static string bTN_EXECUTE_OPERATIONS_TITLE = "";
+        private static string bTN_APPLY_CHANGES_TO_ALL_TARGETS_TITLE = "";
+        private static string lST_LAST_LOGINS_TOOLTIP_TITLE = "";
+        private static string lOGIN_TOOLTIP_TITLE = "";
+        private static string bTN_ADD_LOGIN_TITLE = "";
+        private static string bTN_ADD_LOGIN_TOOLTIP_TITLE = "";
+        public static string LBL_LOADED_IMAGE_TITLE = "";
+        public static string IMAGE_BYTES_TOOLTIP_TITLE = "";
+        public static string LBL_IMAGE_BYTES_TITLE = "";
+        public static string BTN_CONVERT_IMAGE_TO_BINARY_TITLE = "";
+        public static string BTN_CONVERT_IMAGE_TO_BINARY_TOOLTIP_TITLE = "";
+        public static string BTN_CONVERT_BINARY_TO_IMAGE_TITLE = "";
+        public static string BTN_CONVERT_BINARY_TO_IMAGE_TOOLTIP_TITLE = "";
+        public static string PB_LOADED_IMAGE_TOOLTIP_TITLE = "";
+        public static string IMG_BIN_WINDOW_TITLE = "";
+        public static string IMG_BIN_TOOLTIP_TITLE = "";
         public static GLOBAL_RESOURCES instance;
         public EventHandler<CultureInfo> CultureInfoChanged;
 
@@ -955,6 +990,31 @@ namespace XtremePharmacyManager
         public static string LOG_DATE_FROM_SEARCH_TOOLTIP_TITLE { get => lOG_DATE_FROM_SEARCH_TOOLTIP_TITLE; set => lOG_DATE_FROM_SEARCH_TOOLTIP_TITLE = value; }
         public static string LOGS_TOOLTIP_TITLE { get => lOGS_TOOLTIP_TITLE; set => lOGS_TOOLTIP_TITLE = value; }
         public static string LOG_DATE_FROM_TITLE { get => lOG_DATE_FROM_TITLE; set => lOG_DATE_FROM_TITLE = value; }
+        public static string BTN_REMOVE_LOGIN_TITLE { get => bTN_REMOVE_LOGIN_TITLE; set => bTN_REMOVE_LOGIN_TITLE = value; }
+        public static string BTN_REMOVE_LOGIN_TOOLTIP_TITLE { get => bTN_REMOVE_LOGIN_TOOLTIP_TITLE; set => bTN_REMOVE_LOGIN_TOOLTIP_TITLE = value; }
+        public static string BTN_CLEAR_LOGINS_TITLE { get => bTN_CLEAR_LOGINS_TITLE; set => bTN_CLEAR_LOGINS_TITLE = value; }
+        public static string BTN_CLEAR_LOGINS_TOOLTIP_TITLE { get => bTN_CLEAR_LOGINS_TOOLTIP_TITLE; set => bTN_CLEAR_LOGINS_TOOLTIP_TITLE = value; }
+        public static string LBL_LAST_LOGINS_TITLE { get => lBL_LAST_LOGINS_TITLE; set => lBL_LAST_LOGINS_TITLE = value; }
+        public static string LBL_LAST_LOGINS_TOOLTIP_TITLE { get => lBL_LAST_LOGINS_TOOLTIP_TITLE; set => lBL_LAST_LOGINS_TOOLTIP_TITLE = value; }
+        public static string LBL_LOGIN_CREDENTIALS_TITLE { get => lBL_LOGIN_CREDENTIALS_TITLE; set => lBL_LOGIN_CREDENTIALS_TITLE = value; }
+        public static string LBL_LOGIN_CREDENTIALS_TOOLTIP_TITLE { get => lBL_LOGIN_CREDENTIALS_TOOLTIP_TITLE; set => lBL_LOGIN_CREDENTIALS_TOOLTIP_TITLE = value; }
+        public static string BTN_LOGIN_TITLE { get => bTN_LOGIN_TITLE; set => bTN_LOGIN_TITLE = value; }
+        public static string BTN_LOGIN_TOOLTIP_TITLE { get => bTN_LOGIN_TOOLTIP_TITLE; set => bTN_LOGIN_TOOLTIP_TITLE = value; }
+        public static string BTN_EXIT_TITLE { get => bTN_EXIT_TITLE; set => bTN_EXIT_TITLE = value; }
+        public static string BTN_EXIT_TOOLTIP_TITLE { get => bTN_EXIT_TOOLTIP_TITLE; set => bTN_EXIT_TOOLTIP_TITLE = value; }
+        public static string BTN_SET_CURRENT_LOGIN_AS_DEFAULT_TITLE { get => bTN_SET_CURRENT_LOGIN_AS_DEFAULT_TITLE; set => bTN_SET_CURRENT_LOGIN_AS_DEFAULT_TITLE = value; }
+        public static string BTN_SET_CURRENT_LOGIN_AS_DEFAULT_TOOLTIP_TITLE { get => bTN_SET_CURRENT_LOGIN_AS_DEFAULT_TOOLTIP_TITLE; set => bTN_SET_CURRENT_LOGIN_AS_DEFAULT_TOOLTIP_TITLE = value; }
+        public static string LOGIN_PASSWORD_TOOLTIP_TITLE { get => lOGIN_PASSWORD_TOOLTIP_TITLE; set => lOGIN_PASSWORD_TOOLTIP_TITLE = value; }
+        public static string LOGIN_USERNAME_TOOLTIP_TITLE { get => lOGIN_USERNAME_TOOLTIP_TITLE; set => lOGIN_USERNAME_TOOLTIP_TITLE = value; }
+        public static string BTN_ADD_OPERATION_TITLE { get => bTN_ADD_OPERATION_TITLE; set => bTN_ADD_OPERATION_TITLE = value; }
+        public static string BTN_REMOVE_OPERATION_TITLE { get => bTN_REMOVE_OPERATION_TITLE; set => bTN_REMOVE_OPERATION_TITLE = value; }
+        public static string BTN_APPLY_CHANGES_TO_CURRENT_TARGET_TITLE { get => bTN_APPLY_CHANGES_TO_CURRENT_TARGET_TITLE; set => bTN_APPLY_CHANGES_TO_CURRENT_TARGET_TITLE = value; }
+        public static string BTN_EXECUTE_OPERATIONS_TITLE { get => bTN_EXECUTE_OPERATIONS_TITLE; set => bTN_EXECUTE_OPERATIONS_TITLE = value; }
+        public static string BTN_APPLY_CHANGES_TO_ALL_TARGETS_TITLE { get => bTN_APPLY_CHANGES_TO_ALL_TARGETS_TITLE; set => bTN_APPLY_CHANGES_TO_ALL_TARGETS_TITLE = value; }
+        public static string LST_LAST_LOGINS_TOOLTIP_TITLE { get => lST_LAST_LOGINS_TOOLTIP_TITLE; set => lST_LAST_LOGINS_TOOLTIP_TITLE = value; }
+        public static string LOGIN_TOOLTIP_TITLE { get => lOGIN_TOOLTIP_TITLE; set => lOGIN_TOOLTIP_TITLE = value; }
+        public static string BTN_ADD_LOGIN_TITLE { get => bTN_ADD_LOGIN_TITLE; set => bTN_ADD_LOGIN_TITLE = value; }
+        public static string BTN_ADD_LOGIN_TOOLTIP_TITLE { get => bTN_ADD_LOGIN_TOOLTIP_TITLE; set => bTN_ADD_LOGIN_TOOLTIP_TITLE = value; }
 
         public GLOBAL_RESOURCES()
         {
@@ -1334,7 +1394,42 @@ namespace XtremePharmacyManager
             ADD_INFO_SEARCH_TOOLTIP_TITLE = manager.GetString("AddInfoSearchTooltipTitle", CultureInfo.CurrentCulture);
             LBL_ADD_INFO_TITLE = manager.GetString("LblAddInfoTitle", CultureInfo.CurrentCulture);
             LOGS_TITLE = manager.GetString("LogsTitle", CultureInfo.CurrentCulture);
-            LOGS_TOOLTIP_TITLE = manager.GetString("LogsTooltipTitle", CultureInfo.CurrentCulture);  
+            BTN_REMOVE_LOGIN_TITLE = manager.GetString("btnRemoveLoginTitle", CultureInfo.CurrentCulture);
+            BTN_REMOVE_LOGIN_TOOLTIP_TITLE = manager.GetString("btnRemoveLoginTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_ADD_LOGIN_TITLE = manager.GetString("btnAddLoginTitle", CultureInfo.CurrentCulture);
+            BTN_ADD_LOGIN_TOOLTIP_TITLE = manager.GetString("btnAddLoginTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_CLEAR_LOGINS_TITLE = manager.GetString("btnClearLoginsTitle", CultureInfo.CurrentCulture);
+            BTN_CLEAR_LOGINS_TOOLTIP_TITLE = manager.GetString("btnClearLoginsTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_LAST_LOGINS_TITLE = manager.GetString("LblLastLoginsTitle", CultureInfo.CurrentCulture);
+            LBL_LAST_LOGINS_TOOLTIP_TITLE = manager.GetString("LblLastLoginsTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_LOGIN_CREDENTIALS_TITLE = manager.GetString("LblLoginCredentialsTitle", CultureInfo.CurrentCulture);
+            LBL_LOGIN_CREDENTIALS_TOOLTIP_TITLE = manager.GetString("LblLoginCredentialsTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_LOGIN_TOOLTIP_TITLE = manager.GetString("btnLoginTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_EXIT_TITLE = manager.GetString("btnExitTitle", CultureInfo.CurrentCulture);
+            BTN_LOGIN_TITLE = manager.GetString("btnLoginTitle", CultureInfo.CurrentCulture);
+            BTN_EXIT_TOOLTIP_TITLE = manager.GetString("btnExitTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_SET_CURRENT_LOGIN_AS_DEFAULT_TITLE = manager.GetString("btnSetCurrentLoginAsDefaultTitle", CultureInfo.CurrentCulture);
+            BTN_SET_CURRENT_LOGIN_AS_DEFAULT_TOOLTIP_TITLE = manager.GetString("btnSetCurrentLoginAsDefaultTooltipTitle", CultureInfo.CurrentCulture);
+            LOGIN_PASSWORD_TOOLTIP_TITLE = manager.GetString("LoginPasswordTooltipTitle", CultureInfo.CurrentCulture);
+            LOGIN_USERNAME_TOOLTIP_TITLE = manager.GetString("LoginUsernameTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_ADD_OPERATION_TITLE = manager.GetString("BtnAddOperationTitle", CultureInfo.CurrentCulture);
+            BTN_REMOVE_OPERATION_TITLE = manager.GetString("BtnRemoveOperationTitle", CultureInfo.CurrentCulture);
+            BTN_APPLY_CHANGES_TO_CURRENT_TARGET_TITLE = manager.GetString("BtnApplyChangesToCurrentTargetTitle", CultureInfo.CurrentCulture);
+            BTN_EXECUTE_OPERATIONS_TITLE = manager.GetString("BtnExecuteOperationsTitle", CultureInfo.CurrentCulture);
+            BTN_APPLY_CHANGES_TO_ALL_TARGETS_TITLE = manager.GetString("BtnApplyChangesToAllTargetsTitle", CultureInfo.CurrentCulture);
+            LST_LAST_LOGINS_TOOLTIP_TITLE = manager.GetString("LstLastLoginsTooltipTitle", CultureInfo.CurrentCulture);
+            LOGIN_TOOLTIP_TITLE = manager.GetString("LoginTooltipTitle", CultureInfo.CurrentCulture);
+            LOGS_TOOLTIP_TITLE = manager.GetString("LogsTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_LOADED_IMAGE_TITLE = manager.GetString("LblLoadedImageTitle", CultureInfo.CurrentCulture);
+            IMAGE_BYTES_TOOLTIP_TITLE = manager.GetString("ImageBytesTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_IMAGE_BYTES_TITLE = manager.GetString("LblImageBytesTitle", CultureInfo.CurrentCulture);
+            BTN_CONVERT_IMAGE_TO_BINARY_TITLE = manager.GetString("BtnConvertImageToBinaryTitle", CultureInfo.CurrentCulture);
+            BTN_CONVERT_IMAGE_TO_BINARY_TOOLTIP_TITLE = manager.GetString("BtnConvertImageToBinaryTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_CONVERT_BINARY_TO_IMAGE_TOOLTIP_TITLE = manager.GetString("BtnConvertBinaryToImageTooltipTitle", CultureInfo.CurrentCulture);
+            PB_LOADED_IMAGE_TOOLTIP_TITLE = manager.GetString("PbLoadedImageTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_CONVERT_BINARY_TO_IMAGE_TITLE = manager.GetString("BtnConvertBinaryToImageTitle", CultureInfo.CurrentCulture);
+            IMG_BIN_WINDOW_TITLE = manager.GetString("ImgBinWindowTitle", CultureInfo.CurrentCulture);
+            IMG_BIN_TOOLTIP_TITLE = manager.GetString("ImgBinTooltipTitle", CultureInfo.CurrentCulture);
             BTN_SEARCH_TITLE = manager.GetString("BtnSearchTitle", CultureInfo.CurrentCulture);
             USERS_MENU_TOOLTIP_TITLE = manager.GetString("UsersMenuTooltipTitle", CultureInfo.CurrentCulture);
             BRANDS_MENU_TOOLTIP_TITLE = manager.GetString("BrandsMenuTooltipTitle", CultureInfo.CurrentCulture);

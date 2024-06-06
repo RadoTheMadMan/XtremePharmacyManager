@@ -1497,14 +1497,83 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="AddInfoSearchTooltipTitle" xml:space="preserve">
     <value>The additional information with which you want to search logs</value>
   </data>
+  <data name="btnAddLoginTitle" xml:space="preserve">
+    <value>ADD LOGIN</value>
+  </data>
+  <data name="btnAddLoginTooltipTitle" xml:space="preserve">
+    <value>With this button you can add new login credentials to the login list and upon logging in it will be saved into the filesystem</value>
+  </data>
+  <data name="BtnAddOperationTitle" xml:space="preserve">
+    <value>ADD OPERATION</value>
+  </data>
+  <data name="BtnApplyChangesToAllTargetsTitle" xml:space="preserve">
+    <value>APPLY CHANGES TO ALL TARGETS</value>
+  </data>
+  <data name="BtnApplyChangesToCurrentTargetTitle" xml:space="preserve">
+    <value>APPLY CHANGES TO THIS TARGET</value>
+  </data>
+  <data name="btnClearLoginsTitle" xml:space="preserve">
+    <value>CLEAR_LOGINS</value>
+  </data>
+  <data name="btnClearLoginsTooltipTitle" xml:space="preserve">
+    <value>With this button the logins list is cleared from the memory but not from the filesystem</value>
+  </data>
+  <data name="BtnExecuteOperationsTitle" xml:space="preserve">
+    <value>EXECUTE OPERATIONS</value>
+  </data>
+  <data name="btnExitTitle" xml:space="preserve">
+    <value>EXIT</value>
+  </data>
+  <data name="btnExitTooltipTitle" xml:space="preserve">
+    <value>With this button you exit the application with probably a message that you can't use this application without authorisation</value>
+  </data>
+  <data name="btnLoginTitle" xml:space="preserve">
+    <value>LOGIN</value>
+  </data>
+  <data name="btnLoginTooltipTitle" xml:space="preserve">
+    <value>With this button you login to the database the software is connected to and if the credentials are right it will log you in otherwise not.</value>
+  </data>
+  <data name="btnRemoveLoginTitle" xml:space="preserve">
+    <value>REMOVE LOGIN</value>
+  </data>
+  <data name="btnRemoveLoginTooltipTitle" xml:space="preserve">
+    <value>With this button an item from the logins list you select will be removed from the memory but not from the filesystem</value>
+  </data>
+  <data name="BtnRemoveOperationTitle" xml:space="preserve">
+    <value>REMOVE OPERATION</value>
+  </data>
+  <data name="btnSetCurrentLoginAsDefaultTitle" xml:space="preserve">
+    <value>SET CURRENT LOGIN AS DEFAULT</value>
+  </data>
+  <data name="btnSetCurrentLoginAsDefaultTooltipTitle" xml:space="preserve">
+    <value>With this button you can set the login credentials you put as login credentials in your application settings</value>
+  </data>
   <data name="LblAddInfoTitle" xml:space="preserve">
     <value>Additional Information:</value>
+  </data>
+  <data name="LblLastLoginsTitle" xml:space="preserve">
+    <value>LAST LOGINS:</value>
+  </data>
+  <data name="LblLastLoginsTooltipTitle" xml:space="preserve">
+    <value>The area where the last logins you used will be displayed. Again if you select a client account and try to login you will be booted out.</value>
+  </data>
+  <data name="LblLoginCredentialsTitle" xml:space="preserve">
+    <value>ENTER YOUR LOGIN CREDENTIALS:</value>
+  </data>
+  <data name="LblLoginCredentialsTooltipTitle" xml:space="preserve">
+    <value>This is the area where you enter your login credentials or login credentials from your application settings are displayed. They are tightly connected.</value>
   </data>
   <data name="LblMessageTitle" xml:space="preserve">
     <value>Message:</value>
   </data>
   <data name="LblTitleTitle" xml:space="preserve">
     <value>Title:</value>
+  </data>
+  <data name="LoginPasswordTooltipTitle" xml:space="preserve">
+    <value>Your password on the database with which you login.</value>
+  </data>
+  <data name="LoginUsernameTooltipTitle" xml:space="preserve">
+    <value>Your username in the database with which you login</value>
   </data>
   <data name="LogMessageSearchTooltipTitle" xml:space="preserve">
     <value>The message with which you want to search logs</value>
@@ -1517,5 +1586,41 @@ It is downloaded and converted from binary format to its native format.</value>
   </data>
   <data name="LogTitleSearchTooltipTitle" xml:space="preserve">
     <value>The title with which you want to search logs</value>
+  </data>
+  <data name="LstLastLoginsTooltipTitle" xml:space="preserve">
+    <value>This is the list of all logins you have previously logged in from. Logins are saved into and loaded automatically from the filesystem.</value>
+  </data>
+  <data name="BtnConvertBinaryToImageTitle" xml:space="preserve">
+    <value>CONVERT BINARY TO IMAGE</value>
+  </data>
+  <data name="BtnConvertBinaryToImageTooltipTitle" xml:space="preserve">
+    <value>With this button you convert a base64 string to binary and then to an image</value>
+  </data>
+  <data name="BtnConvertImageToBinaryTitle" xml:space="preserve">
+    <value>CONVERT IMAGE TO BINARY</value>
+  </data>
+  <data name="BtnConvertImageToBinaryTooltipTitle" xml:space="preserve">
+    <value>With this button you open an image and convert it to binary and then to base64 format</value>
+  </data>
+  <data name="ImageBytesTooltipTitle" xml:space="preserve">
+    <value>This is the base64 equivalent of the image because the text boxes can't display binary arrays properly</value>
+  </data>
+  <data name="ImgBinTooltipTitle" xml:space="preserve">
+    <value>A form used as a debug tool to test how is the image encoded to base64 and to binary and vice-versa</value>
+  </data>
+  <data name="ImgBinWindowTitle" xml:space="preserve">
+    <value>Convert Image To Binary and Vice Versa</value>
+  </data>
+  <data name="LblImageBytesTitle" xml:space="preserve">
+    <value>Image Bytes:</value>
+  </data>
+  <data name="LblLoadedImageTitle" xml:space="preserve">
+    <value>Loaded Image:</value>
+  </data>
+  <data name="LoginTooltipTitle" xml:space="preserve">
+    <value>The form where you login to the system and as this software is an open source administration software designed to be ugly yet professional it will boot away any accounts that aren't registered in the database as administrators or employees.</value>
+  </data>
+  <data name="PbLoadedImageTooltipTitle" xml:space="preserve">
+    <value>This picture loads an image from an open file dialog or from a binary/base64 stream</value>
   </data>
 </root>

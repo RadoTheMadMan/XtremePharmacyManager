@@ -271,7 +271,7 @@
             this.txtYourPassword.Name = "txtYourPassword";
             this.txtYourPassword.Size = new System.Drawing.Size(258, 22);
             this.txtYourPassword.TabIndex = 6;
-            this.ttAccountSettings.SetToolTip(this.txtYourPassword, "Your password on the database with which you login.");
+            this.ttAccountSettings.SetToolTip(this.txtYourPassword, GLOBAL_RESOURCES.LOGIN_PASSWORD_TOOLTIP_TITLE);
             this.txtYourPassword.UseSystemPasswordChar = true;
             // 
             // lblYourPassword
@@ -294,7 +294,7 @@
             this.txtYourUsername.Name = "txtYourUsername";
             this.txtYourUsername.Size = new System.Drawing.Size(258, 22);
             this.txtYourUsername.TabIndex = 4;
-            this.ttAccountSettings.SetToolTip(this.txtYourUsername, "Your username in the database with which you login");
+            this.ttAccountSettings.SetToolTip(this.txtYourUsername, GLOBAL_RESOURCES.LOGIN_USERNAME_TOOLTIP_TITLE);
             // 
             // lblYourUsername
             // 

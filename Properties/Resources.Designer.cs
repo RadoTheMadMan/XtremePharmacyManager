@@ -528,6 +528,105 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ADD LOGIN.
+        /// </summary>
+        public static string btnAddLoginTitle {
+            get {
+                return ResourceManager.GetString("btnAddLoginTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With this button you can add new login credentials to the login list and upon logging in it will be saved into the filesystem.
+        /// </summary>
+        public static string btnAddLoginTooltipTitle {
+            get {
+                return ResourceManager.GetString("btnAddLoginTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ADD OPERATION.
+        /// </summary>
+        public static string BtnAddOperationTitle {
+            get {
+                return ResourceManager.GetString("BtnAddOperationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to APPLY CHANGES TO ALL TARGETS.
+        /// </summary>
+        public static string BtnApplyChangesToAllTargetsTitle {
+            get {
+                return ResourceManager.GetString("BtnApplyChangesToAllTargetsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to APPLY CHANGES TO THIS TARGET.
+        /// </summary>
+        public static string BtnApplyChangesToCurrentTargetTitle {
+            get {
+                return ResourceManager.GetString("BtnApplyChangesToCurrentTargetTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CLEAR_LOGINS.
+        /// </summary>
+        public static string btnClearLoginsTitle {
+            get {
+                return ResourceManager.GetString("btnClearLoginsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With this button the logins list is cleared from the memory but not from the filesystem.
+        /// </summary>
+        public static string btnClearLoginsTooltipTitle {
+            get {
+                return ResourceManager.GetString("btnClearLoginsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CONVERT BINARY TO IMAGE.
+        /// </summary>
+        public static string BtnConvertBinaryToImageTitle {
+            get {
+                return ResourceManager.GetString("BtnConvertBinaryToImageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With this button you convert a base64 string to binary and then to an image.
+        /// </summary>
+        public static string BtnConvertBinaryToImageTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnConvertBinaryToImageTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CONVERT IMAGE TO BINARY.
+        /// </summary>
+        public static string BtnConvertImageToBinaryTitle {
+            get {
+                return ResourceManager.GetString("BtnConvertImageToBinaryTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With this button you open an image and convert it to binary and then to base64 format.
+        /// </summary>
+        public static string BtnConvertImageToBinaryTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnConvertImageToBinaryTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DELETE A PRODUCT IMAGE.
         /// </summary>
         public static string BtnDeleteProductImageTitle {
@@ -555,6 +654,33 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to EXECUTE OPERATIONS.
+        /// </summary>
+        public static string BtnExecuteOperationsTitle {
+            get {
+                return ResourceManager.GetString("BtnExecuteOperationsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EXIT.
+        /// </summary>
+        public static string btnExitTitle {
+            get {
+                return ResourceManager.GetString("btnExitTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With this button you exit the application with probably a message that you can&apos;t use this application without authorisation.
+        /// </summary>
+        public static string btnExitTooltipTitle {
+            get {
+                return ResourceManager.GetString("btnExitTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to GENERATE REPORT.
         /// </summary>
         public static string BtnGenerateReportTitle {
@@ -569,6 +695,51 @@ namespace XtremePharmacyManager.Properties {
         public static string BtnGenerateReportTooltip {
             get {
                 return ResourceManager.GetString("BtnGenerateReportTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LOGIN.
+        /// </summary>
+        public static string btnLoginTitle {
+            get {
+                return ResourceManager.GetString("btnLoginTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With this button you login to the database the software is connected to and if the credentials are right it will log you in otherwise not..
+        /// </summary>
+        public static string btnLoginTooltipTitle {
+            get {
+                return ResourceManager.GetString("btnLoginTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to REMOVE LOGIN.
+        /// </summary>
+        public static string btnRemoveLoginTitle {
+            get {
+                return ResourceManager.GetString("btnRemoveLoginTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With this button an item from the logins list you select will be removed from the memory but not from the filesystem.
+        /// </summary>
+        public static string btnRemoveLoginTooltipTitle {
+            get {
+                return ResourceManager.GetString("btnRemoveLoginTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to REMOVE OPERATION.
+        /// </summary>
+        public static string BtnRemoveOperationTitle {
+            get {
+                return ResourceManager.GetString("BtnRemoveOperationTitle", resourceCulture);
             }
         }
         
@@ -596,6 +767,24 @@ namespace XtremePharmacyManager.Properties {
         public static string BtnSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("BtnSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SET CURRENT LOGIN AS DEFAULT.
+        /// </summary>
+        public static string btnSetCurrentLoginAsDefaultTitle {
+            get {
+                return ResourceManager.GetString("btnSetCurrentLoginAsDefaultTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to With this button you can set the login credentials you put as login credentials in your application settings.
+        /// </summary>
+        public static string btnSetCurrentLoginAsDefaultTooltipTitle {
+            get {
+                return ResourceManager.GetString("btnSetCurrentLoginAsDefaultTooltipTitle", resourceCulture);
             }
         }
         
@@ -1912,6 +2101,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This is the base64 equivalent of the image because the text boxes can&apos;t display binary arrays properly.
+        /// </summary>
+        public static string ImageBytesTooltipTitle {
+            get {
+                return ResourceManager.GetString("ImageBytesTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The name with which you want to search product images.
         /// </summary>
         public static string ImageNameSearchTooltipTitle {
@@ -1944,6 +2142,24 @@ namespace XtremePharmacyManager.Properties {
         public static string ImgBinTitle {
             get {
                 return ResourceManager.GetString("ImgBinTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A form used as a debug tool to test how is the image encoded to base64 and to binary and vice-versa.
+        /// </summary>
+        public static string ImgBinTooltipTitle {
+            get {
+                return ResourceManager.GetString("ImgBinTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Convert Image To Binary and Vice Versa.
+        /// </summary>
+        public static string ImgBinWindowTitle {
+            get {
+                return ResourceManager.GetString("ImgBinWindowTitle", resourceCulture);
             }
         }
         
@@ -2173,6 +2389,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image Bytes:.
+        /// </summary>
+        public static string LblImageBytesTitle {
+            get {
+                return ResourceManager.GetString("LblImageBytesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Image ID:.
         /// </summary>
         public static string LblImageIDTitle {
@@ -2196,6 +2421,51 @@ namespace XtremePharmacyManager.Properties {
         public static string LblImagesTitle {
             get {
                 return ResourceManager.GetString("LblImagesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LAST LOGINS:.
+        /// </summary>
+        public static string LblLastLoginsTitle {
+            get {
+                return ResourceManager.GetString("LblLastLoginsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The area where the last logins you used will be displayed. Again if you select a client account and try to login you will be booted out..
+        /// </summary>
+        public static string LblLastLoginsTooltipTitle {
+            get {
+                return ResourceManager.GetString("LblLastLoginsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loaded Image:.
+        /// </summary>
+        public static string LblLoadedImageTitle {
+            get {
+                return ResourceManager.GetString("LblLoadedImageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ENTER YOUR LOGIN CREDENTIALS:.
+        /// </summary>
+        public static string LblLoginCredentialsTitle {
+            get {
+                return ResourceManager.GetString("LblLoginCredentialsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is the area where you enter your login credentials or login credentials from your application settings are displayed. They are tightly connected..
+        /// </summary>
+        public static string LblLoginCredentialsTooltipTitle {
+            get {
+                return ResourceManager.GetString("LblLoginCredentialsTooltipTitle", resourceCulture);
             }
         }
         
@@ -2727,11 +2997,38 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your password on the database with which you login..
+        /// </summary>
+        public static string LoginPasswordTooltipTitle {
+            get {
+                return ResourceManager.GetString("LoginPasswordTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string LoginTitle {
             get {
                 return ResourceManager.GetString("LoginTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The form where you login to the system and as this software is an open source administration software designed to be ugly yet professional it will boot away any accounts that aren&apos;t registered in the database as administrators or employees..
+        /// </summary>
+        public static string LoginTooltipTitle {
+            get {
+                return ResourceManager.GetString("LoginTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your username in the database with which you login.
+        /// </summary>
+        public static string LoginUsernameTooltipTitle {
+            get {
+                return ResourceManager.GetString("LoginUsernameTooltipTitle", resourceCulture);
             }
         }
         
@@ -2786,6 +3083,15 @@ namespace XtremePharmacyManager.Properties {
         public static string LogTitleSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("LogTitleSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is the list of all logins you have previously logged in from. Logins are saved into and loaded automatically from the filesystem..
+        /// </summary>
+        public static string LstLastLoginsTooltipTitle {
+            get {
+                return ResourceManager.GetString("LstLastLoginsTooltipTitle", resourceCulture);
             }
         }
         
@@ -3138,6 +3444,15 @@ namespace XtremePharmacyManager.Properties {
         public static string PaymentMethodsTooltipTitle {
             get {
                 return ResourceManager.GetString("PaymentMethodsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This picture loads an image from an open file dialog or from a binary/base64 stream.
+        /// </summary>
+        public static string PbLoadedImageTooltipTitle {
+            get {
+                return ResourceManager.GetString("PbLoadedImageTooltipTitle", resourceCulture);
             }
         }
         
