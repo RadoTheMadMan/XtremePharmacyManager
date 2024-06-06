@@ -324,7 +324,7 @@
             this.txtVendorName.Name = "txtVendorName";
             this.txtVendorName.Size = new System.Drawing.Size(258, 22);
             this.txtVendorName.TabIndex = 4;
-            this.ttBulkProductVendorOperations.SetToolTip(this.txtVendorName, "The name of the selected product vendor can be set here.");
+            this.ttBulkProductVendorOperations.SetToolTip(this.txtVendorName, GLOBAL_RESOURCES.VENDOR_NAME_EDIT_TOOLTIP_TITLE);
             // 
             // lblVendorName
             // 
@@ -346,9 +346,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(258, 22);
             this.txtID.TabIndex = 2;
-            this.ttBulkProductVendorOperations.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
-        "hanged so even if you add and ID or change it the database will still set its ow" +
-        "n ID to the record");
+            this.ttBulkProductVendorOperations.SetToolTip(this.txtID, GLOBAL_RESOURCES.ID_EDIT_TOOLTIP_TITLE);
             // 
             // lblID
             // 

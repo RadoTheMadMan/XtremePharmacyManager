@@ -70,8 +70,8 @@
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
-            this.btnOK.Text = "OK";
-            this.ttEditProductBrand.SetToolTip(this.btnOK, "When you click OK this record\'s changes will be saved to the database");
+            this.btnOK.Text = GLOBAL_RESOURCES.BTN_OK_TITLE;
+            this.ttEditProductBrand.SetToolTip(this.btnOK, GLOBAL_RESOURCES.BTN_OK_EDITOR_TOOLTIP_TITLE);
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -84,9 +84,8 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
-            this.btnCancel.Text = "CANCEL";
-            this.ttEditProductBrand.SetToolTip(this.btnCancel, "When you click this button the changes to therecord will be saved to the memory a" +
-        "llowing you to add it as a bulk operation");
+            this.btnCancel.Text =GLOBAL_RESOURCES.BTN_CANCEL_TITLE;
+            this.ttEditProductBrand.SetToolTip(this.btnCancel,GLOBAL_RESOURCES.BTN_CANCEL_EDITOR_TOOLTIP_TITLE);
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -121,9 +120,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(205, 22);
             this.txtID.TabIndex = 2;
-            this.ttEditProductBrand.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
-        "hanged so even if you add and ID or change it the database will still set its ow" +
-        "n ID to the record");
+            this.ttEditProductBrand.SetToolTip(this.txtID, GLOBAL_RESOURCES.ID_EDIT_TOOLTIP_TITLE);
             // 
             // lblID
             // 

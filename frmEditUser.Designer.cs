@@ -114,7 +114,7 @@
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.Size = new System.Drawing.Size(55, 22);
             this.txtBalance.TabIndex = 43;
-            this.ttEditUser.SetToolTip(this.txtBalance, resources.GetString("txtBalance.ToolTip"));
+            this.ttEditUser.SetToolTip(this.txtBalance, GLOBAL_RESOURCES.BALANCE_EDIT_TOOLTIP_TITLE);
             this.txtBalance.TextChanged += new System.EventHandler(this.txtBalance_TextChanged);
             // 
             // lblUserNotice
@@ -128,7 +128,7 @@
             this.lblUserNotice.Name = "lblUserNotice";
             this.lblUserNotice.Size = new System.Drawing.Size(179, 48);
             this.lblUserNotice.TabIndex = 42;
-            this.lblUserNotice.Text = GLOBAL_RESOURCES.USER_NOTICE_TOOLTIP_TITLE;
+            this.lblUserNotice.Text = GLOBAL_RESOURCES.LBL_USER_NOTICE_TITLE;
             this.ttEditUser.SetToolTip(this.lblUserNotice, GLOBAL_RESOURCES.USER_NOTICE_TOOLTIP_TITLE);
             // 
             // pbUserProfilePic
@@ -140,9 +140,7 @@
             this.pbUserProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbUserProfilePic.TabIndex = 34;
             this.pbUserProfilePic.TabStop = false;
-            this.ttEditUser.SetToolTip(this.pbUserProfilePic, "The profile picture of the selected user can be set here. The image is saved dire" +
-        "ctly to the database in a binary format and loaded from the binary data so no we" +
-        "b server is involved.");
+            this.ttEditUser.SetToolTip(this.pbUserProfilePic,GLOBAL_RESOURCES.USER_PFP_EDIT_TOOLTIP_TITLE);
             this.pbUserProfilePic.Click += new System.EventHandler(this.pbUserProfilePic_Click);
             // 
             // btnOK
@@ -154,8 +152,8 @@
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
-            this.btnOK.Text = "OK";
-            this.ttEditUser.SetToolTip(this.btnOK, "When you click OK this record\'s changes will be saved to the database");
+            this.btnOK.Text = GLOBAL_RESOURCES.BTN_OK_TITLE;
+            this.ttEditUser.SetToolTip(this.btnOK, GLOBAL_RESOURCES.BTN_OK_EDITOR_TOOLTIP_TITLE);
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -168,9 +166,8 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
-            this.btnCancel.Text = "CANCEL";
-            this.ttEditUser.SetToolTip(this.btnCancel, "When you click this button the changes to therecord will be saved to the memory a" +
-        "llowing you to add it as a bulk operation");
+            this.btnCancel.Text =GLOBAL_RESOURCES.BTN_CANCEL_TITLE;
+            this.ttEditUser.SetToolTip(this.btnCancel,GLOBAL_RESOURCES.BTN_CANCEL_EDITOR_TOOLTIP_TITLE);
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -188,7 +185,7 @@
             this.cbRole.Size = new System.Drawing.Size(229, 24);
             this.cbRole.TabIndex = 29;
             this.cbRole.Text = GLOBAL_RESOURCES.LBL_ROLE_EMPLOYEE;
-            this.ttEditUser.SetToolTip(this.cbRole, resources.GetString("cbRole.ToolTip"));
+            this.ttEditUser.SetToolTip(this.cbRole, GLOBAL_RESOURCES.USER_ROLE_EDIT_TOOLTIP_TITLE);
             // 
             // lblRole
             // 
@@ -211,7 +208,7 @@
             this.txtDiagnose.Name = "txtDiagnose";
             this.txtDiagnose.Size = new System.Drawing.Size(313, 56);
             this.txtDiagnose.TabIndex = 23;
-            this.ttEditUser.SetToolTip(this.txtDiagnose, "The diagnose of the selected user can be set here.");
+            this.ttEditUser.SetToolTip(this.txtDiagnose, GLOBAL_RESOURCES.DIAGNOSE_EDIT_TOOLTIP_TITLE);
             // 
             // lblDiagnose
             // 
@@ -235,7 +232,7 @@
             this.trbBalance.Size = new System.Drawing.Size(259, 56);
             this.trbBalance.TabIndex = 21;
             this.trbBalance.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ttEditUser.SetToolTip(this.trbBalance, resources.GetString("trbBalance.ToolTip"));
+            this.ttEditUser.SetToolTip(this.trbBalance, GLOBAL_RESOURCES.BALANCE_EDIT_TOOLTIP_TITLE);
             this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
             // 
             // lblBalance
@@ -259,7 +256,7 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(258, 56);
             this.txtAddress.TabIndex = 18;
-            this.ttEditUser.SetToolTip(this.txtAddress, "The address of the selected user can be set here.");
+            this.ttEditUser.SetToolTip(this.txtAddress, GLOBAL_RESOURCES.ADDRESS_EDIT_TOOLTIP_TITLE);
             // 
             // lblAddress
             // 
@@ -281,7 +278,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(258, 22);
             this.txtEmail.TabIndex = 16;
-            this.ttEditUser.SetToolTip(this.txtEmail, "The email of the selected user can be set here.");
+            this.ttEditUser.SetToolTip(this.txtEmail, GLOBAL_RESOURCES.EMAIL_EDIT_TOOLTIP_TITLE);
             // 
             // lblEmail
             // 
@@ -303,7 +300,7 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(258, 22);
             this.txtPhone.TabIndex = 14;
-            this.ttEditUser.SetToolTip(this.txtPhone, "The phone of the selected user can be set here.");
+            this.ttEditUser.SetToolTip(this.txtPhone, GLOBAL_RESOURCES.PHONE_EDIT_TOOLTIP_TITLE);
             // 
             // lblPhone
             // 
@@ -325,8 +322,7 @@
             this.dtBirthDate.Name = "dtBirthDate";
             this.dtBirthDate.Size = new System.Drawing.Size(257, 22);
             this.dtBirthDate.TabIndex = 10;
-            this.ttEditUser.SetToolTip(this.dtBirthDate, "The birth date of the selected user can be changed here. Only administrators of t" +
-        "he database can change that");
+            this.ttEditUser.SetToolTip(this.dtBirthDate, GLOBAL_RESOURCES.USER_BIRTH_DATE_EDIT_TOOLTIP_TITLE);
             // 
             // lblBirthDateFrom
             // 
@@ -338,7 +334,7 @@
             this.lblBirthDate.Name = "lblBirthDateFrom";
             this.lblBirthDate.Size = new System.Drawing.Size(79, 16);
             this.lblBirthDate.TabIndex = 9;
-            this.lblBirthDate.Text = "Birth Date:";
+            this.lblBirthDate.Text = GLOBAL_RESOURCES.LBL_BIRTH_DATE_TITLE;
             // 
             // txtDisplayName
             // 
@@ -348,7 +344,7 @@
             this.txtDisplayName.Name = "txtDisplayName";
             this.txtDisplayName.Size = new System.Drawing.Size(258, 22);
             this.txtDisplayName.TabIndex = 8;
-            this.ttEditUser.SetToolTip(this.txtDisplayName, "The display name of the selected user can be set here.");
+            this.ttEditUser.SetToolTip(this.txtDisplayName, GLOBAL_RESOURCES.DISPLAY_NAME_EDIT_TOOLTIP_TITLE);
             // 
             // lblDisplayName
             // 
@@ -370,7 +366,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(258, 22);
             this.txtPassword.TabIndex = 6;
-            this.ttEditUser.SetToolTip(this.txtPassword, resources.GetString("txtPassword.ToolTip"));
+            this.ttEditUser.SetToolTip(this.txtPassword, GLOBAL_RESOURCES.PASSWORD_EDIT_TOOLTIP_TITLE);
             // 
             // lblPassword
             // 
@@ -392,9 +388,7 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(258, 22);
             this.txtUsername.TabIndex = 4;
-            this.ttEditUser.SetToolTip(this.txtUsername, "The username in the database of the selected user can be set here. Don\'t forget t" +
-        "hat if you have changed it you need to change it in the database\'s user and the " +
-        "server\'s login list accordingly");
+            this.ttEditUser.SetToolTip(this.txtUsername, GLOBAL_RESOURCES.USERNAME_EDIT_TOOLTIP_TITLE);
             // 
             // lblUsername
             // 
@@ -417,9 +411,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(258, 22);
             this.txtID.TabIndex = 2;
-            this.ttEditUser.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
-        "hanged so even if you add and ID or change it the database will still set its ow" +
-        "n ID to the record");
+            this.ttEditUser.SetToolTip(this.txtID, GLOBAL_RESOURCES.ID_EDIT_TOOLTIP_TITLE);
             // 
             // lblID
             // 
@@ -453,9 +445,8 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmEditUser";
-            this.Text = "User Editor. Add or Edit User";
-            this.ttEditUser.SetToolTip(this, "The product vendors editor dialog where you can add/edit product vendors that you" +
-        " can access provided you have the permissions to do so.");
+            this.Text = GLOBAL_RESOURCES.EDIT_USER_TITLE;
+            this.ttEditUser.SetToolTip(this, GLOBAL_RESOURCES.EDIT_USER_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmEditUser_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

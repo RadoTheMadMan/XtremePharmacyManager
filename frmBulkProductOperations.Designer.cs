@@ -685,9 +685,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(223, 22);
             this.txtID.TabIndex = 2;
-            this.ttBulkProductOperations.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
-        "hanged so even if you add and ID or change it the database will still set its ow" +
-        "n ID to the record");
+            this.ttBulkProductOperations.SetToolTip(this.txtID, GLOBAL_RESOURCES.ID_EDIT_TOOLTIP_TITLE);
             // 
             // lblID
             // 

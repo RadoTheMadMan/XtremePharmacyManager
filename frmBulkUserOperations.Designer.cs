@@ -164,7 +164,7 @@
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.Size = new System.Drawing.Size(39, 22);
             this.txtBalance.TabIndex = 49;
-            this.ttBulkUserOperations.SetToolTip(this.txtBalance, resources.GetString("txtBalance.ToolTip"));
+            this.ttBulkUserOperations.SetToolTip(this.txtBalance, GLOBAL_RESOURCES.BALANCE_EDIT_TOOLTIP_TITLE);
             this.txtBalance.TextChanged += new System.EventHandler(this.txtBalance_TextChanged);
             // 
             // cbSelectRecord
@@ -222,7 +222,7 @@
             this.lblUserNotice.Name = "lblUserNotice";
             this.lblUserNotice.Size = new System.Drawing.Size(179, 48);
             this.lblUserNotice.TabIndex = 45;
-            this.lblUserNotice.Text = GLOBAL_RESOURCES.USER_NOTICE_TOOLTIP_TITLE;
+            this.lblUserNotice.Text = GLOBAL_RESOURCES.LBL_USER_NOTICE_TITLE;
             this.ttBulkUserOperations.SetToolTip(this.lblUserNotice, GLOBAL_RESOURCES.USER_NOTICE_TOOLTIP_TITLE);
             // 
             // checkSilentOperation
@@ -409,7 +409,7 @@
             this.cbRole.Size = new System.Drawing.Size(229, 24);
             this.cbRole.TabIndex = 29;
             this.cbRole.Text = GLOBAL_RESOURCES.LBL_ROLE_EMPLOYEE;
-            this.ttBulkUserOperations.SetToolTip(this.cbRole, resources.GetString("cbRole.ToolTip"));
+            this.ttBulkUserOperations.SetToolTip(this.cbRole, GLOBAL_RESOURCES.USER_ROLE_EDIT_TOOLTIP_TITLE);
             // 
             // lblRole
             // 
@@ -432,7 +432,7 @@
             this.txtDiagnose.Name = "txtDiagnose";
             this.txtDiagnose.Size = new System.Drawing.Size(313, 67);
             this.txtDiagnose.TabIndex = 23;
-            this.ttBulkUserOperations.SetToolTip(this.txtDiagnose, "The diagnose of the selected user can be set here.");
+            this.ttBulkUserOperations.SetToolTip(this.txtDiagnose, GLOBAL_RESOURCES.DIAGNOSE_EDIT_TOOLTIP_TITLE);
             // 
             // lblDiagnose
             // 
@@ -456,7 +456,7 @@
             this.trbBalance.Size = new System.Drawing.Size(259, 56);
             this.trbBalance.TabIndex = 21;
             this.trbBalance.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ttBulkUserOperations.SetToolTip(this.trbBalance, resources.GetString("trbBalance.ToolTip"));
+            this.ttBulkUserOperations.SetToolTip(this.trbBalance, GLOBAL_RESOURCES.BALANCE_EDIT_TOOLTIP_TITLE);
             this.trbBalance.Scroll += new System.EventHandler(this.trbBalance_Scroll);
             // 
             // lblBalance
@@ -480,7 +480,7 @@
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(258, 35);
             this.txtAddress.TabIndex = 18;
-            this.ttBulkUserOperations.SetToolTip(this.txtAddress, "The address of the selected user can be set here.");
+            this.ttBulkUserOperations.SetToolTip(this.txtAddress, GLOBAL_RESOURCES.ADDRESS_EDIT_TOOLTIP_TITLE);
             // 
             // lblAddress
             // 
@@ -502,7 +502,7 @@
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(258, 22);
             this.txtEmail.TabIndex = 16;
-            this.ttBulkUserOperations.SetToolTip(this.txtEmail, "The email of the selected user can be set here.");
+            this.ttBulkUserOperations.SetToolTip(this.txtEmail, GLOBAL_RESOURCES.EMAIL_EDIT_TOOLTIP_TITLE);
             // 
             // lblEmail
             // 
@@ -524,7 +524,7 @@
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(258, 22);
             this.txtPhone.TabIndex = 14;
-            this.ttBulkUserOperations.SetToolTip(this.txtPhone, "The phone of the selected user can be set here.");
+            this.ttBulkUserOperations.SetToolTip(this.txtPhone, GLOBAL_RESOURCES.PHONE_EDIT_TOOLTIP_TITLE);
             // 
             // lblPhone
             // 
@@ -559,7 +559,7 @@
             this.lblBirthDateFrom.Name = "lblBirthDateFrom";
             this.lblBirthDateFrom.Size = new System.Drawing.Size(79, 16);
             this.lblBirthDateFrom.TabIndex = 9;
-            this.lblBirthDateFrom.Text = "Birth Date:";
+            this.lblBirthDateFrom.Text = GLOBAL_RESOURCES.LBL_BIRTH_DATE_TITLE;
             // 
             // txtDisplayName
             // 
@@ -569,7 +569,7 @@
             this.txtDisplayName.Name = "txtDisplayName";
             this.txtDisplayName.Size = new System.Drawing.Size(258, 22);
             this.txtDisplayName.TabIndex = 8;
-            this.ttBulkUserOperations.SetToolTip(this.txtDisplayName, "The display name of the selected user can be set here.");
+            this.ttBulkUserOperations.SetToolTip(this.txtDisplayName, GLOBAL_RESOURCES.DISPLAY_NAME_EDIT_TOOLTIP_TITLE);
             // 
             // lblDisplayName
             // 
@@ -591,7 +591,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(258, 22);
             this.txtPassword.TabIndex = 6;
-            this.ttBulkUserOperations.SetToolTip(this.txtPassword, resources.GetString("txtPassword.ToolTip"));
+            this.ttBulkUserOperations.SetToolTip(this.txtPassword, GLOBAL_RESOURCES.PASSWORD_EDIT_TOOLTIP_TITLE);
             // 
             // lblPassword
             // 
@@ -637,9 +637,7 @@
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(258, 22);
             this.txtID.TabIndex = 2;
-            this.ttBulkUserOperations.SetToolTip(this.txtID, "Here is the ID of the selected record. By default IDs in the database cannot be c" +
-        "hanged so even if you add and ID or change it the database will still set its ow" +
-        "n ID to the record");
+            this.ttBulkUserOperations.SetToolTip(this.txtID, GLOBAL_RESOURCES.ID_EDIT_TOOLTIP_TITLE);
             // 
             // lblID
             // 

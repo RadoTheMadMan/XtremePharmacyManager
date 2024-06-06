@@ -1590,6 +1590,18 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="LstLastLoginsTooltipTitle" xml:space="preserve">
     <value>This is the list of all logins you have previously logged in from. Logins are saved into and loaded automatically from the filesystem.</value>
   </data>
+  <data name="AddressEditTooltipTitle" xml:space="preserve">
+    <value>The address of the selected user can be set here.</value>
+  </data>
+  <data name="BalanceEditTooltipTitle" xml:space="preserve">
+    <value>The balance of the selected user can be set here. No need to set it manually in some cases though, because the changes in the product orders and order deliveries reflect it automatically on status change.</value>
+  </data>
+  <data name="BtnCancelEditorTooltipTitle" xml:space="preserve">
+    <value>When you click this button the changes to the record will be saved to the memory allowing you to add it as a bulk operation.</value>
+  </data>
+  <data name="BtnCancelTitle" xml:space="preserve">
+    <value>CANCEL</value>
+  </data>
   <data name="BtnConvertBinaryToImageTitle" xml:space="preserve">
     <value>CONVERT BINARY TO IMAGE</value>
   </data>
@@ -1602,6 +1614,30 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="BtnConvertImageToBinaryTooltipTitle" xml:space="preserve">
     <value>With this button you open an image and convert it to binary and then to base64 format</value>
   </data>
+  <data name="BtnOKEditorTooltipTitle" xml:space="preserve">
+    <value>When you click OK this record's changes will be saved to the database.</value>
+  </data>
+  <data name="BtnOKTitle" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="DiagnoseEditTooltipTitle" xml:space="preserve">
+    <value>The diagnose of the selected user can be set here.</value>
+  </data>
+  <data name="DisplayNameEditTooltipTitle" xml:space="preserve">
+    <value>The display name of the selected user can be set here.</value>
+  </data>
+  <data name="EditUserTitle" xml:space="preserve">
+    <value>User Editor. Add or Edit User</value>
+  </data>
+  <data name="EditUserTooltipTitle" xml:space="preserve">
+    <value>The users editor dialog where you can add/edit users that you can access provided you have the permissions to do so.</value>
+  </data>
+  <data name="EmailEditTooltipTitle" xml:space="preserve">
+    <value>The email of the selected user can be set here.</value>
+  </data>
+  <data name="IDEditTooltipTitle" xml:space="preserve">
+    <value>Here is the ID of the selected record. By default IDs in the database cannot be changed so even if you add and ID or change it the database will still set its own ID to the record</value>
+  </data>
   <data name="ImageBytesTooltipTitle" xml:space="preserve">
     <value>This is the base64 equivalent of the image because the text boxes can't display binary arrays properly</value>
   </data>
@@ -1610,6 +1646,9 @@ It is downloaded and converted from binary format to its native format.</value>
   </data>
   <data name="ImgBinWindowTitle" xml:space="preserve">
     <value>Convert Image To Binary and Vice Versa</value>
+  </data>
+  <data name="LblBirthDateTitle" xml:space="preserve">
+    <value>Birth Date:</value>
   </data>
   <data name="LblImageBytesTitle" xml:space="preserve">
     <value>Image Bytes:</value>
@@ -1620,7 +1659,34 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="LoginTooltipTitle" xml:space="preserve">
     <value>The form where you login to the system and as this software is an open source administration software designed to be ugly yet professional it will boot away any accounts that aren't registered in the database as administrators or employees.</value>
   </data>
+  <data name="PasswordEditTooltipTitle" xml:space="preserve">
+    <value>The password in the database of the selected user can be set here. Don't forget that if you change it you need to set it accordingly in the login's password for the selected user in the server's login list.</value>
+  </data>
   <data name="PbLoadedImageTooltipTitle" xml:space="preserve">
     <value>This picture loads an image from an open file dialog or from a binary/base64 stream</value>
+  </data>
+  <data name="PhoneEditTooltipTitle" xml:space="preserve">
+    <value>The phone of the selected user can be set here.</value>
+  </data>
+  <data name="UserBirthDateEditTooltipTitle" xml:space="preserve">
+    <value>The birth date of the selected user can be changed here. Only administrators of the database can change that</value>
+  </data>
+  <data name="UsernameEditTooltipTitle" xml:space="preserve">
+    <value>The username in the database of the selected user can be set here. Dont forget that if you have changed it you need to change it in the database's user and the server's login list accordingly.</value>
+  </data>
+  <data name="UserPfpEdtTooltipTitle" xml:space="preserve">
+    <value>The profile picture of the selected user can be set here. The image is saved directly to the database in a binary format and loaded from the binary data so no web server is involved.</value>
+  </data>
+  <data name="UserRoleEditTooltipTitle" xml:space="preserve">
+    <value>The role of the selected user can be set here. If you have changed it will automatically reflect on the product orders that have referenced it and you have to set the user again according to the role. Also you need to change the user in the database's user list to the roles, 0 for Admin(XPAdmin), 1 for Employee(XPEmployee) and 2 for Client(XPClient)</value>
+  </data>
+  <data name="EditVendorTitle" xml:space="preserve">
+    <value>Product Vendor Editor. Add or Update Product Vendor</value>
+  </data>
+  <data name="EditVendorTooltipTitle" xml:space="preserve">
+    <value>The product vendors editor dialog where you can add/edit product vendors that you can access provided you have the permissions to do so.</value>
+  </data>
+  <data name="VendorNameEditTooltipTitle" xml:space="preserve">
+    <value>The name of the selected product vendor can be set here.</value>
   </data>
 </root>

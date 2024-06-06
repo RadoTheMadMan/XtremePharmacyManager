@@ -126,7 +126,7 @@
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
-            this.btnOK.Text = "OK";
+            this.btnOK.Text = GLOBAL_RESOURCES.BTN_OK_TITLE;
             this.ttAccountSettings.SetToolTip(this.btnOK, resources.GetString("btnOK.ToolTip"));
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -141,7 +141,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
-            this.btnCancel.Text = "CANCEL";
+            this.btnCancel.Text =GLOBAL_RESOURCES.BTN_CANCEL_TITLE;
             this.ttAccountSettings.SetToolTip(this.btnCancel, "Click this if you aren\'t sure about changing your account settings, they will be " +
         "reverted back to the previous ones");
             this.btnCancel.UseVisualStyleBackColor = true;

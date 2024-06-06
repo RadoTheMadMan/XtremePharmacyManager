@@ -513,16 +513,38 @@ namespace XtremePharmacyManager
         private static string lOGIN_TOOLTIP_TITLE = "";
         private static string bTN_ADD_LOGIN_TITLE = "";
         private static string bTN_ADD_LOGIN_TOOLTIP_TITLE = "";
-        public static string LBL_LOADED_IMAGE_TITLE = "";
-        public static string IMAGE_BYTES_TOOLTIP_TITLE = "";
-        public static string LBL_IMAGE_BYTES_TITLE = "";
-        public static string BTN_CONVERT_IMAGE_TO_BINARY_TITLE = "";
-        public static string BTN_CONVERT_IMAGE_TO_BINARY_TOOLTIP_TITLE = "";
-        public static string BTN_CONVERT_BINARY_TO_IMAGE_TITLE = "";
-        public static string BTN_CONVERT_BINARY_TO_IMAGE_TOOLTIP_TITLE = "";
-        public static string PB_LOADED_IMAGE_TOOLTIP_TITLE = "";
-        public static string IMG_BIN_WINDOW_TITLE = "";
-        public static string IMG_BIN_TOOLTIP_TITLE = "";
+        private static string lBL_LOADED_IMAGE_TITLE = "";
+        private static string iMAGE_BYTES_TOOLTIP_TITLE = "";
+        private static string lBL_IMAGE_BYTES_TITLE = "";
+        private static string bTN_CONVERT_IMAGE_TO_BINARY_TITLE = "";
+        private static string bTN_CONVERT_IMAGE_TO_BINARY_TOOLTIP_TITLE = "";
+        private static string bTN_CONVERT_BINARY_TO_IMAGE_TITLE = "";
+        private static string bTN_CONVERT_BINARY_TO_IMAGE_TOOLTIP_TITLE = "";
+        private static string pB_LOADED_IMAGE_TOOLTIP_TITLE = "";
+        private static string iMG_BIN_WINDOW_TITLE = "";
+        private static string iMG_BIN_TOOLTIP_TITLE = "";
+        private static string iD_EDIT_TOOLTIP_TITLE = "";
+        private static string bALANCE_EDIT_TOOLTIP_TITLE = "";
+        private static string uSER_ROLE_EDIT_TOOLTIP_TITLE = "";
+        private static string dIAGNOSE_EDIT_TOOLTIP_TITLE = "";
+        private static string aDDRESS_EDIT_TOOLTIP_TITLE = "";
+        private static string eMAIL_EDIT_TOOLTIP_TITLE = "";
+        private static string pHONE_EDIT_TOOLTIP_TITLE = "";
+        private static string dISPLAY_NAME_EDIT_TOOLTIP_TITLE = "";
+        private static string uSER_BIRTH_DATE_EDIT_TOOLTIP_TITLE = "";
+        private static string pASSWORD_EDIT_TOOLTIP_TITLE = "";
+        private static string uSERNAME_EDIT_TOOLTIP_TITLE = "";
+        private static string uSER_PFP_EDIT_TOOLTIP_TITLE = "";
+        private static string bTN_OK_TITLE = "";
+        private static string bTN_OK_EDITOR_TOOLTIP_TITLE = "";
+        private static string bTN_CANCEL_TITLE = "";
+        private static string bTN_CANCEL_EDITOR_TOOLTIP_TITLE = "";
+        private static string lBL_BIRTH_DATE_TITLE = "";
+        private static string eDIT_USER_TITLE = "";
+        private static string eDIT_USER_TOOLTIP_TITLE = "";
+        public static string VENDOR_NAME_EDIT_TOOLTIP_TITLE = "";
+        public static string EDIT_VENDOR_TITLE = "";
+        public static string EDIT_VENDOR_TOOLTIP_TITLE = "";
         public static GLOBAL_RESOURCES instance;
         public EventHandler<CultureInfo> CultureInfoChanged;
 
@@ -1015,6 +1037,35 @@ namespace XtremePharmacyManager
         public static string LOGIN_TOOLTIP_TITLE { get => lOGIN_TOOLTIP_TITLE; set => lOGIN_TOOLTIP_TITLE = value; }
         public static string BTN_ADD_LOGIN_TITLE { get => bTN_ADD_LOGIN_TITLE; set => bTN_ADD_LOGIN_TITLE = value; }
         public static string BTN_ADD_LOGIN_TOOLTIP_TITLE { get => bTN_ADD_LOGIN_TOOLTIP_TITLE; set => bTN_ADD_LOGIN_TOOLTIP_TITLE = value; }
+        public static string LBL_LOADED_IMAGE_TITLE { get => lBL_LOADED_IMAGE_TITLE; set => lBL_LOADED_IMAGE_TITLE = value; }
+        public static string IMAGE_BYTES_TOOLTIP_TITLE { get => iMAGE_BYTES_TOOLTIP_TITLE; set => iMAGE_BYTES_TOOLTIP_TITLE = value; }
+        public static string LBL_IMAGE_BYTES_TITLE { get => lBL_IMAGE_BYTES_TITLE; set => lBL_IMAGE_BYTES_TITLE = value; }
+        public static string BTN_CONVERT_IMAGE_TO_BINARY_TITLE { get => bTN_CONVERT_IMAGE_TO_BINARY_TITLE; set => bTN_CONVERT_IMAGE_TO_BINARY_TITLE = value; }
+        public static string BTN_CONVERT_IMAGE_TO_BINARY_TOOLTIP_TITLE { get => bTN_CONVERT_IMAGE_TO_BINARY_TOOLTIP_TITLE; set => bTN_CONVERT_IMAGE_TO_BINARY_TOOLTIP_TITLE = value; }
+        public static string BTN_CONVERT_BINARY_TO_IMAGE_TITLE { get => bTN_CONVERT_BINARY_TO_IMAGE_TITLE; set => bTN_CONVERT_BINARY_TO_IMAGE_TITLE = value; }
+        public static string BTN_CONVERT_BINARY_TO_IMAGE_TOOLTIP_TITLE { get => bTN_CONVERT_BINARY_TO_IMAGE_TOOLTIP_TITLE; set => bTN_CONVERT_BINARY_TO_IMAGE_TOOLTIP_TITLE = value; }
+        public static string PB_LOADED_IMAGE_TOOLTIP_TITLE { get => pB_LOADED_IMAGE_TOOLTIP_TITLE; set => pB_LOADED_IMAGE_TOOLTIP_TITLE = value; }
+        public static string IMG_BIN_WINDOW_TITLE { get => iMG_BIN_WINDOW_TITLE; set => iMG_BIN_WINDOW_TITLE = value; }
+        public static string IMG_BIN_TOOLTIP_TITLE { get => iMG_BIN_TOOLTIP_TITLE; set => iMG_BIN_TOOLTIP_TITLE = value; }
+        public static string ID_EDIT_TOOLTIP_TITLE { get => iD_EDIT_TOOLTIP_TITLE; set => iD_EDIT_TOOLTIP_TITLE = value; }
+        public static string BALANCE_EDIT_TOOLTIP_TITLE { get => bALANCE_EDIT_TOOLTIP_TITLE; set => bALANCE_EDIT_TOOLTIP_TITLE = value; }
+        public static string USER_ROLE_EDIT_TOOLTIP_TITLE { get => uSER_ROLE_EDIT_TOOLTIP_TITLE; set => uSER_ROLE_EDIT_TOOLTIP_TITLE = value; }
+        public static string DIAGNOSE_EDIT_TOOLTIP_TITLE { get => dIAGNOSE_EDIT_TOOLTIP_TITLE; set => dIAGNOSE_EDIT_TOOLTIP_TITLE = value; }
+        public static string ADDRESS_EDIT_TOOLTIP_TITLE { get => aDDRESS_EDIT_TOOLTIP_TITLE; set => aDDRESS_EDIT_TOOLTIP_TITLE = value; }
+        public static string EMAIL_EDIT_TOOLTIP_TITLE { get => eMAIL_EDIT_TOOLTIP_TITLE; set => eMAIL_EDIT_TOOLTIP_TITLE = value; }
+        public static string PHONE_EDIT_TOOLTIP_TITLE { get => pHONE_EDIT_TOOLTIP_TITLE; set => pHONE_EDIT_TOOLTIP_TITLE = value; }
+        public static string DISPLAY_NAME_EDIT_TOOLTIP_TITLE { get => dISPLAY_NAME_EDIT_TOOLTIP_TITLE; set => dISPLAY_NAME_EDIT_TOOLTIP_TITLE = value; }
+        public static string USER_BIRTH_DATE_EDIT_TOOLTIP_TITLE { get => uSER_BIRTH_DATE_EDIT_TOOLTIP_TITLE; set => uSER_BIRTH_DATE_EDIT_TOOLTIP_TITLE = value; }
+        public static string PASSWORD_EDIT_TOOLTIP_TITLE { get => pASSWORD_EDIT_TOOLTIP_TITLE; set => pASSWORD_EDIT_TOOLTIP_TITLE = value; }
+        public static string USERNAME_EDIT_TOOLTIP_TITLE { get => uSERNAME_EDIT_TOOLTIP_TITLE; set => uSERNAME_EDIT_TOOLTIP_TITLE = value; }
+        public static string USER_PFP_EDIT_TOOLTIP_TITLE { get => uSER_PFP_EDIT_TOOLTIP_TITLE; set => uSER_PFP_EDIT_TOOLTIP_TITLE = value; }
+        public static string BTN_OK_TITLE { get => bTN_OK_TITLE; set => bTN_OK_TITLE = value; }
+        public static string BTN_OK_EDITOR_TOOLTIP_TITLE { get => bTN_OK_EDITOR_TOOLTIP_TITLE; set => bTN_OK_EDITOR_TOOLTIP_TITLE = value; }
+        public static string BTN_CANCEL_TITLE { get => bTN_CANCEL_TITLE; set => bTN_CANCEL_TITLE = value; }
+        public static string BTN_CANCEL_EDITOR_TOOLTIP_TITLE { get => bTN_CANCEL_EDITOR_TOOLTIP_TITLE; set => bTN_CANCEL_EDITOR_TOOLTIP_TITLE = value; }
+        public static string LBL_BIRTH_DATE_TITLE { get => lBL_BIRTH_DATE_TITLE; set => lBL_BIRTH_DATE_TITLE = value; }
+        public static string EDIT_USER_TITLE { get => eDIT_USER_TITLE; set => eDIT_USER_TITLE = value; }
+        public static string EDIT_USER_TOOLTIP_TITLE { get => eDIT_USER_TOOLTIP_TITLE; set => eDIT_USER_TOOLTIP_TITLE = value; }
 
         public GLOBAL_RESOURCES()
         {
@@ -1430,6 +1481,28 @@ namespace XtremePharmacyManager
             BTN_CONVERT_BINARY_TO_IMAGE_TITLE = manager.GetString("BtnConvertBinaryToImageTitle", CultureInfo.CurrentCulture);
             IMG_BIN_WINDOW_TITLE = manager.GetString("ImgBinWindowTitle", CultureInfo.CurrentCulture);
             IMG_BIN_TOOLTIP_TITLE = manager.GetString("ImgBinTooltipTitle", CultureInfo.CurrentCulture);
+            BALANCE_EDIT_TOOLTIP_TITLE = manager.GetString("BalanceEditTooltipTitle", CultureInfo.CurrentCulture);
+            USER_PFP_EDIT_TOOLTIP_TITLE = manager.GetString("UserPfpEdtTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_OK_TITLE = manager.GetString("BtnOKTitle", CultureInfo.CurrentCulture);
+            BTN_OK_EDITOR_TOOLTIP_TITLE = manager.GetString("BtnOKEditorTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_CANCEL_TITLE = manager.GetString("BtnCancelTitle", CultureInfo.CurrentCulture);
+            BTN_CANCEL_EDITOR_TOOLTIP_TITLE = manager.GetString("BtnCancelEditorTooltipTitle", CultureInfo.CurrentCulture);
+            USER_ROLE_EDIT_TOOLTIP_TITLE = manager.GetString("UserRoleEditTooltipTitle", CultureInfo.CurrentCulture);
+            DIAGNOSE_EDIT_TOOLTIP_TITLE = manager.GetString("DiagnoseEditTooltipTitle", CultureInfo.CurrentCulture);
+            ADDRESS_EDIT_TOOLTIP_TITLE = manager.GetString("AddressEditTooltipTitle", CultureInfo.CurrentCulture);
+            EMAIL_EDIT_TOOLTIP_TITLE = manager.GetString("EmailEditTooltipTitle", CultureInfo.CurrentCulture);
+            PHONE_EDIT_TOOLTIP_TITLE = manager.GetString("PhoneEditTooltipTitle", CultureInfo.CurrentCulture);
+            USER_BIRTH_DATE_EDIT_TOOLTIP_TITLE = manager.GetString("UserBirthDateEditTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_BIRTH_DATE_TITLE = manager.GetString("LblBirthDateTitle", CultureInfo.CurrentCulture);
+            DISPLAY_NAME_EDIT_TOOLTIP_TITLE = manager.GetString("DisplayNameEditTooltipTitle", CultureInfo.CurrentCulture);
+            PASSWORD_EDIT_TOOLTIP_TITLE = manager.GetString("PasswordEditTooltipTitle", CultureInfo.CurrentCulture);
+            USERNAME_EDIT_TOOLTIP_TITLE = manager.GetString("UsernameEditTooltipTitle", CultureInfo.CurrentCulture);
+            ID_EDIT_TOOLTIP_TITLE = manager.GetString("IDEditTooltipTitle", CultureInfo.CurrentCulture);
+            EDIT_USER_TITLE = manager.GetString("EditUserTitle", CultureInfo.CurrentCulture);
+            EDIT_USER_TOOLTIP_TITLE = manager.GetString("EditUserTooltipTitle", CultureInfo.CurrentCulture);
+            VENDOR_NAME_EDIT_TOOLTIP_TITLE = manager.GetString("VendorNameEditTooltipTitle", CultureInfo.CurrentCulture);
+            EDIT_VENDOR_TITLE = manager.GetString("EditVendorTitle", CultureInfo.CurrentCulture);
+            EDIT_VENDOR_TOOLTIP_TITLE = manager.GetString("EditVendorTooltipTitle", CultureInfo.CurrentCulture);
             BTN_SEARCH_TITLE = manager.GetString("BtnSearchTitle", CultureInfo.CurrentCulture);
             USERS_MENU_TOOLTIP_TITLE = manager.GetString("UsersMenuTooltipTitle", CultureInfo.CurrentCulture);
             BRANDS_MENU_TOOLTIP_TITLE = manager.GetString("BrandsMenuTooltipTitle", CultureInfo.CurrentCulture);

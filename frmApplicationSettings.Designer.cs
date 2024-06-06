@@ -770,7 +770,7 @@
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
-            this.btnOK.Text = "OK";
+            this.btnOK.Text = GLOBAL_RESOURCES.BTN_OK_TITLE;
             this.ttApplicationSettings.SetToolTip(this.btnOK, "Accept the changes, by clicking it they are saved otherwise nothing gets changed." +
         "The settings reflect on the application once it is restarted");
             this.btnOK.UseVisualStyleBackColor = true;
@@ -786,7 +786,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
-            this.btnCancel.Text = "CANCEL";
+            this.btnCancel.Text =GLOBAL_RESOURCES.BTN_CANCEL_TITLE;
             this.ttApplicationSettings.SetToolTip(this.btnCancel, "Cancel the changes. Even if you changed anything it won\'t be saved and will be re" +
         "verted back to the previous settings");
             this.btnCancel.UseVisualStyleBackColor = true;

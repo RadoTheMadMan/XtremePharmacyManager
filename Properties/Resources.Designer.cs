@@ -171,6 +171,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The address of the selected user can be set here..
+        /// </summary>
+        public static string AddressEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("AddressEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The address with which you want to search users.
         /// </summary>
         public static string AddressSearchTooltip {
@@ -411,6 +420,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The balance of the selected user can be set here. No need to set it manually in some cases though, because the changes in the product orders and order deliveries reflect it automatically on status change..
+        /// </summary>
+        public static string BalanceEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("BalanceEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The balance with which you want to search users.
         /// </summary>
         public static string BalanceSearchTooltipTitle {
@@ -573,6 +591,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to When you click this button the changes to the record will be saved to the memory allowing you to add it as a bulk operation..
+        /// </summary>
+        public static string BtnCancelEditorTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnCancelEditorTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CANCEL.
+        /// </summary>
+        public static string BtnCancelTitle {
+            get {
+                return ResourceManager.GetString("BtnCancelTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to CLEAR_LOGINS.
         /// </summary>
         public static string btnClearLoginsTitle {
@@ -713,6 +749,24 @@ namespace XtremePharmacyManager.Properties {
         public static string btnLoginTooltipTitle {
             get {
                 return ResourceManager.GetString("btnLoginTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When you click OK this record&apos;s changes will be saved to the database..
+        /// </summary>
+        public static string BtnOKEditorTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnOKEditorTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string BtnOKTitle {
+            get {
+                return ResourceManager.GetString("BtnOKTitle", resourceCulture);
             }
         }
         
@@ -1957,6 +2011,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The diagnose of the selected user can be set here..
+        /// </summary>
+        public static string DiagnoseEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("DiagnoseEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The diagnose with which you want to search users.
         /// </summary>
         public static string DiagnoseSearchTooltip {
@@ -1975,6 +2038,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The display name of the selected user can be set here..
+        /// </summary>
+        public static string DisplayNameEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("DisplayNameEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The display name with which you want to search users.
         /// </summary>
         public static string DisplayNameSearchTooltip {
@@ -1984,11 +2056,56 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User Editor. Add or Edit User.
+        /// </summary>
+        public static string EditUserTitle {
+            get {
+                return ResourceManager.GetString("EditUserTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The users editor dialog where you can add/edit users that you can access provided you have the permissions to do so..
+        /// </summary>
+        public static string EditUserTooltipTitle {
+            get {
+                return ResourceManager.GetString("EditUserTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Vendor Editor. Add or Update Product Vendor.
+        /// </summary>
+        public static string EditVendorTitle {
+            get {
+                return ResourceManager.GetString("EditVendorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product vendors editor dialog where you can add/edit product vendors that you can access provided you have the permissions to do so..
+        /// </summary>
+        public static string EditVendorTooltipTitle {
+            get {
+                return ResourceManager.GetString("EditVendorTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email.
         /// </summary>
         public static string EmailColTitle {
             get {
                 return ResourceManager.GetString("EmailColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The email of the selected user can be set here..
+        /// </summary>
+        public static string EmailEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("EmailEditTooltipTitle", resourceCulture);
             }
         }
         
@@ -2079,6 +2196,15 @@ namespace XtremePharmacyManager.Properties {
         public static string HelpTooltipTitle {
             get {
                 return ResourceManager.GetString("HelpTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here is the ID of the selected record. By default IDs in the database cannot be changed so even if you add and ID or change it the database will still set its own ID to the record.
+        /// </summary>
+        public static string IDEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("IDEditTooltipTitle", resourceCulture);
             }
         }
         
@@ -2205,6 +2331,15 @@ namespace XtremePharmacyManager.Properties {
         public static string LblBalanceTitle {
             get {
                 return ResourceManager.GetString("LblBalanceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Birth Date:.
+        /// </summary>
+        public static string LblBirthDateTitle {
+            get {
+                return ResourceManager.GetString("LblBirthDateTitle", resourceCulture);
             }
         }
         
@@ -3367,6 +3502,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The password in the database of the selected user can be set here. Don&apos;t forget that if you change it you need to set it accordingly in the login&apos;s password for the selected user in the server&apos;s login list..
+        /// </summary>
+        public static string PasswordEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("PasswordEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The password with which you want to search users.
         /// </summary>
         public static string PasswordSearchTooltip {
@@ -3462,6 +3606,15 @@ namespace XtremePharmacyManager.Properties {
         public static string PhoneColTitle {
             get {
                 return ResourceManager.GetString("PhoneColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The phone of the selected user can be set here..
+        /// </summary>
+        public static string PhoneEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("PhoneEditTooltipTitle", resourceCulture);
             }
         }
         
@@ -4198,6 +4351,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The birth date of the selected user can be changed here. Only administrators of the database can change that.
+        /// </summary>
+        public static string UserBirthDateEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("UserBirthDateEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to delete users besides your own account..
         /// </summary>
         public static string UserDeleteOperationPermissionError {
@@ -4243,6 +4405,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The username in the database of the selected user can be set here. Dont forget that if you have changed it you need to change it in the database&apos;s user and the server&apos;s login list accordingly..
+        /// </summary>
+        public static string UsernameEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("UsernameEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The username with which you want to search users.
         /// </summary>
         public static string UsernameSearchTooltip {
@@ -4261,6 +4432,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The profile picture of the selected user can be set here. The image is saved directly to the database in a binary format and loaded from the binary data so no web server is involved..
+        /// </summary>
+        public static string UserPfpEdtTooltipTitle {
+            get {
+                return ResourceManager.GetString("UserPfpEdtTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The registration date from which you want to search users.
         /// </summary>
         public static string UserRegDateFromSearchTooltip {
@@ -4275,6 +4455,15 @@ namespace XtremePharmacyManager.Properties {
         public static string UserRegDateToSearchTooltip {
             get {
                 return ResourceManager.GetString("UserRegDateToSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The role of the selected user can be set here. If you have changed it will automatically reflect on the product orders that have referenced it and you have to set the user again according to the role. Also you need to change the user in the database&apos;s user list to the roles, 0 for Admin(XPAdmin), 1 for Employee(XPEmployee) and 2 for Client(XPClient).
+        /// </summary>
+        public static string UserRoleEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("UserRoleEditTooltipTitle", resourceCulture);
             }
         }
         
@@ -4356,6 +4545,15 @@ namespace XtremePharmacyManager.Properties {
         public static string VendorNameColTitle {
             get {
                 return ResourceManager.GetString("VendorNameColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the selected product vendor can be set here..
+        /// </summary>
+        public static string VendorNameEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("VendorNameEditTooltipTitle", resourceCulture);
             }
         }
         
