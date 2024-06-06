@@ -421,15 +421,31 @@ namespace XtremePharmacyManager
         private static string dELIVERY_REASON_COL_TITLE = "";
         private static string oRDER_DELIVERIES_TITLE = "";
         private static string oRDER_DELIVERIES_TOOLTIP_TITLE = "";
-        public static string DELIVERY_PRICE_SEARCH_TOOLTIP_TITLE = "";
-        public static string SERVICE_NAME_SEARCH_TOOLTIP_TITLE = "";
-        public static string LBL_SERVICE_NAME_TITLE = "";
-        public static string DGV_DELIVERY_SERVICES_TOOLTIP_TITLE = "";
-        public static string SERVICE_ID_COL_TITLE = "";
-        public static string SERVICE_NAME_COL_TITLE = "";
-        public static string SERVICE_PRICE_COL_TITLE = "";
-        public static string DELIVERY_SERVICES_TITLE = "";
-        public static string DELIVERY_SERVICES_TOOLTIP_TITLE = "";
+        private static string dELIVERY_PRICE_SEARCH_TOOLTIP_TITLE = "";
+        private static string sERVICE_NAME_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_SERVICE_NAME_TITLE = "";
+        private static string dGV_DELIVERY_SERVICES_TOOLTIP_TITLE = "";
+        private static string sERVICE_ID_COL_TITLE = "";
+        private static string sERVICE_NAME_COL_TITLE = "";
+        private static string sERVICE_PRICE_COL_TITLE = "";
+        private static string dELIVERY_SERVICES_TITLE = "";
+        private static string dELIVERY_SERVICES_TOOLTIP_TITLE = "";
+        private static string rW_REPORTS_TOOLTIP_TITLE = "";
+        private static string rEPORTS_TITLE = "";
+        private static string rEPORTS_TOOLTIP_TITLE = "";
+        public static string FILE_MENU_TOOLTIP_TITLE = "";
+        public static string APP_SETTINGS_MENU_TOOLTIP_TITLE = "";
+        public static string EXIT_MENU_TOOLTIP_TITLE = "";
+        public static string MAIN_MENU_TITLE = "";
+        public static string FILE_MENU_TITLE = "";
+        public static string APP_SETTINGS_MENU_TITLE = "";
+        public static string EXIT_MENU_TITLE = "";
+        public static string ACC_SETTINGS_MENU_TITLE = "";
+        public static string ACC_SETTINGS_MENU_TOOLTIP_TITLE = "";
+        public static string WINDOW_MENU_TITLE = "";
+        public static string WINDOW_MENU_TOOLTIP_TITLE = "";
+        public static string USERS_MENU_TOOLTIP_TITLE = "";
+        public static string BRANDS_MENU_TOOLTIP_TITLE = "";
         public static GLOBAL_RESOURCES instance;
         public EventHandler<CultureInfo> CultureInfoChanged;
 
@@ -830,6 +846,18 @@ namespace XtremePharmacyManager
         public static string DELIVERY_REASON_COL_TITLE { get => dELIVERY_REASON_COL_TITLE; set => dELIVERY_REASON_COL_TITLE = value; }
         public static string ORDER_DELIVERIES_TITLE { get => oRDER_DELIVERIES_TITLE; set => oRDER_DELIVERIES_TITLE = value; }
         public static string ORDER_DELIVERIES_TOOLTIP_TITLE { get => oRDER_DELIVERIES_TOOLTIP_TITLE; set => oRDER_DELIVERIES_TOOLTIP_TITLE = value; }
+        public static string DELIVERY_PRICE_SEARCH_TOOLTIP_TITLE { get => dELIVERY_PRICE_SEARCH_TOOLTIP_TITLE; set => dELIVERY_PRICE_SEARCH_TOOLTIP_TITLE = value; }
+        public static string SERVICE_NAME_SEARCH_TOOLTIP_TITLE { get => sERVICE_NAME_SEARCH_TOOLTIP_TITLE; set => sERVICE_NAME_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_SERVICE_NAME_TITLE { get => lBL_SERVICE_NAME_TITLE; set => lBL_SERVICE_NAME_TITLE = value; }
+        public static string DGV_DELIVERY_SERVICES_TOOLTIP_TITLE { get => dGV_DELIVERY_SERVICES_TOOLTIP_TITLE; set => dGV_DELIVERY_SERVICES_TOOLTIP_TITLE = value; }
+        public static string SERVICE_ID_COL_TITLE { get => sERVICE_ID_COL_TITLE; set => sERVICE_ID_COL_TITLE = value; }
+        public static string SERVICE_NAME_COL_TITLE { get => sERVICE_NAME_COL_TITLE; set => sERVICE_NAME_COL_TITLE = value; }
+        public static string SERVICE_PRICE_COL_TITLE { get => sERVICE_PRICE_COL_TITLE; set => sERVICE_PRICE_COL_TITLE = value; }
+        public static string DELIVERY_SERVICES_TITLE { get => dELIVERY_SERVICES_TITLE; set => dELIVERY_SERVICES_TITLE = value; }
+        public static string DELIVERY_SERVICES_TOOLTIP_TITLE { get => dELIVERY_SERVICES_TOOLTIP_TITLE; set => dELIVERY_SERVICES_TOOLTIP_TITLE = value; }
+        public static string RW_REPORTS_TOOLTIP_TITLE { get => rW_REPORTS_TOOLTIP_TITLE; set => rW_REPORTS_TOOLTIP_TITLE = value; }
+        public static string REPORTS_TITLE { get => rEPORTS_TITLE; set => rEPORTS_TITLE = value; }
+        public static string REPORTS_TOOLTIP_TITLE { get => rEPORTS_TOOLTIP_TITLE; set => rEPORTS_TOOLTIP_TITLE = value; }
 
         public GLOBAL_RESOURCES()
         {
@@ -1156,7 +1184,23 @@ namespace XtremePharmacyManager
             SERVICE_PRICE_COL_TITLE = manager.GetString("ServicePriceColTitle", CultureInfo.CurrentCulture);
             DELIVERY_SERVICES_TITLE = manager.GetString("DelieryServicesTitle", CultureInfo.CurrentCulture);
             DELIVERY_SERVICES_TOOLTIP_TITLE = manager.GetString("DelieryServicesTooltipTitle", CultureInfo.CurrentCulture);
+            RW_REPORTS_TOOLTIP_TITLE = manager.GetString("RwReportsTooltipTitle", CultureInfo.CurrentCulture);
+            REPORTS_TITLE = manager.GetString("ReportsTitle", CultureInfo.CurrentCulture);
+            REPORTS_TOOLTIP_TITLE = manager.GetString("ReportsTooltipTitle", CultureInfo.CurrentCulture);
+            FILE_MENU_TOOLTIP_TITLE = manager.GetString("FileMenuTooltipTitle", CultureInfo.CurrentCulture);
+            APP_SETTINGS_MENU_TOOLTIP_TITLE = manager.GetString("AppSettingsMenuTooltipTitle", CultureInfo.CurrentCulture);
+            EXIT_MENU_TOOLTIP_TITLE = manager.GetString("ExitMenuTooltipTitle", CultureInfo.CurrentCulture);
+            MAIN_MENU_TITLE = manager.GetString("MainMenuTitle", CultureInfo.CurrentCulture);
+            FILE_MENU_TITLE = manager.GetString("FileMenuTitle", CultureInfo.CurrentCulture);
+            APP_SETTINGS_MENU_TITLE = manager.GetString("AppSettingsMenuTitle", CultureInfo.CurrentCulture);
+            EXIT_MENU_TITLE = manager.GetString("ExitMenuTitle", CultureInfo.CurrentCulture);
+            ACC_SETTINGS_MENU_TITLE = manager.GetString("AccSettingsMenuTitle", CultureInfo.CurrentCulture);
+            ACC_SETTINGS_MENU_TOOLTIP_TITLE = manager.GetString("AccSettingsMenuTooltipTitle", CultureInfo.CurrentCulture);
+            WINDOW_MENU_TITLE = manager.GetString("WindowMenuTitle", CultureInfo.CurrentCulture);
+            WINDOW_MENU_TOOLTIP_TITLE = manager.GetString("WindowMenuTooltipTitle", CultureInfo.CurrentCulture);
             BTN_SEARCH_TITLE = manager.GetString("BtnSearchTitle", CultureInfo.CurrentCulture);
+            USERS_MENU_TOOLTIP_TITLE = manager.GetString("UsersMenuTooltipTitle", CultureInfo.CurrentCulture);
+            BRANDS_MENU_TOOLTIP_TITLE = manager.GetString("BrandsMenuTooltipTitle", CultureInfo.CurrentCulture);
             BTN_SEARCH_PRODUCT_IMAGE_TITLE = manager.GetString("BtnSearchProductImageTitle", CultureInfo.CurrentCulture);
             BTN_DELETE_PRODUCT_IMAGE_TITLE = manager.GetString("BtnDeleteProductImageTitle", CultureInfo.CurrentCulture);
             BTN_ADD_EDIT_PRODUCT_IMAGE_TITLE = manager.GetString("BtnAddEditProductImageTitle", CultureInfo.CurrentCulture);

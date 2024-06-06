@@ -77,7 +77,7 @@
             this.msMain.Name = "msMain";
             this.msMain.Size = new System.Drawing.Size(1348, 28);
             this.msMain.TabIndex = 1;
-            this.msMain.Text = "menuStrip1";
+            this.msMain.Text = GLOBAL_RESOURCES.MAIN_MENU_TITLE;
             // 
             // tsmenuFile
             // 
@@ -86,32 +86,31 @@
             this.tsmenuExit});
             this.tsmenuFile.Name = "tsmenuFile";
             this.tsmenuFile.Size = new System.Drawing.Size(46, 26);
-            this.tsmenuFile.Text = "&File";
-            this.tsmenuFile.ToolTipText = "File menu..or is it?";
+            this.tsmenuFile.Text = GLOBAL_RESOURCES.FILE_MENU_TITLE;
+            this.tsmenuFile.ToolTipText = GLOBAL_RESOURCES.FILE_MENU_TOOLTIP_TITLE;
             // 
             // tsmenuApplicationSettings
             // 
             this.tsmenuApplicationSettings.Name = "tsmenuApplicationSettings";
             this.tsmenuApplicationSettings.Size = new System.Drawing.Size(226, 26);
-            this.tsmenuApplicationSettings.Text = "Application Settings";
-            this.tsmenuApplicationSettings.ToolTipText = "The settings for the application. Use this dialog with caution and only if you kn" +
-    "ow what you are doing.";
+            this.tsmenuApplicationSettings.Text = GLOBAL_RESOURCES.APP_SETTINGS_MENU_TITLE;
+            this.tsmenuApplicationSettings.ToolTipText = GLOBAL_RESOURCES.APP_SETTINGS_MENU_TOOLTIP_TITLE;
             this.tsmenuApplicationSettings.Click += new System.EventHandler(this.tsmenuApplicationSettings_Click);
             // 
             // tsmenuExit
             // 
             this.tsmenuExit.Name = "tsmenuExit";
             this.tsmenuExit.Size = new System.Drawing.Size(226, 26);
-            this.tsmenuExit.Text = "Exit";
-            this.tsmenuExit.ToolTipText = "The exiting of the application, similar to when you click its close button";
+            this.tsmenuExit.Text = GLOBAL_RESOURCES.EXIT_MENU_TITLE;
+            this.tsmenuExit.ToolTipText = GLOBAL_RESOURCES.EXIT_MENU_TOOLTIP_TITLE;
             this.tsmenuExit.Click += new System.EventHandler(this.tsmenuExit_Click);
             // 
             // tsmenuAccountSettings
             // 
             this.tsmenuAccountSettings.Name = "tsmenuAccountSettings";
             this.tsmenuAccountSettings.Size = new System.Drawing.Size(134, 24);
-            this.tsmenuAccountSettings.Text = "&Account Settings";
-            this.tsmenuAccountSettings.ToolTipText = "The dialog window where you can change your account settings.";
+            this.tsmenuAccountSettings.Text = GLOBAL_RESOURCES.ACC_SETTINGS_MENU_TITLE;
+            this.tsmenuAccountSettings.ToolTipText = GLOBAL_RESOURCES.ACC_SETTINGS_MENU_TOOLTIP_TITLE;
             this.tsmenuAccountSettings.Click += new System.EventHandler(this.tsmenuAccountSettings_Click);
             // 
             // tsmenuWindow
@@ -129,17 +128,15 @@
             this.tsmenuBulkOperations});
             this.tsmenuWindow.Name = "tsmenuWindow";
             this.tsmenuWindow.Size = new System.Drawing.Size(78, 24);
-            this.tsmenuWindow.Text = "Window";
-            this.tsmenuWindow.ToolTipText = "The list of the windows you can and cannot access. It adapts to your role permiss" +
-    "ions";
+            this.tsmenuWindow.Text = GLOBAL_RESOURCES.WINDOW_MENU_TITLE;
+            this.tsmenuWindow.ToolTipText = GLOBAL_RESOURCES.WINDOW_MENU_TOOLTIP_TITLE;
             // 
             // tsmenuUsers
             // 
             this.tsmenuUsers.Name = "tsmenuUsers";
             this.tsmenuUsers.Size = new System.Drawing.Size(224, 26);
             this.tsmenuUsers.Text = GLOBAL_RESOURCES.USERS_TITLE;
-            this.tsmenuUsers.ToolTipText = "The window for searching and/or editing users. It adapts to your permissions role" +
-    ".";
+            this.tsmenuUsers.ToolTipText = GLOBAL_RESOURCES.USERS_MENU_TOOLTIP_TITLE;
             this.tsmenuUsers.Click += new System.EventHandler(this.tsmenuUsers_Click);
             // 
             // tsmenuProductBrands
@@ -147,8 +144,7 @@
             this.tsmenuProductBrands.Name = "tsmenuProductBrands";
             this.tsmenuProductBrands.Size = new System.Drawing.Size(224, 26);
             this.tsmenuProductBrands.Text = GLOBAL_RESOURCES.PRODUCT_BRANDS_TITLE;
-            this.tsmenuProductBrands.ToolTipText = "The window for searching and/or editing product brands. It adapts to your permiss" +
-    "ions role.";
+            this.tsmenuProductBrands.ToolTipText = GLOBAL_RESOURCES.BRANDS_MENU_TOOLTIP_TITLE;
             this.tsmenuProductBrands.Click += new System.EventHandler(this.tsmenuProductBrands_Click);
             // 
             // tsmenuProductVendors

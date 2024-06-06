@@ -117,6 +117,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Account Settings.
+        /// </summary>
+        public static string AccSettingsMenuTitle {
+            get {
+                return ResourceManager.GetString("AccSettingsMenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The dialog window where you can change your account settings..
+        /// </summary>
+        public static string AccSettingsMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("AccSettingsMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string AddressColTitle {
@@ -176,6 +194,24 @@ namespace XtremePharmacyManager.Properties {
         public static string ApplicationSettingsTitle {
             get {
                 return ResourceManager.GetString("ApplicationSettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Application Settings.
+        /// </summary>
+        public static string AppSettingsMenuTitle {
+            get {
+                return ResourceManager.GetString("AppSettingsMenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The settings for the application. Use this dialog with caution and only if you know what you are doing..
+        /// </summary>
+        public static string AppSettingsMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("AppSettingsMenuTooltipTitle", resourceCulture);
             }
         }
         
@@ -425,6 +461,15 @@ namespace XtremePharmacyManager.Properties {
         public static string BrandNameSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("BrandNameSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The window for searching and/or editing product brands. It adapts to your permissions role..
+        /// </summary>
+        public static string BrandsMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("BrandsMenuTooltipTitle", resourceCulture);
             }
         }
         
@@ -1642,6 +1687,42 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;Exit.
+        /// </summary>
+        public static string ExitMenuTitle {
+            get {
+                return ResourceManager.GetString("ExitMenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The exiting of the application, similar to when you click the close button.
+        /// </summary>
+        public static string ExitMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("ExitMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;File.
+        /// </summary>
+        public static string FileMenuTitle {
+            get {
+                return ResourceManager.GetString("FileMenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File menu..or is it?.
+        /// </summary>
+        public static string FileMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("FileMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string HelpTooltipTitle {
@@ -2435,6 +2516,15 @@ namespace XtremePharmacyManager.Properties {
         public static string LstProductImagesTooltipTitle {
             get {
                 return ResourceManager.GetString("LstProductImagesTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Main Menu.
+        /// </summary>
+        public static string MainMenuTitle {
+            get {
+                return ResourceManager.GetString("MainMenuTitle", resourceCulture);
             }
         }
         
@@ -3234,6 +3324,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reports.
+        /// </summary>
+        public static string ReportsTitle {
+            get {
+                return ResourceManager.GetString("ReportsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The reports dialog window. When you generate any report it will be shown here along with many options for saving, exporting and/or printing it.
+        /// </summary>
+        public static string ReportsTooltipTitle {
+            get {
+                return ResourceManager.GetString("ReportsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Role.
         /// </summary>
         public static string RoleColTitle {
@@ -3248,6 +3356,15 @@ namespace XtremePharmacyManager.Properties {
         public static string RoleSearchTooltip {
             get {
                 return ResourceManager.GetString("RoleSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The report viewer which shows every report you have generated using the applications and gives you various options to save it, export it and/or print it.
+        /// </summary>
+        public static string RwReportsTooltipTitle {
+            get {
+                return ResourceManager.GetString("RwReportsTooltipTitle", resourceCulture);
             }
         }
         
@@ -3487,6 +3604,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The window for searching and/or editing users. It adapts to your permissions role..
+        /// </summary>
+        public static string UsersMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("UsersMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Users.
         /// </summary>
         public static string UsersTitle {
@@ -3600,6 +3726,24 @@ namespace XtremePharmacyManager.Properties {
         public static string WarningTitle {
             get {
                 return ResourceManager.GetString("WarningTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Window.
+        /// </summary>
+        public static string WindowMenuTitle {
+            get {
+                return ResourceManager.GetString("WindowMenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The list of the windows you can and cannot access. It adapts to your role permissions.
+        /// </summary>
+        public static string WindowMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("WindowMenuTooltipTitle", resourceCulture);
             }
         }
     }

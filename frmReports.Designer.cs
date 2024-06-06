@@ -41,8 +41,7 @@
             this.rwReports.ServerReport.BearerToken = null;
             this.rwReports.Size = new System.Drawing.Size(800, 450);
             this.rwReports.TabIndex = 0;
-            this.ttReports.SetToolTip(this.rwReports, "The report viewer which shows every report you have generated using the applicati" +
-        "ons and gives you various options to save it, export it and/or print it");
+            this.ttReports.SetToolTip(this.rwReports, GLOBAL_RESOURCES.RW_REPORTS_TOOLTIP_TITLE);
             this.rwReports.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.FullPage;
             // 
             // ttReports
@@ -59,9 +58,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.rwReports);
             this.Name = "frmReports";
-            this.Text = "Reports";
-            this.ttReports.SetToolTip(this, "The reports dialog window. When you generate any report it will be shown here alo" +
-        "ng with many options for saving, exporting and/or printing it");
+            this.Text = GLOBAL_RESOURCES.REPORTS_TITLE;
+            this.ttReports.SetToolTip(this, GLOBAL_RESOURCES.REPORTS_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmReportcs_Load);
             this.ResumeLayout(false);
 

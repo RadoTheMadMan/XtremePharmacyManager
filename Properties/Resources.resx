@@ -137,6 +137,12 @@ If you still can't update your account ask the administrator for a solution to t
   <data name="AccountSettingsTitle" xml:space="preserve">
     <value>Account Settings</value>
   </data>
+  <data name="AccSettingsMenuTitle" xml:space="preserve">
+    <value>&amp;Account Settings</value>
+  </data>
+  <data name="AccSettingsMenuTooltipTitle" xml:space="preserve">
+    <value>The dialog window where you can change your account settings.</value>
+  </data>
   <data name="AddressColTitle" xml:space="preserve">
     <value>Address</value>
   </data>
@@ -157,6 +163,12 @@ If you still can't update your account ask the administrator for a solution to t
   </data>
   <data name="ApplicationSettingsTitle" xml:space="preserve">
     <value>Application Settings</value>
+  </data>
+  <data name="AppSettingsMenuTitle" xml:space="preserve">
+    <value>&amp;Application Settings</value>
+  </data>
+  <data name="AppSettingsMenuTooltipTitle" xml:space="preserve">
+    <value>The settings for the application. Use this dialog with caution and only if you know what you are doing.</value>
   </data>
   <data name="AssemblyProductName" xml:space="preserve">
     <value>XtremePharmacyManager</value>
@@ -256,6 +268,9 @@ Please retry.</value>
   </data>
   <data name="BrandNameSearchTooltipTitle" xml:space="preserve">
     <value>The brand name with which you want to search product brands</value>
+  </data>
+  <data name="BrandsMenuTooltipTitle" xml:space="preserve">
+    <value>The window for searching and/or editing product brands. It adapts to your permissions role.</value>
   </data>
   <data name="BtnAddEditProductImageTitle" xml:space="preserve">
     <value>ADD/EDIT A PRODUCT IMAGE</value>
@@ -666,6 +681,18 @@ Please check the application configuration and/or contact your system administra
   <data name="EmployeeSearchTooltipTitle" xml:space="preserve">
     <value>The employee with which you want to search product orders</value>
   </data>
+  <data name="ExitMenuTitle" xml:space="preserve">
+    <value>&amp;Exit</value>
+  </data>
+  <data name="ExitMenuTooltipTitle" xml:space="preserve">
+    <value>The exiting of the application, similar to when you click the close button</value>
+  </data>
+  <data name="FileMenuTitle" xml:space="preserve">
+    <value>&amp;File</value>
+  </data>
+  <data name="FileMenuTooltipTitle" xml:space="preserve">
+    <value>File menu..or is it?</value>
+  </data>
   <data name="HelpTooltipTitle" xml:space="preserve">
     <value>Help</value>
   </data>
@@ -934,6 +961,9 @@ should be unique</value>
   </data>
   <data name="LstProductImagesTooltipTitle" xml:space="preserve">
     <value>The list of product images in the database. Select any to add/edit/delete based on your permissions.</value>
+  </data>
+  <data name="MainMenuTitle" xml:space="preserve">
+    <value>Main Menu</value>
   </data>
   <data name="MethodIDColTitle" xml:space="preserve">
     <value>Method ID</value>
@@ -1223,11 +1253,20 @@ This operation is irreversible and can cause troubles in the database relations.
   <data name="ReportGenerationTitle" xml:space="preserve">
     <value>Report Generation</value>
   </data>
+  <data name="ReportsTitle" xml:space="preserve">
+    <value>Reports</value>
+  </data>
+  <data name="ReportsTooltipTitle" xml:space="preserve">
+    <value>The reports dialog window. When you generate any report it will be shown here along with many options for saving, exporting and/or printing it</value>
+  </data>
   <data name="RoleColTitle" xml:space="preserve">
     <value>Role</value>
   </data>
   <data name="RoleSearchTooltip" xml:space="preserve">
     <value>The role in the system with which you want to search users</value>
+  </data>
+  <data name="RwReportsTooltipTitle" xml:space="preserve">
+    <value>The report viewer which shows every report you have generated using the applications and gives you various options to save it, export it and/or print it</value>
   </data>
   <data name="SampleBulkOperationCreateTaskSuccessMessage" xml:space="preserve">
     <value>Sample bulk create task executed successfully.</value>
@@ -1308,6 +1347,9 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="UserRegDateToSearchTooltip" xml:space="preserve">
     <value>The registration date to which you want to search users</value>
   </data>
+  <data name="UsersMenuTooltipTitle" xml:space="preserve">
+    <value>The window for searching and/or editing users. It adapts to your permissions role.</value>
+  </data>
   <data name="UsersTitle" xml:space="preserve">
     <value>Users</value>
   </data>
@@ -1346,5 +1388,11 @@ It is downloaded and converted from binary format to its native format.</value>
   </data>
   <data name="WarningTitle" xml:space="preserve">
     <value>Warning</value>
+  </data>
+  <data name="WindowMenuTitle" xml:space="preserve">
+    <value>&amp;Window</value>
+  </data>
+  <data name="WindowMenuTooltipTitle" xml:space="preserve">
+    <value>The list of the windows you can and cannot access. It adapts to your role permissions</value>
   </data>
 </root>
