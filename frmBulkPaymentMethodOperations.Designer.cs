@@ -340,7 +340,7 @@
             this.lblMethodName.Name = "lblMethodName";
             this.lblMethodName.Size = new System.Drawing.Size(107, 16);
             this.lblMethodName.TabIndex = 3;
-            this.lblMethodName.Text = "Method Name:";
+            this.lblMethodName.Text = GLOBAL_RESOURCES.LBL_METHOD_NAME_TITLE;
             // 
             // txtID
             // 
@@ -391,7 +391,7 @@
             this.ttBulkPaymentMethodOperations.IsBalloon = true;
             this.ttBulkPaymentMethodOperations.ShowAlways = true;
             this.ttBulkPaymentMethodOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttBulkPaymentMethodOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttBulkPaymentMethodOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmBulkPaymentMethodOperations
             // 

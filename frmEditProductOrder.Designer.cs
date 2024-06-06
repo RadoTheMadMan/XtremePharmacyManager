@@ -144,7 +144,7 @@
             this.lblOrderReason.Name = "lblOrderReason";
             this.lblOrderReason.Size = new System.Drawing.Size(108, 16);
             this.lblOrderReason.TabIndex = 53;
-            this.lblOrderReason.Text = "Order Reason:";
+            this.lblOrderReason.Text = GLOBAL_RESOURCES.LBL_ORDER_REASON_TITLE;
             // 
             // lblOrderStatus
             // 
@@ -156,7 +156,7 @@
             this.lblOrderStatus.Name = "lblOrderStatus";
             this.lblOrderStatus.Size = new System.Drawing.Size(97, 16);
             this.lblOrderStatus.TabIndex = 52;
-            this.lblOrderStatus.Text = "Order Status:";
+            this.lblOrderStatus.Text = GLOBAL_RESOURCES.LBL_ORDER_STATUS_TITLE;
             // 
             // cbSelectOrderStatus
             // 
@@ -164,21 +164,21 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.cbSelectOrderStatus.FormattingEnabled = true;
             this.cbSelectOrderStatus.Items.AddRange(new object[] {
-            "Awaiting processing",
-            "Prepaid",
-            "Paid on delivery",
-            "Directly paid",
-            "Generating invoice",
-            "Generating report",
-            "Processing",
-            "Cancelled order",
-            "Returned order",
-            "Completed"});
+            GLOBAL_RESOURCES.LBL_ORDER_STATUS_PENDING,
+            GLOBAL_RESOURCES.LBL_STATUS_PREPAID,
+            GLOBAL_RESOURCES.LBL_STATUS_PAID_ON_DELIVERY,
+            GLOBAL_RESOURCES.LBL_STATUS_DIRECTLY_PAID,
+            GLOBAL_RESOURCES.LBL_STATUS_GENERATING_INVOICE,
+            GLOBAL_RESOURCES.LBL_STATUS_GENERATING_REPORT,
+            GLOBAL_RESOURCES.LBL_ORDER_STATUS_PROCESSING,
+            GLOBAL_RESOURCES.LBL_ORDER_STATUS_CANCELLED,
+            GLOBAL_RESOURCES.LBL_ORDER_STATUS_RETURNED,
+           GLOBAL_RESOURCES.LBL_ORDER_STATUS_COMPLETED});
             this.cbSelectOrderStatus.Location = new System.Drawing.Point(176, 147);
             this.cbSelectOrderStatus.Name = "cbSelectOrderStatus";
             this.cbSelectOrderStatus.Size = new System.Drawing.Size(219, 24);
             this.cbSelectOrderStatus.TabIndex = 51;
-            this.cbSelectOrderStatus.Text = "Awaiting processing";
+            this.cbSelectOrderStatus.Text = GLOBAL_RESOURCES.LBL_ORDER_STATUS_PENDING;
             this.ttEditProductOrder.SetToolTip(this.cbSelectOrderStatus, "The status of the order, changing it automatically calculates the employee balanc" +
         "e, client balance and/or the product quantity if needed");
             // 
@@ -210,7 +210,7 @@
             this.lblEmployee.Name = "lblEmployee";
             this.lblEmployee.Size = new System.Drawing.Size(129, 16);
             this.lblEmployee.TabIndex = 47;
-            this.lblEmployee.Text = "Select Employee:";
+            this.lblEmployee.Text = GLOBAL_RESOURCES.LBL_EMPLOYEE_TITLE;
             // 
             // cbSelectClient
             // 
@@ -239,7 +239,7 @@
             this.lblClient.Name = "lblClient";
             this.lblClient.Size = new System.Drawing.Size(98, 16);
             this.lblClient.TabIndex = 45;
-            this.lblClient.Text = "Select Client:";
+            this.lblClient.Text = GLOBAL_RESOURCES.LBL_CLIENT_TITLE;
             // 
             // trbDesiredQuantity
             // 
@@ -266,7 +266,7 @@
             this.lblDesiredQuantity.Name = "lblDesiredQuantity";
             this.lblDesiredQuantity.Size = new System.Drawing.Size(126, 16);
             this.lblDesiredQuantity.TabIndex = 42;
-            this.lblDesiredQuantity.Text = "Desired Quantity:";
+            this.lblDesiredQuantity.Text = GLOBAL_RESOURCES.LBL_DESIRED_QUANTITY_TITLE;
             // 
             // cbSelectProduct
             // 
@@ -338,7 +338,7 @@
             this.lblPriceOverride.Name = "lblPriceOverride";
             this.lblPriceOverride.Size = new System.Drawing.Size(111, 16);
             this.lblPriceOverride.TabIndex = 19;
-            this.lblPriceOverride.Text = "Price Override:";
+            this.lblPriceOverride.Text = GLOBAL_RESOURCES.LBL_PRICE_OVERRIDE_TITLE;
             // 
             // lblSelectProduct
             // 
@@ -350,7 +350,7 @@
             this.lblSelectProduct.Name = "lblSelectProduct";
             this.lblSelectProduct.Size = new System.Drawing.Size(112, 16);
             this.lblSelectProduct.TabIndex = 5;
-            this.lblSelectProduct.Text = "Select Product:";
+            this.lblSelectProduct.Text = GLOBAL_RESOURCES.LBL_PRODUCT_TITLE;
             // 
             // txtID
             // 
@@ -386,7 +386,7 @@
             this.ttEditProductOrder.IsBalloon = true;
             this.ttEditProductOrder.ShowAlways = true;
             this.ttEditProductOrder.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttEditProductOrder.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttEditProductOrder.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmEditProductOrder
             // 

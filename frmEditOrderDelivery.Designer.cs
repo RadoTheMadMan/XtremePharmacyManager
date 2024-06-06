@@ -103,7 +103,7 @@
             this.lblCargoID.Name = "lblCargoID";
             this.lblCargoID.Size = new System.Drawing.Size(72, 16);
             this.lblCargoID.TabIndex = 56;
-            this.lblCargoID.Text = "Cargo ID:";
+            this.lblCargoID.Text = GLOBAL_RESOURCES.LBL_CARGO_ID_TITLE;
             // 
             // txtCargoID
             // 
@@ -137,7 +137,7 @@
             this.lblDeliveryReason.Name = "lblDeliveryReason";
             this.lblDeliveryReason.Size = new System.Drawing.Size(127, 16);
             this.lblDeliveryReason.TabIndex = 53;
-            this.lblDeliveryReason.Text = "Delivery Reason:";
+            this.lblDeliveryReason.Text = GLOBAL_RESOURCES.LBL_DELIVERY_REASON_TITLE;
             // 
             // lblOrderStatus
             // 
@@ -149,7 +149,7 @@
             this.lblOrderStatus.Name = "lblOrderStatus";
             this.lblOrderStatus.Size = new System.Drawing.Size(97, 16);
             this.lblOrderStatus.TabIndex = 52;
-            this.lblOrderStatus.Text = "Order Status:";
+            this.lblOrderStatus.Text = GLOBAL_RESOURCES.LBL_ORDER_STATUS_TITLE;
             // 
             // cbSelectDeliveryStatus
             // 
@@ -157,21 +157,21 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.cbSelectDeliveryStatus.FormattingEnabled = true;
             this.cbSelectDeliveryStatus.Items.AddRange(new object[] {
-            "pending delivery",
-            "prepaid",
-            "directly paid",
-            "paid on delivery",
-            "generating invoice",
-            "generating report",
-            "on the move",
-            "cancelled delivery",
-            "returned delivery",
-            "delivery completed"});
+           GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_PENDING,
+            GLOBAL_RESOURCES.LBL_STATUS_PREPAID,
+            GLOBAL_RESOURCES.LBL_STATUS_DIRECTLY_PAID,
+            GLOBAL_RESOURCES.LBL_STATUS_PAID_ON_DELIVERY,
+           GLOBAL_RESOURCES.LBL_STATUS_GENERATING_INVOICE,
+            GLOBAL_RESOURCES.LBL_STATUS_GENERATING_REPORT,
+            GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_ON_THE_MOVE,
+            GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_CANCELLED,
+            GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_RETURNED,
+            GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_COMPLETED});
             this.cbSelectDeliveryStatus.Location = new System.Drawing.Point(194, 166);
             this.cbSelectDeliveryStatus.Name = "cbSelectDeliveryStatus";
             this.cbSelectDeliveryStatus.Size = new System.Drawing.Size(201, 24);
             this.cbSelectDeliveryStatus.TabIndex = 51;
-            this.cbSelectDeliveryStatus.Text = "pending delivery";
+            this.cbSelectDeliveryStatus.Text =GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_PENDING;
             this.ttEditOrderDelivery.SetToolTip(this.cbSelectDeliveryStatus, "The delivery status. based on it the status of the product order changes and the " +
         "balances of the registered employees and clients is calculated so be REALLY care" +
         "ful with that");
@@ -202,7 +202,7 @@
             this.lblPaymentMethod.Name = "lblPaymentMethod";
             this.lblPaymentMethod.Size = new System.Drawing.Size(174, 16);
             this.lblPaymentMethod.TabIndex = 47;
-            this.lblPaymentMethod.Text = "Select Payment Method:";
+            this.lblPaymentMethod.Text = GLOBAL_RESOURCES.LBL_PAYMENT_METHOD_TITLE;
             // 
             // cbSelectDeliveryService
             // 
@@ -230,7 +230,7 @@
             this.lblDeliveryService.Name = "lblDeliveryService";
             this.lblDeliveryService.Size = new System.Drawing.Size(174, 16);
             this.lblDeliveryService.TabIndex = 45;
-            this.lblDeliveryService.Text = "Select Delivery Service:";
+            this.lblDeliveryService.Text = GLOBAL_RESOURCES.LBL_DELIVERY_SERVICE_TITLE;
             // 
             // cbSelectProductOrders
             // 
@@ -335,7 +335,7 @@
             this.ttEditOrderDelivery.IsBalloon = true;
             this.ttEditOrderDelivery.ShowAlways = true;
             this.ttEditOrderDelivery.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttEditOrderDelivery.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttEditOrderDelivery.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmEditOrderDelivery
             // 

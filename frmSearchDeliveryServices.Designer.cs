@@ -111,7 +111,7 @@
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(100, 22);
             this.txtPrice.TabIndex = 48;
-            this.ttSearchDeliveryServices.SetToolTip(this.txtPrice, "The service price with which you want to search delivery services");
+            this.ttSearchDeliveryServices.SetToolTip(this.txtPrice, GLOBAL_RESOURCES.DELIVERY_PRICE_SEARCH_TOOLTIP_TITLE);
             this.txtPrice.TextChanged += new System.EventHandler(this.txtPrice_TextChanged);
             // 
             // btnGenerateReport
@@ -125,9 +125,7 @@
             this.btnGenerateReport.Size = new System.Drawing.Size(175, 47);
             this.btnGenerateReport.TabIndex = 47;
             this.btnGenerateReport.Text = GLOBAL_RESOURCES.BTN_GENERATE_REPORT_TITLE;
-            this.ttSearchDeliveryServices.SetToolTip(this.btnGenerateReport, "When you click the button you generate a report on  an entry based on the permiss" +
-        "ions you have and whether the report definition based on localisation is present" +
-        ".");
+            this.ttSearchDeliveryServices.SetToolTip(this.btnGenerateReport, GLOBAL_RESOURCES.BTN_GENERATE_REPORT_TOOLTIP_TITLE);
             this.btnGenerateReport.UseVisualStyleBackColor = true;
             this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
@@ -216,7 +214,7 @@
             this.trbPrice.Size = new System.Drawing.Size(217, 56);
             this.trbPrice.TabIndex = 21;
             this.trbPrice.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.ttSearchDeliveryServices.SetToolTip(this.trbPrice, "The service price with which you want to search delivery services");
+            this.ttSearchDeliveryServices.SetToolTip(this.trbPrice, GLOBAL_RESOURCES.DELIVERY_PRICE_SEARCH_TOOLTIP_TITLE);
             this.trbPrice.Scroll += new System.EventHandler(this.trbPrice_Scroll);
             // 
             // lblPrice
@@ -229,7 +227,7 @@
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(47, 16);
             this.lblPrice.TabIndex = 19;
-            this.lblPrice.Text = "Price:";
+            this.lblPrice.Text = GLOBAL_RESOURCES.LBL_PRICE_TITLE;
             // 
             // txtServiceName
             // 
@@ -239,7 +237,7 @@
             this.txtServiceName.Name = "txtServiceName";
             this.txtServiceName.Size = new System.Drawing.Size(217, 22);
             this.txtServiceName.TabIndex = 4;
-            this.ttSearchDeliveryServices.SetToolTip(this.txtServiceName, "The service name with which you want to search delivery services");
+            this.ttSearchDeliveryServices.SetToolTip(this.txtServiceName, GLOBAL_RESOURCES.SERVICE_NAME_SEARCH_TOOLTIP_TITLE);
             // 
             // lblServiceName
             // 
@@ -251,7 +249,7 @@
             this.lblServiceName.Name = "lblServiceName";
             this.lblServiceName.Size = new System.Drawing.Size(109, 16);
             this.lblServiceName.TabIndex = 3;
-            this.lblServiceName.Text = "Service Name:";
+            this.lblServiceName.Text = GLOBAL_RESOURCES.LBL_SERVICE_NAME_TITLE;
             // 
             // txtID
             // 
@@ -305,15 +303,14 @@
             this.dgvDeliveryServices.RowTemplate.Height = 24;
             this.dgvDeliveryServices.Size = new System.Drawing.Size(475, 160);
             this.dgvDeliveryServices.TabIndex = 1;
-            this.ttSearchDeliveryServices.SetToolTip(this.dgvDeliveryServices, "The list of delivery services in the database. Select any to add/edit/delete/gene" +
-        "rate report based on your permissions.");
+            this.ttSearchDeliveryServices.SetToolTip(this.dgvDeliveryServices, GLOBAL_RESOURCES.DGV_DELIVERY_SERVICES_TOOLTIP_TITLE);
             this.dgvDeliveryServices.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDeliveryServices_CellClick);
             // 
             // IDColumn
             // 
             this.IDColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IDColumn.DataPropertyName = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
-            this.IDColumn.HeaderText = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.IDColumn.DataPropertyName = "ID";
+            this.IDColumn.HeaderText = GLOBAL_RESOURCES.SERVICE_ID_COL_TITLE;
             this.IDColumn.MinimumWidth = 6;
             this.IDColumn.Name = "IDColumn";
             this.IDColumn.ReadOnly = true;
@@ -322,7 +319,7 @@
             // 
             this.ServiceNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ServiceNameColumn.DataPropertyName = "ServiceName";
-            this.ServiceNameColumn.HeaderText = "Service Name";
+            this.ServiceNameColumn.HeaderText = GLOBAL_RESOURCES.SERVICE_NAME_COL_TITLE;
             this.ServiceNameColumn.MinimumWidth = 6;
             this.ServiceNameColumn.Name = "ServiceNameColumn";
             this.ServiceNameColumn.ReadOnly = true;
@@ -331,7 +328,7 @@
             // 
             this.ServicePriceColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ServicePriceColumn.DataPropertyName = "ServicePrice";
-            this.ServicePriceColumn.HeaderText = "Service Price";
+            this.ServicePriceColumn.HeaderText = GLOBAL_RESOURCES.SERVICE_PRICE_COL_TITLE;
             this.ServicePriceColumn.MinimumWidth = 6;
             this.ServicePriceColumn.Name = "ServicePriceColumn";
             this.ServicePriceColumn.ReadOnly = true;
@@ -341,7 +338,7 @@
             this.ttSearchDeliveryServices.IsBalloon = true;
             this.ttSearchDeliveryServices.ShowAlways = true;
             this.ttSearchDeliveryServices.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttSearchDeliveryServices.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttSearchDeliveryServices.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmSearchDeliveryServices
             // 
@@ -351,10 +348,8 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmSearchDeliveryServices";
-            this.Text = "Delivery Services";
-            this.ttSearchDeliveryServices.SetToolTip(this, "The delivery services window where you can search, add, edit, delete and generate" +
-        " reports on the delivery services. Whether you can do it or not depends on your " +
-        "permissions");
+            this.Text = GLOBAL_RESOURCES.DELIVERY_SERVICES_TITLE;
+            this.ttSearchDeliveryServices.SetToolTip(this, GLOBAL_RESOURCES.DELIVERY_SERVICES_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmSearchDeliveryServices_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

@@ -340,7 +340,7 @@
             this.ttLogin.IsBalloon = true;
             this.ttLogin.ShowAlways = true;
             this.ttLogin.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttLogin.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttLogin.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmLogin
             // 

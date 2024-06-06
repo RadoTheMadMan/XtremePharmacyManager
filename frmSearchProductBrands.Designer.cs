@@ -110,9 +110,7 @@
             this.btnGenerateReport.Size = new System.Drawing.Size(175, 47);
             this.btnGenerateReport.TabIndex = 45;
             this.btnGenerateReport.Text = GLOBAL_RESOURCES.BTN_GENERATE_REPORT_TITLE;
-            this.ttSearchProductBrands.SetToolTip(this.btnGenerateReport, "When you click the button you generate a report on  an entry based on the permiss" +
-        "ions you have and whether the report definition based on localisation is present" +
-        ".");
+            this.ttSearchProductBrands.SetToolTip(this.btnGenerateReport, GLOBAL_RESOURCES.BTN_GENERATE_REPORT_TOOLTIP_TITLE);
             this.btnGenerateReport.UseVisualStyleBackColor = true;
             this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
@@ -199,7 +197,7 @@
             this.txtBrandName.Name = "txtBrandName";
             this.txtBrandName.Size = new System.Drawing.Size(225, 22);
             this.txtBrandName.TabIndex = 4;
-            this.ttSearchProductBrands.SetToolTip(this.txtBrandName, "The brand name with which you want to search product brands");
+            this.ttSearchProductBrands.SetToolTip(this.txtBrandName, GLOBAL_RESOURCES.BRAND_NAME_SEARCH_TOOLTIP_TITLE);
             // 
             // lblBrandName
             // 
@@ -211,7 +209,7 @@
             this.lblBrandName.Name = "lblBrandName";
             this.lblBrandName.Size = new System.Drawing.Size(97, 16);
             this.lblBrandName.TabIndex = 3;
-            this.lblBrandName.Text = "Brand Name:";
+            this.lblBrandName.Text = GLOBAL_RESOURCES.LBL_BRAND_NAME_TITLE;
             // 
             // txtID
             // 
@@ -264,8 +262,7 @@
             this.dgvProductBrands.RowTemplate.Height = 24;
             this.dgvProductBrands.Size = new System.Drawing.Size(483, 113);
             this.dgvProductBrands.TabIndex = 1;
-            this.ttSearchProductBrands.SetToolTip(this.dgvProductBrands, "The list of product brands in the database. Select any to add/edit/delete/generat" +
-        "e report based on your permissions.");
+            this.ttSearchProductBrands.SetToolTip(this.dgvProductBrands, GLOBAL_RESOURCES.DGV_PRODUCT_BRANDS_TOOLTIP_TITLE);
             this.dgvProductBrands.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductBrands_CellClick);
             // 
             // ttSearchProductBrands
@@ -273,7 +270,7 @@
             this.ttSearchProductBrands.IsBalloon = true;
             this.ttSearchProductBrands.ShowAlways = true;
             this.ttSearchProductBrands.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttSearchProductBrands.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttSearchProductBrands.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // productBrandBindingSource
             // 
@@ -286,8 +283,8 @@
             // IDColumn
             // 
             this.IDColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IDColumn.DataPropertyName = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
-            this.IDColumn.HeaderText = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.IDColumn.DataPropertyName = "ID";
+            this.IDColumn.HeaderText = GLOBAL_RESOURCES.BRAND_ID_COL_TITLE;
             this.IDColumn.MinimumWidth = 6;
             this.IDColumn.Name = "IDColumn";
             this.IDColumn.ReadOnly = true;
@@ -296,7 +293,7 @@
             // 
             this.BrandNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.BrandNameColumn.DataPropertyName = "BrandName";
-            this.BrandNameColumn.HeaderText = "Brand Name";
+            this.BrandNameColumn.HeaderText = GLOBAL_RESOURCES.BRAND_NAME_COL_TITLE;
             this.BrandNameColumn.MinimumWidth = 6;
             this.BrandNameColumn.Name = "BrandNameColumn";
             this.BrandNameColumn.ReadOnly = true;
@@ -309,10 +306,8 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmSearchProductBrands";
-            this.Text = "Product Brands";
-            this.ttSearchProductBrands.SetToolTip(this, "The product brands window where you can search, add, edit, delete and generate re" +
-        "ports on the product brands. Whether you can do it or not depends on your permis" +
-        "sions");
+            this.Text = GLOBAL_RESOURCES.PRODUCT_BRANDS_TITLE;
+            this.ttSearchProductBrands.SetToolTip(this, GLOBAL_RESOURCES.PRODUCT_BRANDS_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmSearchProductBrands_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

@@ -137,7 +137,7 @@
             // 
             this.tsmenuUsers.Name = "tsmenuUsers";
             this.tsmenuUsers.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuUsers.Text = "Users";
+            this.tsmenuUsers.Text = GLOBAL_RESOURCES.USERS_TITLE;
             this.tsmenuUsers.ToolTipText = "The window for searching and/or editing users. It adapts to your permissions role" +
     ".";
             this.tsmenuUsers.Click += new System.EventHandler(this.tsmenuUsers_Click);
@@ -146,7 +146,7 @@
             // 
             this.tsmenuProductBrands.Name = "tsmenuProductBrands";
             this.tsmenuProductBrands.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuProductBrands.Text = "Product Brands";
+            this.tsmenuProductBrands.Text = GLOBAL_RESOURCES.PRODUCT_BRANDS_TITLE;
             this.tsmenuProductBrands.ToolTipText = "The window for searching and/or editing product brands. It adapts to your permiss" +
     "ions role.";
             this.tsmenuProductBrands.Click += new System.EventHandler(this.tsmenuProductBrands_Click);
@@ -155,7 +155,7 @@
             // 
             this.tsmenuProductVendors.Name = "tsmenuProductVendors";
             this.tsmenuProductVendors.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuProductVendors.Text = "Product Vendors";
+            this.tsmenuProductVendors.Text = GLOBAL_RESOURCES.VENDORS_TITLE;
             this.tsmenuProductVendors.ToolTipText = "The window for searching and/or editing product vendors. It adapts to your permis" +
     "sions role.";
             this.tsmenuProductVendors.Click += new System.EventHandler(this.tsmenuProductVendors_Click);
@@ -164,7 +164,7 @@
             // 
             this.tsmenuPaymentMethods.Name = "tsmenuPaymentMethods";
             this.tsmenuPaymentMethods.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuPaymentMethods.Text = "Payment Methods";
+            this.tsmenuPaymentMethods.Text = GLOBAL_RESOURCES.PAYMENT_METHODS_TITLE;
             this.tsmenuPaymentMethods.ToolTipText = "The window for searching and/or editing payment methods. It adapts to your permis" +
     "sions role.";
             this.tsmenuPaymentMethods.Click += new System.EventHandler(this.tsmenuPaymentMethods_Click);
@@ -173,7 +173,7 @@
             // 
             this.tsmenuDeliveryServices.Name = "tsmenuDeliveryServices";
             this.tsmenuDeliveryServices.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuDeliveryServices.Text = "Delivery Services";
+            this.tsmenuDeliveryServices.Text = GLOBAL_RESOURCES.DELIVERY_SERVICES_TITLE;
             this.tsmenuDeliveryServices.ToolTipText = "The window for searching and/or editing delivery services. It adapts to your perm" +
     "issions role.";
             this.tsmenuDeliveryServices.Click += new System.EventHandler(this.tsmenuDeliveryServices_Click);
@@ -182,7 +182,7 @@
             // 
             this.tsmenuProducts.Name = "tsmenuProducts";
             this.tsmenuProducts.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuProducts.Text = "Products";
+            this.tsmenuProducts.Text = GLOBAL_RESOURCES.PRODUCTS_TITLE;
             this.tsmenuProducts.ToolTipText = "The window for searching and/or editing products. It adapts to your permissions r" +
     "ole.";
             this.tsmenuProducts.Click += new System.EventHandler(this.tsmenuProducts_Click);
@@ -191,7 +191,7 @@
             // 
             this.tsmenuProductOrders.Name = "tsmenuProductOrders";
             this.tsmenuProductOrders.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuProductOrders.Text = "Product Orders";
+            this.tsmenuProductOrders.Text = GLOBAL_RESOURCES.PRODUCT_ORDERS_TITLE;
             this.tsmenuProductOrders.ToolTipText = "The window for searching and/or editing product orders. It adapts to your permiss" +
     "ions role.";
             this.tsmenuProductOrders.Click += new System.EventHandler(this.tsmenuProductOrders_Click);
@@ -200,7 +200,7 @@
             // 
             this.tsmenuOrderDeliveries.Name = "tsmenuOrderDeliveries";
             this.tsmenuOrderDeliveries.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuOrderDeliveries.Text = "Order Deliveries";
+            this.tsmenuOrderDeliveries.Text = GLOBAL_RESOURCES.ORDER_DELIVERIES_TITLE;
             this.tsmenuOrderDeliveries.ToolTipText = "The window for searching and/or editing order deliveries. It adapts to your permi" +
     "ssions role.";
             this.tsmenuOrderDeliveries.Click += new System.EventHandler(this.tsmenuOrderDeliveries_Click);
@@ -244,7 +244,7 @@
             // 
             this.tsmenuBulkProductBrandOperations.Name = "tsmenuBulkProductBrandOperations";
             this.tsmenuBulkProductBrandOperations.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuBulkProductBrandOperations.Text = "Product Brands";
+            this.tsmenuBulkProductBrandOperations.Text = GLOBAL_RESOURCES.PRODUCT_BRANDS_TITLE;
             this.tsmenuBulkProductBrandOperations.ToolTipText = "The product brand bulk operations window. It adapts to your permissions role.";
             this.tsmenuBulkProductBrandOperations.Click += new System.EventHandler(this.tsmenuBulkProductBrandOperations_Click);
             // 
@@ -252,7 +252,7 @@
             // 
             this.tsmenuBulkProductVendorOperations.Name = "tsmenuBulkProductVendorOperations";
             this.tsmenuBulkProductVendorOperations.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuBulkProductVendorOperations.Text = "Product Vendors";
+            this.tsmenuBulkProductVendorOperations.Text = GLOBAL_RESOURCES.VENDORS_TITLE;
             this.tsmenuBulkProductVendorOperations.ToolTipText = "The product vendor bulk operations window. It adapts to your permissions role.";
             this.tsmenuBulkProductVendorOperations.Click += new System.EventHandler(this.tsmenuBulkProductVendorOperations_Click);
             // 
@@ -260,7 +260,7 @@
             // 
             this.tsmenuBulkPaymentMethodOperations.Name = "tsmenuBulkPaymentMethodOperations";
             this.tsmenuBulkPaymentMethodOperations.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuBulkPaymentMethodOperations.Text = "Payment Methods";
+            this.tsmenuBulkPaymentMethodOperations.Text = GLOBAL_RESOURCES.PAYMENT_METHODS_TITLE;
             this.tsmenuBulkPaymentMethodOperations.ToolTipText = "The payment method bulk operations window. It adapts to your permissions role.";
             this.tsmenuBulkPaymentMethodOperations.Click += new System.EventHandler(this.tsmenuBulkPaymentMethodOperations_Click);
             // 
@@ -268,7 +268,7 @@
             // 
             this.tsmenuBulkDeliveryServiceOperations.Name = "tsmenuBulkDeliveryServiceOperations";
             this.tsmenuBulkDeliveryServiceOperations.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuBulkDeliveryServiceOperations.Text = "Delivery Services";
+            this.tsmenuBulkDeliveryServiceOperations.Text = GLOBAL_RESOURCES.DELIVERY_SERVICES_TITLE;
             this.tsmenuBulkDeliveryServiceOperations.ToolTipText = "The delivery service bulk operations window. It adapts to your permissions role.";
             this.tsmenuBulkDeliveryServiceOperations.Click += new System.EventHandler(this.tsmenuBulkDeliveryServiceOperations_Click);
             // 
@@ -276,7 +276,7 @@
             // 
             this.tsmenuBulkProductOperations.Name = "tsmenuBulkProductOperations";
             this.tsmenuBulkProductOperations.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuBulkProductOperations.Text = "Products";
+            this.tsmenuBulkProductOperations.Text = GLOBAL_RESOURCES.PRODUCTS_TITLE;
             this.tsmenuBulkProductOperations.ToolTipText = "The product bulk operations window. It adapts to your permissions role.";
             this.tsmenuBulkProductOperations.Click += new System.EventHandler(this.tsmenuBulkProductOperations_Click);
             // 
@@ -292,7 +292,7 @@
             // 
             this.tsmenuBulkProductOrderOperations.Name = "tsmenuBulkProductOrderOperations";
             this.tsmenuBulkProductOrderOperations.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuBulkProductOrderOperations.Text = "Product Orders";
+            this.tsmenuBulkProductOrderOperations.Text = GLOBAL_RESOURCES.PRODUCT_ORDERS_TITLE;
             this.tsmenuBulkProductOrderOperations.ToolTipText = "The product order bulk operations window. It adapts to your permissions role.";
             this.tsmenuBulkProductOrderOperations.Click += new System.EventHandler(this.tsmenuBulkProductOrderOperations_Click);
             // 
@@ -300,7 +300,7 @@
             // 
             this.tsmenuBulkOrderDeliveryOperations.Name = "tsmenuBulkOrderDeliveryOperations";
             this.tsmenuBulkOrderDeliveryOperations.Size = new System.Drawing.Size(224, 26);
-            this.tsmenuBulkOrderDeliveryOperations.Text = "Order Deliveries";
+            this.tsmenuBulkOrderDeliveryOperations.Text = GLOBAL_RESOURCES.ORDER_DELIVERIES_TITLE;
             this.tsmenuBulkOrderDeliveryOperations.ToolTipText = "The order delivery bulk operations window. It adapts to your permissions role.";
             this.tsmenuBulkOrderDeliveryOperations.Click += new System.EventHandler(this.tsmenuBulkOrderDeliveryOperations_Click);
             // 
@@ -338,7 +338,7 @@
             this.tsmenuAbout});
             this.tsmenuHelp.Name = "tsmenuHelp";
             this.tsmenuHelp.Size = new System.Drawing.Size(55, 24);
-            this.tsmenuHelp.Text = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.tsmenuHelp.Text = GLOBAL_RESOURCES.HELP_TITLE;
             this.tsmenuHelp.ToolTipText = "The help menu for the application";
             // 
             // tsmenuAbout
@@ -354,7 +354,7 @@
             this.ttMain.IsBalloon = true;
             this.ttMain.ShowAlways = true;
             this.ttMain.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttMain.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttMain.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmMain
             // 

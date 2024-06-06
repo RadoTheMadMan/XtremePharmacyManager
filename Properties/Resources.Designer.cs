@@ -90,6 +90,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you are a dumbfuck like my creator read this so you don&apos;t complain that you can&apos;t change your username and/or password.
+        /// </summary>
+        public static string AccountSettingsNoticeTooltipTitle {
+            get {
+                return ResourceManager.GetString("AccountSettingsNoticeTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select a profile picture for your account.
         /// </summary>
         public static string AccountSettingsProfilePicSelectTitle {
@@ -357,6 +366,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brand.
+        /// </summary>
+        public static string BrandColTitle {
+            get {
+                return ResourceManager.GetString("BrandColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to delete product brands..
         /// </summary>
         public static string BrandDeleteOperationPermissionError {
@@ -375,11 +393,47 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brand ID.
+        /// </summary>
+        public static string BrandIDColTitle {
+            get {
+                return ResourceManager.GetString("BrandIDColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product Brand list access is given only to administrators and employees of this system..
         /// </summary>
         public static string BrandMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("BrandMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brand Name.
+        /// </summary>
+        public static string BrandNameColTitle {
+            get {
+                return ResourceManager.GetString("BrandNameColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The brand name with which you want to search product brands.
+        /// </summary>
+        public static string BrandNameSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("BrandNameSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ADD/EDIT A PRODUCT IMAGE.
+        /// </summary>
+        public static string BtnAddEditProductImageTitle {
+            get {
+                return ResourceManager.GetString("BtnAddEditProductImageTitle", resourceCulture);
             }
         }
         
@@ -398,6 +452,15 @@ namespace XtremePharmacyManager.Properties {
         public static string BtnAddEditTooltipTitle {
             get {
                 return ResourceManager.GetString("BtnAddEditTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DELETE A PRODUCT IMAGE.
+        /// </summary>
+        public static string BtnDeleteProductImageTitle {
+            get {
+                return ResourceManager.GetString("BtnDeleteProductImageTitle", resourceCulture);
             }
         }
         
@@ -434,6 +497,15 @@ namespace XtremePharmacyManager.Properties {
         public static string BtnGenerateReportTooltip {
             get {
                 return ResourceManager.GetString("BtnGenerateReportTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEARCH A PRODUCT IMAGE.
+        /// </summary>
+        public static string BtnSearchProductImageTitle {
+            get {
+                return ResourceManager.GetString("BtnSearchProductImageTitle", resourceCulture);
             }
         }
         
@@ -1095,6 +1167,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cargo ID.
+        /// </summary>
+        public static string CargoIDColTitle {
+            get {
+                return ResourceManager.GetString("CargoIDColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The cargo document ID with which you want to search order deliveries.
+        /// </summary>
+        public static string CargoIDSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("CargoIDSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The search modes with which you want to search entries.
         ///All criterias - search by all criterias.
         ///None - show all entries.
@@ -1104,6 +1194,42 @@ namespace XtremePharmacyManager.Properties {
         public static string CbSearchModeTooltipTitle {
             get {
                 return ResourceManager.GetString("CbSearchModeTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product brand with which you want to search products.
+        /// </summary>
+        public static string CbSelectBrandSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("CbSelectBrandSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product vendor with which you want to search products.
+        /// </summary>
+        public static string CbSelectVendorSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("CbSelectVendorSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client.
+        /// </summary>
+        public static string ClientColTitle {
+            get {
+                return ResourceManager.GetString("ClientColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The client with which you want to search product orders.
+        /// </summary>
+        public static string ClientSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("ClientSearchTooltipTitle", resourceCulture);
             }
         }
         
@@ -1219,6 +1345,87 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date Added.
+        /// </summary>
+        public static string DateAddedColTitle {
+            get {
+                return ResourceManager.GetString("DateAddedColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Modified.
+        /// </summary>
+        public static string DateModifiedColTitle {
+            get {
+                return ResourceManager.GetString("DateModifiedColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery Services.
+        /// </summary>
+        public static string DelieryServicesTitle {
+            get {
+                return ResourceManager.GetString("DelieryServicesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The delivery services window where you can search, add, edit, delete and generate reports on the delivery services. Whether you can do it or not depends on your permissions.
+        /// </summary>
+        public static string DelieryServicesTooltipTitle {
+            get {
+                return ResourceManager.GetString("DelieryServicesTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery ID.
+        /// </summary>
+        public static string DeliveryIDColTitle {
+            get {
+                return ResourceManager.GetString("DeliveryIDColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The service price with which you want to search delivery services.
+        /// </summary>
+        public static string DeliveryPriceSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("DeliveryPriceSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery Reason.
+        /// </summary>
+        public static string DeliveryReasonColTitle {
+            get {
+                return ResourceManager.GetString("DeliveryReasonColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The reason with which you want to search order deliveries.
+        /// </summary>
+        public static string DeliveryReasonSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("DeliveryReasonSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery Service.
+        /// </summary>
+        public static string DeliveryServiceColTitle {
+            get {
+                return ResourceManager.GetString("DeliveryServiceColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to delete delivery services..
         /// </summary>
         public static string DeliveryServiceDeleteOperationPermissionError {
@@ -1246,11 +1453,119 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The delivery service with which you want to search order deliveries.
+        /// </summary>
+        public static string DeliveryServiceSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("DeliveryServiceSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery Status.
+        /// </summary>
+        public static string DeliveryStatusColTitle {
+            get {
+                return ResourceManager.GetString("DeliveryStatusColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The status with which you want to search order deliveries.
+        /// </summary>
+        public static string DeliveryStatusSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("DeliveryStatusSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Desired Quantity.
+        /// </summary>
+        public static string DesiredQuantityColTitle {
+            get {
+                return ResourceManager.GetString("DesiredQuantityColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The desired quantity with which you want to search product orders.
+        /// </summary>
+        public static string DesiredQuantitySearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("DesiredQuantitySearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The list of delivery services in the database. Select any to add/edit/delete/generate report based on your permissions..
+        /// </summary>
+        public static string DgvDeliveryServicesTooltipTitle {
+            get {
+                return ResourceManager.GetString("DgvDeliveryServicesTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The list of order deliveries in the database. Select any to add/edit/delete/generate report based on your permissions..
+        /// </summary>
+        public static string DgvOrderDeliveriesTooltipTitle {
+            get {
+                return ResourceManager.GetString("DgvOrderDeliveriesTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The list of payment methods in the database. Select any to add/edit/delete/generate report based on your permissions..
+        /// </summary>
+        public static string DgvPaymentMethodsTooltipTitle {
+            get {
+                return ResourceManager.GetString("DgvPaymentMethodsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The list of product brands in the database. Select any to add/edit/delete/generate report based on your permissions..
+        /// </summary>
+        public static string DgvProductBrandsTooltipTitle {
+            get {
+                return ResourceManager.GetString("DgvProductBrandsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The list of product orders in the database. Select any to add/edit/delete/generate report based on your permissions..
+        /// </summary>
+        public static string DgvProductOrdersTooltipTitle {
+            get {
+                return ResourceManager.GetString("DgvProductOrdersTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The list of products in the database. Select any to add/edit/delete/generate report based on your permissions..
+        /// </summary>
+        public static string DgvProductsTooltipTitle {
+            get {
+                return ResourceManager.GetString("DgvProductsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The list of users in the database. Select any to add/edit/delete/generate report based on your permissions..
         /// </summary>
         public static string DgvUsersTooltipTitle {
             get {
                 return ResourceManager.GetString("DgvUsersTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The list of product vendors in the database. Select any to add/edit/delete/generate report based on your permissions..
+        /// </summary>
+        public static string DgvVendorsTooltipTitle {
+            get {
+                return ResourceManager.GetString("DgvVendorsTooltipTitle", resourceCulture);
             }
         }
         
@@ -1309,6 +1624,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee.
+        /// </summary>
+        public static string EmployeeColTitle {
+            get {
+                return ResourceManager.GetString("EmployeeColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The employee with which you want to search product orders.
+        /// </summary>
+        public static string EmployeeSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("EmployeeSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string HelpTooltipTitle {
@@ -1332,6 +1665,15 @@ namespace XtremePharmacyManager.Properties {
         public static string ImageBinConverterConvertImageTitle {
             get {
                 return ResourceManager.GetString("ImageBinConverterConvertImageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name with which you want to search product images.
+        /// </summary>
+        public static string ImageNameSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("ImageNameSearchTooltipTitle", resourceCulture);
             }
         }
         
@@ -1381,11 +1723,128 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brand Name:.
+        /// </summary>
+        public static string LblBrandNameTitle {
+            get {
+                return ResourceManager.GetString("LblBrandNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Brand:.
+        /// </summary>
+        public static string LblBrandTitle {
+            get {
+                return ResourceManager.GetString("LblBrandTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Operation Results:.
         /// </summary>
         public static string lblBulkOperationResultsText {
             get {
                 return ResourceManager.GetString("lblBulkOperationResultsText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cargo ID:.
+        /// </summary>
+        public static string LblCargoIDTitle {
+            get {
+                return ResourceManager.GetString("LblCargoIDTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Client:.
+        /// </summary>
+        public static string LblClientTitle {
+            get {
+                return ResourceManager.GetString("LblClientTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery Reason:.
+        /// </summary>
+        public static string LblDeliveryReasonTitle {
+            get {
+                return ResourceManager.GetString("LblDeliveryReasonTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery Service:.
+        /// </summary>
+        public static string LblDeliveryServiceTitle {
+            get {
+                return ResourceManager.GetString("LblDeliveryServiceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelled delivery.
+        /// </summary>
+        public static string LblDeliveryStatusCancelled {
+            get {
+                return ResourceManager.GetString("LblDeliveryStatusCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery completed.
+        /// </summary>
+        public static string LblDeliveryStatusCompleted {
+            get {
+                return ResourceManager.GetString("LblDeliveryStatusCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to On the move.
+        /// </summary>
+        public static string LblDeliveryStatusOnTheMove {
+            get {
+                return ResourceManager.GetString("LblDeliveryStatusOnTheMove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pending delivery.
+        /// </summary>
+        public static string LblDeliveryStatusPending {
+            get {
+                return ResourceManager.GetString("LblDeliveryStatusPending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Returned delivery.
+        /// </summary>
+        public static string LblDeliveryStatusReturned {
+            get {
+                return ResourceManager.GetString("LblDeliveryStatusReturned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery Status:.
+        /// </summary>
+        public static string LblDeliveryStatusTitle {
+            get {
+                return ResourceManager.GetString("LblDeliveryStatusTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Desired Quantity:.
+        /// </summary>
+        public static string LblDesiredQuantityTitle {
+            get {
+                return ResourceManager.GetString("LblDesiredQuantityTitle", resourceCulture);
             }
         }
         
@@ -1417,11 +1876,128 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee:.
+        /// </summary>
+        public static string LblEmployeeTitle {
+            get {
+                return ResourceManager.GetString("LblEmployeeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ID:.
         /// </summary>
         public static string LblIDTitle {
             get {
                 return ResourceManager.GetString("LblIDTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image ID:.
+        /// </summary>
+        public static string LblImageIDTitle {
+            get {
+                return ResourceManager.GetString("LblImageIDTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Image Name:.
+        /// </summary>
+        public static string LblImageNameTitle {
+            get {
+                return ResourceManager.GetString("LblImageNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Images:.
+        /// </summary>
+        public static string LblImagesTitle {
+            get {
+                return ResourceManager.GetString("LblImagesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Method Name:.
+        /// </summary>
+        public static string LblMethodNameTitle {
+            get {
+                return ResourceManager.GetString("LblMethodNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Reason:.
+        /// </summary>
+        public static string LblOrderReasonTitle {
+            get {
+                return ResourceManager.GetString("LblOrderReasonTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelled order.
+        /// </summary>
+        public static string LblOrderStatusCancelled {
+            get {
+                return ResourceManager.GetString("LblOrderStatusCancelled", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Completed.
+        /// </summary>
+        public static string LblOrderStatusCompleted {
+            get {
+                return ResourceManager.GetString("LblOrderStatusCompleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Awaiting processing.
+        /// </summary>
+        public static string LblOrderStatusPending {
+            get {
+                return ResourceManager.GetString("LblOrderStatusPending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Processing.
+        /// </summary>
+        public static string LblOrderStatusProcessing {
+            get {
+                return ResourceManager.GetString("LblOrderStatusProcessing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Returned order.
+        /// </summary>
+        public static string LblOrderStatusReturned {
+            get {
+                return ResourceManager.GetString("LblOrderStatusReturned", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Status:.
+        /// </summary>
+        public static string LblOrderStatusTitle {
+            get {
+                return ResourceManager.GetString("LblOrderStatusTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Partitude Number:.
+        /// </summary>
+        public static string LblPartNumTitle {
+            get {
+                return ResourceManager.GetString("LblPartNumTitle", resourceCulture);
             }
         }
         
@@ -1435,11 +2011,176 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payment Method:.
+        /// </summary>
+        public static string LblPaymentMethodTitle {
+            get {
+                return ResourceManager.GetString("LblPaymentMethodTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone:.
         /// </summary>
         public static string LblPhoneTitle {
             get {
                 return ResourceManager.GetString("LblPhoneTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Added From:.
+        /// </summary>
+        public static string LblPODateAddedFromTitle {
+            get {
+                return ResourceManager.GetString("LblPODateAddedFromTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Added To:.
+        /// </summary>
+        public static string LblPODateAddedToTitle {
+            get {
+                return ResourceManager.GetString("LblPODateAddedToTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Modified From:.
+        /// </summary>
+        public static string LblPODateModifiedFromTitle {
+            get {
+                return ResourceManager.GetString("LblPODateModifiedFromTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Modified To:.
+        /// </summary>
+        public static string LblPODateModifiedToTitle {
+            get {
+                return ResourceManager.GetString("LblPODateModifiedToTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price Override:.
+        /// </summary>
+        public static string LblPriceOverrideTitle {
+            get {
+                return ResourceManager.GetString("LblPriceOverrideTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Price:.
+        /// </summary>
+        public static string LblPriceTitle {
+            get {
+                return ResourceManager.GetString("LblPriceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description:.
+        /// </summary>
+        public static string LblProductDescriptionTitle {
+            get {
+                return ResourceManager.GetString("LblProductDescriptionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expiry Date From:.
+        /// </summary>
+        public static string LblProductExpDateFromTitle {
+            get {
+                return ResourceManager.GetString("LblProductExpDateFromTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expiry Date To:.
+        /// </summary>
+        public static string LblProductExpDateToTitle {
+            get {
+                return ResourceManager.GetString("LblProductExpDateToTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IMPORTANT NOTICE: Product Images are usually sought
+        ///along with products but you can search them separately.
+        /// </summary>
+        public static string LblProductImageNoticeTitle {
+            get {
+                return ResourceManager.GetString("LblProductImageNoticeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Name:.
+        /// </summary>
+        public static string LblProductNameTitle {
+            get {
+                return ResourceManager.GetString("LblProductNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IMPORTANT NOTICE: To see the expiry date
+        ///check the side of the product package 
+        ///where the partitude number is.
+        /// </summary>
+        public static string LblProductNoticeTitle {
+            get {
+                return ResourceManager.GetString("LblProductNoticeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Order ID:.
+        /// </summary>
+        public static string LblProductOrderTitle {
+            get {
+                return ResourceManager.GetString("LblProductOrderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product:.
+        /// </summary>
+        public static string LblProductTitle {
+            get {
+                return ResourceManager.GetString("LblProductTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quantity:.
+        /// </summary>
+        public static string LblQuantityTitle {
+            get {
+                return ResourceManager.GetString("LblQuantityTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Referenced ID:.
+        /// </summary>
+        public static string LblReferencedIDTitle {
+            get {
+                return ResourceManager.GetString("LblReferencedIDTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration Number:.
+        /// </summary>
+        public static string LblRegNumTitle {
+            get {
+                return ResourceManager.GetString("LblRegNumTitle", resourceCulture);
             }
         }
         
@@ -1525,6 +2266,78 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Service Name:.
+        /// </summary>
+        public static string LblServiceNameTitle {
+            get {
+                return ResourceManager.GetString("LblServiceNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Storage Location:.
+        /// </summary>
+        public static string LblSLocationTitle {
+            get {
+                return ResourceManager.GetString("LblSLocationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Directly paid.
+        /// </summary>
+        public static string LblStatusDirectlyPaid {
+            get {
+                return ResourceManager.GetString("LblStatusDirectlyPaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generating invoice.
+        /// </summary>
+        public static string LblStatusGeneratingInvoice {
+            get {
+                return ResourceManager.GetString("LblStatusGeneratingInvoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generating report.
+        /// </summary>
+        public static string LblStatusGeneratingReport {
+            get {
+                return ResourceManager.GetString("LblStatusGeneratingReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Paid on delivery.
+        /// </summary>
+        public static string LblStatusPaidOnDelivery {
+            get {
+                return ResourceManager.GetString("LblStatusPaidOnDelivery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prepaid.
+        /// </summary>
+        public static string LblStatusPrepaid {
+            get {
+                return ResourceManager.GetString("LblStatusPrepaid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Price:.
+        /// </summary>
+        public static string LblTotalPriceTitle {
+            get {
+                return ResourceManager.GetString("LblTotalPriceTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Birth Date From:.
         /// </summary>
         public static string LblUserBDateFromTitle {
@@ -1581,6 +2394,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vendor Name:.
+        /// </summary>
+        public static string LblVendorNameTitle {
+            get {
+                return ResourceManager.GetString("LblVendorNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vendor:.
+        /// </summary>
+        public static string LblVendorTitle {
+            get {
+                return ResourceManager.GetString("LblVendorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string LoginTitle {
@@ -1599,11 +2430,101 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The list of product images in the database. Select any to add/edit/delete based on your permissions..
+        /// </summary>
+        public static string LstProductImagesTooltipTitle {
+            get {
+                return ResourceManager.GetString("LstProductImagesTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Method ID.
+        /// </summary>
+        public static string MethodIDColTitle {
+            get {
+                return ResourceManager.GetString("MethodIDColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Method Name.
+        /// </summary>
+        public static string MethodNameColTitle {
+            get {
+                return ResourceManager.GetString("MethodNameColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The method name with which you want to search payment methods.
+        /// </summary>
+        public static string MethodNameSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("MethodNameSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Order.
         /// </summary>
         public static string NewOrderTitle {
             get {
                 return ResourceManager.GetString("NewOrderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The date added from which you want to search order deliveries.
+        /// </summary>
+        public static string ODDateAddedFromSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("ODDateAddedFromSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The date added to which you want to search order deliveries.
+        /// </summary>
+        public static string ODDateAddedToSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("ODDateAddedToSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The date modified from which you want to search order deliveries.
+        /// </summary>
+        public static string ODDateModifiedFromSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("ODDateModifiedFromSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The date modified to which you want to search order deliveries.
+        /// </summary>
+        public static string ODDateModifiedToSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("ODDateModifiedToSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Deliveries.
+        /// </summary>
+        public static string OrderDeliveriesTitle {
+            get {
+                return ResourceManager.GetString("OrderDeliveriesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The order deliveries window where you can search, add, edit, delete and generate reports on the order deliveries. Whether you can do it or not depends on your permissions.
+        /// </summary>
+        public static string OrderDeliveriesTooltipTitle {
+            get {
+                return ResourceManager.GetString("OrderDeliveriesTooltipTitle", resourceCulture);
             }
         }
         
@@ -1644,6 +2565,97 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IMPORTANT NOTICE: When editing order deliveries
+        ///keep in mind these rules:
+        ///1. The total price is automatically calculated by the system
+        ///by the product order price assigned to the delivery and the price of the
+        ///delivery service assigned to the delivery.
+        ///2. Always put a reason behind your edits, that&apos;s what
+        ///Delivery Reason is for
+        ///3. Client balance and employee balance are calculated
+        ///automatically upon changing the status so be careful when
+        ///setting it and use your common sense
+        ///4. Deliveries who are com [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string OrderDeliveryNoticeTitle {
+            get {
+                return ResourceManager.GetString("OrderDeliveryNoticeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you are a dumbfuck like my creator read this so you don&apos;t complain that you can&apos;t change the order delivery data via any operation.
+        /// </summary>
+        public static string OrderDeliveryNoticeTooltipTitle {
+            get {
+                return ResourceManager.GetString("OrderDeliveryNoticeTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order ID.
+        /// </summary>
+        public static string OrderIDColTitle {
+            get {
+                return ResourceManager.GetString("OrderIDColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Price.
+        /// </summary>
+        public static string OrderPriceColTitle {
+            get {
+                return ResourceManager.GetString("OrderPriceColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Reason.
+        /// </summary>
+        public static string OrderReasonColTitle {
+            get {
+                return ResourceManager.GetString("OrderReasonColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The reason with which you want to search product orders.
+        /// </summary>
+        public static string OrderReasonSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("OrderReasonSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Status.
+        /// </summary>
+        public static string OrderStatusColTitle {
+            get {
+                return ResourceManager.GetString("OrderStatusColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The status with which you want to search product orders.
+        /// </summary>
+        public static string OrderStatusSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("OrderStatusSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product partitude number with which you want to search products.
+        /// </summary>
+        public static string PartNumSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("PartNumSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string PasswordColTitle {
@@ -1658,6 +2670,15 @@ namespace XtremePharmacyManager.Properties {
         public static string PasswordSearchTooltip {
             get {
                 return ResourceManager.GetString("PasswordSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Method.
+        /// </summary>
+        public static string PaymentMethodColTitle {
+            get {
+                return ResourceManager.GetString("PaymentMethodColTitle", resourceCulture);
             }
         }
         
@@ -1689,6 +2710,33 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The payment method with which you want to search order deliveries.
+        /// </summary>
+        public static string PaymentMethodSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("PaymentMethodSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Methods.
+        /// </summary>
+        public static string PaymentMethodsTitle {
+            get {
+                return ResourceManager.GetString("PaymentMethodsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The payment methods window where you can search, add, edit, delete and generate reports on the payment methods. Whether you can do it or not depends on your permissions..
+        /// </summary>
+        public static string PaymentMethodsTooltipTitle {
+            get {
+                return ResourceManager.GetString("PaymentMethodsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone.
         /// </summary>
         public static string PhoneColTitle {
@@ -1707,6 +2755,78 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The date added from which you want to search product orders.
+        /// </summary>
+        public static string PODateAddedFromSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("PODateAddedFromSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The date added to which you want to search product orders.
+        /// </summary>
+        public static string PODateAddedToSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("PODateAddedToSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The date modified from which you want to search product orders.
+        /// </summary>
+        public static string PODateModifiedFromSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("PODateModifiedFromSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The date modified to which you want to search product orders.
+        /// </summary>
+        public static string PODateModifiedToSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("PODateModifiedToSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The price overrride with which you want to search product orders.
+        /// </summary>
+        public static string PriceOverrideSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("PriceOverrideSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Brands.
+        /// </summary>
+        public static string ProductBrandsTitle {
+            get {
+                return ResourceManager.GetString("ProductBrandsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product brands window where you can search, add, edit, delete and generate reports on the product brands. Whether you can do it or not depends on your permissions.
+        /// </summary>
+        public static string ProductBrandsTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductBrandsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product.
+        /// </summary>
+        public static string ProductColTitle {
+            get {
+                return ResourceManager.GetString("ProductColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to delete products..
         /// </summary>
         public static string ProductDeleteOperationPermissionError {
@@ -1716,11 +2836,65 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Description.
+        /// </summary>
+        public static string ProductDescriptionColTitle {
+            get {
+                return ResourceManager.GetString("ProductDescriptionColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product description with which you want to search products.
+        /// </summary>
+        public static string ProductDescriptionSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductDescriptionSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to add/edit products..
         /// </summary>
         public static string ProductEditOperationPermissionError {
             get {
                 return ResourceManager.GetString("ProductEditOperationPermissionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expiry Date.
+        /// </summary>
+        public static string ProductExpDateColTitle {
+            get {
+                return ResourceManager.GetString("ProductExpDateColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The expiry date from which you want to search products.
+        /// </summary>
+        public static string ProductExpDateFromSearchTooltip {
+            get {
+                return ResourceManager.GetString("ProductExpDateFromSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The expiry date to which you want to search products.
+        /// </summary>
+        public static string ProductExpDateToSearchTooltip {
+            get {
+                return ResourceManager.GetString("ProductExpDateToSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product ID.
+        /// </summary>
+        public static string ProductIDColTitle {
+            get {
+                return ResourceManager.GetString("ProductIDColTitle", resourceCulture);
             }
         }
         
@@ -1770,6 +2944,42 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Name.
+        /// </summary>
+        public static string ProductNameColTitle {
+            get {
+                return ResourceManager.GetString("ProductNameColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product name with which you want to search products.
+        /// </summary>
+        public static string ProductNameSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductNameSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you are a dumbfuck like my creator read this so you don&apos;t complain that you can&apos;t change the product and/or product image data via any operation.
+        /// </summary>
+        public static string ProductNoticeTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductNoticeTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Order ID.
+        /// </summary>
+        public static string ProductOrderColTitle {
+            get {
+                return ResourceManager.GetString("ProductOrderColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to delete product orders..
         /// </summary>
         public static string ProductOrderDeleteOperationPermissionError {
@@ -1806,6 +3016,61 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IMPORTANT NOTICE: When editing product orders
+        ///keep in mind these rules:
+        ///1. The price is automatically calculated by the system
+        ///and you need to set price higher than the product price
+        ///or the product price times the desired quantity in order to
+        ///override it. Price higher than the product price overrides 
+        ///the product price and recalculates the final price
+        ///while price higher than the final price overrides
+        ///the final price.
+        ///2. Select yourself in the select employee list when editing
+        ///so it is known that i [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ProductOrderNoticeTitle {
+            get {
+                return ResourceManager.GetString("ProductOrderNoticeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you are a dumbfuck like my creator read this so you don&apos;t complain that you can&apos;t change the product order data via any operation.
+        /// </summary>
+        public static string ProductOrderNoticeTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductOrderNoticeTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product order with which you want to search order deliveries.
+        /// </summary>
+        public static string ProductOrderSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductOrderSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Orders.
+        /// </summary>
+        public static string ProductOrdersTitle {
+            get {
+                return ResourceManager.GetString("ProductOrdersTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product orders window where you can search, add, edit, delete and generate reports on the product orders. Whether you can do it or not depends on your permissions..
+        /// </summary>
+        public static string ProductOrdersTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductOrdersTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Do you want to override the price of that order as total?.
         /// </summary>
         public static string ProductOrderTotalPriceOverrideQuestion {
@@ -1815,11 +3080,101 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Partitude Number.
+        /// </summary>
+        public static string ProductPartNumColTitle {
+            get {
+                return ResourceManager.GetString("ProductPartNumColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Price.
+        /// </summary>
+        public static string ProductPriceColTitle {
+            get {
+                return ResourceManager.GetString("ProductPriceColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The base price with which you want to search products.
+        /// </summary>
+        public static string ProductPriceSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductPriceSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Quantity.
+        /// </summary>
+        public static string ProductQuantityColTitle {
+            get {
+                return ResourceManager.GetString("ProductQuantityColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registration Number.
+        /// </summary>
+        public static string ProductRegNumColTitle {
+            get {
+                return ResourceManager.GetString("ProductRegNumColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product with which you want to search product orders.
+        /// </summary>
+        public static string ProductSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Storage Location.
+        /// </summary>
+        public static string ProductSLocationColTitle {
+            get {
+                return ResourceManager.GetString("ProductSLocationColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Products.
+        /// </summary>
+        public static string ProductsTitle {
+            get {
+                return ResourceManager.GetString("ProductsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The products window where you can search, add, edit, delete and generate reports on the products and add/edit/delete product images. Whether you can do it or not depends on your permissions.
+        /// </summary>
+        public static string ProductsTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profile Picture.
         /// </summary>
         public static string ProfilePicColTitle {
             get {
                 return ResourceManager.GetString("ProfilePicColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The storage quantity with which you want to search products.
+        /// </summary>
+        public static string QuantitySearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("QuantitySearchTooltipTitle", resourceCulture);
             }
         }
         
@@ -1834,11 +3189,29 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The ID of the product with which you want to search product images.
+        /// </summary>
+        public static string ReferencedIDSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("ReferencedIDSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Register Date.
         /// </summary>
         public static string RegisterDateColTitle {
             get {
                 return ResourceManager.GetString("RegisterDateColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product registration number with which you want to search products.
+        /// </summary>
+        public static string RegNumSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("RegNumSearchTooltipTitle", resourceCulture);
             }
         }
         
@@ -1915,6 +3288,61 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Here the selected product image is previewed so you can see it.
+        ///It is downloaded and converted from binary format to its native format..
+        /// </summary>
+        public static string SelectedProductImageTooltipTitle {
+            get {
+                return ResourceManager.GetString("SelectedProductImageTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Service ID.
+        /// </summary>
+        public static string ServiceIDColTitle {
+            get {
+                return ResourceManager.GetString("ServiceIDColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Service Name.
+        /// </summary>
+        public static string ServiceNameColTitle {
+            get {
+                return ResourceManager.GetString("ServiceNameColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The service name with which you want to search delivery services.
+        /// </summary>
+        public static string ServiceNameSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("ServiceNameSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Service Price.
+        /// </summary>
+        public static string ServicePriceColTitle {
+            get {
+                return ResourceManager.GetString("ServicePriceColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product storage location with which you want to search products.
+        /// </summary>
+        public static string SLocationSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("SLocationSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Stack Trace: .
         /// </summary>
         public static string StackTraceMessage {
@@ -1929,6 +3357,24 @@ namespace XtremePharmacyManager.Properties {
         public static string TestTitle {
             get {
                 return ResourceManager.GetString("TestTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Price.
+        /// </summary>
+        public static string TotalPriceColTitle {
+            get {
+                return ResourceManager.GetString("TotalPriceColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The total price with which you want to search order deliveries.
+        /// </summary>
+        public static string TotalPriceSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("TotalPriceSearchTooltipTitle", resourceCulture);
             }
         }
         
@@ -2059,6 +3505,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vendor.
+        /// </summary>
+        public static string VendorColTitle {
+            get {
+                return ResourceManager.GetString("VendorColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You don&apos;t have permissions to delete product vendors..
         /// </summary>
         public static string VendorDeleteOperationPermissionError {
@@ -2077,11 +3532,56 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Vendor ID.
+        /// </summary>
+        public static string VendorIDColTitle {
+            get {
+                return ResourceManager.GetString("VendorIDColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product Vendors list access is given only to administrators and employees of this system..
         /// </summary>
         public static string VendorMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("VendorMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vendor Name.
+        /// </summary>
+        public static string VendorNameColTitle {
+            get {
+                return ResourceManager.GetString("VendorNameColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The vendor name with which you want to search product vendors.
+        /// </summary>
+        public static string VendorNameSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("VendorNameSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Vendors.
+        /// </summary>
+        public static string VendorsTitle {
+            get {
+                return ResourceManager.GetString("VendorsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product vendors window where you can search, add, edit, delete and generate reports on the product vendors. Whether you can do it or not depends on your permissions.
+        /// </summary>
+        public static string VendorsTooltipTitle {
+            get {
+                return ResourceManager.GetString("VendorsTooltipTitle", resourceCulture);
             }
         }
         

@@ -167,7 +167,7 @@
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(47, 16);
             this.lblPrice.TabIndex = 49;
-            this.lblPrice.Text = "Price:";
+            this.lblPrice.Text = GLOBAL_RESOURCES.LBL_PRICE_TITLE;
             // 
             // cbSelectRecord
             // 
@@ -181,7 +181,7 @@
             this.cbSelectRecord.Size = new System.Drawing.Size(254, 24);
             this.cbSelectRecord.TabIndex = 48;
             this.ttBulkDeliveryServiceOperations.SetToolTip(this.cbSelectRecord, "The record selection, you can select any existing record from here.");
-            this.cbSelectRecord.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.cbSelectRecord.ValueMember = "ID";
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
             // deliveryServiceBindingSource
@@ -389,7 +389,7 @@
             this.lblServiceName.Name = "lblServiceName";
             this.lblServiceName.Size = new System.Drawing.Size(109, 16);
             this.lblServiceName.TabIndex = 3;
-            this.lblServiceName.Text = "Service Name:";
+            this.lblServiceName.Text = GLOBAL_RESOURCES.LBL_SERVICE_NAME_TITLE;
             // 
             // txtID
             // 
@@ -448,7 +448,7 @@
             this.ttBulkDeliveryServiceOperations.IsBalloon = true;
             this.ttBulkDeliveryServiceOperations.ShowAlways = true;
             this.ttBulkDeliveryServiceOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttBulkDeliveryServiceOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttBulkDeliveryServiceOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmBulkDeliveryServiceOperations
             // 

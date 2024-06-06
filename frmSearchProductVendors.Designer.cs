@@ -112,9 +112,7 @@
             this.btnGenerateReport.Size = new System.Drawing.Size(175, 47);
             this.btnGenerateReport.TabIndex = 45;
             this.btnGenerateReport.Text = GLOBAL_RESOURCES.BTN_GENERATE_REPORT_TITLE;
-            this.ttSearchProductVendors.SetToolTip(this.btnGenerateReport, "When you click the button you generate a report on  an entry based on the permiss" +
-        "ions you have and whether the report definition based on localisation is present" +
-        ".");
+            this.ttSearchProductVendors.SetToolTip(this.btnGenerateReport, GLOBAL_RESOURCES.BTN_GENERATE_REPORT_TOOLTIP_TITLE);
             this.btnGenerateReport.UseVisualStyleBackColor = true;
             this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
@@ -201,7 +199,7 @@
             this.txtVendorName.Name = "txtVendorName";
             this.txtVendorName.Size = new System.Drawing.Size(225, 22);
             this.txtVendorName.TabIndex = 4;
-            this.ttSearchProductVendors.SetToolTip(this.txtVendorName, "The vendor name with which you want to search product vendors");
+            this.ttSearchProductVendors.SetToolTip(this.txtVendorName, GLOBAL_RESOURCES.VENDOR_NAME_SEARCH_TOOLTIP_TITLE);
             // 
             // lblVendorName
             // 
@@ -213,7 +211,7 @@
             this.lblVendorName.Name = "lblVendorName";
             this.lblVendorName.Size = new System.Drawing.Size(106, 16);
             this.lblVendorName.TabIndex = 3;
-            this.lblVendorName.Text = "Vendor Name:";
+            this.lblVendorName.Text = GLOBAL_RESOURCES.LBL_VENDOR_NAME_TITLE;
             // 
             // txtID
             // 
@@ -266,8 +264,7 @@
             this.dgvProductVendors.RowTemplate.Height = 24;
             this.dgvProductVendors.Size = new System.Drawing.Size(483, 113);
             this.dgvProductVendors.TabIndex = 1;
-            this.ttSearchProductVendors.SetToolTip(this.dgvProductVendors, "The list of product vendors in the database. Select any to add/edit/delete/genera" +
-        "te report based on your permissions.");
+            this.ttSearchProductVendors.SetToolTip(this.dgvProductVendors, GLOBAL_RESOURCES.DGV_VENDORS_TOOLTIP_TITLE);
             this.dgvProductVendors.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProductVendors_CellClick);
             // 
             // productVendorBindingSource
@@ -287,13 +284,13 @@
             this.ttSearchProductVendors.IsBalloon = true;
             this.ttSearchProductVendors.ShowAlways = true;
             this.ttSearchProductVendors.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttSearchProductVendors.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttSearchProductVendors.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // IDColumn
             // 
             this.IDColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IDColumn.DataPropertyName = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
-            this.IDColumn.HeaderText = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.IDColumn.DataPropertyName = "ID";
+            this.IDColumn.HeaderText = GLOBAL_RESOURCES.VENDOR_ID_COL_TITLE;
             this.IDColumn.MinimumWidth = 6;
             this.IDColumn.Name = "IDColumn";
             this.IDColumn.ReadOnly = true;
@@ -302,7 +299,7 @@
             // 
             this.VendorNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.VendorNameColumn.DataPropertyName = "VendorName";
-            this.VendorNameColumn.HeaderText = "Vendor Name";
+            this.VendorNameColumn.HeaderText = GLOBAL_RESOURCES.VENDOR_NAME_COL_TITLE;
             this.VendorNameColumn.MinimumWidth = 6;
             this.VendorNameColumn.Name = "VendorNameColumn";
             this.VendorNameColumn.ReadOnly = true;
@@ -315,10 +312,8 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmSearchProductVendors";
-            this.Text = "Product Vendors";
-            this.ttSearchProductVendors.SetToolTip(this, "The product vendors window where you can search, add, edit, delete and generate r" +
-        "eports on the product vendors. Whether you can do it or not depends on your perm" +
-        "issions");
+            this.Text = GLOBAL_RESOURCES.VENDORS_TITLE;
+            this.ttSearchProductVendors.SetToolTip(this, GLOBAL_RESOURCES.VENDORS_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmSearchProductVendors_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

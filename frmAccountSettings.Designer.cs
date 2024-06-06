@@ -100,8 +100,7 @@
             this.lblUserNotice.Text = "IMPORTANT NOTICE:\r\nIf you change your username or \r\npassword to an existing one\r\n" +
     "it will be rejected by the system.\r\nIf this happens contact your system\r\nadminis" +
     "trator.";
-            this.ttAccountSettings.SetToolTip(this.lblUserNotice, "If you are a dumbfuck like my creator read this so you don\'t complain that you ca" +
-        "n\'t change your username and/or password");
+            this.ttAccountSettings.SetToolTip(this.lblUserNotice, GLOBAL_RESOURCES.ACCOUNT_SETTINGS_NOTICE_TOOLTIP_TITLE);
             // 
             // pbYourProfilePic
             // 
@@ -314,7 +313,7 @@
             this.ttAccountSettings.IsBalloon = true;
             this.ttAccountSettings.ShowAlways = true;
             this.ttAccountSettings.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttAccountSettings.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttAccountSettings.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // userBindingSource
             // 

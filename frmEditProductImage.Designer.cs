@@ -139,7 +139,7 @@
             this.lblSelectProduct.Name = "lblSelectProduct";
             this.lblSelectProduct.Size = new System.Drawing.Size(112, 16);
             this.lblSelectProduct.TabIndex = 5;
-            this.lblSelectProduct.Text = "Select Product:";
+            this.lblSelectProduct.Text = GLOBAL_RESOURCES.LBL_PRODUCT_TITLE;
             // 
             // txtImageName
             // 
@@ -161,7 +161,7 @@
             this.lblImageName.Name = "lblImageName";
             this.lblImageName.Size = new System.Drawing.Size(99, 16);
             this.lblImageName.TabIndex = 3;
-            this.lblImageName.Text = "Image Name:";
+            this.lblImageName.Text = GLOBAL_RESOURCES.LBL_IMAGE_NAME_TITLE;
             // 
             // txtID
             // 
@@ -201,7 +201,7 @@
             this.ttEditProductImage.IsBalloon = true;
             this.ttEditProductImage.ShowAlways = true;
             this.ttEditProductImage.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttEditProductImage.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttEditProductImage.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmEditProductImage
             // 

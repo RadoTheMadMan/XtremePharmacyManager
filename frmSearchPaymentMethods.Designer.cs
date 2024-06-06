@@ -107,9 +107,7 @@
             this.btnGenerateReport.Size = new System.Drawing.Size(175, 47);
             this.btnGenerateReport.TabIndex = 46;
             this.btnGenerateReport.Text = GLOBAL_RESOURCES.BTN_GENERATE_REPORT_TITLE;
-            this.ttSearchPaymentMethods.SetToolTip(this.btnGenerateReport, "When you click the button you generate a report on  an entry based on the permiss" +
-        "ions you have and whether the report definition based on localisation is present" +
-        ".");
+            this.ttSearchPaymentMethods.SetToolTip(this.btnGenerateReport, GLOBAL_RESOURCES.BTN_GENERATE_REPORT_TOOLTIP_TITLE);
             this.btnGenerateReport.UseVisualStyleBackColor = true;
             this.btnGenerateReport.Click += new System.EventHandler(this.btnGenerateReport_Click);
             // 
@@ -168,8 +166,7 @@
             this.btnAddOrEdit.Size = new System.Drawing.Size(90, 47);
             this.btnAddOrEdit.TabIndex = 33;
             this.btnAddOrEdit.Text = GLOBAL_RESOURCES.BTN_ADD_EDIT_TITLE;
-            this.ttSearchPaymentMethods.SetToolTip(this.btnAddOrEdit, GLOBAL_RESOURCES.BTN_ADD_EDIT_TOOLTIP_TITLE +
-        ".");
+            this.ttSearchPaymentMethods.SetToolTip(this.btnAddOrEdit, GLOBAL_RESOURCES.BTN_ADD_EDIT_TOOLTIP_TITLE);
             this.btnAddOrEdit.UseVisualStyleBackColor = true;
             this.btnAddOrEdit.Click += new System.EventHandler(this.btnAddOrEdit_Click);
             // 
@@ -196,7 +193,7 @@
             this.txtMethodName.Name = "txtMethodName";
             this.txtMethodName.Size = new System.Drawing.Size(225, 22);
             this.txtMethodName.TabIndex = 4;
-            this.ttSearchPaymentMethods.SetToolTip(this.txtMethodName, "The method name with which you want to search payment methods");
+            this.ttSearchPaymentMethods.SetToolTip(this.txtMethodName, GLOBAL_RESOURCES.METHOD_NAME_SEARCH_TOOLTIP_TITLE);
             // 
             // lblMethodName
             // 
@@ -208,7 +205,7 @@
             this.lblMethodName.Name = "lblMethodName";
             this.lblMethodName.Size = new System.Drawing.Size(107, 16);
             this.lblMethodName.TabIndex = 3;
-            this.lblMethodName.Text = "Method Name:";
+            this.lblMethodName.Text = GLOBAL_RESOURCES.LBL_METHOD_NAME_TITLE;
             // 
             // txtID
             // 
@@ -261,8 +258,7 @@
             this.dgvPaymentMethods.RowTemplate.Height = 24;
             this.dgvPaymentMethods.Size = new System.Drawing.Size(480, 113);
             this.dgvPaymentMethods.TabIndex = 1;
-            this.ttSearchPaymentMethods.SetToolTip(this.dgvPaymentMethods, "The list of payment methods in the database. Select any to add/edit/delete/genera" +
-        "te report based on your permissions.");
+            this.ttSearchPaymentMethods.SetToolTip(this.dgvPaymentMethods, GLOBAL_RESOURCES.DGV_PAYMENT_METHODS_TOOLTIP_TITLE);
             this.dgvPaymentMethods.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPaymentMethods_CellClick);
             // 
             // ttSearchPaymentMethods
@@ -270,7 +266,7 @@
             this.ttSearchPaymentMethods.IsBalloon = true;
             this.ttSearchPaymentMethods.ShowAlways = true;
             this.ttSearchPaymentMethods.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttSearchPaymentMethods.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttSearchPaymentMethods.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // paymentMethodBindingSource
             // 
@@ -279,8 +275,8 @@
             // IDColumn
             // 
             this.IDColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.IDColumn.DataPropertyName = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
-            this.IDColumn.HeaderText = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.IDColumn.DataPropertyName = "ID";
+            this.IDColumn.HeaderText = GLOBAL_RESOURCES.METHOD_ID_COL_TITLE;
             this.IDColumn.MinimumWidth = 6;
             this.IDColumn.Name = "IDColumn";
             this.IDColumn.ReadOnly = true;
@@ -289,7 +285,7 @@
             // 
             this.MethodNameColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.MethodNameColumn.DataPropertyName = "MethodName";
-            this.MethodNameColumn.HeaderText = "Method Name";
+            this.MethodNameColumn.HeaderText = GLOBAL_RESOURCES.METHOD_NAME_COL_TITLE;
             this.MethodNameColumn.MinimumWidth = 6;
             this.MethodNameColumn.Name = "MethodNameColumn";
             this.MethodNameColumn.ReadOnly = true;
@@ -302,10 +298,8 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmSearchPaymentMethods";
-            this.Text = "Payment Methods";
-            this.ttSearchPaymentMethods.SetToolTip(this, "The payment methods window where you can search, add, edit, delete and generate r" +
-        "eports on the payment methods. Whether you can do it or not depends on your perm" +
-        "issions");
+            this.Text = GLOBAL_RESOURCES.PAYMENT_METHODS_TITLE;
+            this.ttSearchPaymentMethods.SetToolTip(this, GLOBAL_RESOURCES.PAYMENT_METHODS_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmSearchPaymentMethods_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

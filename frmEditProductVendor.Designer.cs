@@ -110,7 +110,7 @@
             this.lblVendorName.Name = "lblVendorName";
             this.lblVendorName.Size = new System.Drawing.Size(106, 16);
             this.lblVendorName.TabIndex = 3;
-            this.lblVendorName.Text = "Vendor Name:";
+            this.lblVendorName.Text = GLOBAL_RESOURCES.LBL_VENDOR_NAME_TITLE;
             // 
             // txtID
             // 
@@ -142,7 +142,7 @@
             this.ttEditProductVendor.IsBalloon = true;
             this.ttEditProductVendor.ShowAlways = true;
             this.ttEditProductVendor.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttEditProductVendor.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttEditProductVendor.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmEditProductVendor
             // 

@@ -110,7 +110,7 @@
             this.lblBrandName.Name = "lblBrandName";
             this.lblBrandName.Size = new System.Drawing.Size(97, 16);
             this.lblBrandName.TabIndex = 3;
-            this.lblBrandName.Text = "Brand Name:";
+            this.lblBrandName.Text = GLOBAL_RESOURCES.LBL_BRAND_NAME_TITLE;
             // 
             // txtID
             // 
@@ -142,7 +142,7 @@
             this.ttEditProductBrand.IsBalloon = true;
             this.ttEditProductBrand.ShowAlways = true;
             this.ttEditProductBrand.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttEditProductBrand.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttEditProductBrand.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmEditProductBrand
             // 

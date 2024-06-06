@@ -132,7 +132,7 @@
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(47, 16);
             this.lblPrice.TabIndex = 19;
-            this.lblPrice.Text = "Price:";
+            this.lblPrice.Text = GLOBAL_RESOURCES.LBL_PRICE_TITLE;
             // 
             // txtServiceName
             // 
@@ -154,7 +154,7 @@
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(109, 16);
             this.lblUsername.TabIndex = 3;
-            this.lblUsername.Text = "Service Name:";
+            this.lblUsername.Text = GLOBAL_RESOURCES.LBL_SERVICE_NAME_TITLE;
             // 
             // txtID
             // 
@@ -186,7 +186,7 @@
             this.ttEditDeliveryService.IsBalloon = true;
             this.ttEditDeliveryService.ShowAlways = true;
             this.ttEditDeliveryService.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttEditDeliveryService.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttEditDeliveryService.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmEditDeliveryService
             // 

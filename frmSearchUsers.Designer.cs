@@ -644,7 +644,7 @@ namespace XtremePharmacyManager
             this.ttSearchUsers.IsBalloon = true;
             this.ttSearchUsers.ShowAlways = true;
             this.ttSearchUsers.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttSearchUsers.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttSearchUsers.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // IDColumn
             // 

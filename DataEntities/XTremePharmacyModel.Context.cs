@@ -42,7 +42,7 @@ namespace XtremePharmacyManager.DataEntities
             modelBuilder.Entity<ProductVendor>().ToTable("ProductVendors");
             modelBuilder.Entity<PaymentMethod>().ToTable("PaymentMethods");
             modelBuilder.Entity<DeliveryService>().ToTable("DeliveryServices");
-            modelBuilder.Entity<Product>().ToTable("Products");
+            modelBuilder.Entity<Product>().ToTable(GLOBAL_RESOURCES.PRODUCTS_TITLE);
             modelBuilder.Entity<ProductImage>().ToTable("ProductImages");
             modelBuilder.Entity<ProductOrder>().ToTable("ProductOrders");
             modelBuilder.Entity<OrderDelivery>().ToTable("OrderDeliveries");

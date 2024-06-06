@@ -209,7 +209,7 @@
             this.lblCargoID.Name = "lblCargoID";
             this.lblCargoID.Size = new System.Drawing.Size(72, 16);
             this.lblCargoID.TabIndex = 74;
-            this.lblCargoID.Text = "Cargo ID:";
+            this.lblCargoID.Text = GLOBAL_RESOURCES.LBL_CARGO_ID_TITLE;
             // 
             // cbStatus
             // 
@@ -217,21 +217,21 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.cbStatus.FormattingEnabled = true;
             this.cbStatus.Items.AddRange(new object[] {
-            "pending delivery",
-            "prepaid",
-            "directly paid",
-            "paid on delivery",
-            "generating invoice",
-            "generating report",
-            "on the move",
-            "cancelled delivery",
-            "returned delivery",
-            "delivery completed"});
+           GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_PENDING,
+            GLOBAL_RESOURCES.LBL_STATUS_PREPAID,
+            GLOBAL_RESOURCES.LBL_STATUS_DIRECTLY_PAID,
+            GLOBAL_RESOURCES.LBL_STATUS_PAID_ON_DELIVERY,
+           GLOBAL_RESOURCES.LBL_STATUS_GENERATING_INVOICE,
+            GLOBAL_RESOURCES.LBL_STATUS_GENERATING_REPORT,
+            GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_ON_THE_MOVE,
+            GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_CANCELLED,
+            GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_RETURNED,
+            GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_COMPLETED});
             this.cbStatus.Location = new System.Drawing.Point(192, 191);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(243, 24);
             this.cbStatus.TabIndex = 73;
-            this.cbStatus.Text = "pending delivery";
+            this.cbStatus.Text =GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_PENDING;
             this.ttBulkOrderDeliveryOperations.SetToolTip(this.cbStatus, "The delivery status. based on it the status of the product order changes and the " +
         "balances of the registered employees and clients is calculated so be REALLY care" +
         "ful with that");
@@ -246,7 +246,7 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(116, 16);
             this.lblStatus.TabIndex = 72;
-            this.lblStatus.Text = "Delivery Status:";
+            this.lblStatus.Text = GLOBAL_RESOURCES.LBL_DELIVERY_STATUS_TITLE;
             // 
             // cbPaymentMethod
             // 
@@ -276,7 +276,7 @@
             this.lblPaymentMethod.Name = "lblPaymentMethod";
             this.lblPaymentMethod.Size = new System.Drawing.Size(174, 16);
             this.lblPaymentMethod.TabIndex = 69;
-            this.lblPaymentMethod.Text = "Select Payment Method:";
+            this.lblPaymentMethod.Text = GLOBAL_RESOURCES.LBL_PAYMENT_METHOD_TITLE;
             // 
             // cbDeliveryService
             // 
@@ -306,7 +306,7 @@
             this.lblDeliveryService.Name = "lblDeliveryService";
             this.lblDeliveryService.Size = new System.Drawing.Size(174, 16);
             this.lblDeliveryService.TabIndex = 67;
-            this.lblDeliveryService.Text = "Select Delivery Service:";
+            this.lblDeliveryService.Text = GLOBAL_RESOURCES.LBL_DELIVERY_SERVICE_TITLE;
             // 
             // txtReason
             // 
@@ -330,7 +330,7 @@
             this.lblReason.Name = "lblReason";
             this.lblReason.Size = new System.Drawing.Size(127, 16);
             this.lblReason.TabIndex = 61;
-            this.lblReason.Text = "Delivery Reason:";
+            this.lblReason.Text = GLOBAL_RESOURCES.LBL_DELIVERY_REASON_TITLE;
             // 
             // cbOrder
             // 
@@ -386,7 +386,7 @@
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(87, 16);
             this.lblPrice.TabIndex = 49;
-            this.lblPrice.Text = "Total Price:";
+            this.lblPrice.Text = GLOBAL_RESOURCES.LBL_TOTAL_PRICE_TITLE;
             // 
             // cbSelectRecord
             // 
@@ -657,7 +657,7 @@
             this.ttBulkOrderDeliveryOperations.IsBalloon = true;
             this.ttBulkOrderDeliveryOperations.ShowAlways = true;
             this.ttBulkOrderDeliveryOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttBulkOrderDeliveryOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttBulkOrderDeliveryOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmBulkOrderDeliveryOperations
             // 

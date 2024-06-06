@@ -145,7 +145,7 @@
             this.cbSelectVendor.Size = new System.Drawing.Size(219, 24);
             this.cbSelectVendor.TabIndex = 46;
             this.ttEditProduct.SetToolTip(this.cbSelectVendor, "The vendor the selected product is assigned to can be selected here");
-            this.cbSelectVendor.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.cbSelectVendor.ValueMember = "ID";
             // 
             // productVendorBindingSource
             // 
@@ -188,7 +188,7 @@
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(67, 16);
             this.lblQuantity.TabIndex = 42;
-            this.lblQuantity.Text = "Quantity:";
+            this.lblQuantity.Text = GLOBAL_RESOURCES.LBL_QUANTITY_TITLE;
             // 
             // lblProductNotice
             // 
@@ -203,8 +203,7 @@
             this.lblProductNotice.TabIndex = 41;
             this.lblProductNotice.Text = "IMPORTANT NOTICE: To see the expiry date\r\ncheck the side of the product package\r\n" +
     "where the partitude number is\r\n";
-            this.ttEditProduct.SetToolTip(this.lblProductNotice, "If you are a dumbfuck like my creator read this so you don\'t complain that you ca" +
-        "n\'t change the product data via any operation");
+            this.ttEditProduct.SetToolTip(this.lblProductNotice, GLOBAL_RESOURCES.PRODUCT_NOTICE_TOOLTIP_TITLE);
             // 
             // cbSelectBrand
             // 
@@ -216,7 +215,7 @@
             this.cbSelectBrand.Size = new System.Drawing.Size(219, 24);
             this.cbSelectBrand.TabIndex = 36;
             this.ttEditProduct.SetToolTip(this.cbSelectBrand, "The brand the selected product is assigned to can be selected here");
-            this.cbSelectBrand.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.cbSelectBrand.ValueMember = "ID";
             // 
             // productBrandBindingSource
             // 
@@ -276,7 +275,7 @@
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(47, 16);
             this.lblPrice.TabIndex = 19;
-            this.lblPrice.Text = "Price:";
+            this.lblPrice.Text = GLOBAL_RESOURCES.LBL_PRICE_TITLE;
             // 
             // txtStorageLocation
             // 
@@ -298,7 +297,7 @@
             this.lblStorageLocation.Name = "lblStorageLocation";
             this.lblStorageLocation.Size = new System.Drawing.Size(129, 16);
             this.lblStorageLocation.TabIndex = 17;
-            this.lblStorageLocation.Text = "Storage Location:";
+            this.lblStorageLocation.Text = GLOBAL_RESOURCES.LBL_S_LOCATION_TITLE;
             // 
             // txtPartitudeNumber
             // 
@@ -321,7 +320,7 @@
             this.lblPartitudeNumber.Name = "lblPartitudeNumber";
             this.lblPartitudeNumber.Size = new System.Drawing.Size(131, 16);
             this.lblPartitudeNumber.TabIndex = 15;
-            this.lblPartitudeNumber.Text = "Partitude Number:";
+            this.lblPartitudeNumber.Text = GLOBAL_RESOURCES.LBL_PART_NUM_TITLE;
             // 
             // txtRegistrationNumber
             // 
@@ -344,7 +343,7 @@
             this.lblRegistrationNumber.Name = "lblRegistrationNumber";
             this.lblRegistrationNumber.Size = new System.Drawing.Size(153, 16);
             this.lblRegistrationNumber.TabIndex = 13;
-            this.lblRegistrationNumber.Text = "Registration Number:";
+            this.lblRegistrationNumber.Text = GLOBAL_RESOURCES.LBL_REG_NUM_TITLE;
             // 
             // dtExpiryDate
             // 
@@ -423,7 +422,7 @@
             this.lblProductName.Name = "lblProductName";
             this.lblProductName.Size = new System.Drawing.Size(109, 16);
             this.lblProductName.TabIndex = 3;
-            this.lblProductName.Text = "Product Name:";
+            this.lblProductName.Text = GLOBAL_RESOURCES.LBL_PRODUCT_NAME_TITLE;
             // 
             // txtID
             // 
@@ -459,7 +458,7 @@
             this.ttEditProduct.IsBalloon = true;
             this.ttEditProduct.ShowAlways = true;
             this.ttEditProduct.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttEditProduct.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttEditProduct.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmEditProduct
             // 

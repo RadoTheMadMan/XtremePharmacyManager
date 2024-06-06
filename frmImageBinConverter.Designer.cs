@@ -131,7 +131,7 @@ namespace XtremePharmacyManager.Properties.DataSources
             this.ttImageBinConverter.IsBalloon = true;
             this.ttImageBinConverter.ShowAlways = true;
             this.ttImageBinConverter.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttImageBinConverter.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttImageBinConverter.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmImageBinConverter
             // 

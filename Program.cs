@@ -222,7 +222,7 @@ namespace XtremePharmacyManager
         private static string pASSWORD_COL_TITLE = "";
         private static string uSER_NAME_COL_TITLE = "";
         private static string uSER_ID_COL_TITLE = "";
-        private static string hELP_TOOLTIP_TITLE = "";
+        private static string hELP_TITLE = "";
         private static string uSER_NOTICE_TOOLTIP_TITLE = "";
         private static string lBL_USER_NOTICE_TITLE = "";
         private static string bTN_GENERATE_REPORT_TITLE = "";
@@ -255,8 +255,8 @@ namespace XtremePharmacyManager
         private static string lBL_PHONE_TITLE = "";
         private static string uSER_B_DATE_TO_SEARCH_TOOLTIP = "";
         private static string uSER_B_DATE_FROM_SEARCH_TOOLTIP = "";
-        public static string LBL_USER_B_DATE_FROM_TITLE = "";
-        public static string LBL_USER_B_DATE_TO_TITLE = "";
+        private static string lBL_USER_B_DATE_FROM_TITLE = "";
+        private static string lBL_USER_B_DATE_TO_TITLE = "";
         private static string dISPLAY_NAME_SEARCH_TOOLTIP_TITLE = "";
         private static string lBL_DISPLAY_NAME_TITLE = "";
         private static string pASSWORD_SEARCH_TOOLTIP_TITLE = "";
@@ -265,7 +265,171 @@ namespace XtremePharmacyManager
         private static string lBL_USERNAME_TITLE = "";
         private static string iD_SEARCH_TOOLTIP_TITLE = "";
         private static string lBL_ID_TITLE = "";
-        public static string DGV_USERS_TOOLTIP_TITLE = "";
+        private static string dGV_USERS_TOOLTIP_TITLE = "";
+        private static string vENDOR_NAME_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_VENDOR_NAME_TITLE = "";
+        private static string dGV_VENDORS_TOOLTIP_TITLE = "";
+        private static string vENDOR_NAME_COL_TITLE = "";
+        private static string vENDOR_ID_COL_TITLE = "";
+        private static string vENDORS_TITLE = "";
+        private static string vENDORS_TOOLTIP_TITLE = "";
+        private static string lST_PRODUCT_IMAGES_TOOLTIP_TITLE = "";
+        private static string pRODUCT_PRICE_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_PRICE_TITLE = "";
+        private static string s_LOCATION_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_S_LOCATION_TITLE = "";
+        private static string cB_SELECT_BRAND_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_QUANTITY_TITLE = "";
+        private static string qUANTITY_SEARCH_TOOLTIP_TITLE = "";
+        private static string pRODUCT_NOTICE_TOOLTIP_TITLE = "";
+        private static string pRODUCT_ORDER_NOTICE_TOOLTIP_TITLE = "";
+        private static string oRDER_DELIVERY_NOTICE_TOOLTIP_TITLE = "";
+        private static string aCCOUNT_SETTINGS_NOTICE_TOOLTIP_TITLE = "";
+        private static string lBL_PRODUCT_NOTICE_TITLE = "";
+        private static string lBL_PRODUCT_IMAGE_NOTICE_TITLE = "";
+        private static string lBL_VENDOR_TITLE = "";
+        private static string cB_SELECT_VENDOR_SEARCH_TOOLTIP_TITLE = "";
+        private static string pART_NUM_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_PART_NUM_TITLE = "";
+        private static string rEG_NUM_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_REG_NUM_TITLE = "";
+        private static string pRODUCT_EXP_DATE_FROM_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_PRODUCT_EXP_DATE_FROM_TITLE = "";
+        private static string pRODUCT_EXP_DATE_TO_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_PRODUCT_EXP_DATE_TO_TITLE = "";
+        private static string pRODUCT_DESCRIPTION_SEARCH_TOOLTIP_TITLE = "";
+        private static string pRODUCT_NAME_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_PRODUCT_DESCRIPTION_TITLE = "";
+        private static string lBL_BRAND_TITLE = "";
+        private static string lBL_PRODUCT_NAME_TITLE = "";
+        private static string dGV_PRODUCTS_TOOLTIP_TITLE = "";
+        private static string lBL_IMAGES_TITLE = "";
+        private static string bTN_SEARCH_PRODUCT_IMAGE_TITLE = "";
+        private static string bTN_DELETE_PRODUCT_IMAGE_TITLE = "";
+        private static string bTN_ADD_EDIT_PRODUCT_IMAGE_TITLE = "";
+        private static string sELECTED_PRODUCT_IMAGE_TOOLTIP_TITLE = "";
+        private static string lBL_IMAGE_NAME_TITLE = "";
+        private static string lBL_IMAGE_ID_TITLE = "";
+        private static string lBL_REFERENCED_ID_TITLE = "";
+        private static string rEFERENCED_ID_SEARCH_TOOLTIP_TITLE = "";
+        private static string iMAGE_NAME_SEARCH_TOOLTIP_TITLE = "";
+        private static string pRODUCT_ID_COL_TITLE = "";
+        private static string bRAND_COL_TITLE = "";
+        private static string vENDOR_COL_TITLE = "";
+        private static string pRODUCT_NAME_COL_TITLE = "";
+        private static string pRODUCT_DESCRIPTION_COL_TITLE = "";
+        private static string pRODUCT_QUANTITY_COL_TITLE = "";
+        private static string pRODUCT_PRICE_COL_TITLE = "";
+        private static string pRODUCT_EXP_DATE_COL_TITLE = "";
+        private static string pRODUCT_REG_NUM_COL_TITLE = "";
+        private static string pRODUCT_PART_NUM_COL_TITLE = "";
+        private static string pRODUCT_S_LOCATION_COL_TITLE = "";
+        private static string pRODUCTS_TITLE = "";
+        private static string pRODUCTS_TOOLTIP_TITLE = "";
+        private static string dGV_PRODUCT_ORDERS_TOOLTIP_TITLE = "";
+        private static string pRICE_OVERRIDE_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_PRICE_OVERRIDE_TITLE = "";
+        private static string oRDER_REASON_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_ORDER_REASON_TITLE = "";
+        private static string pO_DATE_ADDED_TO_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_DATE_ADDED_TO_TITLE = "";
+        private static string pO_DATE_ADDED_FROM_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_DATE_ADDED_FROM_TITLE = "";
+        private static string lBL_EMPLOYEE_TITLE = "";
+        private static string lBL_PRODUCT_TITLE = "";
+        private static string eMPLOYEE_SEARCH_TOOLTIP_TITLE = "";
+        private static string pRODUCT_SEARCH_TOOLTIP_TITLE = "";
+        private static string cLIENT_SEARCH_TOOLTIP_TITLE = "";
+        private static string pO_DATE_MODIFIED_FROM_SEARCH_TOOLTIP_TITLE = "";
+        private static string pO_DATE_MODIFIED_TO_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_PRODUCT_ORDER_NOTICE_TITLE = "";
+        private static string oRDER_STATUS_SEARCH_TOOLTIP_TITLE = "";
+        private static string dESIRED_QUANTITY_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_ORDER_STATUS_TITLE = "";
+        private static string lBL_ORDER_STATUS_PENDING = "";
+        private static string lBL_STATUS_PREPAID = "";
+        private static string lBL_STATUS_PAID_ON_DELIVERY = "";
+        private static string lBL_STATUS_DIRECTLY_PAID = "";
+        private static string lBL_STATUS_GENERATING_INVOICE = "";
+        private static string lBL_STATUS_GENERATING_REPORT = "";
+        private static string lBL_ORDER_STATUS_PROCESSING = "";
+        private static string lBL_ORDER_STATUS_CANCELLED = "";
+        private static string lBL_ORDER_STATUS_RETURNED = "";
+        private static string lBL_ORDER_STATUS_COMPLETED = "";
+        private static string lBL_DATE_MODIFIED_TO_TITLE = "";
+        private static string lBL_DATE_MODIFIED_FROM_TITLE = "";
+        private static string lBL_CLIENT_TITLE = "";
+        private static string lBL_DESIRED_QUANTITY_TITLE = "";
+        private static string oRDER_ID_COL_TITLE = "";
+        private static string pRODUCT_COL_TITLE = "";
+        private static string dESIRED_QUANTITY_COL_TITLE = "";
+        private static string oRDER_PRICE_COL_TITLE = "";
+        private static string eMPLOYEE_COL_TITLE = "";
+        private static string cLIENT_COL_TITLE = "";
+        private static string dATE_ADDED_COL_TITLE = "";
+        private static string dATE_MODIFIED_COL_TITLE = "";
+        private static string oRDER_STATUS_COL_TITLE = "";
+        private static string oRDER_REASON_COL_TITLE = "";
+        private static string pRODUCT_ORDERS_TITLE = "";
+        private static string pRODUCT_ORDERS_TOOLTIP_TITLE = "";
+        private static string bRAND_NAME_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_BRAND_NAME_TITLE = "";
+        private static string dGV_PRODUCT_BRANDS_TOOLTIP_TITLE = "";
+        private static string bRAND_NAME_COL_TITLE = "";
+        private static string bRAND_ID_COL_TITLE = "";
+        private static string pRODUCT_BRANDS_TITLE = "";
+        private static string pRODUCT_BRANDS_TOOLTIP_TITLE = "";
+        private static string mETHOD_NAME_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_METHOD_NAME_TITLE = "";
+        private static string dGV_PAYMENT_METHODS_TOOLTIP_TITLE = "";
+        private static string mETHOD_ID_COL_TITLE = "";
+        private static string mETHOD_NAME_COL_TITLE = "";
+        private static string pAYMENT_METHODS_TITLE = "";
+        private static string pAYMENT_METHODS_TOOLTIP_TITLE = "";
+        private static string dGV_ORDER_DELIVERIES_TOOLTIP_TITLE = "";
+        private static string tOTAL_PRICE_SEARCH_TOOLTIP_TITLE = "";
+        private static string cARGO_ID_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_CARGO_ID_TITLE = "";
+        private static string lBL_DELIVERY_STATUS_TITLE = "";
+        private static string lBL_DELIVERY_STATUS_PENDING = "";
+        private static string lBL_DELIVERY_STATUS_ON_THE_MOVE = "";
+        private static string lBL_DELIVERY_STATUS_CANCELLED = "";
+        private static string lBL_DELIVERY_STATUS_RETURNED = "";
+        private static string lBL_DELIVERY_STATUS_COMPLETED = "";
+        private static string dELIVERY_STATUS_SEARCH_TOOLTIP_TITLE = "";
+        private static string oRDER_DELIVERY_NOTICE_TITLE = "";
+        private static string oD_DATE_MODIFIED_TO_SEARCH_TOOLTIP_TITLE = "";
+        private static string oD_DATE_MODIFIED_FROM_SEARCH_TOOLTIP_TITLE = "";
+        private static string pAYMENT_METHOD_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_PAYMENT_METHOD_TITLE = "";
+        private static string pRODUCT_ORDER_SEARCH_TOOLTIP_TITLE = "";
+        private static string dELIVERY_SERVICE_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_TOTAL_PRICE_TITLE = "";
+        private static string dELIVERY_REASON_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_DELIVERY_REASON_TITLE = "";
+        private static string oD_DATE_ADDED_TO_SEARCH_TOOLTIP_TITLE = "";
+        private static string oD_DATE_ADDED_FROM_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_DELIVERY_SERVICE_TITLE = "";
+        private static string lBL_PRODUCT_ORDER_TITLE = "";
+        private static string dELIVERY_ID_COL_TITLE = "";
+        private static string pRODUCT_ORDER_COL_TITLE = "";
+        private static string tOTAL_PRICE_COL_TITLE = "";
+        private static string dELIVERY_SERVICE_COL_TITLE = "";
+        private static string pAYMENT_METHOD_COL_TITLE = "";
+        private static string cARGO_ID_COL_TITLE = "";
+        private static string dELIVERY_STATUS_COL_TITLE = "";
+        private static string dELIVERY_REASON_COL_TITLE = "";
+        private static string oRDER_DELIVERIES_TITLE = "";
+        private static string oRDER_DELIVERIES_TOOLTIP_TITLE = "";
+        public static string DELIVERY_PRICE_SEARCH_TOOLTIP_TITLE = "";
+        public static string SERVICE_NAME_SEARCH_TOOLTIP_TITLE = "";
+        public static string LBL_SERVICE_NAME_TITLE = "";
+        public static string DGV_DELIVERY_SERVICES_TOOLTIP_TITLE = "";
+        public static string SERVICE_ID_COL_TITLE = "";
+        public static string SERVICE_NAME_COL_TITLE = "";
+        public static string SERVICE_PRICE_COL_TITLE = "";
+        public static string DELIVERY_SERVICES_TITLE = "";
+        public static string DELIVERY_SERVICES_TOOLTIP_TITLE = "";
         public static GLOBAL_RESOURCES instance;
         public EventHandler<CultureInfo> CultureInfoChanged;
 
@@ -467,7 +631,7 @@ namespace XtremePharmacyManager
         public static string PASSWORD_COL_TITLE { get => pASSWORD_COL_TITLE; set => pASSWORD_COL_TITLE = value; }
         public static string USER_NAME_COL_TITLE { get => uSER_NAME_COL_TITLE; set => uSER_NAME_COL_TITLE = value; }
         public static string USER_ID_COL_TITLE { get => uSER_ID_COL_TITLE; set => uSER_ID_COL_TITLE = value; }
-        public static string HELP_TOOLTIP_TITLE { get => hELP_TOOLTIP_TITLE; set => hELP_TOOLTIP_TITLE = value; }
+        public static string HELP_TITLE { get => hELP_TITLE; set => hELP_TITLE = value; }
         public static string USER_NOTICE_TOOLTIP_TITLE { get => uSER_NOTICE_TOOLTIP_TITLE; set => uSER_NOTICE_TOOLTIP_TITLE = value; }
         public static string LBL_USER_NOTICE_TITLE { get => lBL_USER_NOTICE_TITLE; set => lBL_USER_NOTICE_TITLE = value; }
         public static string BTN_GENERATE_REPORT_TITLE { get => bTN_GENERATE_REPORT_TITLE; set => bTN_GENERATE_REPORT_TITLE = value; }
@@ -508,6 +672,164 @@ namespace XtremePharmacyManager
         public static string LBL_USERNAME_TITLE { get => lBL_USERNAME_TITLE; set => lBL_USERNAME_TITLE = value; }
         public static string ID_SEARCH_TOOLTIP_TITLE { get => iD_SEARCH_TOOLTIP_TITLE; set => iD_SEARCH_TOOLTIP_TITLE = value; }
         public static string LBL_ID_TITLE { get => lBL_ID_TITLE; set => lBL_ID_TITLE = value; }
+        public static string DGV_USERS_TOOLTIP_TITLE { get => dGV_USERS_TOOLTIP_TITLE; set => dGV_USERS_TOOLTIP_TITLE = value; }
+        public static string VENDOR_NAME_SEARCH_TOOLTIP_TITLE { get => vENDOR_NAME_SEARCH_TOOLTIP_TITLE; set => vENDOR_NAME_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_VENDOR_NAME_TITLE { get => lBL_VENDOR_NAME_TITLE; set => lBL_VENDOR_NAME_TITLE = value; }
+        public static string DGV_VENDORS_TOOLTIP_TITLE { get => dGV_VENDORS_TOOLTIP_TITLE; set => dGV_VENDORS_TOOLTIP_TITLE = value; }
+        public static string VENDOR_NAME_COL_TITLE { get => vENDOR_NAME_COL_TITLE; set => vENDOR_NAME_COL_TITLE = value; }
+        public static string VENDOR_ID_COL_TITLE { get => vENDOR_ID_COL_TITLE; set => vENDOR_ID_COL_TITLE = value; }
+        public static string VENDORS_TITLE { get => vENDORS_TITLE; set => vENDORS_TITLE = value; }
+        public static string VENDORS_TOOLTIP_TITLE { get => vENDORS_TOOLTIP_TITLE; set => vENDORS_TOOLTIP_TITLE = value; }
+        public static string LST_PRODUCT_IMAGES_TOOLTIP_TITLE { get => lST_PRODUCT_IMAGES_TOOLTIP_TITLE; set => lST_PRODUCT_IMAGES_TOOLTIP_TITLE = value; }
+        public static string PRODUCT_PRICE_SEARCH_TOOLTIP_TITLE { get => pRODUCT_PRICE_SEARCH_TOOLTIP_TITLE; set => pRODUCT_PRICE_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_PRICE_TITLE { get => lBL_PRICE_TITLE; set => lBL_PRICE_TITLE = value; }
+        public static string S_LOCATION_SEARCH_TOOLTIP_TITLE { get => s_LOCATION_SEARCH_TOOLTIP_TITLE; set => s_LOCATION_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_USER_B_DATE_FROM_TITLE { get => lBL_USER_B_DATE_FROM_TITLE; set => lBL_USER_B_DATE_FROM_TITLE = value; }
+        public static string LBL_USER_B_DATE_TO_TITLE { get => lBL_USER_B_DATE_TO_TITLE; set => lBL_USER_B_DATE_TO_TITLE = value; }
+        public static string LBL_S_LOCATION_TITLE { get => lBL_S_LOCATION_TITLE; set => lBL_S_LOCATION_TITLE = value; }
+        public static string CB_SELECT_BRAND_SEARCH_TOOLTIP_TITLE { get => cB_SELECT_BRAND_SEARCH_TOOLTIP_TITLE; set => cB_SELECT_BRAND_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_QUANTITY_TITLE { get => lBL_QUANTITY_TITLE; set => lBL_QUANTITY_TITLE = value; }
+        public static string QUANTITY_SEARCH_TOOLTIP_TITLE { get => qUANTITY_SEARCH_TOOLTIP_TITLE; set => qUANTITY_SEARCH_TOOLTIP_TITLE = value; }
+        public static string PRODUCT_NOTICE_TOOLTIP_TITLE { get => pRODUCT_NOTICE_TOOLTIP_TITLE; set => pRODUCT_NOTICE_TOOLTIP_TITLE = value; }
+        public static string PRODUCT_ORDER_NOTICE_TOOLTIP_TITLE { get => pRODUCT_ORDER_NOTICE_TOOLTIP_TITLE; set => pRODUCT_ORDER_NOTICE_TOOLTIP_TITLE = value; }
+        public static string ORDER_DELIVERY_NOTICE_TOOLTIP_TITLE { get => oRDER_DELIVERY_NOTICE_TOOLTIP_TITLE; set => oRDER_DELIVERY_NOTICE_TOOLTIP_TITLE = value; }
+        public static string ACCOUNT_SETTINGS_NOTICE_TOOLTIP_TITLE { get => aCCOUNT_SETTINGS_NOTICE_TOOLTIP_TITLE; set => aCCOUNT_SETTINGS_NOTICE_TOOLTIP_TITLE = value; }
+        public static string LBL_PRODUCT_NOTICE_TITLE { get => lBL_PRODUCT_NOTICE_TITLE; set => lBL_PRODUCT_NOTICE_TITLE = value; }
+        public static string LBL_PRODUCT_IMAGE_NOTICE_TITLE { get => lBL_PRODUCT_IMAGE_NOTICE_TITLE; set => lBL_PRODUCT_IMAGE_NOTICE_TITLE = value; }
+        public static string LBL_VENDOR_TITLE { get => lBL_VENDOR_TITLE; set => lBL_VENDOR_TITLE = value; }
+        public static string CB_SELECT_VENDOR_SEARCH_TOOLTIP_TITLE { get => cB_SELECT_VENDOR_SEARCH_TOOLTIP_TITLE; set => cB_SELECT_VENDOR_SEARCH_TOOLTIP_TITLE = value; }
+        public static string PART_NUM_SEARCH_TOOLTIP_TITLE { get => pART_NUM_SEARCH_TOOLTIP_TITLE; set => pART_NUM_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_PART_NUM_TITLE { get => lBL_PART_NUM_TITLE; set => lBL_PART_NUM_TITLE = value; }
+        public static string REG_NUM_SEARCH_TOOLTIP_TITLE { get => rEG_NUM_SEARCH_TOOLTIP_TITLE; set => rEG_NUM_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_REG_NUM_TITLE { get => lBL_REG_NUM_TITLE; set => lBL_REG_NUM_TITLE = value; }
+        public static string PRODUCT_EXP_DATE_FROM_SEARCH_TOOLTIP_TITLE { get => pRODUCT_EXP_DATE_FROM_SEARCH_TOOLTIP_TITLE; set => pRODUCT_EXP_DATE_FROM_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_PRODUCT_EXP_DATE_FROM_TITLE { get => lBL_PRODUCT_EXP_DATE_FROM_TITLE; set => lBL_PRODUCT_EXP_DATE_FROM_TITLE = value; }
+        public static string PRODUCT_EXP_DATE_TO_SEARCH_TOOLTIP_TITLE { get => pRODUCT_EXP_DATE_TO_SEARCH_TOOLTIP_TITLE; set => pRODUCT_EXP_DATE_TO_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_PRODUCT_EXP_DATE_TO_TITLE { get => lBL_PRODUCT_EXP_DATE_TO_TITLE; set => lBL_PRODUCT_EXP_DATE_TO_TITLE = value; }
+        public static string PRODUCT_DESCRIPTION_SEARCH_TOOLTIP_TITLE { get => pRODUCT_DESCRIPTION_SEARCH_TOOLTIP_TITLE; set => pRODUCT_DESCRIPTION_SEARCH_TOOLTIP_TITLE = value; }
+        public static string PRODUCT_NAME_SEARCH_TOOLTIP_TITLE { get => pRODUCT_NAME_SEARCH_TOOLTIP_TITLE; set => pRODUCT_NAME_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_PRODUCT_DESCRIPTION_TITLE { get => lBL_PRODUCT_DESCRIPTION_TITLE; set => lBL_PRODUCT_DESCRIPTION_TITLE = value; }
+        public static string LBL_BRAND_TITLE { get => lBL_BRAND_TITLE; set => lBL_BRAND_TITLE = value; }
+        public static string LBL_PRODUCT_NAME_TITLE { get => lBL_PRODUCT_NAME_TITLE; set => lBL_PRODUCT_NAME_TITLE = value; }
+        public static string DGV_PRODUCTS_TOOLTIP_TITLE { get => dGV_PRODUCTS_TOOLTIP_TITLE; set => dGV_PRODUCTS_TOOLTIP_TITLE = value; }
+        public static string LBL_IMAGES_TITLE { get => lBL_IMAGES_TITLE; set => lBL_IMAGES_TITLE = value; }
+        public static string BTN_SEARCH_PRODUCT_IMAGE_TITLE { get => bTN_SEARCH_PRODUCT_IMAGE_TITLE; set => bTN_SEARCH_PRODUCT_IMAGE_TITLE = value; }
+        public static string BTN_DELETE_PRODUCT_IMAGE_TITLE { get => bTN_DELETE_PRODUCT_IMAGE_TITLE; set => bTN_DELETE_PRODUCT_IMAGE_TITLE = value; }
+        public static string BTN_ADD_EDIT_PRODUCT_IMAGE_TITLE { get => bTN_ADD_EDIT_PRODUCT_IMAGE_TITLE; set => bTN_ADD_EDIT_PRODUCT_IMAGE_TITLE = value; }
+        public static string SELECTED_PRODUCT_IMAGE_TOOLTIP_TITLE { get => sELECTED_PRODUCT_IMAGE_TOOLTIP_TITLE; set => sELECTED_PRODUCT_IMAGE_TOOLTIP_TITLE = value; }
+        public static string LBL_IMAGE_NAME_TITLE { get => lBL_IMAGE_NAME_TITLE; set => lBL_IMAGE_NAME_TITLE = value; }
+        public static string LBL_IMAGE_ID_TITLE { get => lBL_IMAGE_ID_TITLE; set => lBL_IMAGE_ID_TITLE = value; }
+        public static string LBL_REFERENCED_ID_TITLE { get => lBL_REFERENCED_ID_TITLE; set => lBL_REFERENCED_ID_TITLE = value; }
+        public static string REFERENCED_ID_SEARCH_TOOLTIP_TITLE { get => rEFERENCED_ID_SEARCH_TOOLTIP_TITLE; set => rEFERENCED_ID_SEARCH_TOOLTIP_TITLE = value; }
+        public static string IMAGE_NAME_SEARCH_TOOLTIP_TITLE { get => iMAGE_NAME_SEARCH_TOOLTIP_TITLE; set => iMAGE_NAME_SEARCH_TOOLTIP_TITLE = value; }
+        public static string PRODUCT_ID_COL_TITLE { get => pRODUCT_ID_COL_TITLE; set => pRODUCT_ID_COL_TITLE = value; }
+        public static string BRAND_COL_TITLE { get => bRAND_COL_TITLE; set => bRAND_COL_TITLE = value; }
+        public static string VENDOR_COL_TITLE { get => vENDOR_COL_TITLE; set => vENDOR_COL_TITLE = value; }
+        public static string PRODUCT_NAME_COL_TITLE { get => pRODUCT_NAME_COL_TITLE; set => pRODUCT_NAME_COL_TITLE = value; }
+        public static string PRODUCT_DESCRIPTION_COL_TITLE { get => pRODUCT_DESCRIPTION_COL_TITLE; set => pRODUCT_DESCRIPTION_COL_TITLE = value; }
+        public static string PRODUCT_QUANTITY_COL_TITLE { get => pRODUCT_QUANTITY_COL_TITLE; set => pRODUCT_QUANTITY_COL_TITLE = value; }
+        public static string PRODUCT_PRICE_COL_TITLE { get => pRODUCT_PRICE_COL_TITLE; set => pRODUCT_PRICE_COL_TITLE = value; }
+        public static string PRODUCT_EXP_DATE_COL_TITLE { get => pRODUCT_EXP_DATE_COL_TITLE; set => pRODUCT_EXP_DATE_COL_TITLE = value; }
+        public static string PRODUCT_REG_NUM_COL_TITLE { get => pRODUCT_REG_NUM_COL_TITLE; set => pRODUCT_REG_NUM_COL_TITLE = value; }
+        public static string PRODUCT_PART_NUM_COL_TITLE { get => pRODUCT_PART_NUM_COL_TITLE; set => pRODUCT_PART_NUM_COL_TITLE = value; }
+        public static string PRODUCT_S_LOCATION_COL_TITLE { get => pRODUCT_S_LOCATION_COL_TITLE; set => pRODUCT_S_LOCATION_COL_TITLE = value; }
+        public static string PRODUCTS_TITLE { get => pRODUCTS_TITLE; set => pRODUCTS_TITLE = value; }
+        public static string PRODUCTS_TOOLTIP_TITLE { get => pRODUCTS_TOOLTIP_TITLE; set => pRODUCTS_TOOLTIP_TITLE = value; }
+        public static string DGV_PRODUCT_ORDERS_TOOLTIP_TITLE { get => dGV_PRODUCT_ORDERS_TOOLTIP_TITLE; set => dGV_PRODUCT_ORDERS_TOOLTIP_TITLE = value; }
+        public static string PRICE_OVERRIDE_SEARCH_TOOLTIP_TITLE { get => pRICE_OVERRIDE_SEARCH_TOOLTIP_TITLE; set => pRICE_OVERRIDE_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_PRICE_OVERRIDE_TITLE { get => lBL_PRICE_OVERRIDE_TITLE; set => lBL_PRICE_OVERRIDE_TITLE = value; }
+        public static string ORDER_REASON_SEARCH_TOOLTIP_TITLE { get => oRDER_REASON_SEARCH_TOOLTIP_TITLE; set => oRDER_REASON_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_ORDER_REASON_TITLE { get => lBL_ORDER_REASON_TITLE; set => lBL_ORDER_REASON_TITLE = value; }
+        public static string PO_DATE_ADDED_TO_SEARCH_TOOLTIP_TITLE { get => pO_DATE_ADDED_TO_SEARCH_TOOLTIP_TITLE; set => pO_DATE_ADDED_TO_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_DATE_ADDED_TO_TITLE { get => lBL_DATE_ADDED_TO_TITLE; set => lBL_DATE_ADDED_TO_TITLE = value; }
+        public static string PO_DATE_ADDED_FROM_SEARCH_TOOLTIP_TITLE { get => pO_DATE_ADDED_FROM_SEARCH_TOOLTIP_TITLE; set => pO_DATE_ADDED_FROM_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_DATE_ADDED_FROM_TITLE { get => lBL_DATE_ADDED_FROM_TITLE; set => lBL_DATE_ADDED_FROM_TITLE = value; }
+        public static string LBL_EMPLOYEE_TITLE { get => lBL_EMPLOYEE_TITLE; set => lBL_EMPLOYEE_TITLE = value; }
+        public static string LBL_PRODUCT_TITLE { get => lBL_PRODUCT_TITLE; set => lBL_PRODUCT_TITLE = value; }
+        public static string EMPLOYEE_SEARCH_TOOLTIP_TITLE { get => eMPLOYEE_SEARCH_TOOLTIP_TITLE; set => eMPLOYEE_SEARCH_TOOLTIP_TITLE = value; }
+        public static string PRODUCT_SEARCH_TOOLTIP_TITLE { get => pRODUCT_SEARCH_TOOLTIP_TITLE; set => pRODUCT_SEARCH_TOOLTIP_TITLE = value; }
+        public static string CLIENT_SEARCH_TOOLTIP_TITLE { get => cLIENT_SEARCH_TOOLTIP_TITLE; set => cLIENT_SEARCH_TOOLTIP_TITLE = value; }
+        public static string PO_DATE_MODIFIED_FROM_SEARCH_TOOLTIP_TITLE { get => pO_DATE_MODIFIED_FROM_SEARCH_TOOLTIP_TITLE; set => pO_DATE_MODIFIED_FROM_SEARCH_TOOLTIP_TITLE = value; }
+        public static string PO_DATE_MODIFIED_TO_SEARCH_TOOLTIP_TITLE { get => pO_DATE_MODIFIED_TO_SEARCH_TOOLTIP_TITLE; set => pO_DATE_MODIFIED_TO_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_PRODUCT_ORDER_NOTICE_TITLE { get => lBL_PRODUCT_ORDER_NOTICE_TITLE; set => lBL_PRODUCT_ORDER_NOTICE_TITLE = value; }
+        public static string ORDER_STATUS_SEARCH_TOOLTIP_TITLE { get => oRDER_STATUS_SEARCH_TOOLTIP_TITLE; set => oRDER_STATUS_SEARCH_TOOLTIP_TITLE = value; }
+        public static string DESIRED_QUANTITY_SEARCH_TOOLTIP_TITLE { get => dESIRED_QUANTITY_SEARCH_TOOLTIP_TITLE; set => dESIRED_QUANTITY_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_ORDER_STATUS_TITLE { get => lBL_ORDER_STATUS_TITLE; set => lBL_ORDER_STATUS_TITLE = value; }
+        public static string LBL_ORDER_STATUS_PENDING { get => lBL_ORDER_STATUS_PENDING; set => lBL_ORDER_STATUS_PENDING = value; }
+        public static string LBL_STATUS_PREPAID { get => lBL_STATUS_PREPAID; set => lBL_STATUS_PREPAID = value; }
+        public static string LBL_STATUS_PAID_ON_DELIVERY { get => lBL_STATUS_PAID_ON_DELIVERY; set => lBL_STATUS_PAID_ON_DELIVERY = value; }
+        public static string LBL_STATUS_DIRECTLY_PAID { get => lBL_STATUS_DIRECTLY_PAID; set => lBL_STATUS_DIRECTLY_PAID = value; }
+        public static string LBL_STATUS_GENERATING_INVOICE { get => lBL_STATUS_GENERATING_INVOICE; set => lBL_STATUS_GENERATING_INVOICE = value; }
+        public static string LBL_STATUS_GENERATING_REPORT { get => lBL_STATUS_GENERATING_REPORT; set => lBL_STATUS_GENERATING_REPORT = value; }
+        public static string LBL_ORDER_STATUS_PROCESSING { get => lBL_ORDER_STATUS_PROCESSING; set => lBL_ORDER_STATUS_PROCESSING = value; }
+        public static string LBL_ORDER_STATUS_CANCELLED { get => lBL_ORDER_STATUS_CANCELLED; set => lBL_ORDER_STATUS_CANCELLED = value; }
+        public static string LBL_ORDER_STATUS_RETURNED { get => lBL_ORDER_STATUS_RETURNED; set => lBL_ORDER_STATUS_RETURNED = value; }
+        public static string LBL_ORDER_STATUS_COMPLETED { get => lBL_ORDER_STATUS_COMPLETED; set => lBL_ORDER_STATUS_COMPLETED = value; }
+        public static string LBL_DATE_MODIFIED_TO_TITLE { get => lBL_DATE_MODIFIED_TO_TITLE; set => lBL_DATE_MODIFIED_TO_TITLE = value; }
+        public static string LBL_DATE_MODIFIED_FROM_TITLE { get => lBL_DATE_MODIFIED_FROM_TITLE; set => lBL_DATE_MODIFIED_FROM_TITLE = value; }
+        public static string LBL_CLIENT_TITLE { get => lBL_CLIENT_TITLE; set => lBL_CLIENT_TITLE = value; }
+        public static string LBL_DESIRED_QUANTITY_TITLE { get => lBL_DESIRED_QUANTITY_TITLE; set => lBL_DESIRED_QUANTITY_TITLE = value; }
+        public static string ORDER_ID_COL_TITLE { get => oRDER_ID_COL_TITLE; set => oRDER_ID_COL_TITLE = value; }
+        public static string PRODUCT_COL_TITLE { get => pRODUCT_COL_TITLE; set => pRODUCT_COL_TITLE = value; }
+        public static string DESIRED_QUANTITY_COL_TITLE { get => dESIRED_QUANTITY_COL_TITLE; set => dESIRED_QUANTITY_COL_TITLE = value; }
+        public static string ORDER_PRICE_COL_TITLE { get => oRDER_PRICE_COL_TITLE; set => oRDER_PRICE_COL_TITLE = value; }
+        public static string EMPLOYEE_COL_TITLE { get => eMPLOYEE_COL_TITLE; set => eMPLOYEE_COL_TITLE = value; }
+        public static string CLIENT_COL_TITLE { get => cLIENT_COL_TITLE; set => cLIENT_COL_TITLE = value; }
+        public static string DATE_ADDED_COL_TITLE { get => dATE_ADDED_COL_TITLE; set => dATE_ADDED_COL_TITLE = value; }
+        public static string DATE_MODIFIED_COL_TITLE { get => dATE_MODIFIED_COL_TITLE; set => dATE_MODIFIED_COL_TITLE = value; }
+        public static string ORDER_STATUS_COL_TITLE { get => oRDER_STATUS_COL_TITLE; set => oRDER_STATUS_COL_TITLE = value; }
+        public static string ORDER_REASON_COL_TITLE { get => oRDER_REASON_COL_TITLE; set => oRDER_REASON_COL_TITLE = value; }
+        public static string PRODUCT_ORDERS_TITLE { get => pRODUCT_ORDERS_TITLE; set => pRODUCT_ORDERS_TITLE = value; }
+        public static string PRODUCT_ORDERS_TOOLTIP_TITLE { get => pRODUCT_ORDERS_TOOLTIP_TITLE; set => pRODUCT_ORDERS_TOOLTIP_TITLE = value; }
+        public static string BRAND_NAME_SEARCH_TOOLTIP_TITLE { get => bRAND_NAME_SEARCH_TOOLTIP_TITLE; set => bRAND_NAME_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_BRAND_NAME_TITLE { get => lBL_BRAND_NAME_TITLE; set => lBL_BRAND_NAME_TITLE = value; }
+        public static string DGV_PRODUCT_BRANDS_TOOLTIP_TITLE { get => dGV_PRODUCT_BRANDS_TOOLTIP_TITLE; set => dGV_PRODUCT_BRANDS_TOOLTIP_TITLE = value; }
+        public static string BRAND_NAME_COL_TITLE { get => bRAND_NAME_COL_TITLE; set => bRAND_NAME_COL_TITLE = value; }
+        public static string BRAND_ID_COL_TITLE { get => bRAND_ID_COL_TITLE; set => bRAND_ID_COL_TITLE = value; }
+        public static string PRODUCT_BRANDS_TITLE { get => pRODUCT_BRANDS_TITLE; set => pRODUCT_BRANDS_TITLE = value; }
+        public static string PRODUCT_BRANDS_TOOLTIP_TITLE { get => pRODUCT_BRANDS_TOOLTIP_TITLE; set => pRODUCT_BRANDS_TOOLTIP_TITLE = value; }
+        public static string METHOD_NAME_SEARCH_TOOLTIP_TITLE { get => mETHOD_NAME_SEARCH_TOOLTIP_TITLE; set => mETHOD_NAME_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_METHOD_NAME_TITLE { get => lBL_METHOD_NAME_TITLE; set => lBL_METHOD_NAME_TITLE = value; }
+        public static string DGV_PAYMENT_METHODS_TOOLTIP_TITLE { get => dGV_PAYMENT_METHODS_TOOLTIP_TITLE; set => dGV_PAYMENT_METHODS_TOOLTIP_TITLE = value; }
+        public static string METHOD_ID_COL_TITLE { get => mETHOD_ID_COL_TITLE; set => mETHOD_ID_COL_TITLE = value; }
+        public static string METHOD_NAME_COL_TITLE { get => mETHOD_NAME_COL_TITLE; set => mETHOD_NAME_COL_TITLE = value; }
+        public static string PAYMENT_METHODS_TITLE { get => pAYMENT_METHODS_TITLE; set => pAYMENT_METHODS_TITLE = value; }
+        public static string PAYMENT_METHODS_TOOLTIP_TITLE { get => pAYMENT_METHODS_TOOLTIP_TITLE; set => pAYMENT_METHODS_TOOLTIP_TITLE = value; }
+        public static string DGV_ORDER_DELIVERIES_TOOLTIP_TITLE { get => dGV_ORDER_DELIVERIES_TOOLTIP_TITLE; set => dGV_ORDER_DELIVERIES_TOOLTIP_TITLE = value; }
+        public static string TOTAL_PRICE_SEARCH_TOOLTIP_TITLE { get => tOTAL_PRICE_SEARCH_TOOLTIP_TITLE; set => tOTAL_PRICE_SEARCH_TOOLTIP_TITLE = value; }
+        public static string CARGO_ID_SEARCH_TOOLTIP_TITLE { get => cARGO_ID_SEARCH_TOOLTIP_TITLE; set => cARGO_ID_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_CARGO_ID_TITLE { get => lBL_CARGO_ID_TITLE; set => lBL_CARGO_ID_TITLE = value; }
+        public static string LBL_DELIVERY_STATUS_TITLE { get => lBL_DELIVERY_STATUS_TITLE; set => lBL_DELIVERY_STATUS_TITLE = value; }
+        public static string LBL_DELIVERY_STATUS_PENDING { get => lBL_DELIVERY_STATUS_PENDING; set => lBL_DELIVERY_STATUS_PENDING = value; }
+        public static string LBL_DELIVERY_STATUS_ON_THE_MOVE { get => lBL_DELIVERY_STATUS_ON_THE_MOVE; set => lBL_DELIVERY_STATUS_ON_THE_MOVE = value; }
+        public static string LBL_DELIVERY_STATUS_CANCELLED { get => lBL_DELIVERY_STATUS_CANCELLED; set => lBL_DELIVERY_STATUS_CANCELLED = value; }
+        public static string LBL_DELIVERY_STATUS_RETURNED { get => lBL_DELIVERY_STATUS_RETURNED; set => lBL_DELIVERY_STATUS_RETURNED = value; }
+        public static string LBL_DELIVERY_STATUS_COMPLETED { get => lBL_DELIVERY_STATUS_COMPLETED; set => lBL_DELIVERY_STATUS_COMPLETED = value; }
+        public static string DELIVERY_STATUS_SEARCH_TOOLTIP_TITLE { get => dELIVERY_STATUS_SEARCH_TOOLTIP_TITLE; set => dELIVERY_STATUS_SEARCH_TOOLTIP_TITLE = value; }
+        public static string ORDER_DELIVERY_NOTICE_TITLE { get => oRDER_DELIVERY_NOTICE_TITLE; set => oRDER_DELIVERY_NOTICE_TITLE = value; }
+        public static string OD_DATE_MODIFIED_TO_SEARCH_TOOLTIP_TITLE { get => oD_DATE_MODIFIED_TO_SEARCH_TOOLTIP_TITLE; set => oD_DATE_MODIFIED_TO_SEARCH_TOOLTIP_TITLE = value; }
+        public static string OD_DATE_MODIFIED_FROM_SEARCH_TOOLTIP_TITLE { get => oD_DATE_MODIFIED_FROM_SEARCH_TOOLTIP_TITLE; set => oD_DATE_MODIFIED_FROM_SEARCH_TOOLTIP_TITLE = value; }
+        public static string PAYMENT_METHOD_SEARCH_TOOLTIP_TITLE { get => pAYMENT_METHOD_SEARCH_TOOLTIP_TITLE; set => pAYMENT_METHOD_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_PAYMENT_METHOD_TITLE { get => lBL_PAYMENT_METHOD_TITLE; set => lBL_PAYMENT_METHOD_TITLE = value; }
+        public static string PRODUCT_ORDER_SEARCH_TOOLTIP_TITLE { get => pRODUCT_ORDER_SEARCH_TOOLTIP_TITLE; set => pRODUCT_ORDER_SEARCH_TOOLTIP_TITLE = value; }
+        public static string DELIVERY_SERVICE_SEARCH_TOOLTIP_TITLE { get => dELIVERY_SERVICE_SEARCH_TOOLTIP_TITLE; set => dELIVERY_SERVICE_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_TOTAL_PRICE_TITLE { get => lBL_TOTAL_PRICE_TITLE; set => lBL_TOTAL_PRICE_TITLE = value; }
+        public static string DELIVERY_REASON_SEARCH_TOOLTIP_TITLE { get => dELIVERY_REASON_SEARCH_TOOLTIP_TITLE; set => dELIVERY_REASON_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_DELIVERY_REASON_TITLE { get => lBL_DELIVERY_REASON_TITLE; set => lBL_DELIVERY_REASON_TITLE = value; }
+        public static string OD_DATE_ADDED_TO_SEARCH_TOOLTIP_TITLE { get => oD_DATE_ADDED_TO_SEARCH_TOOLTIP_TITLE; set => oD_DATE_ADDED_TO_SEARCH_TOOLTIP_TITLE = value; }
+        public static string OD_DATE_ADDED_FROM_SEARCH_TOOLTIP_TITLE { get => oD_DATE_ADDED_FROM_SEARCH_TOOLTIP_TITLE; set => oD_DATE_ADDED_FROM_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_DELIVERY_SERVICE_TITLE { get => lBL_DELIVERY_SERVICE_TITLE; set => lBL_DELIVERY_SERVICE_TITLE = value; }
+        public static string LBL_PRODUCT_ORDER_TITLE { get => lBL_PRODUCT_ORDER_TITLE; set => lBL_PRODUCT_ORDER_TITLE = value; }
+        public static string DELIVERY_ID_COL_TITLE { get => dELIVERY_ID_COL_TITLE; set => dELIVERY_ID_COL_TITLE = value; }
+        public static string PRODUCT_ORDER_COL_TITLE { get => pRODUCT_ORDER_COL_TITLE; set => pRODUCT_ORDER_COL_TITLE = value; }
+        public static string TOTAL_PRICE_COL_TITLE { get => tOTAL_PRICE_COL_TITLE; set => tOTAL_PRICE_COL_TITLE = value; }
+        public static string DELIVERY_SERVICE_COL_TITLE { get => dELIVERY_SERVICE_COL_TITLE; set => dELIVERY_SERVICE_COL_TITLE = value; }
+        public static string PAYMENT_METHOD_COL_TITLE { get => pAYMENT_METHOD_COL_TITLE; set => pAYMENT_METHOD_COL_TITLE = value; }
+        public static string CARGO_ID_COL_TITLE { get => cARGO_ID_COL_TITLE; set => cARGO_ID_COL_TITLE = value; }
+        public static string DELIVERY_STATUS_COL_TITLE { get => dELIVERY_STATUS_COL_TITLE; set => dELIVERY_STATUS_COL_TITLE = value; }
+        public static string DELIVERY_REASON_COL_TITLE { get => dELIVERY_REASON_COL_TITLE; set => dELIVERY_REASON_COL_TITLE = value; }
+        public static string ORDER_DELIVERIES_TITLE { get => oRDER_DELIVERIES_TITLE; set => oRDER_DELIVERIES_TITLE = value; }
+        public static string ORDER_DELIVERIES_TOOLTIP_TITLE { get => oRDER_DELIVERIES_TOOLTIP_TITLE; set => oRDER_DELIVERIES_TOOLTIP_TITLE = value; }
 
         public GLOBAL_RESOURCES()
         {
@@ -611,6 +933,14 @@ namespace XtremePharmacyManager
             IMAGE_UPLOAD_FOR_OPERATION_TITLE = manager.GetString("ImageUploadForOperationTitle", CultureInfo.CurrentCulture);
             USERS_TITLE = manager.GetString("UsersTitle", CultureInfo.CurrentCulture);
             USERS_TOOLTIP_TITLE = manager.GetString("UsersTooltipTitle", CultureInfo.CurrentCulture);
+            VENDORS_TITLE = manager.GetString("VendorsTitle", CultureInfo.CurrentCulture);
+            VENDORS_TOOLTIP_TITLE = manager.GetString("VendorsTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCTS_TITLE = manager.GetString("ProductsTitle", CultureInfo.CurrentCulture); 
+            PRODUCTS_TOOLTIP_TITLE = manager.GetString("ProductsTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_ORDERS_TITLE = manager.GetString("ProductOrdersTitle", CultureInfo.CurrentCulture);
+            PRODUCT_ORDERS_TOOLTIP_TITLE = manager.GetString("ProductOrdersTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_BRANDS_TITLE = manager.GetString("ProductBrandsTitle", CultureInfo.CurrentCulture);
+            PRODUCT_BRANDS_TOOLTIP_TITLE = manager.GetString("ProductBrandsTooltipTitle", CultureInfo.CurrentCulture);
             ROLE_COL_TITLE = manager.GetString("RoleColTitle", CultureInfo.CurrentCulture);
             LBL_ROLE_ADMIN = manager.GetString("LblRoleAdmin", CultureInfo.CurrentCulture);
             LBL_ROLE_EMPLOYEE = manager.GetString("LblRoleEmployee", CultureInfo.CurrentCulture);
@@ -629,7 +959,30 @@ namespace XtremePharmacyManager
             PASSWORD_COL_TITLE = manager.GetString("PasswordColTitle", CultureInfo.CurrentCulture);
             USER_NAME_COL_TITLE = manager.GetString("UserNameColTitle", CultureInfo.CurrentCulture);
             USER_ID_COL_TITLE = manager.GetString("UserIDColTitle", CultureInfo.CurrentCulture);
-            HELP_TOOLTIP_TITLE = manager.GetString("HelpTooltipTitle", CultureInfo.CurrentCulture);
+            VENDOR_NAME_COL_TITLE = manager.GetString("VendorNameColTitle", CultureInfo.CurrentCulture);
+            VENDOR_ID_COL_TITLE = manager.GetString("VendorIDColTitle", CultureInfo.CurrentCulture);
+            PRODUCT_ID_COL_TITLE = manager.GetString("ProductIDColTitle", CultureInfo.CurrentCulture);
+            BRAND_COL_TITLE = manager.GetString("BrandColTitle", CultureInfo.CurrentCulture);
+            VENDOR_COL_TITLE = manager.GetString("VendorColTitle", CultureInfo.CurrentCulture);
+            PRODUCT_NAME_COL_TITLE = manager.GetString("ProductNameColTitle", CultureInfo.CurrentCulture);
+            PRODUCT_DESCRIPTION_COL_TITLE = manager.GetString("ProductDescriptionColTitle", CultureInfo.CurrentCulture);
+            PRODUCT_QUANTITY_COL_TITLE = manager.GetString("ProductQuantityColTitle", CultureInfo.CurrentCulture);
+            PRODUCT_PRICE_COL_TITLE = manager.GetString("ProductPriceColTitle", CultureInfo.CurrentCulture);
+            PRODUCT_EXP_DATE_COL_TITLE = manager.GetString("ProductExpDateColTitle", CultureInfo.CurrentCulture);
+            PRODUCT_REG_NUM_COL_TITLE = manager.GetString("ProductRegNumColTitle", CultureInfo.CurrentCulture);
+            PRODUCT_PART_NUM_COL_TITLE = manager.GetString("ProductPartNumColTitle", CultureInfo.CurrentCulture);
+            PRODUCT_S_LOCATION_COL_TITLE = manager.GetString("ProductSLocationColTitle", CultureInfo.CurrentCulture);
+            ORDER_ID_COL_TITLE = manager.GetString("OrderIDColTitle", CultureInfo.CurrentCulture);
+            PRODUCT_COL_TITLE = manager.GetString("ProductColTitle", CultureInfo.CurrentCulture);
+            DESIRED_QUANTITY_COL_TITLE = manager.GetString("DesiredQuantityColTitle", CultureInfo.CurrentCulture);
+            ORDER_PRICE_COL_TITLE = manager.GetString("OrderPriceColTitle", CultureInfo.CurrentCulture);
+            EMPLOYEE_COL_TITLE = manager.GetString("EmployeeColTitle", CultureInfo.CurrentCulture);
+            CLIENT_COL_TITLE = manager.GetString("ClientColTitle", CultureInfo.CurrentCulture);
+            DATE_ADDED_COL_TITLE = manager.GetString("DateAddedColTitle", CultureInfo.CurrentCulture);
+            DATE_MODIFIED_COL_TITLE = manager.GetString("DateModifiedColTitle", CultureInfo.CurrentCulture);
+            ORDER_STATUS_COL_TITLE = manager.GetString("OrderStatusColTitle", CultureInfo.CurrentCulture);
+            ORDER_REASON_COL_TITLE = manager.GetString("OrderReasonColTitle", CultureInfo.CurrentCulture);
+            HELP_TITLE = manager.GetString("HelpTooltipTitle", CultureInfo.CurrentCulture);
             USER_NOTICE_TOOLTIP_TITLE = manager.GetString("UserNoticeTooltipTitle", CultureInfo.CurrentCulture);
             LBL_USER_NOTICE_TITLE = manager.GetString("LblUserNoticeTitle", CultureInfo.CurrentCulture);
             BTN_GENERATE_REPORT_TITLE = manager.GetString("BtnGenerateReportTitle", CultureInfo.CurrentCulture);
@@ -656,7 +1009,40 @@ namespace XtremePharmacyManager
             DISPLAY_NAME_SEARCH_TOOLTIP_TITLE = manager.GetString("DisplayNameSearchTooltip", CultureInfo.CurrentCulture);
             PASSWORD_SEARCH_TOOLTIP_TITLE = manager.GetString("PasswordSearchTooltip", CultureInfo.CurrentCulture);
             USERNAME_SEARCH_TOOLTIP_TITLE = manager.GetString("UsernameSearchTooltip", CultureInfo.CurrentCulture);
+            VENDOR_NAME_SEARCH_TOOLTIP_TITLE = manager.GetString("VendorNameSearchTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_PRICE_SEARCH_TOOLTIP_TITLE = manager.GetString("ProductPriceSearchTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_NAME_SEARCH_TOOLTIP_TITLE = manager.GetString("ProductNameSearchTooltipTitle", CultureInfo.CurrentCulture);
+            IMAGE_NAME_SEARCH_TOOLTIP_TITLE = manager.GetString("ImageNameSearchTooltipTitle", CultureInfo.CurrentCulture);
+            PRICE_OVERRIDE_SEARCH_TOOLTIP_TITLE = manager.GetString("PriceOverrideSearchTooltipTitle", CultureInfo.CurrentCulture);
+            ORDER_REASON_SEARCH_TOOLTIP_TITLE = manager.GetString("OrderReasonSearchTooltipTitle", CultureInfo.CurrentCulture);
+            PO_DATE_ADDED_TO_SEARCH_TOOLTIP_TITLE = manager.GetString("PODateAddedToSearchTooltipTitle", CultureInfo.CurrentCulture);
+            PO_DATE_ADDED_FROM_SEARCH_TOOLTIP_TITLE = manager.GetString("PODateAddedFromSearchTooltipTitle", CultureInfo.CurrentCulture);
+            PO_DATE_MODIFIED_FROM_SEARCH_TOOLTIP_TITLE = manager.GetString("PODateModifiedFromSearchTooltipTitle", CultureInfo.CurrentCulture);
+            PO_DATE_MODIFIED_TO_SEARCH_TOOLTIP_TITLE = manager.GetString("PODateModifiedToSearchTooltipTitle", CultureInfo.CurrentCulture);
+            ORDER_STATUS_SEARCH_TOOLTIP_TITLE = manager.GetString("OrderStatusSearchTooltipTitle", CultureInfo.CurrentCulture);
+            DESIRED_QUANTITY_SEARCH_TOOLTIP_TITLE = manager.GetString("DesiredQuantitySearchTooltipTitle", CultureInfo.CurrentCulture);
+            EMPLOYEE_SEARCH_TOOLTIP_TITLE = manager.GetString("EmployeeSearchTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_SEARCH_TOOLTIP_TITLE = manager.GetString("ProductSearchTooltipTitle", CultureInfo.CurrentCulture);
+            CLIENT_SEARCH_TOOLTIP_TITLE = manager.GetString("ClientSearchTooltipTitle", CultureInfo.CurrentCulture);
+            BRAND_NAME_SEARCH_TOOLTIP_TITLE = manager.GetString("BrandNameSearchTooltipTitle", CultureInfo.CurrentCulture);
+            METHOD_NAME_SEARCH_TOOLTIP_TITLE = manager.GetString("MethodNameSearchTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_SEARCH_TOOLTIP_TITLE = manager.GetString("BtnSearchTooltipTitle", CultureInfo.CurrentCulture);
+            DGV_USERS_TOOLTIP_TITLE = manager.GetString("DgvUsersTooltipTitle", CultureInfo.CurrentCulture);
             ID_SEARCH_TOOLTIP_TITLE = manager.GetString("IDSearchTooltip", CultureInfo.CurrentCulture);
+            DGV_VENDORS_TOOLTIP_TITLE = manager.GetString("DgvVendorsTooltipTitle", CultureInfo.CurrentCulture);
+            LST_PRODUCT_IMAGES_TOOLTIP_TITLE = manager.GetString("LstProductImagesTooltipTitle", CultureInfo.CurrentCulture);
+            S_LOCATION_SEARCH_TOOLTIP_TITLE = manager.GetString("SLocationSearchTooltipTitle", CultureInfo.CurrentCulture);
+            PART_NUM_SEARCH_TOOLTIP_TITLE = manager.GetString("PartNumSearchTooltipTitle", CultureInfo.CurrentCulture);
+            REG_NUM_SEARCH_TOOLTIP_TITLE = manager.GetString("RegNumSearchTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_EXP_DATE_TO_SEARCH_TOOLTIP_TITLE = manager.GetString("ProductExpDateToSearchTooltip", CultureInfo.CurrentCulture);
+            PRODUCT_EXP_DATE_FROM_SEARCH_TOOLTIP_TITLE = manager.GetString("ProductExpDateFromSearchTooltip", CultureInfo.CurrentCulture);
+            CB_SELECT_BRAND_SEARCH_TOOLTIP_TITLE = manager.GetString("CbSelectBrandSearchTooltipTitle", CultureInfo.CurrentCulture);
+            CB_SELECT_VENDOR_SEARCH_TOOLTIP_TITLE = manager.GetString("CbSelectVendorSearchTooltipTitle", CultureInfo.CurrentCulture);
+            QUANTITY_SEARCH_TOOLTIP_TITLE = manager.GetString("QuantitySearchTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_NOTICE_TOOLTIP_TITLE = manager.GetString("ProductNoticeTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_ORDER_NOTICE_TOOLTIP_TITLE = manager.GetString("ProductOrderNoticeTooltipTitle", CultureInfo.CurrentCulture);
+            ORDER_DELIVERY_NOTICE_TOOLTIP_TITLE = manager.GetString("OrderDeliveryNoticeTooltipTitle", CultureInfo.CurrentCulture);
+            ACCOUNT_SETTINGS_NOTICE_TOOLTIP_TITLE = manager.GetString("AccountSettingsNoticeTooltipTitle", CultureInfo.CurrentCulture);
             LBL_DIAGNOSE_TITLE = manager.GetString("LblDiagnoseTitle", CultureInfo.CurrentCulture);
             LBL_USER_REG_DATE_FROM_TITLE = manager.GetString("LblUserRegDateFromTitle", CultureInfo.CurrentCulture);
             LBL_USER_REG_DATE_TO_TITLE = manager.GetString("LblUserRegDateToTitle", CultureInfo.CurrentCulture);
@@ -670,9 +1056,110 @@ namespace XtremePharmacyManager
             LBL_PASSWORD_TITLE = manager.GetString("LblPasswordTitle", CultureInfo.CurrentCulture);
             LBL_USERNAME_TITLE = manager.GetString("LblUsernameTitle", CultureInfo.CurrentCulture);
             LBL_ID_TITLE = manager.GetString("LblIDTitle", CultureInfo.CurrentCulture);
+            LBL_VENDOR_NAME_TITLE = manager.GetString("LblVendorNameTitle", CultureInfo.CurrentCulture);
+            LBL_QUANTITY_TITLE = manager.GetString("LblQuantityTitle", CultureInfo.CurrentCulture);
+            LBL_PRICE_TITLE = manager.GetString("LblPriceTitle", CultureInfo.CurrentCulture);
+            LBL_PRICE_OVERRIDE_TITLE = manager.GetString("LblPriceOverrideTitle", CultureInfo.CurrentCulture);
+            LBL_S_LOCATION_TITLE = manager.GetString("LblSLocationTitle", CultureInfo.CurrentCulture);
+            LBL_PRODUCT_EXP_DATE_FROM_TITLE = manager.GetString("LblProductExpDateFromTitle", CultureInfo.CurrentCulture);
+            LBL_PRODUCT_EXP_DATE_TO_TITLE = manager.GetString("LblProductExpDateToTitle", CultureInfo.CurrentCulture);
+            LBL_PRODUCT_NOTICE_TITLE = manager.GetString("LblProductNoticeTitle", CultureInfo.CurrentCulture);
+            LBL_PRODUCT_IMAGE_NOTICE_TITLE = manager.GetString("LblProductImageNoticeTitle", CultureInfo.CurrentCulture);
+            PRODUCT_DESCRIPTION_SEARCH_TOOLTIP_TITLE = manager.GetString("ProductDescriptionSearchTooltipTitle", CultureInfo.CurrentCulture);
+            DGV_PRODUCTS_TOOLTIP_TITLE = manager.GetString("DgvProductsTooltipTitle", CultureInfo.CurrentCulture);
+            DGV_PRODUCT_ORDERS_TOOLTIP_TITLE = manager.GetString("DgvProductOrdersTooltipTitle", CultureInfo.CurrentCulture);
+            SELECTED_PRODUCT_IMAGE_TOOLTIP_TITLE = manager.GetString("SelectedProductImageTooltipTitle", CultureInfo.CurrentCulture);
+            REFERENCED_ID_SEARCH_TOOLTIP_TITLE = manager.GetString("ReferencedIDSearchTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_VENDOR_TITLE = manager.GetString("LblVendorTitle", CultureInfo.CurrentCulture);
+            LBL_BRAND_TITLE = manager.GetString("LblBrandTitle", CultureInfo.CurrentCulture);
+            LBL_PART_NUM_TITLE = manager.GetString("LblPartNumTitle", CultureInfo.CurrentCulture);
+            LBL_REG_NUM_TITLE = manager.GetString("LblRegNumTitle", CultureInfo.CurrentCulture);
+            LBL_PRODUCT_DESCRIPTION_TITLE = manager.GetString("LblProductDescriptionTitle", CultureInfo.CurrentCulture);
+            LBL_PRODUCT_NAME_TITLE = manager.GetString("LblProductNameTitle", CultureInfo.CurrentCulture);
+            LBL_IMAGE_NAME_TITLE = manager.GetString("LblImageNameTitle", CultureInfo.CurrentCulture);
+            LBL_IMAGE_ID_TITLE = manager.GetString("LblImageIDTitle", CultureInfo.CurrentCulture);
+            LBL_REFERENCED_ID_TITLE = manager.GetString("LblReferencedIDTitle", CultureInfo.CurrentCulture);
+            LBL_IMAGES_TITLE = manager.GetString("LblImagesTitle", CultureInfo.CurrentCulture);
+            LBL_ORDER_REASON_TITLE = manager.GetString("LblOrderReasonTitle", CultureInfo.CurrentCulture);
+            LBL_DATE_ADDED_TO_TITLE = manager.GetString("LblPODateAddedToTitle", CultureInfo.CurrentCulture);
+            LBL_DATE_ADDED_FROM_TITLE = manager.GetString("LblPODateAddedFromTitle", CultureInfo.CurrentCulture);
+            LBL_EMPLOYEE_TITLE = manager.GetString("LblEmployeeTitle", CultureInfo.CurrentCulture);
+            LBL_PRODUCT_TITLE = manager.GetString("LblProductTitle", CultureInfo.CurrentCulture);
+            LBL_PRODUCT_ORDER_NOTICE_TITLE = manager.GetString("ProductOrderNoticeTitle", CultureInfo.CurrentCulture);
+            LBL_ORDER_STATUS_TITLE = manager.GetString("LblOrderStatusTitle", CultureInfo.CurrentCulture);
+            LBL_ORDER_STATUS_PENDING = manager.GetString("LblOrderStatusPending", CultureInfo.CurrentCulture);
+            LBL_STATUS_PREPAID = manager.GetString("LblStatusPrepaid", CultureInfo.CurrentCulture);
+            LBL_STATUS_PAID_ON_DELIVERY = manager.GetString("LblStatusPaidOnDelivery", CultureInfo.CurrentCulture);
+            LBL_STATUS_DIRECTLY_PAID = manager.GetString("LblStatusDirectlyPaid", CultureInfo.CurrentCulture);
+            LBL_STATUS_GENERATING_INVOICE = manager.GetString("LblStatusGeneratingInvoice", CultureInfo.CurrentCulture);
+            LBL_STATUS_GENERATING_REPORT = manager.GetString("LblStatusGeneratingReport", CultureInfo.CurrentCulture);
+            LBL_ORDER_STATUS_PROCESSING = manager.GetString("LblOrderStatusProcessing", CultureInfo.CurrentCulture);
+            LBL_ORDER_STATUS_CANCELLED = manager.GetString("LblOrderStatusCancelled", CultureInfo.CurrentCulture);
+            LBL_ORDER_STATUS_RETURNED = manager.GetString("LblOrderStatusReturned", CultureInfo.CurrentCulture);
+            LBL_ORDER_STATUS_COMPLETED = manager.GetString("LblOrderStatusCompleted", CultureInfo.CurrentCulture);
+            LBL_DATE_MODIFIED_TO_TITLE = manager.GetString("LblPODateModifiedToTitle", CultureInfo.CurrentCulture);
+            LBL_DATE_MODIFIED_FROM_TITLE = manager.GetString("LblPODateModifiedFromTitle", CultureInfo.CurrentCulture);
+            LBL_CLIENT_TITLE = manager.GetString("LblClientTitle", CultureInfo.CurrentCulture);
+            LBL_DESIRED_QUANTITY_TITLE = manager.GetString("LblDesiredQuantityTitle", CultureInfo.CurrentCulture);
+            LBL_BRAND_NAME_TITLE = manager.GetString("LblBrandNameTitle", CultureInfo.CurrentCulture);
+            LBL_ADDRESS_TITLE = manager.GetString("LblMethodNameTitle", CultureInfo.CurrentCulture);
+            DGV_PRODUCT_BRANDS_TOOLTIP_TITLE = manager.GetString("DgvProductBrandsTooltipTitle", CultureInfo.CurrentCulture);
+            BRAND_NAME_COL_TITLE = manager.GetString("BrandNameColTitle", CultureInfo.CurrentCulture);
+            BRAND_ID_COL_TITLE = manager.GetString("BrandIDColTitle", CultureInfo.CurrentCulture);
+            DGV_PAYMENT_METHODS_TOOLTIP_TITLE = manager.GetString("DgvPaymentMethodsTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_METHOD_NAME_TITLE = manager.GetString("LblMethodNameTitle", CultureInfo.CurrentCulture);
+            METHOD_ID_COL_TITLE = manager.GetString("MethodIDColTitle", CultureInfo.CurrentCulture);
+            METHOD_NAME_COL_TITLE = manager.GetString("MethodNameColTitle", CultureInfo.CurrentCulture);
+            PAYMENT_METHODS_TITLE = manager.GetString("PaymentMethodsTitle", CultureInfo.CurrentCulture);
+            PAYMENT_METHODS_TOOLTIP_TITLE = manager.GetString("PaymentMethodsTooltipTitle", CultureInfo.CurrentCulture);
+            DGV_ORDER_DELIVERIES_TOOLTIP_TITLE = manager.GetString("DgvOrderDeliveriesTooltipTitle", CultureInfo.CurrentCulture);
+            TOTAL_PRICE_SEARCH_TOOLTIP_TITLE = manager.GetString("TotalPriceSearchTooltipTitle", CultureInfo.CurrentCulture);
+            CARGO_ID_SEARCH_TOOLTIP_TITLE = manager.GetString("CargoIDSearchTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_CARGO_ID_TITLE = manager.GetString("LblCargoIDTitle", CultureInfo.CurrentCulture);
+            LBL_DELIVERY_STATUS_TITLE = manager.GetString("LblDeliveryStatusTitle", CultureInfo.CurrentCulture);
+            LBL_DELIVERY_STATUS_PENDING = manager.GetString("LblDeliveryStatusPending", CultureInfo.CurrentCulture);
+            LBL_DELIVERY_STATUS_ON_THE_MOVE = manager.GetString("LblDeliveryStatusOnTheMove", CultureInfo.CurrentCulture);
+            LBL_DELIVERY_STATUS_CANCELLED = manager.GetString("LblDeliveryStatusCancelled", CultureInfo.CurrentCulture);
+            LBL_DELIVERY_STATUS_RETURNED = manager.GetString("LblDeliveryStatusReturned", CultureInfo.CurrentCulture);
+            LBL_DELIVERY_STATUS_COMPLETED = manager.GetString("LblDeliveryStatusCompleted", CultureInfo.CurrentCulture);
+            DELIVERY_STATUS_SEARCH_TOOLTIP_TITLE = manager.GetString("DeliveryStatusSearchTooltipTitle", CultureInfo.CurrentCulture);
+            ORDER_DELIVERY_NOTICE_TITLE = manager.GetString("OrderDeliveryNoticeTitle", CultureInfo.CurrentCulture);
+            OD_DATE_MODIFIED_TO_SEARCH_TOOLTIP_TITLE = manager.GetString("ODDateModifiedToSearchTooltipTitle", CultureInfo.CurrentCulture);
+            OD_DATE_MODIFIED_FROM_SEARCH_TOOLTIP_TITLE = manager.GetString("ODDateModifiedFromSearchTooltipTitle", CultureInfo.CurrentCulture);
+            PAYMENT_METHOD_SEARCH_TOOLTIP_TITLE = manager.GetString("PaymentMethodSearchTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_PAYMENT_METHOD_TITLE = manager.GetString("LblPaymentMethodTitle", CultureInfo.CurrentCulture);
+            PRODUCT_ORDER_SEARCH_TOOLTIP_TITLE = manager.GetString("ProductOrderSearchTooltipTitle", CultureInfo.CurrentCulture);
+            DELIVERY_SERVICE_SEARCH_TOOLTIP_TITLE = manager.GetString("DeliveryServiceSearchTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_TOTAL_PRICE_TITLE = manager.GetString("LblTotalPriceTitle", CultureInfo.CurrentCulture);
+            DELIVERY_REASON_SEARCH_TOOLTIP_TITLE = manager.GetString("DeliveryReasonSearchTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_DELIVERY_REASON_TITLE = manager.GetString("LblDeliveryReasonTitle", CultureInfo.CurrentCulture);
+            OD_DATE_ADDED_TO_SEARCH_TOOLTIP_TITLE = manager.GetString("ODDateAddedToSearchTooltipTitle", CultureInfo.CurrentCulture);
+            OD_DATE_ADDED_FROM_SEARCH_TOOLTIP_TITLE = manager.GetString("ODDateAddedFromSearchTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_DELIVERY_SERVICE_TITLE = manager.GetString("LblDeliveryServiceTitle", CultureInfo.CurrentCulture);
+            LBL_PRODUCT_ORDER_TITLE = manager.GetString("LblProductOrderTitle", CultureInfo.CurrentCulture);
+            DELIVERY_ID_COL_TITLE = manager.GetString("DeliveryIDColTitle", CultureInfo.CurrentCulture);
+            PRODUCT_ORDER_COL_TITLE = manager.GetString("ProductOrderColTitle", CultureInfo.CurrentCulture);
+            TOTAL_PRICE_COL_TITLE = manager.GetString("TotalPriceColTitle", CultureInfo.CurrentCulture);
+            DELIVERY_SERVICE_COL_TITLE = manager.GetString("DeliveryServiceColTitle", CultureInfo.CurrentCulture);
+            PAYMENT_METHOD_COL_TITLE = manager.GetString("PaymentMethodColTitle", CultureInfo.CurrentCulture);
+            CARGO_ID_COL_TITLE = manager.GetString("CargoIDColTitle", CultureInfo.CurrentCulture);
+            DELIVERY_STATUS_COL_TITLE = manager.GetString("DeliveryStatusColTitle", CultureInfo.CurrentCulture);
+            DELIVERY_REASON_COL_TITLE = manager.GetString("DeliveryReasonColTitle", CultureInfo.CurrentCulture);
+            ORDER_DELIVERIES_TITLE = manager.GetString("OrderDeliveriesTitle", CultureInfo.CurrentCulture);
+            ORDER_DELIVERIES_TOOLTIP_TITLE = manager.GetString("OrderDeliveriesTooltipTitle", CultureInfo.CurrentCulture);
+            DELIVERY_PRICE_SEARCH_TOOLTIP_TITLE = manager.GetString("DeliveryPriceSearchTooltipTitle", CultureInfo.CurrentCulture);
+            SERVICE_NAME_SEARCH_TOOLTIP_TITLE = manager.GetString("ServiceNameSearchTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_SERVICE_NAME_TITLE = manager.GetString("LblServiceNameTitle", CultureInfo.CurrentCulture);
+            DGV_DELIVERY_SERVICES_TOOLTIP_TITLE = manager.GetString("DgvDeliveryServicesTooltipTitle", CultureInfo.CurrentCulture);
+            SERVICE_ID_COL_TITLE = manager.GetString("ServiceIDColTitle", CultureInfo.CurrentCulture);
+            SERVICE_NAME_COL_TITLE = manager.GetString("ServiceNameColTitle", CultureInfo.CurrentCulture);
+            SERVICE_PRICE_COL_TITLE = manager.GetString("ServicePriceColTitle", CultureInfo.CurrentCulture);
+            DELIVERY_SERVICES_TITLE = manager.GetString("DelieryServicesTitle", CultureInfo.CurrentCulture);
+            DELIVERY_SERVICES_TOOLTIP_TITLE = manager.GetString("DelieryServicesTooltipTitle", CultureInfo.CurrentCulture);
             BTN_SEARCH_TITLE = manager.GetString("BtnSearchTitle", CultureInfo.CurrentCulture);
-            BTN_SEARCH_TOOLTIP_TITLE = manager.GetString("BtnSearchTooltipTitle", CultureInfo.CurrentCulture);
-            DGV_USERS_TOOLTIP_TITLE = manager.GetString("DgvUsersTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_SEARCH_PRODUCT_IMAGE_TITLE = manager.GetString("BtnSearchProductImageTitle", CultureInfo.CurrentCulture);
+            BTN_DELETE_PRODUCT_IMAGE_TITLE = manager.GetString("BtnDeleteProductImageTitle", CultureInfo.CurrentCulture);
+            BTN_ADD_EDIT_PRODUCT_IMAGE_TITLE = manager.GetString("BtnAddEditProductImageTitle", CultureInfo.CurrentCulture);
             PRODUCT_MENU_ACCESS_ADMIN_NOTICE = manager.GetString("ProductMenuAccessAdminNotice", CultureInfo.CurrentCulture);
             PRODUCT_MENU_ACCESS_EMPLOYEE_NOTICE = manager.GetString("ProductMenuAccessEmployeeNotice", CultureInfo.CurrentCulture);
             USER_MENU_ACCESS_ERROR_MESSAGE = manager.GetString("UserMenuAccessErrorMessage",CultureInfo.CurrentCulture);

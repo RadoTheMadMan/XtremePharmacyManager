@@ -92,7 +92,7 @@
             this.labelProductName.Name = "labelProductName";
             this.labelProductName.Size = new System.Drawing.Size(361, 21);
             this.labelProductName.TabIndex = 19;
-            this.labelProductName.Text = "Product Name";
+            this.labelProductName.Text = GLOBAL_RESOURCES.PRODUCT_NAME_COL_TITLE;
             this.labelProductName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ttAbout.SetToolTip(this.labelProductName, "The name of the application");
             // 
@@ -168,7 +168,7 @@
             this.ttAbout.IsBalloon = true;
             this.ttAbout.ShowAlways = true;
             this.ttAbout.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttAbout.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttAbout.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmAbout
             // 

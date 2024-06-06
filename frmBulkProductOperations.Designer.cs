@@ -222,7 +222,7 @@
             this.cbVendor.Size = new System.Drawing.Size(223, 24);
             this.cbVendor.TabIndex = 69;
             this.ttBulkProductOperations.SetToolTip(this.cbVendor, "The vendor the selected product is assigned to can be selected here");
-            this.cbVendor.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.cbVendor.ValueMember = "ID";
             // 
             // productVendorBindingSource
             // 
@@ -254,8 +254,7 @@
             this.lblProductNotice.Text = "IMPORTANT NOTICE: To see the expiry date\r\ncheck the side of the product package\r\n" +
     "where the partitude number is\r\nAlso set the base price based on the vendor you s" +
     "et\r\n";
-            this.ttBulkProductOperations.SetToolTip(this.lblProductNotice, "If you are a dumbfuck like my creator read this so you don\'t complain that you ca" +
-        "n\'t change the product data via any operation");
+            this.ttBulkProductOperations.SetToolTip(this.lblProductNotice, GLOBAL_RESOURCES.PRODUCT_NOTICE_TOOLTIP_TITLE);
             // 
             // txtStorageLocation
             // 
@@ -374,7 +373,7 @@
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(67, 16);
             this.lblQuantity.TabIndex = 56;
-            this.lblQuantity.Text = "Quantity:";
+            this.lblQuantity.Text = GLOBAL_RESOURCES.LBL_QUANTITY_TITLE;
             // 
             // cbBrand
             // 
@@ -388,7 +387,7 @@
             this.cbBrand.Size = new System.Drawing.Size(223, 24);
             this.cbBrand.TabIndex = 55;
             this.ttBulkProductOperations.SetToolTip(this.cbBrand, "The brand the selected product is assigned to can be selected here");
-            this.cbBrand.ValueMember = GLOBAL_RESOURCES.USER_ID_COL_TITLE;
+            this.cbBrand.ValueMember = "ID";
             // 
             // productBrandBindingSource
             // 
@@ -454,7 +453,7 @@
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(47, 16);
             this.lblPrice.TabIndex = 49;
-            this.lblPrice.Text = "Price:";
+            this.lblPrice.Text = GLOBAL_RESOURCES.LBL_PRICE_TITLE;
             // 
             // cbSelectRecord
             // 
@@ -676,7 +675,7 @@
             this.lblProductName.Name = "lblProductName";
             this.lblProductName.Size = new System.Drawing.Size(109, 16);
             this.lblProductName.TabIndex = 3;
-            this.lblProductName.Text = "Product Name:";
+            this.lblProductName.Text = GLOBAL_RESOURCES.LBL_PRODUCT_NAME_TITLE;
             // 
             // txtID
             // 
@@ -739,7 +738,7 @@
             this.ttBulkProductOperations.IsBalloon = true;
             this.ttBulkProductOperations.ShowAlways = true;
             this.ttBulkProductOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttBulkProductOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttBulkProductOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmBulkProductOperations
             // 

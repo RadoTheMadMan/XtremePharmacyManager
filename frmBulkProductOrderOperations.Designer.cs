@@ -225,7 +225,7 @@
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(97, 16);
             this.lblStatus.TabIndex = 72;
-            this.lblStatus.Text = "Order Status:";
+            this.lblStatus.Text = GLOBAL_RESOURCES.LBL_ORDER_STATUS_TITLE;
             // 
             // cbStatus
             // 
@@ -233,21 +233,21 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.cbStatus.FormattingEnabled = true;
             this.cbStatus.Items.AddRange(new object[] {
-            "Awaiting processing",
-            "Prepaid",
-            "Paid on delivery",
-            "Directly paid",
-            "Generating invoice",
-            "Generating report",
-            "Processing",
-            "Cancelled order",
-            "Returned order",
-            "Completed"});
+            GLOBAL_RESOURCES.LBL_ORDER_STATUS_PENDING,
+            GLOBAL_RESOURCES.LBL_STATUS_PREPAID,
+            GLOBAL_RESOURCES.LBL_STATUS_PAID_ON_DELIVERY,
+            GLOBAL_RESOURCES.LBL_STATUS_DIRECTLY_PAID,
+            GLOBAL_RESOURCES.LBL_STATUS_GENERATING_INVOICE,
+            GLOBAL_RESOURCES.LBL_STATUS_GENERATING_REPORT,
+            GLOBAL_RESOURCES.LBL_ORDER_STATUS_PROCESSING,
+            GLOBAL_RESOURCES.LBL_ORDER_STATUS_CANCELLED,
+            GLOBAL_RESOURCES.LBL_ORDER_STATUS_RETURNED,
+           GLOBAL_RESOURCES.LBL_ORDER_STATUS_COMPLETED});
             this.cbStatus.Location = new System.Drawing.Point(169, 168);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(226, 24);
             this.cbStatus.TabIndex = 71;
-            this.cbStatus.Text = "Awaiting processing";
+            this.cbStatus.Text = GLOBAL_RESOURCES.LBL_ORDER_STATUS_PENDING;
             this.ttBulkProductOrderOperations.SetToolTip(this.cbStatus, "The status of the order, changing it automatically calculates the employee balanc" +
         "e, client balance and/or the product quantity if needed");
             // 
@@ -281,7 +281,7 @@
             this.lblEmployee.Name = "lblEmployee";
             this.lblEmployee.Size = new System.Drawing.Size(129, 16);
             this.lblEmployee.TabIndex = 69;
-            this.lblEmployee.Text = "Select Employee:";
+            this.lblEmployee.Text = GLOBAL_RESOURCES.LBL_EMPLOYEE_TITLE;
             // 
             // cbClient
             // 
@@ -312,7 +312,7 @@
             this.lblClient.Name = "lblClient";
             this.lblClient.Size = new System.Drawing.Size(98, 16);
             this.lblClient.TabIndex = 67;
-            this.lblClient.Text = "Select Client:";
+            this.lblClient.Text = GLOBAL_RESOURCES.LBL_CLIENT_TITLE;
             // 
             // txtReason
             // 
@@ -336,7 +336,7 @@
             this.lblReason.Name = "lblReason";
             this.lblReason.Size = new System.Drawing.Size(108, 16);
             this.lblReason.TabIndex = 61;
-            this.lblReason.Text = "Order Reason:";
+            this.lblReason.Text = GLOBAL_RESOURCES.LBL_ORDER_REASON_TITLE;
             // 
             // trbQuantity
             // 
@@ -364,7 +364,7 @@
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(126, 16);
             this.lblQuantity.TabIndex = 56;
-            this.lblQuantity.Text = "Desired Quantity:";
+            this.lblQuantity.Text = GLOBAL_RESOURCES.LBL_DESIRED_QUANTITY_TITLE;
             // 
             // cbProduct
             // 
@@ -396,7 +396,7 @@
             this.lblProduct.Name = "lblProduct";
             this.lblProduct.Size = new System.Drawing.Size(112, 16);
             this.lblProduct.TabIndex = 54;
-            this.lblProduct.Text = "Select Product:";
+            this.lblProduct.Text = GLOBAL_RESOURCES.LBL_PRODUCT_TITLE;
             // 
             // trbPrice
             // 
@@ -689,7 +689,7 @@
             this.ttBulkProductOrderOperations.IsBalloon = true;
             this.ttBulkProductOrderOperations.ShowAlways = true;
             this.ttBulkProductOrderOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttBulkProductOrderOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttBulkProductOrderOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmBulkProductOrderOperations
             // 

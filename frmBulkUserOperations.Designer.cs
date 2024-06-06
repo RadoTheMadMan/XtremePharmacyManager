@@ -222,9 +222,8 @@
             this.lblUserNotice.Name = "lblUserNotice";
             this.lblUserNotice.Size = new System.Drawing.Size(179, 48);
             this.lblUserNotice.TabIndex = 45;
-            this.lblUserNotice.Text = "IMPORTANT NOTICE:\r\nUsername and password\r\nshould be unique\r\n";
-            this.ttBulkUserOperations.SetToolTip(this.lblUserNotice, "If you are a dumbfuck like my creator read this so you don\'t complain that you ca" +
-        "n\'t change the user data via any operation");
+            this.lblUserNotice.Text = GLOBAL_RESOURCES.USER_NOTICE_TOOLTIP_TITLE;
+            this.ttBulkUserOperations.SetToolTip(this.lblUserNotice, GLOBAL_RESOURCES.USER_NOTICE_TOOLTIP_TITLE);
             // 
             // checkSilentOperation
             // 
@@ -663,7 +662,7 @@
             this.ttBulkUserOperations.IsBalloon = true;
             this.ttBulkUserOperations.ShowAlways = true;
             this.ttBulkUserOperations.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttBulkUserOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttBulkUserOperations.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmBulkUserOperations
             // 

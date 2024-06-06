@@ -287,7 +287,7 @@
             this.ttLogs.IsBalloon = true;
             this.ttLogs.ShowAlways = true;
             this.ttLogs.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.ttLogs.ToolTipTitle = GLOBAL_RESOURCES.HELP_TOOLTIP_TITLE;
+            this.ttLogs.ToolTipTitle = GLOBAL_RESOURCES.HELP_TITLE;
             // 
             // frmLogs
             // 
