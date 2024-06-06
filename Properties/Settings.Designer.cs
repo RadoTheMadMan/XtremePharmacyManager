@@ -76,7 +76,7 @@ namespace XtremePharmacyManager.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Date:")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Date")]
         public string LogDate {
             get {
                 return ((string)(this["LogDate"]));
@@ -85,7 +85,7 @@ namespace XtremePharmacyManager.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Title:")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Title")]
         public string LogTitle {
             get {
                 return ((string)(this["LogTitle"]));
@@ -94,7 +94,7 @@ namespace XtremePharmacyManager.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Message:")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Message")]
         public string LogMessage {
             get {
                 return ((string)(this["LogMessage"]));
@@ -103,7 +103,7 @@ namespace XtremePharmacyManager.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Additional Information:")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Additional Information")]
         public string AdditionalLogInformation {
             get {
                 return ((string)(this["AdditionalLogInformation"]));

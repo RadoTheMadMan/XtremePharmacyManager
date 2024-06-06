@@ -433,19 +433,61 @@ namespace XtremePharmacyManager
         private static string rW_REPORTS_TOOLTIP_TITLE = "";
         private static string rEPORTS_TITLE = "";
         private static string rEPORTS_TOOLTIP_TITLE = "";
-        public static string FILE_MENU_TOOLTIP_TITLE = "";
-        public static string APP_SETTINGS_MENU_TOOLTIP_TITLE = "";
-        public static string EXIT_MENU_TOOLTIP_TITLE = "";
-        public static string MAIN_MENU_TITLE = "";
-        public static string FILE_MENU_TITLE = "";
-        public static string APP_SETTINGS_MENU_TITLE = "";
-        public static string EXIT_MENU_TITLE = "";
-        public static string ACC_SETTINGS_MENU_TITLE = "";
-        public static string ACC_SETTINGS_MENU_TOOLTIP_TITLE = "";
-        public static string WINDOW_MENU_TITLE = "";
-        public static string WINDOW_MENU_TOOLTIP_TITLE = "";
-        public static string USERS_MENU_TOOLTIP_TITLE = "";
-        public static string BRANDS_MENU_TOOLTIP_TITLE = "";
+        private static string fILE_MENU_TOOLTIP_TITLE = "";
+        private static string aPP_SETTINGS_MENU_TOOLTIP_TITLE = "";
+        private static string eXIT_MENU_TOOLTIP_TITLE = "";
+        private static string mAIN_MENU_TITLE = "";
+        private static string fILE_MENU_TITLE = "";
+        private static string aPP_SETTINGS_MENU_TITLE = "";
+        private static string eXIT_MENU_TITLE = "";
+        private static string aCC_SETTINGS_MENU_TITLE = "";
+        private static string aCC_SETTINGS_MENU_TOOLTIP_TITLE = "";
+        private static string wINDOW_MENU_TITLE = "";
+        private static string wINDOW_MENU_TOOLTIP_TITLE = "";
+        private static string uSERS_MENU_TOOLTIP_TITLE = "";
+        private static string bRANDS_MENU_TOOLTIP_TITLE = "";
+        private static string vENDORS_MENU_TOOLTIP_TITLE = "";
+        private static string pAYMENT_METHODS_MENU_TOOLTIP_TITLE = "";
+        private static string dELIVERY_SERVICES_MENU_TOOLTIP_TITLE = "";
+        private static string pRODUCTS_MENU_TOOLTIP_TITLE = "";
+        private static string pRODUCT_ORDERS_MENU_TOOLTIP_TITLE = "";
+        private static string oRDER_DELIVERIES_MENU_TOOLTIP_TTILE = "";
+        private static string lOGS_MENU_TOOLTIP_TITLE = "";
+        private static string bULK_MENU_TOOLTIP_TITLE = "";
+        private static string bULK_USER_MENU_TOOLTIP_TITLE = "";
+        private static string bULK_BRAND_MENU_TOOLTIP_TITLE = "";
+        private static string bULK_VENDOR_MENU_TOOLTIP_TITLE = "";
+        private static string bULK_PAYMENT_METHOD_MENU_TOOLTIP_TITLE = "";
+        private static string bULK_DELIVERY_SERVICE_MENU_TOOLTIP_TITLE = "";
+        private static string bULK_PRODUCT_MENU_TOOLTIP_TITLE = "";
+        private static string pRODUCT_IMAGES_TITLE = "";
+        private static string bULK_PRODUCT_IMAGE_MENU_TOOLTIP_TITLE = "";
+        private static string bULK_PRODUCT_ORDER_MENU_TOOLTIP_TITLE = "";
+        private static string bULK_ORDER_DELIVERY_MENU_TOOLTIP_TITLE = "";
+        private static string dEBUG_TOOLS_TITLE = "";
+        private static string dEBUG_TOOLS_MENU_TOOLTIP_TITLE = "";
+        private static string tEST_CONNECTION_TITLE = "";
+        private static string tEST_CONNECTION_MENU_TOOLTIP_TITLE = "";
+        private static string iMG_BIN_TITLE = "";
+        private static string iMG_BIN_MENU_TOOLTIP_TITLE = "";
+        private static string hELP_MENU_TOOLTIP_TITLE = "";
+        private static string aBOUT_MENU_TITLE = "";
+        private static string aBOUT_MENU_TOOLTIP_TITLE = "";
+        private static string mAIN_FORM_TOOLTIP_TITLE = "";
+        private static string lST_LOGS_TOOLTIP_TITLE = "";
+        private static string lOG_DATE_TO_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_DATE_TO_TITLE = "";
+        private static string lBL_DATE_FROM_TITLE = "";
+        private static string lOG_TITLE_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_TITLE_TITLE = "";
+        private static string lOG_MESSAGE_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_MESSAGE_TITLE = "";
+        private static string aDD_INFO_SEARCH_TOOLTIP_TITLE = "";
+        private static string lBL_ADD_INFO_TITLE = "";
+        private static string lOGS_TITLE = "";
+        private static string lOG_DATE_FROM_SEARCH_TOOLTIP_TITLE = "";
+        private static string lOGS_TOOLTIP_TITLE = "";
+        private static string lOG_DATE_FROM_TITLE = "";
         public static GLOBAL_RESOURCES instance;
         public EventHandler<CultureInfo> CultureInfoChanged;
 
@@ -858,6 +900,61 @@ namespace XtremePharmacyManager
         public static string RW_REPORTS_TOOLTIP_TITLE { get => rW_REPORTS_TOOLTIP_TITLE; set => rW_REPORTS_TOOLTIP_TITLE = value; }
         public static string REPORTS_TITLE { get => rEPORTS_TITLE; set => rEPORTS_TITLE = value; }
         public static string REPORTS_TOOLTIP_TITLE { get => rEPORTS_TOOLTIP_TITLE; set => rEPORTS_TOOLTIP_TITLE = value; }
+        public static string FILE_MENU_TOOLTIP_TITLE { get => fILE_MENU_TOOLTIP_TITLE; set => fILE_MENU_TOOLTIP_TITLE = value; }
+        public static string APP_SETTINGS_MENU_TOOLTIP_TITLE { get => aPP_SETTINGS_MENU_TOOLTIP_TITLE; set => aPP_SETTINGS_MENU_TOOLTIP_TITLE = value; }
+        public static string EXIT_MENU_TOOLTIP_TITLE { get => eXIT_MENU_TOOLTIP_TITLE; set => eXIT_MENU_TOOLTIP_TITLE = value; }
+        public static string MAIN_MENU_TITLE { get => mAIN_MENU_TITLE; set => mAIN_MENU_TITLE = value; }
+        public static string FILE_MENU_TITLE { get => fILE_MENU_TITLE; set => fILE_MENU_TITLE = value; }
+        public static string APP_SETTINGS_MENU_TITLE { get => aPP_SETTINGS_MENU_TITLE; set => aPP_SETTINGS_MENU_TITLE = value; }
+        public static string EXIT_MENU_TITLE { get => eXIT_MENU_TITLE; set => eXIT_MENU_TITLE = value; }
+        public static string ACC_SETTINGS_MENU_TITLE { get => aCC_SETTINGS_MENU_TITLE; set => aCC_SETTINGS_MENU_TITLE = value; }
+        public static string ACC_SETTINGS_MENU_TOOLTIP_TITLE { get => aCC_SETTINGS_MENU_TOOLTIP_TITLE; set => aCC_SETTINGS_MENU_TOOLTIP_TITLE = value; }
+        public static string WINDOW_MENU_TITLE { get => wINDOW_MENU_TITLE; set => wINDOW_MENU_TITLE = value; }
+        public static string WINDOW_MENU_TOOLTIP_TITLE { get => wINDOW_MENU_TOOLTIP_TITLE; set => wINDOW_MENU_TOOLTIP_TITLE = value; }
+        public static string USERS_MENU_TOOLTIP_TITLE { get => uSERS_MENU_TOOLTIP_TITLE; set => uSERS_MENU_TOOLTIP_TITLE = value; }
+        public static string BRANDS_MENU_TOOLTIP_TITLE { get => bRANDS_MENU_TOOLTIP_TITLE; set => bRANDS_MENU_TOOLTIP_TITLE = value; }
+        public static string VENDORS_MENU_TOOLTIP_TITLE { get => vENDORS_MENU_TOOLTIP_TITLE; set => vENDORS_MENU_TOOLTIP_TITLE = value; }
+        public static string PAYMENT_METHODS_MENU_TOOLTIP_TITLE { get => pAYMENT_METHODS_MENU_TOOLTIP_TITLE; set => pAYMENT_METHODS_MENU_TOOLTIP_TITLE = value; }
+        public static string DELIVERY_SERVICES_MENU_TOOLTIP_TITLE { get => dELIVERY_SERVICES_MENU_TOOLTIP_TITLE; set => dELIVERY_SERVICES_MENU_TOOLTIP_TITLE = value; }
+        public static string PRODUCTS_MENU_TOOLTIP_TITLE { get => pRODUCTS_MENU_TOOLTIP_TITLE; set => pRODUCTS_MENU_TOOLTIP_TITLE = value; }
+        public static string PRODUCT_ORDERS_MENU_TOOLTIP_TITLE { get => pRODUCT_ORDERS_MENU_TOOLTIP_TITLE; set => pRODUCT_ORDERS_MENU_TOOLTIP_TITLE = value; }
+        public static string ORDER_DELIVERIES_MENU_TOOLTIP_TTILE { get => oRDER_DELIVERIES_MENU_TOOLTIP_TTILE; set => oRDER_DELIVERIES_MENU_TOOLTIP_TTILE = value; }
+        public static string LOGS_MENU_TOOLTIP_TITLE { get => lOGS_MENU_TOOLTIP_TITLE; set => lOGS_MENU_TOOLTIP_TITLE = value; }
+        public static string BULK_MENU_TOOLTIP_TITLE { get => bULK_MENU_TOOLTIP_TITLE; set => bULK_MENU_TOOLTIP_TITLE = value; }
+        public static string BULK_USER_MENU_TOOLTIP_TITLE { get => bULK_USER_MENU_TOOLTIP_TITLE; set => bULK_USER_MENU_TOOLTIP_TITLE = value; }
+        public static string BULK_BRAND_MENU_TOOLTIP_TITLE { get => bULK_BRAND_MENU_TOOLTIP_TITLE; set => bULK_BRAND_MENU_TOOLTIP_TITLE = value; }
+        public static string BULK_VENDOR_MENU_TOOLTIP_TITLE { get => bULK_VENDOR_MENU_TOOLTIP_TITLE; set => bULK_VENDOR_MENU_TOOLTIP_TITLE = value; }
+        public static string BULK_PAYMENT_METHOD_MENU_TOOLTIP_TITLE { get => bULK_PAYMENT_METHOD_MENU_TOOLTIP_TITLE; set => bULK_PAYMENT_METHOD_MENU_TOOLTIP_TITLE = value; }
+        public static string BULK_DELIVERY_SERVICE_MENU_TOOLTIP_TITLE { get => bULK_DELIVERY_SERVICE_MENU_TOOLTIP_TITLE; set => bULK_DELIVERY_SERVICE_MENU_TOOLTIP_TITLE = value; }
+        public static string BULK_PRODUCT_MENU_TOOLTIP_TITLE { get => bULK_PRODUCT_MENU_TOOLTIP_TITLE; set => bULK_PRODUCT_MENU_TOOLTIP_TITLE = value; }
+        public static string PRODUCT_IMAGES_TITLE { get => pRODUCT_IMAGES_TITLE; set => pRODUCT_IMAGES_TITLE = value; }
+        public static string BULK_PRODUCT_IMAGE_MENU_TOOLTIP_TITLE { get => bULK_PRODUCT_IMAGE_MENU_TOOLTIP_TITLE; set => bULK_PRODUCT_IMAGE_MENU_TOOLTIP_TITLE = value; }
+        public static string BULK_PRODUCT_ORDER_MENU_TOOLTIP_TITLE { get => bULK_PRODUCT_ORDER_MENU_TOOLTIP_TITLE; set => bULK_PRODUCT_ORDER_MENU_TOOLTIP_TITLE = value; }
+        public static string BULK_ORDER_DELIVERY_MENU_TOOLTIP_TITLE { get => bULK_ORDER_DELIVERY_MENU_TOOLTIP_TITLE; set => bULK_ORDER_DELIVERY_MENU_TOOLTIP_TITLE = value; }
+        public static string DEBUG_TOOLS_TITLE { get => dEBUG_TOOLS_TITLE; set => dEBUG_TOOLS_TITLE = value; }
+        public static string DEBUG_TOOLS_MENU_TOOLTIP_TITLE { get => dEBUG_TOOLS_MENU_TOOLTIP_TITLE; set => dEBUG_TOOLS_MENU_TOOLTIP_TITLE = value; }
+        public static string TEST_CONNECTION_TITLE { get => tEST_CONNECTION_TITLE; set => tEST_CONNECTION_TITLE = value; }
+        public static string TEST_CONNECTION_MENU_TOOLTIP_TITLE { get => tEST_CONNECTION_MENU_TOOLTIP_TITLE; set => tEST_CONNECTION_MENU_TOOLTIP_TITLE = value; }
+        public static string IMG_BIN_TITLE { get => iMG_BIN_TITLE; set => iMG_BIN_TITLE = value; }
+        public static string IMG_BIN_MENU_TOOLTIP_TITLE { get => iMG_BIN_MENU_TOOLTIP_TITLE; set => iMG_BIN_MENU_TOOLTIP_TITLE = value; }
+        public static string HELP_MENU_TOOLTIP_TITLE { get => hELP_MENU_TOOLTIP_TITLE; set => hELP_MENU_TOOLTIP_TITLE = value; }
+        public static string ABOUT_MENU_TITLE { get => aBOUT_MENU_TITLE; set => aBOUT_MENU_TITLE = value; }
+        public static string ABOUT_MENU_TOOLTIP_TITLE { get => aBOUT_MENU_TOOLTIP_TITLE; set => aBOUT_MENU_TOOLTIP_TITLE = value; }
+        public static string MAIN_FORM_TOOLTIP_TITLE { get => mAIN_FORM_TOOLTIP_TITLE; set => mAIN_FORM_TOOLTIP_TITLE = value; }
+        public static string LST_LOGS_TOOLTIP_TITLE { get => lST_LOGS_TOOLTIP_TITLE; set => lST_LOGS_TOOLTIP_TITLE = value; }
+        public static string LOG_DATE_TO_SEARCH_TOOLTIP_TITLE { get => lOG_DATE_TO_SEARCH_TOOLTIP_TITLE; set => lOG_DATE_TO_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_DATE_TO_TITLE { get => lBL_DATE_TO_TITLE; set => lBL_DATE_TO_TITLE = value; }
+        public static string LBL_DATE_FROM_TITLE { get => lBL_DATE_FROM_TITLE; set => lBL_DATE_FROM_TITLE = value; }
+        public static string LOG_TITLE_SEARCH_TOOLTIP_TITLE { get => lOG_TITLE_SEARCH_TOOLTIP_TITLE; set => lOG_TITLE_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_TITLE_TITLE { get => lBL_TITLE_TITLE; set => lBL_TITLE_TITLE = value; }
+        public static string LOG_MESSAGE_SEARCH_TOOLTIP_TITLE { get => lOG_MESSAGE_SEARCH_TOOLTIP_TITLE; set => lOG_MESSAGE_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_MESSAGE_TITLE { get => lBL_MESSAGE_TITLE; set => lBL_MESSAGE_TITLE = value; }
+        public static string ADD_INFO_SEARCH_TOOLTIP_TITLE { get => aDD_INFO_SEARCH_TOOLTIP_TITLE; set => aDD_INFO_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LBL_ADD_INFO_TITLE { get => lBL_ADD_INFO_TITLE; set => lBL_ADD_INFO_TITLE = value; }
+        public static string LOGS_TITLE { get => lOGS_TITLE; set => lOGS_TITLE = value; }
+        public static string LOG_DATE_FROM_SEARCH_TOOLTIP_TITLE { get => lOG_DATE_FROM_SEARCH_TOOLTIP_TITLE; set => lOG_DATE_FROM_SEARCH_TOOLTIP_TITLE = value; }
+        public static string LOGS_TOOLTIP_TITLE { get => lOGS_TOOLTIP_TITLE; set => lOGS_TOOLTIP_TITLE = value; }
+        public static string LOG_DATE_FROM_TITLE { get => lOG_DATE_FROM_TITLE; set => lOG_DATE_FROM_TITLE = value; }
 
         public GLOBAL_RESOURCES()
         {
@@ -1198,9 +1295,50 @@ namespace XtremePharmacyManager
             ACC_SETTINGS_MENU_TOOLTIP_TITLE = manager.GetString("AccSettingsMenuTooltipTitle", CultureInfo.CurrentCulture);
             WINDOW_MENU_TITLE = manager.GetString("WindowMenuTitle", CultureInfo.CurrentCulture);
             WINDOW_MENU_TOOLTIP_TITLE = manager.GetString("WindowMenuTooltipTitle", CultureInfo.CurrentCulture);
+            PAYMENT_METHODS_MENU_TOOLTIP_TITLE = manager.GetString("PaymentMethodsMenuTooltipTitle", CultureInfo.CurrentCulture);
+            DELIVERY_SERVICES_MENU_TOOLTIP_TITLE = manager.GetString("DeliveryServicesMenuTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCTS_MENU_TOOLTIP_TITLE = manager.GetString("ProductsMenuTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_ORDERS_MENU_TOOLTIP_TITLE = manager.GetString("ProductOrdersMenuTooltipTitle", CultureInfo.CurrentCulture);
+            ORDER_DELIVERIES_MENU_TOOLTIP_TTILE = manager.GetString("OrderDeliveriesMenuTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_MENU_TOOLTIP_TITLE = manager.GetString("BulkMenuTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_USER_MENU_TOOLTIP_TITLE = manager.GetString("BulkUserMenuTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_BRAND_MENU_TOOLTIP_TITLE = manager.GetString("BulkBrandMenuTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_VENDOR_MENU_TOOLTIP_TITLE = manager.GetString("BulkVendorMenuTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_PAYMENT_METHOD_MENU_TOOLTIP_TITLE = manager.GetString("BulkPaymentMethodMenuTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_DELIVERY_SERVICE_MENU_TOOLTIP_TITLE = manager.GetString("BulkDeliveryServiceMenuTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_PRODUCT_MENU_TOOLTIP_TITLE = manager.GetString("BulkDeliveryServiceMenuTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_PRODUCT_IMAGE_MENU_TOOLTIP_TITLE = manager.GetString("BulkProductImageMenuTooltipTitle", CultureInfo.CurrentCulture);
+            PRODUCT_IMAGES_TITLE = manager.GetString("ProductImagesTitle", CultureInfo.CurrentCulture);
+            BULK_PRODUCT_ORDER_MENU_TOOLTIP_TITLE = manager.GetString("BulkProductOrderMenuTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_ORDER_DELIVERY_MENU_TOOLTIP_TITLE = manager.GetString("BulkOrderDeliveryMenuTooltipTitle", CultureInfo.CurrentCulture);
+            DEBUG_TOOLS_TITLE = manager.GetString("DebugToolsTitle", CultureInfo.CurrentCulture);
+            LOGS_MENU_TOOLTIP_TITLE = manager.GetString("LogsMenuTooltipTitle", CultureInfo.CurrentCulture);
+            DEBUG_TOOLS_MENU_TOOLTIP_TITLE = manager.GetString("DebugToolsMenuTooltipTitle", CultureInfo.CurrentCulture);
+            TEST_CONNECTION_TITLE = manager.GetString("TestConnectionTitle", CultureInfo.CurrentCulture);
+            TEST_CONNECTION_MENU_TOOLTIP_TITLE = manager.GetString("TestConnectionMenuTooltipTitle", CultureInfo.CurrentCulture);
+            IMG_BIN_TITLE = manager.GetString("ImgBinTitle", CultureInfo.CurrentCulture);
+            IMG_BIN_MENU_TOOLTIP_TITLE = manager.GetString("ImgBinMenuTooltipTitle", CultureInfo.CurrentCulture);
+            HELP_MENU_TOOLTIP_TITLE = manager.GetString("HelpMenuTooltipTitle", CultureInfo.CurrentCulture);
+            ABOUT_MENU_TITLE = manager.GetString("AboutMenuTitle", CultureInfo.CurrentCulture);
+            ABOUT_MENU_TOOLTIP_TITLE = manager.GetString("AboutMenuTooltipTitle", CultureInfo.CurrentCulture);
+            MAIN_FORM_TOOLTIP_TITLE = manager.GetString("MainFormTooltipTitle", CultureInfo.CurrentCulture);
+            LST_LOGS_TOOLTIP_TITLE = manager.GetString("LstLogsTooltipTitle", CultureInfo.CurrentCulture);
+            LOG_DATE_TO_SEARCH_TOOLTIP_TITLE = manager.GetString("LogDateToSearchTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_DATE_TO_TITLE = manager.GetString("LblDateToTitle", CultureInfo.CurrentCulture);
+            LOG_DATE_FROM_SEARCH_TOOLTIP_TITLE = manager.GetString("LogDateFromSearchTooltipTitle", CultureInfo.CurrentCulture);
+            LOG_DATE_FROM_TITLE = manager.GetString("LblDateFromTitle", CultureInfo.CurrentCulture);
+            LOG_TITLE_SEARCH_TOOLTIP_TITLE = manager.GetString("LogTitleSearchTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_TITLE_TITLE = manager.GetString("LblTitleTitle", CultureInfo.CurrentCulture);
+            LOG_MESSAGE_SEARCH_TOOLTIP_TITLE = manager.GetString("LogMessageSearchTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_MESSAGE_TITLE = manager.GetString("LblMessageTitle", CultureInfo.CurrentCulture);
+            ADD_INFO_SEARCH_TOOLTIP_TITLE = manager.GetString("AddInfoSearchTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_ADD_INFO_TITLE = manager.GetString("LblAddInfoTitle", CultureInfo.CurrentCulture);
+            LOGS_TITLE = manager.GetString("LogsTitle", CultureInfo.CurrentCulture);
+            LOGS_TOOLTIP_TITLE = manager.GetString("LogsTooltipTitle", CultureInfo.CurrentCulture);  
             BTN_SEARCH_TITLE = manager.GetString("BtnSearchTitle", CultureInfo.CurrentCulture);
             USERS_MENU_TOOLTIP_TITLE = manager.GetString("UsersMenuTooltipTitle", CultureInfo.CurrentCulture);
             BRANDS_MENU_TOOLTIP_TITLE = manager.GetString("BrandsMenuTooltipTitle", CultureInfo.CurrentCulture);
+            VENDORS_MENU_TOOLTIP_TITLE = manager.GetString("VendorsMenuTooltipTitle", CultureInfo.CurrentCulture);
             BTN_SEARCH_PRODUCT_IMAGE_TITLE = manager.GetString("BtnSearchProductImageTitle", CultureInfo.CurrentCulture);
             BTN_DELETE_PRODUCT_IMAGE_TITLE = manager.GetString("BtnDeleteProductImageTitle", CultureInfo.CurrentCulture);
             BTN_ADD_EDIT_PRODUCT_IMAGE_TITLE = manager.GetString("BtnAddEditProductImageTitle", CultureInfo.CurrentCulture);

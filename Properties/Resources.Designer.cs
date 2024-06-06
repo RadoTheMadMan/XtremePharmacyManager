@@ -61,6 +61,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &amp;About.
+        /// </summary>
+        public static string AboutMenuTitle {
+            get {
+                return ResourceManager.GetString("AboutMenuTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The dialog window that shows you what this application is all about..
+        /// </summary>
+        public static string AboutMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("AboutMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string AboutTitle {
@@ -131,6 +149,15 @@ namespace XtremePharmacyManager.Properties {
         public static string AccSettingsMenuTooltipTitle {
             get {
                 return ResourceManager.GetString("AccSettingsMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The additional information with which you want to search logs.
+        /// </summary>
+        public static string AddInfoSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("AddInfoSearchTooltipTitle", resourceCulture);
             }
         }
         
@@ -582,6 +609,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The product brand bulk operations window. It adapts to your permissions role..
+        /// </summary>
+        public static string BulkBrandMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkBrandMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product Brand has been added..
         /// </summary>
         public static string BulkBrandOperationCreateTaskSuccessMessage {
@@ -636,6 +672,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The delivery service bulk operations window. It adapts to your permissions role..
+        /// </summary>
+        public static string BulkDeliveryServiceMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkDeliveryServiceMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delivery Service has been added..
         /// </summary>
         public static string BulkDeliveryServiceOperationCreateTaskSuccessMessage {
@@ -677,6 +722,15 @@ namespace XtremePharmacyManager.Properties {
         public static string BulkDeliveryServiceOperationUpdateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkDeliveryServiceOperationUpdateTaskSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The bulk operations windows whether you can access them or not. They adapt to your permissions role..
+        /// </summary>
+        public static string BulkMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkMenuTooltipTitle", resourceCulture);
             }
         }
         
@@ -834,6 +888,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The order delivery bulk operations window. It adapts to your permissions role..
+        /// </summary>
+        public static string BulkOrderDeliveryMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkOrderDeliveryMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Delivery has been added..
         /// </summary>
         public static string BulkOrderDeliveryOperationCreateTaskSuccessMessage {
@@ -884,6 +947,15 @@ namespace XtremePharmacyManager.Properties {
         public static string BulkPaymentMethodMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("BulkPaymentMethodMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The payment method bulk operations window. It adapts to your permissions role..
+        /// </summary>
+        public static string BulkPaymentMethodMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkPaymentMethodMenuTooltipTitle", resourceCulture);
             }
         }
         
@@ -942,6 +1014,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The product image bulk operations window. It adapts to your permissions role..
+        /// </summary>
+        public static string BulkProductImageMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkProductImageMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product Image has been added..
         /// </summary>
         public static string BulkProductImageOperationCreateTaskSuccessMessage {
@@ -996,6 +1077,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The product bulk operations window. It adapts to your permissions role..
+        /// </summary>
+        public static string BulkProductMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkProductMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product has been added..
         /// </summary>
         public static string BulkProductOperationCreateTaskSuccessMessage {
@@ -1046,6 +1136,15 @@ namespace XtremePharmacyManager.Properties {
         public static string BulkProductOrderMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("BulkProductOrderMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product order bulk operations window. It adapts to your permissions role..
+        /// </summary>
+        public static string BulkProductOrderMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkProductOrderMenuTooltipTitle", resourceCulture);
             }
         }
         
@@ -1113,6 +1212,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The user bulk operations window. It adapts to your permissions role..
+        /// </summary>
+        public static string BulkUserMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkUserMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User has been added..
         /// </summary>
         public static string BulkUserOperationCreateTaskSuccessMessage {
@@ -1163,6 +1271,15 @@ namespace XtremePharmacyManager.Properties {
         public static string BulkVendorMenuAccessErrorMessage {
             get {
                 return ResourceManager.GetString("BulkVendorMenuAccessErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The product vendor bulk operations window. It adapts to your permissions role..
+        /// </summary>
+        public static string BulkVendorMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkVendorMenuTooltipTitle", resourceCulture);
             }
         }
         
@@ -1408,6 +1525,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The debug tools for the application.
+        /// </summary>
+        public static string DebugToolsMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("DebugToolsMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Debug Tools.
+        /// </summary>
+        public static string DebugToolsTitle {
+            get {
+                return ResourceManager.GetString("DebugToolsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delivery Services.
         /// </summary>
         public static string DelieryServicesTitle {
@@ -1503,6 +1638,15 @@ namespace XtremePharmacyManager.Properties {
         public static string DeliveryServiceSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("DeliveryServiceSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The window for searching and/or editing delivery services. It adapts to your permissions role..
+        /// </summary>
+        public static string DeliveryServicesMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("DeliveryServicesMenuTooltipTitle", resourceCulture);
             }
         }
         
@@ -1723,6 +1867,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Date From:.
+        /// </summary>
+        public static string GLOBAL_RESOURCES_LBL_LOG_DATE_FROM_TITLE {
+            get {
+                return ResourceManager.GetString("GLOBAL_RESOURCES.LBL_LOG_DATE_FROM_TITLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The help menu for the application.
+        /// </summary>
+        public static string HelpMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("HelpMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Help.
         /// </summary>
         public static string HelpTooltipTitle {
@@ -1768,6 +1930,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The bitmap to binary window. It is to test the capabilities of converting a bitmap image to an array of bytes and/or base 64 string and vice versa.&quot;.
+        /// </summary>
+        public static string ImgBinMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("ImgBinMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Bitmap To Binary.
+        /// </summary>
+        public static string ImgBinTitle {
+            get {
+                return ResourceManager.GetString("ImgBinTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This language already exists!.
         /// </summary>
         public static string LanguageManagerLanguageExistErrorMessage {
@@ -1782,6 +1962,15 @@ namespace XtremePharmacyManager.Properties {
         public static string LanguageManagerLanguageNonexistentErrorMessage {
             get {
                 return ResourceManager.GetString("LanguageManagerLanguageNonexistentErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additional Information:.
+        /// </summary>
+        public static string LblAddInfoTitle {
+            get {
+                return ResourceManager.GetString("LblAddInfoTitle", resourceCulture);
             }
         }
         
@@ -1845,6 +2034,15 @@ namespace XtremePharmacyManager.Properties {
         public static string LblClientTitle {
             get {
                 return ResourceManager.GetString("LblClientTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date To:.
+        /// </summary>
+        public static string LblDateToTitle {
+            get {
+                return ResourceManager.GetString("LblDateToTitle", resourceCulture);
             }
         }
         
@@ -1998,6 +2196,15 @@ namespace XtremePharmacyManager.Properties {
         public static string LblImagesTitle {
             get {
                 return ResourceManager.GetString("LblImagesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message:.
+        /// </summary>
+        public static string LblMessageTitle {
+            get {
+                return ResourceManager.GetString("LblMessageTitle", resourceCulture);
             }
         }
         
@@ -2410,6 +2617,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Title:.
+        /// </summary>
+        public static string LblTitleTitle {
+            get {
+                return ResourceManager.GetString("LblTitleTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total Price:.
         /// </summary>
         public static string LblTotalPriceTitle {
@@ -2493,11 +2709,38 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The date from which you want to search logs.
+        /// </summary>
+        public static string LogDateFromSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("LogDateFromSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The date to which you want to search logs.
+        /// </summary>
+        public static string LogDateToSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("LogDateToSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string LoginTitle {
             get {
                 return ResourceManager.GetString("LoginTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The message with which you want to search logs.
+        /// </summary>
+        public static string LogMessageSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("LogMessageSearchTooltipTitle", resourceCulture);
             }
         }
         
@@ -2511,11 +2754,65 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The window for seeing the database logs. It adapts to your permissions role and refreshes every time you execute any operation..
+        /// </summary>
+        public static string LogsMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("LogsMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logs.
+        /// </summary>
+        public static string LogsTitle {
+            get {
+                return ResourceManager.GetString("LogsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The database logs window where you can search the logs. The logs are read-only on the application side for all operators, a.k.a. company employees and administrators.
+        /// </summary>
+        public static string LogsTooltipTitle {
+            get {
+                return ResourceManager.GetString("LogsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The title with which you want to search logs.
+        /// </summary>
+        public static string LogTitleSearchTooltipTitle {
+            get {
+                return ResourceManager.GetString("LogTitleSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The list of database logs. Every database log is displayed here and refreshed on any executed operation..
+        /// </summary>
+        public static string LstLogsTooltipTitle {
+            get {
+                return ResourceManager.GetString("LstLogsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The list of product images in the database. Select any to add/edit/delete based on your permissions..
         /// </summary>
         public static string LstProductImagesTooltipTitle {
             get {
                 return ResourceManager.GetString("LstProductImagesTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The main window of the application. It adapts to the role permissions of the user you logged in as and displays the display name as well as the host you are connected to. Every other window you see except the dialogs will be a part of this window..
+        /// </summary>
+        public static string MainFormTooltipTitle {
+            get {
+                return ResourceManager.GetString("MainFormTooltipTitle", resourceCulture);
             }
         }
         
@@ -2597,6 +2894,15 @@ namespace XtremePharmacyManager.Properties {
         public static string ODDateModifiedToSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("ODDateModifiedToSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The window for searching and/or editing order deliveries. It adapts to your permissions role..
+        /// </summary>
+        public static string OrderDeliveriesMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("OrderDeliveriesMenuTooltipTitle", resourceCulture);
             }
         }
         
@@ -2809,6 +3115,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The window for searching and/or editing payment methods. It adapts to your permissions role..
+        /// </summary>
+        public static string PaymentMethodsMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("PaymentMethodsMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payment Methods.
         /// </summary>
         public static string PaymentMethodsTitle {
@@ -3007,6 +3322,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Images.
+        /// </summary>
+        public static string ProductImagesTitle {
+            get {
+                return ResourceManager.GetString("ProductImagesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You have full access to the products and product images.
         /// </summary>
         public static string ProductMenuAccessAdminNotice {
@@ -3143,6 +3467,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The window for searching and/or editing product orders. It adapts to your permissions role..
+        /// </summary>
+        public static string ProductOrdersMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductOrdersMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product Orders.
         /// </summary>
         public static string ProductOrdersTitle {
@@ -3229,6 +3562,15 @@ namespace XtremePharmacyManager.Properties {
         public static string ProductSLocationColTitle {
             get {
                 return ResourceManager.GetString("ProductSLocationColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The window for searching and/or editing products. It adapts to your permissions role..
+        /// </summary>
+        public static string ProductsMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("ProductsMenuTooltipTitle", resourceCulture);
             }
         }
         
@@ -3469,6 +3811,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The test connection menu. It tests if the connection is open and shows a message if it is otherwise it silently opens it and if it fails shows you the critical error.
+        /// </summary>
+        public static string TestConnectionMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("TestConnectionMenuTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &amp;Test Connection.
+        /// </summary>
+        public static string TestConnectionTitle {
+            get {
+                return ResourceManager.GetString("TestConnectionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Test.
         /// </summary>
         public static string TestTitle {
@@ -3690,6 +4050,15 @@ namespace XtremePharmacyManager.Properties {
         public static string VendorNameSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("VendorNameSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The window for searching and/or editing product vendors. It adapts to your permissions role..
+        /// </summary>
+        public static string VendorsMenuTooltipTitle {
+            get {
+                return ResourceManager.GetString("VendorsMenuTooltipTitle", resourceCulture);
             }
         }
         

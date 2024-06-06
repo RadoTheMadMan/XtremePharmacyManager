@@ -46,7 +46,7 @@ namespace XtremePharmacyManager.DataEntities
             modelBuilder.Entity<ProductImage>().ToTable("ProductImages");
             modelBuilder.Entity<ProductOrder>().ToTable("ProductOrders");
             modelBuilder.Entity<OrderDelivery>().ToTable("OrderDeliveries");
-            modelBuilder.Entity<Log>().ToTable("Logs");
+            modelBuilder.Entity<Log>().ToTable(GLOBAL_RESOURCES.LOGS_TITLE);
             //views
             //weirdly enough there are no toview function in this entity model version
             //so I am using ToTable function. If this crashes I will remove the views from the equation

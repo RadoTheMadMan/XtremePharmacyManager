@@ -78,8 +78,7 @@
             this.lstLogs.Name = "lstLogs";
             this.lstLogs.Size = new System.Drawing.Size(775, 214);
             this.lstLogs.TabIndex = 0;
-            this.ttLogs.SetToolTip(this.lstLogs, "The list of database logs. Every database log is displayed here and refreshed on " +
-        "any executed operation.");
+            this.ttLogs.SetToolTip(this.lstLogs, GLOBAL_RESOURCES.LST_LOGS_TOOLTIP_TITLE);
             this.lstLogs.UseCompatibleStateImageBehavior = false;
             this.lstLogs.View = System.Windows.Forms.View.Details;
             this.lstLogs.SelectedIndexChanged += new System.EventHandler(this.lstLogs_SelectedIndexChanged);
@@ -138,7 +137,7 @@
             this.dtLogDateTo.Name = "dtLogDateTo";
             this.dtLogDateTo.Size = new System.Drawing.Size(240, 22);
             this.dtLogDateTo.TabIndex = 16;
-            this.ttLogs.SetToolTip(this.dtLogDateTo, "The date to which you want to search logs");
+            this.ttLogs.SetToolTip(this.dtLogDateTo, GLOBAL_RESOURCES.LOG_DATE_TO_SEARCH_TOOLTIP_TITLE);
             // 
             // lblLogDateTo
             // 
@@ -150,7 +149,7 @@
             this.lblLogDateTo.Name = "lblLogDateTo";
             this.lblLogDateTo.Size = new System.Drawing.Size(67, 16);
             this.lblLogDateTo.TabIndex = 15;
-            this.lblLogDateTo.Text = "Date To:";
+            this.lblLogDateTo.Text = GLOBAL_RESOURCES.LBL_DATE_TO_TITLE;
             // 
             // dtLogDateFrom
             // 
@@ -160,7 +159,7 @@
             this.dtLogDateFrom.Name = "dtLogDateFrom";
             this.dtLogDateFrom.Size = new System.Drawing.Size(237, 22);
             this.dtLogDateFrom.TabIndex = 14;
-            this.ttLogs.SetToolTip(this.dtLogDateFrom, "The date from which you want to search logs");
+            this.ttLogs.SetToolTip(this.dtLogDateFrom, GLOBAL_RESOURCES.LOG_DATE_FROM_SEARCH_TOOLTIP_TITLE);
             // 
             // lblLogDateFrom
             // 
@@ -172,7 +171,7 @@
             this.lblLogDateFrom.Name = "lblLogDateFrom";
             this.lblLogDateFrom.Size = new System.Drawing.Size(83, 16);
             this.lblLogDateFrom.TabIndex = 13;
-            this.lblLogDateFrom.Text = "Date From:";
+            this.lblLogDateFrom.Text = GLOBAL_RESOURCES.LBL_DATE_FROM_TITLE;
             // 
             // txtLogTitle
             // 
@@ -182,7 +181,7 @@
             this.txtLogTitle.Name = "txtLogTitle";
             this.txtLogTitle.Size = new System.Drawing.Size(237, 22);
             this.txtLogTitle.TabIndex = 18;
-            this.ttLogs.SetToolTip(this.txtLogTitle, "The title with which you want to search logs");
+            this.ttLogs.SetToolTip(this.txtLogTitle, GLOBAL_RESOURCES.LOG_TITLE_SEARCH_TOOLTIP_TITLE);
             // 
             // lblLogTitle
             // 
@@ -194,7 +193,7 @@
             this.lblLogTitle.Name = "lblLogTitle";
             this.lblLogTitle.Size = new System.Drawing.Size(42, 16);
             this.lblLogTitle.TabIndex = 17;
-            this.lblLogTitle.Text = "Title:";
+            this.lblLogTitle.Text = GLOBAL_RESOURCES.LBL_TITLE_TITLE;
             // 
             // txtLogMessage
             // 
@@ -204,7 +203,7 @@
             this.txtLogMessage.Name = "txtLogMessage";
             this.txtLogMessage.Size = new System.Drawing.Size(237, 22);
             this.txtLogMessage.TabIndex = 20;
-            this.ttLogs.SetToolTip(this.txtLogMessage, "The message with which you want to search logs");
+            this.ttLogs.SetToolTip(this.txtLogMessage, GLOBAL_RESOURCES.LOG_MESSAGE_SEARCH_TOOLTIP_TITLE);
             // 
             // lblLogMessage
             // 
@@ -216,7 +215,7 @@
             this.lblLogMessage.Name = "lblLogMessage";
             this.lblLogMessage.Size = new System.Drawing.Size(75, 16);
             this.lblLogMessage.TabIndex = 19;
-            this.lblLogMessage.Text = "Message:";
+            this.lblLogMessage.Text = GLOBAL_RESOURCES.LBL_MESSAGE_TITLE;
             // 
             // lblSearchMode
             // 
@@ -255,7 +254,7 @@
             this.txtAdditionalInformation.Name = "txtAdditionalInformation";
             this.txtAdditionalInformation.Size = new System.Drawing.Size(221, 91);
             this.txtAdditionalInformation.TabIndex = 34;
-            this.ttLogs.SetToolTip(this.txtAdditionalInformation, "The additional information with which you want to search logs");
+            this.ttLogs.SetToolTip(this.txtAdditionalInformation, GLOBAL_RESOURCES.ADD_INFO_SEARCH_TOOLTIP_TITLE);
             // 
             // lblAdditionalInformation
             // 
@@ -267,7 +266,7 @@
             this.lblAdditionalInformation.Name = "lblAdditionalInformation";
             this.lblAdditionalInformation.Size = new System.Drawing.Size(161, 16);
             this.lblAdditionalInformation.TabIndex = 33;
-            this.lblAdditionalInformation.Text = "Additional Information:";
+            this.lblAdditionalInformation.Text = GLOBAL_RESOURCES.LBL_ADD_INFO_TITLE;
             // 
             // btnSearch
             // 
@@ -312,10 +311,8 @@
             this.Controls.Add(this.lstLogs);
             this.MaximizeBox = false;
             this.Name = "frmLogs";
-            this.Text = "Logs";
-            this.ttLogs.SetToolTip(this, "The database logs window where you can search the logs. The logs are read-only on" +
-        " the application side for all operators, a.k.a. company employees and administra" +
-        "tors");
+            this.Text = GLOBAL_RESOURCES.LOGS_TITLE;
+            this.ttLogs.SetToolTip(this, GLOBAL_RESOURCES.LOGS_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmLogs_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

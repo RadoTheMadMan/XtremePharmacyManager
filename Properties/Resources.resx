@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AboutMenuTitle" xml:space="preserve">
+    <value>&amp;About</value>
+  </data>
+  <data name="AboutMenuTooltipTitle" xml:space="preserve">
+    <value>The dialog window that shows you what this application is all about.</value>
+  </data>
   <data name="AboutTitle" xml:space="preserve">
     <value>About</value>
   </data>
@@ -308,6 +314,9 @@ Please retry.</value>
   <data name="BulkBrandMenuAccessErrorMessage" xml:space="preserve">
     <value>Bulk Product Brand Operation access is given only to administrators of this system.</value>
   </data>
+  <data name="BulkBrandMenuTooltipTitle" xml:space="preserve">
+    <value>The product brand bulk operations window. It adapts to your permissions role.</value>
+  </data>
   <data name="BulkBrandOperationCreateTaskSuccessMessage" xml:space="preserve">
     <value>Product Brand has been added.</value>
   </data>
@@ -326,6 +335,9 @@ Please retry.</value>
   <data name="BulkDeliveryServiceMenuAccessErrorMessage" xml:space="preserve">
     <value>Bulk Delivery Service Operation access is given only to administrators of this system.</value>
   </data>
+  <data name="BulkDeliveryServiceMenuTooltipTitle" xml:space="preserve">
+    <value>The delivery service bulk operations window. It adapts to your permissions role.</value>
+  </data>
   <data name="BulkDeliveryServiceOperationCreateTaskSuccessMessage" xml:space="preserve">
     <value>Delivery Service has been added.</value>
   </data>
@@ -340,6 +352,9 @@ Please retry.</value>
   </data>
   <data name="BulkDeliveryServiceOperationUpdateTaskSuccessMessage" xml:space="preserve">
     <value>Delivery Service has been updated.</value>
+  </data>
+  <data name="BulkMenuTooltipTitle" xml:space="preserve">
+    <value>The bulk operations windows whether you can access them or not. They adapt to your permissions role.</value>
   </data>
   <data name="BulkOperationCompletedCountMessage" xml:space="preserve">
     <value>Completed Operations:</value>
@@ -392,6 +407,9 @@ Please retry.</value>
   <data name="BulkOrderDeliveryMenuAccessErrorMessage" xml:space="preserve">
     <value>Bulk Order Delivery Operation access is given only to administrators and employees of this system.</value>
   </data>
+  <data name="BulkOrderDeliveryMenuTooltipTitle" xml:space="preserve">
+    <value>The order delivery bulk operations window. It adapts to your permissions role.</value>
+  </data>
   <data name="BulkOrderDeliveryOperationCreateTaskSuccessMessage" xml:space="preserve">
     <value>Order Delivery has been added.</value>
   </data>
@@ -409,6 +427,9 @@ Please retry.</value>
   </data>
   <data name="BulkPaymentMethodMenuAccessErrorMessage" xml:space="preserve">
     <value>Bulk Payment Method Operation access is given only to administrators of this system.</value>
+  </data>
+  <data name="BulkPaymentMethodMenuTooltipTitle" xml:space="preserve">
+    <value>The payment method bulk operations window. It adapts to your permissions role.</value>
   </data>
   <data name="BulkPaymentMethodOperationCreateTaskSuccessMessage" xml:space="preserve">
     <value>Payment Method has been added.</value>
@@ -428,6 +449,9 @@ Please retry.</value>
   <data name="BulkProductImageMenuAccessErrorMessage" xml:space="preserve">
     <value>Bulk Product Image Operation access is given only to administrators and employees of this system.</value>
   </data>
+  <data name="BulkProductImageMenuTooltipTitle" xml:space="preserve">
+    <value>The product image bulk operations window. It adapts to your permissions role.</value>
+  </data>
   <data name="BulkProductImageOperationCreateTaskSuccessMessage" xml:space="preserve">
     <value>Product Image has been added.</value>
   </data>
@@ -446,6 +470,9 @@ Please retry.</value>
   <data name="BulkProductMenuAccessErrorMessage" xml:space="preserve">
     <value>Bulk Product Operation access is given only to administrators of this system.</value>
   </data>
+  <data name="BulkProductMenuTooltipTitle" xml:space="preserve">
+    <value>The product bulk operations window. It adapts to your permissions role.</value>
+  </data>
   <data name="BulkProductOperationCreateTaskSuccessMessage" xml:space="preserve">
     <value>Product has been added.</value>
   </data>
@@ -463,6 +490,9 @@ Please retry.</value>
   </data>
   <data name="BulkProductOrderMenuAccessErrorMessage" xml:space="preserve">
     <value>Bulk Product Order Operation access is given only to administrators and employees of this system.</value>
+  </data>
+  <data name="BulkProductOrderMenuTooltipTitle" xml:space="preserve">
+    <value>The product order bulk operations window. It adapts to your permissions role.</value>
   </data>
   <data name="BulkProductOrderOperationCreateTaskSuccessMessage" xml:space="preserve">
     <value>Product Order has been added.</value>
@@ -485,6 +515,9 @@ Please retry.</value>
   <data name="BulkUserMenuAccessErrorMessage" xml:space="preserve">
     <value>Bulk User Operation access is given only to administrators of this system.</value>
   </data>
+  <data name="BulkUserMenuTooltipTitle" xml:space="preserve">
+    <value>The user bulk operations window. It adapts to your permissions role.</value>
+  </data>
   <data name="BulkUserOperationCreateTaskSuccessMessage" xml:space="preserve">
     <value>User has been added.</value>
   </data>
@@ -502,6 +535,9 @@ Please retry.</value>
   </data>
   <data name="BulkVendorMenuAccessErrorMessage" xml:space="preserve">
     <value>Bulk Product Vendor Operation access is given only to administrators of this system.</value>
+  </data>
+  <data name="BulkVendorMenuTooltipTitle" xml:space="preserve">
+    <value>The product vendor bulk operations window. It adapts to your permissions role.</value>
   </data>
   <data name="BulkVendorOperationCreateTaskSuccessMessage" xml:space="preserve">
     <value>Product Vendor has been added.</value>
@@ -588,6 +624,12 @@ Please check the application configuration and/or contact your system administra
   <data name="DateModifiedColTitle" xml:space="preserve">
     <value>Date Modified</value>
   </data>
+  <data name="DebugToolsMenuTooltipTitle" xml:space="preserve">
+    <value>The debug tools for the application</value>
+  </data>
+  <data name="DebugToolsTitle" xml:space="preserve">
+    <value>&amp;Debug Tools</value>
+  </data>
   <data name="DelieryServicesTitle" xml:space="preserve">
     <value>Delivery Services</value>
   </data>
@@ -620,6 +662,9 @@ Please check the application configuration and/or contact your system administra
   </data>
   <data name="DeliveryServiceSearchTooltipTitle" xml:space="preserve">
     <value>The delivery service with which you want to search order deliveries</value>
+  </data>
+  <data name="DeliveryServicesMenuTooltipTitle" xml:space="preserve">
+    <value>The window for searching and/or editing delivery services. It adapts to your permissions role.</value>
   </data>
   <data name="DeliveryStatusColTitle" xml:space="preserve">
     <value>Delivery Status</value>
@@ -693,6 +738,9 @@ Please check the application configuration and/or contact your system administra
   <data name="FileMenuTooltipTitle" xml:space="preserve">
     <value>File menu..or is it?</value>
   </data>
+  <data name="HelpMenuTooltipTitle" xml:space="preserve">
+    <value>The help menu for the application</value>
+  </data>
   <data name="HelpTooltipTitle" xml:space="preserve">
     <value>Help</value>
   </data>
@@ -707,6 +755,12 @@ Please check the application configuration and/or contact your system administra
   </data>
   <data name="ImageUploadForOperationTitle" xml:space="preserve">
     <value>Select an image to upload or for add/update operation...</value>
+  </data>
+  <data name="ImgBinMenuTooltipTitle" xml:space="preserve">
+    <value>The bitmap to binary window. It is to test the capabilities of converting a bitmap image to an array of bytes and/or base 64 string and vice versa."</value>
+  </data>
+  <data name="ImgBinTitle" xml:space="preserve">
+    <value>&amp;Bitmap To Binary</value>
   </data>
   <data name="LanguageManagerLanguageExistErrorMessage" xml:space="preserve">
     <value>This language already exists!</value>
@@ -734,6 +788,12 @@ Please check the application configuration and/or contact your system administra
   </data>
   <data name="LblClientTitle" xml:space="preserve">
     <value>Client:</value>
+  </data>
+  <data name="GLOBAL_RESOURCES.LBL_LOG_DATE_FROM_TITLE" xml:space="preserve">
+    <value>Date From:</value>
+  </data>
+  <data name="LblDateToTitle" xml:space="preserve">
+    <value>Date To:</value>
   </data>
   <data name="LblDeliveryReasonTitle" xml:space="preserve">
     <value>Delivery Reason:</value>
@@ -953,14 +1013,29 @@ should be unique</value>
   <data name="LblVendorTitle" xml:space="preserve">
     <value>Vendor:</value>
   </data>
+  <data name="LogDateFromSearchTooltipTitle" xml:space="preserve">
+    <value>The date from which you want to search logs</value>
+  </data>
+  <data name="LogDateToSearchTooltipTitle" xml:space="preserve">
+    <value>The date to which you want to search logs</value>
+  </data>
   <data name="LoginTitle" xml:space="preserve">
     <value>Login</value>
   </data>
   <data name="LogsMenuAccessErrorMessage" xml:space="preserve">
     <value>Database Logs access is given only to administrators and employees of this system.</value>
   </data>
+  <data name="LogsMenuTooltipTitle" xml:space="preserve">
+    <value>The window for seeing the database logs. It adapts to your permissions role and refreshes every time you execute any operation.</value>
+  </data>
+  <data name="LstLogsTooltipTitle" xml:space="preserve">
+    <value>The list of database logs. Every database log is displayed here and refreshed on any executed operation.</value>
+  </data>
   <data name="LstProductImagesTooltipTitle" xml:space="preserve">
     <value>The list of product images in the database. Select any to add/edit/delete based on your permissions.</value>
+  </data>
+  <data name="MainFormTooltipTitle" xml:space="preserve">
+    <value>The main window of the application. It adapts to the role permissions of the user you logged in as and displays the display name as well as the host you are connected to. Every other window you see except the dialogs will be a part of this window.</value>
   </data>
   <data name="MainMenuTitle" xml:space="preserve">
     <value>Main Menu</value>
@@ -988,6 +1063,9 @@ should be unique</value>
   </data>
   <data name="ODDateModifiedToSearchTooltipTitle" xml:space="preserve">
     <value>The date modified to which you want to search order deliveries</value>
+  </data>
+  <data name="OrderDeliveriesMenuTooltipTitle" xml:space="preserve">
+    <value>The window for searching and/or editing order deliveries. It adapts to your permissions role.</value>
   </data>
   <data name="OrderDeliveriesTitle" xml:space="preserve">
     <value>Order Deliveries</value>
@@ -1066,6 +1144,9 @@ be edited again</value>
   <data name="PaymentMethodSearchTooltipTitle" xml:space="preserve">
     <value>The payment method with which you want to search order deliveries</value>
   </data>
+  <data name="PaymentMethodsMenuTooltipTitle" xml:space="preserve">
+    <value>The window for searching and/or editing payment methods. It adapts to your permissions role.</value>
+  </data>
   <data name="PaymentMethodsTitle" xml:space="preserve">
     <value>Payment Methods</value>
   </data>
@@ -1132,6 +1213,9 @@ be edited again</value>
   <data name="ProductImageEditOperationPermissionError" xml:space="preserve">
     <value>You don't have permissions to add/edit product images.</value>
   </data>
+  <data name="ProductImagesTitle" xml:space="preserve">
+    <value>Product Images</value>
+  </data>
   <data name="ProductMenuAccessAdminNotice" xml:space="preserve">
     <value>You have full access to the products and product images</value>
   </data>
@@ -1192,6 +1276,9 @@ be edited again</value>
   <data name="ProductOrderSearchTooltipTitle" xml:space="preserve">
     <value>The product order with which you want to search order deliveries</value>
   </data>
+  <data name="ProductOrdersMenuTooltipTitle" xml:space="preserve">
+    <value>The window for searching and/or editing product orders. It adapts to your permissions role.</value>
+  </data>
   <data name="ProductOrdersTitle" xml:space="preserve">
     <value>Product Orders</value>
   </data>
@@ -1221,6 +1308,9 @@ be edited again</value>
   </data>
   <data name="ProductSLocationColTitle" xml:space="preserve">
     <value>Storage Location</value>
+  </data>
+  <data name="ProductsMenuTooltipTitle" xml:space="preserve">
+    <value>The window for searching and/or editing products. It adapts to your permissions role.</value>
   </data>
   <data name="ProductsTitle" xml:space="preserve">
     <value>Products</value>
@@ -1302,6 +1392,12 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="StackTraceMessage" xml:space="preserve">
     <value>Stack Trace: </value>
   </data>
+  <data name="TestConnectionMenuTooltipTitle" xml:space="preserve">
+    <value>The test connection menu. It tests if the connection is open and shows a message if it is otherwise it silently opens it and if it fails shows you the critical error</value>
+  </data>
+  <data name="TestConnectionTitle" xml:space="preserve">
+    <value>&amp;Test Connection</value>
+  </data>
   <data name="TestTitle" xml:space="preserve">
     <value>Test</value>
   </data>
@@ -1377,6 +1473,9 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="VendorNameSearchTooltipTitle" xml:space="preserve">
     <value>The vendor name with which you want to search product vendors</value>
   </data>
+  <data name="VendorsMenuTooltipTitle" xml:space="preserve">
+    <value>The window for searching and/or editing product vendors. It adapts to your permissions role.</value>
+  </data>
   <data name="VendorsTitle" xml:space="preserve">
     <value>Product Vendors</value>
   </data>
@@ -1394,5 +1493,29 @@ It is downloaded and converted from binary format to its native format.</value>
   </data>
   <data name="WindowMenuTooltipTitle" xml:space="preserve">
     <value>The list of the windows you can and cannot access. It adapts to your role permissions</value>
+  </data>
+  <data name="AddInfoSearchTooltipTitle" xml:space="preserve">
+    <value>The additional information with which you want to search logs</value>
+  </data>
+  <data name="LblAddInfoTitle" xml:space="preserve">
+    <value>Additional Information:</value>
+  </data>
+  <data name="LblMessageTitle" xml:space="preserve">
+    <value>Message:</value>
+  </data>
+  <data name="LblTitleTitle" xml:space="preserve">
+    <value>Title:</value>
+  </data>
+  <data name="LogMessageSearchTooltipTitle" xml:space="preserve">
+    <value>The message with which you want to search logs</value>
+  </data>
+  <data name="LogsTitle" xml:space="preserve">
+    <value>Logs</value>
+  </data>
+  <data name="LogsTooltipTitle" xml:space="preserve">
+    <value>The database logs window where you can search the logs. The logs are read-only on the application side for all operators, a.k.a. company employees and administrators</value>
+  </data>
+  <data name="LogTitleSearchTooltipTitle" xml:space="preserve">
+    <value>The title with which you want to search logs</value>
   </data>
 </root>
