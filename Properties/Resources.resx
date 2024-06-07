@@ -1823,4 +1823,121 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="ServiceNameEditTooltipTitle" xml:space="preserve">
     <value>The name of the delivery service you want to add/edit</value>
   </data>
+  <data name="BtnAddOperationTooltipTitle" xml:space="preserve">
+    <value>Add a bulk operation to the list</value>
+  </data>
+  <data name="BtnApplyChangesToAllTargetsTooltipTitle" xml:space="preserve">
+    <value>Applies changes to the target records of all operations</value>
+  </data>
+  <data name="BtnApplyChangesToCurrentTargetTooltipTitle" xml:space="preserve">
+    <value>Apply changes to the target record of the selected operation</value>
+  </data>
+  <data name="BtnExecuteOperationsTooltipTitle" xml:space="preserve">
+    <value>Execute all operations currently in the list</value>
+  </data>
+  <data name="BtnRemoveOperationTooltipTitle" xml:space="preserve">
+    <value>Remove an existing bulk operation from the list</value>
+  </data>
+  <data name="BulkDeliveryServiceOperationsTitle" xml:space="preserve">
+    <value>Bulk Delivery Service Operations</value>
+  </data>
+  <data name="BulkDeliveryServiceOperationsTooltipTitle" xml:space="preserve">
+    <value>The bulk delivery service operations window where you can make bulk operations for adding/editing/removing delivery services provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not.</value>
+  </data>
+  <data name="BulkOrderDeliveryOperationsTitle" xml:space="preserve">
+    <value>Bulk Order Delivery Operations</value>
+  </data>
+  <data name="BulkOrderDeliveryOperationsTooltipTitle" xml:space="preserve">
+    <value>The bulk order delivery operations window where you can make bulk operations for adding/editing/removing order deliveries provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not.</value>
+  </data>
+  <data name="BulkPaymentMethodOperationsTitle" xml:space="preserve">
+    <value>Bulk Payment Method Operations</value>
+  </data>
+  <data name="BulkPaymentMethodOperationsTooltipTitle" xml:space="preserve">
+    <value>The bulk payment method operations window where you can make bulk operations for adding/editing/removing payment methods provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not.</value>
+  </data>
+  <data name="BulkProductBrandOperationsTitle" xml:space="preserve">
+    <value>Bulk Product Brand Operations</value>
+  </data>
+  <data name="BulkProductBrandOperationsTooltipTitle" xml:space="preserve">
+    <value>The bulk product brand operations window where you can make bulk operations for adding/editing/removing product brands provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not.</value>
+  </data>
+  <data name="BulkProductImageOperationsTitle" xml:space="preserve">
+    <value>Bulk Product Image Operations</value>
+  </data>
+  <data name="BulkProductImageOperationsTooltipTitle" xml:space="preserve">
+    <value>The bulk product image operations window where you can make bulk operations for adding/editing/removing product images provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not.</value>
+  </data>
+  <data name="BulkProductOperationsTitle" xml:space="preserve">
+    <value>Bulk Product Operations</value>
+  </data>
+  <data name="BulkProductOperationsTooltipTitle" xml:space="preserve">
+    <value>The bulk product operations window where you can make bulk operations for adding/editing/removing products provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not.</value>
+  </data>
+  <data name="BulkProductOrderOperationsTitle" xml:space="preserve">
+    <value>Bulk Product Order Operations</value>
+  </data>
+  <data name="BulkProductOrderOperationsTooltipTitle" xml:space="preserve">
+    <value>The bulk product order operations window where you can make bulk operations for adding/editing/removing product orders provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not.</value>
+  </data>
+  <data name="BulkUserOperationsTitle" xml:space="preserve">
+    <value>Bulk User Operations</value>
+  </data>
+  <data name="BulkUserOperationsTooltipTitle" xml:space="preserve">
+    <value>The bulk user operations window where you can make bulk operations for adding/editing/removing users provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not.</value>
+  </data>
+  <data name="BulkVendorOperationsTitle" xml:space="preserve">
+    <value>Bulk Product Vendor Operations</value>
+  </data>
+  <data name="BulkVendorOperationsTooltipTitle" xml:space="preserve">
+    <value>The bulk product vendor operations window where you can make bulk operations for adding/editing/removing product vendors provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not.</value>
+  </data>
+  <data name="ChkOverridePriceAsTotalTitle" xml:space="preserve">
+    <value>Override Price As Total On Add:</value>
+  </data>
+  <data name="ChkSilentOperationTitle" xml:space="preserve">
+    <value>Silent Operation</value>
+  </data>
+  <data name="LblOperationTypeAdd" xml:space="preserve">
+    <value>ADD</value>
+  </data>
+  <data name="LblOperationTypeCustom" xml:space="preserve">
+    <value>CUSTOM(Only for operations with custom action overrides)</value>
+  </data>
+  <data name="LblOperationTypeDefault" xml:space="preserve">
+    <value>DEFAULT(Invalid Operation)</value>
+  </data>
+  <data name="LblOperationTypeDelete" xml:space="preserve">
+    <value>DELETE</value>
+  </data>
+  <data name="LblOperationTypeTitle" xml:space="preserve">
+    <value>Operation Type:</value>
+  </data>
+  <data name="LblOperationTypeUpdate" xml:space="preserve">
+    <value>UPDATE</value>
+  </data>
+  <data name="LblSelectRecordTitle" xml:space="preserve">
+    <value>Select Record:</value>
+  </data>
+  <data name="LstBulkOperationsTooltipTitle" xml:space="preserve">
+    <value>The list of bulk operations you have added/edited/removed, it clears when the operations are executed.You can select any operation from here.</value>
+  </data>
+  <data name="OperationLogsTooltipTitle" xml:space="preserve">
+    <value>It shows the logs of the operations including success messages,error messages and overall time started, time ended and execution duration.</value>
+  </data>
+  <data name="OperationResultsTooltipTitle" xml:space="preserve">
+    <value>Shows the results with numbers of completed operations, failed operations and execution time</value>
+  </data>
+  <data name="OperationTypeTooltipTitle" xml:space="preserve">
+    <value>The type of the operation, the default type is the invalid type, the add/update/delete types are defined in each class for the specific operation and custom is valid only if you have a custom task when you extend the application</value>
+  </data>
+  <data name="SelectRecordTooltipTitle" xml:space="preserve">
+    <value>The record selection, you can select any existing record from here.</value>
+  </data>
+  <data name="SilentOperationTooltipTitle" xml:space="preserve">
+    <value>Check whether the operation is silent or will show you error messages if it has failed</value>
+  </data>
+  <data name="TotalPriceEditTooltipTitle" xml:space="preserve">
+    <value>This shows the total price, it is calculated automatically based on the price of the order the delivery is assigned to and the delivery service the delivery is assigned to and cannot be changed manually</value>
+  </data>
 </root>

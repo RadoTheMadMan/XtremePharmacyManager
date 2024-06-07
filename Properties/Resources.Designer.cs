@@ -591,6 +591,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add a bulk operation to the list.
+        /// </summary>
+        public static string BtnAddOperationTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnAddOperationTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to APPLY CHANGES TO ALL TARGETS.
         /// </summary>
         public static string BtnApplyChangesToAllTargetsTitle {
@@ -600,11 +609,29 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Applies changes to the target records of all operations.
+        /// </summary>
+        public static string BtnApplyChangesToAllTargetsTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnApplyChangesToAllTargetsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to APPLY CHANGES TO THIS TARGET.
         /// </summary>
         public static string BtnApplyChangesToCurrentTargetTitle {
             get {
                 return ResourceManager.GetString("BtnApplyChangesToCurrentTargetTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply changes to the target record of the selected operation.
+        /// </summary>
+        public static string BtnApplyChangesToCurrentTargetTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnApplyChangesToCurrentTargetTooltipTitle", resourceCulture);
             }
         }
         
@@ -717,6 +744,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Execute all operations currently in the list.
+        /// </summary>
+        public static string BtnExecuteOperationsTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnExecuteOperationsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to EXIT.
         /// </summary>
         public static string btnExitTitle {
@@ -812,6 +848,15 @@ namespace XtremePharmacyManager.Properties {
         public static string BtnRemoveOperationTitle {
             get {
                 return ResourceManager.GetString("BtnRemoveOperationTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove an existing bulk operation from the list.
+        /// </summary>
+        public static string BtnRemoveOperationTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnRemoveOperationTooltipTitle", resourceCulture);
             }
         }
         
@@ -965,6 +1010,24 @@ namespace XtremePharmacyManager.Properties {
         public static string BulkDeliveryServiceOperationNoPermissionMessage {
             get {
                 return ResourceManager.GetString("BulkDeliveryServiceOperationNoPermissionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk Delivery Service Operations.
+        /// </summary>
+        public static string BulkDeliveryServiceOperationsTitle {
+            get {
+                return ResourceManager.GetString("BulkDeliveryServiceOperationsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The bulk delivery service operations window where you can make bulk operations for adding/editing/removing delivery services provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not..
+        /// </summary>
+        public static string BulkDeliveryServiceOperationsTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkDeliveryServiceOperationsTooltipTitle", resourceCulture);
             }
         }
         
@@ -1185,6 +1248,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bulk Order Delivery Operations.
+        /// </summary>
+        public static string BulkOrderDeliveryOperationsTitle {
+            get {
+                return ResourceManager.GetString("BulkOrderDeliveryOperationsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The bulk order delivery operations window where you can make bulk operations for adding/editing/removing order deliveries provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not..
+        /// </summary>
+        public static string BulkOrderDeliveryOperationsTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkOrderDeliveryOperationsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Executing bulk operations for order deliveries is done only by the administrators and employees of this system...
         /// </summary>
         public static string BulkOrderDeliveryOperationUnauthorisedErrorMessage {
@@ -1248,6 +1329,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bulk Payment Method Operations.
+        /// </summary>
+        public static string BulkPaymentMethodOperationsTitle {
+            get {
+                return ResourceManager.GetString("BulkPaymentMethodOperationsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The bulk payment method operations window where you can make bulk operations for adding/editing/removing payment methods provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not..
+        /// </summary>
+        public static string BulkPaymentMethodOperationsTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkPaymentMethodOperationsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Executing bulk operations for payment methods is done only by the administrators of this system...
         /// </summary>
         public static string BulkPaymentMethodOperationUnauthorisedErrorMessage {
@@ -1262,6 +1361,24 @@ namespace XtremePharmacyManager.Properties {
         public static string BulkPaymentMethodOperationUpdateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("BulkPaymentMethodOperationUpdateTaskSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk Product Brand Operations.
+        /// </summary>
+        public static string BulkProductBrandOperationsTitle {
+            get {
+                return ResourceManager.GetString("BulkProductBrandOperationsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The bulk product brand operations window where you can make bulk operations for adding/editing/removing product brands provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not..
+        /// </summary>
+        public static string BulkProductBrandOperationsTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkProductBrandOperationsTooltipTitle", resourceCulture);
             }
         }
         
@@ -1307,6 +1424,24 @@ namespace XtremePharmacyManager.Properties {
         public static string BulkProductImageOperationNoPermissionMessage {
             get {
                 return ResourceManager.GetString("BulkProductImageOperationNoPermissionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk Product Image Operations.
+        /// </summary>
+        public static string BulkProductImageOperationsTitle {
+            get {
+                return ResourceManager.GetString("BulkProductImageOperationsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The bulk product image operations window where you can make bulk operations for adding/editing/removing product images provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not..
+        /// </summary>
+        public static string BulkProductImageOperationsTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkProductImageOperationsTooltipTitle", resourceCulture);
             }
         }
         
@@ -1374,6 +1509,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bulk Product Operations.
+        /// </summary>
+        public static string BulkProductOperationsTitle {
+            get {
+                return ResourceManager.GetString("BulkProductOperationsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The bulk product operations window where you can make bulk operations for adding/editing/removing products provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not..
+        /// </summary>
+        public static string BulkProductOperationsTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkProductOperationsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Executing bulk operations for products is done only by the administrators of this system...
         /// </summary>
         public static string BulkProductOperationUnauthorisedErrorMessage {
@@ -1433,6 +1586,24 @@ namespace XtremePharmacyManager.Properties {
         public static string BulkProductOrderOperationNoPermissionMessage {
             get {
                 return ResourceManager.GetString("BulkProductOrderOperationNoPermissionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk Product Order Operations.
+        /// </summary>
+        public static string BulkProductOrderOperationsTitle {
+            get {
+                return ResourceManager.GetString("BulkProductOrderOperationsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The bulk product order operations window where you can make bulk operations for adding/editing/removing product orders provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not..
+        /// </summary>
+        public static string BulkProductOrderOperationsTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkProductOrderOperationsTooltipTitle", resourceCulture);
             }
         }
         
@@ -1509,6 +1680,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bulk User Operations.
+        /// </summary>
+        public static string BulkUserOperationsTitle {
+            get {
+                return ResourceManager.GetString("BulkUserOperationsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The bulk user operations window where you can make bulk operations for adding/editing/removing users provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not..
+        /// </summary>
+        public static string BulkUserOperationsTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkUserOperationsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Executing bulk operations for users is done only by the administrators of this system...
         /// </summary>
         public static string BulkUserOperationUnauthorisedErrorMessage {
@@ -1568,6 +1757,24 @@ namespace XtremePharmacyManager.Properties {
         public static string BulkVendorOperationNoPermissionMessage {
             get {
                 return ResourceManager.GetString("BulkVendorOperationNoPermissionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bulk Product Vendor Operations.
+        /// </summary>
+        public static string BulkVendorOperationsTitle {
+            get {
+                return ResourceManager.GetString("BulkVendorOperationsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The bulk product vendor operations window where you can make bulk operations for adding/editing/removing product vendors provided you have permissions to do so. The bulk operations are asynchronuous and nonblocking and their performance depends on the number of cores you pc has and whether it supports multithreading or not..
+        /// </summary>
+        public static string BulkVendorOperationsTooltipTitle {
+            get {
+                return ResourceManager.GetString("BulkVendorOperationsTooltipTitle", resourceCulture);
             }
         }
         
@@ -1644,6 +1851,24 @@ namespace XtremePharmacyManager.Properties {
         public static string CbSelectVendorSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("CbSelectVendorSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Override Price As Total On Add:.
+        /// </summary>
+        public static string ChkOverridePriceAsTotalTitle {
+            get {
+                return ResourceManager.GetString("ChkOverridePriceAsTotalTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Silent Operation.
+        /// </summary>
+        public static string ChkSilentOperationTitle {
+            get {
+                return ResourceManager.GetString("ChkSilentOperationTitle", resourceCulture);
             }
         }
         
@@ -2848,6 +3073,60 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ADD.
+        /// </summary>
+        public static string LblOperationTypeAdd {
+            get {
+                return ResourceManager.GetString("LblOperationTypeAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CUSTOM(Only for operations with custom action overrides).
+        /// </summary>
+        public static string LblOperationTypeCustom {
+            get {
+                return ResourceManager.GetString("LblOperationTypeCustom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DEFAULT(Invalid Operation).
+        /// </summary>
+        public static string LblOperationTypeDefault {
+            get {
+                return ResourceManager.GetString("LblOperationTypeDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DELETE.
+        /// </summary>
+        public static string LblOperationTypeDelete {
+            get {
+                return ResourceManager.GetString("LblOperationTypeDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operation Type:.
+        /// </summary>
+        public static string LblOperationTypeTitle {
+            get {
+                return ResourceManager.GetString("LblOperationTypeTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to UPDATE.
+        /// </summary>
+        public static string LblOperationTypeUpdate {
+            get {
+                return ResourceManager.GetString("LblOperationTypeUpdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order Reason:.
         /// </summary>
         public static string LblOrderReasonTitle {
@@ -3193,6 +3472,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select Record:.
+        /// </summary>
+        public static string LblSelectRecordTitle {
+            get {
+                return ResourceManager.GetString("LblSelectRecordTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Service Name:.
         /// </summary>
         public static string LblServiceNameTitle {
@@ -3456,6 +3744,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The list of bulk operations you have added/edited/removed, it clears when the operations are executed.You can select any operation from here..
+        /// </summary>
+        public static string LstBulkOperationsTooltipTitle {
+            get {
+                return ResourceManager.GetString("LstBulkOperationsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is the list of all logins you have previously logged in from. Logins are saved into and loaded automatically from the filesystem..
         /// </summary>
         public static string LstLastLoginsTooltipTitle {
@@ -3578,6 +3875,33 @@ namespace XtremePharmacyManager.Properties {
         public static string ODDateModifiedToSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("ODDateModifiedToSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It shows the logs of the operations including success messages,error messages and overall time started, time ended and execution duration..
+        /// </summary>
+        public static string OperationLogsTooltipTitle {
+            get {
+                return ResourceManager.GetString("OperationLogsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shows the results with numbers of completed operations, failed operations and execution time.
+        /// </summary>
+        public static string OperationResultsTooltipTitle {
+            get {
+                return ResourceManager.GetString("OperationResultsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The type of the operation, the default type is the invalid type, the add/update/delete types are defined in each class for the specific operation and custom is valid only if you have a custom task when you extend the application.
+        /// </summary>
+        public static string OperationTypeTooltipTitle {
+            get {
+                return ResourceManager.GetString("OperationTypeTooltipTitle", resourceCulture);
             }
         }
         
@@ -4600,6 +4924,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The record selection, you can select any existing record from here..
+        /// </summary>
+        public static string SelectRecordTooltipTitle {
+            get {
+                return ResourceManager.GetString("SelectRecordTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Service ID.
         /// </summary>
         public static string ServiceIDColTitle {
@@ -4641,6 +4974,15 @@ namespace XtremePharmacyManager.Properties {
         public static string ServicePriceColTitle {
             get {
                 return ResourceManager.GetString("ServicePriceColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check whether the operation is silent or will show you error messages if it has failed.
+        /// </summary>
+        public static string SilentOperationTooltipTitle {
+            get {
+                return ResourceManager.GetString("SilentOperationTooltipTitle", resourceCulture);
             }
         }
         
@@ -4704,6 +5046,15 @@ namespace XtremePharmacyManager.Properties {
         public static string TotalPriceColTitle {
             get {
                 return ResourceManager.GetString("TotalPriceColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This shows the total price, it is calculated automatically based on the price of the order the delivery is assigned to and the delivery service the delivery is assigned to and cannot be changed manually.
+        /// </summary>
+        public static string TotalPriceEditTooltipTitle {
+            get {
+                return ResourceManager.GetString("TotalPriceEditTooltipTitle", resourceCulture);
             }
         }
         

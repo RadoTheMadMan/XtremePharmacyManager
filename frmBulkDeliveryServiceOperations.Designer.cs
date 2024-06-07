@@ -179,7 +179,7 @@
             this.cbSelectRecord.Name = "cbSelectRecord";
             this.cbSelectRecord.Size = new System.Drawing.Size(254, 24);
             this.cbSelectRecord.TabIndex = 48;
-            this.ttBulkDeliveryServiceOperations.SetToolTip(this.cbSelectRecord, "The record selection, you can select any existing record from here.");
+            this.ttBulkDeliveryServiceOperations.SetToolTip(this.cbSelectRecord, GLOBAL_RESOURCES.SELECT_RECORD_TOOLTIP_TITLE);
             this.cbSelectRecord.ValueMember = "ID";
             this.cbSelectRecord.SelectedIndexChanged += new System.EventHandler(this.cbSelectRecord_SelectedIndexChanged);
             // 
@@ -197,7 +197,7 @@
             this.lblSelectRecord.Name = "lblSelectRecord";
             this.lblSelectRecord.Size = new System.Drawing.Size(110, 16);
             this.lblSelectRecord.TabIndex = 47;
-            this.lblSelectRecord.Text = "Select Record:";
+            this.lblSelectRecord.Text = GLOBAL_RESOURCES.LBL_SELECT_RECORD_TITLE;
             // 
             // txtOperationLogs
             // 
@@ -209,8 +209,7 @@
             this.txtOperationLogs.Size = new System.Drawing.Size(1148, 241);
             this.txtOperationLogs.TabIndex = 46;
             this.txtOperationLogs.Text = "";
-            this.ttBulkDeliveryServiceOperations.SetToolTip(this.txtOperationLogs, "It shows the logs of the operations including success messages,error messages and" +
-        " overall time started, time ended and execution duration.");
+            this.ttBulkDeliveryServiceOperations.SetToolTip(this.txtOperationLogs, GLOBAL_RESOURCES.OPERATION_LOGS_TOOLTIP_TITLE);
             // 
             // checkSilentOperation
             // 
@@ -222,9 +221,8 @@
             this.checkSilentOperation.Name = "checkSilentOperation";
             this.checkSilentOperation.Size = new System.Drawing.Size(140, 20);
             this.checkSilentOperation.TabIndex = 44;
-            this.checkSilentOperation.Text = "Silent Operation";
-            this.ttBulkDeliveryServiceOperations.SetToolTip(this.checkSilentOperation, "Check whether the operation is silent or will show you error messages if it has f" +
-        "ailed");
+            this.checkSilentOperation.Text = GLOBAL_RESOURCES.CHK_SILENT_OPERATION_TITLE;
+            this.ttBulkDeliveryServiceOperations.SetToolTip(this.checkSilentOperation, GLOBAL_RESOURCES.SILENT_OPERATION_TOOLTIP_TITLE);
             this.checkSilentOperation.UseVisualStyleBackColor = true;
             // 
             // lblOperationResults
@@ -237,9 +235,8 @@
             this.lblOperationResults.Name = "lblOperationResults";
             this.lblOperationResults.Size = new System.Drawing.Size(139, 16);
             this.lblOperationResults.TabIndex = 43;
-            this.lblOperationResults.Text = $"{GLOBAL_RESOURCES.LBL_BULK_OPERATION_RESULTS_TEXT}";
-            this.ttBulkDeliveryServiceOperations.SetToolTip(this.lblOperationResults, "Shows the results with numbers of completed operations, failed operations and exe" +
-        "cution time");
+            this.lblOperationResults.Text = GLOBAL_RESOURCES.LBL_BULK_OPERATION_RESULTS_TEXT;
+            this.ttBulkDeliveryServiceOperations.SetToolTip(this.lblOperationResults, GLOBAL_RESOURCES.OPERATION_RESULTS_TOOLTIP_TITLE);
             // 
             // cbOperationType
             // 
@@ -247,17 +244,17 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbOperationType.FormattingEnabled = true;
             this.cbOperationType.Items.AddRange(new object[] {
-            "DEFAULT(Invalid Operation)",
-            "ADD",
-            "UPDATE",
-            "DELETE",
-            "CUSTOM(Only for operations with custom action overrides)"});
+            GLOBAL_RESOURCES.LBL_OPERATION_TYPE_DEFAULT,
+            GLOBAL_RESOURCES.LBL_OPERATION_TYPE_ADD,
+            GLOBAL_RESOURCES.LBL_OPERATION_TYPE_UPDATE,
+            GLOBAL_RESOURCES.LBL_OPERATION_TYPE_DELETE,
+            GLOBAL_RESOURCES.LBL_OPERATION_TYPE_CUSTOM});
             this.cbOperationType.Location = new System.Drawing.Point(937, 270);
             this.cbOperationType.Name = "cbOperationType";
             this.cbOperationType.Size = new System.Drawing.Size(229, 24);
             this.cbOperationType.TabIndex = 42;
-            this.cbOperationType.Text = "ADD";
-            this.ttBulkDeliveryServiceOperations.SetToolTip(this.cbOperationType, resources.GetString("cbOperationType.ToolTip"));
+            this.cbOperationType.Text = GLOBAL_RESOURCES.LBL_OPERATION_TYPE_ADD;
+            this.ttBulkDeliveryServiceOperations.SetToolTip(this.cbOperationType, GLOBAL_RESOURCES.OPERATION_TYPE_TOOLTIP_TITLE);
             // 
             // lblOperationType
             // 
@@ -269,7 +266,7 @@
             this.lblOperationType.Name = "lblOperationType";
             this.lblOperationType.Size = new System.Drawing.Size(119, 16);
             this.lblOperationType.TabIndex = 41;
-            this.lblOperationType.Text = "Operation Type:";
+            this.lblOperationType.Text = GLOBAL_RESOURCES.LBL_OPERATION_TYPE_TITLE;
             // 
             // btnAddOperation
             // 
@@ -282,7 +279,7 @@
             this.btnAddOperation.Size = new System.Drawing.Size(280, 47);
             this.btnAddOperation.TabIndex = 40;
             this.btnAddOperation.Text = GLOBAL_RESOURCES.BTN_ADD_OPERATION_TITLE;
-            this.ttBulkDeliveryServiceOperations.SetToolTip(this.btnAddOperation, "Add a bulk operation to the list");
+            this.ttBulkDeliveryServiceOperations.SetToolTip(this.btnAddOperation, GLOBAL_RESOURCES.BTN_ADD_OPERATION_TOOLTIP_TITLE);
             this.btnAddOperation.UseVisualStyleBackColor = true;
             this.btnAddOperation.Click += new System.EventHandler(this.btnAddOperation_Click);
             // 
@@ -297,7 +294,7 @@
             this.btnRemoveOperation.Size = new System.Drawing.Size(211, 47);
             this.btnRemoveOperation.TabIndex = 39;
             this.btnRemoveOperation.Text = GLOBAL_RESOURCES.BTN_REMOVE_OPERATION_TITLE;
-            this.ttBulkDeliveryServiceOperations.SetToolTip(this.btnRemoveOperation, "Remove an existing bulk operation from the list");
+            this.ttBulkDeliveryServiceOperations.SetToolTip(this.btnRemoveOperation, GLOBAL_RESOURCES.BTN_REMOVE_OPERATION_TOOLTIP_TITLE);
             this.btnRemoveOperation.UseVisualStyleBackColor = true;
             this.btnRemoveOperation.Click += new System.EventHandler(this.btnRemoveOperation_Click);
             // 
@@ -312,7 +309,7 @@
             this.btnApplyChangesToCurrentTarget.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToCurrentTarget.TabIndex = 38;
             this.btnApplyChangesToCurrentTarget.Text = GLOBAL_RESOURCES.BTN_APPLY_CHANGES_TO_CURRENT_TARGET_TITLE;
-            this.ttBulkDeliveryServiceOperations.SetToolTip(this.btnApplyChangesToCurrentTarget, "Apply changes to the target record of the selected operation");
+            this.ttBulkDeliveryServiceOperations.SetToolTip(this.btnApplyChangesToCurrentTarget, GLOBAL_RESOURCES.BTN_APPLY_CHANGES_TO_CURRENT_TARGET_TOOLTIP_TITLE);
             this.btnApplyChangesToCurrentTarget.UseVisualStyleBackColor = true;
             this.btnApplyChangesToCurrentTarget.Click += new System.EventHandler(this.btnApplyChangesToCurrentTarget_Click);
             // 
@@ -327,7 +324,7 @@
             this.btnExecuteOperations.Size = new System.Drawing.Size(211, 47);
             this.btnExecuteOperations.TabIndex = 37;
             this.btnExecuteOperations.Text = GLOBAL_RESOURCES.BTN_EXECUTE_OPERATIONS_TITLE;
-            this.ttBulkDeliveryServiceOperations.SetToolTip(this.btnExecuteOperations, "Execute all operations currently in the list");
+            this.ttBulkDeliveryServiceOperations.SetToolTip(this.btnExecuteOperations, GLOBAL_RESOURCES.BTN_EXECUTE_OPERATIONS_TOOLTIP_TITLE);
             this.btnExecuteOperations.UseVisualStyleBackColor = true;
             this.btnExecuteOperations.Click += new System.EventHandler(this.btnExecuteOperations_Click);
             // 
@@ -342,7 +339,7 @@
             this.btnApplyChangesToAllTargets.Size = new System.Drawing.Size(211, 47);
             this.btnApplyChangesToAllTargets.TabIndex = 36;
             this.btnApplyChangesToAllTargets.Text = GLOBAL_RESOURCES.BTN_APPLY_CHANGES_TO_ALL_TARGETS_TITLE;
-            this.ttBulkDeliveryServiceOperations.SetToolTip(this.btnApplyChangesToAllTargets, "Applies changes to the target records of all operations");
+            this.ttBulkDeliveryServiceOperations.SetToolTip(this.btnApplyChangesToAllTargets, GLOBAL_RESOURCES.BTN_APPLY_CHANGES_TO_ALL_TARGETS_TOOLTIP_TITLE);
             this.btnApplyChangesToAllTargets.UseVisualStyleBackColor = true;
             this.btnApplyChangesToAllTargets.Click += new System.EventHandler(this.btnApplyChangesToAllTargets_Click);
             // 
@@ -359,8 +356,7 @@
             this.lstBulkOperations.Name = "lstBulkOperations";
             this.lstBulkOperations.Size = new System.Drawing.Size(1148, 100);
             this.lstBulkOperations.TabIndex = 35;
-            this.ttBulkDeliveryServiceOperations.SetToolTip(this.lstBulkOperations, "the list of bulk operations you have added/edited/removed, it clears when the ope" +
-        "rations are executed.You can select any operation from here");
+            this.ttBulkDeliveryServiceOperations.SetToolTip(this.lstBulkOperations, GLOBAL_RESOURCES.LST_BULK_OPERATIONS_TOOLTIP_TITLE);
             this.lstBulkOperations.ValueMember = "TargetObject";
             this.lstBulkOperations.SelectedIndexChanged += new System.EventHandler(this.lstBulkOperations_SelectedIndexChanged);
             // 
@@ -454,8 +450,8 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmBulkDeliveryServiceOperations";
-            this.Text = "Bulk Delivery Service Operations";
-            this.ttBulkDeliveryServiceOperations.SetToolTip(this, resources.GetString("$this.ToolTip"));
+            this.Text = GLOBAL_RESOURCES.BULK_DELIVERY_SERVICE_OPERATIONS_TITLE;
+            this.ttBulkDeliveryServiceOperations.SetToolTip(this, GLOBAL_RESOURCES.BULK_DELIVERY_SERVICE_OPERATIONS_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmBulkDeliveryServiceOperations_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

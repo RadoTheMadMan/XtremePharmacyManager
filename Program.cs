@@ -590,6 +590,46 @@ namespace XtremePharmacyManager
         private static string sERVICE_NAME_EDIT_TOOLTIP_TITLE = "";
         private static string eDIT_DELIVERY_SERVICE_TITLE = "";
         private static string eDIT_DELIVERY_SERVICE_TOOLTIP_TITLE = "";
+        private static string sELECT_RECORD_TOOLTIP_TITLE = "";
+        private static string lBL_SELECT_RECORD_TITLE = "";
+        private static string oPERATION_LOGS_TOOLTIP_TITLE = "";
+        private static string cHK_SILENT_OPERATION_TITLE = "";
+        private static string sILENT_OPERATION_TOOLTIP_TITLE = "";
+        private static string oPERATION_RESULTS_TOOLTIP_TITLE = "";
+        private static string lBL_OPERATION_TYPE_DEFAULT = "";
+        private static string lBL_OPERATION_TYPE_ADD = "";
+        private static string lBL_OPERATION_TYPE_UPDATE = "";
+        private static string lBL_OPERATION_TYPE_DELETE = "";
+        private static string lBL_OPERATION_TYPE_CUSTOM = "";
+        private static string oPERATION_TYPE_TOOLTIP_TITLE = "";
+        private static string lBL_OPERATION_TYPE_TITLE = "";
+        private static string bTN_ADD_OPERATION_TOOLTIP_TITLE = "";
+        private static string bTN_REMOVE_OPERATION_TOOLTIP_TITLE = "";
+        private static string bTN_APPLY_CHANGES_TO_CURRENT_TARGET_TOOLTIP_TITLE = "";
+        private static string bTN_EXECUTE_OPERATION_TOOLTIP_TITLE = "";
+        private static string bTN_EXECUTE_OPERATIONS_TOOLTIP_TITLE = "";
+        private static string bTN_APPLY_CHANGES_TO_ALL_TARGETS_TOOLTIP_TITLE = "";
+        private static string lST_BULK_OPERATIONS_TOOLTIP_TITLE = "";
+        private static string bULK_USER_OPERATIONS_TITLE = "";
+        private static string bULK_USER_OPERATIONS_TOOLTIP_TITLE = "";
+        private static string bULK_VENDOR_OPERATIONS_TITLE = "";
+        private static string bULK_VENDOR_OPERATIONS_TOOLTIP_TITLE = "";
+        private static string cHK_PRICE_OVERRIDE_AS_TOTAL_TITLE = "";
+        private static string bULK_PRODUCT_ORDER_OPERATIONS_TITLE = "";
+        private static string bULK_PRODUCT_ORDER_OPERATIONS_TOOLTIP_TITLE = "";
+        private static string tOTAL_PRICE_EDIT_TOOLTIP_TITLE = "";
+        private static string bULK_PRODUCT_OPERATIONS_TITLE = "";
+        private static string bULK_PRODUCT_OPERATIONS_TOOLTIP_TITLE = "";
+        private static string bULK_PRODUCT_IMAGE_OPERATIONS_TITLE = "";
+        private static string bULK_PRODUCT_IMAGE_OPERATIONS_TOOLTIP_TITLE = "";
+        private static string bULK_PRODUCT_BRAND_OPERATIONS_TITLE = "";
+        private static string bULK_PRODUCT_BRAND_OPERATIONS_TOOLTIP_TITLE = "";
+        private static string bULK_PAYMENT_METHOD_OPERATIONS_TOOLTIP_TITLE = "";
+        private static string bULK_PAYMENT_METHOD_OPERATIONS_TITLE = "";
+        private static string bULK_ORDER_DELIVERY_OPERATIONS_TITLE = "";
+        private static string bULK_ORDER_DELIVERY_OPERATIONS_TOOLTIP_TITLE = "";
+        private static string bULK_DELIVERY_SERVICE_OPERATIONS_TITLE = "";
+        private static string bULK_DELIVERY_SERVICE_OPERATIONS_TOOLTIP_TITLE = "";
         public static GLOBAL_RESOURCES instance;
         public EventHandler<CultureInfo> CultureInfoChanged;
 
@@ -1159,6 +1199,46 @@ namespace XtremePharmacyManager
         public static string SERVICE_NAME_EDIT_TOOLTIP_TITLE { get => sERVICE_NAME_EDIT_TOOLTIP_TITLE; set => sERVICE_NAME_EDIT_TOOLTIP_TITLE = value; }
         public static string EDIT_DELIVERY_SERVICE_TITLE { get => eDIT_DELIVERY_SERVICE_TITLE; set => eDIT_DELIVERY_SERVICE_TITLE = value; }
         public static string EDIT_DELIVERY_SERVICE_TOOLTIP_TITLE { get => eDIT_DELIVERY_SERVICE_TOOLTIP_TITLE; set => eDIT_DELIVERY_SERVICE_TOOLTIP_TITLE = value; }
+        public static string SELECT_RECORD_TOOLTIP_TITLE { get => sELECT_RECORD_TOOLTIP_TITLE; set => sELECT_RECORD_TOOLTIP_TITLE = value; }
+        public static string LBL_SELECT_RECORD_TITLE { get => lBL_SELECT_RECORD_TITLE; set => lBL_SELECT_RECORD_TITLE = value; }
+        public static string OPERATION_LOGS_TOOLTIP_TITLE { get => oPERATION_LOGS_TOOLTIP_TITLE; set => oPERATION_LOGS_TOOLTIP_TITLE = value; }
+        public static string CHK_SILENT_OPERATION_TITLE { get => cHK_SILENT_OPERATION_TITLE; set => cHK_SILENT_OPERATION_TITLE = value; }
+        public static string SILENT_OPERATION_TOOLTIP_TITLE { get => sILENT_OPERATION_TOOLTIP_TITLE; set => sILENT_OPERATION_TOOLTIP_TITLE = value; }
+        public static string OPERATION_RESULTS_TOOLTIP_TITLE { get => oPERATION_RESULTS_TOOLTIP_TITLE; set => oPERATION_RESULTS_TOOLTIP_TITLE = value; }
+        public static string LBL_OPERATION_TYPE_DEFAULT { get => lBL_OPERATION_TYPE_DEFAULT; set => lBL_OPERATION_TYPE_DEFAULT = value; }
+        public static string LBL_OPERATION_TYPE_ADD { get => lBL_OPERATION_TYPE_ADD; set => lBL_OPERATION_TYPE_ADD = value; }
+        public static string LBL_OPERATION_TYPE_UPDATE { get => lBL_OPERATION_TYPE_UPDATE; set => lBL_OPERATION_TYPE_UPDATE = value; }
+        public static string LBL_OPERATION_TYPE_DELETE { get => lBL_OPERATION_TYPE_DELETE; set => lBL_OPERATION_TYPE_DELETE = value; }
+        public static string LBL_OPERATION_TYPE_CUSTOM { get => lBL_OPERATION_TYPE_CUSTOM; set => lBL_OPERATION_TYPE_CUSTOM = value; }
+        public static string OPERATION_TYPE_TOOLTIP_TITLE { get => oPERATION_TYPE_TOOLTIP_TITLE; set => oPERATION_TYPE_TOOLTIP_TITLE = value; }
+        public static string LBL_OPERATION_TYPE_TITLE { get => lBL_OPERATION_TYPE_TITLE; set => lBL_OPERATION_TYPE_TITLE = value; }
+        public static string BTN_ADD_OPERATION_TOOLTIP_TITLE { get => bTN_ADD_OPERATION_TOOLTIP_TITLE; set => bTN_ADD_OPERATION_TOOLTIP_TITLE = value; }
+        public static string BTN_REMOVE_OPERATION_TOOLTIP_TITLE { get => bTN_REMOVE_OPERATION_TOOLTIP_TITLE; set => bTN_REMOVE_OPERATION_TOOLTIP_TITLE = value; }
+        public static string BTN_APPLY_CHANGES_TO_CURRENT_TARGET_TOOLTIP_TITLE { get => bTN_APPLY_CHANGES_TO_CURRENT_TARGET_TOOLTIP_TITLE; set => bTN_APPLY_CHANGES_TO_CURRENT_TARGET_TOOLTIP_TITLE = value; }
+        public static string BTN_EXECUTE_OPERATION_TOOLTIP_TITLE { get => bTN_EXECUTE_OPERATION_TOOLTIP_TITLE; set => bTN_EXECUTE_OPERATION_TOOLTIP_TITLE = value; }
+        public static string BTN_EXECUTE_OPERATIONS_TOOLTIP_TITLE { get => bTN_EXECUTE_OPERATIONS_TOOLTIP_TITLE; set => bTN_EXECUTE_OPERATIONS_TOOLTIP_TITLE = value; }
+        public static string BTN_APPLY_CHANGES_TO_ALL_TARGETS_TOOLTIP_TITLE { get => bTN_APPLY_CHANGES_TO_ALL_TARGETS_TOOLTIP_TITLE; set => bTN_APPLY_CHANGES_TO_ALL_TARGETS_TOOLTIP_TITLE = value; }
+        public static string LST_BULK_OPERATIONS_TOOLTIP_TITLE { get => lST_BULK_OPERATIONS_TOOLTIP_TITLE; set => lST_BULK_OPERATIONS_TOOLTIP_TITLE = value; }
+        public static string BULK_USER_OPERATIONS_TITLE { get => bULK_USER_OPERATIONS_TITLE; set => bULK_USER_OPERATIONS_TITLE = value; }
+        public static string BULK_USER_OPERATIONS_TOOLTIP_TITLE { get => bULK_USER_OPERATIONS_TOOLTIP_TITLE; set => bULK_USER_OPERATIONS_TOOLTIP_TITLE = value; }
+        public static string BULK_VENDOR_OPERATIONS_TITLE { get => bULK_VENDOR_OPERATIONS_TITLE; set => bULK_VENDOR_OPERATIONS_TITLE = value; }
+        public static string BULK_VENDOR_OPERATIONS_TOOLTIP_TITLE { get => bULK_VENDOR_OPERATIONS_TOOLTIP_TITLE; set => bULK_VENDOR_OPERATIONS_TOOLTIP_TITLE = value; }
+        public static string CHK_PRICE_OVERRIDE_AS_TOTAL_TITLE { get => cHK_PRICE_OVERRIDE_AS_TOTAL_TITLE; set => cHK_PRICE_OVERRIDE_AS_TOTAL_TITLE = value; }
+        public static string BULK_PRODUCT_ORDER_OPERATIONS_TITLE { get => bULK_PRODUCT_ORDER_OPERATIONS_TITLE; set => bULK_PRODUCT_ORDER_OPERATIONS_TITLE = value; }
+        public static string BULK_PRODUCT_ORDER_OPERATIONS_TOOLTIP_TITLE { get => bULK_PRODUCT_ORDER_OPERATIONS_TOOLTIP_TITLE; set => bULK_PRODUCT_ORDER_OPERATIONS_TOOLTIP_TITLE = value; }
+        public static string TOTAL_PRICE_EDIT_TOOLTIP_TITLE { get => tOTAL_PRICE_EDIT_TOOLTIP_TITLE; set => tOTAL_PRICE_EDIT_TOOLTIP_TITLE = value; }
+        public static string BULK_PRODUCT_OPERATIONS_TITLE { get => bULK_PRODUCT_OPERATIONS_TITLE; set => bULK_PRODUCT_OPERATIONS_TITLE = value; }
+        public static string BULK_PRODUCT_OPERATIONS_TOOLTIP_TITLE { get => bULK_PRODUCT_OPERATIONS_TOOLTIP_TITLE; set => bULK_PRODUCT_OPERATIONS_TOOLTIP_TITLE = value; }
+        public static string BULK_PRODUCT_IMAGE_OPERATIONS_TITLE { get => bULK_PRODUCT_IMAGE_OPERATIONS_TITLE; set => bULK_PRODUCT_IMAGE_OPERATIONS_TITLE = value; }
+        public static string BULK_PRODUCT_IMAGE_OPERATIONS_TOOLTIP_TITLE { get => bULK_PRODUCT_IMAGE_OPERATIONS_TOOLTIP_TITLE; set => bULK_PRODUCT_IMAGE_OPERATIONS_TOOLTIP_TITLE = value; }
+        public static string BULK_PRODUCT_BRAND_OPERATIONS_TITLE { get => bULK_PRODUCT_BRAND_OPERATIONS_TITLE; set => bULK_PRODUCT_BRAND_OPERATIONS_TITLE = value; }
+        public static string BULK_PRODUCT_BRAND_OPERATIONS_TOOLTIP_TITLE { get => bULK_PRODUCT_BRAND_OPERATIONS_TOOLTIP_TITLE; set => bULK_PRODUCT_BRAND_OPERATIONS_TOOLTIP_TITLE = value; }
+        public static string BULK_PAYMENT_METHOD_OPERATIONS_TOOLTIP_TITLE { get => bULK_PAYMENT_METHOD_OPERATIONS_TOOLTIP_TITLE; set => bULK_PAYMENT_METHOD_OPERATIONS_TOOLTIP_TITLE = value; }
+        public static string BULK_PAYMENT_METHOD_OPERATIONS_TITLE { get => bULK_PAYMENT_METHOD_OPERATIONS_TITLE; set => bULK_PAYMENT_METHOD_OPERATIONS_TITLE = value; }
+        public static string BULK_ORDER_DELIVERY_OPERATIONS_TITLE { get => bULK_ORDER_DELIVERY_OPERATIONS_TITLE; set => bULK_ORDER_DELIVERY_OPERATIONS_TITLE = value; }
+        public static string BULK_ORDER_DELIVERY_OPERATIONS_TOOLTIP_TITLE { get => bULK_ORDER_DELIVERY_OPERATIONS_TOOLTIP_TITLE; set => bULK_ORDER_DELIVERY_OPERATIONS_TOOLTIP_TITLE = value; }
+        public static string BULK_DELIVERY_SERVICE_OPERATIONS_TITLE { get => bULK_DELIVERY_SERVICE_OPERATIONS_TITLE; set => bULK_DELIVERY_SERVICE_OPERATIONS_TITLE = value; }
+        public static string BULK_DELIVERY_SERVICE_OPERATIONS_TOOLTIP_TITLE { get => bULK_DELIVERY_SERVICE_OPERATIONS_TOOLTIP_TITLE; set => bULK_DELIVERY_SERVICE_OPERATIONS_TOOLTIP_TITLE = value; }
 
         public GLOBAL_RESOURCES()
         {
@@ -1645,6 +1725,45 @@ namespace XtremePharmacyManager
             SERVICE_NAME_EDIT_TOOLTIP_TITLE = manager.GetString("ServiceNameEditTooltipTitle", CultureInfo.CurrentCulture);
             EDIT_DELIVERY_SERVICE_TITLE = manager.GetString("EditDeliveryServiceTitle", CultureInfo.CurrentCulture);
             EDIT_DELIVERY_SERVICE_TOOLTIP_TITLE = manager.GetString("EditDeliveryServiceTooltipTitle", CultureInfo.CurrentCulture);
+            SELECT_RECORD_TOOLTIP_TITLE = manager.GetString("SelectRecordTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_SELECT_RECORD_TITLE = manager.GetString("LblSelectRecordTitle", CultureInfo.CurrentCulture);
+            OPERATION_LOGS_TOOLTIP_TITLE = manager.GetString("OperationLogsTooltipTitle", CultureInfo.CurrentCulture);
+            LST_BULK_OPERATIONS_TOOLTIP_TITLE = manager.GetString("LstBulkOperationsTooltipTitle", CultureInfo.CurrentCulture);
+            CHK_SILENT_OPERATION_TITLE = manager.GetString("ChkSilentOperationTitle", CultureInfo.CurrentCulture);
+            SILENT_OPERATION_TOOLTIP_TITLE = manager.GetString("SilentOperationTooltipTitle", CultureInfo.CurrentCulture);
+            OPERATION_RESULTS_TOOLTIP_TITLE = manager.GetString("OperationResultsTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_OPERATION_TYPE_DEFAULT = manager.GetString("LblOperationTypeDefault", CultureInfo.CurrentCulture);
+            LBL_OPERATION_TYPE_ADD = manager.GetString("LblOperationTypeAdd", CultureInfo.CurrentCulture);
+            LBL_OPERATION_TYPE_UPDATE = manager.GetString("LblOperationTypeUpdate", CultureInfo.CurrentCulture);
+            LBL_OPERATION_TYPE_DELETE = manager.GetString("LblOperationTypeDelete", CultureInfo.CurrentCulture);
+            LBL_OPERATION_TYPE_CUSTOM = manager.GetString("LblOperationTypeCustom", CultureInfo.CurrentCulture);
+            OPERATION_TYPE_TOOLTIP_TITLE = manager.GetString("OperationTypeTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_OPERATION_TYPE_TITLE = manager.GetString("LblOperationTypeTitle", CultureInfo.CurrentCulture);
+            BTN_ADD_OPERATION_TOOLTIP_TITLE = manager.GetString("BtnAddOperationTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_REMOVE_OPERATION_TOOLTIP_TITLE = manager.GetString("BtnRemoveOperationTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_APPLY_CHANGES_TO_CURRENT_TARGET_TOOLTIP_TITLE = manager.GetString("BtnApplyChangesToCurrentTargetTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_EXECUTE_OPERATIONS_TOOLTIP_TITLE = manager.GetString("BtnExecuteOperationsTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_APPLY_CHANGES_TO_ALL_TARGETS_TOOLTIP_TITLE = manager.GetString("BtnApplyChangesToAllTargetsTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_USER_OPERATIONS_TITLE = manager.GetString("BulkUserOperationsTitle", CultureInfo.CurrentCulture);
+            BULK_USER_OPERATIONS_TOOLTIP_TITLE = manager.GetString("BulkUserOperationsTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_VENDOR_OPERATIONS_TITLE = manager.GetString("BulkVendorOperationsTitle", CultureInfo.CurrentCulture);
+            BULK_VENDOR_OPERATIONS_TOOLTIP_TITLE = manager.GetString("BulkVendorOperationsTooltipTitle", CultureInfo.CurrentCulture);
+            CHK_PRICE_OVERRIDE_AS_TOTAL_TITLE = manager.GetString("ChkOverridePriceAsTotalTitle", CultureInfo.CurrentCulture);
+            BULK_PRODUCT_ORDER_OPERATIONS_TITLE = manager.GetString("BulkProductOrderOperationsTitle", CultureInfo.CurrentCulture);
+            BULK_PRODUCT_ORDER_OPERATIONS_TOOLTIP_TITLE = manager.GetString("BulkProductOrderOperationsTooltipTitle", CultureInfo.CurrentCulture);
+            TOTAL_PRICE_EDIT_TOOLTIP_TITLE = manager.GetString("TotalPriceEditTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_PRODUCT_OPERATIONS_TITLE = manager.GetString("BulkProductOperationsTitle", CultureInfo.CurrentCulture);
+            BULK_PRODUCT_OPERATIONS_TOOLTIP_TITLE = manager.GetString("BulkProductOperationsTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_PRODUCT_IMAGE_OPERATIONS_TITLE = manager.GetString("BulkProductImageOperationsTitle", CultureInfo.CurrentCulture);
+            BULK_PRODUCT_IMAGE_OPERATIONS_TOOLTIP_TITLE = manager.GetString("BulkProductImageOperationsTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_PRODUCT_BRAND_OPERATIONS_TITLE = manager.GetString("BulkProductBrandOperationsTitle", CultureInfo.CurrentCulture);
+            BULK_PRODUCT_BRAND_OPERATIONS_TOOLTIP_TITLE = manager.GetString("BulkProductBrandOperationsTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_PAYMENT_METHOD_OPERATIONS_TITLE = manager.GetString("BulkPaymentMethodOperationsTitle", CultureInfo.CurrentCulture);
+            BULK_PAYMENT_METHOD_OPERATIONS_TOOLTIP_TITLE = manager.GetString("BulkPaymentMethodOperationsTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_ORDER_DELIVERY_OPERATIONS_TITLE = manager.GetString("BulkOrderDeliveryOperationsTitle", CultureInfo.CurrentCulture);
+            BULK_ORDER_DELIVERY_OPERATIONS_TOOLTIP_TITLE = manager.GetString("BulkOrderDeliveryOperationsTooltipTitle", CultureInfo.CurrentCulture);
+            BULK_DELIVERY_SERVICE_OPERATIONS_TITLE = manager.GetString("BulkDeliveryServiceOperationsTitle", CultureInfo.CurrentCulture);
+            BULK_DELIVERY_SERVICE_OPERATIONS_TOOLTIP_TITLE = manager.GetString("BulkDeliveryServiceOperationsTooltipTitle", CultureInfo.CurrentCulture);
             BTN_SEARCH_PRODUCT_IMAGE_TITLE = manager.GetString("BtnSearchProductImageTitle", CultureInfo.CurrentCulture);
             BTN_DELETE_PRODUCT_IMAGE_TITLE = manager.GetString("BtnDeleteProductImageTitle", CultureInfo.CurrentCulture);
             BTN_ADD_EDIT_PRODUCT_IMAGE_TITLE = manager.GetString("BtnAddEditProductImageTitle", CultureInfo.CurrentCulture);
