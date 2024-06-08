@@ -2012,6 +2012,27 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="TxtSearchCultureTooltipTitle" xml:space="preserve">
     <value>Here you can search culture info based on the version of .Net Framework you are on. 4.7.2 and above is required, you know?</value>
   </data>
+  <data name="AccountAddressTooltipTitle" xml:space="preserve">
+    <value>The address of your home, where we can deliver the medicine you ordered if you can't go to order in place</value>
+  </data>
+  <data name="AccountDiagnoseTooltipTitle" xml:space="preserve">
+    <value>The diagnose you have, if we know that we can recommend the exact medicine for you so you can be cured from your disease.</value>
+  </data>
+  <data name="AccountDisplayNameTooltipTitle" xml:space="preserve">
+    <value>The display name of your user account. You thought you will be represented by your username?</value>
+  </data>
+  <data name="AccountEmailTooltipTitle" xml:space="preserve">
+    <value>Your email, used as well for feedback and/or contacting you about ordering medicine</value>
+  </data>
+  <data name="AccountPFPTooltipTitle" xml:space="preserve">
+    <value>Give yourself a cool profile picture while working. Set it as you please, it is saved directly on the database in a binary format, no web server involved</value>
+  </data>
+  <data name="AccountPhoneTooltipTitle" xml:space="preserve">
+    <value>Your phone number for contacts with you and feedback from your feedback or for orders of various medicine</value>
+  </data>
+  <data name="AccountSettingsTooltipTitle" xml:space="preserve">
+    <value>The account settings that you can change for your database user account. They are safe in the database and you can edit only certain settings for security reasons. The system administrators will have to change your login name and login password manually though.</value>
+  </data>
   <data name="ApplicationSettingsTooltipTitle" xml:space="preserve">
     <value>The application settings, allowing you to customise the application on how it connects to the database, where it saves its login, where it looks for rpeorts and so on and you can also extend its localisation, be sure to modify the needed resource files to reflect the language changes</value>
   </data>
@@ -2024,8 +2045,14 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="BtnBrowseTitle" xml:space="preserve">
     <value>BROWSE</value>
   </data>
+  <data name="BtnCancelAccSettingsTooltipTitle" xml:space="preserve">
+    <value>Click this if you aren't sure about changing your account settings, they will be reverted back to the previous ones.</value>
+  </data>
   <data name="BtnCancelAppSettingsTooltipTitle" xml:space="preserve">
     <value>Cancel the changes. Even if you changed anything it won't be saved and will be reverted back to the previous settings</value>
+  </data>
+  <data name="BtnOKAccSettingsTooltipTitle" xml:space="preserve">
+    <value>Once you click the changes will be saved to the database and you will have to wait for confirmation of change by the system administrator if you have edited sensitive details like your username and/or password.</value>
   </data>
   <data name="BtnOKAppSettingsTooltipTitle" xml:space="preserve">
     <value>Accept the changes, by clicking it they are saved otherwise nothing gets changed.The settings reflect on the application once it is restarted.</value>
@@ -2083,6 +2110,14 @@ It is downloaded and converted from binary format to its native format.</value>
   </data>
   <data name="LangSettingTooltipTitle" xml:space="preserve">
     <value>The language you want this application to be in. Keep in mind that you need to have the required Resources.resx file that reflects on the culture of the language and also a localised versions of the reports with a name that reflects on the selected language, for example Resources.en-US.resx and ProductReport.en-US.rdlc for English, Resources.bg-BG.resx and ProductReport.bg-BG.resx for Bulgarian, etc</value>
+  </data>
+  <data name="LblAccountSettingsNoticeTitle" xml:space="preserve">
+    <value>IMPORTANT NOTICE:
+If you change your username or
+password to an existing one
+it will be rejected by the system.
+If this happens contact your system
+administrator.</value>
   </data>
   <data name="PBReportNameSettingTitle" xml:space="preserve">
     <value>Product Brand Report Name:</value>

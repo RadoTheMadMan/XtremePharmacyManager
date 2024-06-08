@@ -97,9 +97,7 @@
             this.lblUserNotice.Name = "lblUserNotice";
             this.lblUserNotice.Size = new System.Drawing.Size(248, 96);
             this.lblUserNotice.TabIndex = 42;
-            this.lblUserNotice.Text = "IMPORTANT NOTICE:\r\nIf you change your username or \r\npassword to an existing one\r\n" +
-    "it will be rejected by the system.\r\nIf this happens contact your system\r\nadminis" +
-    "trator.";
+            this.lblUserNotice.Text = GLOBAL_RESOURCES.LBL_ACCOUNT_SETTINGS_NOTICE_TITLE;
             this.ttAccountSettings.SetToolTip(this.lblUserNotice, GLOBAL_RESOURCES.ACCOUNT_SETTINGS_NOTICE_TOOLTIP_TITLE);
             // 
             // pbYourProfilePic
@@ -112,8 +110,7 @@
             this.pbYourProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbYourProfilePic.TabIndex = 34;
             this.pbYourProfilePic.TabStop = false;
-            this.ttAccountSettings.SetToolTip(this.pbYourProfilePic, "Give yourself a cool profile picture while working. Set it as you please, it is s" +
-        "aved directly on the database in a binary format, no web server involved");
+            this.ttAccountSettings.SetToolTip(this.pbYourProfilePic, GLOBAL_RESOURCES.ACCOUNT_PFP_TOOLTIP_TITLE);
             this.pbYourProfilePic.Click += new System.EventHandler(this.pbYourProfilePic_Click);
             // 
             // btnOK
@@ -127,7 +124,7 @@
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = GLOBAL_RESOURCES.BTN_OK_TITLE;
-            this.ttAccountSettings.SetToolTip(this.btnOK, resources.GetString("btnOK.ToolTip"));
+            this.ttAccountSettings.SetToolTip(this.btnOK, GLOBAL_RESOURCES.BTN_OK_ACC_SETTINGS_TOOLTIP_TITLE);
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -142,8 +139,7 @@
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
             this.btnCancel.Text =GLOBAL_RESOURCES.BTN_CANCEL_TITLE;
-            this.ttAccountSettings.SetToolTip(this.btnCancel, "Click this if you aren\'t sure about changing your account settings, they will be " +
-        "reverted back to the previous ones");
+            this.ttAccountSettings.SetToolTip(this.btnCancel, GLOBAL_RESOURCES.BTN_CANCEL_ACC_SETTINGS_TOOLTIP_TITLE);
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // txtYourDiagnose
@@ -155,8 +151,7 @@
             this.txtYourDiagnose.Name = "txtYourDiagnose";
             this.txtYourDiagnose.Size = new System.Drawing.Size(258, 96);
             this.txtYourDiagnose.TabIndex = 23;
-            this.ttAccountSettings.SetToolTip(this.txtYourDiagnose, "The diagnose you have, if we know that we can recommend the exact medicine for yo" +
-        "u so you can be cured from your disease");
+            this.ttAccountSettings.SetToolTip(this.txtYourDiagnose, GLOBAL_RESOURCES.ACCOUNT_DIAGNOSE_TOOLTIP_TITLE);
             // 
             // lblYourDiagnose
             // 
@@ -179,8 +174,7 @@
             this.txtYourAddress.Name = "txtYourAddress";
             this.txtYourAddress.Size = new System.Drawing.Size(258, 70);
             this.txtYourAddress.TabIndex = 18;
-            this.ttAccountSettings.SetToolTip(this.txtYourAddress, "The address of your home, where we can deliver the medicine you ordered if you ca" +
-        "n\'t go to order inplace");
+            this.ttAccountSettings.SetToolTip(this.txtYourAddress, GLOBAL_RESOURCES.ACCOUNT_ADDRESS_TOOLTIP_TITLE);
             // 
             // lblYourAddress
             // 
@@ -192,7 +186,7 @@
             this.lblYourAddress.Name = "lblYourAddress";
             this.lblYourAddress.Size = new System.Drawing.Size(105, 16);
             this.lblYourAddress.TabIndex = 17;
-            this.lblYourAddress.Text = "Your Address:";
+            this.lblYourAddress.Text = GLOBAL_RESOURCES.LBL_ADDRESS_TITLE;
             // 
             // txtYourEmail
             // 
@@ -202,8 +196,7 @@
             this.txtYourEmail.Name = "txtYourEmail";
             this.txtYourEmail.Size = new System.Drawing.Size(258, 22);
             this.txtYourEmail.TabIndex = 16;
-            this.ttAccountSettings.SetToolTip(this.txtYourEmail, "Your email, used as well for feedback and/or contacting you about ordering medici" +
-        "ne");
+            this.ttAccountSettings.SetToolTip(this.txtYourEmail, GLOBAL_RESOURCES.ACCOUNT_EMAIL_TOOLTIP_TITLE);
             // 
             // lblYourEmail
             // 
@@ -215,7 +208,7 @@
             this.lblYourEmail.Name = "lblYourEmail";
             this.lblYourEmail.Size = new System.Drawing.Size(86, 16);
             this.lblYourEmail.TabIndex = 15;
-            this.lblYourEmail.Text = "Your Email:";
+            this.lblYourEmail.Text = GLOBAL_RESOURCES.LBL_ADDRESS_TITLE;
             // 
             // txtYourPhone
             // 
@@ -225,8 +218,7 @@
             this.txtYourPhone.Name = "txtYourPhone";
             this.txtYourPhone.Size = new System.Drawing.Size(258, 22);
             this.txtYourPhone.TabIndex = 14;
-            this.ttAccountSettings.SetToolTip(this.txtYourPhone, "Your phone number for contacts with you and feedback from your feedback or for or" +
-        "ders of various medicine");
+            this.ttAccountSettings.SetToolTip(this.txtYourPhone, GLOBAL_RESOURCES.ACCOUNT_PHONE_TOOLTIP_TITLE);
             // 
             // lblYourPhone
             // 
@@ -238,7 +230,7 @@
             this.lblYourPhone.Name = "lblYourPhone";
             this.lblYourPhone.Size = new System.Drawing.Size(91, 16);
             this.lblYourPhone.TabIndex = 13;
-            this.lblYourPhone.Text = "Your Phone:";
+            this.lblYourPhone.Text = GLOBAL_RESOURCES.LBL_PHONE_TITLE;
             // 
             // txtYourDisplayName
             // 
@@ -248,8 +240,7 @@
             this.txtYourDisplayName.Name = "txtYourDisplayName";
             this.txtYourDisplayName.Size = new System.Drawing.Size(258, 22);
             this.txtYourDisplayName.TabIndex = 8;
-            this.ttAccountSettings.SetToolTip(this.txtYourDisplayName, "The display name of your user account. You thought you will be represented by you" +
-        "r username?");
+            this.ttAccountSettings.SetToolTip(this.txtYourDisplayName, GLOBAL_RESOURCES.ACCOUNT_DISPLAY_NAME_TOOLTIP_TITLE);
             // 
             // lblYourDisplayName
             // 
@@ -261,7 +252,7 @@
             this.lblYourDisplayName.Name = "lblYourDisplayName";
             this.lblYourDisplayName.Size = new System.Drawing.Size(145, 16);
             this.lblYourDisplayName.TabIndex = 7;
-            this.lblYourDisplayName.Text = "Your Display Name:";
+            this.lblYourDisplayName.Text = GLOBAL_RESOURCES.LBL_DISPLAY_NAME_TITLE;
             // 
             // txtYourPassword
             // 
@@ -284,7 +275,7 @@
             this.lblYourPassword.Name = "lblYourPassword";
             this.lblYourPassword.Size = new System.Drawing.Size(115, 16);
             this.lblYourPassword.TabIndex = 5;
-            this.lblYourPassword.Text = "Your Password:";
+            this.lblYourPassword.Text = GLOBAL_RESOURCES.LBL_PASSWORD_TITLE;
             // 
             // txtYourUsername
             // 
@@ -306,7 +297,7 @@
             this.lblYourUsername.Name = "lblYourUsername";
             this.lblYourUsername.Size = new System.Drawing.Size(118, 16);
             this.lblYourUsername.TabIndex = 3;
-            this.lblYourUsername.Text = "Your Username:";
+            this.lblYourUsername.Text = GLOBAL_RESOURCES.LBL_USERNAME_TITLE;
             // 
             // ttAccountSettings
             // 
@@ -328,8 +319,8 @@
             this.Controls.Add(this.pnlData);
             this.MaximizeBox = false;
             this.Name = "frmAccountSettings";
-            this.Text = $"{GLOBAL_RESOURCES.ACCOUNT_SETTINGS_TITLE}";
-            this.ttAccountSettings.SetToolTip(this, resources.GetString("$this.ToolTip"));
+            this.Text = GLOBAL_RESOURCES.ACCOUNT_SETTINGS_TITLE;
+            this.ttAccountSettings.SetToolTip(this,GLOBAL_RESOURCES.ACCOUNT_SETTINGS_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmAccountSettings_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

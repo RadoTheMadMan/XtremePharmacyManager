@@ -693,6 +693,16 @@ namespace XtremePharmacyManager
         private static string bTN_OK_APP_SETTINGS_TOOLTIP_TITLE = "";
         private static string bTN_CANCEL_APP_SETTINGS_TOOLTIP_TITLE = "";
         private static string aPPLICATION_SETTINGS_TOOLTIP_TITLE = "";
+        private static string lBL_ACCOUNT_SETTINGS_NOTICE_TITLE = "";
+        private static string aCCOUNT_PFP_TOOLTIP_TITLE = "";
+        private static string bTN_OK_ACC_SETTINGS_TOOLTIP_TITLE = "";
+        private static string bTN_CANCEL_ACC_SETTINGS_TOOLTIP_TITLE = "";
+        private static string aCCOUNT_DIAGNOSE_TOOLTIP_TITLE = "";
+        private static string aCCOUNT_ADDRESS_TOOLTIP_TITLE = "";
+        private static string aCCOUNT_EMAIL_TOOLTIP_TITLE = "";
+        private static string aCCOUNT_PHONE_TOOLTIP_TITLE = "";
+        private static string aCCOUNT_DISPLAY_NAME_TOOLTIP_TITLE = "";
+        private static string aCCOUNT_SETTINGS_TOOLTIP_TITLE = "";
         public static GLOBAL_RESOURCES instance;
         public EventHandler<CultureInfo> CultureInfoChanged;
 
@@ -1365,6 +1375,16 @@ namespace XtremePharmacyManager
         public static string BTN_OK_APP_SETTINGS_TOOLTIP_TITLE { get => bTN_OK_APP_SETTINGS_TOOLTIP_TITLE; set => bTN_OK_APP_SETTINGS_TOOLTIP_TITLE = value; }
         public static string BTN_CANCEL_APP_SETTINGS_TOOLTIP_TITLE { get => bTN_CANCEL_APP_SETTINGS_TOOLTIP_TITLE; set => bTN_CANCEL_APP_SETTINGS_TOOLTIP_TITLE = value; }
         public static string APPLICATION_SETTINGS_TOOLTIP_TITLE { get => aPPLICATION_SETTINGS_TOOLTIP_TITLE; set => aPPLICATION_SETTINGS_TOOLTIP_TITLE = value; }
+        public static string LBL_ACCOUNT_SETTINGS_NOTICE_TITLE { get => lBL_ACCOUNT_SETTINGS_NOTICE_TITLE; set => lBL_ACCOUNT_SETTINGS_NOTICE_TITLE = value; }
+        public static string ACCOUNT_PFP_TOOLTIP_TITLE { get => aCCOUNT_PFP_TOOLTIP_TITLE; set => aCCOUNT_PFP_TOOLTIP_TITLE = value; }
+        public static string BTN_OK_ACC_SETTINGS_TOOLTIP_TITLE { get => bTN_OK_ACC_SETTINGS_TOOLTIP_TITLE; set => bTN_OK_ACC_SETTINGS_TOOLTIP_TITLE = value; }
+        public static string BTN_CANCEL_ACC_SETTINGS_TOOLTIP_TITLE { get => bTN_CANCEL_ACC_SETTINGS_TOOLTIP_TITLE; set => bTN_CANCEL_ACC_SETTINGS_TOOLTIP_TITLE = value; }
+        public static string ACCOUNT_DIAGNOSE_TOOLTIP_TITLE { get => aCCOUNT_DIAGNOSE_TOOLTIP_TITLE; set => aCCOUNT_DIAGNOSE_TOOLTIP_TITLE = value; }
+        public static string ACCOUNT_ADDRESS_TOOLTIP_TITLE { get => aCCOUNT_ADDRESS_TOOLTIP_TITLE; set => aCCOUNT_ADDRESS_TOOLTIP_TITLE = value; }
+        public static string ACCOUNT_EMAIL_TOOLTIP_TITLE { get => aCCOUNT_EMAIL_TOOLTIP_TITLE; set => aCCOUNT_EMAIL_TOOLTIP_TITLE = value; }
+        public static string ACCOUNT_PHONE_TOOLTIP_TITLE { get => aCCOUNT_PHONE_TOOLTIP_TITLE; set => aCCOUNT_PHONE_TOOLTIP_TITLE = value; }
+        public static string ACCOUNT_DISPLAY_NAME_TOOLTIP_TITLE { get => aCCOUNT_DISPLAY_NAME_TOOLTIP_TITLE; set => aCCOUNT_DISPLAY_NAME_TOOLTIP_TITLE = value; }
+        public static string ACCOUNT_SETTINGS_TOOLTIP_TITLE { get => aCCOUNT_SETTINGS_TOOLTIP_TITLE; set => aCCOUNT_SETTINGS_TOOLTIP_TITLE = value; }
 
         public GLOBAL_RESOURCES()
         {
@@ -1952,6 +1972,16 @@ namespace XtremePharmacyManager
             DOMAIN_NAME_SETTING_TOOLTIP_TITLE = manager.GetString("DomainNameSettingTooltipTitle", CultureInfo.CurrentCulture);
             DOMAIN_NAME_SETTING_TITLE = manager.GetString("DomainNameSettingTitle", CultureInfo.CurrentCulture);
             APPLICATION_SETTINGS_TOOLTIP_TITLE = manager.GetString("ApplicationSettingsTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_ACCOUNT_SETTINGS_NOTICE_TITLE = manager.GetString("LblAccountSettingsNoticeTitle", CultureInfo.CurrentCulture);
+            ACCOUNT_PFP_TOOLTIP_TITLE = manager.GetString("AccountPFPTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_OK_ACC_SETTINGS_TOOLTIP_TITLE = manager.GetString("BtnOKAccSettingsTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_CANCEL_ACC_SETTINGS_TOOLTIP_TITLE = manager.GetString("BtnCancelAccSettingsTooltipTitle", CultureInfo.CurrentCulture);
+            ACCOUNT_DIAGNOSE_TOOLTIP_TITLE = manager.GetString("AccountDiagnoseTooltipTitle", CultureInfo.CurrentCulture);
+            ACCOUNT_ADDRESS_TOOLTIP_TITLE = manager.GetString("AccountAddressTooltipTitle", CultureInfo.CurrentCulture);
+            ACCOUNT_EMAIL_TOOLTIP_TITLE = manager.GetString("AccountEmailTooltipTitle", CultureInfo.CurrentCulture);
+            ACCOUNT_PHONE_TOOLTIP_TITLE = manager.GetString("AccountPhoneTooltipTitle", CultureInfo.CurrentCulture);
+            ACCOUNT_DISPLAY_NAME_TOOLTIP_TITLE = manager.GetString("AccountDisplayNameTooltipTitle", CultureInfo.CurrentCulture);
+            ACCOUNT_SETTINGS_TOOLTIP_TITLE = manager.GetString("AccountSettingsTooltipTitle", CultureInfo.CurrentCulture);
             BTN_SEARCH_PRODUCT_IMAGE_TITLE = manager.GetString("BtnSearchProductImageTitle", CultureInfo.CurrentCulture);
             BTN_DELETE_PRODUCT_IMAGE_TITLE = manager.GetString("BtnDeleteProductImageTitle", CultureInfo.CurrentCulture);
             BTN_ADD_EDIT_PRODUCT_IMAGE_TITLE = manager.GetString("BtnAddEditProductImageTitle", CultureInfo.CurrentCulture);

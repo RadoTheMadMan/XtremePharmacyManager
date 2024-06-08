@@ -88,6 +88,60 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The address of your home, where we can deliver the medicine you ordered if you can&apos;t go to order in place.
+        /// </summary>
+        public static string AccountAddressTooltipTitle {
+            get {
+                return ResourceManager.GetString("AccountAddressTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The diagnose you have, if we know that we can recommend the exact medicine for you so you can be cured from your disease..
+        /// </summary>
+        public static string AccountDiagnoseTooltipTitle {
+            get {
+                return ResourceManager.GetString("AccountDiagnoseTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The display name of your user account. You thought you will be represented by your username?.
+        /// </summary>
+        public static string AccountDisplayNameTooltipTitle {
+            get {
+                return ResourceManager.GetString("AccountDisplayNameTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your email, used as well for feedback and/or contacting you about ordering medicine.
+        /// </summary>
+        public static string AccountEmailTooltipTitle {
+            get {
+                return ResourceManager.GetString("AccountEmailTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Give yourself a cool profile picture while working. Set it as you please, it is saved directly on the database in a binary format, no web server involved.
+        /// </summary>
+        public static string AccountPFPTooltipTitle {
+            get {
+                return ResourceManager.GetString("AccountPFPTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your phone number for contacts with you and feedback from your feedback or for orders of various medicine.
+        /// </summary>
+        public static string AccountPhoneTooltipTitle {
+            get {
+                return ResourceManager.GetString("AccountPhoneTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot connect to the server to update your user account.
         ///Please check your application settings to ensure you have a proper connection to the database or contact a system administrator. .
         /// </summary>
@@ -131,6 +185,15 @@ namespace XtremePharmacyManager.Properties {
         public static string AccountSettingsTitle {
             get {
                 return ResourceManager.GetString("AccountSettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The account settings that you can change for your database user account. They are safe in the database and you can edit only certain settings for security reasons. The system administrators will have to change your login name and login password manually though..
+        /// </summary>
+        public static string AccountSettingsTooltipTitle {
+            get {
+                return ResourceManager.GetString("AccountSettingsTooltipTitle", resourceCulture);
             }
         }
         
@@ -690,6 +753,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click this if you aren&apos;t sure about changing your account settings, they will be reverted back to the previous ones..
+        /// </summary>
+        public static string BtnCancelAccSettingsTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnCancelAccSettingsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel the changes. Even if you changed anything it won&apos;t be saved and will be reverted back to the previous settings.
         /// </summary>
         public static string BtnCancelAppSettingsTooltipTitle {
@@ -866,6 +938,15 @@ namespace XtremePharmacyManager.Properties {
         public static string btnLoginTooltipTitle {
             get {
                 return ResourceManager.GetString("btnLoginTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Once you click the changes will be saved to the database and you will have to wait for confirmation of change by the system administrator if you have edited sensitive details like your username and/or password..
+        /// </summary>
+        public static string BtnOKAccSettingsTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnOKAccSettingsTooltipTitle", resourceCulture);
             }
         }
         
@@ -3051,6 +3132,20 @@ namespace XtremePharmacyManager.Properties {
         public static string LanguageManagerLanguageNonexistentErrorMessage {
             get {
                 return ResourceManager.GetString("LanguageManagerLanguageNonexistentErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IMPORTANT NOTICE:
+        ///If you change your username or
+        ///password to an existing one
+        ///it will be rejected by the system.
+        ///If this happens contact your system
+        ///administrator..
+        /// </summary>
+        public static string LblAccountSettingsNoticeTitle {
+            get {
+                return ResourceManager.GetString("LblAccountSettingsNoticeTitle", resourceCulture);
             }
         }
         
