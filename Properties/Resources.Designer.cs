@@ -234,6 +234,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The application settings, allowing you to customise the application on how it connects to the database, where it saves its login, where it looks for rpeorts and so on and you can also extend its localisation, be sure to modify the needed resource files to reflect the language changes.
+        /// </summary>
+        public static string ApplicationSettingsTooltipTitle {
+            get {
+                return ResourceManager.GetString("ApplicationSettingsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Application Settings.
         /// </summary>
         public static string AppSettingsMenuTitle {
@@ -564,6 +573,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ADD LANGUAGE.
+        /// </summary>
+        public static string BtnAddLanguageTitle {
+            get {
+                return ResourceManager.GetString("BtnAddLanguageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add the selected culture  from the list above as an application language. If you want to use it you need to make a copy of the Resources.resx file for the application, make all its strings in the language you want it to be and then copy the report files, put the nessecary culture code in their name for example ProductReport.[language-Code].rdlc and edit them in your favourite report editor to be in the language you want them to be in. The added language will be displayed in the list below..
+        /// </summary>
+        public static string BtnAddLanguageTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnAddLanguageTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ADD LOGIN.
         /// </summary>
         public static string btnAddLoginTitle {
@@ -632,6 +659,42 @@ namespace XtremePharmacyManager.Properties {
         public static string BtnApplyChangesToCurrentTargetTooltipTitle {
             get {
                 return ResourceManager.GetString("BtnApplyChangesToCurrentTargetTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can easily browse the directory from which the application gets the report files.
+        /// </summary>
+        public static string BtnBrowseReportDirTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnBrowseReportDirTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse the directory you wish to use to save and load logins here with ease.
+        /// </summary>
+        public static string BtnBrowseSavedLoginsDirTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnBrowseSavedLoginsDirTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to BROWSE.
+        /// </summary>
+        public static string BtnBrowseTitle {
+            get {
+                return ResourceManager.GetString("BtnBrowseTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel the changes. Even if you changed anything it won&apos;t be saved and will be reverted back to the previous settings.
+        /// </summary>
+        public static string BtnCancelAppSettingsTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnCancelAppSettingsTooltipTitle", resourceCulture);
             }
         }
         
@@ -807,6 +870,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accept the changes, by clicking it they are saved otherwise nothing gets changed.The settings reflect on the application once it is restarted..
+        /// </summary>
+        public static string BtnOKAppSettingsTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnOKAppSettingsTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to When you click OK this record&apos;s changes will be saved to the database..
         /// </summary>
         public static string BtnOKEditorTooltipTitle {
@@ -821,6 +893,24 @@ namespace XtremePharmacyManager.Properties {
         public static string BtnOKTitle {
             get {
                 return ResourceManager.GetString("BtnOKTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to REMOVE LANGUAGE.
+        /// </summary>
+        public static string BtnRemoveLanguageTitle {
+            get {
+                return ResourceManager.GetString("BtnRemoveLanguageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select a language from the list to remove it if you don&apos;t want to use it for localisation..
+        /// </summary>
+        public static string BtnRemoveLanguageTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnRemoveLanguageTooltipTitle", resourceCulture);
             }
         }
         
@@ -857,6 +947,24 @@ namespace XtremePharmacyManager.Properties {
         public static string BtnRemoveOperationTooltipTitle {
             get {
                 return ResourceManager.GetString("BtnRemoveOperationTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SEARCH CULTURE INFO.
+        /// </summary>
+        public static string BtnSearchCultureInfoTitle {
+            get {
+                return ResourceManager.GetString("BtnSearchCultureInfoTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to search culture info.
+        /// </summary>
+        public static string BtnSearchCultureInfoTooltipTitle {
+            get {
+                return ResourceManager.GetString("BtnSearchCultureInfoTooltipTitle", resourceCulture);
             }
         }
         
@@ -1918,6 +2026,42 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Client Report Name:.
+        /// </summary>
+        public static string CLReportNameTitle {
+            get {
+                return ResourceManager.GetString("CLReportNameTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the report file that the program looks for client reports. It needs to include the language code localisation, for example ClientReport.en-US.rdlc for English and etc.
+        /// </summary>
+        public static string CLReportNameTooltipTitle {
+            get {
+                return ResourceManager.GetString("CLReportNameTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Company Name:.
+        /// </summary>
+        public static string CompanyNameSettingTitle {
+            get {
+                return ResourceManager.GetString("CompanyNameSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of your company or the company you work on. It is represented in the reports.
+        /// </summary>
+        public static string CompanyNameSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("CompanyNameSettingTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Couldn&apos;t connect even after a retry. Application will exit....
         /// </summary>
         public static string ConnectionFailedAfterRetryMessage {
@@ -1993,6 +2137,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Culture Code.
+        /// </summary>
+        public static string CultureCodeTooltipTitle {
+            get {
+                return ResourceManager.GetString("CultureCodeTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Culture Display Name.
+        /// </summary>
+        public static string CultureDisplayNameColTitle {
+            get {
+                return ResourceManager.GetString("CultureDisplayNameColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Host.
         /// </summary>
         public static string CurrentHostTitle {
@@ -2025,6 +2187,60 @@ namespace XtremePharmacyManager.Properties {
         public static string DateModifiedColTitle {
             get {
                 return ResourceManager.GetString("DateModifiedColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Database Name:.
+        /// </summary>
+        public static string DBNameSettingTitle {
+            get {
+                return ResourceManager.GetString("DBNameSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The database name of this application. If you have changed the database name in the provided query that sets it up which is not recommended you need to change it here as well.
+        /// </summary>
+        public static string DBNameSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("DBNameSettingTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Database Password:.
+        /// </summary>
+        public static string DBPasswordSettingTitle {
+            get {
+                return ResourceManager.GetString("DBPasswordSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password according to the user you log yourself in to the database..
+        /// </summary>
+        public static string DBPasswordSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("DBPasswordSettingTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Database User:.
+        /// </summary>
+        public static string DBUserSettingTitle {
+            get {
+                return ResourceManager.GetString("DBUserSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The database user with which you need to login on the database, it is tightly connected to the registration in the database and to the role you represent in your company.
+        /// </summary>
+        public static string DBUserSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("DBUserSettingTooltipTitle", resourceCulture);
             }
         }
         
@@ -2362,6 +2578,42 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Domain Name:.
+        /// </summary>
+        public static string DomainNameSettingTitle {
+            get {
+                return ResourceManager.GetString("DomainNameSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The domain name of your company&apos;s server to which this application connects. Be careful when changing it or let a system administrator set it up for you.
+        /// </summary>
+        public static string DomainNameSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("DomainNameSettingTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery Service Report Name:.
+        /// </summary>
+        public static string DSReportNameSettingTitle {
+            get {
+                return ResourceManager.GetString("DSReportNameSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the report file that the program looks for delivery service reports. It needs to include the language code localisation, for example DeliveryServiceReport.en-US.rdlc for English and etc.
+        /// </summary>
+        public static string DSReportNameSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("DSReportNameSettingTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product Brand Editor. Add or Update Product Brand.
         /// </summary>
         public static string EditBrandTitle {
@@ -2578,6 +2830,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee Report Name:.
+        /// </summary>
+        public static string EmpReportNameSettingTitle {
+            get {
+                return ResourceManager.GetString("EmpReportNameSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the report file that the program looks for employee reports. It needs to include the language code localisation, for example EmployeeReport.en-US.rdlc for English and etc.
+        /// </summary>
+        public static string EMPReportNameTooltipTitle {
+            get {
+                return ResourceManager.GetString("EMPReportNameTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &amp;Exit.
         /// </summary>
         public static string ExitMenuTitle {
@@ -2731,6 +3001,42 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language:.
+        /// </summary>
+        public static string LangSettingTitle {
+            get {
+                return ResourceManager.GetString("LangSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The language you want this application to be in. Keep in mind that you need to have the required Resources.resx file that reflects on the culture of the language and also a localised versions of the reports with a name that reflects on the selected language, for example Resources.en-US.resx and ProductReport.en-US.rdlc for English, Resources.bg-BG.resx and ProductReport.bg-BG.resx for Bulgarian, etc.
+        /// </summary>
+        public static string LangSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("LangSettingTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language Code.
+        /// </summary>
+        public static string LanguageCodeColTitle {
+            get {
+                return ResourceManager.GetString("LanguageCodeColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language Display Name.
+        /// </summary>
+        public static string LanguageDisplayNameColTitle {
+            get {
+                return ResourceManager.GetString("LanguageDisplayNameColTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This language already exists!.
         /// </summary>
         public static string LanguageManagerLanguageExistErrorMessage {
@@ -2826,6 +3132,24 @@ namespace XtremePharmacyManager.Properties {
         public static string LblClientTitle {
             get {
                 return ResourceManager.GetString("LblClientTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Common Settings.
+        /// </summary>
+        public static string LblCommonSettingsTitle {
+            get {
+                return ResourceManager.GetString("LblCommonSettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Common settings for this application.
+        /// </summary>
+        public static string LblCommonSettingsTooltipTitle {
+            get {
+                return ResourceManager.GetString("LblCommonSettingsTooltipTitle", resourceCulture);
             }
         }
         
@@ -2965,6 +3289,15 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Found Culture Informations:.
+        /// </summary>
+        public static string LblFoundCultureInfosTitle {
+            get {
+                return ResourceManager.GetString("LblFoundCultureInfosTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ID:.
         /// </summary>
         public static string LblIDTitle {
@@ -3006,6 +3339,24 @@ namespace XtremePharmacyManager.Properties {
         public static string LblImagesTitle {
             get {
                 return ResourceManager.GetString("LblImagesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language Extensibility Settings.
+        /// </summary>
+        public static string LblLangExtSettingsTitle {
+            get {
+                return ResourceManager.GetString("LblLangExtSettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The settings for adding and removing language and then manually extending the application to reflect on them. It is up to you to extend it..
+        /// </summary>
+        public static string LblLangExtSettingsTooltipTitle {
+            get {
+                return ResourceManager.GetString("LblLangExtSettingsTooltipTitle", resourceCulture);
             }
         }
         
@@ -3753,6 +4104,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select any culture you want to localise your application with. It is up to you..
+        /// </summary>
+        public static string LstFoundCultureInfosTooltipTitle {
+            get {
+                return ResourceManager.GetString("LstFoundCultureInfosTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The application languages list. If you want to add new language it be sure to localise the reports and the resource file of the application. It is up to you.
+        /// </summary>
+        public static string LstLanguagesInListTooltipTitle {
+            get {
+                return ResourceManager.GetString("LstLanguagesInListTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This is the list of all logins you have previously logged in from. Logins are saved into and loaded automatically from the filesystem..
         /// </summary>
         public static string LstLastLoginsTooltipTitle {
@@ -3875,6 +4244,42 @@ namespace XtremePharmacyManager.Properties {
         public static string ODDateModifiedToSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("ODDateModifiedToSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Delivery Invoice Report Name:.
+        /// </summary>
+        public static string ODIReportNameSettingTitle {
+            get {
+                return ResourceManager.GetString("ODIReportNameSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the report file that the program looks for order delivery invoices. It needs to include the language code localisation, for example OrderDeliveryInvoiceReport.en-US.rdlc for English and etc.
+        /// </summary>
+        public static string ODIReportNameSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("ODIReportNameSettingTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order Delivery Report Name:.
+        /// </summary>
+        public static string ODReportNameSettingTitle {
+            get {
+                return ResourceManager.GetString("ODReportNameSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the report file that the program looks for order delivery reports. It needs to include the language code localisation, for example OrderDeliveryReport.en-US.rdlc for English and etc.
+        /// </summary>
+        public static string ODReportNameSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("ODReportNameSettingTooltipTitle", resourceCulture);
             }
         }
         
@@ -4201,6 +4606,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product Brand Report Name:.
+        /// </summary>
+        public static string PBReportNameSettingTitle {
+            get {
+                return ResourceManager.GetString("PBReportNameSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the report file that the program looks for product brand reports. It needs to include the language code localisation, for example ProductBrandReport.en-US.rdlc for English and etc.
+        /// </summary>
+        public static string PBReportNameSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("PBReportNameSettingTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone.
         /// </summary>
         public static string PhoneColTitle {
@@ -4224,6 +4647,24 @@ namespace XtremePharmacyManager.Properties {
         public static string PhoneSearchTooltip {
             get {
                 return ResourceManager.GetString("PhoneSearchTooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment Method Report Name:.
+        /// </summary>
+        public static string PMReportNameSettingTitle {
+            get {
+                return ResourceManager.GetString("PMReportNameSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the report file that the program looks for payment method reports. It needs to include the language code localisation, for example PaymentMethodReport.en-US.rdlc for English and etc.
+        /// </summary>
+        public static string PMReportNameSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("PMReportNameSettingTooltipTitle", resourceCulture);
             }
         }
         
@@ -4260,6 +4701,60 @@ namespace XtremePharmacyManager.Properties {
         public static string PODateModifiedToSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("PODateModifiedToSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Order Invoice Report Name:.
+        /// </summary>
+        public static string POIReportNameSettingTitle {
+            get {
+                return ResourceManager.GetString("POIReportNameSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the report file that the program looks for product order invoices. It needs to include the language code localisation, for example ProductOrderInvoiceReport.en-US.rdlc for English and etc.
+        /// </summary>
+        public static string POIReportNameSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("POIReportNameSettingTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Order Report Name:.
+        /// </summary>
+        public static string POReportNameSettingTitle {
+            get {
+                return ResourceManager.GetString("POReportNameSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the report file that the program looks for product order reports. It needs to include the language code localisation, for example ProductOrderReport.en-US.rdlc for English and etc.
+        /// </summary>
+        public static string POReportNameSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("POReportNameSettingTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Report Name:.
+        /// </summary>
+        public static string PReportNameSettingTitle {
+            get {
+                return ResourceManager.GetString("PReportNameSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the report file that the program looks for product reports. It needs to include the language code localisation, for example ProductReport.en-US.rdlc for English and etc.
+        /// </summary>
+        public static string PReportNameSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("PReportNameSettingTooltipTitle", resourceCulture);
             }
         }
         
@@ -4751,6 +5246,24 @@ namespace XtremePharmacyManager.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &quot;Product Vendor Report Name:&quot;.
+        /// </summary>
+        public static string PVReportNameSettingsTitle {
+            get {
+                return ResourceManager.GetString("PVReportNameSettingsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name of the report file that the program looks for product vendor reports. It needs to include the language code localisation, for example ProductVendorReport.en-US.rdlc for English and etc.
+        /// </summary>
+        public static string PVReportNameSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("PVReportNameSettingTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The storage quantity of the selected product can be set here. You can dynamically change it based on how much of the product is really in stock in your shop/pharmacy..
         /// </summary>
         public static string QuantityEditTooltipTitle {
@@ -4811,6 +5324,24 @@ namespace XtremePharmacyManager.Properties {
         public static string RegNumSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("RegNumSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Report Directory:.
+        /// </summary>
+        public static string ReportDirSettingTitle {
+            get {
+                return ResourceManager.GetString("ReportDirSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The path to the directory where the application gets all the report files from. Not recommended changing unless you are a hacker or a system administrator and I mean system administrator, not a database administrator. There is a difference between them.
+        /// </summary>
+        public static string ReportDirSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("ReportDirSettingTooltipTitle", resourceCulture);
             }
         }
         
@@ -4910,6 +5441,24 @@ namespace XtremePharmacyManager.Properties {
         public static string SampleBulkOperationUpdateTaskSuccessMessage {
             get {
                 return ResourceManager.GetString("SampleBulkOperationUpdateTaskSuccessMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saved Logins Directory:.
+        /// </summary>
+        public static string SavedLoginsDirSettingTitle {
+            get {
+                return ResourceManager.GetString("SavedLoginsDirSettingTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The directory where your applications saves logins for quick selection after each login, it saves and loads them in the filesystem and this is made so you don&apos;t always have to manually type in your username and/or password to login to the database.
+        /// </summary>
+        public static string SavedLoginsDirSettingTooltipTitle {
+            get {
+                return ResourceManager.GetString("SavedLoginsDirSettingTooltipTitle", resourceCulture);
             }
         }
         
@@ -5064,6 +5613,15 @@ namespace XtremePharmacyManager.Properties {
         public static string TotalPriceSearchTooltipTitle {
             get {
                 return ResourceManager.GetString("TotalPriceSearchTooltipTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Here you can search culture info based on the version of .Net Framework you are on. 4.7.2 and above is required, you know?.
+        /// </summary>
+        public static string TxtSearchCultureTooltipTitle {
+            get {
+                return ResourceManager.GetString("TxtSearchCultureTooltipTitle", resourceCulture);
             }
         }
         

@@ -1823,6 +1823,12 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="ServiceNameEditTooltipTitle" xml:space="preserve">
     <value>The name of the delivery service you want to add/edit</value>
   </data>
+  <data name="BtnAddLanguageTitle" xml:space="preserve">
+    <value>ADD LANGUAGE</value>
+  </data>
+  <data name="BtnAddLanguageTooltipTitle" xml:space="preserve">
+    <value>Add the selected culture  from the list above as an application language. If you want to use it you need to make a copy of the Resources.resx file for the application, make all its strings in the language you want it to be and then copy the report files, put the nessecary culture code in their name for example ProductReport.[language-Code].rdlc and edit them in your favourite report editor to be in the language you want them to be in. The added language will be displayed in the list below.</value>
+  </data>
   <data name="BtnAddOperationTooltipTitle" xml:space="preserve">
     <value>Add a bulk operation to the list</value>
   </data>
@@ -1835,8 +1841,20 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="BtnExecuteOperationsTooltipTitle" xml:space="preserve">
     <value>Execute all operations currently in the list</value>
   </data>
+  <data name="BtnRemoveLanguageTitle" xml:space="preserve">
+    <value>REMOVE LANGUAGE</value>
+  </data>
+  <data name="BtnRemoveLanguageTooltipTitle" xml:space="preserve">
+    <value>Select a language from the list to remove it if you don't want to use it for localisation.</value>
+  </data>
   <data name="BtnRemoveOperationTooltipTitle" xml:space="preserve">
     <value>Remove an existing bulk operation from the list</value>
+  </data>
+  <data name="BtnSearchCultureInfoTitle" xml:space="preserve">
+    <value>SEARCH CULTURE INFO</value>
+  </data>
+  <data name="BtnSearchCultureInfoTooltipTitle" xml:space="preserve">
+    <value>Click to search culture info</value>
   </data>
   <data name="BulkDeliveryServiceOperationsTitle" xml:space="preserve">
     <value>Bulk Delivery Service Operations</value>
@@ -1898,6 +1916,33 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="ChkSilentOperationTitle" xml:space="preserve">
     <value>Silent Operation</value>
   </data>
+  <data name="CultureCodeTooltipTitle" xml:space="preserve">
+    <value>Culture Code</value>
+  </data>
+  <data name="CultureDisplayNameColTitle" xml:space="preserve">
+    <value>Culture Display Name</value>
+  </data>
+  <data name="LanguageCodeColTitle" xml:space="preserve">
+    <value>Language Code</value>
+  </data>
+  <data name="LanguageDisplayNameColTitle" xml:space="preserve">
+    <value>Language Display Name</value>
+  </data>
+  <data name="LblCommonSettingsTitle" xml:space="preserve">
+    <value>Common Settings</value>
+  </data>
+  <data name="LblCommonSettingsTooltipTitle" xml:space="preserve">
+    <value>Common settings for this application</value>
+  </data>
+  <data name="LblFoundCultureInfosTitle" xml:space="preserve">
+    <value>Found Culture Informations:</value>
+  </data>
+  <data name="LblLangExtSettingsTitle" xml:space="preserve">
+    <value>Language Extensibility Settings</value>
+  </data>
+  <data name="LblLangExtSettingsTooltipTitle" xml:space="preserve">
+    <value>The settings for adding and removing language and then manually extending the application to reflect on them. It is up to you to extend it.</value>
+  </data>
   <data name="LblOperationTypeAdd" xml:space="preserve">
     <value>ADD</value>
   </data>
@@ -1922,6 +1967,24 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="LstBulkOperationsTooltipTitle" xml:space="preserve">
     <value>The list of bulk operations you have added/edited/removed, it clears when the operations are executed.You can select any operation from here.</value>
   </data>
+  <data name="LstFoundCultureInfosTooltipTitle" xml:space="preserve">
+    <value>Select any culture you want to localise your application with. It is up to you.</value>
+  </data>
+  <data name="LstLanguagesInListTooltipTitle" xml:space="preserve">
+    <value>The application languages list. If you want to add new language it be sure to localise the reports and the resource file of the application. It is up to you</value>
+  </data>
+  <data name="ODIReportNameSettingTitle" xml:space="preserve">
+    <value>Order Delivery Invoice Report Name:</value>
+  </data>
+  <data name="ODIReportNameSettingTooltipTitle" xml:space="preserve">
+    <value>The name of the report file that the program looks for order delivery invoices. It needs to include the language code localisation, for example OrderDeliveryInvoiceReport.en-US.rdlc for English and etc</value>
+  </data>
+  <data name="ODReportNameSettingTitle" xml:space="preserve">
+    <value>Order Delivery Report Name:</value>
+  </data>
+  <data name="ODReportNameSettingTooltipTitle" xml:space="preserve">
+    <value>The name of the report file that the program looks for order delivery reports. It needs to include the language code localisation, for example OrderDeliveryReport.en-US.rdlc for English and etc</value>
+  </data>
   <data name="OperationLogsTooltipTitle" xml:space="preserve">
     <value>It shows the logs of the operations including success messages,error messages and overall time started, time ended and execution duration.</value>
   </data>
@@ -1931,6 +1994,12 @@ It is downloaded and converted from binary format to its native format.</value>
   <data name="OperationTypeTooltipTitle" xml:space="preserve">
     <value>The type of the operation, the default type is the invalid type, the add/update/delete types are defined in each class for the specific operation and custom is valid only if you have a custom task when you extend the application</value>
   </data>
+  <data name="POIReportNameSettingTitle" xml:space="preserve">
+    <value>Product Order Invoice Report Name:</value>
+  </data>
+  <data name="POIReportNameSettingTooltipTitle" xml:space="preserve">
+    <value>The name of the report file that the program looks for product order invoices. It needs to include the language code localisation, for example ProductOrderInvoiceReport.en-US.rdlc for English and etc</value>
+  </data>
   <data name="SelectRecordTooltipTitle" xml:space="preserve">
     <value>The record selection, you can select any existing record from here.</value>
   </data>
@@ -1939,5 +2008,122 @@ It is downloaded and converted from binary format to its native format.</value>
   </data>
   <data name="TotalPriceEditTooltipTitle" xml:space="preserve">
     <value>This shows the total price, it is calculated automatically based on the price of the order the delivery is assigned to and the delivery service the delivery is assigned to and cannot be changed manually</value>
+  </data>
+  <data name="TxtSearchCultureTooltipTitle" xml:space="preserve">
+    <value>Here you can search culture info based on the version of .Net Framework you are on. 4.7.2 and above is required, you know?</value>
+  </data>
+  <data name="ApplicationSettingsTooltipTitle" xml:space="preserve">
+    <value>The application settings, allowing you to customise the application on how it connects to the database, where it saves its login, where it looks for rpeorts and so on and you can also extend its localisation, be sure to modify the needed resource files to reflect the language changes</value>
+  </data>
+  <data name="BtnBrowseReportDirTooltipTitle" xml:space="preserve">
+    <value>You can easily browse the directory from which the application gets the report files</value>
+  </data>
+  <data name="BtnBrowseSavedLoginsDirTooltipTitle" xml:space="preserve">
+    <value>Browse the directory you wish to use to save and load logins here with ease</value>
+  </data>
+  <data name="BtnBrowseTitle" xml:space="preserve">
+    <value>BROWSE</value>
+  </data>
+  <data name="BtnCancelAppSettingsTooltipTitle" xml:space="preserve">
+    <value>Cancel the changes. Even if you changed anything it won't be saved and will be reverted back to the previous settings</value>
+  </data>
+  <data name="BtnOKAppSettingsTooltipTitle" xml:space="preserve">
+    <value>Accept the changes, by clicking it they are saved otherwise nothing gets changed.The settings reflect on the application once it is restarted.</value>
+  </data>
+  <data name="CLReportNameTitle" xml:space="preserve">
+    <value>Client Report Name:</value>
+  </data>
+  <data name="CLReportNameTooltipTitle" xml:space="preserve">
+    <value>The name of the report file that the program looks for client reports. It needs to include the language code localisation, for example ClientReport.en-US.rdlc for English and etc</value>
+  </data>
+  <data name="CompanyNameSettingTitle" xml:space="preserve">
+    <value>Company Name:</value>
+  </data>
+  <data name="CompanyNameSettingTooltipTitle" xml:space="preserve">
+    <value>The name of your company or the company you work on. It is represented in the reports</value>
+  </data>
+  <data name="DBNameSettingTitle" xml:space="preserve">
+    <value>Database Name:</value>
+  </data>
+  <data name="DBNameSettingTooltipTitle" xml:space="preserve">
+    <value>The database name of this application. If you have changed the database name in the provided query that sets it up which is not recommended you need to change it here as well</value>
+  </data>
+  <data name="DBPasswordSettingTitle" xml:space="preserve">
+    <value>Database Password:</value>
+  </data>
+  <data name="DBPasswordSettingTooltipTitle" xml:space="preserve">
+    <value>The password according to the user you log yourself in to the database.</value>
+  </data>
+  <data name="DBUserSettingTitle" xml:space="preserve">
+    <value>Database User:</value>
+  </data>
+  <data name="DBUserSettingTooltipTitle" xml:space="preserve">
+    <value>The database user with which you need to login on the database, it is tightly connected to the registration in the database and to the role you represent in your company</value>
+  </data>
+  <data name="DomainNameSettingTitle" xml:space="preserve">
+    <value>Domain Name:</value>
+  </data>
+  <data name="DomainNameSettingTooltipTitle" xml:space="preserve">
+    <value>The domain name of your company's server to which this application connects. Be careful when changing it or let a system administrator set it up for you</value>
+  </data>
+  <data name="DSReportNameSettingTitle" xml:space="preserve">
+    <value>Delivery Service Report Name:</value>
+  </data>
+  <data name="DSReportNameSettingTooltipTitle" xml:space="preserve">
+    <value>The name of the report file that the program looks for delivery service reports. It needs to include the language code localisation, for example DeliveryServiceReport.en-US.rdlc for English and etc</value>
+  </data>
+  <data name="EmpReportNameSettingTitle" xml:space="preserve">
+    <value>Employee Report Name:</value>
+  </data>
+  <data name="EMPReportNameTooltipTitle" xml:space="preserve">
+    <value>The name of the report file that the program looks for employee reports. It needs to include the language code localisation, for example EmployeeReport.en-US.rdlc for English and etc</value>
+  </data>
+  <data name="LangSettingTitle" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="LangSettingTooltipTitle" xml:space="preserve">
+    <value>The language you want this application to be in. Keep in mind that you need to have the required Resources.resx file that reflects on the culture of the language and also a localised versions of the reports with a name that reflects on the selected language, for example Resources.en-US.resx and ProductReport.en-US.rdlc for English, Resources.bg-BG.resx and ProductReport.bg-BG.resx for Bulgarian, etc</value>
+  </data>
+  <data name="PBReportNameSettingTitle" xml:space="preserve">
+    <value>Product Brand Report Name:</value>
+  </data>
+  <data name="PBReportNameSettingTooltipTitle" xml:space="preserve">
+    <value>The name of the report file that the program looks for product brand reports. It needs to include the language code localisation, for example ProductBrandReport.en-US.rdlc for English and etc</value>
+  </data>
+  <data name="PMReportNameSettingTitle" xml:space="preserve">
+    <value>Payment Method Report Name:</value>
+  </data>
+  <data name="PMReportNameSettingTooltipTitle" xml:space="preserve">
+    <value>The name of the report file that the program looks for payment method reports. It needs to include the language code localisation, for example PaymentMethodReport.en-US.rdlc for English and etc</value>
+  </data>
+  <data name="POReportNameSettingTitle" xml:space="preserve">
+    <value>Product Order Report Name:</value>
+  </data>
+  <data name="POReportNameSettingTooltipTitle" xml:space="preserve">
+    <value>The name of the report file that the program looks for product order reports. It needs to include the language code localisation, for example ProductOrderReport.en-US.rdlc for English and etc</value>
+  </data>
+  <data name="PReportNameSettingTitle" xml:space="preserve">
+    <value>Product Report Name:</value>
+  </data>
+  <data name="PReportNameSettingTooltipTitle" xml:space="preserve">
+    <value>The name of the report file that the program looks for product reports. It needs to include the language code localisation, for example ProductReport.en-US.rdlc for English and etc</value>
+  </data>
+  <data name="PVReportNameSettingsTitle" xml:space="preserve">
+    <value>"Product Vendor Report Name:"</value>
+  </data>
+  <data name="PVReportNameSettingTooltipTitle" xml:space="preserve">
+    <value>The name of the report file that the program looks for product vendor reports. It needs to include the language code localisation, for example ProductVendorReport.en-US.rdlc for English and etc</value>
+  </data>
+  <data name="ReportDirSettingTitle" xml:space="preserve">
+    <value>Report Directory:</value>
+  </data>
+  <data name="ReportDirSettingTooltipTitle" xml:space="preserve">
+    <value>The path to the directory where the application gets all the report files from. Not recommended changing unless you are a hacker or a system administrator and I mean system administrator, not a database administrator. There is a difference between them</value>
+  </data>
+  <data name="SavedLoginsDirSettingTitle" xml:space="preserve">
+    <value>Saved Logins Directory:</value>
+  </data>
+  <data name="SavedLoginsDirSettingTooltipTitle" xml:space="preserve">
+    <value>The directory where your applications saves logins for quick selection after each login, it saves and loads them in the filesystem and this is made so you don't always have to manually type in your username and/or password to login to the database</value>
   </data>
 </root>

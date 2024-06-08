@@ -165,9 +165,8 @@
             this.btnRemoveLanguage.Name = "btnRemoveLanguage";
             this.btnRemoveLanguage.Size = new System.Drawing.Size(163, 22);
             this.btnRemoveLanguage.TabIndex = 80;
-            this.btnRemoveLanguage.Text = "REMOVE LANGUAGE";
-            this.ttApplicationSettings.SetToolTip(this.btnRemoveLanguage, "Select a language from the list to remove it if you don\'t want to use it for loca" +
-        "lisation.");
+            this.btnRemoveLanguage.Text = GLOBAL_RESOURCES.BTN_REMOVE_LANGUAGE_TITLE;
+            this.ttApplicationSettings.SetToolTip(this.btnRemoveLanguage, GLOBAL_RESOURCES.BTN_REMOVE_LANGUAGE_TOOLTIP_TITLE);
             this.btnRemoveLanguage.UseVisualStyleBackColor = true;
             this.btnRemoveLanguage.Click += new System.EventHandler(this.btnRemoveLanguage_Click);
             // 
@@ -180,8 +179,8 @@
             this.btnAddLanguage.Name = "btnAddLanguage";
             this.btnAddLanguage.Size = new System.Drawing.Size(163, 22);
             this.btnAddLanguage.TabIndex = 79;
-            this.btnAddLanguage.Text = "ADD LANGUAGE";
-            this.ttApplicationSettings.SetToolTip(this.btnAddLanguage, resources.GetString("btnAddLanguage.ToolTip"));
+            this.btnAddLanguage.Text = GLOBAL_RESOURCES.BTN_ADD_LANGUAGE_TITLE;
+            this.ttApplicationSettings.SetToolTip(this.btnAddLanguage, GLOBAL_RESOURCES.BTN_ADD_LANGUAGE_TOOLTIP_TITLE);
             this.btnAddLanguage.UseVisualStyleBackColor = true;
             this.btnAddLanguage.Click += new System.EventHandler(this.btnAddLanguage_Click);
             // 
@@ -198,19 +197,18 @@
             this.lstLanguagesInList.Name = "lstLanguagesInList";
             this.lstLanguagesInList.Size = new System.Drawing.Size(442, 177);
             this.lstLanguagesInList.TabIndex = 78;
-            this.ttApplicationSettings.SetToolTip(this.lstLanguagesInList, "The application languages list. If you want to add new language it be sure to loc" +
-        "alise the reports and the resource file of the application. It is up to you");
+            this.ttApplicationSettings.SetToolTip(this.lstLanguagesInList, GLOBAL_RESOURCES.LST_LANGUAGES_IN_LIST_TOOLTIP_TITLE);
             this.lstLanguagesInList.UseCompatibleStateImageBehavior = false;
             this.lstLanguagesInList.View = System.Windows.Forms.View.Details;
             // 
             // LanguageDisplayNameColumn
             // 
-            this.LanguageDisplayNameColumn.Text = "Language Display Name";
+            this.LanguageDisplayNameColumn.Text = GLOBAL_RESOURCES.LANGUAGE_DISPLAY_NAME_COL_TITLE;
             this.LanguageDisplayNameColumn.Width = 265;
             // 
             // LanguageCodeColumn
             // 
-            this.LanguageCodeColumn.Text = "Language Code";
+            this.LanguageCodeColumn.Text = GLOBAL_RESOURCES.LANGUAGE_CODE_COL_TITLE;
             this.LanguageCodeColumn.Width = 171;
             // 
             // btnSearchCultureInfo
@@ -221,8 +219,8 @@
             this.btnSearchCultureInfo.Name = "btnSearchCultureInfo";
             this.btnSearchCultureInfo.Size = new System.Drawing.Size(163, 22);
             this.btnSearchCultureInfo.TabIndex = 77;
-            this.btnSearchCultureInfo.Text = "SEARCH CULTURE INFO";
-            this.ttApplicationSettings.SetToolTip(this.btnSearchCultureInfo, "Click to search culture info");
+            this.btnSearchCultureInfo.Text = GLOBAL_RESOURCES.BTN_SEARCH_CULTURE_INFO_TITLE;
+            this.ttApplicationSettings.SetToolTip(this.btnSearchCultureInfo, GLOBAL_RESOURCES.BTN_SEARCH_CULTURE_INFO_TOOLTIP_TITLE);
             this.btnSearchCultureInfo.UseVisualStyleBackColor = true;
             this.btnSearchCultureInfo.Click += new System.EventHandler(this.btnSearchCultureInfo_Click);
             // 
@@ -234,8 +232,7 @@
             this.txtSearchCulture.Name = "txtSearchCulture";
             this.txtSearchCulture.Size = new System.Drawing.Size(258, 22);
             this.txtSearchCulture.TabIndex = 76;
-            this.ttApplicationSettings.SetToolTip(this.txtSearchCulture, "Here you can search culture info based on the version of .Net Framework you are o" +
-        "n. 4.7.2 and above is required, you know?");
+            this.ttApplicationSettings.SetToolTip(this.txtSearchCulture, GLOBAL_RESOURCES.TXT_SEARCH_CULTURE_TOOLTIP_TITLE);
             // 
             // lstFoundCultureInfos
             // 
@@ -250,18 +247,18 @@
             this.lstFoundCultureInfos.Name = "lstFoundCultureInfos";
             this.lstFoundCultureInfos.Size = new System.Drawing.Size(442, 177);
             this.lstFoundCultureInfos.TabIndex = 75;
-            this.ttApplicationSettings.SetToolTip(this.lstFoundCultureInfos, "Select any culture you want to localise your application with. It is up to you");
+            this.ttApplicationSettings.SetToolTip(this.lstFoundCultureInfos, GLOBAL_RESOURCES.LST_FOUND_CULTURE_INFOS_TOOLTIP_TITLE);
             this.lstFoundCultureInfos.UseCompatibleStateImageBehavior = false;
             this.lstFoundCultureInfos.View = System.Windows.Forms.View.Details;
             // 
             // CultureDisplayNameColumn
             // 
-            this.CultureDisplayNameColumn.Text = "Culture Display Name";
+            this.CultureDisplayNameColumn.Text = GLOBAL_RESOURCES.CULTURE_DISPLAY_NAME_COL_TITLE;
             this.CultureDisplayNameColumn.Width = 265;
             // 
             // CultureCodeColumn
             // 
-            this.CultureCodeColumn.Text = "Culture Code";
+            this.CultureCodeColumn.Text = GLOBAL_RESOURCES.CULTURE_CODE_COL_TITLE;
             this.CultureCodeColumn.Width = 171;
             // 
             // lblFoundCultureInfos
@@ -274,7 +271,7 @@
             this.lblFoundCultureInfos.Name = "lblFoundCultureInfos";
             this.lblFoundCultureInfos.Size = new System.Drawing.Size(194, 16);
             this.lblFoundCultureInfos.TabIndex = 74;
-            this.lblFoundCultureInfos.Text = "Found Culture Informations:";
+            this.lblFoundCultureInfos.Text = GLOBAL_RESOURCES.LBL_FOUND_CULTURE_INFOS_TITLE;
             // 
             // lblLanguageExtensibilitySettings
             // 
@@ -287,9 +284,8 @@
             this.lblLanguageExtensibilitySettings.Name = "lblLanguageExtensibilitySettings";
             this.lblLanguageExtensibilitySettings.Size = new System.Drawing.Size(449, 38);
             this.lblLanguageExtensibilitySettings.TabIndex = 73;
-            this.lblLanguageExtensibilitySettings.Text = "Language Extensibility Settings";
-            this.ttApplicationSettings.SetToolTip(this.lblLanguageExtensibilitySettings, "The settings for adding and removing language and then manually extending the app" +
-        "lication to reflect on them. It is up to you to extend it");
+            this.lblLanguageExtensibilitySettings.Text =GLOBAL_RESOURCES.LBL_EXT_LANG_SETTINGS_TITLE;
+            this.ttApplicationSettings.SetToolTip(this.lblLanguageExtensibilitySettings, GLOBAL_RESOURCES.LBL_EXT_LANG_SETTINGS_TOOLTIP_TITLE);
             // 
             // lblCommonSettings
             // 
@@ -302,8 +298,8 @@
             this.lblCommonSettings.Name = "lblCommonSettings";
             this.lblCommonSettings.Size = new System.Drawing.Size(263, 38);
             this.lblCommonSettings.TabIndex = 72;
-            this.lblCommonSettings.Text = "Common Settings";
-            this.ttApplicationSettings.SetToolTip(this.lblCommonSettings, "Common settings for this application");
+            this.lblCommonSettings.Text = GLOBAL_RESOURCES.LBL_COMMON_SETTINGS_TITLE;
+            this.ttApplicationSettings.SetToolTip(this.lblCommonSettings, GLOBAL_RESOURCES.LBL_COMMON_SETTINGS_TOOLTIP_TITLE);
             // 
             // txtOrderDeliveryInvoiceReportName
             // 
@@ -313,7 +309,7 @@
             this.txtOrderDeliveryInvoiceReportName.Name = "txtOrderDeliveryInvoiceReportName";
             this.txtOrderDeliveryInvoiceReportName.Size = new System.Drawing.Size(258, 22);
             this.txtOrderDeliveryInvoiceReportName.TabIndex = 71;
-            this.ttApplicationSettings.SetToolTip(this.txtOrderDeliveryInvoiceReportName, resources.GetString("txtOrderDeliveryInvoiceReportName.ToolTip"));
+            this.ttApplicationSettings.SetToolTip(this.txtOrderDeliveryInvoiceReportName, GLOBAL_RESOURCES.ODI_REPORT_NAME_SETTING_TOOLTIP_TITLE);
             // 
             // lblOrderDeliveryInvoiceReportName
             // 
@@ -325,7 +321,7 @@
             this.lblOrderDeliveryInvoiceReportName.Name = "lblOrderDeliveryInvoiceReportName";
             this.lblOrderDeliveryInvoiceReportName.Size = new System.Drawing.Size(262, 16);
             this.lblOrderDeliveryInvoiceReportName.TabIndex = 70;
-            this.lblOrderDeliveryInvoiceReportName.Text = "Order Delivery Invoice Report Name:";
+            this.lblOrderDeliveryInvoiceReportName.Text = GLOBAL_RESOURCES.ODI_REPORT_NAME_SETTING_TITLE;
             // 
             // txtOrderDeliveryReportName
             // 
@@ -335,9 +331,7 @@
             this.txtOrderDeliveryReportName.Name = "txtOrderDeliveryReportName";
             this.txtOrderDeliveryReportName.Size = new System.Drawing.Size(258, 22);
             this.txtOrderDeliveryReportName.TabIndex = 69;
-            this.ttApplicationSettings.SetToolTip(this.txtOrderDeliveryReportName, "The name of the report file that the program looks for order delivery reports. It" +
-        " needs to include the language code localisation, for example OrderDeliveryRepor" +
-        "t.en-US.rdlc for English and etc");
+            this.ttApplicationSettings.SetToolTip(this.txtOrderDeliveryReportName, GLOBAL_RESOURCES.OD_REPORT_NAME_SETTING_TOOLTIP_TITLE);
             // 
             // lblOrderDeliveryReportName
             // 
@@ -349,7 +343,7 @@
             this.lblOrderDeliveryReportName.Name = "lblOrderDeliveryReportName";
             this.lblOrderDeliveryReportName.Size = new System.Drawing.Size(208, 16);
             this.lblOrderDeliveryReportName.TabIndex = 68;
-            this.lblOrderDeliveryReportName.Text = "Order Delivery Report Name:";
+            this.lblOrderDeliveryReportName.Text = GLOBAL_RESOURCES.OD_REPORT_NAME_SETTING_TITLE;
             // 
             // txtProductOrderInvoiceReportName
             // 
@@ -359,9 +353,7 @@
             this.txtProductOrderInvoiceReportName.Name = "txtProductOrderInvoiceReportName";
             this.txtProductOrderInvoiceReportName.Size = new System.Drawing.Size(258, 22);
             this.txtProductOrderInvoiceReportName.TabIndex = 67;
-            this.ttApplicationSettings.SetToolTip(this.txtProductOrderInvoiceReportName, "The name of the report file that the program looks for product order invoices. It" +
-        " needs to include the language code localisation, for example ProductOrderInvoic" +
-        "eReport.en-US.rdlc for English and etc");
+            this.ttApplicationSettings.SetToolTip(this.txtProductOrderInvoiceReportName, GLOBAL_RESOURCES.POI_REPORT_NAME_SETTING_TOOLTIP_TITLE);
             // 
             // lblProductOrderInvoiceReportName
             // 
@@ -373,7 +365,7 @@
             this.lblProductOrderInvoiceReportName.Name = "lblProductOrderInvoiceReportName";
             this.lblProductOrderInvoiceReportName.Size = new System.Drawing.Size(257, 16);
             this.lblProductOrderInvoiceReportName.TabIndex = 66;
-            this.lblProductOrderInvoiceReportName.Text = "Product Order Invoice Report Name:";
+            this.lblProductOrderInvoiceReportName.Text = GLOBAL_RESOURCES.POI_REPORT_NAME_SETTING_TITLE;
             // 
             // txtProductOrderReportName
             // 
@@ -383,9 +375,7 @@
             this.txtProductOrderReportName.Name = "txtProductOrderReportName";
             this.txtProductOrderReportName.Size = new System.Drawing.Size(258, 22);
             this.txtProductOrderReportName.TabIndex = 65;
-            this.ttApplicationSettings.SetToolTip(this.txtProductOrderReportName, "The name of the report file that the program looks for product order reports. It " +
-        "needs to include the language code localisation, for example ProductOrderReport." +
-        "en-US.rdlc for English and etc");
+            this.ttApplicationSettings.SetToolTip(this.txtProductOrderReportName,GLOBAL_RESOURCES.PO_REPORT_NAME_SETTING_TOOLTIP_TITLE);
             // 
             // lblProductOrderReportName
             // 
@@ -397,7 +387,7 @@
             this.lblProductOrderReportName.Name = "lblProductOrderReportName";
             this.lblProductOrderReportName.Size = new System.Drawing.Size(203, 16);
             this.lblProductOrderReportName.TabIndex = 64;
-            this.lblProductOrderReportName.Text = "Product Order Report Name:";
+            this.lblProductOrderReportName.Text = GLOBAL_RESOURCES.PO_REPORT_NAME_SETTING_TITLE;
             // 
             // txtProductReportName
             // 
@@ -407,9 +397,7 @@
             this.txtProductReportName.Name = "txtProductReportName";
             this.txtProductReportName.Size = new System.Drawing.Size(258, 22);
             this.txtProductReportName.TabIndex = 63;
-            this.ttApplicationSettings.SetToolTip(this.txtProductReportName, "The name of the report file that the program looks for product reports. It needs " +
-        "to include the language code localisation, for example ProductReport.en-US.rdlc " +
-        "for English and etc");
+            this.ttApplicationSettings.SetToolTip(this.txtProductReportName,GLOBAL_RESOURCES.P_REPORT_NAME_SETTING_TOOLTIP_TITLE);
             // 
             // lblProductReportName
             // 
@@ -421,7 +409,7 @@
             this.lblProductReportName.Name = "lblProductReportName";
             this.lblProductReportName.Size = new System.Drawing.Size(160, 16);
             this.lblProductReportName.TabIndex = 62;
-            this.lblProductReportName.Text = "Product Report Name:";
+            this.lblProductReportName.Text = GLOBAL_RESOURCES.P_REPORT_NAME_SETTING_TITLE;
             // 
             // txtDeliveryServiceReportName
             // 
@@ -431,9 +419,7 @@
             this.txtDeliveryServiceReportName.Name = "txtDeliveryServiceReportName";
             this.txtDeliveryServiceReportName.Size = new System.Drawing.Size(258, 22);
             this.txtDeliveryServiceReportName.TabIndex = 61;
-            this.ttApplicationSettings.SetToolTip(this.txtDeliveryServiceReportName, "The name of the report file that the program looks for delivery service reports. " +
-        "It needs to include the language code localisation, for example DeliveryServiceR" +
-        "eport.en-US.rdlc for English and etc");
+            this.ttApplicationSettings.SetToolTip(this.txtDeliveryServiceReportName, GLOBAL_RESOURCES.DS_REPORT_NAME_SETTING_TOOLTIP_TITLE);
             // 
             // lblDeliveryServiceReportName
             // 
@@ -445,7 +431,7 @@
             this.lblDeliveryServiceReportName.Name = "lblDeliveryServiceReportName";
             this.lblDeliveryServiceReportName.Size = new System.Drawing.Size(222, 16);
             this.lblDeliveryServiceReportName.TabIndex = 60;
-            this.lblDeliveryServiceReportName.Text = "Delivery Service Report Name:";
+            this.lblDeliveryServiceReportName.Text = GLOBAL_RESOURCES.DS_REPORT_NAME_SETTING_TITLE;
             // 
             // txtPaymentMethodReportName
             // 
@@ -455,9 +441,7 @@
             this.txtPaymentMethodReportName.Name = "txtPaymentMethodReportName";
             this.txtPaymentMethodReportName.Size = new System.Drawing.Size(258, 22);
             this.txtPaymentMethodReportName.TabIndex = 59;
-            this.ttApplicationSettings.SetToolTip(this.txtPaymentMethodReportName, "The name of the report file that the program looks for payment method reports. It" +
-        " needs to include the language code localisation, for example PaymentMethodRepor" +
-        "t.en-US.rdlc for English and etc");
+            this.ttApplicationSettings.SetToolTip(this.txtPaymentMethodReportName,GLOBAL_RESOURCES.PM_REPORT_NAME_SETTING_TOOLTIP_TITLE);
             // 
             // lblPaymentMethodReportName
             // 
@@ -469,7 +453,7 @@
             this.lblPaymentMethodReportName.Name = "lblPaymentMethodReportName";
             this.lblPaymentMethodReportName.Size = new System.Drawing.Size(222, 16);
             this.lblPaymentMethodReportName.TabIndex = 58;
-            this.lblPaymentMethodReportName.Text = "Payment Method Report Name:";
+            this.lblPaymentMethodReportName.Text = GLOBAL_RESOURCES.PM_REPORT_NAME_SETTING_TITLE;
             // 
             // txtProductVendorReportName
             // 
@@ -479,9 +463,7 @@
             this.txtProductVendorReportName.Name = "txtProductVendorReportName";
             this.txtProductVendorReportName.Size = new System.Drawing.Size(258, 22);
             this.txtProductVendorReportName.TabIndex = 57;
-            this.ttApplicationSettings.SetToolTip(this.txtProductVendorReportName, "The name of the report file that the program looks for product vendor reports. It" +
-        " needs to include the language code localisation, for example ProductVendorRepor" +
-        "t.en-US.rdlc for English and etc");
+            this.ttApplicationSettings.SetToolTip(this.txtProductVendorReportName,GLOBAL_RESOURCES.PV_REPORT_NAME_SETTING_TOOLTIP_TITLE);
             // 
             // lblProductVendorReportName
             // 
@@ -493,7 +475,7 @@
             this.lblProductVendorReportName.Name = "lblProductVendorReportName";
             this.lblProductVendorReportName.Size = new System.Drawing.Size(214, 16);
             this.lblProductVendorReportName.TabIndex = 56;
-            this.lblProductVendorReportName.Text = "Product Vendor Report Name:";
+            this.lblProductVendorReportName.Text = GLOBAL_RESOURCES.PV_REPORT_NAME_SETTING_TITLE;
             // 
             // txtProductBrandReportName
             // 
@@ -503,9 +485,7 @@
             this.txtProductBrandReportName.Name = "txtProductBrandReportName";
             this.txtProductBrandReportName.Size = new System.Drawing.Size(258, 22);
             this.txtProductBrandReportName.TabIndex = 55;
-            this.ttApplicationSettings.SetToolTip(this.txtProductBrandReportName, "The name of the report file that the program looks for product brand reports. It " +
-        "needs to include the language code localisation, for example ProductBrandReport." +
-        "en-US.rdlc for English and etc");
+            this.ttApplicationSettings.SetToolTip(this.txtProductBrandReportName, GLOBAL_RESOURCES.PB_REPORT_NAME_SETTING_TOOLTIP_TITLE);
             // 
             // lblProductBrandReportName
             // 
@@ -517,7 +497,7 @@
             this.lblProductBrandReportName.Name = "lblProductBrandReportName";
             this.lblProductBrandReportName.Size = new System.Drawing.Size(205, 16);
             this.lblProductBrandReportName.TabIndex = 54;
-            this.lblProductBrandReportName.Text = "Product Brand Report Name:";
+            this.lblProductBrandReportName.Text = GLOBAL_RESOURCES.PB_REPORT_NAME_SETTING_TITLE;
             // 
             // txtClientReportName
             // 
@@ -527,9 +507,7 @@
             this.txtClientReportName.Name = "txtClientReportName";
             this.txtClientReportName.Size = new System.Drawing.Size(258, 22);
             this.txtClientReportName.TabIndex = 53;
-            this.ttApplicationSettings.SetToolTip(this.txtClientReportName, "The name of the report file that the program looks for client reports. It needs t" +
-        "o include the language code localisation, for example ClientReport.en-US.rdlc fo" +
-        "r English and etc");
+            this.ttApplicationSettings.SetToolTip(this.txtClientReportName, GLOBAL_RESOURCES.CL_REPORT_NAME_SETTING_TOOLTIP_TITLE);
             // 
             // lblClientReportName
             // 
@@ -541,7 +519,7 @@
             this.lblClientReportName.Name = "lblClientReportName";
             this.lblClientReportName.Size = new System.Drawing.Size(146, 16);
             this.lblClientReportName.TabIndex = 52;
-            this.lblClientReportName.Text = "Client Report Name:";
+            this.lblClientReportName.Text = GLOBAL_RESOURCES.CL_REPORT_NAME_SETTING_TITLE;
             // 
             // txtEmployeeReportName
             // 
@@ -551,9 +529,7 @@
             this.txtEmployeeReportName.Name = "txtEmployeeReportName";
             this.txtEmployeeReportName.Size = new System.Drawing.Size(258, 22);
             this.txtEmployeeReportName.TabIndex = 51;
-            this.ttApplicationSettings.SetToolTip(this.txtEmployeeReportName, "The name of the report file that the program looks for employee reports. It needs" +
-        " to include the language code localisation, for example EmployeeReport.en-US.rdl" +
-        "c for English and etc");
+            this.ttApplicationSettings.SetToolTip(this.txtEmployeeReportName,GLOBAL_RESOURCES.EMP_REPORT_NAME_SETTING_TOOLTIP_TITLE);
             // 
             // lblEmployeeReportName
             // 
@@ -565,7 +541,7 @@
             this.lblEmployeeReportName.Name = "lblEmployeeReportName";
             this.lblEmployeeReportName.Size = new System.Drawing.Size(177, 16);
             this.lblEmployeeReportName.TabIndex = 50;
-            this.lblEmployeeReportName.Text = "Employee Report Name:";
+            this.lblEmployeeReportName.Text = GLOBAL_RESOURCES.EMP_REPORT_NAME_SETTING_TITLE;
             // 
             // txtSavedLoginsDirectory
             // 
@@ -575,7 +551,7 @@
             this.txtSavedLoginsDirectory.Name = "txtSavedLoginsDirectory";
             this.txtSavedLoginsDirectory.Size = new System.Drawing.Size(258, 22);
             this.txtSavedLoginsDirectory.TabIndex = 49;
-            this.ttApplicationSettings.SetToolTip(this.txtSavedLoginsDirectory, resources.GetString("txtSavedLoginsDirectory.ToolTip"));
+            this.ttApplicationSettings.SetToolTip(this.txtSavedLoginsDirectory, GLOBAL_RESOURCES.SAVED_LOGIN_DIR_SETTING_TOOLTIP_TITLE);
             // 
             // lblSavedLoginsDirectory
             // 
@@ -587,7 +563,7 @@
             this.lblSavedLoginsDirectory.Name = "lblSavedLoginsDirectory";
             this.lblSavedLoginsDirectory.Size = new System.Drawing.Size(173, 16);
             this.lblSavedLoginsDirectory.TabIndex = 48;
-            this.lblSavedLoginsDirectory.Text = "Saved Logins Directory:";
+            this.lblSavedLoginsDirectory.Text = GLOBAL_RESOURCES.SAVED_LOGIN_DIR_SETTING_TITLE;
             // 
             // btnBrowseSavedLoginsDirectory
             // 
@@ -597,8 +573,8 @@
             this.btnBrowseSavedLoginsDirectory.Name = "btnBrowseSavedLoginsDirectory";
             this.btnBrowseSavedLoginsDirectory.Size = new System.Drawing.Size(90, 22);
             this.btnBrowseSavedLoginsDirectory.TabIndex = 47;
-            this.btnBrowseSavedLoginsDirectory.Text = "BROWSE";
-            this.ttApplicationSettings.SetToolTip(this.btnBrowseSavedLoginsDirectory, "Browse the directory you wish to use to save and load logins here with ease");
+            this.btnBrowseSavedLoginsDirectory.Text = GLOBAL_RESOURCES.BTN_BROWSE_TITLE;
+            this.ttApplicationSettings.SetToolTip(this.btnBrowseSavedLoginsDirectory, GLOBAL_RESOURCES.BTN_BROWSE_SAVED_LOGINS_DIR_TOOLTIP_TITLE);
             this.btnBrowseSavedLoginsDirectory.UseVisualStyleBackColor = true;
             this.btnBrowseSavedLoginsDirectory.Click += new System.EventHandler(this.btnBrowseSavedLoginsDirectory_Click);
             // 
@@ -610,7 +586,7 @@
             this.txtReportDirectory.Name = "txtReportDirectory";
             this.txtReportDirectory.Size = new System.Drawing.Size(258, 22);
             this.txtReportDirectory.TabIndex = 46;
-            this.ttApplicationSettings.SetToolTip(this.txtReportDirectory, resources.GetString("txtReportDirectory.ToolTip"));
+            this.ttApplicationSettings.SetToolTip(this.txtReportDirectory, GLOBAL_RESOURCES.REPORT_DIR_SETTING_TOOLTIP_TITLE);
             // 
             // lblReportDirectory
             // 
@@ -622,7 +598,7 @@
             this.lblReportDirectory.Name = "lblReportDirectory";
             this.lblReportDirectory.Size = new System.Drawing.Size(125, 16);
             this.lblReportDirectory.TabIndex = 45;
-            this.lblReportDirectory.Text = "Report Directory:";
+            this.lblReportDirectory.Text = GLOBAL_RESOURCES.REPORT_DIR_SETTING_TITLE;
             // 
             // cbLanguage
             // 
@@ -633,7 +609,7 @@
             this.cbLanguage.Name = "cbLanguage";
             this.cbLanguage.Size = new System.Drawing.Size(258, 24);
             this.cbLanguage.TabIndex = 44;
-            this.ttApplicationSettings.SetToolTip(this.cbLanguage, resources.GetString("cbLanguage.ToolTip"));
+            this.ttApplicationSettings.SetToolTip(this.cbLanguage, GLOBAL_RESOURCES.LANG_SETTING_TOOLTIP_TITLE);
             this.cbLanguage.ValueMember = "LanguageCode";
             // 
             // languageBindingSource
@@ -650,7 +626,7 @@
             this.lblLanguage.Name = "lblLanguage";
             this.lblLanguage.Size = new System.Drawing.Size(84, 16);
             this.lblLanguage.TabIndex = 43;
-            this.lblLanguage.Text = "Lamguage:";
+            this.lblLanguage.Text = GLOBAL_RESOURCES.LANG_SETTING_TITLE;
             // 
             // btnBrowseReportDirectory
             // 
@@ -660,9 +636,8 @@
             this.btnBrowseReportDirectory.Name = "btnBrowseReportDirectory";
             this.btnBrowseReportDirectory.Size = new System.Drawing.Size(90, 22);
             this.btnBrowseReportDirectory.TabIndex = 42;
-            this.btnBrowseReportDirectory.Text = "BROWSE";
-            this.ttApplicationSettings.SetToolTip(this.btnBrowseReportDirectory, "You can easily browse the directory from which the application gets the report fi" +
-        "les");
+            this.btnBrowseReportDirectory.Text = GLOBAL_RESOURCES.BTN_BROWSE_TITLE;
+            this.ttApplicationSettings.SetToolTip(this.btnBrowseReportDirectory, GLOBAL_RESOURCES.BTN_BROWSE_REPORT_DIR_TOOLTIP_TITLE);
             this.btnBrowseReportDirectory.UseVisualStyleBackColor = true;
             this.btnBrowseReportDirectory.Click += new System.EventHandler(this.btnBrowseReportDirectory_Click);
             // 
@@ -674,8 +649,7 @@
             this.txtCompanyName.Name = "txtCompanyName";
             this.txtCompanyName.Size = new System.Drawing.Size(258, 22);
             this.txtCompanyName.TabIndex = 41;
-            this.ttApplicationSettings.SetToolTip(this.txtCompanyName, "The name of your company or the company you work on. It is represented in the rep" +
-        "orts");
+            this.ttApplicationSettings.SetToolTip(this.txtCompanyName, GLOBAL_RESOURCES.COMPANY_NAME_SETTING_TOOLTIP_TITLE);
             // 
             // lblCompanyName
             // 
@@ -687,7 +661,7 @@
             this.lblCompanyName.Name = "lblCompanyName";
             this.lblCompanyName.Size = new System.Drawing.Size(121, 16);
             this.lblCompanyName.TabIndex = 40;
-            this.lblCompanyName.Text = "Company Name:";
+            this.lblCompanyName.Text = GLOBAL_RESOURCES.COMPANY_NAME_SETTING_TITLE;
             // 
             // txtDatabasePassword
             // 
@@ -697,7 +671,7 @@
             this.txtDatabasePassword.Name = "txtDatabasePassword";
             this.txtDatabasePassword.Size = new System.Drawing.Size(258, 22);
             this.txtDatabasePassword.TabIndex = 39;
-            this.ttApplicationSettings.SetToolTip(this.txtDatabasePassword, "The password according to the user you log yourself in to the database.");
+            this.ttApplicationSettings.SetToolTip(this.txtDatabasePassword, GLOBAL_RESOURCES.DB_PASSWORD_SETTING_TOOLTIP_TITLE);
             this.txtDatabasePassword.UseSystemPasswordChar = true;
             // 
             // lblDBPassword
@@ -710,7 +684,7 @@
             this.lblDBPassword.Name = "lblDBPassword";
             this.lblDBPassword.Size = new System.Drawing.Size(151, 16);
             this.lblDBPassword.TabIndex = 38;
-            this.lblDBPassword.Text = "Database Password:";
+            this.lblDBPassword.Text = GLOBAL_RESOURCES.DB_PASSWORD_SETTING_TITLE;
             // 
             // txtDBUser
             // 
@@ -720,9 +694,7 @@
             this.txtDBUser.Name = "txtDBUser";
             this.txtDBUser.Size = new System.Drawing.Size(258, 22);
             this.txtDBUser.TabIndex = 37;
-            this.ttApplicationSettings.SetToolTip(this.txtDBUser, "The database user with which you need to login on the database, it is tightly con" +
-        "nected to the registration in the database and to the role you represent in your" +
-        " company");
+            this.ttApplicationSettings.SetToolTip(this.txtDBUser, GLOBAL_RESOURCES.DB_USER_SETTING_TOOLTIP_TITLE);
             // 
             // lblDBUser
             // 
@@ -734,7 +706,7 @@
             this.lblDBUser.Name = "lblDBUser";
             this.lblDBUser.Size = new System.Drawing.Size(116, 16);
             this.lblDBUser.TabIndex = 36;
-            this.lblDBUser.Text = "Database User:";
+            this.lblDBUser.Text = GLOBAL_RESOURCES.DB_USER_SETTING_TITLE;
             // 
             // txtDatabaseName
             // 
@@ -744,9 +716,7 @@
             this.txtDatabaseName.Name = "txtDatabaseName";
             this.txtDatabaseName.Size = new System.Drawing.Size(258, 22);
             this.txtDatabaseName.TabIndex = 35;
-            this.ttApplicationSettings.SetToolTip(this.txtDatabaseName, "The database name of this application. If you have changed the database name in t" +
-        "he provided query that sets it up which is not recommended you need to change it" +
-        " here as well");
+            this.ttApplicationSettings.SetToolTip(this.txtDatabaseName, GLOBAL_RESOURCES.DB_NAME_SETTING_TOOLTIP_TITLE);
             // 
             // lblDatabaseName
             // 
@@ -758,7 +728,7 @@
             this.lblDatabaseName.Name = "lblDatabaseName";
             this.lblDatabaseName.Size = new System.Drawing.Size(124, 16);
             this.lblDatabaseName.TabIndex = 34;
-            this.lblDatabaseName.Text = "Database Name:";
+            this.lblDatabaseName.Text = GLOBAL_RESOURCES.DB_NAME_SETTING_TITLE;
             // 
             // btnOK
             // 
@@ -771,8 +741,7 @@
             this.btnOK.Size = new System.Drawing.Size(90, 47);
             this.btnOK.TabIndex = 33;
             this.btnOK.Text = GLOBAL_RESOURCES.BTN_OK_TITLE;
-            this.ttApplicationSettings.SetToolTip(this.btnOK, "Accept the changes, by clicking it they are saved otherwise nothing gets changed." +
-        "The settings reflect on the application once it is restarted");
+            this.ttApplicationSettings.SetToolTip(this.btnOK, GLOBAL_RESOURCES.BTN_OK_APP_SETTINGS_TOOLTIP_TITLE);
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -787,8 +756,7 @@
             this.btnCancel.Size = new System.Drawing.Size(90, 47);
             this.btnCancel.TabIndex = 30;
             this.btnCancel.Text =GLOBAL_RESOURCES.BTN_CANCEL_TITLE;
-            this.ttApplicationSettings.SetToolTip(this.btnCancel, "Cancel the changes. Even if you changed anything it won\'t be saved and will be re" +
-        "verted back to the previous settings");
+            this.ttApplicationSettings.SetToolTip(this.btnCancel, GLOBAL_RESOURCES.BTN_CANCEL_APP_SETTINGS_TOOLTIP_TITLE);
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // txtDomainName
@@ -799,8 +767,7 @@
             this.txtDomainName.Name = "txtDomainName";
             this.txtDomainName.Size = new System.Drawing.Size(258, 22);
             this.txtDomainName.TabIndex = 4;
-            this.ttApplicationSettings.SetToolTip(this.txtDomainName, "The domain name of your company\'s server to which this application connects. Be c" +
-        "areful when changing it or let a system administrator set it up for you");
+            this.ttApplicationSettings.SetToolTip(this.txtDomainName, GLOBAL_RESOURCES.DOMAIN_NAME_SETTING_TOOLTIP_TITLE);
             // 
             // lblDomainName
             // 
@@ -812,7 +779,7 @@
             this.lblDomainName.Name = "lblDomainName";
             this.lblDomainName.Size = new System.Drawing.Size(109, 16);
             this.lblDomainName.TabIndex = 3;
-            this.lblDomainName.Text = "Domain Name:";
+            this.lblDomainName.Text = GLOBAL_RESOURCES.DOMAIN_NAME_SETTING_TITLE;
             // 
             // ttApplicationSettings
             // 
@@ -831,8 +798,8 @@
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "frmApplicationSettings";
-            this.Text = "Application Settings";
-            this.ttApplicationSettings.SetToolTip(this, resources.GetString("$this.ToolTip"));
+            this.Text = GLOBAL_RESOURCES.APPLICATION_SETTINGS_TITLE;
+            this.ttApplicationSettings.SetToolTip(this,GLOBAL_RESOURCES.APPLICATION_SETTINGS_TOOLTIP_TITLE);
             this.Load += new System.EventHandler(this.frmApplicationSettings_Load);
             this.pnlData.ResumeLayout(false);
             this.pnlData.PerformLayout();

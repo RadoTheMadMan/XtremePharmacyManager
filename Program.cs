@@ -630,6 +630,69 @@ namespace XtremePharmacyManager
         private static string bULK_ORDER_DELIVERY_OPERATIONS_TOOLTIP_TITLE = "";
         private static string bULK_DELIVERY_SERVICE_OPERATIONS_TITLE = "";
         private static string bULK_DELIVERY_SERVICE_OPERATIONS_TOOLTIP_TITLE = "";
+        private static string bTN_REMOVE_LANGUAGE_TITLE = "";
+        private static string bTN_REMOVE_LANGUAGE_TOOLTIP_TITLE = "";
+        private static string bTN_ADD_LANGUAGE_TITLE = "";
+        private static string bTN_ADD_LANGUAGE_TOOLTIP_TITLE = "";
+        private static string lST_LANGUAGES_IN_LIST_TOOLTIP_TITLE = "";
+        private static string lANGUAGE_DISPLAY_NAME_COL_TITLE = "";
+        private static string lANGUAGE_CODE_COL_TITLE = "";
+        private static string bTN_SEARCH_CULTURE_INFO_TITLE = "";
+        private static string tXT_SEARCH_CULTURE_INFO_TOOLTIP_TITLE = "";
+        private static string tXT_SEARCH_CULTURE_TOOLTIP_TITLE = "";
+        private static string bTN_SEARCH_CULTURE_INFO_TOOLTIP_TITLE = "";
+        private static string lST_FOUND_CULTURE_INFOS_TOOLTIP_TITLE = "";
+        private static string cULTURE_DISPLAY_NAME_COL_TITLE = "";
+        private static string cULTURE_CODE_COL_TITLE = "";
+        private static string lBL_FOUND_CULTURE_INFOS_TITLE = "";
+        private static string lBL_EXT_LANG_SETTINGS_TOOLTIP_TITLE = "";
+        private static string lBL_EXT_LANG_SETTINGS_TITLE = "";
+        private static string lBL_COMMON_SETTINGS_TOOLTIP_TITLE = "";
+        private static string lBL_COMMON_SETTINGS_TITLE = "";
+        private static string oDI_REPORT_NAME_SETTING_TOOLTIP_TITLE = "";
+        private static string oDI_REPORT_NAME_SETTING_TITLE = "";
+        private static string oD_REPORT_NAME_SETTING_TOOLTIP_TITLE = "";
+        private static string oD_REPORT_NAME_SETTING_TITLE = "";
+        private static string pOI_REPORT_NAME_SETTING_TOOLTIP_TITLE = "";
+        private static string pOI_REPORT_NAME_SETTING_TITLE = "";
+        private static string pO_REPORT_NAME_SETTING_TOOLTIP_TITLE = "";
+        private static string pO_REPORT_NAME_SETTING_TITLE = "";
+        private static string p_REPORT_NAME_SETTING_TOOLTIP_TITLE = "";
+        private static string p_REPORT_NAME_SETTING_TITLE = "";
+        private static string dS_REPORT_NAME_SETTING_TOOLTIP_TITLE = "";
+        private static string dS_REPORT_NAME_SETTING_TITLE = "";
+        private static string pM_REPORT_NAME_SETTING_TOOLTIP_TITLE = "";
+        private static string pM_REPORT_NAME_SETTING_TITLE = "";
+        private static string pV_REPORT_NAME_SETTING_TOOLTIP_TITLE = "";
+        private static string pV_REPORT_NAME_SETTING_TITLE = "";
+        private static string pB_REPORT_NAME_SETTING_TOOLTIP_TITLE = "";
+        private static string pB_REPORT_NAME_SETTING_TITLE = "";
+        private static string cL_REPORT_NAME_SETTING_TOOLTIP_TITLE = "";
+        private static string cL_REPORT_NAME_SETTING_TITLE = "";
+        private static string eMP_REPORT_NAME_SETTING_TOOLTIP_TITLE = "";
+        private static string eMP_REPORT_NAME_SETTING_TITLE = "";
+        private static string sAVED_LOGIN_DIR_SETTING_TOOLTIP_TITLE = "";
+        private static string sAVED_LOGIN_DIR_SETTING_TITLE = "";
+        private static string bTN_BROWSE_TITLE = "";
+        private static string bTN_BROWSE_SAVED_LOGINS_DIR_TOOLTIP_TITLE = "";
+        private static string rEPORT_DIR_SETTING_TOOLTIP_TITLE = "";
+        private static string rEPORT_DIR_SETTING_TITLE = "";
+        private static string lANG_SETTING_TOOLTIP_TITLE = "";
+        private static string lANG_SETTING_TITLE = "";
+        private static string bTN_BROWSE_REPORT_DIR_TOOLTIP_TITLE = "";
+        private static string cOMPANY_NAME_SETTING_TOOLTIP_TITLE = "";
+        private static string cOMPANY_NAME_SETTING_TITLE = "";
+        private static string dB_PASSWORD_SETTING_TOOLTIP_TITLE = "";
+        private static string dB_PASSWORD_SETTING_TITLE = "";
+        private static string dB_USER_SETTING_TOOLTIP_TITLE = "";
+        private static string dB_USER_SETTING_TITLE = "";
+        private static string dOMAIN_NAME_SETTING_TOOLTIP_TITLE = "";
+        private static string dOMAIN_NAME_SETTING_TITLE = "";
+        private static string dB_NAME_SETTING_TOOLTIP_TITLE = "";
+        private static string dB_NAME_SETTING_TITLE = "";
+        private static string bTN_OK_APP_SETTINGS_TOOLTIP_TITLE = "";
+        private static string bTN_CANCEL_APP_SETTINGS_TOOLTIP_TITLE = "";
+        private static string aPPLICATION_SETTINGS_TOOLTIP_TITLE = "";
         public static GLOBAL_RESOURCES instance;
         public EventHandler<CultureInfo> CultureInfoChanged;
 
@@ -1239,6 +1302,69 @@ namespace XtremePharmacyManager
         public static string BULK_ORDER_DELIVERY_OPERATIONS_TOOLTIP_TITLE { get => bULK_ORDER_DELIVERY_OPERATIONS_TOOLTIP_TITLE; set => bULK_ORDER_DELIVERY_OPERATIONS_TOOLTIP_TITLE = value; }
         public static string BULK_DELIVERY_SERVICE_OPERATIONS_TITLE { get => bULK_DELIVERY_SERVICE_OPERATIONS_TITLE; set => bULK_DELIVERY_SERVICE_OPERATIONS_TITLE = value; }
         public static string BULK_DELIVERY_SERVICE_OPERATIONS_TOOLTIP_TITLE { get => bULK_DELIVERY_SERVICE_OPERATIONS_TOOLTIP_TITLE; set => bULK_DELIVERY_SERVICE_OPERATIONS_TOOLTIP_TITLE = value; }
+        public static string BTN_REMOVE_LANGUAGE_TITLE { get => bTN_REMOVE_LANGUAGE_TITLE; set => bTN_REMOVE_LANGUAGE_TITLE = value; }
+        public static string BTN_REMOVE_LANGUAGE_TOOLTIP_TITLE { get => bTN_REMOVE_LANGUAGE_TOOLTIP_TITLE; set => bTN_REMOVE_LANGUAGE_TOOLTIP_TITLE = value; }
+        public static string BTN_ADD_LANGUAGE_TITLE { get => bTN_ADD_LANGUAGE_TITLE; set => bTN_ADD_LANGUAGE_TITLE = value; }
+        public static string BTN_ADD_LANGUAGE_TOOLTIP_TITLE { get => bTN_ADD_LANGUAGE_TOOLTIP_TITLE; set => bTN_ADD_LANGUAGE_TOOLTIP_TITLE = value; }
+        public static string LST_LANGUAGES_IN_LIST_TOOLTIP_TITLE { get => lST_LANGUAGES_IN_LIST_TOOLTIP_TITLE; set => lST_LANGUAGES_IN_LIST_TOOLTIP_TITLE = value; }
+        public static string LANGUAGE_DISPLAY_NAME_COL_TITLE { get => lANGUAGE_DISPLAY_NAME_COL_TITLE; set => lANGUAGE_DISPLAY_NAME_COL_TITLE = value; }
+        public static string LANGUAGE_CODE_COL_TITLE { get => lANGUAGE_CODE_COL_TITLE; set => lANGUAGE_CODE_COL_TITLE = value; }
+        public static string BTN_SEARCH_CULTURE_INFO_TITLE { get => bTN_SEARCH_CULTURE_INFO_TITLE; set => bTN_SEARCH_CULTURE_INFO_TITLE = value; }
+        public static string TXT_SEARCH_CULTURE_INFO_TOOLTIP_TITLE { get => tXT_SEARCH_CULTURE_INFO_TOOLTIP_TITLE; set => tXT_SEARCH_CULTURE_INFO_TOOLTIP_TITLE = value; }
+        public static string TXT_SEARCH_CULTURE_TOOLTIP_TITLE { get => tXT_SEARCH_CULTURE_TOOLTIP_TITLE; set => tXT_SEARCH_CULTURE_TOOLTIP_TITLE = value; }
+        public static string BTN_SEARCH_CULTURE_INFO_TOOLTIP_TITLE { get => bTN_SEARCH_CULTURE_INFO_TOOLTIP_TITLE; set => bTN_SEARCH_CULTURE_INFO_TOOLTIP_TITLE = value; }
+        public static string LST_FOUND_CULTURE_INFOS_TOOLTIP_TITLE { get => lST_FOUND_CULTURE_INFOS_TOOLTIP_TITLE; set => lST_FOUND_CULTURE_INFOS_TOOLTIP_TITLE = value; }
+        public static string CULTURE_DISPLAY_NAME_COL_TITLE { get => cULTURE_DISPLAY_NAME_COL_TITLE; set => cULTURE_DISPLAY_NAME_COL_TITLE = value; }
+        public static string CULTURE_CODE_COL_TITLE { get => cULTURE_CODE_COL_TITLE; set => cULTURE_CODE_COL_TITLE = value; }
+        public static string LBL_FOUND_CULTURE_INFOS_TITLE { get => lBL_FOUND_CULTURE_INFOS_TITLE; set => lBL_FOUND_CULTURE_INFOS_TITLE = value; }
+        public static string LBL_EXT_LANG_SETTINGS_TOOLTIP_TITLE { get => lBL_EXT_LANG_SETTINGS_TOOLTIP_TITLE; set => lBL_EXT_LANG_SETTINGS_TOOLTIP_TITLE = value; }
+        public static string LBL_EXT_LANG_SETTINGS_TITLE { get => lBL_EXT_LANG_SETTINGS_TITLE; set => lBL_EXT_LANG_SETTINGS_TITLE = value; }
+        public static string LBL_COMMON_SETTINGS_TOOLTIP_TITLE { get => lBL_COMMON_SETTINGS_TOOLTIP_TITLE; set => lBL_COMMON_SETTINGS_TOOLTIP_TITLE = value; }
+        public static string LBL_COMMON_SETTINGS_TITLE { get => lBL_COMMON_SETTINGS_TITLE; set => lBL_COMMON_SETTINGS_TITLE = value; }
+        public static string ODI_REPORT_NAME_SETTING_TOOLTIP_TITLE { get => oDI_REPORT_NAME_SETTING_TOOLTIP_TITLE; set => oDI_REPORT_NAME_SETTING_TOOLTIP_TITLE = value; }
+        public static string ODI_REPORT_NAME_SETTING_TITLE { get => oDI_REPORT_NAME_SETTING_TITLE; set => oDI_REPORT_NAME_SETTING_TITLE = value; }
+        public static string OD_REPORT_NAME_SETTING_TOOLTIP_TITLE { get => oD_REPORT_NAME_SETTING_TOOLTIP_TITLE; set => oD_REPORT_NAME_SETTING_TOOLTIP_TITLE = value; }
+        public static string OD_REPORT_NAME_SETTING_TITLE { get => oD_REPORT_NAME_SETTING_TITLE; set => oD_REPORT_NAME_SETTING_TITLE = value; }
+        public static string POI_REPORT_NAME_SETTING_TOOLTIP_TITLE { get => pOI_REPORT_NAME_SETTING_TOOLTIP_TITLE; set => pOI_REPORT_NAME_SETTING_TOOLTIP_TITLE = value; }
+        public static string POI_REPORT_NAME_SETTING_TITLE { get => pOI_REPORT_NAME_SETTING_TITLE; set => pOI_REPORT_NAME_SETTING_TITLE = value; }
+        public static string PO_REPORT_NAME_SETTING_TOOLTIP_TITLE { get => pO_REPORT_NAME_SETTING_TOOLTIP_TITLE; set => pO_REPORT_NAME_SETTING_TOOLTIP_TITLE = value; }
+        public static string PO_REPORT_NAME_SETTING_TITLE { get => pO_REPORT_NAME_SETTING_TITLE; set => pO_REPORT_NAME_SETTING_TITLE = value; }
+        public static string P_REPORT_NAME_SETTING_TOOLTIP_TITLE { get => p_REPORT_NAME_SETTING_TOOLTIP_TITLE; set => p_REPORT_NAME_SETTING_TOOLTIP_TITLE = value; }
+        public static string P_REPORT_NAME_SETTING_TITLE { get => p_REPORT_NAME_SETTING_TITLE; set => p_REPORT_NAME_SETTING_TITLE = value; }
+        public static string DS_REPORT_NAME_SETTING_TOOLTIP_TITLE { get => dS_REPORT_NAME_SETTING_TOOLTIP_TITLE; set => dS_REPORT_NAME_SETTING_TOOLTIP_TITLE = value; }
+        public static string DS_REPORT_NAME_SETTING_TITLE { get => dS_REPORT_NAME_SETTING_TITLE; set => dS_REPORT_NAME_SETTING_TITLE = value; }
+        public static string PM_REPORT_NAME_SETTING_TOOLTIP_TITLE { get => pM_REPORT_NAME_SETTING_TOOLTIP_TITLE; set => pM_REPORT_NAME_SETTING_TOOLTIP_TITLE = value; }
+        public static string PM_REPORT_NAME_SETTING_TITLE { get => pM_REPORT_NAME_SETTING_TITLE; set => pM_REPORT_NAME_SETTING_TITLE = value; }
+        public static string PV_REPORT_NAME_SETTING_TOOLTIP_TITLE { get => pV_REPORT_NAME_SETTING_TOOLTIP_TITLE; set => pV_REPORT_NAME_SETTING_TOOLTIP_TITLE = value; }
+        public static string PV_REPORT_NAME_SETTING_TITLE { get => pV_REPORT_NAME_SETTING_TITLE; set => pV_REPORT_NAME_SETTING_TITLE = value; }
+        public static string PB_REPORT_NAME_SETTING_TOOLTIP_TITLE { get => pB_REPORT_NAME_SETTING_TOOLTIP_TITLE; set => pB_REPORT_NAME_SETTING_TOOLTIP_TITLE = value; }
+        public static string PB_REPORT_NAME_SETTING_TITLE { get => pB_REPORT_NAME_SETTING_TITLE; set => pB_REPORT_NAME_SETTING_TITLE = value; }
+        public static string CL_REPORT_NAME_SETTING_TOOLTIP_TITLE { get => cL_REPORT_NAME_SETTING_TOOLTIP_TITLE; set => cL_REPORT_NAME_SETTING_TOOLTIP_TITLE = value; }
+        public static string CL_REPORT_NAME_SETTING_TITLE { get => cL_REPORT_NAME_SETTING_TITLE; set => cL_REPORT_NAME_SETTING_TITLE = value; }
+        public static string EMP_REPORT_NAME_SETTING_TOOLTIP_TITLE { get => eMP_REPORT_NAME_SETTING_TOOLTIP_TITLE; set => eMP_REPORT_NAME_SETTING_TOOLTIP_TITLE = value; }
+        public static string EMP_REPORT_NAME_SETTING_TITLE { get => eMP_REPORT_NAME_SETTING_TITLE; set => eMP_REPORT_NAME_SETTING_TITLE = value; }
+        public static string SAVED_LOGIN_DIR_SETTING_TOOLTIP_TITLE { get => sAVED_LOGIN_DIR_SETTING_TOOLTIP_TITLE; set => sAVED_LOGIN_DIR_SETTING_TOOLTIP_TITLE = value; }
+        public static string SAVED_LOGIN_DIR_SETTING_TITLE { get => sAVED_LOGIN_DIR_SETTING_TITLE; set => sAVED_LOGIN_DIR_SETTING_TITLE = value; }
+        public static string BTN_BROWSE_TITLE { get => bTN_BROWSE_TITLE; set => bTN_BROWSE_TITLE = value; }
+        public static string BTN_BROWSE_SAVED_LOGINS_DIR_TOOLTIP_TITLE { get => bTN_BROWSE_SAVED_LOGINS_DIR_TOOLTIP_TITLE; set => bTN_BROWSE_SAVED_LOGINS_DIR_TOOLTIP_TITLE = value; }
+        public static string REPORT_DIR_SETTING_TOOLTIP_TITLE { get => rEPORT_DIR_SETTING_TOOLTIP_TITLE; set => rEPORT_DIR_SETTING_TOOLTIP_TITLE = value; }
+        public static string REPORT_DIR_SETTING_TITLE { get => rEPORT_DIR_SETTING_TITLE; set => rEPORT_DIR_SETTING_TITLE = value; }
+        public static string LANG_SETTING_TOOLTIP_TITLE { get => lANG_SETTING_TOOLTIP_TITLE; set => lANG_SETTING_TOOLTIP_TITLE = value; }
+        public static string LANG_SETTING_TITLE { get => lANG_SETTING_TITLE; set => lANG_SETTING_TITLE = value; }
+        public static string BTN_BROWSE_REPORT_DIR_TOOLTIP_TITLE { get => bTN_BROWSE_REPORT_DIR_TOOLTIP_TITLE; set => bTN_BROWSE_REPORT_DIR_TOOLTIP_TITLE = value; }
+        public static string COMPANY_NAME_SETTING_TOOLTIP_TITLE { get => cOMPANY_NAME_SETTING_TOOLTIP_TITLE; set => cOMPANY_NAME_SETTING_TOOLTIP_TITLE = value; }
+        public static string COMPANY_NAME_SETTING_TITLE { get => cOMPANY_NAME_SETTING_TITLE; set => cOMPANY_NAME_SETTING_TITLE = value; }
+        public static string DB_PASSWORD_SETTING_TOOLTIP_TITLE { get => dB_PASSWORD_SETTING_TOOLTIP_TITLE; set => dB_PASSWORD_SETTING_TOOLTIP_TITLE = value; }
+        public static string DB_PASSWORD_SETTING_TITLE { get => dB_PASSWORD_SETTING_TITLE; set => dB_PASSWORD_SETTING_TITLE = value; }
+        public static string DB_USER_SETTING_TOOLTIP_TITLE { get => dB_USER_SETTING_TOOLTIP_TITLE; set => dB_USER_SETTING_TOOLTIP_TITLE = value; }
+        public static string DB_USER_SETTING_TITLE { get => dB_USER_SETTING_TITLE; set => dB_USER_SETTING_TITLE = value; }
+        public static string DOMAIN_NAME_SETTING_TOOLTIP_TITLE { get => dOMAIN_NAME_SETTING_TOOLTIP_TITLE; set => dOMAIN_NAME_SETTING_TOOLTIP_TITLE = value; }
+        public static string DOMAIN_NAME_SETTING_TITLE { get => dOMAIN_NAME_SETTING_TITLE; set => dOMAIN_NAME_SETTING_TITLE = value; }
+        public static string DB_NAME_SETTING_TOOLTIP_TITLE { get => dB_NAME_SETTING_TOOLTIP_TITLE; set => dB_NAME_SETTING_TOOLTIP_TITLE = value; }
+        public static string DB_NAME_SETTING_TITLE { get => dB_NAME_SETTING_TITLE; set => dB_NAME_SETTING_TITLE = value; }
+        public static string BTN_OK_APP_SETTINGS_TOOLTIP_TITLE { get => bTN_OK_APP_SETTINGS_TOOLTIP_TITLE; set => bTN_OK_APP_SETTINGS_TOOLTIP_TITLE = value; }
+        public static string BTN_CANCEL_APP_SETTINGS_TOOLTIP_TITLE { get => bTN_CANCEL_APP_SETTINGS_TOOLTIP_TITLE; set => bTN_CANCEL_APP_SETTINGS_TOOLTIP_TITLE = value; }
+        public static string APPLICATION_SETTINGS_TOOLTIP_TITLE { get => aPPLICATION_SETTINGS_TOOLTIP_TITLE; set => aPPLICATION_SETTINGS_TOOLTIP_TITLE = value; }
 
         public GLOBAL_RESOURCES()
         {
@@ -1764,6 +1890,68 @@ namespace XtremePharmacyManager
             BULK_ORDER_DELIVERY_OPERATIONS_TOOLTIP_TITLE = manager.GetString("BulkOrderDeliveryOperationsTooltipTitle", CultureInfo.CurrentCulture);
             BULK_DELIVERY_SERVICE_OPERATIONS_TITLE = manager.GetString("BulkDeliveryServiceOperationsTitle", CultureInfo.CurrentCulture);
             BULK_DELIVERY_SERVICE_OPERATIONS_TOOLTIP_TITLE = manager.GetString("BulkDeliveryServiceOperationsTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_REMOVE_LANGUAGE_TITLE = manager.GetString("BtnRemoveLanguageTitle", CultureInfo.CurrentCulture);
+            BTN_REMOVE_LANGUAGE_TOOLTIP_TITLE = manager.GetString("BtnRemoveLanguageTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_ADD_LANGUAGE_TITLE = manager.GetString("BtnAddLanguageTitle", CultureInfo.CurrentCulture);
+            BTN_ADD_LANGUAGE_TOOLTIP_TITLE = manager.GetString("BtnAddLanguageTooltipTitle", CultureInfo.CurrentCulture);
+            LST_LANGUAGES_IN_LIST_TOOLTIP_TITLE = manager.GetString("LstLanguagesInListTooltipTitle", CultureInfo.CurrentCulture);
+            LANGUAGE_DISPLAY_NAME_COL_TITLE = manager.GetString("LanguageDisplayNameColTitle",CultureInfo.CurrentCulture);
+            LANGUAGE_CODE_COL_TITLE = manager.GetString("LanguageCodeColTitle", CultureInfo.CurrentCulture);
+            BTN_SEARCH_CULTURE_INFO_TITLE = manager.GetString("BtnSearchCultureInfoTitle", CultureInfo.CurrentCulture);
+            BTN_SEARCH_CULTURE_INFO_TOOLTIP_TITLE = manager.GetString("BtnSearchCultureInfoTooltipTitle", CultureInfo.CurrentCulture);
+            TXT_SEARCH_CULTURE_TOOLTIP_TITLE = manager.GetString("TxtSearchCultureTooltipTitle", CultureInfo.CurrentCulture);
+            LST_FOUND_CULTURE_INFOS_TOOLTIP_TITLE = manager.GetString("LstFoundCultureInfosTooltipTitle", CultureInfo.CurrentCulture);
+            CULTURE_DISPLAY_NAME_COL_TITLE = manager.GetString("CultureDisplayNameColTitle", CultureInfo.CurrentCulture);
+            CULTURE_CODE_COL_TITLE = manager.GetString("CultureCodeTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_FOUND_CULTURE_INFOS_TITLE = manager.GetString("LblFoundCultureInfosTitle", CultureInfo.CurrentCulture);
+            LBL_EXT_LANG_SETTINGS_TITLE = manager.GetString("LblLangExtSettingsTitle", CultureInfo.CurrentCulture);
+            LBL_EXT_LANG_SETTINGS_TOOLTIP_TITLE = manager.GetString("LblLangExtSettingsTooltipTitle", CultureInfo.CurrentCulture);
+            LBL_COMMON_SETTINGS_TITLE = manager.GetString("LblCommonSettingsTitle", CultureInfo.CurrentCulture);
+            LBL_COMMON_SETTINGS_TOOLTIP_TITLE = manager.GetString("LblCommonSettingsTooltipTitle", CultureInfo.CurrentCulture);
+            ODI_REPORT_NAME_SETTING_TOOLTIP_TITLE = manager.GetString("ODIReportNameSettingTooltipTitle", CultureInfo.CurrentCulture);
+            ODI_REPORT_NAME_SETTING_TITLE = manager.GetString("ODIReportNameSettingTitle", CultureInfo.CurrentCulture);
+            OD_REPORT_NAME_SETTING_TOOLTIP_TITLE = manager.GetString("ODReportNameSettingTooltipTitle", CultureInfo.CurrentCulture);
+            OD_REPORT_NAME_SETTING_TITLE = manager.GetString("ODReportNameSettingTitle", CultureInfo.CurrentCulture);
+            POI_REPORT_NAME_SETTING_TOOLTIP_TITLE = manager.GetString("POIReportNameSettingTooltipTitle", CultureInfo.CurrentCulture);
+            POI_REPORT_NAME_SETTING_TITLE = manager.GetString("POIReportNameSettingTitle", CultureInfo.CurrentCulture);
+            PO_REPORT_NAME_SETTING_TOOLTIP_TITLE = manager.GetString("POReportNameSettingTooltipTitle", CultureInfo.CurrentCulture);
+            PO_REPORT_NAME_SETTING_TITLE = manager.GetString("POReportNameSettingTitle", CultureInfo.CurrentCulture);
+            P_REPORT_NAME_SETTING_TOOLTIP_TITLE = manager.GetString("PReportNameSettingTooltipTitle", CultureInfo.CurrentCulture);
+            P_REPORT_NAME_SETTING_TITLE = manager.GetString("PReportNameSettingTitle", CultureInfo.CurrentCulture);
+            DS_REPORT_NAME_SETTING_TOOLTIP_TITLE = manager.GetString("DSReportNameSettingTooltipTitle", CultureInfo.CurrentCulture);
+            DS_REPORT_NAME_SETTING_TITLE = manager.GetString("DSReportNameSettingTitle", CultureInfo.CurrentCulture);
+            PM_REPORT_NAME_SETTING_TOOLTIP_TITLE = manager.GetString("PMReportNameSettingTooltipTitle", CultureInfo.CurrentCulture);
+            PM_REPORT_NAME_SETTING_TITLE = manager.GetString("PMReportNameSettingTitle", CultureInfo.CurrentCulture);
+            PV_REPORT_NAME_SETTING_TOOLTIP_TITLE = manager.GetString("PVReportNameSettingTooltipTitle", CultureInfo.CurrentCulture);
+            PV_REPORT_NAME_SETTING_TITLE = manager.GetString("PVReportNameSettingsTitle", CultureInfo.CurrentCulture);
+            PB_REPORT_NAME_SETTING_TOOLTIP_TITLE = manager.GetString("PBReportNameSettingTooltipTitle", CultureInfo.CurrentCulture);
+            PB_REPORT_NAME_SETTING_TITLE = manager.GetString("PBReportNameSettingTitle", CultureInfo.CurrentCulture);
+            CL_REPORT_NAME_SETTING_TOOLTIP_TITLE = manager.GetString("CLReportNameTooltipTitle", CultureInfo.CurrentCulture);
+            CL_REPORT_NAME_SETTING_TITLE = manager.GetString("CLReportNameTitle", CultureInfo.CurrentCulture);
+            EMP_REPORT_NAME_SETTING_TOOLTIP_TITLE = manager.GetString("EMPReportNameTooltipTitle", CultureInfo.CurrentCulture);
+            EMP_REPORT_NAME_SETTING_TITLE = manager.GetString("EmpReportNameSettingTitle", CultureInfo.CurrentCulture);
+            SAVED_LOGIN_DIR_SETTING_TOOLTIP_TITLE = manager.GetString("SavedLoginsDirSettingTooltipTitle", CultureInfo.CurrentCulture);
+            SAVED_LOGIN_DIR_SETTING_TITLE = manager.GetString("SavedLoginsDirSettingTitle", CultureInfo.CurrentCulture);
+            BTN_BROWSE_TITLE = manager.GetString("BtnBrowseTitle", CultureInfo.CurrentCulture);
+            BTN_BROWSE_SAVED_LOGINS_DIR_TOOLTIP_TITLE = manager.GetString("BtnBrowseSavedLoginsDirTooltipTitle", CultureInfo.CurrentCulture);
+            REPORT_DIR_SETTING_TOOLTIP_TITLE = manager.GetString("ReportDirSettingTooltipTitle", CultureInfo.CurrentCulture);
+            REPORT_DIR_SETTING_TITLE = manager.GetString("ReportDirSettingTitle", CultureInfo.CurrentCulture);
+            LANG_SETTING_TOOLTIP_TITLE = manager.GetString("LangSettingTooltipTitle", CultureInfo.CurrentCulture);
+            LANG_SETTING_TITLE = manager.GetString("LangSettingTitle", CultureInfo.CurrentCulture);
+            BTN_BROWSE_REPORT_DIR_TOOLTIP_TITLE = manager.GetString("BtnBrowseReportDirTooltipTitle", CultureInfo.CurrentCulture);
+            COMPANY_NAME_SETTING_TOOLTIP_TITLE = manager.GetString("CompanyNameSettingTooltipTitle", CultureInfo.CurrentCulture);
+            COMPANY_NAME_SETTING_TITLE = manager.GetString("CompanyNameSettingTitle", CultureInfo.CurrentCulture);
+            DB_PASSWORD_SETTING_TOOLTIP_TITLE = manager.GetString("DBPasswordSettingTooltipTitle", CultureInfo.CurrentCulture);
+            DB_PASSWORD_SETTING_TITLE = manager.GetString("DBPasswordSettingTitle", CultureInfo.CurrentCulture);
+            DB_USER_SETTING_TOOLTIP_TITLE = manager.GetString("DBUserSettingTooltipTitle", CultureInfo.CurrentCulture);
+            DB_USER_SETTING_TITLE = manager.GetString("DBUserSettingTitle", CultureInfo.CurrentCulture);
+            DB_NAME_SETTING_TOOLTIP_TITLE = manager.GetString("DBNameSettingTooltipTitle", CultureInfo.CurrentCulture);
+            DB_NAME_SETTING_TITLE = manager.GetString("DBNameSettingTitle", CultureInfo.CurrentCulture);
+            BTN_OK_APP_SETTINGS_TOOLTIP_TITLE = manager.GetString("BtnOKAppSettingsTooltipTitle", CultureInfo.CurrentCulture);
+            BTN_CANCEL_APP_SETTINGS_TOOLTIP_TITLE = manager.GetString("BtnCancelAppSettingsTooltipTitle", CultureInfo.CurrentCulture);
+            DOMAIN_NAME_SETTING_TOOLTIP_TITLE = manager.GetString("DomainNameSettingTooltipTitle", CultureInfo.CurrentCulture);
+            DOMAIN_NAME_SETTING_TITLE = manager.GetString("DomainNameSettingTitle", CultureInfo.CurrentCulture);
+            APPLICATION_SETTINGS_TOOLTIP_TITLE = manager.GetString("ApplicationSettingsTooltipTitle", CultureInfo.CurrentCulture);
             BTN_SEARCH_PRODUCT_IMAGE_TITLE = manager.GetString("BtnSearchProductImageTitle", CultureInfo.CurrentCulture);
             BTN_DELETE_PRODUCT_IMAGE_TITLE = manager.GetString("BtnDeleteProductImageTitle", CultureInfo.CurrentCulture);
             BTN_ADD_EDIT_PRODUCT_IMAGE_TITLE = manager.GetString("BtnAddEditProductImageTitle", CultureInfo.CurrentCulture);
