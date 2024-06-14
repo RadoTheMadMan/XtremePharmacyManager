@@ -208,7 +208,7 @@
             this.lblYourEmail.Name = "lblYourEmail";
             this.lblYourEmail.Size = new System.Drawing.Size(86, 16);
             this.lblYourEmail.TabIndex = 15;
-            this.lblYourEmail.Text = GLOBAL_RESOURCES.LBL_ADDRESS_TITLE;
+            this.lblYourEmail.Text = GLOBAL_RESOURCES.LBL_EMAIL_TITLE;
             // 
             // txtYourPhone
             // 

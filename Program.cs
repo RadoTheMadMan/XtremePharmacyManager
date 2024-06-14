@@ -1657,7 +1657,6 @@ namespace XtremePharmacyManager
             LBL_CLIENT_TITLE = manager.GetString("LblClientTitle", CultureInfo.CurrentCulture);
             LBL_DESIRED_QUANTITY_TITLE = manager.GetString("LblDesiredQuantityTitle", CultureInfo.CurrentCulture);
             LBL_BRAND_NAME_TITLE = manager.GetString("LblBrandNameTitle", CultureInfo.CurrentCulture);
-            LBL_ADDRESS_TITLE = manager.GetString("LblMethodNameTitle", CultureInfo.CurrentCulture);
             DGV_PRODUCT_BRANDS_TOOLTIP_TITLE = manager.GetString("DgvProductBrandsTooltipTitle", CultureInfo.CurrentCulture);
             BRAND_NAME_COL_TITLE = manager.GetString("BrandNameColTitle", CultureInfo.CurrentCulture);
             BRAND_ID_COL_TITLE = manager.GetString("BrandIDColTitle", CultureInfo.CurrentCulture);
