@@ -408,6 +408,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>XTremePharmacyDBDataSet.xsd</DependentUpon>
     </Compile>
+    <Content Include="XTremePharmacyDiagram.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XTremePharmacyLatestDiagram.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XTremePharmacyManagerNewDiagram.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="frmAbout.resx">
       <DependentUpon>frmAbout.cs</DependentUpon>
     </EmbeddedResource>
@@ -600,6 +609,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Content Include="AnotherXPDBDesignerDiagram.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="CurrentStateOfXTremePharmacyDBAsOfNow.bmp">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TheRealCurrentXPDBStateNoRedundantColumns.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="XPDBDiagramLastKnownState.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xtreme Pharmacy Manager Documentation.doc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Xtreme Pharmacy Manager Documentation.bg.en.docx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="XTremePharmacyDBDataSet.xsc">
       <DependentUpon>XTremePharmacyDBDataSet.xsd</DependentUpon>
     </None>
